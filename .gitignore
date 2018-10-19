@@ -1,0 +1,7 @@
+# Useless files
+*.o
+*.out
+#file without extension?
+
+# Except the files
+#!Makefile
