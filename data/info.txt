@@ -1,0 +1,5 @@
+SPECIFICATIONS:
+
+Arena (rectangular shape, delimited by black borders):
+- width: 1m
+- height: 1.5m
