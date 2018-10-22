@@ -1,6 +1,7 @@
 #the number is given according to the lectures
 #files that contain code
 T = main
+T2 = sort4Points
 
 #supporting files
 S = aaa
