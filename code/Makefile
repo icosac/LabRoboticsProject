@@ -22,5 +22,5 @@ b build:
 r run: build
 	./$(T).out
 
-clean: 
+c clean: 
 	rm -rf *.out *.o
