@@ -1,44 +1,9 @@
-// the core of the project
+#include"unwrapping.hh"
 
-//maybe not all the libraries are neccessary...
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <cmath>
+const string filename = "./data/map/03.jpg";
+const string calib_file = "./data/intrinsic_calibration.xml";
 
-#include <opencv2/videoio.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/core.hpp>
-#include <opencv2/opencv.hpp>
-#include <opencv2/imgcodecs.hpp>
-
-using namespace cv;
-using namespace std;
-
-static const int SIZE     = 330;
-static const int W_0      = 0;
-static const int H_0      = 0;
-static const int W_OFFSET = 20;
-static const int H_OFFSET = 90;
-static const int LIMIT    = W_0 + 4*SIZE + 3*W_OFFSET;
-int W_now = W_0;
-int H_now = H_0;
-
-const string filename = "../data/map/02.jpg";
-const string calib_file = "../support_file/intrinsic_calibration.xml";
-
-// support function
-void loadCoefficients(const string& filename, Mat& camera_matrix, Mat& dist_coeffs);
-void my_imshow(const char*  win_name, Mat img);
-float distance(Point c1, Point c2);
-
-// sorting point function
-void PrintPoints(const char *caption, const vector<Point_<int> > & points);
-double Orientation(const Point &a, const Point &b, const Point &c);
-void Sort4PointsCounterClockwise(vector<Point_<int> > & points);
-double CrossProductZ(const Point &a, const Point &b);
-
-int main(){
+int unwrapping(){
     // Load image from file
     Mat or_img = imread(filename.c_str());
     if(or_img.empty()) {
@@ -109,7 +74,7 @@ int main(){
     //sort of 4 points in counterclockwise order
     PrintPoints("input: ", rect);
     Sort4PointsCounterClockwise(rect);
-    PrintPoints("output: ", rect);
+    PrintPoints("output:undistort ", rect);
     printf("\n");
     
     //sort in clockwise order starting from the leftmost corner
@@ -144,10 +109,16 @@ int main(){
     PrintPoints("output: ", rect);
 
     //check that the first side is the shortest
-    float avg0 = ( distance(rect[0],rect[1]) + distance(rect[2],rect[3])/2.5 )/2;
-    float avg1 = ( distance(rect[1],rect[2]) + distance(rect[3],rect[4])/2.5 )/2;
-    if(distance(rect[0],rect[1])>distance(rect[1],rect[2])){  //far  sides
-    //if(distance(rect[2],rect[3])>distance(rect[3],rect[4])){//near sides
+    distance(rect[0],rect[1]);
+    distance(rect[1],rect[2]);
+    distance(rect[2],rect[3]);
+    distance(rect[3],rect[0]);
+    cout <<"\n----------------------------------\n";
+    float avg0 = ( distance(rect[0],rect[1]) + distance(rect[2],rect[3]) )/2;
+    float avg1 = ( distance(rect[1],rect[2]) + distance(rect[3],rect[0]) )/2;
+    if(avg0>avg1){
+    //if(distance(rect[0],rect[1])>distance(rect[1],rect[2])){  //far  sides
+    //if(distance(rect[2],rect[3])>distance(rect[3],rect[0])){//near sides
         cout << "\navg0 > avg1\n";
         Point tmp = rect[0];
         for(int i=0; i<3; i++){
@@ -193,6 +164,16 @@ void loadCoefficients(const string& filename, Mat& camera_matrix, Mat& dist_coef
 }
 
 void my_imshow(const char*  win_name, Mat img){
+    const int SIZE     = 330;
+    const int W_0      = 0;
+    const int H_0      = 0;
+    const int W_OFFSET = 20;
+    const int H_OFFSET = 90;
+    const int LIMIT    = W_0 + 4*SIZE + 3*W_OFFSET;
+
+    static int W_now = W_0;
+    static int H_now = H_0;
+
     //const string s = win_name;
     namedWindow(win_name, CV_WINDOW_NORMAL);
     cvvResizeWindow(win_name, SIZE, SIZE);
