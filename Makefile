@@ -38,3 +38,7 @@ run:
 clean:
 	rm -f bin/*
 	rm -f src/*.o
+
+xml generateXML:
+	$(CXX) $(CXXFLAGS) -Wall -O3 -o bin/create_xml.out src/create_xml.cc $(LDLIBS)
+	./bin/create_xml.out

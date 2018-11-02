@@ -1,0 +1,14 @@
+%YAML:1.0
+---
+mapsNames:
+   - "./data/map/03.jpg"
+   - "./data/map/02.jpg"
+   - "./data/map/01.jpg"
+calibrationFile: "./data/intrinsic_calibration.xml"
+blackMask:
+   - 0
+   - 0
+   - 0
+   - 180
+   - 255
+   - 100
