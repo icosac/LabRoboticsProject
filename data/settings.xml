@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<opencv_storage>
+<mapsNames>
+  "./data/map/03.jpg" "./data/map/02.jpg" "./data/map/01.jpg"</mapsNames>
+<calibrationFile>"./data/intrinsic_calibration.xml"</calibrationFile>
+<blackMask>
+  0 0 0 180 255 100</blackMask>
+</opencv_storage>

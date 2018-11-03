@@ -47,6 +47,10 @@ run_unwrapping: cmp_unwrapping
 run_detection: cmp_detection
 	./bin/$@_run.out
 
+xml generateXML:
+	$(CXX) $(CXXFLAGS) -Wall -O3 -o bin/create_xml.out src/create_xml.cc $(LDLIBS)
+	./bin/create_xml.out
+
 #clean objects
 clean_obj obj_clean:
 	rm -f src/*.o

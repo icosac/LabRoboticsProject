@@ -1,9 +1,14 @@
 #include"unwrapping.hh"
 
-const string filename = "./data/map/03.jpg";
-const string calib_file = "./data/intrinsic_calibration.xml";
+const string xml_settings = "data/settings.xml";
 
 int unwrapping(){
+    FileStorage fs_xml(xml_settings, FileStorage::READ);
+
+
+    const string filename = (string) fs_xml["mapsNames"][1];
+    const string calib_file = (string) fs_xml["calibrationFile"];
+
     // Load image from file
     Mat or_img = imread(filename.c_str());
     if(or_img.empty()) {
@@ -32,8 +37,9 @@ int unwrapping(){
 
     // Find black regions (filter on saturation and value)
     // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
+    FileNode Bm = fs_xml["blackMask"];
     Mat black_mask;
-    inRange(hsv_img, Scalar(0, 0, 0), Scalar(180, 255, 100), black_mask);  
+    inRange(hsv_img, Scalar(Bm[0], Bm[1], Bm[2]), Scalar(Bm[3], Bm[4], Bm[5]), black_mask);  
     my_imshow("BLACK_filter", black_mask);
     
     // Find contours
@@ -44,18 +50,14 @@ int unwrapping(){
     // Process black mask
     findContours(black_mask, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE); // find external contours of each blob
 
-    //cout << "N. contours: " << contours.size() << endl;
     double area, area_max = -1000;
     //for series of points
-    for (int i=0; i<contours.size(); ++i){
+    for (unsigned i=0; i<contours.size(); i++){
         approxPolyDP(contours[i], approx_polygon, 10, true); // fit a closed polygon (with less vertices) to the given contour, with an approximation accuracy (i.e. maximum distance between the original and the approximated curve) of 3
         contours_approx = {approx_polygon};
 
         //if we find a quadrilateral
         if(approx_polygon.size()==4){
-            //cout << (i+1) << ") Contour size: " << contours[i].size() << endl;
-            //cout << "   Approximated contour size: " << approx_polygon.size() << endl << approx_polygon << endl;
-
             area = contourArea(approx_polygon); //compute area
             if(area > area_max){ //find area max (the big rectangle)
                 area_max = area;
@@ -64,7 +66,6 @@ int unwrapping(){
             }
         }
     }
-    cout << "area max: " << area << endl;
     
     // show the quadrilateral found
     Mat quadrilateral_img = fix_img.clone();
@@ -72,10 +73,10 @@ int unwrapping(){
     my_imshow("Find rectangle", quadrilateral_img);
     
     //sort of 4 points in counterclockwise order
-    PrintPoints("input: ", rect);
+    //PrintPoints("input: ", rect);
     Sort4PointsCounterClockwise(rect);
-    PrintPoints("output:undistort ", rect);
-    printf("\n");
+    //PrintPoints("output:undistort ", rect);
+    //printf("\n");
     
     //sort in clockwise order starting from the leftmost corner
     int min_x=100000, min_index=0;
@@ -89,7 +90,6 @@ int unwrapping(){
             }
         }
     }
-    int support;
     switch(min_index){
         case 0: 
             swap(rect[3], rect[1]);          
@@ -106,45 +106,45 @@ int unwrapping(){
             swap(rect[1], rect[2]); 
         break;
     }
-    PrintPoints("output: ", rect);
+    //PrintPoints("output: ", rect);
 
     //check that the first side is the shortest
-    distance(rect[0],rect[1]);
-    distance(rect[1],rect[2]);
-    distance(rect[2],rect[3]);
-    distance(rect[3],rect[0]);
-    cout <<"\n----------------------------------\n";
     float avg0 = ( distance(rect[0],rect[1]) + distance(rect[2],rect[3]) )/2;
     float avg1 = ( distance(rect[1],rect[2]) + distance(rect[3],rect[0]) )/2;
     if(avg0>avg1){
-    //if(distance(rect[0],rect[1])>distance(rect[1],rect[2])){  //far  sides
-    //if(distance(rect[2],rect[3])>distance(rect[3],rect[0])){//near sides
-        cout << "\navg0 > avg1\n";
         Point tmp = rect[0];
         for(int i=0; i<3; i++){
             rect[i] = rect[i+1];
         }
         rect[3] = tmp;
-    }else{
-        cout << "\navg0 < avg1\n";
     }
-    PrintPoints("output: ", rect);
+    //PrintPoints("output: ", rect);
 
     // wrap the perspective
+    static const bool free_area = false;
+    static const int min_xy = 50;
+    static const int width = 500;
+    static const int higth = (int)width*1.5;
+    int x1 = min_xy;
+    int y1 = min_xy;
+    int x2 = width + min_xy;
+    int y2 = higth + min_xy;
     Mat corner_pixels = (Mat_<float>(4,2) << rect[0].x, rect[0].y, rect[1].x, rect[1].y, rect[2].x, rect[2].y, rect[3].x, rect[3].y);
-    Mat transf_pixels = (Mat_<float>(4,2) << 50, 50, 550, 50, 550, 800, 50, 800);
-    cout << "corner_pixels:\n" << corner_pixels << endl; 
-    cout << "transf_pixels:\n" << transf_pixels << endl;
+    Mat transf_pixels = (Mat_<float>(4,2) << x1, y1, x2, y1, x2, y2, x1, y2);
 
     Mat transf = getPerspectiveTransform(corner_pixels, transf_pixels);
-    cout << "transf:\n" << transf << endl;
+    //cout << "transf matrix:\n" << transf << endl;
 
     Mat unwarped_frame;
     warpPerspective(fix_img, unwarped_frame, transf, fix_img.size());
 
     // select a region of interest
-    Mat imgCrop = unwarped_frame(Rect(0, 0, 600, 850));
-    namedWindow("cropped image", CV_WINDOW_NORMAL);
+    Mat imgCrop;
+    if(free_area){
+        imgCrop = unwarped_frame(Rect(0, 0, x2+min_xy, y2+min_xy));
+    } else{
+        imgCrop = unwarped_frame(Rect(x1, y1, x2-x1, y2-y1));
+    }
     my_imshow("cropped image", imgCrop);   
 
     // wait a char 'q' to proceed
@@ -179,7 +179,6 @@ void my_imshow(const char*  win_name, Mat img){
     cvvResizeWindow(win_name, SIZE, SIZE);
     imshow(win_name, img);
     moveWindow(win_name, W_now, H_now);
-    //cout << W_now << " " << H_now << endl;
     W_now += SIZE + W_OFFSET;
     if(W_now >= LIMIT){
         W_now = W_0;
@@ -189,7 +188,6 @@ void my_imshow(const char*  win_name, Mat img){
 
 float distance(Point c1, Point c2){
     float res = sqrt( pow( c2.x-c1.x ,2) + pow( c2.y-c1.y ,2) );
-    cout << res << "\t";
     return(res);
 }
 
