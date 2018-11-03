@@ -1,6 +1,14 @@
 # Useless files
 *.o
 *.out
+bin/
+Doxyfile
+*.aux
+*.idx
+*.ilg
+*.ind
+*.toc
+*.backup
 #file without extension?
 
 # Except the files
