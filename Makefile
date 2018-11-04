@@ -21,31 +21,34 @@ OBJ=$(SRC:.cc=.o)
 src/%.o: src/%.cc
 	$(CXX) $(CXXFLAGS) -c -o $@ $< $(LDLIBS)
 
+bin/:
+	$(MKDIR) bin
+
 #compile executables
-all: $(OBJ)
+all: $(OBJ) bin/
 	$(CXX) $(CXXFLAGS) -o bin/main.out $(OBJ) src/main.cc $(LDLIBS)
 
-cmp_calibration: src/calibration.o
+calibration: src/calibration.o bin/
 	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/$@.o src/$@_run.cc $(LDLIBS)
 
-cmp_unwrapping: src/unwrapping.o
+unwrapping: src/unwrapping.o bin/
 	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/$@.o src/$@_run.cc $(LDLIBS)
 
-cmp_detection: src/detection.o
+detection: src/detection.o bin/
 	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/$@.o src/$@_run.cc $(LDLIBS)
 
 #run executables
-run: all
+run:
 	./bin/main.out
 
-run_calibration: cmp_calibration
-	./bin/$@_run.out
+run_calibration:
+	./bin/calibration_run.out
 
-run_unwrapping: cmp_unwrapping
-	./bin/$@_run.out
+run_unwrapping:
+	./bin/unwrapping_run.out
 
-run_detection: cmp_detection
-	./bin/$@_run.out
+run_detection:
+	./bin/detection_run.out
 
 xml generateXML:
 	$(CXX) $(CXXFLAGS) -Wall -O3 -o bin/create_xml.out src/create_xml.cc $(LDLIBS)
@@ -57,7 +60,7 @@ clean_obj obj_clean:
 
 #clean executables
 clean_exec exec_clean:
-	rm -f bin/*
+	rm -rf bin
 
 #clean executables and objects
 clean:
