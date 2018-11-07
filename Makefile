@@ -76,5 +76,5 @@ doc_clean clean_doc:
 doc:
 	$(MKDIR) doc 
 	$(DOXYGEN) $(DOX_CONF_FILE)
-	@cd doc/latex && make
+	#@cd doc/latex && make
 

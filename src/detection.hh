@@ -22,12 +22,15 @@ using namespace cv;
 int detection();
 
 //core function
-void shape_detection(Mat img, const int color); //color: 0=red, 1=green, 2=blue, 3=black
-
-void erode_dilation(Mat & img, const int color); //color: 0=red, 1=green, 2=blue, 3=black
-void find_contours(const Mat & img, Mat original, const int color);
-void save_convex_hull(vector<vector<Point>> & contours, const int color, vector<int> victims={});
+void shape_detection(const Mat & img, const int color); //color: 0=red, 1=green, 2=blue, 3=black
+void erode_dilation(Mat & img, const int color);
+void find_contours( const Mat & img, 
+                    Mat original, 
+                    const int color);
 int number_recognition(Rect blob, const Mat & base);
+void save_convex_hull(  const vector<vector<Point>> & contours, 
+                        const int color, 
+                        const vector<int> & victims);
 void load_number_template();
 
 #endif
