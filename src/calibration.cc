@@ -378,6 +378,7 @@ int calibration(const string inputFile)
         //------------------------------ Show image and check for input commands -------------------
         //await_input
         imshow("Image View", view);
+        #ifdef DEBUG
         char key = (char)waitKey(s.inputCapture.isOpened() ? 50 : s.delay);
 
         if( key  == ESC_KEY )
@@ -391,6 +392,7 @@ int calibration(const string inputFile)
             mode = CAPTURING;
             imagePoints.clear();
         }
+        #endif
         //await_input
     }
 
@@ -423,9 +425,11 @@ int calibration(const string inputFile)
                 continue;
             remap(view, rview, map1, map2, INTER_LINEAR);
             imshow("Image View", rview);
+            #ifdef DEBUG
             char c = (char)waitKey();
             if( c  == ESC_KEY || c == 'q' || c == 'Q' )
                 break;
+            #endif
         }
     }
     //show_results

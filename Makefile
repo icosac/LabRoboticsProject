@@ -12,7 +12,8 @@ MKDIR=mkdir -p
 #files that contain code
 SRC=src/calibration.cc\
 	src/detection.cc\
-	src/unwrapping.cc
+	src/unwrapping.cc\
+	src/utils.cc
 
 #object files
 OBJ=$(SRC:.cc=.o)
@@ -21,21 +22,21 @@ OBJ=$(SRC:.cc=.o)
 src/%.o: src/%.cc
 	$(CXX) $(CXXFLAGS) $(DETECTION_OPTIONS) -c -o $@ $< $(LDLIBS)
 
+all: $(OBJ) bin/ xml
+	$(CXX) $(CXXFLAGS) -o bin/main.out $(OBJ) src/main.cc $(LDLIBS)
+
 bin/:
 	$(MKDIR) bin
 
 #compile executables
-all: $(OBJ) bin/
-	$(CXX) $(CXXFLAGS) -o bin/main.out $(OBJ) src/main.cc $(LDLIBS)
-
 calibration: src/calibration.o bin/
-	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/$@.o src/$@_run.cc $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/utils.o src/$@.o src/$@_run.cc $(LDLIBS)
 
 unwrapping: src/unwrapping.o bin/
-	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/$@.o src/$@_run.cc $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/utils.o src/$@.o src/$@_run.cc $(LDLIBS)
 
 detection: src/detection.o bin/
-	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/$@.o src/$@_run.cc $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/utils.o src/$@.o src/$@_run.cc $(LDLIBS)
 
 #run executables
 run:

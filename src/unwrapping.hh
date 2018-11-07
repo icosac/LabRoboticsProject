@@ -1,6 +1,7 @@
 #ifndef UNWRAPPING_HH
 #define UNWRAPPING_HH
 
+#include "utils.hh"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -19,8 +20,5 @@ int unwrapping();
 
 // support function
 void loadCoefficients(const string& filename, Mat& camera_matrix, Mat& dist_coeffs);
-void my_imshow(const char*  win_name, Mat img, bool reset = false);
-float distance(Point c1, Point c2);
-void swap(int & a, int & b);
 
 #endif

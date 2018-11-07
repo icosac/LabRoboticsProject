@@ -1,7 +1,11 @@
 #include"unwrapping.hh"
 
-const string xml_settings = "data/settings.xml";
 #define area_ratio 0.7
+
+const string xml_settings = "data/settings.xml";
+
+static float distance(Point c1, Point c2);
+static void swap(int & a, int & b);
 
 int unwrapping(){
     FileStorage fs_xml(xml_settings, FileStorage::READ);
@@ -166,39 +170,12 @@ void loadCoefficients(const string& filename, Mat& camera_matrix, Mat& dist_coef
   fs.release();
 }
 
-void my_imshow(const char*  win_name, Mat img, bool reset/*=false*/){
-    const int SIZE     = 330;
-    const int W_0      = 0;
-    const int H_0      = 0;
-    const int W_OFFSET = 20;
-    const int H_OFFSET = 90;
-    const int LIMIT    = W_0 + 4*SIZE + 3*W_OFFSET;
-
-    static int W_now = W_0;
-    static int H_now = H_0;
-    if(reset){
-        W_now = W_0;
-        H_now = H_0;
-    }
-
-    //const string s = win_name;
-    namedWindow(win_name, CV_WINDOW_NORMAL);
-    cvvResizeWindow(win_name, SIZE, SIZE);
-    imshow(win_name, img);
-    moveWindow(win_name, W_now, H_now);
-    W_now += SIZE + W_OFFSET;
-    if(W_now >= LIMIT){
-        W_now = W_0;
-        H_now += SIZE + H_OFFSET;
-    }
-}
-
-float distance(Point c1, Point c2){
+static float distance(Point c1, Point c2){
     float res = sqrt( pow( c2.x-c1.x ,2) + pow( c2.y-c1.y ,2) );
     return(res);
 }
 
-void swap(int & a, int & b){
+static void swap(int & a, int & b){
     int c = a;
     a = b;
     b = c;
