@@ -1,7 +1,7 @@
 #general compiling optins
 CXX=g++
-CXXFLAGS=`pkg-config --cflags opencv` -Wall -O3
-LDLIBS=`pkg-config --libs opencv`
+CXXFLAGS=`pkg-config --cflags tesseract opencv` -std=c++11 -Wall -O3
+LDLIBS=`pkg-config --libs tesseract opencv`
 
 #general documentation optins
 DOXYGEN=doxygen
@@ -17,9 +17,9 @@ SRC=src/calibration.cc\
 #object files
 OBJ=$(SRC:.cc=.o)
 
-#compile objects
+#general function
 src/%.o: src/%.cc
-	$(CXX) $(CXXFLAGS) -c -o $@ $< $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(DETECTION_OPTIONS) -c -o $@ $< $(LDLIBS)
 
 bin/:
 	$(MKDIR) bin

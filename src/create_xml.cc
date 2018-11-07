@@ -16,16 +16,27 @@ int main(){
 
         // map
         fs << "mapsNames" << "[";                              // text - string sequence
-        fs << "./data/map/03.jpg" << "./data/map/02.jpg" << "./data/map/01.jpg";
+        fs << "./data/map/01.jpg" << "./data/map/02.jpg" << "./data/map/03.jpg";
+        fs << "]";                                            // close sequence
+
+        // map_unwrapped
+        fs << "mapsUnNames" << "[";                              // text - string sequence
+        fs << "./data/map/01_UN.jpg" << "./data/map/02_UN.jpg" << "./data/map/03_UN.jpg";
         fs << "]";                                            // close sequence
         
         fs << "calibrationFile" << "./data/intrinsic_calibration.xml";
 
         //--------------> mask
-        //black
-        fs << "blackMask" << "[" << 0 << 0 << 0 << 180 << 255 << 100 << "]";
-        //fs << "blackMaskLow" << Scalar(0, 0, 0);
-        //fs << "blackMaskHigh" << Scalar(180, 255, 100);
+        fs << "blackMask"   << "[" << 0 << 0 << 0 << 179 << 255 << 70 <<     "]"; //black
+        fs << "redMask"     << "[" << 15 << 100 << 140 << 160 << 255 << 255 << "]"; //red
+        fs << "greenMask"   << "[" << 50 << 65 << 45 << 70 << 255 << 200 <<   "]"; //green
+        fs << "blueMask"    << "[" << 100 << 100 << 40 << 140 << 200 << 170 <<  "]"; //blue
+
+        // filtering
+        fs << "kernelSide" << 9;
+        fs << "convexHullFile" << "data/convexHull.xml";
+        fs << "templatesFolder" << "data/num_template/";
+        fs << "templates" << "[" << "0.png" << "1.png" << "2.png" << "3.png" << "4.png" << "5.png" << "6.png" << "7.png" << "8.png" << "9.png" << "]";
 
         fs.release();                                       // explicit close
         
