@@ -19,13 +19,8 @@ int unwrapping();
 
 // support function
 void loadCoefficients(const string& filename, Mat& camera_matrix, Mat& dist_coeffs);
-void my_imshow(const char*  win_name, Mat img);
+void my_imshow(const char*  win_name, Mat img, bool reset = false);
 float distance(Point c1, Point c2);
-
-// sorting point function
-void PrintPoints(const char *caption, const vector<Point_<int> > & points);
-double Orientation(const Point &a, const Point &b, const Point &c);
-void Sort4PointsCounterClockwise(vector<Point_<int> > & points);
-double CrossProductZ(const Point &a, const Point &b);
+void swap(int & a, int & b);
 
 #endif

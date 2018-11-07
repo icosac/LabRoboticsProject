@@ -1,7 +1,7 @@
 #general optins
 CXX=g++
-CXXFLAGS=`pkg-config --cflags opencv` -Wall -O3
-LDLIBS=`pkg-config --libs opencv`
+CXXFLAGS=`pkg-config --cflags tesseract opencv` -std=c++11 -Wall -O3
+LDLIBS=`pkg-config --libs tesseract opencv`
 
 MKDIR=mkdir -p
 
@@ -13,12 +13,14 @@ SRC=src/calibration.cc\
 #object files
 OBJ=$(SRC:.cc=.o)
 
+DETECTION_OPTIONS= 
+
 #general function
 all: $(OBJ)
 	$(CXX) $(CXXFLAGS) -o bin/main.out $(OBJ) src/main.cc $(LDLIBS)
 
 src/%.o: src/%.cc
-	$(CXX) $(CXXFLAGS) -c -o $@ $< $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(DETECTION_OPTIONS) -c -o $@ $< $(LDLIBS)
 
 calibration: src/calibration.o
 	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/$@.o src/$@_run.cc $(LDLIBS)
@@ -27,6 +29,8 @@ calibration: src/calibration.o
 unwrapping: src/unwrapping.o
 	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/$@.o src/$@_run.cc $(LDLIBS)
 	./bin/$@_run.out
+
+
 
 detection: src/detection.o
 	$(CXX) $(CXXFLAGS) -o bin/$@_run.out src/$@.o src/$@_run.cc $(LDLIBS)

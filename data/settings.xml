@@ -1,8 +1,22 @@
 <?xml version="1.0"?>
 <opencv_storage>
 <mapsNames>
-  "./data/map/03.jpg" "./data/map/02.jpg" "./data/map/01.jpg"</mapsNames>
+  "./data/map/01.jpg" "./data/map/02.jpg" "./data/map/03.jpg"</mapsNames>
+<mapsUnNames>
+  "./data/map/01_UN.jpg" "./data/map/02_UN.jpg" "./data/map/03_UN.jpg"</mapsUnNames>
 <calibrationFile>"./data/intrinsic_calibration.xml"</calibrationFile>
 <blackMask>
-  0 0 0 180 255 100</blackMask>
+  0 0 0 179 255 70</blackMask>
+<redMask>
+  15 100 140 160 255 255</redMask>
+<greenMask>
+  50 65 45 70 255 200</greenMask>
+<blueMask>
+  100 100 40 140 200 170</blueMask>
+<kernelSide>9</kernelSide>
+<convexHullFile>data/convexHull.xml</convexHullFile>
+<templatesFolder>data/num_template/</templatesFolder>
+<templates>
+  "0.png" "1.png" "2.png" "3.png" "4.png" "5.png" "6.png" "7.png"
+  "8.png" "9.png"</templates>
 </opencv_storage>
