@@ -378,9 +378,9 @@ int calibration(const string inputFile)
         //------------------------------ Show image and check for input commands -------------------
         //await_input
         imshow("Image View", view);
+
         #ifdef DEBUG
         char key = (char)waitKey(s.inputCapture.isOpened() ? 50 : s.delay);
-
         if( key  == ESC_KEY )
             break;
 

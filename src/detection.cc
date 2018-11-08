@@ -1,19 +1,10 @@
 #include "detection.hh"
 
-// #ifdef DEBUG
-//     #define DEBUG (arg) printf("%s", arg)
-// #else 
-//     #define DEBUG ()
-// #endif
-
 const string xml_settings = "data/settings.xml";
 FileStorage fs_xml;
 vector<Mat> templates;
 
-#define DEBUG
-
 int detection(){
-    INFO("ciaone")
     fs_xml.open(xml_settings, FileStorage::READ);
 
     load_number_template();

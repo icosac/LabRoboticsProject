@@ -5,6 +5,8 @@
 #ifndef CALIBRATION_HH
 #define CALIBRATION_HH
 
+#include "utils.hh"
+
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -51,7 +53,7 @@ class Settings{
 	    bool flipVertical;           ///< Flip the captured images around the horizontal axis
 	    string outputFileName;       ///< The name of the file where to write
 	    bool showUndistorsed;        ///< Show undistorted images after calibration
-	    string input;                ///< The input ->
+	    string input;                ///< The input 
 	    bool useFisheye;             ///< use fisheye camera model for calibration
 	    bool fixK1;                  ///< fix K1 distortion coefficient
 	    bool fixK2;                  ///< fix K2 distortion coefficient
