@@ -1,0 +1,77 @@
+\hypertarget{unwrapping_8cc}{}\section{src/unwrapping.cc File Reference}
+\label{unwrapping_8cc}\index{src/unwrapping.\+cc@{src/unwrapping.\+cc}}
+{\ttfamily \#include \char`\"{}unwrapping.\+hh\char`\"{}}\newline
+Include dependency graph for unwrapping.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{unwrapping_8cc__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{unwrapping_8cc_a73d5cdc3a90f6c8a0e54956c0362a9d7}{area\+\_\+ratio}}~0.\+7
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}{distance}} (Point c1, Point c2)
+\item 
+static void \mbox{\hyperlink{unwrapping_8cc_a8d3b98d0e8ac5165bffa5af6090beec3}{swap}} (int \&a, int \&b)
+\item 
+int \mbox{\hyperlink{unwrapping_8cc_ae232c3264987d57a223a39226929da29}{unwrapping}} ()
+\item 
+void \mbox{\hyperlink{unwrapping_8cc_a045e988efa221382f1d702a6f906e682}{load\+Coefficients}} (const string \&filename, Mat \&camera\+\_\+matrix, Mat \&dist\+\_\+coeffs)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const string \mbox{\hyperlink{unwrapping_8cc_a3436220b5d936d0f0ee78542ff90435d}{xml\+\_\+settings}} = \char`\"{}data/settings.\+xml\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{unwrapping_8cc_a73d5cdc3a90f6c8a0e54956c0362a9d7}\label{unwrapping_8cc_a73d5cdc3a90f6c8a0e54956c0362a9d7}} 
+\index{unwrapping.\+cc@{unwrapping.\+cc}!area\+\_\+ratio@{area\+\_\+ratio}}
+\index{area\+\_\+ratio@{area\+\_\+ratio}!unwrapping.\+cc@{unwrapping.\+cc}}
+\subsubsection{\texorpdfstring{area\+\_\+ratio}{area\_ratio}}
+{\footnotesize\ttfamily \#define area\+\_\+ratio~0.\+7}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}\label{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}} 
+\index{unwrapping.\+cc@{unwrapping.\+cc}!distance@{distance}}
+\index{distance@{distance}!unwrapping.\+cc@{unwrapping.\+cc}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily static float distance (\begin{DoxyParamCaption}\item[{Point}]{c1,  }\item[{Point}]{c2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{unwrapping_8cc_a045e988efa221382f1d702a6f906e682}\label{unwrapping_8cc_a045e988efa221382f1d702a6f906e682}} 
+\index{unwrapping.\+cc@{unwrapping.\+cc}!load\+Coefficients@{load\+Coefficients}}
+\index{load\+Coefficients@{load\+Coefficients}!unwrapping.\+cc@{unwrapping.\+cc}}
+\subsubsection{\texorpdfstring{load\+Coefficients()}{loadCoefficients()}}
+{\footnotesize\ttfamily void load\+Coefficients (\begin{DoxyParamCaption}\item[{const string \&}]{filename,  }\item[{Mat \&}]{camera\+\_\+matrix,  }\item[{Mat \&}]{dist\+\_\+coeffs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{unwrapping_8cc_a8d3b98d0e8ac5165bffa5af6090beec3}\label{unwrapping_8cc_a8d3b98d0e8ac5165bffa5af6090beec3}} 
+\index{unwrapping.\+cc@{unwrapping.\+cc}!swap@{swap}}
+\index{swap@{swap}!unwrapping.\+cc@{unwrapping.\+cc}}
+\subsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily static void swap (\begin{DoxyParamCaption}\item[{int \&}]{a,  }\item[{int \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{unwrapping_8cc_ae232c3264987d57a223a39226929da29}\label{unwrapping_8cc_ae232c3264987d57a223a39226929da29}} 
+\index{unwrapping.\+cc@{unwrapping.\+cc}!unwrapping@{unwrapping}}
+\index{unwrapping@{unwrapping}!unwrapping.\+cc@{unwrapping.\+cc}}
+\subsubsection{\texorpdfstring{unwrapping()}{unwrapping()}}
+{\footnotesize\ttfamily int unwrapping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{unwrapping_8cc_a3436220b5d936d0f0ee78542ff90435d}\label{unwrapping_8cc_a3436220b5d936d0f0ee78542ff90435d}} 
+\index{unwrapping.\+cc@{unwrapping.\+cc}!xml\+\_\+settings@{xml\+\_\+settings}}
+\index{xml\+\_\+settings@{xml\+\_\+settings}!unwrapping.\+cc@{unwrapping.\+cc}}
+\subsubsection{\texorpdfstring{xml\+\_\+settings}{xml\_settings}}
+{\footnotesize\ttfamily const string xml\+\_\+settings = \char`\"{}data/settings.\+xml\char`\"{}}
+

@@ -1,0 +1,103 @@
+\hypertarget{detection_8cc}{}\section{src/detection.cc File Reference}
+\label{detection_8cc}\index{src/detection.\+cc@{src/detection.\+cc}}
+{\ttfamily \#include \char`\"{}detection.\+hh\char`\"{}}\newline
+Include dependency graph for detection.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{detection_8cc__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{detection_8cc_a17e13c447692201697b084a1906cf6fb}{detection}} ()
+\item 
+void \mbox{\hyperlink{detection_8cc_a50993b0aa4f01d89a4e5d0aef4e1e5f4}{load\+\_\+number\+\_\+template}} ()
+\item 
+void \mbox{\hyperlink{detection_8cc_a8b32fd2b01b6598b1a04cc8b2e79d946}{shape\+\_\+detection}} (Mat img, const int color)
+\item 
+void \mbox{\hyperlink{detection_8cc_a28d0cdb56cfb2164f939dc2f83d1d9d0}{erode\+\_\+dilation}} (Mat \&img, const int color)
+\item 
+void \mbox{\hyperlink{detection_8cc_a93844a9ac3d8be0bd871bb41f8260330}{find\+\_\+contours}} (const Mat \&img, Mat original, const int color)
+\item 
+void \mbox{\hyperlink{detection_8cc_a56c5cbcf9f1ee38acd2663e2e0402279}{save\+\_\+convex\+\_\+hull}} (vector$<$ vector$<$ Point $>$$>$ \&contours, const int color, vector$<$ int $>$ victims)
+\item 
+int \mbox{\hyperlink{detection_8cc_a785fcf35ca81d113a1ea3d831fbdbc22}{number\+\_\+recognition}} (Rect blob, const Mat \&base)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const string \mbox{\hyperlink{detection_8cc_a3436220b5d936d0f0ee78542ff90435d}{xml\+\_\+settings}} = \char`\"{}data/settings.\+xml\char`\"{}
+\item 
+File\+Storage \mbox{\hyperlink{detection_8cc_a62a6ab4dd608b3e8142718b2a4543e8a}{fs\+\_\+xml}}
+\item 
+vector$<$ Mat $>$ \mbox{\hyperlink{detection_8cc_ad6ec2d6b7fce088fa5e9f335f9a6ed38}{templates}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{detection_8cc_a17e13c447692201697b084a1906cf6fb}\label{detection_8cc_a17e13c447692201697b084a1906cf6fb}} 
+\index{detection.\+cc@{detection.\+cc}!detection@{detection}}
+\index{detection@{detection}!detection.\+cc@{detection.\+cc}}
+\subsubsection{\texorpdfstring{detection()}{detection()}}
+{\footnotesize\ttfamily int detection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{detection_8cc_a28d0cdb56cfb2164f939dc2f83d1d9d0}\label{detection_8cc_a28d0cdb56cfb2164f939dc2f83d1d9d0}} 
+\index{detection.\+cc@{detection.\+cc}!erode\+\_\+dilation@{erode\+\_\+dilation}}
+\index{erode\+\_\+dilation@{erode\+\_\+dilation}!detection.\+cc@{detection.\+cc}}
+\subsubsection{\texorpdfstring{erode\+\_\+dilation()}{erode\_dilation()}}
+{\footnotesize\ttfamily void erode\+\_\+dilation (\begin{DoxyParamCaption}\item[{Mat \&}]{img,  }\item[{const int}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{detection_8cc_a93844a9ac3d8be0bd871bb41f8260330}\label{detection_8cc_a93844a9ac3d8be0bd871bb41f8260330}} 
+\index{detection.\+cc@{detection.\+cc}!find\+\_\+contours@{find\+\_\+contours}}
+\index{find\+\_\+contours@{find\+\_\+contours}!detection.\+cc@{detection.\+cc}}
+\subsubsection{\texorpdfstring{find\+\_\+contours()}{find\_contours()}}
+{\footnotesize\ttfamily void find\+\_\+contours (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{Mat}]{original,  }\item[{const int}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{detection_8cc_a50993b0aa4f01d89a4e5d0aef4e1e5f4}\label{detection_8cc_a50993b0aa4f01d89a4e5d0aef4e1e5f4}} 
+\index{detection.\+cc@{detection.\+cc}!load\+\_\+number\+\_\+template@{load\+\_\+number\+\_\+template}}
+\index{load\+\_\+number\+\_\+template@{load\+\_\+number\+\_\+template}!detection.\+cc@{detection.\+cc}}
+\subsubsection{\texorpdfstring{load\+\_\+number\+\_\+template()}{load\_number\_template()}}
+{\footnotesize\ttfamily void load\+\_\+number\+\_\+template (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{detection_8cc_a785fcf35ca81d113a1ea3d831fbdbc22}\label{detection_8cc_a785fcf35ca81d113a1ea3d831fbdbc22}} 
+\index{detection.\+cc@{detection.\+cc}!number\+\_\+recognition@{number\+\_\+recognition}}
+\index{number\+\_\+recognition@{number\+\_\+recognition}!detection.\+cc@{detection.\+cc}}
+\subsubsection{\texorpdfstring{number\+\_\+recognition()}{number\_recognition()}}
+{\footnotesize\ttfamily int number\+\_\+recognition (\begin{DoxyParamCaption}\item[{Rect}]{blob,  }\item[{const Mat \&}]{base }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{detection_8cc_a56c5cbcf9f1ee38acd2663e2e0402279}\label{detection_8cc_a56c5cbcf9f1ee38acd2663e2e0402279}} 
+\index{detection.\+cc@{detection.\+cc}!save\+\_\+convex\+\_\+hull@{save\+\_\+convex\+\_\+hull}}
+\index{save\+\_\+convex\+\_\+hull@{save\+\_\+convex\+\_\+hull}!detection.\+cc@{detection.\+cc}}
+\subsubsection{\texorpdfstring{save\+\_\+convex\+\_\+hull()}{save\_convex\_hull()}}
+{\footnotesize\ttfamily void save\+\_\+convex\+\_\+hull (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ Point $>$$>$ \&}]{contours,  }\item[{const int}]{color,  }\item[{vector$<$ int $>$}]{victims }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{detection_8cc_a8b32fd2b01b6598b1a04cc8b2e79d946}\label{detection_8cc_a8b32fd2b01b6598b1a04cc8b2e79d946}} 
+\index{detection.\+cc@{detection.\+cc}!shape\+\_\+detection@{shape\+\_\+detection}}
+\index{shape\+\_\+detection@{shape\+\_\+detection}!detection.\+cc@{detection.\+cc}}
+\subsubsection{\texorpdfstring{shape\+\_\+detection()}{shape\_detection()}}
+{\footnotesize\ttfamily void shape\+\_\+detection (\begin{DoxyParamCaption}\item[{Mat}]{img,  }\item[{const int}]{color }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{detection_8cc_a62a6ab4dd608b3e8142718b2a4543e8a}\label{detection_8cc_a62a6ab4dd608b3e8142718b2a4543e8a}} 
+\index{detection.\+cc@{detection.\+cc}!fs\+\_\+xml@{fs\+\_\+xml}}
+\index{fs\+\_\+xml@{fs\+\_\+xml}!detection.\+cc@{detection.\+cc}}
+\subsubsection{\texorpdfstring{fs\+\_\+xml}{fs\_xml}}
+{\footnotesize\ttfamily File\+Storage fs\+\_\+xml}
+
+\mbox{\Hypertarget{detection_8cc_ad6ec2d6b7fce088fa5e9f335f9a6ed38}\label{detection_8cc_ad6ec2d6b7fce088fa5e9f335f9a6ed38}} 
+\index{detection.\+cc@{detection.\+cc}!templates@{templates}}
+\index{templates@{templates}!detection.\+cc@{detection.\+cc}}
+\subsubsection{\texorpdfstring{templates}{templates}}
+{\footnotesize\ttfamily vector$<$Mat$>$ templates}
+
+\mbox{\Hypertarget{detection_8cc_a3436220b5d936d0f0ee78542ff90435d}\label{detection_8cc_a3436220b5d936d0f0ee78542ff90435d}} 
+\index{detection.\+cc@{detection.\+cc}!xml\+\_\+settings@{xml\+\_\+settings}}
+\index{xml\+\_\+settings@{xml\+\_\+settings}!detection.\+cc@{detection.\+cc}}
+\subsubsection{\texorpdfstring{xml\+\_\+settings}{xml\_settings}}
+{\footnotesize\ttfamily const string xml\+\_\+settings = \char`\"{}data/settings.\+xml\char`\"{}}
+
