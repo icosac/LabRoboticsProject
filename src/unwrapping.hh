@@ -19,6 +19,8 @@ using namespace std;
 int unwrapping();
 
 // support function
-void loadCoefficients(const string& filename, Mat& camera_matrix, Mat& dist_coeffs);
+void loadCoefficients(  const string filename, 
+                        Mat& camera_matrix, 
+                        Mat& dist_coeffs);
 
 #endif
