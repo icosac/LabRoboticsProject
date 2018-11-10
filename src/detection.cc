@@ -4,8 +4,8 @@ const string xml_settings = "data/settings.xml";
 FileStorage fs_xml;
 vector<Mat> templates;
 
-//#define DEBUG
-//#define WAIT
+// #define DEBUG
+#define WAIT
 
 /*! \brief Loads some images and detects shapes according to different colors.
 
@@ -274,6 +274,9 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
         matchTemplate(processROI, templates[i], result, TM_CCOEFF); //TM_SQDIFF
         double score;
         minMaxLoc(result, nullptr, &score);
+        //my_imshow("templates[i]", templates[i]);
+        //cout << i << " score of " << score << endl;
+        //waitKey();
         if (score > maxScore) {
             maxScore = score;
             maxIdx = i;
@@ -288,69 +291,83 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
 
 /*! \brief Given an image identify the region of interest(ROI) and crop it out. 
 
-    \param[in/out] ROI Is the image that the function will going to elaborate.
+    \param[in,out] ROI Is the image that the function will going to elaborate.
 */
 void crop_number_section(Mat & ROI){
     // Tutorial for the min rectangle arround a shape. https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/bounding_rotated_ellipses/bounding_rotated_ellipses.html
     vector<vector<Point>> contours;
+    vector<Point> contour;
 
     findContours(ROI, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
-    // Find the rotated rectangles for the contour
-    RotatedRect minRect;
     if(contours.size()==1){
-        minRect = minAreaRect(contours[0]);
-
-        // rotated rectangle
-        Point2f rect_points[4]; 
-        minRect.points( rect_points );
-
-        //alias for semplicity
-        float x = rect_points[0].x;
-        float y = rect_points[0].y;
-        float w = minRect.size.width;
-        float h = minRect.size.height;
-
-        #ifdef DEBUG
-            // Draw contours + rotated rect
-            Mat drawing = Mat::zeros( ROI.size(), CV_8UC3 );
-            RNG rng(12345);
-            Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
-            // contours
-            drawContours( drawing, contours, -1, color, 1, 8, vector<Vec4i>(), 0, Point() );
-            cout << endl;
-            for( int i = 0; i < 4; i++ ){
-                //cout << "point[" << i << "] x: " << rect_points[i].x << " y: " << rect_points[i].y << endl;
-                line( drawing, rect_points[i], rect_points[(i+1)%4], color, 1, 8 );
+        contour = contours[0];
+    } else{
+        //use the convex hull of all points instead of a group of different points
+        vector<Point> tmpContour;
+        for(unsigned i=0; i<contours.size(); i++){
+            for(unsigned j=0; j<contours[i].size(); j++){
+                tmpContour.push_back(contours[i][j]);
             }
-            cout << "angle: " << minRect.angle << " x: " << x << " y: " << y << " width: " << w  << " height: " << h << endl;
-            // Show in a window
-            my_imshow("Contours", drawing );
-        #endif
-
-
-        // How RotatedRect angle work: https://namkeenman.wordpress.com/2015/12/18/open-cv-determine-angle-of-rotatedrect-minarearect/
-        Mat corner_pixels, transf_pixels;
-        Size size;
-        if(h > w){
-            // the orientation of the rectangle is to the left
-            corner_pixels = (Mat_<float>(4,2) << rect_points[1].x, rect_points[1].y, rect_points[2].x, rect_points[2].y, rect_points[3].x, rect_points[3].y, x, y);
-            transf_pixels = (Mat_<float>(4,2) << 0, 0, w, 0, w, h, 0, h);
-            size = Size(w, h);
-        } else{
-            // the orientation of the rectangle is to the right
-            corner_pixels = (Mat_<float>(4,2) << rect_points[2].x, rect_points[2].y, rect_points[3].x, rect_points[3].y, x, y, rect_points[1].x, rect_points[1].y);
-            transf_pixels = (Mat_<float>(4,2) << 0, 0, h, 0, h, w, 0, w);
-            size = Size(h, w);
-        }        
-
-        Mat transf = getPerspectiveTransform(corner_pixels, transf_pixels);
-
-        Mat rotNumber;
-        warpPerspective(ROI, ROI, transf, size);
-
-        #ifdef DEBUG
-            my_imshow("rotated Num", ROI);
-        #endif
+        }
+        convexHull(tmpContour, contour, true);//return point in clockwise order
     }
+    
+    // Find the rotated rectangles for the contour
+    RotatedRect minRect = minAreaRect(contour);
+
+    // rotated rectangle
+    Point2f rect_points[4]; 
+    minRect.points( rect_points );
+
+    //alias for semplicity
+    float x = rect_points[0].x;
+    float y = rect_points[0].y;
+    float w = minRect.size.width;
+    float h = minRect.size.height;
+
+    #ifdef DEBUG
+        // Draw contour + rotated rect
+        Mat drawing = Mat::zeros( ROI.size(), CV_8UC3 );
+        RNG rng(12345);
+        Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
+        // contour
+        contours.resize(0);
+        contours.push_back(contour);
+        drawContours(drawing, contours, -1, color, 1, 8, vector<Vec4i>(), 0, Point() );
+        cout << endl;
+        for( int i = 0; i < 4; i++ ){
+            //cout << "point[" << i << "] x: " << rect_points[i].x << " y: " << rect_points[i].y << endl;
+            line( drawing, rect_points[i], rect_points[(i+1)%4], color, 1, 8 );
+        }
+        cout << "angle: " << minRect.angle << " x: " << x << " y: " << y << " width: " << w  << " height: " << h << endl;
+        // Show in a window
+        my_imshow("Contour", drawing );
+    #endif
+
+
+    // How RotatedRect angle work: https://namkeenman.wordpress.com/2015/12/18/open-cv-determine-angle-of-rotatedrect-minarearect/
+    Mat corner_pixels, transf_pixels;
+    Size size;
+    if(h > w){
+        // the orientation of the rectangle is to the left
+        corner_pixels = (Mat_<float>(4,2) << rect_points[1].x, rect_points[1].y, rect_points[2].x, rect_points[2].y, rect_points[3].x, rect_points[3].y, x, y);
+        transf_pixels = (Mat_<float>(4,2) << 0, 0, w, 0, w, h, 0, h);
+        size = Size(w, h);
+    } else{
+        // the orientation of the rectangle is to the right
+        corner_pixels = (Mat_<float>(4,2) << rect_points[2].x, rect_points[2].y, rect_points[3].x, rect_points[3].y, x, y, rect_points[1].x, rect_points[1].y);
+        transf_pixels = (Mat_<float>(4,2) << 0, 0, h, 0, h, w, 0, w);
+        size = Size(h, w);
+    }        
+
+    Mat transf = getPerspectiveTransform(corner_pixels, transf_pixels);
+
+    Mat rotNumber;
+    warpPerspective(ROI, ROI, transf, size);
+    //resize(ROI, ROI, ROI.size());
+
+    #ifdef DEBUG
+        my_imshow("rotated Num", ROI);
+    #endif
 }
