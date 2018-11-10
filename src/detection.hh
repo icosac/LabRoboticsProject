@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cmath>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/core.hpp>
@@ -32,5 +33,6 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
                         const int color, 
                         const vector<int> & victims);
 void load_number_template();
+void crop_number_section(Mat & processROI);
 
 #endif

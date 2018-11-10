@@ -4,12 +4,15 @@ const string xml_settings = "data/settings.xml";
 FileStorage fs_xml;
 vector<Mat> templates;
 
+//#define DEBUG
+//#define WAIT
 
 /*! \brief Loads some images and detects shapes according to different colors.
 
     \returns Return 0 if the function reach the end.
 */
 int detection(){
+
     fs_xml.open(xml_settings, FileStorage::READ);
 
     load_number_template();
@@ -249,63 +252,105 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     if(processROI.empty()){return(-1);}
     
     resize(processROI, processROI, Size(200, 200)); // resize the ROI
-    //my_imshow("Resize num", processROI);
 
     // black filter
     FileNode mask = fs_xml["blackMask"];
     inRange(processROI, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), processROI);
-    //my_imshow("ROI mask", processROI);
     
     erode_dilation(processROI, 3);
-    #ifdef DEBUG
+    #ifdef WAIT
         my_imshow("ROI filtered", processROI);
     #endif
 
-    //vector<vector<Point>> contours
-    //findContours(processROI, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
-    //RotatedRect ellipse = fitEllipse(contours[0]);
-
-    #ifdef TESSERACT
-        // Create Tesseract object
-        tesseract::TessBaseAPI *ocr = new tesseract::TessBaseAPI();
-        // Initialize tesseract to use English (eng) 
-        ocr->Init(NULL, "eng");
-        // Set Page segmentation mode to PSM_SINGLE_CHAR (10)
-        ocr->SetPageSegMode(tesseract::PSM_SINGLE_CHAR);
-        // Only digits are valid output characters
-        ocr->SetVariable("tessedit_char_whitelist", "056789");
-        
-        //tesseract OCR running
-        // Set image data
-        ocr->SetImage(processROI.data, processROI.cols, processROI.rows, 3, processROI.step);
-        // Run Tesseract OCR on image and print recognized digit
-        #ifdef DEBUG
-            cout << "Recognized digit: " << string(ocr->GetUTF8Text()) << endl;
-        #endif
-
-        ocr->End(); // destroy the ocr object (release resources)
-    #else
-        // matching template
-        // Find the template digit with the best matching
-        double maxScore = -5e10;//5e   8;  // I don't know what this number represents...
-        int maxIdx = -1;
-        for (unsigned j=0; j<templates.size(); j++) {
-            Mat result;
-            matchTemplate(processROI, templates[j], result, TM_CCOEFF); //TM_SQDIFF
-            //my_imshow("templates[j]", templates[j], false);
-            //waitKey();
-            double score;
-            minMaxLoc(result, nullptr, &score);
-            if (score > maxScore) {
-                maxScore = score;
-                maxIdx = j;
-            }
+    // crop out the number if it is possible
+    crop_number_section(processROI);
+    
+    // matching template
+    // Find the template digit with the best matching
+    double maxScore = 1e7;  // I don't know what this number represents...
+    int maxIdx = -1;
+    for (unsigned i=0; i<templates.size(); i++) {
+        Mat result;
+        matchTemplate(processROI, templates[i], result, TM_CCOEFF); //TM_SQDIFF
+        double score;
+        minMaxLoc(result, nullptr, &score);
+        if (score > maxScore) {
+            maxScore = score;
+            maxIdx = i;
         }
-        #ifdef DEBUG
-            cout << "Best fitting template: " << maxIdx << " with score of: " << maxScore << endl << endl;
-            waitKey();
-        #endif
-        return(maxIdx);
+    }
+    #ifdef DEBUG
+        cout << "Best fitting template: -> " << maxIdx << " <- with score of: " << maxScore << endl << endl;
+        waitKey();
     #endif
+    return(maxIdx%10);  //if we have 20-30-... templates it return the true number
 }
 
+/*! \brief Given an image identify the region of interest(ROI) and crop it out. 
+
+    \param[in/out] ROI Is the image that the function will going to elaborate.
+*/
+void crop_number_section(Mat & ROI){
+    // Tutorial for the min rectangle arround a shape. https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/bounding_rotated_ellipses/bounding_rotated_ellipses.html
+    vector<vector<Point>> contours;
+
+    findContours(ROI, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+
+    // Find the rotated rectangles for the contour
+    RotatedRect minRect;
+    if(contours.size()==1){
+        minRect = minAreaRect(contours[0]);
+
+        // rotated rectangle
+        Point2f rect_points[4]; 
+        minRect.points( rect_points );
+
+        //alias for semplicity
+        float x = rect_points[0].x;
+        float y = rect_points[0].y;
+        float w = minRect.size.width;
+        float h = minRect.size.height;
+
+        #ifdef DEBUG
+            // Draw contours + rotated rect
+            Mat drawing = Mat::zeros( ROI.size(), CV_8UC3 );
+            RNG rng(12345);
+            Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
+            // contours
+            drawContours( drawing, contours, -1, color, 1, 8, vector<Vec4i>(), 0, Point() );
+            cout << endl;
+            for( int i = 0; i < 4; i++ ){
+                //cout << "point[" << i << "] x: " << rect_points[i].x << " y: " << rect_points[i].y << endl;
+                line( drawing, rect_points[i], rect_points[(i+1)%4], color, 1, 8 );
+            }
+            cout << "angle: " << minRect.angle << " x: " << x << " y: " << y << " width: " << w  << " height: " << h << endl;
+            // Show in a window
+            my_imshow("Contours", drawing );
+        #endif
+
+
+        // How RotatedRect angle work: https://namkeenman.wordpress.com/2015/12/18/open-cv-determine-angle-of-rotatedrect-minarearect/
+        Mat corner_pixels, transf_pixels;
+        Size size;
+        if(h > w){
+            // the orientation of the rectangle is to the left
+            corner_pixels = (Mat_<float>(4,2) << rect_points[1].x, rect_points[1].y, rect_points[2].x, rect_points[2].y, rect_points[3].x, rect_points[3].y, x, y);
+            transf_pixels = (Mat_<float>(4,2) << 0, 0, w, 0, w, h, 0, h);
+            size = Size(w, h);
+        } else{
+            // the orientation of the rectangle is to the right
+            corner_pixels = (Mat_<float>(4,2) << rect_points[2].x, rect_points[2].y, rect_points[3].x, rect_points[3].y, x, y, rect_points[1].x, rect_points[1].y);
+            transf_pixels = (Mat_<float>(4,2) << 0, 0, h, 0, h, w, 0, w);
+            size = Size(h, w);
+        }        
+
+        Mat transf = getPerspectiveTransform(corner_pixels, transf_pixels);
+
+        Mat rotNumber;
+        warpPerspective(ROI, ROI, transf, size);
+
+        #ifdef DEBUG
+            my_imshow("rotated Num", ROI);
+        #endif
+    }
+}

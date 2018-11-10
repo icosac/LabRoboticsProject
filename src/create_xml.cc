@@ -14,6 +14,16 @@ int main(){
         FileStorage fs(filename[i], FileStorage::WRITE);
         cout << "\tWrite on " << filename[i] << endl;
 
+        /*/ map
+        fs << "mapsNames" << "[";                              // text - string sequence
+        fs << ".data/myMap/myMap_01.jpg" << ".data/myMap/myMap_02.JPG" << ".data/myMap/myMap_03.JPG" << ".data/myMap/myMap_04.JPG" << ".data/myMap/myMap_05.JPG" << ".data/myMap/myMap_06.JPG" << ".data/myMap/myMap_07.JPG" << ".data/myMap/myMap_08.JPG" << ".data/myMap/myMap_09.JPG" << ".data/myMap/myMap_10.JPG" << ".data/myMap/myMap_11.JPG";
+        fs << "]";                                            // close sequence
+
+        // map_unwrapped
+        fs << "mapsUnNames" << "[";                              // text - string sequence
+        fs << ".data/myMap/myMapUN_01.jpg" << ".data/myMap/myMapUN_02.JPG" << ".data/myMap/myMapUN_03.JPG" << ".data/myMap/myMapUN_04.JPG" << ".data/myMap/myMapUN_05.JPG" << ".data/myMap/myMapUN_06.JPG" << ".data/myMap/myMapUN_07.JPG" << ".data/myMap/myMapUN_08.JPG" << ".data/myMap/myMapUN_09.JPG" << ".data/myMap/myMapUN_10.JPG" << ".data/myMap/myMapUN_11.JPG";
+        fs << "]";                                           // close sequence*/
+
         // map
         fs << "mapsNames" << "[";                              // text - string sequence
         fs << "./data/map/01.jpg" << "./data/map/02.jpg" << "./data/map/03.jpg";
@@ -22,7 +32,7 @@ int main(){
         // map_unwrapped
         fs << "mapsUnNames" << "[";                              // text - string sequence
         fs << "./data/map/01_UN.jpg" << "./data/map/02_UN.jpg" << "./data/map/03_UN.jpg";
-        fs << "]";                                            // close sequence
+        fs << "]";                                            // close sequence*/
         
         fs << "calibrationFile" << "./data/intrinsic_calibration.xml";
 
@@ -36,7 +46,7 @@ int main(){
         fs << "kernelSide" << 9;
         fs << "convexHullFile" << "data/convexHull.xml";
         fs << "templatesFolder" << "data/num_template/";
-        fs << "templates" << "[" << "0.png" << "1.png" << "2.png" << "3.png" << "4.png" << "5.png" << "6.png" << "7.png" << "8.png" << "9.png" << "]";
+        fs << "templates" << "[" << "0.png" << "1.png" << "2.png" << "3.png" << "4.png" << "5.png" << "6.png" << "7.png" << "8.png" << "9.png" << "0_inv.png" << "1_inv.png" << "2_inv.png" << "3_inv.png" << "4_inv.png" << "5_inv.png" << "6_inv.png" << "7_inv.png" << "8_inv.png" << "9_inv.png" << "]";
 
         fs.release();                                       // explicit close
         

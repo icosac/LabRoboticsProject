@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <opencv_storage>
-<images>
+<realImg>
 ./data/calib/1.jpg
 ./data/calib/2.jpg
 ./data/calib/3.jpg
@@ -36,5 +36,5 @@
 ./data/calib/33.jpg
 ./data/calib/34.jpg
 ./data/calib/35.jpg
-</images>
+</realImg>
 </opencv_storage>

@@ -2,7 +2,7 @@
 
 //debug block the most things, wait only something
 //#define DEBUG
-//#define WAIT
+#define WAIT
 
 #define area_ratio 0.7
 
