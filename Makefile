@@ -84,6 +84,6 @@ doc:
 	$(MKDIR) doc 
 	$(DOXYGEN) $(DOX_CONF_FILE)
 ifneq (,$(shell which pdflatex))
-	@cd doc/latex && make
+	@cd docs/latex && make
 endif
 
