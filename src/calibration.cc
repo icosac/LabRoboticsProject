@@ -1,9 +1,9 @@
 #include"calibration.hh"
 
 /*! \brief Write serialization.
-	\details This function write data to a file.
-	
-	\param[in] fs The filename where to write.
+    \details This function write data to a file.
+    
+    \param[in] fs The filename where to write.
 */
 void Settings::write(FileStorage& fs) const 
 {
@@ -27,9 +27,9 @@ void Settings::write(FileStorage& fs) const
 }
 
 /*! \brief Read serialization.
-	\details This function read data from a file and stores each node in their corresponding variables.
-	
-	\param[in] node The node of the file to consider.
+    \details This function read data from a file and stores each node in their corresponding variables.
+    
+    \param[in] node The node of the file to consider.
 */
 void Settings::read(const FileNode& node) 
 {
@@ -54,14 +54,14 @@ void Settings::read(const FileNode& node)
     node["Fix_K3"] >> fixK3;
     node["Fix_K4"] >> fixK4;
     node["Fix_K5"] >> fixK5;
-
+  
     validate();
 }
 
 /*! \brief This function validate the content of the file. 
-	\details Even though this function doesn't return anything nor has any parameters 
-	for output, it sets a variable of the `Settings` class, that is `googInput`, 
-	to `false` if some infos were wrong. `true` otherwise.
+    \details Even though this function doesn't return anything nor has any parameters 
+    for output, it sets a variable of the `Settings` class, that is `googInput`, 
+    to `false` if some infos were wrong. `true` otherwise.
 */
 void Settings::validate()
 { 
@@ -126,7 +126,7 @@ void Settings::validate()
 }
 
 /*! \brief Get next image from list.
-	\returns A matrix containing the next image to consider.
+    \returns A matrix containing the next image to consider.
 */
 Mat Settings::nextImage()
 {
@@ -134,14 +134,14 @@ Mat Settings::nextImage()
 }
 
 /*! \brief Read from file a list of images.
-	
-	\param[in] filename The name of the file from which to read.
-	\param[out] l A vector which will contain the names of the file from the list.
+    
+    \param[in] filename The name of the file from which to read.
+    \param[out] l A vector which will contain the names of the file from the list.
 
-	\return	`false` if the file could not be opened or if the file doesn't contain a list\n `true` otherwise.
+    \return `false` if the file could not be opened or if the file doesn't contain a list\n `true` otherwise.
 */
-bool Settings::readStringList( 	const string& filename, 
-								vector<string>& l )
+bool Settings::readStringList(  const string& filename, 
+                                vector<string>& l )
 {
     l.clear();
     //Open file for reading 
@@ -162,8 +162,8 @@ bool Settings::readStringList( 	const string& filename,
 }
 
 /*! \brief Check if the file from which is trying to retrive a list is a valid format (xml or yaml).
-	\param[in] filename The name of the file to check for validity.
-	\return `false` is the file is not xml or yaml\n `true` otherwise.
+    \param[in] filename The name of the file to check for validity.
+    \return `false` is the file is not xml or yaml\n `true` otherwise.
 */
 bool Settings::isListOfImages( const string& filename)
 {
@@ -182,13 +182,13 @@ bool Settings::isListOfImages( const string& filename)
 ///////////////////////////////////////////////////////////////////////////////
 
 /*! 
-	\brief Function to run the complete calibration. 
+    \brief Function to run the complete calibration. 
 
-	\param[in] inputFile Name of the setting.xml file. It's set to default to default.xml
+    \param[in] inputFile Name of the setting.xml file. It's set to default to default.xml
 
-	\return -2 if the settings file could be load but the input was not well-formed\n
-			-1 if the settings file could not be opened.\n
-			0 if everything went fine.
+    \return -2 if the settings file could be load but the input was not well-formed\n
+            -1 if the settings file could not be opened.\n
+            0 if everything went fine.
 */
 int calibration(const string inputFile)
 {
@@ -231,24 +231,24 @@ int calibration(const string inputFile)
         // If no more image, or got enough, then stop calibration and show result
         if( mode == CAPTURING && imagePoints.size() >= (size_t)s.nrFrames )
         {
-			if( runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints))
-				mode = CALIBRATED;
-			else
-				mode = DETECTION;
+            if( runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints))
+              mode = CALIBRATED;
+            else
+              mode = DETECTION;
         }
         // If there are no more images stop the loop
         if(view.empty())
-        {	
-        	// if calibration threshold was not reached yet, calibrate now
-			if( mode != CALIBRATED && !imagePoints.empty() )
-				runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints);
-			break;
+        {   
+            // if calibration threshold was not reached yet, calibrate now
+          if( mode != CALIBRATED && !imagePoints.empty() )
+            runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints);
+          break;
         }
 
         //get_input
         imageSize = view.size();  // Format input image.
         if( s.flipVertical )    {
-        	flip( view, view, 0 );
+            flip( view, view, 0 );
         }
 
         //find_pattern
@@ -269,6 +269,9 @@ int calibration(const string inputFile)
             cornerSubPix(   viewGray, pointBuf, Size(11,11), Size(-1,-1), 
                             TermCriteria( TermCriteria::EPS+TermCriteria::COUNT, 30, 0.1 ));
 
+          if( mode == CAPTURING) {
+              imagePoints.push_back(pointBuf);
+          }
             // Draw the corners.
             drawChessboardCorners( view, s.boardSize, Mat(pointBuf), found );
         }
@@ -329,14 +332,11 @@ int calibration(const string inputFile)
     if( s.inputType == Settings::IMAGE_LIST && s.showUndistorsed )
     {
         Mat view, rview, map1, map2;
-        INFO("ciao")
-        Mat optimalCamera = getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0);
-        INFO("ciao")
+//        Mat optimalCamera = getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0);
         initUndistortRectifyMap(
             cameraMatrix, distCoeffs, Mat(),
-            optimalCamera, 
+            getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0),
             imageSize, CV_16SC2, map1, map2);
-        INFO("ciao")
 
         for(size_t i = 0; i < s.imageList.size(); i++ )
         {
@@ -361,15 +361,15 @@ int calibration(const string inputFile)
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-/*!	\brief Reads settings from file. If there is none then initiate a new `Settings`.
-	
-	\param[in] node: node to consider for getting settings;
-	\param[in] x: `Settings` to configure;
-	\param[in] default_value: `Settings` default value. Setted to `Settings()`.
+/*! \brief Reads settings from file. If there is none then initiate a new `Settings`.
+    
+    \param[in] node: node to consider for getting settings;
+    \param[in] x: `Settings` to configure;
+    \param[in] default_value: `Settings` default value. Setted to `Settings()`.
 */
 static inline void read(const FileNode& node, 
-						Settings& x, 
-						const Settings& default_value)
+                        Settings& x, 
+                        const Settings& default_value)
 {
     if(node.empty())
         x = default_value;
@@ -378,16 +378,16 @@ static inline void read(const FileNode& node,
 }
 
 /*! \brief Compute the errors of the projection. 
-	\param[in]  objectPoints The real image points which will be projected
-	\param[in] rvecs Input vector of rotation vectors estimated for each pattern view.
-	\param[in] tvecs Input vector of translation vectors estimated for each pattern view.
-	\param[in] cameraMatrix The matrix containing the parameters for the camera
-	\param[in] distCoeffs The matrix containing the distortion coefficients.
-	\param[in] fisheye A variable which says if a fish eye correction should be applied or no.
-	\param[out] perViewErrors A vector containing the error for each image.
-	\param[out] imagePoints The projected points for each image.
-	
-	\returns The total error.
+    \param[in]  objectPoints The real image points which will be projected
+    \param[in] rvecs Input vector of rotation vectors estimated for each pattern view.
+    \param[in] tvecs Input vector of translation vectors estimated for each pattern view.
+    \param[in] cameraMatrix The matrix containing the parameters for the camera
+    \param[in] distCoeffs The matrix containing the distortion coefficients.
+    \param[in] fisheye A variable which says if a fish eye correction should be applied or no.
+    \param[out] perViewErrors A vector containing the error for each image.
+    \param[out] imagePoints The projected points for each image.
+    
+    \returns The total error.
 */
 static double computeReprojectionErrors( const vector<vector<Point3f> >& objectPoints,
                                          const vector<vector<Point2f> >& imagePoints,
@@ -404,10 +404,10 @@ static double computeReprojectionErrors( const vector<vector<Point3f> >& objectP
     perViewErrors.resize(objectPoints.size()); //Vector that'll contain errors for each image
 
     for(size_t i = 0; i < objectPoints.size(); ++i ) {
-    	
-    	//This function projects points toward a plane. It takes the points from objectPoints and write the output vector imagePoints2.
-        projectPoints(	objectPoints[i], rvecs[i], tvecs[i], 
-        				cameraMatrix, distCoeffs, imagePoints2);
+        
+        //This function projects points toward a plane. It takes the points from objectPoints and write the output vector imagePoints2.
+        projectPoints(  objectPoints[i], rvecs[i], tvecs[i], 
+                        cameraMatrix, distCoeffs, imagePoints2);
 
         err = norm(imagePoints[i], imagePoints2, NORM_L2); //Calculate an relative difference norm
 
@@ -422,42 +422,42 @@ static double computeReprojectionErrors( const vector<vector<Point3f> >& objectP
 
 /*! \brief This function compute the position of the upper corners of every cell. 
 
-	\param[in] boardSiz The dimension of the chess board.
-	\param[in] squareSize The dimension of the edge of a cell.
+    \param[in] boardSiz The dimension of the chess board.
+    \param[in] squareSize The dimension of the edge of a cell.
     \param[out] corners A vector of Point3fs which equals to the corners of the cells. 
 */
-void calcBoardCornerPositions(	Size boardSize, 
-								float squareSize, 
-								vector<Point3f>& corners)
+void calcBoardCornerPositions(  Size boardSize, 
+                                float squareSize, 
+                                vector<Point3f>& corners)
 {
     corners.clear();
 
     for( int i = 0; i < boardSize.height; ++i ) {
         for( int j = 0; j < boardSize.width; ++j ) {
             corners.push_back(Point3f(j*squareSize, i*squareSize, 0));
-            cout << i << ", " << j << "   (" << j*squareSize << ", " << i*squareSize << ")" << endl;
+            INFO((to_string(i)+", "+to_string(j)+"   ("+to_string((int)(j*squareSize))+", "+to_string((int)(i*squareSize))+")").c_str());
         }
     }
 }
 
 /*! \brief This function run the calibration creating the matrixed for the camera and the distorsion coefficients.
 
-	\param[in] s The `Settings` read from the file and memorized.
-	\param[in] imageSize The size of the image used in `calibrateCamera()` to initialize the camera matrix.
-	\param[in] imagePoints The projected points for each image.
-	\param[in] reprojErrs The re-projection error, that is a geometric error corresponding to the image distance between a projected point and a measured one. 
-	\param[out] cameraMatrix The matrix of the camera parameters
-	\param[out] distCoeffs The matrix of the distorsion coefficients. 
-	\param[out] rvecs Output vector of rotation vectors estimated for each pattern view.
-	\param[out] tvecs Output vector of translation vectors estimated for each pattern view.
-	\param[out] totalAvgErr The total avarage error given from distorsion. 
+    \param[in] s The `Settings` read from the file and memorized.
+    \param[in] imageSize The size of the image used in `calibrateCamera()` to initialize the camera matrix.
+    \param[in] imagePoints The projected points for each image.
+    \param[in] reprojErrs The re-projection error, that is a geometric error corresponding to the image distance between a projected point and a measured one. 
+    \param[out] cameraMatrix The matrix of the camera parameters
+    \param[out] distCoeffs The matrix of the distorsion coefficients. 
+    \param[out] rvecs Output vector of rotation vectors estimated for each pattern view.
+    \param[out] tvecs Output vector of translation vectors estimated for each pattern view.
+    \param[out] totalAvgErr The total avarage error given from distorsion. 
 
-	\returns `false` if one or more elements in the `cameraMatrix` and `distCoeffs` are invalid.\n `true` if all the elements are valid.
+    \returns `false` if one or more elements in the `cameraMatrix` and `distCoeffs` are invalid.\n `true` if all the elements are valid.
 */
 static bool runCalibration( Settings& s, 
-							Size& imageSize, 
-							Mat& cameraMatrix, 
-							Mat& distCoeffs,
+                            Size& imageSize, 
+                            Mat& cameraMatrix, 
+                            Mat& distCoeffs,
                             vector<vector<Point2f> > imagePoints, 
                             vector<Mat>& rvecs, 
                             vector<Mat>& tvecs,
@@ -479,42 +479,42 @@ static bool runCalibration( Settings& s,
     //Find intrinsic and extrinsic camera parameters
     double rms;
 
-    rms = calibrateCamera(	objectPoints, imagePoints, imageSize, 
-        					cameraMatrix, distCoeffs, rvecs, 
-        					tvecs, s.flag
-        				);
+    rms = calibrateCamera(  objectPoints, imagePoints, imageSize, 
+                            cameraMatrix, distCoeffs, rvecs, 
+                            tvecs, s.flag
+                        );
 
     cout << "Re-projection error reported by calibrateCamera: "<< rms << endl;
 
     bool ok = checkRange(cameraMatrix) && checkRange(distCoeffs);
 
     totalAvgErr = computeReprojectionErrors(objectPoints, imagePoints, rvecs, 
-    										tvecs, cameraMatrix, distCoeffs, 
-    										reprojErrs, s.useFisheye);
+                                            tvecs, cameraMatrix, distCoeffs, 
+                                            reprojErrs, s.useFisheye);
 
     return ok;
 }
 
 /*! \brief Function to save the computed parameters to a file. 
-	\param[in] s Use the `Settings` got at the beginning for information as the output file name, image and board size. 
-	\param[in] imageSize The size of the imgage.
-	\param[in] cameraMatrix The camera matrix.
-	\param[in] distCoeffs The distorsion coefficient matrix. 
-	\param[int] rvecs Vector of rotation vectors estimated for each pattern view.
-	\param[in] tvecs Vector of translation vectors estimated for each pattern view.
-	\param[in] reprojErrs The re-projection error, that is a geometric error corresponding to the image distance between a projected point and a measured one. 
-	\param[in] imagePoints The projected points for each image.
-	\param[in] totalAvgErr The total avarage error given from distorsion.
+    \param[in] s Use the `Settings` got at the beginning for information as the output file name, image and board size. 
+    \param[in] imageSize The size of the imgage.
+    \param[in] cameraMatrix The camera matrix.
+    \param[in] distCoeffs The distorsion coefficient matrix. 
+    \param[int] rvecs Vector of rotation vectors estimated for each pattern view.
+    \param[in] tvecs Vector of translation vectors estimated for each pattern view.
+    \param[in] reprojErrs The re-projection error, that is a geometric error corresponding to the image distance between a projected point and a measured one. 
+    \param[in] imagePoints The projected points for each image.
+    \param[in] totalAvgErr The total avarage error given from distorsion.
 */
-static void saveCameraParams(	const Settings& s, 
-								const Size& imageSize,
-								const Mat& cameraMatrix,
-								const Mat& distCoeffs,
-								const vector<Mat>& rvecs,
-								const vector<Mat>& tvecs,
-								const vector<float>& reprojErrs,
-								const vector<vector<Point2f> >& imagePoints,
-								const double totalAvgErr )
+static void saveCameraParams(   const Settings& s, 
+                                const Size& imageSize,
+                                const Mat& cameraMatrix,
+                                const Mat& distCoeffs,
+                                const vector<Mat>& rvecs,
+                                const vector<Mat>& tvecs,
+                                const vector<float>& reprojErrs,
+                                const vector<vector<Point2f> >& imagePoints,
+                                const double totalAvgErr )
 {
     /// Open file for writing
     FileStorage fs( s.outputFileName, FileStorage::WRITE );
@@ -616,39 +616,37 @@ static void saveCameraParams(	const Settings& s,
 }
 
 /*! \brief Reads settings from file. If there is none then initiate a new `Settings`.
-	\param[in] s The `Settings` being used during the execution.
-	\param[in] imageSize The dimensions of the images.
-	\param[in] imagePoints The projected points for each image.
-	\param[out] cameraMatrix The matrix which is used to store the values for the camera parameters.
-	\param[out] distCoeffs The matrix which is used to store the distortion coefficients.
+    \param[in] s The `Settings` being used during the execution.
+    \param[in] imageSize The dimensions of the images.
+    \param[in] imagePoints The projected points for each image.
+    \param[out] cameraMatrix The matrix which is used to store the values for the camera parameters.
+    \param[out] distCoeffs The matrix which is used to store the distortion coefficients.
 
-	\return `true` if the calibration succeded.\n `false` otherwise.
+    \return `true` if the calibration succeded.\n `false` otherwise.
 */
-bool runCalibrationAndSave(	Settings& s, 
-							Size imageSize, 
-							Mat& cameraMatrix, 
-							Mat& distCoeffs,
-                           	vector<vector<Point2f> > imagePoints)
+bool runCalibrationAndSave( Settings& s, 
+                            Size imageSize, 
+                            Mat& cameraMatrix, 
+                            Mat& distCoeffs,
+                            vector<vector<Point2f> > imagePoints)
 {
     vector<Mat> rvecs, tvecs;
     vector<float> reprojErrs;
     double totalAvgErr = 0;
 
     bool ok = runCalibration(s, imageSize, cameraMatrix, distCoeffs, 
-    						imagePoints, rvecs, tvecs, 
-    						reprojErrs, totalAvgErr
-    					);
+                            imagePoints, rvecs, tvecs, 
+                            reprojErrs, totalAvgErr
+                        );
 
     cout << (ok ? "Calibration succeeded" : "Calibration failed")
          << ". avg re projection error = " << totalAvgErr << endl;
 
     if (ok) {
         saveCameraParams(s, imageSize, cameraMatrix, distCoeffs, 
-        				rvecs, tvecs, reprojErrs, imagePoints,
+                        rvecs, tvecs, reprojErrs, imagePoints,
                         totalAvgErr
                     );
     }
     return ok;
 }
-
-

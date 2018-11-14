@@ -1,10 +1,10 @@
-/*! 
-	\file calibration.hh  
-	\brief Library for calibration
-*/
 #ifndef CALIBRATION_HH
 #define CALIBRATION_HH
 
+/*!
+	\file calibration.hh  
+	\brief Library for calibration
+*/
 #include "utils.hh"
 
 #include <iostream>
