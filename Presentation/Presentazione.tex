@@ -67,16 +67,108 @@
 \end{frame}
 
 \begin{frame}{Unwrapping}
-	
+Once the camera matrix and the distortion coefficients are known, the next step is to focus on the target, that is the circuit, and then to "un-distort" it. 
+\begin{center}
+	\includegraphics[scale=0.155]{Immagini/Wrapped.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}{Unwrapping}
+	\begin{center}
+		\includegraphics[scale=0.25]{Immagini/Unwrapped.jpg}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Unwrapping}
+	Straighten the image using the distortion coefficients. 
+	\begin{center}
+		\includegraphics[scale=0.15]{Immagini/UNUndistort}	
+	\end{center}
+	\begin{minted}[fontsize=\stsize]{c++}
+		loadCoefficients(calib_file, camera_matrix, dist_coeffs);
+		undistort(or_img, fix_img, camera_matrix, dist_coeffs);
+	\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Unwrapping}
+	Then the image is converted from RGB to HSV.
+	\begin{center}
+		\includegraphics[scale=0.15]{Immagini/UNHSV}
+	\end{center}
+	\vfill
+	\begin{minted}[fontsize=\stsize]{c++}
+		cvtColor(fix_img, hsv_img, COLOR_BGR2HSV);
+	\end{minted}
+	\vfill
+\end{frame}
+
+\begin{frame}[fragile]{Unwrapping}
+	A black filter is added to highlight the black lines and areas.
+	\begin{center}
+		\includegraphics[scale=0.15]{Immagini/UNBlackFilter}
+	\end{center}
+	\vfill	
+	\begin{minted}[fontsize=\stsize]{c++}
+		FileNode Bm = fs_xml["blackMask"]; 
+		//<blackMask>0 0 0 179 255 70</blackMask>
+        inRange(hsv_img, Scalar(Bm[0], Bm[1], Bm[2]), Scalar(Bm[3], Bm[4], Bm[5]), black_mask);
+	\end{minted}
+	\vfill
+\end{frame}
+
+\begin{frame}[fragile]{Unwrapping}
+	Then the largest area enclosed by black lines is selected. 
+	\begin{center}
+		\includegraphics[scale=0.16]{Immagini/UNRect}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Unwrapping}
+	At the end the image is cropped and turned. 
+	\begin{center}
+		\includegraphics[scale=0.19]{Immagini/Unwrapped}
+	\end{center}
 \end{frame}
 
 
+\begin{frame}[fragile]{Detection}
+	The last phase consists of two more steps:
+	\begin{itemize}
+		\item Shape detection;
+		\item Digit detection;
+	\end{itemize}
+\end{frame}
 
+\begin{frame}[fragile]{Shape detection}
+	The shape detection consists of scanning the image to locate the various obstacles, targets and the arriving point. \newline
+	Various filer are here used to achieve this goal:
+	\begin{itemize}
+		\item The obstacles are red, so a red filter is going to be used: 15 100 140 160 255 255;
+		\item The targets are green, so a green filter is going to be used: 50 65 45 70 255 200;
+		\item The target point is blue, so a blue filter is going to be used: 100 100 40 140 200 170;
+	\end{itemize}
+	The various items are going to be stored in a file with the coordinates of their angles. 
+\end{frame}
 
+\begin{frame}{Shape detection}
+	\begin{center}
+		\includegraphics[scale=0.25]{Immagini/RedFiltered}
+	\end{center}
+\end{frame}
 
-
-
-
+\begin{frame}[fragile]{Digit detection}
+The goal of this last phase is to consider the area around the targets, which is our ROI, and try to identify the number inside it. \newline
+This can be done through templates or through Tesseract API. 
+For having better results the area around each target is:
+\begin{itemize}
+	\item Cropped;
+	\item Resized to $200\times 200$ $px$;
+	\item Given a black filter;
+	\item Passed through a function \mintinline{c++}{erode_dilation} which aims to removing noise and isolate the number;
+	\item Rotate so that the number is going to be vertical.
+\end{itemize}
+At last the digit detection is being done with templates since the success rate has been greater than using Tesseract. 
+\end{frame}
 
 
 
