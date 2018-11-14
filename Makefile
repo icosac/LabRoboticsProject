@@ -77,11 +77,11 @@ clean:
 	
 #clean documentation
 doc_clean clean_doc:
-	rm -rf doc
+	rm -rf docs
 
 #make documentation for html and latex (also compile latex)
 doc:
-	$(MKDIR) doc 
+	$(MKDIR) docs 
 	$(DOXYGEN) $(DOX_CONF_FILE)
 ifneq (,$(shell which pdflatex))
 	@cd docs/latex && make
