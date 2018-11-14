@@ -164,11 +164,21 @@ For having better results the area around each target is:
 	\item Cropped;
 	\item Resized to $200\times 200$ $px$;
 	\item Given a black filter;
-	\item Passed through a function \mintinline{c++}{erode_dilation} which aims to removing noise and isolate the number;
+	\item Passed through a function (\mintinline{c++}{erode_dilation}) which aims to removing noise and isolate the number;
 	\item Rotate so that the number is going to be vertical.
 \end{itemize}
 At last the digit detection is being done with templates since the success rate has been greater than using Tesseract. 
 \end{frame}
 
+\begin{frame}{Code structure}
+	\begin{center}
+		\includegraphics[scale=0.45]{Immagini/Code1}
+	\end{center}
+\end{frame}
 
+\begin{frame}{Code structure}
+	\begin{center}
+		\includegraphics[scale=0.7]{Immagini/Code2}
+	\end{center}
+\end{frame}
 
