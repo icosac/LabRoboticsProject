@@ -82,37 +82,18 @@ void Settings::validate()
         cerr << "Invalid number of frames " << nrFrames << endl;
         goodInput = false;
     }
+
     ///* Check for valid input, that is a valid list of images.
     if (input.empty()) {
-    	inputType = INVALID;
+        inputType = INVALID;
     }
+    ///* Else a list of image is being used.
     else{
-    	///* If input is a number than a camera is being used.
-        if (input[0] >= '0' && input[0] <= '9'){
-            stringstream ss(input);
-            ss >> cameraID;
-            inputType = CAMERA;
+        if (isListOfImages(input) && readStringList(input, imageList)){
+            inputType = IMAGE_LIST;
+            nrFrames = (nrFrames < (int)imageList.size()) ? nrFrames : (int)imageList.size();
         }
-        ///* Else a list of image is being used.
-        else{
-            if (isListOfImages(input) && readStringList(input, imageList)){
-                inputType = IMAGE_LIST;
-                nrFrames = (nrFrames < (int)imageList.size()) ? nrFrames : (int)imageList.size();
-            }
-            else {
-                inputType = VIDEO_FILE;
-            }
-        }
-        ///* If inputType is CAMERA than open the camera for input.
-        if (inputType == CAMERA) {
-            inputCapture.open(cameraID);
-        }
-        ///* If inputType is VIDEO_FILE than oper the video for input.
-        if (inputType == VIDEO_FILE) {
-            inputCapture.open(input);
-        }
-        ///* If inputType is not IMAGE_LIST but inputCapture is opened, than inputType must be set to invalid.
-        if (inputType != IMAGE_LIST && !inputCapture.isOpened()) {
+        else {
             inputType = INVALID;
         }
     }
@@ -131,22 +112,12 @@ void Settings::validate()
     if(fixK4)                  flag |= CALIB_FIX_K4;
     if(fixK5)                  flag |= CALIB_FIX_K5;
 
-    if (useFisheye) {
-        // the fisheye model has its own enum, so overwrite the flags.
-        flag = fisheye::CALIB_FIX_SKEW | fisheye::CALIB_RECOMPUTE_EXTRINSIC;
-        if(fixK1)                   flag |= fisheye::CALIB_FIX_K1;
-        if(fixK2)                   flag |= fisheye::CALIB_FIX_K2;
-        if(fixK3)                   flag |= fisheye::CALIB_FIX_K3;
-        if(fixK4)                   flag |= fisheye::CALIB_FIX_K4;
-        if (calibFixPrincipalPoint) flag |= fisheye::CALIB_FIX_PRINCIPAL_POINT;
-    }
-
     ///* Check the field pattern: if it doesn't correspond to a known one than it's invalid.
-    calibrationPattern = NOT_EXISTING;
-    if (!patternToUse.compare("CHESSBOARD")) calibrationPattern = CHESSBOARD;
-    if (!patternToUse.compare("CIRCLES_GRID")) calibrationPattern = CIRCLES_GRID;
-    if (!patternToUse.compare("ASYMMETRIC_CIRCLES_GRID")) calibrationPattern = ASYMMETRIC_CIRCLES_GRID;
-    if (calibrationPattern == NOT_EXISTING){
+    if (!patternToUse.compare("CHESSBOARD")) {
+        calibrationPattern = CHESSBOARD;
+    }
+    else {
+        calibrationPattern = NOT_EXISTING;
         cerr << " Camera calibration mode does not exist: " << patternToUse << endl;
         goodInput = false;
     }
@@ -154,22 +125,12 @@ void Settings::validate()
 
 }
 
-/*! \brief Get next image from list, or next frame from video
+/*! \brief Get next image from list.
 	\returns A matrix containing the next image to consider.
 */
 Mat Settings::nextImage()
 {
-    Mat result;
-    if( inputCapture.isOpened() ){
-        Mat view0;
-        inputCapture >> view0;
-        view0.copyTo(result);
-    }
-    else if( atImageList < imageList.size() )  {
-        result = imread(imageList[atImageList++], IMREAD_COLOR);
-    }
-
-    return result;
+    return imread(imageList[atImageList++], IMREAD_COLOR);
 }
 
 /*! \brief Read from file a list of images.
@@ -255,8 +216,7 @@ int calibration(const string inputFile)
     vector<vector<Point2f> > imagePoints; //Well... this is quite a nice question
     Mat cameraMatrix, distCoeffs; //Matrixes for camera parameters and distortion coefficients
     Size imageSize; //lenght and width of image
-    int mode = s.inputType == Settings::IMAGE_LIST ? CAPTURING : DETECTION; //Set the mode based if there is a list of images or not
-    clock_t prevTimestamp = 0;
+    int mode = CAPTURING; //Set the mode based if there is a list of images or not
     const Scalar RED(0,0,255), GREEN(0,255,0);
     const char ESC_KEY = 27;
 
@@ -298,49 +258,19 @@ int calibration(const string inputFile)
 
         int chessBoardFlags = CALIB_CB_ADAPTIVE_THRESH | CALIB_CB_NORMALIZE_IMAGE;
 
-        if(!s.useFisheye) {
-            // fast check erroneously fails with high distortions like fisheye
-            chessBoardFlags |= CALIB_CB_FAST_CHECK;
-        }
-
-        switch( s.calibrationPattern ) // Find feature points on the input format
-        {
-        case Settings::CHESSBOARD:
-            found = findChessboardCorners( view, s.boardSize, pointBuf, chessBoardFlags);
-            break;
-        case Settings::CIRCLES_GRID:
-            found = findCirclesGrid( view, s.boardSize, pointBuf );
-            break;
-        case Settings::ASYMMETRIC_CIRCLES_GRID:
-            found = findCirclesGrid( view, s.boardSize, pointBuf, CALIB_CB_ASYMMETRIC_GRID );
-            break;
-        default:
-            found = false;
-            break;
-        }
+        found = findChessboardCorners( view, s.boardSize, pointBuf, chessBoardFlags);
+        
         //find_pattern
-        //pattern_found
         if ( found)                // If done with success,
         {
               // improve the found corners' coordinate accuracy for chessboard
-                if( s.calibrationPattern == Settings::CHESSBOARD)
-                {
-                    Mat viewGray;
-                    cvtColor(view, viewGray, COLOR_BGR2GRAY);
-                    cornerSubPix( viewGray, pointBuf, Size(11,11),
-                        Size(-1,-1), TermCriteria( TermCriteria::EPS+TermCriteria::COUNT, 30, 0.1 ));
-                }
+            Mat viewGray;
+            cvtColor(view, viewGray, COLOR_BGR2GRAY);
+            cornerSubPix(   viewGray, pointBuf, Size(11,11), Size(-1,-1), 
+                            TermCriteria( TermCriteria::EPS+TermCriteria::COUNT, 30, 0.1 ));
 
-                if( mode == CAPTURING &&  // For camera only take new samples after delay time
-                    (!s.inputCapture.isOpened() || clock() - prevTimestamp > s.delay*1e-3*CLOCKS_PER_SEC) )
-                {
-                    imagePoints.push_back(pointBuf);
-                    prevTimestamp = clock();
-                    blinkOutput = s.inputCapture.isOpened();
-                }
-
-                // Draw the corners.
-                drawChessboardCorners( view, s.boardSize, Mat(pointBuf), found );
+            // Draw the corners.
+            drawChessboardCorners( view, s.boardSize, Mat(pointBuf), found );
         }
         //pattern_found
         //----------------------------- Output Text ------------------------------------------------
@@ -369,10 +299,7 @@ int calibration(const string inputFile)
         if( mode == CALIBRATED && s.showUndistorsed )
         {
             Mat temp = view.clone();
-            if (s.useFisheye)
-              cv::fisheye::undistortImage(temp, view, cameraMatrix, distCoeffs);
-            else
-              undistort(temp, view, cameraMatrix, distCoeffs);
+            undistort(temp, view, cameraMatrix, distCoeffs);
         }
         //output_undistorted
         //------------------------------ Show image and check for input commands -------------------
@@ -380,43 +307,36 @@ int calibration(const string inputFile)
         imshow("Image View", view);
 
         #ifdef DEBUG
-        char key = (char)waitKey(s.inputCapture.isOpened() ? 50 : s.delay);
-        if( key  == ESC_KEY )
-            break;
+            char key = (char)waitKey(s.inputCapture.isOpened() ? 50 : s.delay);
+            if( key  == ESC_KEY )
+                break;
 
-        if( key == 'u' && mode == CALIBRATED )
-           s.showUndistorsed = !s.showUndistorsed;
+            if( key == 'u' && mode == CALIBRATED )
+               s.showUndistorsed = !s.showUndistorsed;
 
-        if( s.inputCapture.isOpened() && key == 'g' )
-        {
-            mode = CAPTURING;
-            imagePoints.clear();
-        }
+            if( s.inputCapture.isOpened() && key == 'g' )
+            {
+                mode = CAPTURING;
+                imagePoints.clear();
+            }
         #endif
         //await_input
     }
+    //End of for cycle
 
     // -----------------------Show the undistorted image for the image list ------------------------
     //show_results
     if( s.inputType == Settings::IMAGE_LIST && s.showUndistorsed )
     {
         Mat view, rview, map1, map2;
-
-        if (s.useFisheye)
-        {
-            Mat newCamMat;
-            fisheye::estimateNewCameraMatrixForUndistortRectify(cameraMatrix, distCoeffs, imageSize,
-                                                                Matx33d::eye(), newCamMat, 1);
-            fisheye::initUndistortRectifyMap(cameraMatrix, distCoeffs, Matx33d::eye(), newCamMat, imageSize,
-                                             CV_16SC2, map1, map2);
-        }
-        else
-        {
-            initUndistortRectifyMap(
-                cameraMatrix, distCoeffs, Mat(),
-                getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0), imageSize,
-                CV_16SC2, map1, map2);
-        }
+        INFO("ciao")
+        Mat optimalCamera = getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0);
+        INFO("ciao")
+        initUndistortRectifyMap(
+            cameraMatrix, distCoeffs, Mat(),
+            optimalCamera, 
+            imageSize, CV_16SC2, map1, map2);
+        INFO("ciao")
 
         for(size_t i = 0; i < s.imageList.size(); i++ )
         {
@@ -426,9 +346,9 @@ int calibration(const string inputFile)
             remap(view, rview, map1, map2, INTER_LINEAR);
             imshow("Image View", rview);
             #ifdef DEBUG
-            char c = (char)waitKey();
-            if( c  == ESC_KEY || c == 'q' || c == 'Q' )
-                break;
+                char c = (char)waitKey();
+                if( c  == ESC_KEY || c == 'q' || c == 'Q' )
+                    break;
             #endif
         }
     }
@@ -484,16 +404,11 @@ static double computeReprojectionErrors( const vector<vector<Point3f> >& objectP
     perViewErrors.resize(objectPoints.size()); //Vector that'll contain errors for each image
 
     for(size_t i = 0; i < objectPoints.size(); ++i ) {
-    	//QUESTION: fisheye?
-        if (fisheye) {
-            fisheye::projectPoints(	objectPoints[i], imagePoints2, rvecs[i], 
-            						tvecs[i], cameraMatrix, distCoeffs);
-        }
-        else {
-        	//This function projects points toward a plane. It takes the points from objectPoints and write the output vector imagePoints2.
-            projectPoints(	objectPoints[i], rvecs[i], tvecs[i], 
-            				cameraMatrix, distCoeffs, imagePoints2);
-        }
+    	
+    	//This function projects points toward a plane. It takes the points from objectPoints and write the output vector imagePoints2.
+        projectPoints(	objectPoints[i], rvecs[i], tvecs[i], 
+        				cameraMatrix, distCoeffs, imagePoints2);
+
         err = norm(imagePoints[i], imagePoints2, NORM_L2); //Calculate an relative difference norm
 
         size_t n = objectPoints[i].size();
@@ -507,42 +422,21 @@ static double computeReprojectionErrors( const vector<vector<Point3f> >& objectP
 
 /*! \brief This function compute the position of the upper corners of every cell. 
 
-	\param[in] boardSiz: the dimension of the chess board.
-	\param[in] squareSize: the dimension of the edge of a cell.
-	\param[in] patternType: the type of pattern following `Setting::Pattern`.
-	\param[out] corners: a vector of `Point3f`s which equals to the corners of the cells. 
+	\param[in] boardSiz The dimension of the chess board.
+	\param[in] squareSize The dimension of the edge of a cell.
+    \param[out] corners A vector of Point3fs which equals to the corners of the cells. 
 */
 void calcBoardCornerPositions(	Size boardSize, 
 								float squareSize, 
-								vector<Point3f>& corners,
-								Settings::Pattern patternType /*= Settings::CHESSBOARD*/)
+								vector<Point3f>& corners)
 {
     corners.clear();
 
-    switch(patternType){
-	    case Settings::CHESSBOARD:
-	    case Settings::CIRCLES_GRID: {
-	        for( int i = 0; i < boardSize.height; ++i ) {
-	            for( int j = 0; j < boardSize.width; ++j ) {
-	                corners.push_back(Point3f(j*squareSize, i*squareSize, 0));
-	                cout << i << ", " << j << "   (" << j*squareSize << ", " << i*squareSize << ")" << endl;
-	            }
-	        }
-	        break;
-	    }
-
-	    case Settings::ASYMMETRIC_CIRCLES_GRID: {
-	        for( int i = 0; i < boardSize.height; i++ ) {
-	            for( int j = 0; j < boardSize.width; j++ ) {
-	                corners.push_back(Point3f((2*j + i % 2)*squareSize, i*squareSize, 0));
-	            }
-	        }
-	        break;
-	    }
-
-	    default: {
-	        break;
-	    }
+    for( int i = 0; i < boardSize.height; ++i ) {
+        for( int j = 0; j < boardSize.width; ++j ) {
+            corners.push_back(Point3f(j*squareSize, i*squareSize, 0));
+            cout << i << ", " << j << "   (" << j*squareSize << ", " << i*squareSize << ")" << endl;
+        }
     }
 }
 
@@ -574,41 +468,21 @@ static bool runCalibration( Settings& s,
     if( s.flag & CALIB_FIX_ASPECT_RATIO ) {
         cameraMatrix.at<double>(0,0) = s.aspectRatio;
     }
-    if (s.useFisheye) 
-    {
-        distCoeffs = Mat::zeros(4, 1, CV_64F);
-    } else 
-    {
-        distCoeffs = Mat::zeros(8, 1, CV_64F);
-    }
+    
+    distCoeffs = Mat::zeros(8, 1, CV_64F);
 
     vector<vector<Point3f> > objectPoints(1);
-    calcBoardCornerPositions(s.boardSize, s.squareSize, objectPoints[0], s.calibrationPattern);
+    calcBoardCornerPositions(s.boardSize, s.squareSize, objectPoints[0]);
 
     objectPoints.resize(imagePoints.size(),objectPoints[0]);
 
     //Find intrinsic and extrinsic camera parameters
     double rms;
 
-    if (s.useFisheye) 
-    {
-        Mat _rvecs, _tvecs;
-        rms = fisheye::calibrate(objectPoints, imagePoints, imageSize, cameraMatrix, distCoeffs, _rvecs,
-                                 _tvecs, s.flag);
-
-        rvecs.reserve(_rvecs.rows);
-        tvecs.reserve(_tvecs.rows);
-        for(int i = 0; i < int(objectPoints.size()); i++){
-            rvecs.push_back(_rvecs.row(i));
-            tvecs.push_back(_tvecs.row(i));
-        }
-    } else 
-    {
-        rms = calibrateCamera(	objectPoints, imagePoints, imageSize, 
-        						cameraMatrix, distCoeffs, rvecs, 
-        						tvecs, s.flag
-        					);
-    }
+    rms = calibrateCamera(	objectPoints, imagePoints, imageSize, 
+        					cameraMatrix, distCoeffs, rvecs, 
+        					tvecs, s.flag
+        				);
 
     cout << "Re-projection error reported by calibrateCamera: "<< rms << endl;
 
@@ -669,29 +543,18 @@ static void saveCameraParams(	const Settings& s,
     if (s.flag)
     {
         std::stringstream flagsStringStream;
-        if (s.useFisheye)
-        {
-            flagsStringStream << "flags:"
-                << (s.flag & fisheye::CALIB_FIX_SKEW ? " +fix_skew" : "")
-                << (s.flag & fisheye::CALIB_FIX_K1 ? " +fix_k1" : "")
-                << (s.flag & fisheye::CALIB_FIX_K2 ? " +fix_k2" : "")
-                << (s.flag & fisheye::CALIB_FIX_K3 ? " +fix_k3" : "")
-                << (s.flag & fisheye::CALIB_FIX_K4 ? " +fix_k4" : "")
-                << (s.flag & fisheye::CALIB_RECOMPUTE_EXTRINSIC ? " +recompute_extrinsic" : "");
-        }
-        else
-        {
-            flagsStringStream << "flags:"
-                << (s.flag & CALIB_USE_INTRINSIC_GUESS ? " +use_intrinsic_guess" : "")
-                << (s.flag & CALIB_FIX_ASPECT_RATIO ? " +fix_aspectRatio" : "")
-                << (s.flag & CALIB_FIX_PRINCIPAL_POINT ? " +fix_principal_point" : "")
-                << (s.flag & CALIB_ZERO_TANGENT_DIST ? " +zero_tangent_dist" : "")
-                << (s.flag & CALIB_FIX_K1 ? " +fix_k1" : "")
-                << (s.flag & CALIB_FIX_K2 ? " +fix_k2" : "")
-                << (s.flag & CALIB_FIX_K3 ? " +fix_k3" : "")
-                << (s.flag & CALIB_FIX_K4 ? " +fix_k4" : "")
-                << (s.flag & CALIB_FIX_K5 ? " +fix_k5" : "");
-        }
+        
+        flagsStringStream << "flags:"
+            << (s.flag & CALIB_USE_INTRINSIC_GUESS ? " +use_intrinsic_guess" : "")
+            << (s.flag & CALIB_FIX_ASPECT_RATIO ? " +fix_aspectRatio" : "")
+            << (s.flag & CALIB_FIX_PRINCIPAL_POINT ? " +fix_principal_point" : "")
+            << (s.flag & CALIB_ZERO_TANGENT_DIST ? " +zero_tangent_dist" : "")
+            << (s.flag & CALIB_FIX_K1 ? " +fix_k1" : "")
+            << (s.flag & CALIB_FIX_K2 ? " +fix_k2" : "")
+            << (s.flag & CALIB_FIX_K3 ? " +fix_k3" : "")
+            << (s.flag & CALIB_FIX_K4 ? " +fix_k4" : "")
+            << (s.flag & CALIB_FIX_K5 ? " +fix_k5" : "");
+
         fs.writeComment(flagsStringStream.str());
     }
 
