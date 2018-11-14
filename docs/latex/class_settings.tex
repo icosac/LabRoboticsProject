@@ -7,16 +7,12 @@
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8}{Pattern}} \{ \mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8ad2f421ce100bd7e0302b17bda1a74eb9}{N\+O\+T\+\_\+\+E\+X\+I\+S\+T\+I\+NG}}, 
-\mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8ae96aa2d60b4a554a215524a05b32908e}{C\+H\+E\+S\+S\+B\+O\+A\+RD}}, 
-\mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8a79472d1c69f8ed7aa1b55f908b136f68}{C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID}}, 
-\mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8a2cea29ee5896f2cb4cc64df25fd2375b}{A\+S\+Y\+M\+M\+E\+T\+R\+I\+C\+\_\+\+C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID}}
+enum \mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8}{Pattern}} \{ \mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8ad2f421ce100bd7e0302b17bda1a74eb9}{N\+O\+T\+\_\+\+E\+X\+I\+S\+T\+I\+NG}} =0, 
+\mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8ae96aa2d60b4a554a215524a05b32908e}{C\+H\+E\+S\+S\+B\+O\+A\+RD}} =1
  \}
 \item 
-enum \mbox{\hyperlink{class_settings_a5afe85d24b071973a7f248c05386f7f4}{Input\+Type}} \{ \mbox{\hyperlink{class_settings_a5afe85d24b071973a7f248c05386f7f4adb44130895aedc32a119565eb6d61bed}{I\+N\+V\+A\+L\+ID}}, 
-\mbox{\hyperlink{class_settings_a5afe85d24b071973a7f248c05386f7f4aba4cc7726878c8913831f0ea6360fa05}{C\+A\+M\+E\+RA}}, 
-\mbox{\hyperlink{class_settings_a5afe85d24b071973a7f248c05386f7f4ac9fd97535bc651249f9eed1fddf2d36b}{V\+I\+D\+E\+O\+\_\+\+F\+I\+LE}}, 
-\mbox{\hyperlink{class_settings_a5afe85d24b071973a7f248c05386f7f4a292bd2e5ba912a92ace1606e366edc4d}{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}}
+enum \mbox{\hyperlink{class_settings_a04fa2d41ea944f16221959d0d49858e9}{Input\+Type }} \{ \mbox{\hyperlink{class_settings_a04fa2d41ea944f16221959d0d49858e9adb44130895aedc32a119565eb6d61bed}{I\+N\+V\+A\+L\+ID}} =0, 
+\mbox{\hyperlink{class_settings_a04fa2d41ea944f16221959d0d49858e9a292bd2e5ba912a92ace1606e366edc4d}{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}} =3
  \}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
@@ -31,7 +27,7 @@ void \mbox{\hyperlink{class_settings_a2d7841f8441095032e0f3b7d20adfd3f}{read}} (
 void \mbox{\hyperlink{class_settings_a29016205c90b95d6247df18365a70dd0}{validate}} ()
 \begin{DoxyCompactList}\small\item\em This function validate the content of the file. \end{DoxyCompactList}\item 
 Mat \mbox{\hyperlink{class_settings_a7701462e928f2425b342440fba9973e5}{next\+Image}} ()
-\begin{DoxyCompactList}\small\item\em Get next image from list, or next frame from video. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get next image from list. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -44,7 +40,7 @@ static bool \mbox{\hyperlink{class_settings_af5003738fba7def4d4d9850a08eecacb}{i
 \item 
 Size \mbox{\hyperlink{class_settings_a5030a7164df923bb3b86dd7a0fc9af30}{board\+Size}}
 \begin{DoxyCompactList}\small\item\em The size of the board -\/$>$ Number of items by width and height. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8}{Pattern}} \mbox{\hyperlink{class_settings_a94551b7ffe8ac60311b035b2905e9498}{calibration\+Pattern}}
+\mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8}{Pattern}} \mbox{\hyperlink{class_settings_a94551b7ffe8ac60311b035b2905e9498}{calibration\+Pattern}} = \mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8ae96aa2d60b4a554a215524a05b32908e}{C\+H\+E\+S\+S\+B\+O\+A\+RD}}
 \begin{DoxyCompactList}\small\item\em One of the Chessboard, circles, or asymmetric circle pattern. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{class_settings_a6c94708776ad1ce258fc44f2101f5941}{square\+Size}}
 \begin{DoxyCompactList}\small\item\em The size of a square in your defined unit (point, millimeter,etc). \end{DoxyCompactList}\item 
@@ -70,7 +66,7 @@ bool \mbox{\hyperlink{class_settings_a935d6f27ee454e9fee63f8b662f48a06}{show\+Un
 \begin{DoxyCompactList}\small\item\em Show undistorted images after calibration. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_settings_a9970d51ab47b6560ab11b267637b6219}{input}}
 \begin{DoxyCompactList}\small\item\em The input. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_settings_ac8f271630d54f9d0c718ea0130972d44}{use\+Fisheye}}
+bool \mbox{\hyperlink{class_settings_ac8f271630d54f9d0c718ea0130972d44}{use\+Fisheye}} = false
 \begin{DoxyCompactList}\small\item\em use fisheye camera model for calibration \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_settings_a25242813ee2c5e111ce48fe1f7f85e7b}{fix\+K1}}
 \begin{DoxyCompactList}\small\item\em fix K1 distortion coefficient \end{DoxyCompactList}\item 
@@ -90,7 +86,7 @@ size\+\_\+t \mbox{\hyperlink{class_settings_a1b89e85a2638e19f2d53269245d19b66}{a
 \item 
 Video\+Capture \mbox{\hyperlink{class_settings_abd5706146b34d3c32aef4025dcd2ec1b}{input\+Capture}}
 \item 
-\mbox{\hyperlink{class_settings_a5afe85d24b071973a7f248c05386f7f4}{Input\+Type}} \mbox{\hyperlink{class_settings_a89fb14ce9856fb642f18bb0f7c5b8868}{input\+Type}}
+Input\+Type \mbox{\hyperlink{class_settings_a89fb14ce9856fb642f18bb0f7c5b8868}{input\+Type}} = \mbox{\hyperlink{class_settings_a04fa2d41ea944f16221959d0d49858e9a292bd2e5ba912a92ace1606e366edc4d}{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}}
 \item 
 bool \mbox{\hyperlink{class_settings_a3b9fc27b555f982bd5b9ea5198e1f7e3}{good\+Input}}
 \item 
@@ -99,26 +95,18 @@ int \mbox{\hyperlink{class_settings_aba5691e3e76525f93ea254e654ec3717}{flag}}
 
 
 \subsection{Member Enumeration Documentation}
-\mbox{\Hypertarget{class_settings_a5afe85d24b071973a7f248c05386f7f4}\label{class_settings_a5afe85d24b071973a7f248c05386f7f4}} 
-\index{Settings@{Settings}!Input\+Type@{Input\+Type}}
-\index{Input\+Type@{Input\+Type}!Settings@{Settings}}
-\subsubsection{\texorpdfstring{Input\+Type}{InputType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{class_settings_a5afe85d24b071973a7f248c05386f7f4}{Settings\+::\+Input\+Type}}}
+\mbox{\Hypertarget{class_settings_a04fa2d41ea944f16221959d0d49858e9}\label{class_settings_a04fa2d41ea944f16221959d0d49858e9}} 
+\index{Settings@{Settings}!Input\+Type @{Input\+Type }}
+\index{Input\+Type @{Input\+Type }!Settings@{Settings}}
+\subsubsection{\texorpdfstring{Input\+Type }{InputType }}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_settings_a04fa2d41ea944f16221959d0d49858e9}{Settings\+::\+Input\+Type }}}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+N\+V\+A\+L\+ID@{I\+N\+V\+A\+L\+ID}!Settings@{Settings}}\index{Settings@{Settings}!I\+N\+V\+A\+L\+ID@{I\+N\+V\+A\+L\+ID}}}\mbox{\Hypertarget{class_settings_a5afe85d24b071973a7f248c05386f7f4adb44130895aedc32a119565eb6d61bed}\label{class_settings_a5afe85d24b071973a7f248c05386f7f4adb44130895aedc32a119565eb6d61bed}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+N\+V\+A\+L\+ID@{I\+N\+V\+A\+L\+ID}!Settings@{Settings}}\index{Settings@{Settings}!I\+N\+V\+A\+L\+ID@{I\+N\+V\+A\+L\+ID}}}\mbox{\Hypertarget{class_settings_a04fa2d41ea944f16221959d0d49858e9adb44130895aedc32a119565eb6d61bed}\label{class_settings_a04fa2d41ea944f16221959d0d49858e9adb44130895aedc32a119565eb6d61bed}} 
 I\+N\+V\+A\+L\+ID&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+A\+M\+E\+RA@{C\+A\+M\+E\+RA}!Settings@{Settings}}\index{Settings@{Settings}!C\+A\+M\+E\+RA@{C\+A\+M\+E\+RA}}}\mbox{\Hypertarget{class_settings_a5afe85d24b071973a7f248c05386f7f4aba4cc7726878c8913831f0ea6360fa05}\label{class_settings_a5afe85d24b071973a7f248c05386f7f4aba4cc7726878c8913831f0ea6360fa05}} 
-C\+A\+M\+E\+RA&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{V\+I\+D\+E\+O\+\_\+\+F\+I\+LE@{V\+I\+D\+E\+O\+\_\+\+F\+I\+LE}!Settings@{Settings}}\index{Settings@{Settings}!V\+I\+D\+E\+O\+\_\+\+F\+I\+LE@{V\+I\+D\+E\+O\+\_\+\+F\+I\+LE}}}\mbox{\Hypertarget{class_settings_a5afe85d24b071973a7f248c05386f7f4ac9fd97535bc651249f9eed1fddf2d36b}\label{class_settings_a5afe85d24b071973a7f248c05386f7f4ac9fd97535bc651249f9eed1fddf2d36b}} 
-V\+I\+D\+E\+O\+\_\+\+F\+I\+LE&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST@{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}!Settings@{Settings}}\index{Settings@{Settings}!I\+M\+A\+G\+E\+\_\+\+L\+I\+ST@{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}}}\mbox{\Hypertarget{class_settings_a5afe85d24b071973a7f248c05386f7f4a292bd2e5ba912a92ace1606e366edc4d}\label{class_settings_a5afe85d24b071973a7f248c05386f7f4a292bd2e5ba912a92ace1606e366edc4d}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST@{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}!Settings@{Settings}}\index{Settings@{Settings}!I\+M\+A\+G\+E\+\_\+\+L\+I\+ST@{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}}}\mbox{\Hypertarget{class_settings_a04fa2d41ea944f16221959d0d49858e9a292bd2e5ba912a92ace1606e366edc4d}\label{class_settings_a04fa2d41ea944f16221959d0d49858e9a292bd2e5ba912a92ace1606e366edc4d}} 
 I\+M\+A\+G\+E\+\_\+\+L\+I\+ST&\\
 \hline
 
@@ -136,14 +124,6 @@ N\+O\+T\+\_\+\+E\+X\+I\+S\+T\+I\+NG&\\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{C\+H\+E\+S\+S\+B\+O\+A\+RD@{C\+H\+E\+S\+S\+B\+O\+A\+RD}!Settings@{Settings}}\index{Settings@{Settings}!C\+H\+E\+S\+S\+B\+O\+A\+RD@{C\+H\+E\+S\+S\+B\+O\+A\+RD}}}\mbox{\Hypertarget{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8ae96aa2d60b4a554a215524a05b32908e}\label{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8ae96aa2d60b4a554a215524a05b32908e}} 
 C\+H\+E\+S\+S\+B\+O\+A\+RD&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID@{C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID}!Settings@{Settings}}\index{Settings@{Settings}!C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID@{C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID}}}\mbox{\Hypertarget{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8a79472d1c69f8ed7aa1b55f908b136f68}\label{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8a79472d1c69f8ed7aa1b55f908b136f68}} 
-C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+S\+Y\+M\+M\+E\+T\+R\+I\+C\+\_\+\+C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID@{A\+S\+Y\+M\+M\+E\+T\+R\+I\+C\+\_\+\+C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID}!Settings@{Settings}}\index{Settings@{Settings}!A\+S\+Y\+M\+M\+E\+T\+R\+I\+C\+\_\+\+C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID@{A\+S\+Y\+M\+M\+E\+T\+R\+I\+C\+\_\+\+C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID}}}\mbox{\Hypertarget{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8a2cea29ee5896f2cb4cc64df25fd2375b}\label{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8a2cea29ee5896f2cb4cc64df25fd2375b}} 
-A\+S\+Y\+M\+M\+E\+T\+R\+I\+C\+\_\+\+C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID&\\
 \hline
 
 \end{DoxyEnumFields}
@@ -190,7 +170,7 @@ Check if the file from which is trying to retrive a list is a valid format (xml 
 
 
 
-Get next image from list, or next frame from video. 
+Get next image from list. 
 
 \begin{DoxyReturn}{Returns}
 A matrix containing the next image to consider. 
@@ -251,19 +231,11 @@ Even though this function doesn\textquotesingle{}t return anything nor has any p
 ~\newline
 ~\newline
 ~\newline
-~\newline
-~\newline
-~\newline
-~\newline
 
 \item Cells must be greater than $10^{-6}$.
 \item The number of frames considered, that is images, must be greater than 0.
 \item Check for valid input, that is a valid list of images.
-\item If input is a number than a camera is being used.
 \item Else a list of image is being used.
-\item If input\+Type is C\+A\+M\+E\+RA than open the camera for input.
-\item If input\+Type is V\+I\+D\+E\+O\+\_\+\+F\+I\+LE than oper the video for input.
-\item If input\+Type is not I\+M\+A\+G\+E\+\_\+\+L\+I\+ST but input\+Capture is opened, than input\+Type must be set to invalid.
 \item Check the field pattern\+: if it doesn\textquotesingle{}t correspond to a known one than it\textquotesingle{}s invalid. 
 \end{DoxyItemize}\mbox{\Hypertarget{class_settings_a0785cc2055091b2a857b1dcefe291acc}\label{class_settings_a0785cc2055091b2a857b1dcefe291acc}} 
 \index{Settings@{Settings}!write@{write}}
@@ -325,7 +297,7 @@ Fix the principal point at the center.
 \index{Settings@{Settings}!calibration\+Pattern@{calibration\+Pattern}}
 \index{calibration\+Pattern@{calibration\+Pattern}!Settings@{Settings}}
 \subsubsection{\texorpdfstring{calibration\+Pattern}{calibrationPattern}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8}{Pattern}} Settings\+::calibration\+Pattern}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8}{Pattern}} Settings\+::calibration\+Pattern = \mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8ae96aa2d60b4a554a215524a05b32908e}{C\+H\+E\+S\+S\+B\+O\+A\+RD}}}
 
 
 
@@ -455,7 +427,7 @@ The input.
 \index{Settings@{Settings}!input\+Type@{input\+Type}}
 \index{input\+Type@{input\+Type}!Settings@{Settings}}
 \subsubsection{\texorpdfstring{input\+Type}{inputType}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_settings_a5afe85d24b071973a7f248c05386f7f4}{Input\+Type}} Settings\+::input\+Type}
+{\footnotesize\ttfamily Input\+Type Settings\+::input\+Type = \mbox{\hyperlink{class_settings_a04fa2d41ea944f16221959d0d49858e9a292bd2e5ba912a92ace1606e366edc4d}{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}}}
 
 \mbox{\Hypertarget{class_settings_a7e6654cd0e51791ed687eaa85f8fc143}\label{class_settings_a7e6654cd0e51791ed687eaa85f8fc143}} 
 \index{Settings@{Settings}!nr\+Frames@{nr\+Frames}}
@@ -501,7 +473,7 @@ The size of a square in your defined unit (point, millimeter,etc).
 \index{Settings@{Settings}!use\+Fisheye@{use\+Fisheye}}
 \index{use\+Fisheye@{use\+Fisheye}!Settings@{Settings}}
 \subsubsection{\texorpdfstring{use\+Fisheye}{useFisheye}}
-{\footnotesize\ttfamily bool Settings\+::use\+Fisheye}
+{\footnotesize\ttfamily bool Settings\+::use\+Fisheye = false}
 
 
 
