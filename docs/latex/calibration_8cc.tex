@@ -18,7 +18,7 @@ static void \mbox{\hyperlink{calibration_8cc_a1ee80d81c5b660c3cbe85a0c97da3e35}{
 \begin{DoxyCompactList}\small\item\em Reads settings from file. If there is none then initiate a new {\ttfamily \mbox{\hyperlink{class_settings}{Settings}}}. \end{DoxyCompactList}\item 
 static double \mbox{\hyperlink{calibration_8cc_a595849a1b81e38ffd3e1f7f70f88085e}{compute\+Reprojection\+Errors}} (const vector$<$ vector$<$ Point3f $>$ $>$ \&object\+Points, const vector$<$ vector$<$ Point2f $>$ $>$ \&image\+Points, const vector$<$ Mat $>$ \&rvecs, const vector$<$ Mat $>$ \&tvecs, const Mat \&camera\+Matrix, const Mat \&dist\+Coeffs, vector$<$ float $>$ \&per\+View\+Errors, bool fisheye)
 \begin{DoxyCompactList}\small\item\em Compute the errors of the projection. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{calibration_8cc_a106905425fe65b4bacf6dcb8c9383c01}{calc\+Board\+Corner\+Positions}} (Size board\+Size, float square\+Size, vector$<$ Point3f $>$ \&corners, \mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8}{Settings\+::\+Pattern}} pattern\+Type)
+void \mbox{\hyperlink{calibration_8cc_a9deaf00ea7081c5e9ce50a64c9946fa9}{calc\+Board\+Corner\+Positions}} (Size board\+Size, float square\+Size, vector$<$ Point3f $>$ \&corners)
 \begin{DoxyCompactList}\small\item\em This function compute the position of the upper corners of every cell. \end{DoxyCompactList}\item 
 static bool \mbox{\hyperlink{calibration_8cc_a7ee968c34a2834af6e2064abfc0e8a33}{run\+Calibration}} (\mbox{\hyperlink{class_settings}{Settings}} \&s, Size \&image\+Size, Mat \&camera\+Matrix, Mat \&dist\+Coeffs, vector$<$ vector$<$ Point2f $>$ $>$ image\+Points, vector$<$ Mat $>$ \&rvecs, vector$<$ Mat $>$ \&tvecs, vector$<$ float $>$ \&reproj\+Errs, double \&total\+Avg\+Err)
 \begin{DoxyCompactList}\small\item\em This function run the calibration creating the matrixed for the camera and the distorsion coefficients. \end{DoxyCompactList}\item 
@@ -29,11 +29,11 @@ bool \mbox{\hyperlink{calibration_8cc_ac7558c8da6af683fc1c86c2ede7bb31c}{run\+Ca
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{calibration_8cc_a106905425fe65b4bacf6dcb8c9383c01}\label{calibration_8cc_a106905425fe65b4bacf6dcb8c9383c01}} 
+\mbox{\Hypertarget{calibration_8cc_a9deaf00ea7081c5e9ce50a64c9946fa9}\label{calibration_8cc_a9deaf00ea7081c5e9ce50a64c9946fa9}} 
 \index{calibration.\+cc@{calibration.\+cc}!calc\+Board\+Corner\+Positions@{calc\+Board\+Corner\+Positions}}
 \index{calc\+Board\+Corner\+Positions@{calc\+Board\+Corner\+Positions}!calibration.\+cc@{calibration.\+cc}}
 \subsubsection{\texorpdfstring{calc\+Board\+Corner\+Positions()}{calcBoardCornerPositions()}}
-{\footnotesize\ttfamily void calc\+Board\+Corner\+Positions (\begin{DoxyParamCaption}\item[{Size}]{board\+Size,  }\item[{float}]{square\+Size,  }\item[{vector$<$ Point3f $>$ \&}]{corners,  }\item[{\mbox{\hyperlink{class_settings_a0e7117abd9427a6f8bc1d1d8d456b5c8}{Settings\+::\+Pattern}}}]{pattern\+Type }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void calc\+Board\+Corner\+Positions (\begin{DoxyParamCaption}\item[{Size}]{board\+Size,  }\item[{float}]{square\+Size,  }\item[{vector$<$ Point3f $>$ \&}]{corners }\end{DoxyParamCaption})}
 
 
 
@@ -41,13 +41,11 @@ This function compute the position of the upper corners of every cell.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em board\+Siz} & the dimension of the chess board. \\
+\mbox{\tt in}  & {\em board\+Siz} & The dimension of the chess board. \\
 \hline
-\mbox{\tt in}  & {\em square\+Size} & the dimension of the edge of a cell. \\
+\mbox{\tt in}  & {\em square\+Size} & The dimension of the edge of a cell. \\
 \hline
-\mbox{\tt in}  & {\em pattern\+Type} & the type of pattern following {\ttfamily Setting\+::\+Pattern}. \\
-\hline
-\mbox{\tt out}  & {\em corners} & a vector of {\ttfamily Point3f}s which equals to the corners of the cells. \\
+\mbox{\tt out}  & {\em corners} & A vector of Point3fs which equals to the corners of the cells. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{calibration_8cc_aac72e7c87050ab15c4158b416e933e96}\label{calibration_8cc_aac72e7c87050ab15c4158b416e933e96}} 

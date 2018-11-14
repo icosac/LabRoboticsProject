@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['detection',['DETECTION',['../calibration_8hh.html#a06fc87d81c62e9abb8790b6e5713c55ba167a7ee1aabe9f27e010fff93c0ba971',1,'calibration.hh']]]
+  ['image_5flist',['IMAGE_LIST',['../class_settings.html#a04fa2d41ea944f16221959d0d49858e9a292bd2e5ba912a92ace1606e366edc4d',1,'Settings']]],
+  ['invalid',['INVALID',['../class_settings.html#a04fa2d41ea944f16221959d0d49858e9adb44130895aedc32a119565eb6d61bed',1,'Settings']]]
 ];

@@ -12,19 +12,21 @@ Include dependency graph for unwrapping.\+cc\+:
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
+\#define \mbox{\hyperlink{unwrapping_8cc_aef72fe86b7c60b1a86920496456edeac}{W\+A\+IT}}
+\item 
 \#define \mbox{\hyperlink{unwrapping_8cc_a73d5cdc3a90f6c8a0e54956c0362a9d7}{area\+\_\+ratio}}~0.\+7
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 static float \mbox{\hyperlink{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}{distance}} (Point c1, Point c2)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the euclidean distance. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{unwrapping_8cc_a8d3b98d0e8ac5165bffa5af6090beec3}{swap}} (int \&a, int \&b)
-\item 
+\begin{DoxyCompactList}\small\item\em Swap the two integers passed. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{unwrapping_8cc_ae232c3264987d57a223a39226929da29}{unwrapping}} ()
-\item 
-void \mbox{\hyperlink{unwrapping_8cc_a045e988efa221382f1d702a6f906e682}{load\+Coefficients}} (const string \&filename, Mat \&camera\+\_\+matrix, Mat \&dist\+\_\+coeffs)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Take some images according to a xml and unwrap the black rectangle inside the image after appling undistortion trasformation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{unwrapping_8cc_a3cf7df08897ed4d1a7ddcf055b18cca8}{load\+Coefficients}} (const string filename, Mat \&camera\+\_\+matrix, Mat \&dist\+\_\+coeffs)
+\begin{DoxyCompactList}\small\item\em Load coefficients from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -39,6 +41,12 @@ const string \mbox{\hyperlink{unwrapping_8cc_a3436220b5d936d0f0ee78542ff90435d}{
 \subsubsection{\texorpdfstring{area\+\_\+ratio}{area\_ratio}}
 {\footnotesize\ttfamily \#define area\+\_\+ratio~0.\+7}
 
+\mbox{\Hypertarget{unwrapping_8cc_aef72fe86b7c60b1a86920496456edeac}\label{unwrapping_8cc_aef72fe86b7c60b1a86920496456edeac}} 
+\index{unwrapping.\+cc@{unwrapping.\+cc}!W\+A\+IT@{W\+A\+IT}}
+\index{W\+A\+IT@{W\+A\+IT}!unwrapping.\+cc@{unwrapping.\+cc}}
+\subsubsection{\texorpdfstring{W\+A\+IT}{WAIT}}
+{\footnotesize\ttfamily \#define W\+A\+IT}
+
 
 
 \subsection{Function Documentation}
@@ -48,24 +56,74 @@ const string \mbox{\hyperlink{unwrapping_8cc_a3436220b5d936d0f0ee78542ff90435d}{
 \subsubsection{\texorpdfstring{distance()}{distance()}}
 {\footnotesize\ttfamily static float distance (\begin{DoxyParamCaption}\item[{Point}]{c1,  }\item[{Point}]{c2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-\mbox{\Hypertarget{unwrapping_8cc_a045e988efa221382f1d702a6f906e682}\label{unwrapping_8cc_a045e988efa221382f1d702a6f906e682}} 
+
+
+Compute the euclidean distance. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em c1} & The first point. \\
+\hline
+\mbox{\tt in,out}  & {\em c2} & The second point.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The euclidean distance. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{unwrapping_8cc_a3cf7df08897ed4d1a7ddcf055b18cca8}\label{unwrapping_8cc_a3cf7df08897ed4d1a7ddcf055b18cca8}} 
 \index{unwrapping.\+cc@{unwrapping.\+cc}!load\+Coefficients@{load\+Coefficients}}
 \index{load\+Coefficients@{load\+Coefficients}!unwrapping.\+cc@{unwrapping.\+cc}}
 \subsubsection{\texorpdfstring{load\+Coefficients()}{loadCoefficients()}}
-{\footnotesize\ttfamily void load\+Coefficients (\begin{DoxyParamCaption}\item[{const string \&}]{filename,  }\item[{Mat \&}]{camera\+\_\+matrix,  }\item[{Mat \&}]{dist\+\_\+coeffs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void load\+Coefficients (\begin{DoxyParamCaption}\item[{const string}]{filename,  }\item[{Mat \&}]{camera\+\_\+matrix,  }\item[{Mat \&}]{dist\+\_\+coeffs }\end{DoxyParamCaption})}
 
+
+
+Load coefficients from a file. 
+
+Load two matrix \textquotesingle{}camera\+\_\+matrix\textquotesingle{} and \textquotesingle{}distortion\+\_\+coefficients\textquotesingle{} from the xml file passed. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em filename} & The string that identify the location of the xml file. \\
+\hline
+\mbox{\tt out}  & {\em camera\+\_\+matrix} & Where the \textquotesingle{}camera\+\_\+matrix\textquotesingle{} matrix is saved. \\
+\hline
+\mbox{\tt out}  & {\em dist\+\_\+coeffs} & Where the \textquotesingle{}distortion\+\_\+coefficients\textquotesingle{} matrix is saved. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{unwrapping_8cc_a8d3b98d0e8ac5165bffa5af6090beec3}\label{unwrapping_8cc_a8d3b98d0e8ac5165bffa5af6090beec3}} 
 \index{unwrapping.\+cc@{unwrapping.\+cc}!swap@{swap}}
 \index{swap@{swap}!unwrapping.\+cc@{unwrapping.\+cc}}
 \subsubsection{\texorpdfstring{swap()}{swap()}}
 {\footnotesize\ttfamily static void swap (\begin{DoxyParamCaption}\item[{int \&}]{a,  }\item[{int \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
+
+
+Swap the two integers passed. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em a} & First parameter. \\
+\hline
+\mbox{\tt in,out}  & {\em b} & Second parameter. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{unwrapping_8cc_ae232c3264987d57a223a39226929da29}\label{unwrapping_8cc_ae232c3264987d57a223a39226929da29}} 
 \index{unwrapping.\+cc@{unwrapping.\+cc}!unwrapping@{unwrapping}}
 \index{unwrapping@{unwrapping}!unwrapping.\+cc@{unwrapping.\+cc}}
 \subsubsection{\texorpdfstring{unwrapping()}{unwrapping()}}
 {\footnotesize\ttfamily int unwrapping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Take some images according to a xml and unwrap the black rectangle inside the image after appling undistortion trasformation. 
+
+Load from the xml file \textquotesingle{}data/settings.\+xml\textquotesingle{} the name of some images, load the images from the file,~\newline
+apply the calibration (undistortion trasformation) thanks to the matrices load with the \textquotesingle{}load\+Coefficients\textquotesingle{} function.~\newline
+Then, with the use of a filter for the black the region of interest (a rectangle) is identified and all the perspective is rotated for reach a top view of the rectangle.~\newline
+Finally, the images are saved on some files.
+
+\begin{DoxyReturn}{Returns}
+A 0 is return if the function reach the end. 
+\end{DoxyReturn}
 
 
 \subsection{Variable Documentation}

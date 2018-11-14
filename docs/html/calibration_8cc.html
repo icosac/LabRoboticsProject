@@ -77,8 +77,8 @@ Include dependency graph for calibration.cc:</div>
 <div class="dyncontent">
 <div class="center"><img src="calibration_8cc__incl.png" border="0" usemap="#src_2calibration_8cc" alt=""/></div>
 <map name="src_2calibration_8cc" id="src_2calibration_8cc">
-<area shape="rect" id="node2" href="calibration_8hh.html" title="Library for calibration. " alt="" coords="465,79,565,104"/>
-<area shape="rect" id="node3" href="utils_8hh.html" title="utils.hh" alt="" coords="291,152,355,177"/>
+<area shape="rect" id="node2" href="calibration_8hh.html" title="Library for calibration. " alt="" coords="879,79,980,104"/>
+<area shape="rect" id="node3" href="utils_8hh.html" title="utils.hh" alt="" coords="510,152,573,177"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -93,9 +93,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a595849a1b81e38ffd3e1f7f70f88085e"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calibration_8cc.html#a595849a1b81e38ffd3e1f7f70f88085e">computeReprojectionErrors</a> (const vector&lt; vector&lt; Point3f &gt; &gt; &amp;objectPoints, const vector&lt; vector&lt; Point2f &gt; &gt; &amp;imagePoints, const vector&lt; Mat &gt; &amp;rvecs, const vector&lt; Mat &gt; &amp;tvecs, const Mat &amp;cameraMatrix, const Mat &amp;distCoeffs, vector&lt; float &gt; &amp;perViewErrors, bool fisheye)</td></tr>
 <tr class="memdesc:a595849a1b81e38ffd3e1f7f70f88085e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the errors of the projection.  <a href="#a595849a1b81e38ffd3e1f7f70f88085e">More...</a><br /></td></tr>
 <tr class="separator:a595849a1b81e38ffd3e1f7f70f88085e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a106905425fe65b4bacf6dcb8c9383c01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calibration_8cc.html#a106905425fe65b4bacf6dcb8c9383c01">calcBoardCornerPositions</a> (Size boardSize, float squareSize, vector&lt; Point3f &gt; &amp;corners, <a class="el" href="class_settings.html#a0e7117abd9427a6f8bc1d1d8d456b5c8">Settings::Pattern</a> patternType)</td></tr>
-<tr class="memdesc:a106905425fe65b4bacf6dcb8c9383c01"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function compute the position of the upper corners of every cell.  <a href="#a106905425fe65b4bacf6dcb8c9383c01">More...</a><br /></td></tr>
-<tr class="separator:a106905425fe65b4bacf6dcb8c9383c01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9deaf00ea7081c5e9ce50a64c9946fa9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calibration_8cc.html#a9deaf00ea7081c5e9ce50a64c9946fa9">calcBoardCornerPositions</a> (Size boardSize, float squareSize, vector&lt; Point3f &gt; &amp;corners)</td></tr>
+<tr class="memdesc:a9deaf00ea7081c5e9ce50a64c9946fa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function compute the position of the upper corners of every cell.  <a href="#a9deaf00ea7081c5e9ce50a64c9946fa9">More...</a><br /></td></tr>
+<tr class="separator:a9deaf00ea7081c5e9ce50a64c9946fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ee968c34a2834af6e2064abfc0e8a33"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calibration_8cc.html#a7ee968c34a2834af6e2064abfc0e8a33">runCalibration</a> (<a class="el" href="class_settings.html">Settings</a> &amp;s, Size &amp;imageSize, Mat &amp;cameraMatrix, Mat &amp;distCoeffs, vector&lt; vector&lt; Point2f &gt; &gt; imagePoints, vector&lt; Mat &gt; &amp;rvecs, vector&lt; Mat &gt; &amp;tvecs, vector&lt; float &gt; &amp;reprojErrs, double &amp;totalAvgErr)</td></tr>
 <tr class="memdesc:a7ee968c34a2834af6e2064abfc0e8a33"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function run the calibration creating the matrixed for the camera and the distorsion coefficients.  <a href="#a7ee968c34a2834af6e2064abfc0e8a33">More...</a><br /></td></tr>
 <tr class="separator:a7ee968c34a2834af6e2064abfc0e8a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -107,8 +107,8 @@ Functions</h2></td></tr>
 <tr class="separator:ac7558c8da6af683fc1c86c2ede7bb31c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a106905425fe65b4bacf6dcb8c9383c01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a106905425fe65b4bacf6dcb8c9383c01">&#9670;&nbsp;</a></span>calcBoardCornerPositions()</h2>
+<a id="a9deaf00ea7081c5e9ce50a64c9946fa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9deaf00ea7081c5e9ce50a64c9946fa9">&#9670;&nbsp;</a></span>calcBoardCornerPositions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -129,13 +129,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">vector&lt; Point3f &gt; &amp;&#160;</td>
-          <td class="paramname"><em>corners</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_settings.html#a0e7117abd9427a6f8bc1d1d8d456b5c8">Settings::Pattern</a>&#160;</td>
-          <td class="paramname"><em>patternType</em>&#160;</td>
+          <td class="paramname"><em>corners</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -148,10 +142,9 @@ Functions</h2></td></tr>
 <p>This function compute the position of the upper corners of every cell. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">boardSiz</td><td>the dimension of the chess board. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">squareSize</td><td>the dimension of the edge of a cell. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">patternType</td><td>the type of pattern following <code>Setting::Pattern</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">corners</td><td>a vector of <code>Point3f</code>s which equals to the corners of the cells. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">boardSiz</td><td>The dimension of the chess board. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">squareSize</td><td>The dimension of the edge of a cell. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">corners</td><td>A vector of Point3fs which equals to the corners of the cells. </td></tr>
   </table>
   </dd>
 </dl>
