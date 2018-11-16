@@ -155,17 +155,17 @@ int unwrapping(){
         }
 
         // wrap the perspective
-        static const int width = 500;
-        static const int higth = (int)width*1.5;
+        static const int width = 1000;
+        static const int height = (int)width*1.5;
         int xm/*in*/ = 0, ym = 0;
-        int xM/*ax*/ = width, yM = higth;
+        int xM/*ax*/ = width, yM = height;
         Mat corner_pixels = (Mat_<float>(4,2) << rect[0].x, rect[0].y, rect[1].x, rect[1].y, rect[2].x, rect[2].y, rect[3].x, rect[3].y);
         Mat transf_pixels = (Mat_<float>(4,2) << xm, ym, xM, ym, xM, yM, xm, yM);
 
         Mat transf = getPerspectiveTransform(corner_pixels, transf_pixels);
 
         Mat unwarped_frame;
-        warpPerspective(fix_img, unwarped_frame, transf, fix_img.size());
+        warpPerspective(fix_img, unwarped_frame, transf, Size(width, height));
 
         // select a region of interest
         Mat imgCrop;
