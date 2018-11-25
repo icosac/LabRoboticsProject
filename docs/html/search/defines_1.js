@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['info',['INFO',['../utils_8hh.html#a3ae64706314066fdc8b6c8029a915aa7',1,'utils.hh']]]
+  ['degtorad',['DEGTORAD',['../maths_8hh.html#abbfb1b8e88373781c6238d647110f5d2',1,'maths.hh']]]
 ];

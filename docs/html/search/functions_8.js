@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['read',['read',['../class_settings.html#a2d7841f8441095032e0f3b7d20adfd3f',1,'Settings::read()'],['../calibration_8cc.html#a1ee80d81c5b660c3cbe85a0c97da3e35',1,'read():&#160;calibration.cc']]],
-  ['readstringlist',['readStringList',['../class_settings.html#ab5f7cb92b11b6d324d9994ebcc2efa3f',1,'Settings']]],
-  ['runcalibration',['runCalibration',['../calibration_8cc.html#a7ee968c34a2834af6e2064abfc0e8a33',1,'calibration.cc']]],
-  ['runcalibrationandsave',['runCalibrationAndSave',['../calibration_8cc.html#ac7558c8da6af683fc1c86c2ede7bb31c',1,'runCalibrationAndSave(Settings &amp;s, Size imageSize, Mat &amp;cameraMatrix, Mat &amp;distCoeffs, vector&lt; vector&lt; Point2f &gt; &gt; imagePoints):&#160;calibration.cc'],['../calibration_8hh.html#ac7558c8da6af683fc1c86c2ede7bb31c',1,'runCalibrationAndSave(Settings &amp;s, Size imageSize, Mat &amp;cameraMatrix, Mat &amp;distCoeffs, vector&lt; vector&lt; Point2f &gt; &gt; imagePoints):&#160;calibration.cc']]]
+  ['madistance',['MaDistance',['../class_tuple.html#ac668269743d9be71769c9b4a424c785f',1,'Tuple::MaDistance()'],['../class_point2.html#a10a4aa3d7939b1675f4bd18b8f9f0ead',1,'Point2::MaDistance()'],['../class_configuration2.html#afb287896fc721e64bc50425795a84a77',1,'Configuration2::MaDistance()']]],
+  ['main',['main',['../calibration__run_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;calibration_run.cc'],['../create__xml_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;create_xml.cc'],['../detection__run_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;detection_run.cc'],['../main_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cc'],['../unwrapping__run_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;unwrapping_run.cc']]],
+  ['my_5fimshow',['my_imshow',['../utils_8cc.html#a9a82362cf25a772ae278a98a68464c1f',1,'my_imshow(const char *win_name, Mat img, bool reset):&#160;utils.cc'],['../utils_8hh.html#aabfea83501dfccfa4c420b8c19ceefd7',1,'my_imshow(const char *win_name, Mat img, bool reset=false):&#160;utils.cc']]]
 ];

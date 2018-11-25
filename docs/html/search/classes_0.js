@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['settings',['Settings',['../class_settings.html',1,'']]]
+  ['angle',['Angle',['../class_angle.html',1,'']]]
 ];
