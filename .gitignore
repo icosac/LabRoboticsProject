@@ -10,7 +10,7 @@ Doxyfile
 *.toc
 *.backup
 .DS_store
-doc/
+docs/
 #file without extension?
 
 # Except the files
