@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['image_5flist',['IMAGE_LIST',['../class_settings.html#a04fa2d41ea944f16221959d0d49858e9a292bd2e5ba912a92ace1606e366edc4d',1,'Settings']]],
-  ['invalid',['INVALID',['../class_settings.html#a04fa2d41ea944f16221959d0d49858e9adb44130895aedc32a119565eb6d61bed',1,'Settings']]]
+  ['euclidean',['EUCLIDEAN',['../maths_8hh.html#ac50d7263b1cae8691420b86282b27f90a81bbbc4428c3ff3f1327e94957e2b5f1',1,'maths.hh']]]
 ];

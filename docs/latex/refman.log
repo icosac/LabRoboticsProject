@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.27)  14 NOV 2018 17:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.27)  21 NOV 2018 15:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1202,21 +1202,25 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 8.99994pt on input line 1.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 11.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 11.
 
-[1
+(/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+) [1
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 66.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 67.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.29996pt on input line 66.
- [2] [3] [4])
+(Font)              scaled to size 6.29996pt on input line 67.
+ [2] [3]
+[4] [5] [6] [7])
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
- [5] [6
-
-]
+ [8]
 Package hyperref Info: Option `pageanchor' set `true' on input line 138.
 
 Chapter 1.
@@ -1237,6 +1241,7 @@ LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
 ) [1
 
+
 ] [2
 
 ]
@@ -1245,47 +1250,377 @@ Chapter 2.
 
 ]
 Chapter 3.
-(./class_settings.tex
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 5.
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
+(./class_angle.tex
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 7.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 12.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 7.
+(Font)              scaled to size 10.79993pt on input line 12.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 10.79993pt on input line 7.
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 10.
+(Font)              scaled to size 10.79993pt on input line 12.
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 15.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 10.
+(Font)              scaled to size 8.99994pt on input line 15.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.09995pt on input line 22.
+(Font)              scaled to size 8.09995pt on input line 24.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 22.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 24.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.09995pt on input line 22.
+(Font)              scaled to size 8.09995pt on input line 24.
+LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
+(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 26.
+LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 26.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 38.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 6.29996pt on input line 38.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 46.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 46.
+
+Missing character: There is no ° in font cmr9!
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 22.
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 22.
- [5]
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 48.
+[5]
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 101.
+(Font)              scaled to size 8.99994pt on input line 77.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 6.29996pt on input line 101.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 102.
- [6]
+(Font)              scaled to size 6.29996pt on input line 77.
+LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
+(Font)              scaled to size 7.19995pt on input line 100.
+
+
+LaTeX Font Warning: Font shape `T1/pcr/bc/n' undefined
+(Font)              using `T1/pcr/m/n' instead on input line 100.
+
+[6]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 150.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 111.
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 111.
+
+Underfull \hbox (badness 10000) detected at line 142
+[][][]
+ []
 
 [7]
+Underfull \hbox (badness 10000) detected at line 160
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 173
+[][][]
+ []
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 210.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 210.
+
+Missing character: There is no ° in font cmr10!
+[8]
+Underfull \hbox (badness 10000) detected at line 223
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 237
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 251
+[][][]
+ []
+
+[9] [10]
+Underfull \hbox (badness 10000) detected at line 265
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 279
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 292
+[][][]
+ []
+
+[11]
+Overfull \hbox (1.47571pt too wide) in paragraph at lines 315--315
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Overfull \hbox (1.47571pt too wide) in paragraph at lines 330--330
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 346
+[][][]
+ []
+
+[12]
+Underfull \hbox (badness 10000) detected at line 359
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 372
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 391
+[][][]
+ []
+
+) (./class_configuration2.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+[13] [14]
+Overfull \hbox (1.47571pt too wide) in paragraph at lines 102--102
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Overfull \hbox (1.47571pt too wide) in paragraph at lines 102--102
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Overfull \hbox (1.47571pt too wide) in paragraph at lines 102--102
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Overfull \hbox (1.47571pt too wide) in paragraph at lines 120--120
+\T1/phv/m/sl/10 _[] 
+ []
+
+[15]
+Underfull \hbox (badness 10000) detected at line 131
+[][][]
+ []
+
+
+Overfull \hbox (1.47571pt too wide) in paragraph at lines 149--149
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 150
+[][][]
+ []
+
+[16]
+Underfull \hbox (badness 10000) detected at line 172
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 192
+[][][]
+ []
+
+
+Overfull \vbox (2.43837pt too high) has occurred while \output is active []
+
+
+[17]
+Underfull \hbox (badness 10000) detected at line 212
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 248
+[][][]
+ []
+
+
+Overfull \hbox (1.47571pt too wide) in paragraph at lines 268--268
+\T1/phv/m/sl/10 _[] 
+ []
+
+[18]
+Underfull \hbox (badness 10000) detected at line 269
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 288
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 307
+[][][]
+ []
+
+[19]
+Underfull \hbox (badness 10000) detected at line 326
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 336
+[][][]
+ []
+
+
+Overfull \hbox (4.48154pt too wide) in paragraph at lines 354--354
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 355
+[][][]
+ []
+
+[20]
+Underfull \hbox (badness 10000) detected at line 365
+[][][]
+ []
+
+
+Overfull \hbox (4.48154pt too wide) in paragraph at lines 383--383
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 384
+[][][]
+ []
+
+[21]
+Underfull \hbox (badness 10000) detected at line 408
+[][][]
+ []
+
+) (./classdubins.tex [22]) (./class_point2.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+[23]
+Overfull \hbox (4.48154pt too wide) in paragraph at lines 92--92
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Overfull \hbox (4.48154pt too wide) in paragraph at lines 92--92
+\T1/phv/m/sl/10 _[] 
+ []
+
+[24]
+Underfull \hbox (badness 10000) detected at line 115
+[][][]
+ []
+
+[25]
+Underfull \hbox (badness 10000) detected at line 135
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 155
+[][][]
+ []
+
+[26]
+Underfull \hbox (badness 10000) detected at line 191
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 210
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 229
+[][][]
+ []
+
+[27]
+Underfull \hbox (badness 10000) detected at line 248
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 258
+[][][]
+ []
+
+
+Overfull \hbox (4.48154pt too wide) in paragraph at lines 276--276
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 277
+[][][]
+ []
+
+[28]
+Underfull \hbox (badness 10000) detected at line 287
+[][][]
+ []
+
+
+Overfull \hbox (4.48154pt too wide) in paragraph at lines 305--305
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 306
+[][][]
+ []
+
+[29]
+Underfull \hbox (badness 10000) detected at line 330
+[][][]
+ []
+
+) (./class_settings.tex [30] [31] [32]
 Underfull \hbox (badness 10000) detected at line 161
 [][][]
  []
@@ -1295,7 +1630,7 @@ Underfull \hbox (badness 10000) detected at line 175
 [][][]
  []
 
-[8]
+[33]
 Underfull \hbox (badness 10000) detected at line 212
 [][][]
  []
@@ -1330,28 +1665,90 @@ Underfull \hbox (badness 10000) in paragraph at lines 228--234
 
  []
 
-[9] [10] [11] [12] [13]) [14]
+[34] [35] [36] [37] [38]) (./class_tuple.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+[39]
+Overfull \hbox (3.9776pt too wide) in paragraph at lines 77--77
+\T1/phv/m/sl/10 _[] 
+ []
+
+[40]
+Underfull \hbox (badness 10000) detected at line 116
+[][][]
+ []
+
+[41]
+Underfull \hbox (badness 10000) detected at line 136
+[][][]
+ []
+
+
+Overfull \hbox (3.9776pt too wide) in paragraph at lines 154--154
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 155
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 175
+[][][]
+ []
+
+[42]
+Underfull \hbox (badness 10000) detected at line 212
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 222
+[][][]
+ []
+
+[43]
+Underfull \hbox (badness 10000) detected at line 246
+[][][]
+ []
+
+) [44]
 Chapter 4.
 (./calibration_8cc.tex
-<calibration_8cc__incl.pdf, id=890, 1440.38126pt x 264.99pt>
+<calibration_8cc__incl.pdf, id=2086, 1440.38126pt x 264.99pt>
 File: calibration_8cc__incl.pdf Graphic file (type pdf)
 
 <use calibration_8cc__incl.pdf>
 Package pdftex.def Info: calibration_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 64.38736pt.
- [15
+ [45
 
  <./calibration_8cc__incl.pdf>]
 Underfull \hbox (badness 10000) detected at line 66
 [][][]
  []
 
-[16]
+[46]
 Underfull \hbox (badness 10000) detected at line 100
 [][][]
  []
 
-[17]
+[47]
 Underfull \hbox (badness 10000) detected at line 153
 [][][]
  []
@@ -1361,21 +1758,21 @@ Underfull \hbox (badness 10000) detected at line 180
 [][][]
  []
 
-[18]) (./calibration_8hh.tex
-<calibration_8hh__incl.pdf, id=975, 1440.38126pt x 209.78375pt>
+[48]) (./calibration_8hh.tex
+<calibration_8hh__incl.pdf, id=2170, 1440.38126pt x 209.78375pt>
 File: calibration_8hh__incl.pdf Graphic file (type pdf)
 
 <use calibration_8hh__incl.pdf>
 Package pdftex.def Info: calibration_8hh__incl.pdf used on input line 26.
 (pdftex.def)             Requested size: 350.0pt x 50.97331pt.
- [19]
-<calibration_8hh__dep__incl.pdf, id=982, 385.44pt x 154.5775pt>
+ [49]
+<calibration_8hh__dep__incl.pdf, id=2176, 385.44pt x 154.5775pt>
 File: calibration_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use calibration_8hh__dep__incl.pdf>
 Package pdftex.def Info: calibration_8hh__dep__incl.pdf used on input line 34.
 (pdftex.def)             Requested size: 350.0pt x 140.36382pt.
- [20 <./calibration_8hh__incl.pdf> <./calibration_8hh__dep__incl.pdf>]
+ [50 <./calibration_8hh__incl.pdf> <./calibration_8hh__dep__incl.pdf>]
 Underfull \hbox (badness 10000) detected at line 101
 [][][]
  []
@@ -1383,43 +1780,39 @@ Underfull \hbox (badness 10000) detected at line 101
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21]
+ [51]
 Underfull \hbox (badness 10000) detected at line 129
 [][][]
  []
 
 ) (./calibration__run_8cc.tex
-<calibration__run_8cc__incl.pdf, id=1042, 1440.38126pt x 264.99pt>
+<calibration__run_8cc__incl.pdf, id=2238, 1440.38126pt x 264.99pt>
 File: calibration__run_8cc__incl.pdf Graphic file (type pdf)
 
 <use calibration__run_8cc__incl.pdf>
 Package pdftex.def Info: calibration__run_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 64.38736pt.
 ) (./create__xml_8cc.tex
-<create__xml_8cc__incl.pdf, id=1044, 329.23pt x 154.5775pt>
+<create__xml_8cc__incl.pdf, id=2240, 329.23pt x 154.5775pt>
 File: create__xml_8cc__incl.pdf Graphic file (type pdf)
 
 <use create__xml_8cc__incl.pdf>
 Package pdftex.def Info: create__xml_8cc__incl.pdf used on input line 11.
 (pdftex.def)             Requested size: 328.0pt x 154.00394pt.
- [22 <./calibration__run_8cc__incl.pdf> <./create__xml_8cc__incl.pdf>]) (./dete
+ [52 <./calibration__run_8cc__incl.pdf> <./create__xml_8cc__incl.pdf>]) (./dete
 ction_8cc.tex
-<detection_8cc__incl.pdf, id=1078, 885.3075pt x 264.99pt>
+<detection_8cc__incl.pdf, id=2274, 885.3075pt x 264.99pt>
 File: detection_8cc__incl.pdf Graphic file (type pdf)
 
 <use detection_8cc__incl.pdf>
 Package pdftex.def Info: detection_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 104.76088pt.
-LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
-(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 23.
-LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
-(Font)              scaled to size 8.09995pt on input line 23.
- [23 <./detection_8cc__incl.pdf>]
+ [53 <./detection_8cc__incl.pdf>]
 Underfull \hbox (badness 10000) detected at line 82
 [][][]
  []
 
-[24] [25]
+[54] [55]
 Underfull \hbox (badness 10000) detected at line 159
 [][][]
  []
@@ -1428,29 +1821,29 @@ Underfull \hbox (badness 10000) detected at line 159
 Overfull \vbox (40.66437pt too high) has occurred while \output is active []
 
 
-[26]) (./detection_8hh.tex
-<detection_8hh__incl.pdf, id=1145, 885.3075pt x 209.78375pt>
+[56]) (./detection_8hh.tex
+<detection_8hh__incl.pdf, id=2340, 885.3075pt x 209.78375pt>
 File: detection_8hh__incl.pdf Graphic file (type pdf)
 
 <use detection_8hh__incl.pdf>
 Package pdftex.def Info: detection_8hh__incl.pdf used on input line 19.
 (pdftex.def)             Requested size: 350.0pt x 82.93568pt.
 
-<detection_8hh__dep__incl.pdf, id=1146, 374.39874pt x 154.5775pt>
+<detection_8hh__dep__incl.pdf, id=2341, 374.39874pt x 154.5775pt>
 File: detection_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use detection_8hh__dep__incl.pdf>
 Package pdftex.def Info: detection_8hh__dep__incl.pdf used on input line 27.
 (pdftex.def)             Requested size: 350.0pt x 144.5127pt.
- [27 <./detection_8hh__incl.pdf>]
+ [57 <./detection_8hh__incl.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [28 <./detection_8hh__dep__incl.pdf>]
+ [58 <./detection_8hh__dep__incl.pdf>]
 Underfull \hbox (badness 10000) detected at line 77
 [][][]
  []
 
-[29]
+[59]
 Underfull \hbox (badness 10000) detected at line 154
 [][][]
  []
@@ -1459,134 +1852,181 @@ Underfull \hbox (badness 10000) detected at line 154
 Overfull \vbox (43.28111pt too high) has occurred while \output is active []
 
 
-[30]) (./detection__run_8cc.tex
-<detection__run_8cc__incl.pdf, id=1213, 885.3075pt x 264.99pt>
+[60]) (./detection__run_8cc.tex
+<detection__run_8cc__incl.pdf, id=2408, 885.3075pt x 264.99pt>
 File: detection__run_8cc__incl.pdf Graphic file (type pdf)
 
 <use detection__run_8cc__incl.pdf>
 Package pdftex.def Info: detection__run_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 104.76088pt.
-) (./main_8cc.tex
-<main_8cc__incl.pdf, id=1215, 1628.0825pt x 264.99pt>
+) (./dubins_8cc.tex
+<dubins_8cc__incl.pdf, id=2410, 328.22626pt x 264.99pt>
+File: dubins_8cc__incl.pdf Graphic file (type pdf)
+
+<use dubins_8cc__incl.pdf>
+Package pdftex.def Info: dubins_8cc__incl.pdf used on input line 9.
+(pdftex.def)             Requested size: 327.0pt x 264.00275pt.
+) (./dubins_8hh.tex [61 <./detection__run_8cc__incl.pdf>] <dubins_8hh__incl.pdf
+, id=2431, 328.22626pt x 209.78375pt>
+File: dubins_8hh__incl.pdf Graphic file (type pdf)
+
+<use dubins_8hh__incl.pdf>
+Package pdftex.def Info: dubins_8hh__incl.pdf used on input line 9.
+(pdftex.def)             Requested size: 327.0pt x 209.00215pt.
+
+<dubins_8hh__dep__incl.pdf, id=2432, 155.58125pt x 154.5775pt>
+File: dubins_8hh__dep__incl.pdf Graphic file (type pdf)
+
+<use dubins_8hh__dep__incl.pdf>
+Package pdftex.def Info: dubins_8hh__dep__incl.pdf used on input line 17.
+(pdftex.def)             Requested size: 155.0pt x 154.00159pt.
+ [62 <./dubins_8cc__incl.pdf> <./dubins_8hh__incl.pdf>]) (./main_8cc.tex <main_
+8cc__incl.pdf, id=2464, 1628.0825pt x 264.99pt>
 File: main_8cc__incl.pdf Graphic file (type pdf)
- <use main_8cc__incl.pdf>
+
+<use main_8cc__incl.pdf>
 Package pdftex.def Info: main_8cc__incl.pdf used on input line 14.
 (pdftex.def)             Requested size: 350.0pt x 56.96364pt.
+) (./maths_8cc.tex
+<maths_8cc__incl.pdf, id=2466, 328.22626pt x 209.78375pt>
+File: maths_8cc__incl.pdf Graphic file (type pdf)
 
-[31 <./detection__run_8cc__incl.pdf>]) (./unwrapping_8cc.tex
-<unwrapping_8cc__incl.pdf, id=1237, 1041.8925pt x 264.99pt>
+<use maths_8cc__incl.pdf>
+Package pdftex.def Info: maths_8cc__incl.pdf used on input line 9.
+(pdftex.def)             Requested size: 327.0pt x 209.00215pt.
+) (./maths_8hh.tex [63 <./dubins_8hh__dep__incl.pdf> <./main_8cc__incl.pdf>]
+<maths_8hh__incl.pdf, id=2502, 328.22626pt x 154.5775pt>
+File: maths_8hh__incl.pdf Graphic file (type pdf)
+
+<use maths_8hh__incl.pdf>
+Package pdftex.def Info: maths_8hh__incl.pdf used on input line 12.
+(pdftex.def)             Requested size: 327.0pt x 154.00159pt.
+
+<maths_8hh__dep__incl.pdf, id=2503, 246.9225pt x 209.78375pt>
+File: maths_8hh__dep__incl.pdf Graphic file (type pdf)
+
+<use maths_8hh__dep__incl.pdf>
+Package pdftex.def Info: maths_8hh__dep__incl.pdf used on input line 20.
+(pdftex.def)             Requested size: 246.0pt x 208.99896pt.
+
+Underfull \vbox (badness 2119) has occurred while \output is active []
+
+ [64 <./maths_8cc__incl.pdf> <./maths_8hh__incl.pdf>] [65 <./maths_8hh__dep__in
+cl.pdf>])
+(./unwrapping_8cc.tex
+<unwrapping_8cc__incl.pdf, id=2571, 1041.8925pt x 264.99pt>
 File: unwrapping_8cc__incl.pdf Graphic file (type pdf)
 
 <use unwrapping_8cc__incl.pdf>
 Package pdftex.def Info: unwrapping_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 89.01581pt.
- [32 <./main_8cc__incl.pdf> <./unwrapping_8cc__incl.pdf>]
-Overfull \vbox (8.82716pt too high) has occurred while \output is active []
-
-
-[33]
+ [66 <./unwrapping_8cc__incl.pdf>] [67]
 Underfull \hbox (badness 10000) detected at line 70
 [][][]
  []
 
-[34]
+[68]
 Underfull \hbox (badness 10000) detected at line 124
 [][][]
  []
 
 ) (./unwrapping_8hh.tex
-<unwrapping_8hh__incl.pdf, id=1299, 1041.8925pt x 209.78375pt>
+<unwrapping_8hh__incl.pdf, id=2619, 1041.8925pt x 209.78375pt>
 File: unwrapping_8hh__incl.pdf Graphic file (type pdf)
 
 <use unwrapping_8hh__incl.pdf>
 Package pdftex.def Info: unwrapping_8hh__incl.pdf used on input line 18.
 (pdftex.def)             Requested size: 350.0pt x 70.47084pt.
 
-<unwrapping_8hh__dep__incl.pdf, id=1300, 398.48875pt x 154.5775pt>
+<unwrapping_8hh__dep__incl.pdf, id=2620, 398.48875pt x 154.5775pt>
 File: unwrapping_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use unwrapping_8hh__dep__incl.pdf>
 Package pdftex.def Info: unwrapping_8hh__dep__incl.pdf used on input line 26.
 (pdftex.def)             Requested size: 350.0pt x 135.77386pt.
- [35 <./unwrapping_8hh__incl.pdf> <./unwrapping_8hh__dep__incl.pdf>]
+ [69 <./unwrapping_8hh__incl.pdf> <./unwrapping_8hh__dep__incl.pdf>]
 Underfull \hbox (badness 10000) detected at line 73
 [][][]
  []
 
 ) (./unwrapping__run_8cc.tex
-<unwrapping__run_8cc__incl.pdf, id=1334, 1041.8925pt x 264.99pt>
+<unwrapping__run_8cc__incl.pdf, id=2654, 1041.8925pt x 264.99pt>
 File: unwrapping__run_8cc__incl.pdf Graphic file (type pdf)
 
 <use unwrapping__run_8cc__incl.pdf>
 Package pdftex.def Info: unwrapping__run_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 89.01581pt.
- [36]) (./utils_8cc.tex
-<utils_8cc__incl.pdf, id=1344, 885.3075pt x 209.78375pt>
+ [70]) (./utils_8cc.tex
+<utils_8cc__incl.pdf, id=2664, 885.3075pt x 209.78375pt>
 File: utils_8cc__incl.pdf Graphic file (type pdf)
 
 <use utils_8cc__incl.pdf>
 Package pdftex.def Info: utils_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 82.93568pt.
-) (./utils_8hh.tex [37 <./unwrapping__run_8cc__incl.pdf> <./utils_8cc__incl.pdf
+) (./utils_8hh.tex [71 <./unwrapping__run_8cc__incl.pdf> <./utils_8cc__incl.pdf
 >]
-<utils_8hh__incl.pdf, id=1382, 885.3075pt x 154.5775pt>
+<utils_8hh__incl.pdf, id=2701, 885.3075pt x 154.5775pt>
 File: utils_8hh__incl.pdf Graphic file (type pdf)
 
 <use utils_8hh__incl.pdf>
 Package pdftex.def Info: utils_8hh__incl.pdf used on input line 15.
 (pdftex.def)             Requested size: 350.0pt x 61.1105pt.
 
-<utils_8hh__dep__incl.pdf, id=1383, 863.225pt x 209.78375pt>
+<utils_8hh__dep__incl.pdf, id=2702, 863.225pt x 209.78375pt>
 File: utils_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use utils_8hh__dep__incl.pdf>
 Package pdftex.def Info: utils_8hh__dep__incl.pdf used on input line 23.
 (pdftex.def)             Requested size: 350.0pt x 85.05797pt.
- [38 <./utils_8hh__incl.pdf> <./utils_8hh__dep__incl.pdf>]) [39] [40
+ [72 <./utils_8hh__incl.pdf> <./utils_8hh__dep__incl.pdf>]) [73] [74
 
-] (./refman.ind [41
+] (./refman.ind [75
 
 
-] [42] [43
-
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 171.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 171.
+] [76] [77] [78])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 180.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 180.
  (./refman.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 171.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 171.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 180.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 180.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 4D0AE7029DBC6FA14AA15B2D39572F7B;24771.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 171.
+(rerunfilecheck)             Checksum: 041161D553CD7D8A3F84BE4779C71B59;45944.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 180.
  ) 
 Here is how much of TeX's memory you used:
- 15599 strings out of 492995
- 229907 string characters out of 6132704
- 321380 words of memory out of 5000000
- 18495 multiletter control sequences out of 15000+600000
- 68569 words of font info for 94 fonts, out of 8000000 for 9000
+ 16216 strings out of 492995
+ 245184 string characters out of 6132704
+ 329757 words of memory out of 5000000
+ 18778 multiletter control sequences out of 15000+600000
+ 73115 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,16n,92p,630b,640s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,16n,92p,1500b,640s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
-xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texl
-ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texliv
-e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/
-2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/20
-17/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2017/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf
--dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2017/texmf-dist/fo
-nts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/typ
-e1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/
-helvetic/uhvb8ac.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/helvet
-ic/uhvr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhvr
-o8a.pfb>
-Output written on refman.pdf (51 pages, 444405 bytes).
+xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/tex
+live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
+ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive
+/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2
+017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/201
+7/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2017/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2017/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dis
+t/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/
+type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/u
+rw/helvetic/uhvb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/helv
+etic/uhvb8ac.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/u
+hvr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.
+pfb>
+Output written on refman.pdf (88 pages, 616129 bytes).
 PDF statistics:
- 1748 PDF objects out of 2073 (max. 8388607)
- 1599 compressed objects within 16 object streams
- 350 named destinations out of 1000 (max. 500000)
- 1110 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3272 PDF objects out of 3580 (max. 8388607)
+ 3023 compressed objects within 31 object streams
+ 657 named destinations out of 1000 (max. 500000)
+ 1980 words of extra memory for PDF output out of 10000 (max. 10000000)
 
