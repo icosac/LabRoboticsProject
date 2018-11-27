@@ -6,7 +6,7 @@
 \begin{frame}{Steps}
 	\begin{itemize}
 		\item Calibration
-		\item Unwrapping
+		\item Unwarping
 		\item Detection
 	\end{itemize}
 \end{frame}
@@ -66,20 +66,20 @@
 	\]
 \end{frame}
 
-\begin{frame}{Unwrapping}
+\begin{frame}{Unwarping}
 Once the camera matrix and the distortion coefficients are known, the next step is to focus on the target, that is the circuit, and then to "un-distort" it. 
 \begin{center}
 	\includegraphics[scale=0.155]{Immagini/Wrapped.jpg}
 \end{center}
 \end{frame}
 
-\begin{frame}{Unwrapping}
+\begin{frame}{Unwarping}
 	\begin{center}
 		\includegraphics[scale=0.25]{Immagini/Unwrapped.jpg}
 	\end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Unwrapping}
+\begin{frame}[fragile]{Unwarping}
 	Straighten the image using the distortion coefficients. 
 	\begin{center}
 		\includegraphics[scale=0.15]{Immagini/UNUndistort}	
@@ -90,7 +90,7 @@ Once the camera matrix and the distortion coefficients are known, the next step 
 	\end{minted}
 \end{frame}
 
-\begin{frame}[fragile]{Unwrapping}
+\begin{frame}[fragile]{Unwarping}
 	Then the image is converted from RGB to HSV.
 	\begin{center}
 		\includegraphics[scale=0.15]{Immagini/UNHSV}
@@ -102,7 +102,7 @@ Once the camera matrix and the distortion coefficients are known, the next step 
 	\vfill
 \end{frame}
 
-\begin{frame}[fragile]{Unwrapping}
+\begin{frame}[fragile]{Unwarping}
 	A black filter is added to highlight the black lines and areas.
 	\begin{center}
 		\includegraphics[scale=0.15]{Immagini/UNBlackFilter}
@@ -116,14 +116,14 @@ Once the camera matrix and the distortion coefficients are known, the next step 
 	\vfill
 \end{frame}
 
-\begin{frame}[fragile]{Unwrapping}
+\begin{frame}[fragile]{Unwarping}
 	Then the largest area enclosed by black lines is selected. 
 	\begin{center}
 		\includegraphics[scale=0.16]{Immagini/UNRect}
 	\end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Unwrapping}
+\begin{frame}[fragile]{Unwarping}
 	At the end the image is cropped and turned. 
 	\begin{center}
 		\includegraphics[scale=0.19]{Immagini/Unwrapped}
@@ -170,15 +170,15 @@ For having better results the area around each target is:
 At last the digit detection is being done with templates since the success rate has been greater than using Tesseract. 
 \end{frame}
 
-\begin{frame}{Code structure}
-	\begin{center}
-		\includegraphics[scale=0.45]{Immagini/Code1}
-	\end{center}
-\end{frame}
-
-\begin{frame}{Code structure}
-	\begin{center}
-		\includegraphics[scale=0.7]{Immagini/Code2}
-	\end{center}
-\end{frame}
+%\begin{frame}{Code structure}
+%	\begin{center}
+%		\includegraphics[scale=0.45]{Immagini/Code1}
+%	\end{center}
+%\end{frame}
+%
+%\begin{frame}{Code structure}
+%	\begin{center}
+%		\includegraphics[scale=0.7]{Immagini/Code2}
+%	\end{center}
+%\end{frame}
 
