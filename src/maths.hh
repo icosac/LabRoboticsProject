@@ -158,8 +158,33 @@ public:
     Angle alpha (dth, type);
     return alpha;
   }
+
+  /*! \brief Multiply and angle by a costant. In the process a new angle is created so `normalize()` is also called.
+      \tparam The type of the coefficient.
+      \param[in] phi The costant to use to multiply.
+      \returns The angle multiplied. 
+  */
+  template <class T1>
+  Angle mul (const T1 A){
+    double dth = th*(double)A;
+    Angle alpha (dth, type);
+    return alpha;
+  }
+
+  /*! \brief Divide and angle by a costant. In the process a new angle is created so `normalize()` is also called.
+      \tparam The type of the dividend.
+      \param[in] A The costant to use to divide.
+      \returns The angle divided. 
+  */
+  template <class T1>
+  Angle div (const T1 A){
+    double dth = th/(double)A;
+    Angle alpha (dth, type);
+    return alpha;
+  }
+
   /*! \brief Copies an angle to this one. In the process a new angle is created so `normalize()` is also called.
-  		\param[in] phi The angle to be copied.
+  		\param[in] A The angle to be copied.
   		\returns The new angle. 
   */  
   Angle copy (const Angle phi){
@@ -182,6 +207,27 @@ public:
   Angle operator- (const Angle phi){
     return sub(phi);
   }
+
+  /*! This function overload the operator *. It simply calls the `mul()` function.
+      \tparam The type of the coefficient.
+      \param[in] A The coefficient.
+      \returns The angle multiplied. 
+  */
+  template <class T1> 
+  Angle operator* (const T1 A){
+    return mul(A);
+  }
+
+  /*! This function overload the operator /. It simply calls the `div()` function.
+      \tparam The type of the dividend.
+      \param[in] A The dividend.
+      \returns The angle divided. 
+  */
+  template <class T1> 
+  Angle operator/ (const T1 A){
+    return div(A);
+  }
+
   /*! This function overload the operator -. It simply calls the `sub()` function.
 			\param[in] phi The angle to be copied.
   		\returns The new angle. 
@@ -190,24 +236,91 @@ public:
     return copy(phi);
   }
   
-  /*! This function overload the operator +. It simply calls the `add()` function and then assign the result to this.
+  /*! This function overload the operator +=. It simply calls the `add()` function and then assign the result to this.
   		\param[in] phi The angle to be summed.
   		\returns `this`. 
   */
   Angle& operator+= (const Angle phi){
-    Angle alpha=(*this)+phi;
+    Angle alpha=(*this).add(phi);
     (*this)=alpha;
     return (*this);
   }
-  /*! This function overload the operator -. It simply calls the `sub()` function and then assign the result to this.
+  /*! This function overload the operator -=. It simply calls the `sub()` function and then assign the result to this.
   		\param[in] phi The angle to be subtracted.
   		\returns `this`. 
   */
   Angle& operator-= (const Angle phi){
-    Angle alpha=(*this)-phi;
+    Angle alpha=(*this).sub(phi);
     (*this)=alpha;
     return (*this);
   }
+  /*! This function overload the operator *=. It simply calls the `mul()` function and then assign the result to this.
+      \param[in] A The coefficient.
+      \returns `this`. 
+  */
+  template <class T>
+  Angle& operator*= (const T A){
+    Angle alpha=(*this).mul(A);
+    (*this)=alpha;
+    return (*this);
+  }
+  /*! This function overload the operator /=. It simply calls the `div()` function and then assign the result to this.
+      \param[in] A The dividend.
+      \returns `this`. 
+  */
+  template <class T>
+  Angle& operator/= (const T A){
+    Angle alpha=(*this).div(A);
+    (*this)=alpha;
+    return (*this);
+  }
+
+  /*! \brief Compute the cosine of the angle.
+      \retunrs A `double` that is the cosine of the angle.
+  */
+  double cos() const {
+    if (type==RAD){
+      return ::cos(th);
+    }
+    else if (type==DEG){
+      return ::cos(toRad());
+    }
+    else {
+      cout << "Invalid angle" << endl;
+      return 0.0;
+    }
+  }
+  /*! \brief Compute the sine of the angle.
+      \retunrs A `double` that is the sine of the angle.
+  */
+  double sin() const {
+    if (type==RAD){
+      return ::sin(th);
+    }
+    else if (type==DEG){
+      return ::sin(toRad());
+    }
+    else {
+      cout << "Invalid angle" << endl;
+      return 0.0;
+    }
+  }
+  /*! \brief Compute the tangent of the angle.
+      \retunrs A `double` that is the tangent of the angle.
+  */
+  double tan() const {
+    if (type==RAD){
+      return ::tan(th);
+    }
+    else if (type==DEG){
+      return ::tan(toRad());
+    }
+    else {
+      cout << "Invalid angle" << endl;
+      return 0.0;
+    }
+  }
+
   
   /*! This function overload the << operator so to print with `std::cout` the most essential info, that is the dimension and the type of angle.
   		\param[in] out The out stream.
