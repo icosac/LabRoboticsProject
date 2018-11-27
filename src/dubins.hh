@@ -70,7 +70,7 @@ class Dubins : private Curve<T>
 private:
 	double Kmax;
 
-using Curve<T>::Curve;
+	using Curve<T>::Curve;
 public:
 	Dubins () : Kmax(KMAX), Curve<T>() {}
 	Dubins (const Configuration2<T> _P0, 
@@ -94,47 +94,120 @@ public:
 	
 	double getKMax () const { return Kmax; }
 
-	Tuple<double> LSL (Angle th0, Angle th1, double _kmax) {
+	Tuple<double> LSL (Angle th0, Angle th1, double _kmax) 
+	{
 		double invK = 1/_kmax;
-		double C = cos(th1.get())-cos(th0.get());
-		double S = 2*_kmax + sin(th0.get())-sin(th1.get());
+		double C = th1.cos()-th0.cos();
+		double S = 2*_kmax + th0.sin()-th1.sin();
 
 		Angle temp1 (atan2(C,S), Angle::RAD);
-		double sc_s1 = invK*((temp1-th0).get());
+		Angle sc_s1 = (temp1-th0)*invK;
 
-		double temp2 = 2+4*pow2(_kmax) -2*cos(th0.get()-th1.get())+4*_kmax*(sin(th0.get())-sin(th1.get()));
+		double temp2 = 2+4*pow2(_kmax) -2*(th0-th1).cos()+4*_kmax*(th0.sin()-th1.sin());
 		if (temp2<0){
 			return Tuple<double>(0);
 		}
 		double sc_s2 = invK * sqrt(temp2);
-		double sc_s3 = invK * (th1-temp1).get();
+		Angle sc_s3 = (th1-temp1)*invK;
+
+		return Tuple<double> (3, sc_s1.get(), sc_s2, sc_s3.get());
+	}
+
+	Tuple<double> RSR (Angle th0, Angle th1, double _kmax) 
+	{
+		double invK = 1/_kmax;
+		double C = th0.cos()-th1.cos();
+		double S = 2*_kmax - th0.sin()+th1.sin();
+
+		Angle temp1 (atan2(C,S), Angle::RAD);
+		Angle sc_s1 = (th0-temp1)*invK;
+
+		double temp2 = 2+4*pow2(_kmax) -2*(th0-th1).cos()+4*_kmax*(th0.sin()-th1.sin());
+		if (temp2<0){
+			return Tuple<double>(0);
+		}
+		double sc_s2 = invK * sqrt(temp2);
+		Angle sc_s3 = (temp1-th1)*invK;
+
+		return Tuple<double> (3, sc_s1.get(), sc_s2, sc_s3.get());
+	}
+
+	Tuple<double> LSR (Angle th0, Angle th1, double _kmax) 
+	{
+		double invK = 1/_kmax;
+		double C = th0.cos()+th1.cos();
+		double S = 2*_kmax + th0.sin()+th1.sin();
+
+		Angle temp1 (atan2(-C,S), Angle::RAD);
+
+		double temp2 = 4*pow2(_kmax) - 2 + 2*(th0-th1).cos() + 4*_kmax * (th0.sin() + th1.sin());
+		if (temp2<0){
+			return Tuple<double>(0);
+		}
+		double sc_s2 = invK * sqrt(temp2);
+		Angle temp3 = Angle(-atan2(-2, sc_s2*_kmax), Angle::RAD);
+		double sc_s1 = invK * (temp1+temp3-th0).get();
+		double sc_s3 = invK * (temp1+temp3-th1).get();
 
 		return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
 	}
 
-	Tuple<double> RSR (Angle th0, Angle th1, double _kmax) {
+	Tuple<double> RSL (Angle th0, Angle th1, double _kmax) 
+	{
+		double invK = 1/_kmax;
+		double C = th0.cos()+th1.cos();
+		double S = 2*_kmax - th0.sin()-th1.sin();
 
-		// return Tuple<double> (4, ok, sc_s1, sc_s2, sc_s3);
+		Angle temp1 (atan2(C,S), Angle::RAD);
+
+		double temp2 = 4*pow2(_kmax) - 2 + 2*(th0-th1).cos() + 4*_kmax*(th0.sin() + th1.sin());
+		if (temp2<0){
+			return Tuple<double>(0);
+		}
+		double sc_s2 = invK * sqrt(temp2);
+		Angle temp3 = Angle(-atan2(-2, sc_s2*_kmax), Angle::RAD);
+		double sc_s1 = ((th0-temp1+temp3)*invK).get();
+		double sc_s3 = ((th1-temp1+temp3)*invK).get();
+
+		return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
 	}
 
-	Tuple<double> LSR (Angle th0, Angle th1, double _kmax) {
+	Tuple<double> RLR (Angle th0, Angle th1, double _kmax) 
+	{
+		double invK = 1/_kmax;
+		double C = th0.cos()-th1.cos();
+		double S = 2*_kmax - th0.sin()+th1.sin();
 
-		// return Tuple<double> (4, ok, sc_s1, sc_s2, sc_s3);
+		Angle temp1 (atan2(C,S), Angle::RAD);
+		double temp2 = 0.125*(6 - 4*pow2(_kmax) + 2*(th0-th1).cos() + 4*_kmax*(th0.sin()-th1.sin()));
+
+		if (std::abs(temp2)>1){
+			return Tuple<double>(0);
+		}
+		Angle sc_s2 = Angle(2*M_PI-acos(temp2), Angle::RAD)*invK;
+		Angle sc_s1 = (th0-temp1+sc_s2*(0.5*_kmax))*invK;
+		Angle sc_s3 = (th1-th0+(sc_s2-sc_s1)*_kmax)*invK;
+
+		return Tuple<double> (3, sc_s1.get(), sc_s2.get(), sc_s3.get());
 	}
 
-	Tuple<double> RSL (Angle th0, Angle th1, double _kmax) {
+	Tuple<double> LRL (Angle th0, Angle th1, double _kmax) 
+	{
+		double invK = 1/_kmax;
+		double C = th1.cos()-th0.cos();
+		double S = 2*_kmax + th0.sin()-th1.sin();
 
-		// return Tuple<double> (4, ok, sc_s1, sc_s2, sc_s3);
-	}
+		Angle temp1 (atan2(C,S), Angle::RAD);
+		double temp2 = 0.125*(6 - 4*pow2(_kmax) + 2*(th0-th1).cos() + 4*_kmax*(th0.sin()-th1.sin()));
 
-	Tuple<double> RLR (Angle th0, Angle th1, double _kmax) {
+		if (std::abs(temp2)>1){
+			return Tuple<double>(0);
+		}
+		Angle sc_s2 = Angle(2*M_PI-acos(temp2), Angle::RAD)*invK;
+		Angle sc_s1 = (temp1-th0+sc_s2*(0.5*_kmax))*invK;
+		Angle sc_s3 = (th1-th0+(sc_s2-sc_s1)*_kmax)*invK;
 
-		// return Tuple<double> (4, ok, sc_s1, sc_s2, sc_s3);
-	}
-
-	Tuple<double> LRL (Angle th0, Angle th1, double _kmax) {
-
-		// return Tuple<double> (4, ok, sc_s1, sc_s2, sc_s3);
+		return Tuple<double> (3, sc_s1.get(), sc_s2.get(), sc_s3.get());
 	}
 
 	Tuple<double> 	scaleToStandard ()
@@ -167,13 +240,23 @@ public:
 		} 
 	}
 
+	Tuple<double> scaleFromStandard(double lambda, 
+																	Angle sc_s1, 
+																	Angle sc_s2, 
+																	Angle sc_s3){
+		return Tuple<double> (3, (sc_s1 * lambda).get(), 
+													(sc_s2 * lambda).get(), 
+													(sc_s3 * lambda).get());
+	}
+
 	Tuple<double> shortest_path()
 	{	
 		Tuple<double> scaled = scaleToStandard();
 		if (scaled.size()==0)
 		{
 			return Tuple<double>(0);
-		} else 
+		} 
+		else 
 		{
 			Angle 	sc_th0		=	Angle(scaled.get(0), Angle::RAD);
 			Angle 	sc_th1		=	Angle(scaled.get(1), Angle::RAD);
@@ -181,7 +264,6 @@ public:
 			double 	sc_lambda	=	scaled.get(3);
 
 			//TODO Missing ksigns matrix
-			double pidx=-1.0;
 			double Length=0.0;
 			bool first_go=true;
 			double sc_s1=0.0;
@@ -189,7 +271,7 @@ public:
 			double sc_s3=0.0;
 			int pidx=-1;
 
-			std::vector<Tuple<double> res;
+			std::vector<Tuple<double> > res;
 
 			res.push_back(LSL(sc_th0, sc_th1, sc_Kmax));
 			res.push_back(RSR(sc_th0, sc_th1, sc_Kmax));
@@ -209,16 +291,17 @@ public:
 						sc_s2=value.get(1);
 						sc_s3=value.get(2);
 						pidx=i;
+					}
 				}
 				i++;
 			}	
-		}
 
-		if (pidx>0){
-			Angle scS1(sc_s1, Angle::RAD);
-			Angle scS2(sc_s2, Angle::RAD);
-			Angle scS3(sc_s3, Angle::RAD);
-			Tuple<double> sc_std = scaleFromStandard(sc_lambda, scS1, scS2, scS3);
+			if (pidx>0){
+				Angle scS1(sc_s1, Angle::RAD);
+				Angle scS2(sc_s2, Angle::RAD);
+				Angle scS3(sc_s3, Angle::RAD);
+				Tuple<double> sc_std = scaleFromStandard(sc_lambda, scS1, scS2, scS3);
+			}
 		}
 		return Tuple<double> (0);
 	}
