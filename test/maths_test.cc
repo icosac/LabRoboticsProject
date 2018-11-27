@@ -36,11 +36,30 @@ int main(int argc, const char * argv[]) {
 	b.set(M_PI);
 	c.set(90);
 
+	cout << "b: " << b << endl;
+	cout << "c: " << c << endl;
+
+	cout << "cos(" << b << ")=" << b.cos() << endl; 
+	cout << "cos(" << c << ")=" << c.cos() << endl; 
+	cout << "sin(" << b << ")=" << b.sin() << endl; 
+	cout << "sin(" << c << ")=" << c.sin() << endl; 
+	cout << "tan(" << b << ")=" << b.tan() << endl; 
+	cout << "tan(" << c << ")=" << c.tan() << endl; 
+
 	b+=c; cout << "b+=c: " << b << endl;
 	b-=c; cout << "b-=c: " << b << endl;
 	c+=b; cout << "c+=b: " << c << endl;
 	c-=b; cout << "c-=b: " << c << endl;
 
+	b/=2; cout << "b/=2: " << b << endl;
+	c/=2; cout << "c/=2: " << c << endl;
+	b*=2; cout << "b*=2: " << b << endl;
+	c*=2; cout << "c*=2: " << c << endl;
+
+	b/=0.5; cout << "b/=0.5: " << b << endl;
+	c/=0.5; cout << "c/=0.5: " << c << endl;
+	b*=0.5; cout << "b*=0.5: " << b << endl;
+	c*=0.5; cout << "c*=0.5: " << c << endl;
 	/////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////
