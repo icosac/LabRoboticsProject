@@ -47,7 +47,7 @@ public:
   
   // ~Angle();
   
-  double get () const{ return th; } ///<Returns the dimension of the angle.
+  double get () const { return th; } ///<Returns the dimension of the angle.
   ANGLE_TYPE getType () const { return type; }///<Returns the type of the angle.
   string getTypeName () const { ///<Returns a string that tells the type of angle.
   	string ret="";
@@ -71,7 +71,7 @@ public:
   /*! \brief Set the type of the angle.
   		\param[in] _th The type of the angle to be stored.
   */
-  void setType (ANGLE_TYPE _type) { type=_type; } 
+  void setType (ANGLE_TYPE _type) { type=_type; normalize(); } 
   
   /*! \brief Convert and store the angle from DEG to RAD.
   		\returns The value of the angle.
@@ -109,28 +109,39 @@ public:
     return type==RAD ? (double)(th*RADTODEG) : th;
   }
   
-  /*!	\brief Normalize the angle, that is to set it in \f$[0, 2\pi]\f$ or \f$[0, 360°]\f$.
+  static inline bool checkValue (const double th) {
+    return !isnan(th) && isfinite(th);
+  }
+
+  /*!	\brief Normalize the angle, that is to set it in \f$[0, 2\pi]\f$ or \f$[0, 360°]\f$. 
+      Moreover it check if the value is infinite or NaN. In this case the `type` is set to `INVALID`.
   */
   void normalize(){
-    double div=0.0;
-    switch (type){
-      case RAD:{
-        div=(double)2*M_PI;
-        break;
+    if (checkValue(th)){
+      double div=0.0;
+      switch (type){
+        case RAD:{
+          div=(double)2*M_PI;
+          break;
+        }
+        case DEG:{
+          div=(double)360.0;
+          break;
+        }
+        default:{
+          th=0;
+        }
       }
-      case DEG:{
-        div=(double)360.0;
-        break;
+      while (th>div){
+        th-=div;
       }
-      default:{
-        th=0;
+      while(th<0){
+        th+=div;
       }
     }
-    while (th>div){
-      th-=div;
-    }
-    while(th<0){
-      th+=div;
+    else {
+      th=0;
+      type=INVALID;
     }
   }
   
@@ -320,7 +331,6 @@ public:
       return 0.0;
     }
   }
-
   
   /*! This function overload the << operator so to print with `std::cout` the most essential info, that is the dimension and the type of angle.
   		\param[in] out The out stream.
@@ -393,10 +403,10 @@ public:
 
 	/*! \brief Gets the n-th element.
 			\param[in] _n The position of the element to retrieve.
-			\returns The element in the n-th position.
+			\returns The element in the n-th position or -1 if _n is greater then n or less than 0.
 	*/  
   T get (const int _n) const {
-    return (_n<n ? elements.at(_n) : 0);
+    return ((_n>=0&&_n<n) ? elements.at(_n) : -1);
   }
   
   /*! \brief Adds a value at the end of the list.
@@ -409,10 +419,11 @@ public:
 
   /*! \brief Removes a value from the list.
   		\param[in] pos The position of the value to be removed.
+      \returns 1 if verything went fine, 0 otherwise.
 	*/
   int remove (const T pos) {
   	int res=0;
-  	if (pos<n){
+  	if (pos>=0 && pos<n){
   		res=1;
   		elements.erase(elements.begin()+pos);
   		n--;
@@ -472,7 +483,7 @@ public:
     if (n == B.size()){
       double sum=0.0;
       for (int i=0; i<n; i++){
-        sum+=abs(get(i)-B.get(i));
+        sum+=fabs(get(i)-B.get(i));
       }
       res=sum;
     }
@@ -565,7 +576,6 @@ public:
   */
   template <class T1>
   int offset(const T1 _offset, const Angle th){
-    int res=0;
     double dth = th.getType()==Angle::RAD ? th.get() : th.toRad();
     double dx=_offset*cos(dth);
     double dy=_offset*sin(dth);
@@ -575,9 +585,8 @@ public:
     }
     T _x=x()+(T)dx;
     T _y=y()+(T)dy;
-    res|=(values.set(0, _x) &&
-          values.set(1, _y));
-    return res;
+    return (values.set(0, _x) &&
+            values.set(1, _y));
   }
   
   /*! \brief This function compute an offset given another point made 
@@ -586,10 +595,8 @@ public:
   		\returns 1 if everything went fine, 0 otherwise.
   */
   int offset (const Point2<T> p){
-    int res=0;
-    res|=(values.set(0, p.x()+x())) &&
-    			values.set(1, p.y()+y());
-    return res;
+    return (values.set(0, p.x()+x()) &&
+            values.set(1, p.y()+y())); 
   }
   
   /*! \brief This function compute an offset given a `Tuple` made 
@@ -600,7 +607,7 @@ public:
   int offset (const Tuple<T> p){
     int res=0;
     if (p.size()==2){
-      res|=(values.set(0, p.get(0)+x())) &&
+      res= (values.set(0, p.get(0)+x())) &&
       			values.set(1, p.get(1)+y());
     }
     return res;
