@@ -5,6 +5,8 @@
 #include <cmath>
 #include <vector>
 #include <stdarg.h>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -332,19 +334,15 @@ public:
     }
   }
   
-  /*! This function overload the << operator so to print with `std::cout` the most essential info, that is the dimension and the type of angle.
-  		\param[in] out The out stream.
-  		\param[in] data The angle to print.
-  		\returns An output stream to be printed.
-  */
-  friend ostream& operator<<(ostream &out, const Angle& data) {
-    switch (data.getType()){
+  stringstream to_string () const {
+    stringstream out;
+    switch (getType()){
       case DEG:{
-        out << data.get() << "°";
+        out << get() << "°";
         break;
       }
       case RAD:{
-        double phi=data.get()/M_PI;
+        double phi=get()/M_PI;
         out << phi << "pi";
         break;
       }
@@ -353,6 +351,16 @@ public:
         break;
       }
     }
+    return out;
+  }
+
+  /*! This function overload the << operator so to print with `std::cout` the most essential info, that is the dimension and the type of angle.
+  		\param[in] out The out stream.
+  		\param[in] data The angle to print.
+  		\returns An output stream to be printed.
+  */
+  friend ostream& operator<<(ostream &out, const Angle& data) {
+    out << data.to_string().str();
     return out;
   }
   
@@ -516,18 +524,24 @@ public:
     return ret;
   }
   
+  stringstream to_string() const {
+    stringstream out;
+    out << '<';
+    for (int i=0; i<size(); i++){
+      out << get(i) << ((i!=size()-1) ? ", " : "");
+    }
+    out << ">";
+    
+    return out;
+  }
+
   /*!	\brief Overload of operator << to output the content of the tuple.
 			\param[in] out The output stream.
   		\param[in] data The Tuple to print.
   		\returns An output stream to be printed.
   */
-  friend ostream& operator<<(ostream &out, const Tuple& data) {
-    out << '<';
-    for (int i=0; i<data.size(); i++){
-      out << data.get(i) << ((i!=data.size()-1) ? ", " : "");
-    }
-    out << ">";
-    
+  friend ostream& operator<<(ostream &out, const Tuple<T>& data) {
+    out << data.to_string().str();
     return out;
   }
 };
@@ -662,14 +676,20 @@ public:
     return values.EuDistance(Tuple<T1>(2, B.x(), B.y()));
   }
   
+  stringstream to_string () const {
+    stringstream out;
+    out << "x: " << x();
+    out << ", y: " << y();
+    return out;
+  }
+
   /*!	\brief Overload of operator << to output the content of a `Point2`.
 			\param[in] out The output stream.
   		\param[in] data The `Point2` to print.
   		\returns An output stream to be printed.
   */
-  friend ostream& operator<<(ostream &out, const Point2<T>& data) {
-    out << "x: " << data.x();
-    out << ", y: " << data.y();
+  friend ostream& operator<< (ostream& out, const Point2<T> &data){
+    out << data.to_string().str();
     return out;
   }
 
@@ -848,10 +868,16 @@ public:
   		\param[in] data The `Configuration2` to print.
   		\returns An output stream to be printed.
   */
-  friend ostream& operator<<(ostream &out, const Configuration2& data) {
-    out << "x: " << data.x();
-    out << ", y: " << data.y();
-    out << ", th: " << data.angle();
+  stringstream to_string() const {
+    stringstream out;
+    out << "x: " << x();
+    out << ", y: " << y();
+    out << ", th: " << angle();
+    return out;
+  }
+
+  friend ostream& operator<< (ostream& out, const Configuration2<T1> &data){
+    out << data.to_string().str();
     return out;
   }
   

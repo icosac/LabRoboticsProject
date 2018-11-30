@@ -5,25 +5,55 @@
 % Reset environment
 close all; clear all; clc;
 
-% Define problem data
-x0 = 0; y0 = 0; th0 = -2/3*pi;
-xf = 4; yf = 0; thf = pi/3.0;
+fl= fopen("/Users/enrico/Desktop/matlab.txt", "w");
+
+value=0;
 Kmax = 1.0;
+x=0; y=0;
+disp("x0, y0, th0, x1, y1, th1, curve");
+for x0=0.0 : 0.1 : 150.0
+  for y0=0.0 : 0.1 : 100.0
+    for th0=0.0 : 0.01 : 2*pi
+      for x1=0.0 : 0.1 : 150.0
+        for y1=0.0 : 0.1 : 100.0
+          for th1=0.0 : 0.01 : 2*pi
+            if (x~=x0 && y~=y0) 
+              x=x0; y=y0;
+              fprintf("%f, %f\n", x, y);
+            end
+            [pidx, curve] = dubins_shortest_path(x0, y0, th0, x1, y1, th1, Kmax);
+            fprintf(fl, "%f, %f, %f, %f, %f, %f, %d\n", x0, y0, th0, x1, y1, th1, pidx); 
+            if pidx>0
+               fprintf(fl, "a1: %f, %f, %f, %f, %f, %f, %f, %f\n",curve.a1.x0, curve.a1.y0, curve.a1.th0, curve.a1.xf, curve.a1.yf, curve.a1.thf, curve.a1.L, curve.a1.k);
+               fprintf(fl, "a2: %f, %f, %f, %f, %f, %f, %f, %f\n",curve.a2.x0, curve.a2.y0, curve.a2.th0, curve.a2.xf, curve.a2.yf, curve.a2.thf, curve.a2.L, curve.a2.k);
+               fprintf(fl, "a3: %f, %f, %f, %f, %f, %f, %f, %f\n",curve.a3.x0, curve.a3.y0, curve.a3.th0, curve.a3.xf, curve.a3.yf, curve.a3.thf, curve.a3.L, curve.a3.k);
+            end 
+          end
+        end
+      end
+    end
+  end
+end
+
+% Define problem data
+%x0 = 0; y0 = 0; th0 = -2/3*pi;
+%xf = 4; yf = 0; thf = pi/3.0;
+
 
 % Find optimal Dubins solution
-[pidx, curve] = dubins_shortest_path(x0, y0, th0, xf, yf, thf, Kmax);
+%[pidx, curve] = dubins_shortest_path(x0, y0, th0, xf, yf, thf, Kmax);
 
 % Plot and display solution if valid
-if pidx > 0
-  figure; axis equal;
-  plotdubins(curve, true, [1 0 0], [0 0 0], [1 0 0]);
-  curve.a1
-  curve.a2
-  curve.a3
-  curve.L
-else
-  fprintf('Failed!\n');
-end
+%if pidx > 0
+%  figure; axis equal;
+%  plotdubins(curve, true, [1 0 0], [0 0 0], [1 0 0]);
+%  curve.a1
+%  curve.a2
+%  curve.a3
+%  curve.L
+%else
+%  fprintf('Failed!\n');
+%end
 
 
 
