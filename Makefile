@@ -28,7 +28,7 @@ OBJ=$(SRC:.cc=.o)
 
 clr=clear && clear && clear
 
-PROVA=dubins
+PROVA=maths
 prova: bin/
 	$(clr)
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o src/$(PROVA).o src/$(PROVA).cc 
