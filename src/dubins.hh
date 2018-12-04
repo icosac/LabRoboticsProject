@@ -2,11 +2,16 @@
 #define DUBINS_HH
 
 #include "maths.hh"
+#include "utils.hh"
 
 #include <iostream>
 #include <sstream>
 #include <vector>
 #include <string>
+
+#ifdef DEBUG
+#include <cstdio> // For sprintf
+#endif
 
 #define MORE_FUNCTIONS
 
@@ -20,17 +25,17 @@ protected:
 
 public:
   Curve () : P0(), P1() {}
-  Curve (  const Configuration2<T> _P0,
+  Curve (const Configuration2<T> _P0,
          const Configuration2<T> _P1) :
   P0(_P0), P1(_P1) {}
 
-  Curve (  const Point2<T> _P0,
+  Curve (const Point2<T> _P0,
          const Point2<T> _P1,
          const Angle _th0,
          const Angle _th1) :
   P0(_P0, _th0), P1(_P1, _th1) {}
 
-  Curve (  const T x0, const T y0,
+  Curve (const T x0, const T y0,
          const Angle _th0,
          const T x1, const T y1,
          const Angle _th1) :
@@ -98,17 +103,17 @@ public:
     Configuration2<T2> _P1 = circline(L, _P0, K);
     Curve<T2>::begin(_P0); Curve<T2>::end(_P1);
 //    INFO(("_P0: "+_P0.to_string().str()+"\n").c_str());
-    cout << "begin: " << Curve<T2>::begin() << endl;
+    // cout << "begin: " << Curve<T2>::begin() << endl;
   }
 #else
-  DubinsArc ( const Configuration2<T2> _P0,
+  DubinsArc (const Configuration2<T2> _P0,
              const Configuration2<T2> _P1,
              const T1 _k,
              const T1 _l) : Curve<T2>(_P0, _P1) {
     K=_k;
     L=_l;
-    cout << "_P0: " << _P0 << endl;
-    cout << "begin: " << Curve<T2>::begin() << endl;
+    // cout << "_P0: " << _P0 << endl;
+    // cout << "begin: " << Curve<T2>::begin() << endl;
   }
 #endif
 
@@ -152,9 +157,9 @@ public:
           const Configuration2<T> _P1,
           const double _K=KMAX) :
   Curve<T>(_P0, _P1), Kmax(_K) {
-    cout << "Dubins" << endl;
+    //cout << "Dubins" << endl;
     if (shortest_path()<0){
-      cout << "nope" << endl;
+      //cout << "nope" << endl;
       A1=DubinsArc<>();
       A2=DubinsArc<>();
       A3=DubinsArc<>();
@@ -187,7 +192,7 @@ public:
     }
   }
 
-  double getKMax   () const { return Kmax; }
+  double getKMax  () const { return Kmax; }
   double lenght   () const { return L; }
 
   DubinsArc<> getA1() const { return A1; }
@@ -206,10 +211,16 @@ public:
     double temp2 = 2+4*pow2(_kmax) -2*(th0-th1).cos()+4*_kmax*(th0.sin()-th1.sin());
     if (temp2<0){
       return Tuple<double>(0);
+      TOFILE("data/test/CC_LSL.test", "0\n");
     }
     double sc_s2 = invK * sqrt(temp2);
     double sc_s3 = invK*(th1-temp1).get();
 
+#ifdef DEBUG
+    char output [256];
+    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
+    TOFILE("data/test/CC_LSL.test", output);
+#endif
     return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
@@ -224,11 +235,17 @@ public:
 
     double temp2 = 2+4*pow2(_kmax) -2*(th0-th1).cos()+4*_kmax*(th0.sin()-th1.sin());
     if (temp2<0){
+      TOFILE("data/test/CC_RSR.test", "0\n");
       return Tuple<double>(0);
     }
     double sc_s2 = invK * sqrt(temp2);
     double sc_s3 = invK*(temp1-th1).get();
 
+#ifdef DEBUG
+    char output [256];
+    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
+    TOFILE("data/test/CC_RSR.test", output);
+#endif
     return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
@@ -242,6 +259,7 @@ public:
 
     double temp2 = 4*pow2(_kmax) - 2 + 2*(th0-th1).cos() + 4*_kmax * (th0.sin() + th1.sin());
     if (temp2<0){
+      TOFILE("data/test/CC_LSR.test", "0\n");
       return Tuple<double>(0);
     }
     double sc_s2 = invK * sqrt(temp2);
@@ -249,6 +267,11 @@ public:
     double sc_s1 = invK * (temp1+temp3-th0).get();
     double sc_s3 = invK * (temp1+temp3-th1).get();
 
+#ifdef DEBUG
+    char output [256];
+    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
+    TOFILE("data/test/CC_LSR.test", output);
+#endif
     return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
@@ -262,6 +285,7 @@ public:
 
     double temp2 = 4*pow2(_kmax) - 2 + 2*(th0-th1).cos() + 4*_kmax*(th0.sin() + th1.sin());
     if (temp2<0){
+      TOFILE("data/test/CC_RSL.test", "0\n");
       return Tuple<double>(0);
     }
     double sc_s2 = invK * sqrt(temp2);
@@ -269,6 +293,11 @@ public:
     double sc_s1 = invK * ((th0-temp1+temp3)).get();
     double sc_s3 = invK * ((th1-temp1+temp3)).get();
 
+#ifdef DEBUG
+    char output [256];
+    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
+    TOFILE("data/test/CC_RSL.test", output);
+#endif
     return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
@@ -281,6 +310,7 @@ public:
     Angle temp1 (atan2(C,S), Angle::RAD);
     double temp2 = 0.125*(6 - 4*pow2(_kmax) + 2*(th0-th1).cos() + 4*_kmax*(th0.sin()-th1.sin()));
     if (std::abs(temp2)>1){
+      TOFILE("data/test/CC_RLR.test", "0\n");
       return Tuple<double>(0);
     }
 
@@ -288,6 +318,11 @@ public:
     double sc_s1 = invK*(th0-temp1+Angle(sc_s2*(0.5*_kmax), Angle::RAD)).get();
     double sc_s3 = invK*(th1-th0+Angle(sc_s2-sc_s1, Angle::RAD)*_kmax).get();
 
+#ifdef DEBUG
+    char output [256];
+    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
+    TOFILE("data/test/CC_RLR.test", output);
+#endif
     return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
@@ -301,12 +336,18 @@ public:
     double temp2 = 0.125*(6 - 4*pow2(_kmax) + 2*(th0-th1).cos() + 4*_kmax*(th0.sin()-th1.sin()));
 
     if (std::abs(temp2)>1){
+      TOFILE("data/test/CC_LRL.test", "0\n");
       return Tuple<double>(0);
     }
     double sc_s2 = invK*(Angle(2*M_PI-acos(temp2), Angle::RAD)).get();
     double sc_s1 = invK*(temp1-th0+Angle(sc_s2*(0.5*_kmax), Angle::RAD)).get();
     double sc_s3 = invK*(th1-th0+Angle(sc_s2-sc_s1, Angle::RAD)*_kmax).get();
 
+#ifdef DEBUG
+    char output [256];
+    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
+    TOFILE("data/test/CC_LRL.test", output);
+#endif
     return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
@@ -316,28 +357,20 @@ public:
     double dy=Curve<T>::end().y() - Curve<T>::begin().y();
 
     double _phi=atan2(dy, dx);
+    Angle phi= Angle(_phi, Angle::RAD);
 
-    if (_phi!=M_PI+1)
-    {
+    double lambda=sqrt(pow2(dx)+pow2(dy));
 
-      Angle phi= Angle(_phi, Angle::RAD);
+    double C = dx /lambda;
+    double S = dy /lambda;
 
-      double lambda=sqrt(pow2(dx)+pow2(dy));
+    lambda /= 2;
 
-      double C = dx /lambda;
-      double S = dy /lambda;
+    Angle sc_th0 = Angle (Curve<T>::begin().angle().get()-phi.get(), Angle::RAD);
+    Angle sc_th1 = Angle (Curve<T>::end().angle().get()-phi.get(), Angle::RAD);
+    double sc_Kmax = Kmax*lambda;
 
-      lambda /= 2;
-
-      Angle sc_th0 = Angle (Curve<T>::P0.angle().get()-phi.get(), Angle::RAD);
-      Angle sc_th1 = Angle (Curve<T>::P1.angle().get()-phi.get(), Angle::RAD);
-      double sc_Kmax = Kmax*lambda;
-
-      return Tuple<double> (4, sc_th0.get(), sc_th1.get(), sc_Kmax, lambda);
-    } else
-    {
-      return Tuple<double> (0);
-    }
+    return Tuple<double> (4, sc_th0.get(), sc_th1.get(), sc_Kmax, lambda);
   }
 
   Tuple<double> scaleFromStandard(double lambda,
@@ -394,9 +427,7 @@ public:
         }
         i++;
       }
-      cout << "pidx: " << pidx << endl;
       if (pidx>=0){
-        cout << "hello" << endl;
         Tuple<double> sc_std = scaleFromStandard(sc_lambda, sc_s1, sc_s2, sc_s3);
         vector<vector<int> > ksigns ={
           { 1,  0,  1}, // LSL
@@ -406,7 +437,6 @@ public:
           {-1,  1, -1}, // RLR
           { 1, -1,  1}  // LRL
         };
-        cout <<"hello" << endl;
 #ifdef MORE_FUNCTIONS
         A1=DubinsArc<>(Curve<T>::begin(), ksigns[pidx][0], sc_std.get(0));
         A2=DubinsArc<>(A1.begin(), ksigns[pidx][1], sc_std.get(1));

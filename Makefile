@@ -28,11 +28,11 @@ OBJ=$(SRC:.cc=.o)
 
 clr=clear && clear && clear
 
-PROVA=maths
+PROVA=dubins
 prova: bin/
 	$(clr)
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o src/$(PROVA).o src/$(PROVA).cc 
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) src/$(PROVA).o test/$(PROVA)_test.cc -o bin/$(PROVA).out 
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o src/$(PROVA).o src/$(PROVA).cc $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) src/$(PROVA).o test/$(PROVA)_test.cc -o bin/$(PROVA).out $(LDLIBS)
 	./bin/$(PROVA).out
 	
 clean_prova:
