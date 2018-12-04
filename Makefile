@@ -31,13 +31,8 @@ clr=clear && clear && clear
 PROVA=dubins
 prova: bin/
 	$(clr)
-<<<<<<< HEAD
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o src/$(PROVA).o src/$(PROVA).cc $(LDLIBS)
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) src/$(PROVA).o test/$(PROVA)_test.cc -o bin/$(PROVA).out $(LDLIBS)
-=======
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o src/$(PROVA).o src/$(PROVA).cc 
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) src/$(PROVA).o test/$(PROVA)_test.cc -o bin/$(PROVA).out 
->>>>>>> 3d4a93a3e1014886d60ccb397eea1e9fccc30210
 	./bin/$(PROVA).out
 	
 clean_prova:

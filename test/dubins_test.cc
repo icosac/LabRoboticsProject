@@ -1,5 +1,4 @@
 #include "../src/dubins.hh"
-<<<<<<< HEAD
 #include "../src/utils.hh"
 #include <cstdio>
 #include <ctime>
@@ -52,14 +51,5 @@ int main (){
 	// 		Configuration2<double>(4, 0, Angle(M_PI/3.0, Angle::RAD))
 	// 	);
 	// cout << d << endl;
-=======
-
-int main (){
-	Dubins<double> d=Dubins<double>(
-			Configuration2<double>(0, 0, Angle((-2.0/3.0)*M_PI, Angle::RAD)),
-			Configuration2<double>(4, 0, Angle(M_PI/3.0, Angle::RAD))
-		);
-	cout << d << endl;
->>>>>>> 3d4a93a3e1014886d60ccb397eea1e9fccc30210
 	return 0;
 }

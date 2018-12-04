@@ -11,10 +11,7 @@ Doxyfile
 *.backup
 .DS_store
 docs/
-<<<<<<< HEAD
 *.test
-=======
->>>>>>> 3d4a93a3e1014886d60ccb397eea1e9fccc30210
 #file without extension?
 
 # Except the files
