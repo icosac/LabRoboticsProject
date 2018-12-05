@@ -5,18 +5,18 @@
 % Reset environment
 close all; clear all; clc;
 
-fl= fopen("/Users/enrico/Desktop/matlab.txt", "w");
+% fl= fopen("/Users/enrico/Desktop/matlab.txt", "w");
 
-value=0;
+% value=0;
 Kmax = 1.0;
 x=0; y=0;
 disp("x0, y0, th0, x1, y1, th1, curve");
 for x0=0.0 : 0.1 : 150.0
   for y0=0.0 : 0.1 : 100.0
-    for th0=0.0 : 0.01 : 2*pi
+    for th0=0.0 : 0.1 : 2*pi
       for x1=0.0 : 0.1 : 150.0
         for y1=0.0 : 0.1 : 100.0
-          for th1=0.0 : 0.01 : 2*pi
+          for th1=0.0 : 0.1 : 2*pi
             if (x~=x0 && y~=y0) 
               x=x0; y=y0;
               fprintf("%f, %f\n", x, y);
@@ -35,25 +35,25 @@ for x0=0.0 : 0.1 : 150.0
   end
 end
 
-% Define problem data
-%x0 = 0; y0 = 0; th0 = -2/3*pi;
-%xf = 4; yf = 0; thf = pi/3.0;
+% % Define problem data
+% x0 = 0; y0 = 0; th0 = -2/3*pi;
+% xf = 4; yf = 0; thf = pi/3.0;
 
 
-% Find optimal Dubins solution
-%[pidx, curve] = dubins_shortest_path(x0, y0, th0, xf, yf, thf, Kmax);
+% % Find optimal Dubins solution
+% [pidx, curve] = dubins_shortest_path(x0, y0, th0, xf, yf, thf, Kmax);
 
-% Plot and display solution if valid
-%if pidx > 0
+% % Plot and display solution if valid
+% if pidx > 0
 %  figure; axis equal;
 %  plotdubins(curve, true, [1 0 0], [0 0 0], [1 0 0]);
 %  curve.a1
 %  curve.a2
 %  curve.a3
 %  curve.L
-%else
+% else
 %  fprintf('Failed!\n');
-%end
+% end
 
 
 
@@ -70,6 +70,7 @@ function c = dubinsarc(x0, y0, th0, k, L)
   c.k = k;
   c.L = L;
   [c.xf, c.yf, c.thf] = circline(L, x0, y0, th0, k);
+  
 end
 
 % Create a structure representing a Dubins curve (composed by three arcs)
@@ -135,7 +136,10 @@ function bool = check(s1, k0, s2, k1, s3, k2, th0, thf)
            + s2 * sinc((1/2.) * k1 * s2) * sin(th0 + k0 * s1 + (1/2.) * k1 * s2) ...
            + s3 * sinc((1/2.) * k2 * s3) * sin(th0 + k0 * s1 + k1 * s2 + (1/2.) * k2 * s3) - yf;
   eq3 = rangeSymm(k0 * s1 + k1 * s2 + k2 * s3 + th0 - thf);
-
+  disp(eq1);
+  disp(eq2);
+  disp(eq3);
+  disp(eq1==0);
   Lpos = (s1 > 0) || (s2 > 0) || (s3 > 0);
   bool = (sqrt(eq1 * eq1 + eq2 * eq2 + eq3 * eq3) < 1.e-6) && Lpos;
 end

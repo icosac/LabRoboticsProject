@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-#include <stdarg.h>
+#include <cstdarg> //#include <stdarg.h>
 #include <sstream>
 #include <string>
 

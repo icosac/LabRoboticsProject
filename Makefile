@@ -32,7 +32,8 @@ PROVA=dubins
 prova: bin/
 	$(clr)
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o src/$(PROVA).o src/$(PROVA).cc $(LDLIBS)
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) src/$(PROVA).o test/$(PROVA)_test.cc -o bin/$(PROVA).out $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o src/utils.o src/utils.cc $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) src/$(PROVA).o src/utils.o test/$(PROVA)_test.cc -o bin/$(PROVA).out $(LDLIBS)
 	./bin/$(PROVA).out
 	
 clean_prova:
