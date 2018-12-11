@@ -7,7 +7,7 @@ float distance(Point p1, Point p2){
 //_______________________________   Object   _______________________________
 string Object::toString(){
     stringstream ss;
-    ss << "objects:\ncenter: [" << center.x << ", " << center.y << "], radius=" << radius << "\n";
+    ss << "center: [" << center.x << ", " << center.y << "], radius=" << radius << "\n";
     if(points.size()>0){
         ss << points.size() << " points:\n[";
         for(unsigned i=0; i<points.size(); i++){
@@ -19,9 +19,6 @@ string Object::toString(){
     }
     string s = ss.str();
     return(s);
-}
-void Object::print(){
-    cout << toString();
 }
 
 unsigned Object::size(){
@@ -69,7 +66,15 @@ void Object::computeRadius(){
 }
 
 void Object::offsetting(int offset){
+    ClipperLib::Path srcPoly; //A Path represents a polyline or a polygon
+    ClipperLib::Path solution;
+    for(unsigned i=0; i<points.size(); i++){
+        srcPoly << ClipperLib::IntPoint(points[i].x, points[i].y); //Add the list of points to the Path object using operator <<
+    }
+    /*ClipperLib::ClipperOffset co;
+    co.AddPath(srcPoly, ClipperLib::jtSquare, ClipperLib::etClosedPolygon); //A ClipperOffset object provides the methods to offset a given (open or closed) path
 
+    co.Execute(solution, -7.0);*/
 }
 bool Object::collideApproximate(Point p){
     //cout << "distance: " << distance(p, center) << endl;
@@ -88,18 +93,60 @@ Obstacle::Obstacle(vector<Point> vp){
     }
 }
 string Obstacle::toString(){
-    return("Obstacle " + Object::toString());
+    return("Obstacle:\n" + Object::toString());
 }
 void Obstacle::print(){
     cout << toString();
 }
 
+//_______________________________   Victim   _______________________________
+Victim::Victim(vector<Point> vp, int _value){
+    points = vp;
+    value = _value;
+    if(vp.size()==0){
+        center = Point(-1, -1);
+        radius = -1.0;
+    } else{
+        computeCenter();
+        computeRadius();
+    }
+}
+
+string Victim::toString(){
+    stringstream ss;
+    ss << "Victim number " << value << ":\n";
+    return(ss.str() + Object::toString());
+}
+void Victim::print(){
+    cout << toString();
+}
+
+/*/
+int main(){
+    // code taken from: http://www.angusj.com/delphi/clipper/documentation/Docs/Units/ClipperLib/Classes/ClipperOffset/_Body.htm
+    ClipperLib::Path subj;
+    ClipperLib::Paths solution;
+    subj << 
+        ClipperLib::IntPoint(348,257) << ClipperLib::IntPoint(364,148) << ClipperLib::IntPoint(362,148) << 
+        ClipperLib::IntPoint(326,241) << ClipperLib::IntPoint(295,219) << ClipperLib::IntPoint(258,88) << 
+        ClipperLib::IntPoint(440,129) << ClipperLib::IntPoint(370,196) << ClipperLib::IntPoint(372,275);
+    ClipperLib::ClipperOffset co;
+    co.AddPath(subj, ClipperLib::jtRound, ClipperLib::etClosedPolygon);
+    co.Execute(solution, -7.0);
+   
+//   //draw solution ...
+//   DrawPolygons(solution, 0x4000FF00, 0xFF009900);
+}/*/
 int main(){
     vector<Point> v;
     v.push_back(Point(1, 1));
     v.push_back(Point(4, 3));
     Obstacle obj(v);
     obj.print();
+    cout << obj.collideApproximate(Point(6, 1)) << endl << endl;
+
+    Victim vict(v, 3);
+    vict.print();
     cout << obj.collideApproximate(Point(6, 1)) << endl;
 return(0);   
-}/*/
+}//*/

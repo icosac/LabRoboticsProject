@@ -8,6 +8,7 @@
 
 #include <opencv2/core.hpp>
 #include <opencv2/opencv.hpp>
+#include "../clipper/clipper.hpp"
 
 using namespace cv;
 using namespace std;
@@ -39,28 +40,34 @@ class Obstacle: public Object{
     string toString();
     void print();
 
-    void offsetting(){
-        cout << "A\n";
-    }
+    //void offsetting();
     bool collide(Point p){
         cout << "The function 'collide' now return always true\n";
         return(true);
     }
 };
 
-/*
+
 class Victim: public Object{
 public:
-    Victim();
-    Victim(vector<Point> vp);
+    Victim(vector<Point> vp, int _value);
+    string toString();
+    void print();
 
-    void offsetting();
-    bool collideApproximate(Point p);
-    bool collide(Point p);
+    //void offsetting();
+    bool collide(Point p){
+        cout << "The function 'collide' now return always true\n";
+        return(true);
+    }
+
+    int getValue()
+        {return(value);}
+    void setValue(int v)
+        {value=v;}
 
 protected:
     int value;
-};*/
+};
 
 #endif
 
