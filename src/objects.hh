@@ -16,7 +16,6 @@ using namespace std;
 class Object{
     public:
         string toString();
-        void print();
 
         unsigned size();
         unsigned nPoint();
@@ -46,7 +45,6 @@ class Obstacle: public Object{
         return(true);
     }
 };
-
 
 class Victim: public Object{
 public:

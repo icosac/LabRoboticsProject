@@ -121,7 +121,7 @@ void Victim::print(){
     cout << toString();
 }
 
-/*/
+//
 int main(){
     // code taken from: http://www.angusj.com/delphi/clipper/documentation/Docs/Units/ClipperLib/Classes/ClipperOffset/_Body.htm
     ClipperLib::Path subj;
