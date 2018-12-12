@@ -354,12 +354,7 @@ public:
     double _phi=atan2(dy, dx);
     Angle phi= Angle(_phi, Angle::RAD);
 
-    double lambda=sqrt(pow2(dx)+pow2(dy));
-
-    double C = dx /lambda;
-    double S = dy /lambda;
-
-    lambda /= 2;
+    double lambda=sqrt(pow2(dx)+pow2(dy))/2; //hypt
 
     Angle sc_th0 = Angle (Curve<T>::begin().angle().get()-phi.get(), Angle::RAD);
     Angle sc_th1 = Angle (Curve<T>::end().angle().get()-phi.get(), Angle::RAD);

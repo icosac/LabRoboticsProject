@@ -333,6 +333,23 @@ public:
       return 0.0;
     }
   }
+
+  /*! \brief Cast to int
+      \returns The value in RAD of the angle casted to int
+  */
+  operator int()    const { return (int)    toRad(); }
+  /*! \brief Cast to double
+      \returns The value in RAD of the angle casted to double
+  */
+  operator double() const { return (double) toRad(); }
+  /*! \brief Cast to float
+      \returns The value in RAD of the angle casted to float
+  */
+  operator float()  const { return (float)  toRad(); }
+  /*! \brief Cast to long
+      \returns The value in RAD of the angle casted to long
+  */
+  operator long()   const { return (long)   toRad(); }
   
   stringstream to_string () const {
     stringstream out;
