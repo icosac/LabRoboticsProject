@@ -73,12 +73,12 @@ static double sinc(double t) {
     return sin(t)/t;
 }
 
-static Configuration2<double> circline (double _L,
-                                        Configuration2<double> _P0,
-                                        double _K){
+Configuration2<double> circline(double _L,
+                                Configuration2<double> _P0,
+                                double _K){
   double x=_P0.x()+_L*sinc(_K*_L/2.0) * cos(_P0.angle().get()+_K*_L/2);
   double y=_P0.y()+_L*sinc(_K*_L/2.0) * sin(_P0.angle().get()+_K*_L/2);
-  Angle th=_P0.angle()+Angle(_K, Angle::RAD)*_L;
+  Angle th=_P0.angle()+Angle(_K*_L, Angle::RAD);
   return Configuration2<double>(x, y, th);
 }
 
@@ -115,7 +115,7 @@ public:
 #endif
 
   T1 getK   () const { return K; }
-  T1 lenght () const { return L; }
+  T1 length () const { return L; }
 
   stringstream to_string() const {
     stringstream out;
@@ -139,6 +139,7 @@ class Dubins : protected Curve<T>
 {
 private:
   double Kmax, L;
+  int pid;
   DubinsArc<> A1, A2, A3;
 
   using Curve<T>::Curve;
@@ -154,7 +155,8 @@ public:
           const Configuration2<T> _P1,
           const double _K=KMAX) :
   Curve<T>(_P0, _P1), Kmax(_K) {
-    if (shortest_path()<0){
+    pid=shortest_path();
+    if (pid<0){
       A1=DubinsArc<>();
       A2=DubinsArc<>();
       A3=DubinsArc<>();
@@ -167,7 +169,8 @@ public:
           const Angle _th1,
           const double _K=KMAX) :
   Curve<T>(_P0, _P1, _th0, _th1), Kmax(_K) {
-    if (shortest_path()<0){
+    pid=shortest_path();
+    if (pid<0){
       A1=DubinsArc<>();
       A2=DubinsArc<>();
       A3=DubinsArc<>();
@@ -180,7 +183,8 @@ public:
           const Angle _th1,
           const double _K=KMAX) :
   Curve<T>(x0, y0, _th0, x1, y1, _th1), Kmax(_K) {
-    if (shortest_path()<0){
+    pid=shortest_path();
+    if (pid<0){
       A1=DubinsArc<>();
       A2=DubinsArc<>();
       A3=DubinsArc<>();
@@ -188,7 +192,8 @@ public:
   }
 
   double getKMax  () const { return Kmax; }
-  double lenght   () const { return L; }
+  double length   () const { return L; }
+  double getId    ()  { return pid; }
 
   DubinsArc<> getA1() const { return A1; }
   DubinsArc<> getA2() const { return A2; }
@@ -196,154 +201,124 @@ public:
 
   Tuple<double> LSL (Angle th0, Angle th1, double _kmax)
   {
-    double invK = 1/_kmax;
-    double C = th1.cos()-th0.cos();
-    double S = 2*_kmax + th0.sin()-th1.sin();
-
-    Angle temp1 (atan2(C,S), Angle::RAD);
-    double sc_s1 = invK*(temp1-th0).get();
-
-    double temp2 = 2+4*pow2(_kmax) -2*(th0-th1).cos()+4*_kmax*(th0.sin()-th1.sin());
-    if (temp2<0){
-      return Tuple<double>(0);
-      TOFILE("data/test/CC_LSL.test", "0\n");
+    double C=th1.cos()-th0.cos();
+    double S=2*_kmax+th0.sin()-th1.sin();
+    
+    double temp1=2+4*pow2(_kmax)-2*(th0-th1).cos()+4*_kmax*(th0.sin()-th1.sin());
+    
+    if (temp1<0){
+      return Tuple<double> (0);
     }
-    double sc_s2 = invK * sqrt(temp2);
-    double sc_s3 = invK*(th1-temp1).get();
-
-#if defined DEBUG  && defined REALLY_DEBUG
-    char output [256];
-    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
-    TOFILE("data/test/CC_LSL.test", output);
-#endif
+    
+    double invK=1/_kmax;
+    double sc_s1=Angle(atan2(C,S)-th0.get(), Angle::RAD).get()*invK;
+    double sc_s2=invK*sqrt(temp1);
+    double sc_s3=Angle(th1.get()-atan2(C,S), Angle::RAD).get()*invK;
+    
     return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
   Tuple<double> RSR (Angle th0, Angle th1, double _kmax)
   {
-    double invK = 1/_kmax;
-    double C = th0.cos()-th1.cos();
-    double S = 2*_kmax - th0.sin()+th1.sin();
-
-    Angle temp1 (atan2(C,S), Angle::RAD);
-    double sc_s1 = invK*(th0-temp1).get();
-
-    double temp2 = 2+4*pow2(_kmax) -2*(th0-th1).cos()-4*_kmax*(th0.sin()-th1.sin());
-    if (temp2<0){
-      TOFILE("data/test/CC_RSR.test", "0\n");
-      return Tuple<double>(0);
+    double C=th0.cos()-th1.cos();
+    double S=2*_kmax-th0.sin()+th1.sin();
+    
+    double temp1=2+4*pow2(_kmax)-2*(th0-th1).cos()-4*_kmax*(th0.sin()-th1.sin());
+    
+    if (temp1<0){
+      return Tuple<double> (0);
     }
-    double sc_s2 = invK * sqrt(temp2);
-    double sc_s3 = invK*(temp1-th1).get();
-
-#if defined DEBUG && defined REALLY_DEBUG
-    char output [256];
-    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
-    TOFILE("data/test/CC_RSR.test", output);
-#endif
+    
+    double invK=1/_kmax;
+    double sc_s1=Angle(th0.get()-atan2(C,S), Angle::RAD).get()*invK;
+    double sc_s2=invK*sqrt(temp1);
+    double sc_s3=Angle(atan2(C,S)-th1.get(), Angle::RAD).get()*invK;
+    
     return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
   Tuple<double> LSR (Angle th0, Angle th1, double _kmax)
   {
-    double invK = 1/_kmax;
     double C = th0.cos()+th1.cos();
-    double S = 2*_kmax + th0.sin()+th1.sin();
-
-    Angle temp1 (atan2(-C,S), Angle::RAD);
-
-    double temp2 = 4*pow2(_kmax) - 2 + 2*(th0-th1).cos() + 4*_kmax * (th0.sin() + th1.sin());
-    if (temp2<0){
-      TOFILE("data/test/CC_LSR.test", "0\n");
-      return Tuple<double>(0);
+    double S=2*_kmax+th0.sin()+th1.sin();
+    
+    double temp1=-2+4*pow2(_kmax)+2*(th0-th1).cos()+4*_kmax*(th0.sin()+th1.sin());
+    if (temp1<0){
+      return Tuple<double> (0);
     }
-    double sc_s2 = invK * sqrt(temp2);
-    Angle temp3 = Angle(-atan2(-2, sc_s2*_kmax), Angle::RAD);
-    double sc_s1 = invK * (temp1+temp3-th0).get();
-    double sc_s3 = invK * (temp1+temp3-th1).get();
-
-#if defined DEBUG && defined REALLY_DEBUG
-    char output [256];
-    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
-    TOFILE("data/test/CC_LSR.test", output);
-#endif
-    return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
+    
+    double invK=1/_kmax;
+    
+    double sc_s2=invK*sqrt(temp1);
+    double sc_s1= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th0.get(), Angle::RAD).get()*invK;
+    double sc_s3= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th1.get(), Angle::RAD).get()*invK;
+    
+    return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
   Tuple<double> RSL (Angle th0, Angle th1, double _kmax)
   {
-    double invK = 1/_kmax;
     double C = th0.cos()+th1.cos();
-    double S = 2*_kmax - th0.sin()-th1.sin();
-
-    Angle temp1 (atan2(C,S), Angle::RAD);
-
-    double temp2 = 4*pow2(_kmax) - 2 + 2*(th0-th1).cos() + 4*_kmax*(th0.sin() + th1.sin());
-    if (temp2<0){
-      TOFILE("data/test/CC_RSL.test", "0\n");
-      return Tuple<double>(0);
+    double S=2*_kmax-th0.sin()-th1.sin();
+    
+    double temp1=-2+4*pow2(_kmax)+2*(th0-th1).cos()-4*_kmax*(th0.sin()+th1.sin());
+    if (temp1<0){
+      return Tuple<double> (0);
     }
-    double sc_s2 = invK * sqrt(temp2);
-    Angle temp3 = Angle(-atan2(-2, sc_s2*_kmax), Angle::RAD);
-    double sc_s1 = invK * ((th0-temp1+temp3)).get();
-    double sc_s3 = invK * ((th1-temp1+temp3)).get();
-
-#if defined DEBUG && defined REALLY_DEBUG
-    char output [256];
-    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
-    TOFILE("data/test/CC_RSL.test", output);
-#endif
-    return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
+    
+    double invK=1/_kmax;
+    
+    double sc_s2=invK*sqrt(temp1);
+    double sc_s1= Angle(th0.get()-atan2(C,S)+atan2(2, _kmax*sc_s2), Angle::RAD).get()*invK;
+    double sc_s3= Angle(th1.get()-atan2(C,S)+atan2(2, _kmax*sc_s2), Angle::RAD).get()*invK;
+    
+    return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
   Tuple<double> RLR (Angle th0, Angle th1, double _kmax)
   {
-    double invK = 1/_kmax;
-    double C = th0.cos()-th1.cos();
-    double S = 2*_kmax - th0.sin()+th1.sin();
-
-    Angle temp1 (atan2(C,S), Angle::RAD);
-    double temp2 = 0.125*(6 - 4*pow2(_kmax) + 2*(th0-th1).cos() + 4*_kmax*(th0.sin()-th1.sin()));
-    if (std::abs(temp2)>1){
-      TOFILE("data/test/CC_RLR.test", "0\n");
-      return Tuple<double>(0);
+    double C=th0.cos()-th1.cos();
+    double S=2*_kmax-th0.sin()+th1.sin();
+    
+    double temp1=0.125*(6-4*pow2(_kmax)+2*(th0-th1).cos()+4*_kmax*(th0.sin()-th1.sin()));
+    
+    if (fabs(temp1)-Epsi>1.0){
+      return Tuple<double> (0);
     }
 
-    double sc_s2 = invK*(Angle(2*M_PI-acos(temp2), Angle::RAD).get());
-    double sc_s1 = invK*(th0-temp1+Angle(sc_s2*(0.5*_kmax), Angle::RAD)).get();
-    double sc_s3 = invK*(th1-th0+Angle(sc_s2-sc_s1, Angle::RAD)*_kmax).get();
-
-#if defined DEBUG && defined REALLY_DEBUG
-    char output [256];
-    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
-    TOFILE("data/test/CC_RLR.test", output);
-#endif
-    return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
+    if (equal(fabs(temp1), 1.0) ){
+      temp1=round(temp1);
+    }
+    
+    double invK=1/_kmax;
+    double sc_s2 = Angle(2*M_PI-acos(temp1), Angle::RAD).get()*invK;
+    double sc_s1 = Angle(th0.get()-atan2(C, S)+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
+    double sc_s3 = Angle(th0.get()-th1.get()+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
+    
+    return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
   Tuple<double> LRL (Angle th0, Angle th1, double _kmax)
   {
-    double invK = 1/_kmax;
-    double C = th1.cos()-th0.cos();
-    double S = 2*_kmax + th0.sin()-th1.sin();
+    double C=th1.cos()-th0.cos();
+    double S=2*_kmax+th0.sin()-th1.sin();
+    
+    double temp1=0.125*(6-4*pow2(_kmax)+2*(th0-th1).cos()-4*_kmax*(th0.sin()-th1.sin()));
 
-    Angle temp1 (atan2(C,S), Angle::RAD);
-    double temp2 = 0.125*(6 - 4*pow2(_kmax) + 2*(th0-th1).cos() - 4*_kmax*(th0.sin()-th1.sin()));
-
-    if (std::abs(temp2)>1){
-      TOFILE("data/test/CC_LRL.test", "0\n");
-      return Tuple<double>(0);
+    if (fabs(temp1)-Epsi>1.0){
+      return Tuple<double> (0);
     }
-    double sc_s2 = invK*(Angle(2*M_PI-acos(temp2), Angle::RAD)).get();
-    double sc_s1 = invK*(temp1-th0+Angle(sc_s2*(0.5*_kmax), Angle::RAD)).get();
-    double sc_s3 = invK*(th1-th0+Angle(sc_s2-sc_s1, Angle::RAD)*_kmax).get();
 
-#if defined DEBUG && defined REALLY_DEBUG
-    char output [256];
-    sprintf(output, "%f, %f, %f", sc_s1, sc_s2, sc_s3);
-    TOFILE("data/test/CC_LRL.test", output);
-#endif
-    return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
+    if (equal(fabs(temp1), 1.0) ){
+      temp1=round(temp1);
+    }
+
+    double invK=1/_kmax;
+    double sc_s2 = Angle(2*M_PI-acos(temp1), Angle::RAD).get()*invK;
+    double sc_s1 = Angle(atan2(C, S)-th0.get()+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
+    double sc_s3 = Angle(th1.get()-th0.get()+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
+    
+    return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
   Tuple<double> scaleToStandard ()
@@ -356,8 +331,8 @@ public:
 
     double lambda=sqrt(pow2(dx)+pow2(dy))/2; //hypt
 
-    Angle sc_th0 = Angle (Curve<T>::begin().angle().get()-phi.get(), Angle::RAD);
-    Angle sc_th1 = Angle (Curve<T>::end().angle().get()-phi.get(), Angle::RAD);
+    Angle sc_th0 = Curve<T>::begin().angle()-phi;
+    Angle sc_th1 = Curve<T>::end().angle()-phi;
     double sc_Kmax = Kmax*lambda;
 
     return Tuple<double> (4, sc_th0.get(), sc_th1.get(), sc_Kmax, lambda);
@@ -382,8 +357,7 @@ public:
     double sc_Kmax    =  scaled.get(2);
     double sc_lambda  =  scaled.get(3);
 
-    //TODO Missing ksigns matrix
-    double Length = -1.0;
+    double Length = DInf;
     double sc_s1  = 0.0;
     double sc_s2  = 0.0;
     double sc_s3  = 0.0;
@@ -401,8 +375,8 @@ public:
     for (auto value : res){
       if (value.size()>0){
         double appL=value.get(0)+value.get(1)+value.get(2);
-        if (appL<Length || first_go){
-          first_go=false;
+        if (appL<Length){
+          // first_go=false;
           Length = appL;
           sc_s1=value.get(0);
           sc_s2=value.get(1);
@@ -442,7 +416,7 @@ public:
       _P1 = circline(L, A2.begin(), K);
       A3=DubinsArc<>(A2.begin(), _P1, K, L);
 #endif
-      L=A1.lenght()+A2.lenght()+A3.lenght(); //Save total length of Dubins curve
+      L=A1.length()+A2.length()+A3.length(); //Save total length of Dubins curve
 
       bool check_ = check(sc_s1, ksigns[pidx][0]*sc_Kmax,
                           sc_s2, ksigns[pidx][1]*sc_Kmax,

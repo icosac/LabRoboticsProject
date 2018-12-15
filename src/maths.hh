@@ -10,6 +10,19 @@
 
 using namespace std;
 
+#include<limits>
+#define DInf numeric_limits<double>::infinity()
+#define Epsi numeric_limits<double>::epsilon()
+/*!\brief Function to compare two dubles as \f$\vert A-B\vert < \varepsilon\f$.
+   \param [in] A First number.
+   \param [in] B Second number.
+   \param [in] E \f$\varepsilon\f$, set at `std::numeric_limits<double>::epsilon()` as default.
+   \returns `true` if \f$\vert A-B\vert < \varepsilon\f$, `false` otherwise.
+*/
+inline bool equal (const double& A, const double& B, const double E=Epsi) {
+  return std::fabs(A-B)<E;
+}
+
 /*| \brief Simple function that takes an input \f$x\f$ and returns \f$x^2\f$.
 		\tparam T The type of the input and the output;
 		\param[in] x The value \f$x\f$
@@ -23,6 +36,7 @@ inline T pow2 (const T x){
 #define DEGTORAD M_PI/180
 #define RADTODEG 180/M_PI
 
+
 /*! \brief This class allows to save and handle angles. It supports DEG and RAD, 
 		operations such as addition and subtraction with operators overloading, 
 		conversion from RAD to DEG and viceversa and normalization of the angle. 
@@ -31,7 +45,7 @@ class Angle
 {
 public:
   enum ANGLE_TYPE {DEG, RAD, INVALID}; ///<The type of angle the class can handle. DEG and RAD are self-expalantory, while INVALID is used as a flag in case of problems.
-  
+
 private:
   ANGLE_TYPE type;
   double th;
@@ -115,7 +129,7 @@ public:
     return !isnan(th) && isfinite(th);
   }
 
-  /*!	\brief Normalize the angle, that is to set it in \f$[0, 2\pi]\f$ or \f$[0, 360°]\f$. 
+  /*!	\brief Normalize the angle, that is to set it in \f$[0, 2\pi)\f$ or \f$[0, 360°)\f$. 
       Moreover it check if the value is infinite or NaN. In this case the `type` is set to `INVALID`.
   */
   void normalize(){
@@ -134,11 +148,11 @@ public:
           th=0;
         }
       }
-      while (th>div){
-        th-=div;
-      }
-      while(th<0){
+      while(th<0.0){
         th+=div;
+      }
+      while (th>=div){
+        th-=div;
       }
     }
     else {
@@ -183,7 +197,6 @@ public:
     Angle alpha (dth, type);
     return alpha;
   }
-
   /*! \brief Divide and angle by a costant. In the process a new angle is created so `normalize()` is also called.
       \tparam The type of the dividend.
       \param[in] A The costant to use to divide.
@@ -195,7 +208,6 @@ public:
     Angle alpha (dth, type);
     return alpha;
   }
-
   /*! \brief Copies an angle to this one. In the process a new angle is created so `normalize()` is also called.
   		\param[in] A The angle to be copied.
   		\returns The new angle. 
@@ -204,6 +216,15 @@ public:
     th=phi.get();
     type=phi.getType();
     return *this;
+  }
+  /*! This function takes the value in radiants of two angles, an using the equal function 
+      for `double` calculare if they are equal or not.
+      \param[in] th0 The first angle.
+      \param[in] th1 The second angle.
+      \returns `true` if the two angle are equal, `false` otherwise. 
+  */
+  bool equal (const Angle& th0, const Angle& th1){
+    return ::equal(th0.toRad(), th1.toRad()) ? true : false; 
   }
   
   /*! This function overload the operator +. It simply calls the `add()` function.
@@ -286,6 +307,20 @@ public:
     Angle alpha=(*this).div(A);
     (*this)=alpha;
     return (*this);
+  }
+  /*! This function overload the operator ==. It simply calls the `equal()` function.
+      \param[in] phi The second angle.
+      \returns `true` if the two angle are equal, `false` otherwise.  
+  */
+  bool operator== (const Angle& phi){
+    return equal(*this, phi);
+  }
+  /*! This function overload the operator ==. It simply calls the `equal()` function and negates it.
+      \param[in] phi The second angle.
+      \returns `false` if the two angle are equal, `true` otherwise.  
+  */
+  bool operator!= (const Angle& phi){
+    return !equal(*this, phi);
   }
 
   /*! \brief Compute the cosine of the angle.
@@ -380,9 +415,12 @@ public:
     out << data.to_string().str();
     return out;
   }
-  
 };
 
+extern const Angle A_2PI = Angle(6.283185, Angle::RAD);
+extern const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);
+extern const Angle A_PI = Angle(M_PI, Angle::RAD);
+extern const Angle A_180 = Angle(180, Angle::DEG);
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 

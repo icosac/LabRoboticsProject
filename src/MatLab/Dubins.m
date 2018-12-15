@@ -5,24 +5,21 @@
 % Reset environment
 close all; clear all; clc;
 
-% fl= fopen("/Users/enrico/Desktop/matlab.txt", "w");
+fl= fopen("../../data/test/ML_all.test", "w");
 
 % value=0;
 Kmax = 1.0;
 x=0; y=0;
 disp("x0, y0, th0, x1, y1, th1, curve");
-for x0=0.0 : 0.1 : 150.0
-  for y0=0.0 : 0.1 : 100.0
-    for th0=0.0 : 0.1 : 2*pi
-      for x1=0.0 : 0.1 : 150.0
-        for y1=0.0 : 0.1 : 100.0
-          for th1=0.0 : 0.1 : 2*pi
-            if (x~=x0 && y~=y0) 
-              x=x0; y=y0;
-              fprintf("%f, %f\n", x, y);
-            end
+for x0=0.0 : 25 : 150.0
+  for y0=0.0 : 25 : 100.0
+    for th0=0.0 : 0.25 : 2*pi
+      for x1=0.0 : 25 : 150.0
+        for y1=0.0 : 25 : 100.0
+          for th1=0.0 : 0.25 : 2*pi
+%             x0=0; y0=0; th0=0; x1=0; y1=62; th1=5;
             [pidx, curve] = dubins_shortest_path(x0, y0, th0, x1, y1, th1, Kmax);
-            fprintf(fl, "%f, %f, %f, %f, %f, %f, %d\n", x0, y0, th0, x1, y1, th1, pidx); 
+              fprintf(fl, "%f, %f, %f, %f, %f, %f, %d\n", x0, y0, th0, x1, y1, th1, pidx);  
             if pidx>0
                fprintf(fl, "a1: %f, %f, %f, %f, %f, %f, %f, %f\n",curve.a1.x0, curve.a1.y0, curve.a1.th0, curve.a1.xf, curve.a1.yf, curve.a1.thf, curve.a1.L, curve.a1.k);
                fprintf(fl, "a2: %f, %f, %f, %f, %f, %f, %f, %f\n",curve.a2.x0, curve.a2.y0, curve.a2.th0, curve.a2.xf, curve.a2.yf, curve.a2.thf, curve.a2.L, curve.a2.k);
@@ -70,7 +67,6 @@ function c = dubinsarc(x0, y0, th0, k, L)
   c.k = k;
   c.L = L;
   [c.xf, c.yf, c.thf] = circline(L, x0, y0, th0, k);
-  
 end
 
 % Create a structure representing a Dubins curve (composed by three arcs)
@@ -136,10 +132,10 @@ function bool = check(s1, k0, s2, k1, s3, k2, th0, thf)
            + s2 * sinc((1/2.) * k1 * s2) * sin(th0 + k0 * s1 + (1/2.) * k1 * s2) ...
            + s3 * sinc((1/2.) * k2 * s3) * sin(th0 + k0 * s1 + k1 * s2 + (1/2.) * k2 * s3) - yf;
   eq3 = rangeSymm(k0 * s1 + k1 * s2 + k2 * s3 + th0 - thf);
-  disp(eq1);
-  disp(eq2);
-  disp(eq3);
-  disp(eq1==0);
+%   disp(eq1);
+%   disp(eq2);
+%   disp(eq3);
+%   disp(eq1==0);
   Lpos = (s1 > 0) || (s2 > 0) || (s3 > 0);
   bool = (sqrt(eq1 * eq1 + eq2 * eq2 + eq3 * eq3) < 1.e-6) && Lpos;
 end

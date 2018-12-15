@@ -27,19 +27,19 @@ Tuple<double> scaleToStandard (Curve<T> curve)
 }
 
 int main (){
-  FILE* fl=fopen("../data/test/CC_scale.test", "w");
+  FILE* fl=fopen("data/test/CC_scale.test", "w");
 
-  for (double x0 = 0; x0 <= 150; x0+=2)
+  for (double x0 = 0; x0 <= 150; x0+=20)
   {
-    for (double y0 = 0; y0 <= 100; y0+=2)
+    for (double y0 = 0; y0 <= 100; y0+=20)
     {
-      for (double th0 = 0; th0 <= 2*M_PI; th0+=0.2)
+      for (double th0 = 0; th0 <= 2*M_PI; th0+=0.25)
       {
-        for (double x1 = 0; x1 <= 150; x1+=2)
+        for (double x1 = 0; x1 <= 150; x1+=20)
         {
-          for (double y1 = 0; y1 <= 100; y1+=2)
+          for (double y1 = 0; y1 <= 100; y1+=20)
           {
-            for (double th1 = 0; th1 <= 2*M_PI; th1+=0.2)
+            for (double th1 = 0; th1 <= 2*M_PI; th1+=0.25)
             {
               Curve <double> c (Configuration2<double> (x0, y0, Angle(th0, Angle::RAD)), 
                                 Configuration2<double> (x1, y1, Angle(th1, Angle::RAD)));

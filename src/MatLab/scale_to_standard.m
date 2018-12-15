@@ -1,17 +1,17 @@
 close all; clear all; clc;
 
-fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/scale.test", "w");
+fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_scale.test", "w");
 
 value=0;
 Kmax = 1.0;
 x=0; y=0; X=0; Y=0; 
 fprintf(fl, "x0, y0, th0, x1, y1, th1, ok, sc_s1, sc_s2, sc_s3\n");
-for x0=0.0 : 2 : 150.0
-  for y0=0.0 : 2 : 100.0
-    for th0=0.0 : 0.2 : 2*pi
-      for x1=0.0 : 2 : 150.0
-        for y1=0.0 : 2 : 100.0
-          for th1=0.0 : 0.2 : 2*pi
+for x0=0.0 : 20 : 150.0
+  for y0=0.0 : 20 : 100.0
+    for th0=0.0 : 0.25 : 2*pi
+      for x1=0.0 : 20 : 150.0
+        for y1=0.0 : 20 : 100.0
+          for th1=0.0 : 0.25 : 2*pi
             % if (x~=x0 || y~=y0 || X~=x1 || Y~=y1) 
             %   x=x0; y=y0; X=x1; Y=y1; 
             %   fprintf("x0: %f, y0: %f, x1: %f, y1: %f\n", x, y, X, Y);

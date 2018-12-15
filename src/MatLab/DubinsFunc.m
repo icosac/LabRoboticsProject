@@ -5,54 +5,60 @@
 % Reset environment
 close all; clear all; clc;
 
-fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/DubinsTest_matlab.test", "w");
+% fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/DubinsTest_matlab.test", "w");
 
 % value=0;
 for th0=0.0 : 0.1 : 2*pi
   for th1=0.0 : 0.1 : 2*pi
     for kmax=0.0 : 0.1 : 5
+      fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_LSL.test", "a");
       [ok, sc_s1, sc_s2, sc_s3]=LSL(th0, th1, kmax);
       if ok==true
         fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "<>\n");
+        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
-
+      fclose(fl); fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_LSR.test", "a");
       [ok, sc_s1, sc_s2, sc_s3]=LSR(th0, th1, kmax);
       if ok==true
         fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "<>\n");
+        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
-      
+
+      fclose(fl); fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_RSR.test", "a");      
       [ok, sc_s1, sc_s2, sc_s3]=RSR(th0, th1, kmax);
       if ok==true
         fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "<>\n");
+        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
       
+      fclose(fl); fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_RSL.test", "a");      
       [ok, sc_s1, sc_s2, sc_s3]=RSL(th0, th1, kmax);
       if ok==true
         fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "<>\n");
+        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
       
+      fclose(fl); fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_LRL.test", "a");      
       [ok, sc_s1, sc_s2, sc_s3]=LRL(th0, th1, kmax);
       if ok==true
         fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "<>\n");
+        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
 
+      fclose(fl); fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_RLR.test", "a");      
       [ok, sc_s1, sc_s2, sc_s3]=RLR(th0, th1, kmax);
       if ok==true
         fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "<>\n");
+        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
       fprintf(fl, "\n");
+      fclose(fl);
     end
   end
 end
