@@ -17,27 +17,16 @@ DOX_CONF_FILE=Doxyfile
 MKDIR=mkdir -p
 
 #files that contain code
+#dubins and maths are only libraries
 SRC=src/calibration.cc\
 	src/detection.cc\
 	src/unwrapping.cc\
-	src/utils.cc\
-	src/maths.cc
+	src/utils.cc
 
 #object files
 OBJ=$(SRC:.cc=.o)
 
 clr=clear && clear && clear
-
-PROVA=dubins
-prova: bin/
-	$(clr)
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o src/$(PROVA).o src/$(PROVA).cc $(LDLIBS)
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o src/utils.o src/utils.cc $(LDLIBS)
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) src/$(PROVA).o src/utils.o test/$(PROVA)_test.cc -o bin/$(PROVA).out $(LDLIBS)
-	./bin/$(PROVA).out
-	
-clean_prova:
-	rm -f bin/maths.out
 
 #general function
 src/%.o: src/%.cc
@@ -50,13 +39,13 @@ bin/:
 	$(MKDIR) bin
 
 #compile executables
-calibration: src/calibration.o bin/
+calibration: src/calibration.o src/util.o bin/
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/utils.o src/$@.o src/$@_run.cc $(LDLIBS)
 
-unwrapping: src/unwrapping.o bin/
+unwrapping: src/unwrapping.o src/util.o bin/
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/utils.o src/$@.o src/$@_run.cc $(LDLIBS)
 
-detection: src/detection.o bin/
+detection: src/detection.o src/util.o bin/
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/utils.o src/$@.o src/$@_run.cc $(LDLIBS)
 
 #run executables

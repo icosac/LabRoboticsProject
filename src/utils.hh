@@ -2,23 +2,23 @@
 #define UTILS_HH
 
 
-// #include <tesseract/baseapi.h> // Tesseract headers
-// #include <leptonica/allheaders.h>
+#include <tesseract/baseapi.h> // Tesseract headers
+#include <leptonica/allheaders.h>
 
-// #include <opencv2/highgui.hpp>
-// #include <opencv2/core.hpp>
-// #include <opencv2/opencv.hpp>
-// #include <opencv2/imgcodecs.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/imgcodecs.hpp>
 
 #ifdef DEBUG
 #include <cstdio>
 #include <iostream>
 #endif
 
-// using namespace cv;
+using namespace cv;
 using namespace std;
 
-// void my_imshow(const char* win_name, Mat img, bool reset=false);
+void my_imshow(const char* win_name, Mat img, bool reset=false);
 
 void TOFILE(const char* fl_name, const char* msg);
 void CLEARFILE(const char* fl_name);
