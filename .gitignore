@@ -12,6 +12,7 @@ Doxyfile
 .DS_store
 doc/
 #file without extension?
+data/test/
 
 # Except the files
 #!Makefile
