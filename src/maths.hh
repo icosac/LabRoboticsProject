@@ -262,7 +262,7 @@ public:
     return div(A);
   }
 
-  /*! This function overload the operator -. It simply calls the `sub()` function.
+  /*! This function overload the operator -. It simply calls the `copy()` function.
 			\param[in] phi The angle to be copied.
   		\returns The new angle. 
   */  
