@@ -1,0 +1,7 @@
+/home/stefano/Desktop/Laboratory of applied of robotics/LabRoboticsProject/clipper/CMakeFiles/install/strip.dir
+/home/stefano/Desktop/Laboratory of applied of robotics/LabRoboticsProject/clipper/CMakeFiles/edit_cache.dir
+/home/stefano/Desktop/Laboratory of applied of robotics/LabRoboticsProject/clipper/CMakeFiles/install.dir
+/home/stefano/Desktop/Laboratory of applied of robotics/LabRoboticsProject/clipper/CMakeFiles/rebuild_cache.dir
+/home/stefano/Desktop/Laboratory of applied of robotics/LabRoboticsProject/clipper/CMakeFiles/list_install_components.dir
+/home/stefano/Desktop/Laboratory of applied of robotics/LabRoboticsProject/clipper/CMakeFiles/polyclipping.dir
+/home/stefano/Desktop/Laboratory of applied of robotics/LabRoboticsProject/clipper/CMakeFiles/install/local.dir
