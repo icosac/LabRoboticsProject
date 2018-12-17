@@ -14,6 +14,7 @@
 #endif
 
 #define MORE_FUNCTIONS
+#define PIECE_LENGTH=2 //cm
 
 using namespace std;
 
@@ -116,6 +117,29 @@ public:
 
   T1 getK   () const { return K; }
   T1 length () const { return L; }
+
+  Tuple<Point2<T2> > splitIt (int _arch=0, 
+                              T2 _L=PIECE_LENGTH){
+    Tuple<Point2<T2> > ret;
+    Configuration2<T2> _old=begin();
+    double sum=0;
+
+    ret.add(_old); 
+    sum+=_L;
+
+    while(true){
+      Configuration2<T2> _new=circline(_L, _old, getK());
+      ret.add(_new);
+      _old=_new;
+      sum+=_L;
+      if (sum-length()>0) {
+        ret.add(end());
+        break;
+      }
+    }
+
+    return ret;
+  }
 
   stringstream to_string() const {
     stringstream out;
@@ -465,6 +489,31 @@ public:
       out = out - 2 * M_PI;
     }
     return out;
+  }
+
+  Tuple<Tuple<Point2<int> > > splitIt (int _arch=0, 
+                               double _L=PIECE_LENGTH){
+    Tuple<Tuple<Point2<int> > > v ();
+    switch(_arch){
+      case 1: {
+        v.add(A1.splitIt(_L));
+        break;
+      }
+      case 2: {
+        v.add(A2.splitIt(_L));
+        break;
+      }
+      case 3: {
+        v.add(A3.splitIt(_L));
+        break;
+      }
+      default: {
+        v.add(A1.splitIt(_L));
+        v.add(A2.splitIt(_L));
+        v.add(A3.splitIt(_L));
+      }
+      return v;
+    }
   }
 
   stringstream to_string() const {
