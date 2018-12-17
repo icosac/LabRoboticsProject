@@ -262,7 +262,7 @@ public:
     return div(A);
   }
 
-  /*! This function overload the operator -. It simply calls the `sub()` function.
+  /*! This function overload the operator =. It simply calls the `copy()` function.
 			\param[in] phi The angle to be copied.
   		\returns The new angle. 
   */  
@@ -599,6 +599,21 @@ public:
     out << data.to_string().str();
     return out;
   }
+
+  template <class T1>
+  operator vector<T1> () const {
+    if (is_same<T, T1>::value){
+      return elements;
+    }
+    else {
+      std::vector<T1> v;
+      for (int i=0; i<size(); i++){
+        v.push_back(elements[i]);
+      }
+      return v;
+    }
+  }
+
 };
 
 
@@ -748,6 +763,37 @@ public:
     return out;
   }
 
+  /*! \brief Copy a point into another one.
+    \param [in] A point to be coppied.
+    \returns this. 
+  */
+  Point2<T> copy (const Point2<T>& A){
+    x(A.x());
+    y(A.y());
+    return *this;
+  }
+  /*! \brief Overload of the = operatore. Just calls `copy`.
+      \param [in] A point to be coppied.
+      \returns this. 
+  */
+  Point2<T> operator= (const Point2<T>& A){
+    copy(A);
+  }
+  /*! \brief Equalize two points.
+      \param [in] A point to be equalized.
+      \returns true if the two points are equal. 
+  */
+  bool equal (const Point2<T>& A){
+    return x()==A.x() && y()==A.y(); 
+  }
+  /*! \brief Overload of the == operator. Just calls `equal`.
+      \param [in] A point to be equalized.
+      \returns true if the two configurations are equal. 
+  */
+  bool operator== (const Point2<T>& A){
+    return equal(A);
+  }
+
   // ~Point2(){delete values;}
 };
 
@@ -792,9 +838,10 @@ public:
     th=_th;
   }
   
-  T1 x() const {return coord.x();} ///<\returns The abscissa coordinate.
-  T1 y() const {return coord.y();} ///<\returns The ordinate coordinate.
-  Angle angle() const {return th;} ///<\returns The angle.
+  Point2<T1>  point() const { return coord; } ///<\returns A `Point2` variable containing the coordinates. 
+  T1          x()     const { return coord.x(); } ///<\returns The abscissa coordinate.
+  T1          y()     const { return coord.y(); } ///<\returns The ordinate coordinate.
+  Angle       angle() const { return th; } ///<\returns The angle.
   
   /*! \brief This function stores a new value for the abscissa. 
   		\param[in] _x The value to be stored.
@@ -935,7 +982,49 @@ public:
     out << data.to_string().str();
     return out;
   }
+
+  template<class T2>
+  operator Point2<T2> () const {
+    if (is_same<T1, T2>::value){
+      return coord;
+    }
+    else {
+      return Point2<T2>((T2)(coord.x()), 
+                        (T2)(coord.y()));
+    }
+  }
   
+  /*! \brief Copy a configuration into another one.
+      \param [in] A Configuration to be coppied.
+      \returns this. 
+  */
+  Configuration2<T1> copy (const Configuration2<T1>& A){
+    coord=A.point();
+    th=A.angle();
+    return *this;
+  }
+  /*! \brief Overload of the = operatore. Just calls `copy`.
+      \param [in] A Configuration to be coppied.
+      \returns this. 
+  */
+  Configuration2<T1> operator= (const Configuration2<T1>& A){
+    return copy(A);
+  }
+  /*! \brief Equalize two configurations.
+      \param [in] A Configuration to be equalized.
+      \returns true if the two configurations are equal. 
+  */
+  bool equal (const Configuration2<T1>& A){
+    return angle()==A.angle() && point()==A.point();
+  }
+  /*! \brief Overload of the == operator. Just calls `equal`.
+      \param [in] A Configuration to be equalized.
+      \returns true if the two configurations are equal. 
+  */
+  bool operator== (const Configuration2<T1>& A){
+    return equal(A);
+  }
+
   // ~Configuration2(){delete coord;}
 };
 
