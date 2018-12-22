@@ -14,7 +14,7 @@
 #endif
 
 #define MORE_FUNCTIONS
-#define PIECE_LENGTH=2 //cm
+#define PIECE_LENGTH 2 //cm
 
 using namespace std;
 
@@ -121,7 +121,7 @@ public:
   Tuple<Point2<T2> > splitIt (int _arch=0, 
                               T2 _L=PIECE_LENGTH){
     Tuple<Point2<T2> > ret;
-    Configuration2<T2> _old=begin();
+    Configuration2<T2> _old=Curve<T2>::begin();
     double sum=0;
 
     ret.add(_old); 
@@ -133,7 +133,7 @@ public:
       _old=_new;
       sum+=_L;
       if (sum-length()>0) {
-        ret.add(end());
+        ret.add(Curve<T2>::end());
         break;
       }
     }
@@ -491,9 +491,10 @@ public:
     return out;
   }
 
-  Tuple<Tuple<Point2<int> > > splitIt (int _arch=0, 
-                               double _L=PIECE_LENGTH){
-    Tuple<Tuple<Point2<int> > > v ();
+  //TODO there are two points that are useless. 
+  Tuple<Tuple<Point2<double> > > splitIt (int _arch=0, 
+                                          double _L=PIECE_LENGTH){
+    Tuple<Tuple<Point2<double> > > v;
     switch(_arch){
       case 1: {
         v.add(A1.splitIt(_L));

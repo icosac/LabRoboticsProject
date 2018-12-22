@@ -5,36 +5,42 @@
 % Reset environment
 close all; clear all; clc;
 
-fl= fopen("../../data/test/ML_all.test", "w");
+global fl;
+fl= fopen("../../data/test/ML_points.test", "w");
 
 % value=0;
 Kmax = 1.0;
-x=0; y=0;
-disp("x0, y0, th0, x1, y1, th1, curve");
-for x0=0.0 : 25 : 150.0
-  for y0=0.0 : 25 : 100.0
-    for th0=0.0 : 0.25 : 2*pi
-      for x1=0.0 : 25 : 150.0
-        for y1=0.0 : 25 : 100.0
-          for th1=0.0 : 0.25 : 2*pi
-%             x0=0; y0=0; th0=0; x1=0; y1=62; th1=5;
-            [pidx, curve] = dubins_shortest_path(x0, y0, th0, x1, y1, th1, Kmax);
-              fprintf(fl, "%f, %f, %f, %f, %f, %f, %d\n", x0, y0, th0, x1, y1, th1, pidx);  
-            if pidx>0
-               fprintf(fl, "a1: %f, %f, %f, %f, %f, %f, %f, %f\n",curve.a1.x0, curve.a1.y0, curve.a1.th0, curve.a1.xf, curve.a1.yf, curve.a1.thf, curve.a1.L, curve.a1.k);
-               fprintf(fl, "a2: %f, %f, %f, %f, %f, %f, %f, %f\n",curve.a2.x0, curve.a2.y0, curve.a2.th0, curve.a2.xf, curve.a2.yf, curve.a2.thf, curve.a2.L, curve.a2.k);
-               fprintf(fl, "a3: %f, %f, %f, %f, %f, %f, %f, %f\n",curve.a3.x0, curve.a3.y0, curve.a3.th0, curve.a3.xf, curve.a3.yf, curve.a3.thf, curve.a3.L, curve.a3.k);
-            end 
+
+% Define problem data
+% x0 = 0; y0 = 0; th0 = pi-0.5;
+% xf = 3.0; yf = 3.0; thf = pi/2;
+
+global POINTS ;
+POINTS=60;
+global LENGTH ;
+% LENGTH = 0.2;
+
+for x0=0 : 25 : 150
+  for y0=0 : 25 : 100
+    for th0=0 : 0.25 : 2*pi
+      for x1=0 : 25 : 150
+        for y1=0 : 25 : 100
+          for th1=0 : 0.25 : 2*pi
+            [pidx, curve]=dubins_shortest_path(x0, y0, th0, x1, y1, th1, Kmax);
+            if pidx>0 
+              LENGTH=curve.L/POINTS;
+              fprintf(fl, "%f, %f, %f, %f, %f, %f, %f\n", x0, y0, th0, x1, y1, th1, LENGTH);
+              % [arc1, arc2, arc3] = split(curve);
+              % printA(arc1, "arc1");
+              % printA(arc2, "arc2");
+              % printA(arc3, "arc3");
+            end
           end
         end
       end
     end
   end
 end
-
-% % Define problem data
-% x0 = 0; y0 = 0; th0 = -2/3*pi;
-% xf = 4; yf = 0; thf = pi/3.0;
 
 
 % % Find optimal Dubins solution
@@ -43,7 +49,11 @@ end
 % % Plot and display solution if valid
 % if pidx > 0
 %  figure; axis equal;
+%  hold on
 %  plotdubins(curve, true, [1 0 0], [0 0 0], [1 0 0]);
+ 
+%  [arc1, arc2, arc3]=split(curve);
+%  plotPoints (arc1, arc2, arc3);
 %  curve.a1
 %  curve.a2
 %  curve.a3
@@ -52,7 +62,51 @@ end
 %  fprintf('Failed!\n');
 % end
 
+function printA (arc, str)
+  global fl;
+  fprintf(fl, '%s  <', str);
+  [m, n] = size (arc);
+  for i=1 : 1 : n
+    fprintf(fl, "(%f, %f)", arc(i).x, arc(i).y);
+    if i~=n
+      fprintf(fl, ", ");
+    end 
+  end 
+  fprintf(fl, ">\n");
+end
 
+
+function [config] = configuration (x0, y0, th0)
+  config.x=x0;
+  config.y=y0;
+  config.th=th0;
+end
+
+function points = splitA (arc) 
+  global LENGTH;
+  summ=0;
+  old=configuration(arc.x0, arc.y0, arc.th0);
+  points=[old];
+  summ=summ+LENGTH;
+
+  while true
+    [x1, y1, th1]=circline(LENGTH, old.x, old.y, old.th, arc.k);
+    new=configuration(x1, y1, th1);
+    points=[points, new];
+    summ=summ+LENGTH;
+    if summ-arc.L > 0
+      points=[points, configuration(arc.xf, arc.yf, arc.thf)];
+      return;
+    end
+    old=new;
+  end
+end
+
+function [points_A1, points_A2, points_A3] = split (curve)
+  points_A1=splitA(curve.a1);
+  points_A2=splitA(curve.a2);
+  points_A3=splitA(curve.a3);
+end 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % Data structures
@@ -335,6 +389,28 @@ function [x, y, th] = circline(s, x0, y0, th0, k)
   x = x0 + s * sinc(k * s / 2.0) * cos(th0 + k * s / 2);
   y = y0 + s * sinc(k * s / 2.0) * sin(th0 + k * s / 2);
   th = mod2pi(th0 + k * s);
+end
+
+function plotPointsArc(arc, pr)
+  [m, n]=size(arc)
+  for i=1 : 1 : n
+    plot(arc(i).x, arc(i).y, pr);
+  end
+  
+
+%   X=[]; Y=[];
+%   for i=1 : 1 : n
+%     X=[X, arc(i).x];
+%     Y=[Y, arc(i).y];
+%   end
+%   scatter(X, Y);
+end
+
+function plotPoints (arc1, arc2, arc3)
+  hold on 
+  plotPointsArc(arc1, 'og');
+  plotPointsArc(arc2, 'ob');
+  plotPointsArc(arc3, 'og');
 end
 
 % Plot an arc (circular or straight) composing a Dubins curve

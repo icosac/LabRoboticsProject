@@ -469,7 +469,7 @@ public:
 			\returns The element in the n-th position or -1 if _n is greater then n or less than 0.
 	*/  
   T get (const int _n) const {
-    return ((_n>=0&&_n<n) ? elements.at(_n) : -1);
+    return ((_n>=0&&_n<size()) ? elements.at(_n) : T());
   }
   
   /*! \brief Adds a value at the end of the list.
