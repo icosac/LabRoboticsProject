@@ -16,24 +16,28 @@ Kmax = 1.0;
 % xf = 3.0; yf = 3.0; thf = pi/2;
 
 global POINTS ;
-POINTS=60;
+POINTS=3;
 global LENGTH ;
-% LENGTH = 0.2;
 
+count=0;
 for x0=0 : 25 : 150
   for y0=0 : 25 : 100
-    for th0=0 : 0.25 : 2*pi
+    for th0=0 : 0.5 : 2*pi
       for x1=0 : 25 : 150
         for y1=0 : 25 : 100
-          for th1=0 : 0.25 : 2*pi
+          for th1=0 : 0.5 : 2*pi
             [pidx, curve]=dubins_shortest_path(x0, y0, th0, x1, y1, th1, Kmax);
             if pidx>0 
               LENGTH=curve.L/POINTS;
               fprintf(fl, "%f, %f, %f, %f, %f, %f, %f\n", x0, y0, th0, x1, y1, th1, LENGTH);
-              % [arc1, arc2, arc3] = split(curve);
-              % printA(arc1, "arc1");
-              % printA(arc2, "arc2");
-              % printA(arc3, "arc3");
+              [arc1, arc2, arc3] = split(curve);
+              printA(arc1, "arc1");
+              printA(arc2, "arc2");
+              printA(arc3, "arc3");
+            end
+            count=count+1;
+            if mod(count,100)==0
+              fprintf("%f, %f, %f, %f, %f, %f, %f\n", x0, y0, th0, x1, y1, th1, LENGTH);
             end
           end
         end
@@ -41,7 +45,6 @@ for x0=0 : 25 : 150
     end
   end
 end
-
 
 % % Find optimal Dubins solution
 % [pidx, curve] = dubins_shortest_path(x0, y0, th0, xf, yf, thf, Kmax);
@@ -51,7 +54,7 @@ end
 %  figure; axis equal;
 %  hold on
 %  plotdubins(curve, true, [1 0 0], [0 0 0], [1 0 0]);
- 
+%  
 %  [arc1, arc2, arc3]=split(curve);
 %  plotPoints (arc1, arc2, arc3);
 %  curve.a1
@@ -87,19 +90,17 @@ function points = splitA (arc)
   summ=0;
   old=configuration(arc.x0, arc.y0, arc.th0);
   points=[old];
-  summ=summ+LENGTH;
 
-  while true
+  while arc.L>summ+LENGTH
     [x1, y1, th1]=circline(LENGTH, old.x, old.y, old.th, arc.k);
     new=configuration(x1, y1, th1);
     points=[points, new];
     summ=summ+LENGTH;
-    if summ-arc.L > 0
-      points=[points, configuration(arc.xf, arc.yf, arc.thf)];
-      return;
-    end
     old=new;
   end
+%   if size(points)>1
+%     points=[points, configuration(arc.xf, arc.yf, arc.thf)];
+%   end
 end
 
 function [points_A1, points_A2, points_A3] = split (curve)

@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <ctime>
 
-#define POINTS 60
+#define POINTS 3
 
 void printA (Tuple<Point2<double> > arc, string st, FILE* fl){
 	fprintf(fl, "%s  <", st.c_str());
@@ -25,13 +25,13 @@ int main (){
   {
     for (double y0 = 0; y0 <= 100; y0+=25)
     {
-      for (double th0 = 0; th0 <= 2*M_PI; th0+=0.25)
+      for (double th0 = 0; th0 <= 2*M_PI; th0+=0.5)
       {
         for (double x1 = 0; x1 <= 150; x1+=25)
         {
           for (double y1 = 0; y1 <= 100; y1+=25)
           {
-            for (double th1 = 0; th1 <= 2*M_PI; th1+=0.25)
+            for (double th1 = 0; th1 <= 2*M_PI; th1+=0.5)
             {
 							
               Dubins<double> d=Dubins<double>(
@@ -42,13 +42,11 @@ int main (){
 							if (id>=0){
 		            fprintf(fl, "%f, %f, %f, %f, %f, %f, %f\n", x0, y0, th0, x1, y1, th1, d.length()/POINTS); 
 								// fprintf(fl, "%f, %f, %f, %f, %f, %f, %d\n", x0, y0, th0, x1, y1, th1, id<0 ? id : id+1); 
-	              // clock_t start=clock(); 
-	              // Tuple<Tuple<Point2<double> > > ret = d.splitIt(0, d.length()/POINTS);
-	              // clock_t stop=clock();
-	              // i++; sum+=(double(stop-start)/CLOCKS_PER_SEC);
-	              // printA(ret.get(0), "arc1", fl);
-	              // printA(ret.get(1), "arc2", fl);
-	              // printA(ret.get(2), "arc3", fl);
+	              Tuple<Tuple<Point2<double> > > ret = d.splitIt(0, d.length()/POINTS);
+	              i++;
+	              printA(ret.get(0), "arc1", fl);
+	              printA(ret.get(1), "arc2", fl);
+	              printA(ret.get(2), "arc3", fl);
 	            }
 
 							clock_t end = clock();

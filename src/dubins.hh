@@ -74,12 +74,14 @@ static double sinc(double t) {
     return sin(t)/t;
 }
 
+//Computes an arrival point from an initial configuration through an arc of length _L and curvature _K.
 Configuration2<double> circline(double _L,
                                 Configuration2<double> _P0,
                                 double _K){
   double x=_P0.x()+_L*sinc(_K*_L/2.0) * cos(_P0.angle().get()+_K*_L/2);
   double y=_P0.y()+_L*sinc(_K*_L/2.0) * sin(_P0.angle().get()+_K*_L/2);
   Angle th=_P0.angle()+Angle(_K*_L, Angle::RAD);
+  
   return Configuration2<double>(x, y, th);
 }
 
@@ -118,6 +120,8 @@ public:
   T1 getK   () const { return K; }
   T1 length () const { return L; }
 
+  //Splits arc in pieces of _L length
+  //TODO Add last point of curve
   Tuple<Point2<T2> > splitIt (int _arch=0, 
                               T2 _L=PIECE_LENGTH){
     Tuple<Point2<T2> > ret;
@@ -125,18 +129,15 @@ public:
     double sum=0;
 
     ret.add(_old); 
-    sum+=_L;
 
-    while(true){
+    while( length()>sum+_L ){
       Configuration2<T2> _new=circline(_L, _old, getK());
       ret.add(_new);
-      _old=_new;
+      _old=_new; //Maybeeeee using pointers can improve performance?
       sum+=_L;
-      if (sum-length()>0) {
-        ret.add(Curve<T2>::end());
-        break;
-      }
     }
+
+    // INFOV(ret)
 
     return ret;
   }
@@ -461,7 +462,8 @@ public:
               double s3,
               double k2,
               Angle th0,
-              Angle th1) const {
+              Angle th1) const 
+  {
     int x0 = -1;
     int y0 = 0;
     int x1 = 1;
