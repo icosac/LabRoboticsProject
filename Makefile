@@ -1,13 +1,16 @@
 #general compiling optins
 OS=$(shell uname)
-
+OPENCV=opencv
 CXX=g++
+LDFLAGS=-Wl,-rpath,/Users/enrico/opencv/lib/
+
 ifneq (,$(findstring Darwin, $(OS)))
-	CXXFLAGS=`pkg-config --cflags tesseract opencv` -std=c++11 -Wno-everything -O3
+	OPENCV=opencv3
+	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wno-everything -O3
 else 
-	CXXFLAGS=`pkg-config --cflags tesseract opencv` -std=c++11 -Wall -O3
+	CXXFLAGS=`pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wall -O3
 endif
-LDLIBS=`pkg-config --libs tesseract opencv`
+LDLIBS=`pkg-config --libs tesseract $(OPENCV)`
 MORE_FLAGS=
 
 #general documentation optins
@@ -23,20 +26,38 @@ SRC=src/calibration.cc\
 	src/unwrapping.cc\
 	src/utils.cc
 
+#test files
+TEST_SRC= test/compare_test.cc\
+					test/DubinsFunc.cc\
+					test/LSL_test.cc\
+					test/maths_test.cc\
+					test/scale_to_standard_test.cc\
+					test/split_test.cc
+
 #object files
 OBJ=$(SRC:.cc=.o)
+
+TEST_EXEC=$(TEST_SRC:.cc=.out)
 
 clr=clear && clear && clear
 
 #general function
 src/%.o: src/%.cc
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) $(DETECTION_OPTIONS) -c -o $@ $< $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
+
+test/%.out: test/%.cc
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@ $< $(LDLIBS)
 
 all: $(OBJ) bin/ xml
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/main.out $(OBJ) src/main.cc $(LDLIBS)
 
+test: bin_test/ $(TEST_EXEC)
+
 bin/:
 	$(MKDIR) bin
+
+bin_test/: bin
+	$(MKDIR) bin/test
 
 #compile executables
 calibration: src/calibration.o src/util.o bin/
@@ -73,10 +94,14 @@ clean_obj obj_clean:
 clean_exec exec_clean:
 	rm -rf bin
 
+clean_test test_clean:
+	rm -f test/*.out
+
 #clean executables and objects
 clean:
 	make clean_obj
 	make clean_exec
+	make clean_test
 	
 #clean documentation
 doc_clean clean_doc:

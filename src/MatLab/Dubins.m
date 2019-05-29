@@ -16,7 +16,7 @@ Kmax = 1.0;
 % xf = 3.0; yf = 3.0; thf = pi/2;
 
 global POINTS ;
-POINTS=3;
+POINTS=5;
 global LENGTH ;
 
 count=0;
@@ -34,10 +34,15 @@ for x0=0 : 25 : 150
               printA(arc1, "arc1");
               printA(arc2, "arc2");
               printA(arc3, "arc3");
-            end
-            count=count+1;
-            if mod(count,100)==0
-              fprintf("%f, %f, %f, %f, %f, %f, %f\n", x0, y0, th0, x1, y1, th1, LENGTH);
+              count=count+1;
+              if mod(count,1000)==0
+                fprintf("%f, %f, %f, %f, %f, %f, %f\n", x0, y0, th0, x1, y1, th1, LENGTH);
+                figure; axis equal;
+                hold on
+                plotdubins(curve, true, [1 0 0], [0 0 0], [1 0 0]); 
+                [arc1, arc2, arc3]=split(curve);
+                plotPoints (arc1, arc2, arc3);
+              end
             end
           end
         end

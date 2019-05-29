@@ -1,7 +1,7 @@
 #include"utils.hh"
 
 void my_imshow( const char* win_name, 
-                Mat img, 
+                cv::Mat img, 
                 bool reset/*=false*/){
     const int SIZE     = 250;
     const int W_0      = 0;

@@ -600,6 +600,7 @@ public:
     return out;
   }
 
+  //TODO I don't think this works
   template <class T1>
   operator vector<T1> () const {
     if (is_same<T, T1>::value){

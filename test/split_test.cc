@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <ctime>
 
-#define POINTS 3
+#define POINTS 5
 
 void printA (Tuple<Point2<double> > arc, string st, FILE* fl){
 	fprintf(fl, "%s  <", st.c_str());
@@ -51,7 +51,7 @@ int main (){
 
 							clock_t end = clock();
 							double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-							if (elapsed_secs>10){
+							if (elapsed_secs>5){
 								printf("%f, %f, %f, %f, %f, %f, media: %fs\n", x0, y0, th0, x1, y1, th1, sum/i);
 								begin=clock();
 							}

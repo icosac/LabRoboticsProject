@@ -5,13 +5,13 @@
 // #include <tesseract/baseapi.h> // Tesseract headers
 // #include <leptonica/allheaders.h>
 
-// #include <opencv2/highgui.hpp>
-// #include <opencv2/core.hpp>
-// #include <opencv2/opencv.hpp>
-// #include <opencv2/imgcodecs.hpp>
-// using namespace cv;
+#include <opencv2/highgui.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/imgcodecs.hpp>
+using namespace cv;
 
-// void my_imshow(const char* win_name, Mat img, bool reset=false);
+void my_imshow(const char* win_name, cv::Mat img, bool reset=false);
 
 
 #ifdef DEBUG
@@ -28,7 +28,7 @@ void CLEARFILE(const char* fl_name);
   #define INFOS(x) cerr << x << endl;
   #define INFOV(v) \
     for (auto x : v) \
-      INFO(x)
+      INFOS(x)
 #else 
   #define INFO(x)
   #define INFOS(x)
