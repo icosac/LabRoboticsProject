@@ -57,7 +57,7 @@ public:
   		\param[in] _th The dimension of the angle.
   		\param[in] _type The type of the angle.
   */
-  Angle(double _th, ANGLE_TYPE _type) : type(_type), th(_th){ 
+  Angle(double _th, ANGLE_TYPE _type=RAD) : type(_type), th(_th){ 
     normalize();
   }
   
@@ -269,6 +269,10 @@ public:
   Angle operator= (const Angle phi){
     return copy(phi);
   }
+
+  Angle operator= (const double phi){
+    return Angle(phi, RAD);
+  }
   
   /*! This function overload the operator +=. It simply calls the `add()` function and then assign the result to this.
   		\param[in] phi The angle to be summed.
@@ -385,7 +389,7 @@ public:
       \returns The value in RAD of the angle casted to long
   */
   operator long()   const { return (long)   toRad(); }
-  
+
   stringstream to_string () const {
     stringstream out;
     switch (getType()){
@@ -449,8 +453,8 @@ public:
     va_list ap;
     va_start(ap, _n);
     for (int i=0; i<n; i++){
-      T temp=(T)0.0;
-      if (is_same<T, float>::value){
+      T temp=T(0.0);
+      if (std::is_same<T, float>::value){
         temp=va_arg(ap, double);
       }
       else {

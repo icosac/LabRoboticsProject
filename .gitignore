@@ -1,4 +1,6 @@
 # Useless files
+cmake-build-debug/
+.idea/
 *.o
 *.out
 bin/
@@ -12,6 +14,9 @@ Doxyfile
 .DS_store
 docs/
 *.test
+libclcxx/
+lib/
+tmp/
 #file without extension?
 
 # Except the files

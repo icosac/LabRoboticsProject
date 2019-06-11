@@ -223,6 +223,7 @@ public:
   DubinsArc<> getA2() const { return A2; }
   DubinsArc<> getA3() const { return A3; }
 
+#ifndef OPENCL_COMPILE
   Tuple<double> LSL (Angle th0, Angle th1, double _kmax)
   {
     double C=th1.cos()-th0.cos();
@@ -344,6 +345,7 @@ public:
     
     return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
+#endif
 
   Tuple<double> scaleToStandard ()
   {
