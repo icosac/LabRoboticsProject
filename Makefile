@@ -39,12 +39,14 @@ SRC=src/calibration.cc\
 	src/unwrapping.cc\
 	src/utils.cc\
 
+OPENCL_LIB=
+
 ifeq ($(OpenCL), TRUE)
+	OPENCL_LIB=opencl_lib
 	INCLUDE=includeCL
 	SRC+=src/openCL.cc
-	INV+=-I./libclcxx/include/openclc++
+	INC+=-I./libclcxx/include/openclc++
 endif
-
 
 #test files
 TEST_SRC= test/dubins_CL.cc\
@@ -65,15 +67,6 @@ clr=clear && clear && clear
 
 PROJ_HOME = $(shell pwd)
 
-opencl_lib:
-	MKDIR tmp 
-	MKDIR libclcxx
-	cd tmp && git clone https://github.com/KhronosGroup/libclcxx.git \
-	&& cd libclcxx && sed -i .backup '/test/d' CMakeLists.txt&& MKDIR build && cd build \
-	&& cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$(PROJ_HOME)/libclcxx .. \
-	&& make install 
-	rm -rf tmp
-
 #general function
 src/%.o: src/%.cc
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) $(INC) -c -o $@ $< $(LDLIBS) $(LIBS)
@@ -84,9 +77,18 @@ test/%.out: test/%.cc
 all: lib bin/ xml
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) $(INC) -o bin/main.out src/main.cc $(LDLIBS) $(LIBS)
 
-test: bin_test/ lib $(TEST_EXEC)
+test: lib bin_test/ $(TEST_EXEC)
 
-lib: lib/$(LIB_DUBINS)
+opencl_lib:
+	@MKDIR tmp
+	@MKDIR libclcxx
+	@cd tmp && git clone https://github.com/KhronosGroup/libclcxx.git \
+	&& cd libclcxx && sed -i .backup '/test/d' CMakeLists.txt&& MKDIR build && cd build \
+	&& cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$(PROJ_HOME)/libclcxx .. \
+	&& make install
+	@rm -rf tmp
+
+lib: $(OPENCL_LIB) lib/$(LIB_DUBINS)
 
 include_local: 
 	@rm -rf lib/include
@@ -156,7 +158,8 @@ clean:
 	make clean_exec
 	make clean_test
 	make clean_lib
-	
+	make clean_opencl
+
 #clean documentation
 doc_clean clean_doc:
 	rm -rf docs
