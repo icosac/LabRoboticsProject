@@ -6,7 +6,7 @@
 close all; clear all; clc;
 
 global fl;
-fl= fopen("../../data/test/ML_points.test", "w");
+fl= fopen("../../data/test/LSL_angle_ML.test", "w");
 
 % value=0;
 Kmax = 1.0;
@@ -19,37 +19,47 @@ global POINTS ;
 POINTS=5;
 global LENGTH ;
 
-count=0;
-for x0=0 : 25 : 150
-  for y0=0 : 25 : 100
-    for th0=0 : 0.5 : 2*pi
-      for x1=0 : 25 : 150
-        for y1=0 : 25 : 100
-          for th1=0 : 0.5 : 2*pi
-            [pidx, curve]=dubins_shortest_path(x0, y0, th0, x1, y1, th1, Kmax);
-            if pidx>0 
-              LENGTH=curve.L/POINTS;
-              fprintf(fl, "%f, %f, %f, %f, %f, %f, %f\n", x0, y0, th0, x1, y1, th1, LENGTH);
-              [arc1, arc2, arc3] = split(curve);
-              printA(arc1, "arc1");
-              printA(arc2, "arc2");
-              printA(arc3, "arc3");
-              count=count+1;
-              if mod(count,1000)==0
-                fprintf("%f, %f, %f, %f, %f, %f, %f\n", x0, y0, th0, x1, y1, th1, LENGTH);
-                figure; axis equal;
-                hold on
-                plotdubins(curve, true, [1 0 0], [0 0 0], [1 0 0]); 
-                [arc1, arc2, arc3]=split(curve);
-                plotPoints (arc1, arc2, arc3);
-              end
-            end
-          end
-        end
-      end
+for th0=0 : 0.1 : 2*pi
+  for th1=0.0 : 0.1 : 2*pi
+    for kmax=0 : 0.1 : 5
+      [ok, s1, s2, s3] = LSL (th0, th1, kmax);
+      fprintf(fl, "%f, %f, %f, %f, %f, %f\n", th0, th1, kmax, s1, s2, s3);
     end
   end
 end
+
+
+% count=0;
+% for x0=0 : 25 : 150
+%   for y0=0 : 25 : 100
+%     for th0=0 : 0.5 : 2*pi
+%       for x1=0 : 25 : 150
+%         for y1=0 : 25 : 100
+%           for th1=0 : 0.5 : 2*pi
+%             [pidx, curve]=dubins_shortest_path(x0, y0, th0, x1, y1, th1, Kmax);
+%             if pidx>0 
+%               LENGTH=curve.L/POINTS;
+%               fprintf(fl, "%f, %f, %f, %f, %f, %f, %f\n", x0, y0, th0, x1, y1, th1, LENGTH);
+%               [arc1, arc2, arc3] = split(curve);
+%               printA(arc1, "arc1");
+%               printA(arc2, "arc2");
+%               printA(arc3, "arc3");
+%               count=count+1;
+%               if mod(count,1000)==0
+%                 fprintf("%f, %f, %f, %f, %f, %f, %f\n", x0, y0, th0, x1, y1, th1, LENGTH);
+%                 figure; axis equal;
+%                 hold on
+%                 plotdubins(curve, true, [1 0 0], [0 0 0], [1 0 0]); 
+%                 [arc1, arc2, arc3]=split(curve);
+%                 plotPoints (arc1, arc2, arc3);
+%               end
+%             end
+%           end
+%         end
+%       end
+%     end
+%   end
+% end
 
 % % Find optimal Dubins solution
 % [pidx, curve] = dubins_shortest_path(x0, y0, th0, xf, yf, thf, Kmax);
@@ -236,15 +246,18 @@ function [ok, sc_s1, sc_s2, sc_s3] = LSL(sc_th0, sc_thf, sc_Kmax)
   invK = 1 / sc_Kmax;
   C = cos(sc_thf) - cos(sc_th0);
   S = 2 * sc_Kmax + sin(sc_th0) - sin(sc_thf);
+
   temp1 = atan2(C, S);
+  
   sc_s1 = invK * mod2pi(temp1 - sc_th0);
-  temp2 = 2 + 4 * sc_Kmax^2 - 2 * cos(sc_th0 - sc_thf) + 4 * sc_Kmax * (sin(sc_th0) - sin(sc_thf));
+  temp2 = 2 + 4 * sc_Kmax^2 - 2 * cos(sc_th0 - sc_thf) + 4 * sc_Kmax * (sin(sc_th0) - sin(sc_thf)); 
   if (temp2 < 0)
     ok = false; sc_s1 = 0; sc_s2 = 0; sc_s3 = 0;
     return;
   end
   sc_s2 = invK * sqrt(temp2);
   sc_s3 = invK * mod2pi(sc_thf - temp1);
+
   ok = true;
 end
 

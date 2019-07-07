@@ -37,21 +37,21 @@ MKDIR=mkdir -p
 SRC=src/calibration.cc\
 	src/detection.cc\
 	src/unwrapping.cc\
-	src/utils.cc\
+	src/utils.cc
 
 OPENCL_LIB=
-
+SED=sed -i
 ifeq ($(OpenCL), TRUE)
-	OPENCL_LIB=opencl_lib
+	SED=sed -i .backup
+	OPENCL_LIB=
 	INCLUDE=includeCL
 	SRC+=src/openCL.cc
-	INC+=-I./libclcxx/include/openclc++
 endif
 
 #test files
-TEST_SRC= test/dubins_CL.cc\
+TEST_SRC= test/DubinsFunc.cc\
+					test/dubins_CL.cc					
 # 					test/compare_test.cc\
-# 					test/DubinsFunc.cc\
 # 					test/LSL_test.cc\
 # 					test/maths_test.cc\
 # 					test/scale_to_standard_test.cc\
@@ -79,14 +79,16 @@ all: lib bin/ xml
 
 test: lib bin_test/ $(TEST_EXEC)
 
-opencl_lib:
-	@MKDIR tmp
-	@MKDIR libclcxx
-	@cd tmp && git clone https://github.com/KhronosGroup/libclcxx.git \
-	&& cd libclcxx && sed -i .backup '/test/d' CMakeLists.txt&& MKDIR build && cd build \
-	&& cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$(PROJ_HOME)/libclcxx .. \
-	&& make install
-	@rm -rf tmp
+# opencl_lib:
+# 	@MKDIR tmp
+# 	@MKDIR libclcxx
+# 	@cd tmp && git clone https://github.com/KhronosGroup/libclcxx.git \
+# 	&& cd libclcxx && $(SED) '/test/d' CMakeLists.txt&& MKDIR build && cd build \
+# 	&& cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$(PROJ_HOME)/libclcxx .. \
+# 	&& make install
+# 	$(SED) '/intptr_t/d' libclcxx/include/openclc++/opencl_def
+# 	$(SED) '/uintptr_t/d' libclcxx/include/openclc++/opencl_def
+# 	@rm -rf tmp
 
 lib: $(OPENCL_LIB) lib/$(LIB_DUBINS)
 

@@ -5,63 +5,66 @@
 % Reset environment
 close all; clear all; clc;
 
-% fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/DubinsTest_matlab.test", "w");
+fl_LSL= fopen("../../data/test/CL/ML/LSL.test", "w");
+fl_LSR= fopen("../../data/test/CL/ML/LSR.test", "w");
+fl_RSR= fopen("../../data/test/CL/ML/RSR.test", "w");      
+fl_RSL= fopen("../../data/test/CL/ML/RSL.test", "w");      
+fl_LRL= fopen("../../data/test/CL/ML/LRL.test", "w");      
+fl_RLR= fopen("../../data/test/CL/ML/RLR.test", "w");      
 
 % value=0;
 for th0=0.0 : 0.1 : 2*pi
   for th1=0.0 : 0.1 : 2*pi
     for kmax=0.0 : 0.1 : 5
-      fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_LSL.test", "a");
       [ok, sc_s1, sc_s2, sc_s3]=LSL(th0, th1, kmax);
       if ok==true
-        fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
+        fprintf(fl_LSL, "%f, %f, %f, %f, %f, %f\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
+        fprintf(fl_LSL, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
-      fclose(fl); fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_LSR.test", "a");
       [ok, sc_s1, sc_s2, sc_s3]=LSR(th0, th1, kmax);
       if ok==true
-        fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
+        fprintf(fl_LSR, "%f, %f, %f, %f, %f, %f\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
+        fprintf(fl_LSR, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
 
-      fclose(fl); fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_RSR.test", "a");      
       [ok, sc_s1, sc_s2, sc_s3]=RSR(th0, th1, kmax);
       if ok==true
-        fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
+        fprintf(fl_RSR, "%f, %f, %f, %f, %f, %f\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
+        fprintf(fl_RSR, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
       
-      fclose(fl); fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_RSL.test", "a");      
       [ok, sc_s1, sc_s2, sc_s3]=RSL(th0, th1, kmax);
       if ok==true
-        fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
+        fprintf(fl_RSL, "%f, %f, %f, %f, %f, %f\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
+        fprintf(fl_RSL, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
       
-      fclose(fl); fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_LRL.test", "a");      
       [ok, sc_s1, sc_s2, sc_s3]=LRL(th0, th1, kmax);
       if ok==true
-        fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
+        fprintf(fl_LRL, "%f, %f, %f, %f, %f, %f\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
+        fprintf(fl_LRL, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
 
-      fclose(fl); fl= fopen("/Users/enrico/GoogleDrive/Magistrale/1sem/Laboratory of Applied Robotics/LabRoboticsProject/data/test/ML_RLR.test", "a");      
       [ok, sc_s1, sc_s2, sc_s3]=RLR(th0, th1, kmax);
       if ok==true
-        fprintf(fl, "%f, %f, %f, <%f, %f, %f>\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
+        fprintf(fl_RLR, "%f, %f, %f, %f, %f, %f\n", th0, th1, kmax, sc_s1, sc_s2, sc_s3);
       else
-        fprintf(fl, "%f, %f, %f, <>\n", th0, th1, kmax);
+        fprintf(fl_RLR, "%f, %f, %f, <>\n", th0, th1, kmax);
       end
-      fprintf(fl, "\n");
-      fclose(fl);
     end
   end
 end
+fclose(fl_LSL); 
+fclose(fl_LSR); 
+fclose(fl_RSR); 
+fclose(fl_RSL); 
+fclose(fl_LRL); 
+fclose(fl_RLR);
 
 % Normalize an angle (in range [0,2*pi))
 function out = mod2pi(ang);

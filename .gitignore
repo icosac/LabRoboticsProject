@@ -17,6 +17,7 @@ docs/
 libclcxx/
 lib/
 tmp/
+CMakeLists.txt
 #file without extension?
 
 # Except the files

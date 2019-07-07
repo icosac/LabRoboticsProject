@@ -18,6 +18,12 @@
 
 using namespace std;
 
+#include "openCL.hh"
+Context CL::context;
+vector<CommandQueue> CL::queues;
+vector<Device> CL::devices;
+Program CL::program;
+
 template <class T>
 class Curve {
 protected:
@@ -223,7 +229,6 @@ public:
   DubinsArc<> getA2() const { return A2; }
   DubinsArc<> getA3() const { return A3; }
 
-#ifndef OPENCL_COMPILE
   Tuple<double> LSL (Angle th0, Angle th1, double _kmax)
   {
     double C=th1.cos()-th0.cos();
@@ -345,7 +350,6 @@ public:
     
     return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
-#endif
 
   Tuple<double> scaleToStandard ()
   {
@@ -390,12 +394,101 @@ public:
     bool first_go = true;
 
     std::vector<Tuple<double> > res;
-    res.push_back(LSL(sc_th0, sc_th1, sc_Kmax));
-    res.push_back(RSR(sc_th0, sc_th1, sc_Kmax));
-    res.push_back(LSR(sc_th0, sc_th1, sc_Kmax));
-    res.push_back(RSL(sc_th0, sc_th1, sc_Kmax));
-    res.push_back(RLR(sc_th0, sc_th1, sc_Kmax));
-    res.push_back(LRL(sc_th0, sc_th1, sc_Kmax));
+
+    ///////////////////////////////////////////////////////////////////////////////////
+    // BEGIN OPENCL CODE
+    ///////////////////////////////////////////////////////////////////////////////////
+    #define DEVICE_ID 0 //TODO find a better solution
+    //Create buffers 
+    cl::Buffer dev_th0 = cl::Buffer(CL::context, CL_MEM_READ_ONLY, sizeof(double));
+    cl::Buffer dev_th1 = cl::Buffer(CL::context, CL_MEM_READ_ONLY, sizeof(double));
+    cl::Buffer dev_kmax = cl::Buffer(CL::context, CL_MEM_READ_ONLY, sizeof(double));
+    cl::Buffer dev_ret_LSL = cl::Buffer(CL::context, CL_MEM_READ_ONLY, sizeof(double)*3);
+    cl::Buffer dev_ret_LSR = cl::Buffer(CL::context, CL_MEM_READ_ONLY, sizeof(double)*3);
+    cl::Buffer dev_ret_RSR = cl::Buffer(CL::context, CL_MEM_READ_ONLY, sizeof(double)*3);
+    cl::Buffer dev_ret_RSL = cl::Buffer(CL::context, CL_MEM_READ_ONLY, sizeof(double)*3);
+    cl::Buffer dev_ret_RLR = cl::Buffer(CL::context, CL_MEM_READ_ONLY, sizeof(double)*3);
+    cl::Buffer dev_ret_LRL = cl::Buffer(CL::context, CL_MEM_READ_ONLY, sizeof(double)*3);
+
+    //Create program. Not going to check for success. If error is risen, it is handled in openCL.hh
+    CL::createProgram("dubins.cl");
+
+    //Write buffers to queue
+    double app_th0=sc_th0.get();
+    double app_th1=sc_th1.get();
+    CL::queues[DEVICE_ID].enqueueWriteBuffer(dev_th0, CL_TRUE, 0, sizeof(double), &app_th0);
+    CL::queues[DEVICE_ID].enqueueWriteBuffer(dev_th0, CL_TRUE, 0, sizeof(double), &app_th1);
+    CL::queues[DEVICE_ID].enqueueWriteBuffer(dev_kmax, CL_TRUE, 0, sizeof(double), &sc_Kmax);
+
+    //Create kernels and set arguments
+    cl::Kernel LSL(CL::program, "LSL");
+    LSL.setArg(0, dev_th0);
+    LSL.setArg(1, dev_th1);
+    LSL.setArg(2, dev_kmax);
+    LSL.setArg(3, dev_ret_LSL);
+
+    cl::Kernel RSL(CL::program, "RSL");
+    RSL.setArg(0, dev_th0);
+    RSL.setArg(1, dev_th1);
+    RSL.setArg(2, dev_kmax);
+    RSL.setArg(3, dev_ret_RSL);
+
+    cl::Kernel LSR(CL::program, "LSR");
+    LSR.setArg(0, dev_th0);
+    LSR.setArg(1, dev_th1);
+    LSR.setArg(2, dev_kmax);
+    LSR.setArg(3, dev_ret_LSR);
+
+    cl::Kernel RSR(CL::program, "RSR");
+    RSR.setArg(0, dev_th0);
+    RSR.setArg(1, dev_th1);
+    RSR.setArg(2, dev_kmax);
+    RSR.setArg(3, dev_ret_RSR);
+
+    cl::Kernel RLR(CL::program, "RLR");
+    RLR.setArg(0, dev_th0);
+    RLR.setArg(1, dev_th1);
+    RLR.setArg(2, dev_kmax);
+    RLR.setArg(3, dev_ret_RLR);
+
+    cl::Kernel LRL(CL::program, "LRL");
+    LRL.setArg(0, dev_th0);
+    LRL.setArg(1, dev_th1);
+    LRL.setArg(2, dev_kmax);
+    LRL.setArg(3, dev_ret_LRL);
+
+    //Set execution variables
+    NDRange global(1);
+    NDRange local(1);
+
+    //Return variable
+    double **ret=new double* [6];
+    for (int i=0; i<6; i++){
+      ret[i]=new double [3];
+    }
+    //Execute kernels
+    CL::queues[DEVICE_ID].enqueueNDRangeKernel(LSL, NullRange, global, local);
+    CL::queues[DEVICE_ID].enqueueNDRangeKernel(RSR, NullRange, global, local);
+    CL::queues[DEVICE_ID].enqueueNDRangeKernel(LSR, NullRange, global, local);
+    CL::queues[DEVICE_ID].enqueueNDRangeKernel(RSL, NullRange, global, local);
+    CL::queues[DEVICE_ID].enqueueNDRangeKernel(RLR, NullRange, global, local);
+    CL::queues[DEVICE_ID].enqueueNDRangeKernel(LRL, NullRange, global, local);
+
+    //Copy results
+    CL::queues[DEVICE_ID].enqueueReadBuffer(dev_ret_LSL, CL_TRUE, 0, sizeof(double)*3, ret[0]);
+    CL::queues[DEVICE_ID].enqueueReadBuffer(dev_ret_RSR, CL_TRUE, 0, sizeof(double)*3, ret[1]);
+    CL::queues[DEVICE_ID].enqueueReadBuffer(dev_ret_LSR, CL_TRUE, 0, sizeof(double)*3, ret[2]);
+    CL::queues[DEVICE_ID].enqueueReadBuffer(dev_ret_RSL, CL_TRUE, 0, sizeof(double)*3, ret[3]);
+    CL::queues[DEVICE_ID].enqueueReadBuffer(dev_ret_RLR, CL_TRUE, 0, sizeof(double)*3, ret[4]);
+    CL::queues[DEVICE_ID].enqueueReadBuffer(dev_ret_LRL, CL_TRUE, 0, sizeof(double)*3, ret[5]);
+    
+    //TODO remove res
+    res.push_back(Tuple<double>(3, ret[0][0], ret[0][1], ret[0][2]));
+    res.push_back(Tuple<double>(3, ret[1][0], ret[1][1], ret[1][2]));
+    res.push_back(Tuple<double>(3, ret[2][0], ret[2][1], ret[2][2]));
+    res.push_back(Tuple<double>(3, ret[3][0], ret[3][1], ret[3][2]));
+    res.push_back(Tuple<double>(3, ret[4][0], ret[4][1], ret[4][2]));
+    res.push_back(Tuple<double>(3, ret[5][0], ret[5][1], ret[5][2]));
 
     int i=0;
     for (auto value : res){

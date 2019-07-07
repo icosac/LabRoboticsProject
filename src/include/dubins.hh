@@ -13,6 +13,7 @@
 #include <cstdio> // For sprintf
 #endif
 
+//TODO find which function is faster
 #define MORE_FUNCTIONS
 #define PIECE_LENGTH 2 //cm
 
