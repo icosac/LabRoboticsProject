@@ -46,6 +46,7 @@ ifeq ($(OpenCL), TRUE)
 	OPENCL_LIB=
 	INCLUDE=includeCL
 	SRC+=src/openCL.cc
+	MORE_FLAGS+= -D OPENCL
 endif
 
 #test files

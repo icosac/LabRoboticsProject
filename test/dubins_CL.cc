@@ -18,14 +18,14 @@ Program CL::program;
 int main (){
   double sum=0.0, avrg=0.0, min=100.0, max=0.0;
 
-  #define DEVICE_ID 2
-  FILE* LSL_f=fopen("data/test/CL/2/LSL_CL.test", "w");
-  FILE* RSR_f=fopen("data/test/CL/2/RSR_CL.test", "w");
-  FILE* LSR_f=fopen("data/test/CL/2/LSR_CL.test", "w");
-  FILE* RSL_f=fopen("data/test/CL/2/RSL_CL.test", "w");
-  FILE* LRL_f=fopen("data/test/CL/2/LRL_CL.test", "w");
-  FILE* RLR_f=fopen("data/test/CL/2/RLR_CL.test", "w");
-  FILE* time_f=fopen("data/test/CL/2/time.test" , "a");
+  #define DEVICE_ID 0
+  FILE* LSL_f=fopen("data/test/CL/0/LSL_CL.test", "w");
+  FILE* RSR_f=fopen("data/test/CL/0/RSR_CL.test", "w");
+  FILE* LSR_f=fopen("data/test/CL/0/LSR_CL.test", "w");
+  FILE* RSL_f=fopen("data/test/CL/0/RSL_CL.test", "w");
+  FILE* LRL_f=fopen("data/test/CL/0/LRL_CL.test", "w");
+  FILE* RLR_f=fopen("data/test/CL/0/RLR_CL.test", "w");
+  FILE* time_f=fopen("data/test/CL/0/time.test" , "a");
 
 	CL::createWorkflow();
 	cout << "Contesto creato" << endl;
@@ -52,12 +52,13 @@ int main (){
   fprintf(LRL_f, "th0, th1, kmax, sc_s1, sc_s2, sc_s3\n");
   fprintf(RLR_f, "th0, th1, kmax, sc_s1, sc_s2, sc_s3\n");
 
+  auto start=Clock::now();
   int i=0;
-  for (double th0=0.0; th0<=2*M_PI; th0+=0.05){
+  for (double th0=0.0; th0<=2*M_PI; th0+=0.1){
    	CL::queues[DEVICE_ID].enqueueWriteBuffer(dev_th0, CL_TRUE, 0, sizeof(double), &th0);
-    for (double th1=0.0; th1<=2*M_PI; th1+=0.05){
+    for (double th1=0.0; th1<=2*M_PI; th1+=0.1){
 			CL::queues[DEVICE_ID].enqueueWriteBuffer(dev_th1, CL_TRUE, 0, sizeof(double), &th1);
-    	for (double kmax=0.0; kmax<=5; kmax+=0.05){
+    	for (double kmax=0.0; kmax<=5; kmax+=0.1){
 		    CL::queues[DEVICE_ID].enqueueWriteBuffer(dev_kmax, CL_TRUE, 0, sizeof(double), &kmax);
 		    
         // printf("%f, %f, %f\n", th0, th1, kmax);
@@ -106,18 +107,17 @@ int main (){
 				NDRange global(1);
 				NDRange local(1);
 
-        try{
+        // try{
           CL::queues[DEVICE_ID].enqueueNDRangeKernel(LSL, NullRange, global, local);
           CL::queues[DEVICE_ID].enqueueNDRangeKernel(RSR, NullRange, global, local);
           CL::queues[DEVICE_ID].enqueueNDRangeKernel(LSR, NullRange, global, local);
           CL::queues[DEVICE_ID].enqueueNDRangeKernel(RSL, NullRange, global, local);
           CL::queues[DEVICE_ID].enqueueNDRangeKernel(LRL, NullRange, global, local);
   				CL::queues[DEVICE_ID].enqueueNDRangeKernel(RLR, NullRange, global, local);
-        } catch (Error error) {
-          std::cout << "Error: " << error.what() << "(" << error.err() << ")" << std::endl;
-          throw error;
-        }
-        auto t2=Clock::now();
+        // } catch (Error error) {
+        //   std::cout << "Error: " << error.what() << "(" << error.err() << ")" << std::endl;
+        //   throw error;
+        // }
 
         CL::queues[DEVICE_ID].enqueueReadBuffer(dev_LSL, CL_TRUE, 0, sizeof(double)*3, ret[0]);
         CL::queues[DEVICE_ID].enqueueReadBuffer(dev_RSR, CL_TRUE, 0, sizeof(double)*3, ret[1]);
@@ -125,6 +125,8 @@ int main (){
         CL::queues[DEVICE_ID].enqueueReadBuffer(dev_RSL, CL_TRUE, 0, sizeof(double)*3, ret[3]);
         CL::queues[DEVICE_ID].enqueueReadBuffer(dev_LRL, CL_TRUE, 0, sizeof(double)*3, ret[4]);
 				CL::queues[DEVICE_ID].enqueueReadBuffer(dev_RLR, CL_TRUE, 0, sizeof(double)*3, ret[5]);
+        
+        auto t2=Clock::now();
         
         double diff=(std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count())/1000000.0;
         i++;
@@ -139,6 +141,12 @@ int main (){
         fprintf(LRL_f, "%f, %f, %f, %f, %f, %f\n", th0, th1, kmax, ret[4][0], ret[4][1], ret[4][2]);
         fprintf(RLR_f, "%f, %f, %f, %f, %f, %f\n", th0, th1, kmax, ret[5][0], ret[5][1], ret[5][2]);
 
+        double diff2=std::chrono::duration_cast<std::chrono::seconds>(t2 - start).count();
+        if (diff2>10.0){
+          cout << "th0: " << th0 << "th1: " << th1 << "kmax: " << kmax << endl;
+          start=Clock::now();
+        }
+
 				// if (i==20){
 				// 	return 0;
 				// }
@@ -147,7 +155,7 @@ int main (){
 	}
   
   avrg=sum/i;
-  fprintf(time_f, "LSL+RSR+LSR+RSL+LRL+RLR\nTot: %fms, avrg: %fms, min: %fms, max: %fms\n\n", sum, avrg, min, max);
+  fprintf(time_f, "LSL+RSR+LSR+RSL+LRL+RLR\nBuilt: %d, tot: %fms, avrg: %fms, min: %fms, max: %fms\n\n", i, sum, avrg, min, max);
 
 	return 0;
 }

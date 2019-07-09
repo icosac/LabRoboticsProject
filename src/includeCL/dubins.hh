@@ -395,6 +395,7 @@ public:
 
     std::vector<Tuple<double> > res;
 
+    #ifdef OPENCL
     ///////////////////////////////////////////////////////////////////////////////////
     // BEGIN OPENCL CODE
     ///////////////////////////////////////////////////////////////////////////////////
@@ -481,7 +482,10 @@ public:
     CL::queues[DEVICE_ID].enqueueReadBuffer(dev_ret_RSL, CL_TRUE, 0, sizeof(double)*3, ret[3]);
     CL::queues[DEVICE_ID].enqueueReadBuffer(dev_ret_RLR, CL_TRUE, 0, sizeof(double)*3, ret[4]);
     CL::queues[DEVICE_ID].enqueueReadBuffer(dev_ret_LRL, CL_TRUE, 0, sizeof(double)*3, ret[5]);
-    
+    #else 
+
+    #endif
+
     //TODO remove res
     res.push_back(Tuple<double>(3, ret[0][0], ret[0][1], ret[0][2]));
     res.push_back(Tuple<double>(3, ret[1][0], ret[1][1], ret[1][2]));
