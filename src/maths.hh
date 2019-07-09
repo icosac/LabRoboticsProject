@@ -778,6 +778,7 @@ public:
   */
   Point2<T> operator= (const Point2<T>& A){
     copy(A);
+    return *this;
   }
   /*! \brief Equalize two points.
       \param [in] A point to be equalized.

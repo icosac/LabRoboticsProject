@@ -1,0 +1,48 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/stefano/Desktop/Laboratory of applied of robotics/LabRoboticsProject/clipper/clipper.cpp
+clipper.hpp
+/home/stefano/Desktop/Laboratory of applied of robotics/LabRoboticsProject/clipper/clipper.hpp
+cmath
+-
+vector
+-
+algorithm
+-
+stdexcept
+-
+cstring
+-
+cstdlib
+-
+ostream
+-
+functional
+-
+
+/home/stefano/Desktop/Laboratory of applied of robotics/LabRoboticsProject/clipper/clipper.hpp
+vector
+-
+list
+-
+set
+-
+stdexcept
+-
+cstring
+-
+cstdlib
+-
+ostream
+-
+functional
+-
+queue
+-
+

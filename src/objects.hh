@@ -9,6 +9,7 @@
 #include <opencv2/core.hpp>
 #include <opencv2/opencv.hpp>
 #include "../clipper/clipper.hpp"
+#include "maths.hh"
 
 using namespace cv;
 using namespace std;
@@ -24,50 +25,43 @@ class Object{
         void computeRadius();
         
         void offsetting(int offset);
-        bool collideApproximate(Point p);
-        virtual bool collide(Point p) = 0;
+        bool insidePolyApprox(Point2<int> pt);
+        bool insidePoly(Point2<int> pt);
+        //bool collision(Point2<int> p1, Point2<int> p2);
 
     protected:
-        vector<Point> points;
-        Point center;
+        vector<Point2<int> > points;
+        Point2<int> center;
         float radius;
 };
 
 class Obstacle: public Object{
     public:
-    Obstacle(vector<Point> vp);
+    Obstacle(vector<Point2<int> > vp);
     string toString();
     void print();
-
-    //void offsetting();
-    bool collide(Point p){
-        cout << "The function 'collide' now return always true\n";
-        return(true);
-    }
 };
 
 class Victim: public Object{
-public:
-    Victim(vector<Point> vp, int _value);
-    string toString();
-    void print();
+    public:
+        Victim(vector<Point2<int> > vp, int _value);
+        string toString();
+        void print();
 
-    //void offsetting();
-    bool collide(Point p){
-        cout << "The function 'collide' now return always true\n";
-        return(true);
-    }
+        /*bool insidePoly(Point2<int> pt){
+            return(insidePolyApprox(pt));
+        }*/
 
-    int getValue()
-        {return(value);}
-    void setValue(int v)
-        {value=v;}
+        int getValue()
+            {return(value);}
+        void setValue(int v)
+            {value=v;}
 
-protected:
-    int value;
+    protected:
+        int value;
 };
 
 #endif
 
 //compile command:
-//g++ `pkg-config --cflags opencv` -std=c++11 -Wall -O3  -o objects.out objects.cc `pkg-config --libs opencv`
+//g++ `pkg-config --cflags opencv` -std=c++11 -Wall -O3  -o objects.out ../clipper/clipper.cpp objects.cc `pkg-config --libs opencv`
