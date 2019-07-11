@@ -1,5 +1,3 @@
-#https://github.com/KhronosGroup/libclcxx.git
-
 #general compiling optins
 OS=$(shell uname)
 
@@ -8,22 +6,24 @@ OPENCV=opencv
 LIB_DUBINS=libDubins.a
 
 CXX=g++
+
 INC= -I./lib/include 
-LIBS= -L./lib -lDubins
 LDFLAGS=-Wl,-rpath,/Users/enrico/opencv/lib/
+
+LIBS=-L./lib -lDubins $(INC)
 
 INCLUDE=include
 
 ifneq (,$(findstring Darwin, $(OS)))
 	OPENCV=opencv3
 	CXXFLAGS=$(LDFLAGS) -framework OpenCL `pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wno-everything -O3
-  AR= libtool -static -o
+  AR=libtool -static -o
 else 
 	CXXFLAGS=`pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wall -O3
-	AR= ar rcs
+	AR=ar rcs
 endif
 
-LDLIBS=`pkg-config --libs tesseract $(OPENCV)`
+LDLIBS=`pkg-config --libs tesseract $(OPENCV)` $(LIBS)
 MORE_FLAGS=
 
 #general documentation optins
@@ -39,25 +39,8 @@ SRC=src/calibration.cc\
 	src/unwrapping.cc\
 	src/utils.cc
 
-OPENCL_LIB=
-SED=sed -i
-ifeq ($(OpenCL), TRUE)
-	SED=sed -i .backup
-	OPENCL_LIB=
-	INCLUDE=includeCL
-	SRC+=src/openCL.cc
-	MORE_FLAGS+= -D OPENCL
-endif
-
 #test files
-TEST_SRC= test/DubinsFunc.cc\
-					test/dubins_CL.cc					
-# 					test/compare_test.cc\
-# 					test/LSL_test.cc\
-# 					test/maths_test.cc\
-# 					test/scale_to_standard_test.cc\
-# 					test/split_test.cc\
-# 					test/prova.cc
+TEST_SRC=test/maths_test.cc
 
 #object files
 OBJ=$(SRC:.cc=.o)
@@ -70,28 +53,17 @@ PROJ_HOME = $(shell pwd)
 
 #general function
 src/%.o: src/%.cc
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) $(INC) -c -o $@ $< $(LDLIBS) $(LIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 
 test/%.out: test/%.cc
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) $(INC) -o bin/$@ $< $(LDLIBS) $(LIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@ $< $(LDLIBS)
 
 all: lib bin/ xml
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) $(INC) -o bin/main.out src/main.cc $(LDLIBS) $(LIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/main.out src/main.cc $(LDLIBS)
 
 test: lib bin_test/ $(TEST_EXEC)
 
-# opencl_lib:
-# 	@MKDIR tmp
-# 	@MKDIR libclcxx
-# 	@cd tmp && git clone https://github.com/KhronosGroup/libclcxx.git \
-# 	&& cd libclcxx && $(SED) '/test/d' CMakeLists.txt&& MKDIR build && cd build \
-# 	&& cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$(PROJ_HOME)/libclcxx .. \
-# 	&& make install
-# 	$(SED) '/intptr_t/d' libclcxx/include/openclc++/opencl_def
-# 	$(SED) '/uintptr_t/d' libclcxx/include/openclc++/opencl_def
-# 	@rm -rf tmp
-
-lib: $(OPENCL_LIB) lib/$(LIB_DUBINS)
+lib: lib/$(LIB_DUBINS)
 
 include_local: 
 	@rm -rf lib/include
@@ -110,14 +82,14 @@ bin_test/: bin
 	$(MKDIR) bin/test
 
 #compile executables
-calibration: src/calibration.o src/util.o bin/
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/utils.o src/$@.o src/$@_run.cc $(LDLIBS)
+calibration: bin/
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
 
-unwrapping: src/unwrapping.o src/util.o bin/
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/utils.o src/$@.o src/$@_run.cc $(LDLIBS)
+unwrapping: bin/
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
 
-detection: src/detection.o src/util.o bin/
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/utils.o src/$@.o src/$@_run.cc $(LDLIBS)
+detection: bin/
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
 
 #run executables
 run:
@@ -151,9 +123,6 @@ clean_exec exec_clean:
 clean_test test_clean:
 	rm -f test/*.out
 
-clean_opencl opencl_clean:
-	rm -rf tmp
-	rm -rf libclcxx
 
 #clean executables and objects
 clean:
@@ -161,7 +130,6 @@ clean:
 	make clean_exec
 	make clean_test
 	make clean_lib
-	make clean_opencl
 
 #clean documentation
 doc_clean clean_doc:
