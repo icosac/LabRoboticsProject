@@ -1,4 +1,4 @@
-#general compiling optins
+#general compiling options
 OS=$(shell uname)
 
 OPENCV=opencv
@@ -14,6 +14,7 @@ LIBS=-L./lib -lDubins $(INC)
 
 INCLUDE=include
 
+#condition for mac and linux
 ifneq (,$(findstring Darwin, $(OS)))
 	OPENCV=opencv3
 	CXXFLAGS=$(LDFLAGS) -framework OpenCL `pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wno-everything -O3
@@ -23,6 +24,7 @@ else
 	AR=ar rcs
 endif
 
+#compiling libs&flags
 LDLIBS=$(LIBS) `pkg-config --libs tesseract $(OPENCV)` 
 MORE_FLAGS=
 
@@ -37,10 +39,12 @@ MKDIR=mkdir -p
 SRC=src/calibration.cc\
 	src/detection.cc\
 	src/unwrapping.cc\
-	src/utils.cc
+	src/utils.cc\
+	src/clipper.cc\
+	src/objects.cc
 
 #test files
-TEST_SRC=test/maths_test.cc
+TEST_SRC=test/maths_test.cc\
 
 #object files
 OBJ=$(SRC:.cc=.o)
@@ -51,7 +55,7 @@ clr=clear && clear && clear
 
 PROJ_HOME = $(shell pwd)
 
-#general function
+#general functions of the make
 src/%.o: src/%.cc
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 

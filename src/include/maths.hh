@@ -57,6 +57,7 @@ public:
   		\param[in] _th The dimension of the angle.
   		\param[in] _type The type of the angle.
   */
+
   Angle(double _th, ANGLE_TYPE _type=RAD) : type(_type), th(_th){ 
     normalize();
   }
@@ -389,7 +390,7 @@ public:
       \returns The value in RAD of the angle casted to long
   */
   operator long()   const { return (long)   toRad(); }
-
+  
   stringstream to_string () const {
     stringstream out;
     switch (getType()){

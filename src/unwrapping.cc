@@ -1,7 +1,7 @@
 #include"unwrapping.hh"
 
-//debug block the most things, wait only something
-//#define DEBUG
+//debug blocks most things, wait only something
+// #define DEBUG
 // #define WAIT
 
 #define area_ratio 0.7
