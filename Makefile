@@ -41,10 +41,12 @@ SRC=src/calibration.cc\
 	src/unwrapping.cc\
 	src/utils.cc\
 	src/clipper.cc\
-	src/objects.cc
+	src/objects.cc\
+	src/fakeQuadTree.cc
 
 #test files
-TEST_SRC=test/maths_test.cc\
+TEST_SRC= test/map_main.cc\
+		# test/maths_test.cc
 
 #object files
 OBJ=$(SRC:.cc=.o)
