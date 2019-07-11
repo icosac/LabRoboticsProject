@@ -49,10 +49,6 @@ class Victim: public Object{
         string toString();
         void print();
 
-        /*bool insidePoly(Point2<int> pt){
-            return(insidePolyApprox(pt));
-        }*/
-
         int getValue()
             {return(value);}
         void setValue(int v)

@@ -83,7 +83,7 @@ void Object::computeRadius(){
                 maxRadius = dist;
             }
         }
-        this.radius = maxRadius;
+        this->radius = maxRadius;
     }
 }
 
@@ -245,13 +245,13 @@ void Victim::print(){
     cout << toString();
 }
 
-int main(){
-    /*vector<Point2<int> > o;
-    o.push_back(Point2<int>(1, 1));
-    o.push_back(Point2<int>(4, 3));
-    Obstacle obj(o);
-    obj.print();
-    cout << obj.insidePolyApprox(Point2<int>(4, 1)) << endl << endl;*/
+/*int main(){ // basic main that test the functionalities of the classes
+    // vector<Point2<int> > o;
+    // o.push_back(Point2<int>(1, 1));
+    // o.push_back(Point2<int>(4, 3));
+    // Obstacle obj(o);
+    // obj.print();
+    // cout << obj.insidePolyApprox(Point2<int>(4, 1)) << endl << endl;
 
 
     vector<Point2<int> > v;
@@ -269,4 +269,4 @@ int main(){
     cout << "Point: " << pt << "\n\tapprox: " << vict.insidePolyApprox(pt) << " - real: " << vict.insidePoly(pt) << endl;
 
 return(0);   
-}
+}*/
