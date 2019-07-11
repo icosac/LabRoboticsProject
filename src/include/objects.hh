@@ -19,12 +19,12 @@ class Object{
         string toString();
 
         unsigned size();
-        unsigned nPoint();
+        unsigned nPoints();
 
         void computeCenter();
         void computeRadius();
         
-        void offsetting(int offset);
+        void offsetting(const int offset);
         bool insidePolyApprox(Point2<int> pt);
         bool insidePoly(Point2<int> pt);
         //bool collision(Point2<int> p1, Point2<int> p2);
@@ -38,6 +38,7 @@ class Object{
 class Obstacle: public Object{
     public:
     Obstacle(vector<Point2<int> > vp);
+
     string toString();
     void print();
 };

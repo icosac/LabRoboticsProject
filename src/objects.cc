@@ -1,10 +1,19 @@
 #include "objects.hh"
 
-/*float distance(Point p1, Point p2){
-    return(pow( pow(p1.x-p2.x, 2) + pow(p1.y-p2.y, 2) ,0.5));
-}*/
+/*! \brief abstract
+    \details more_info
+
+    \param[in] p1 param_for_input
+    \param[out] p2 param_for_output
+    \param[in, out] p3 param_both_for_input_and_output
+
+    \returns value_of_return
+*/
 
 //_______________________________   Object   _______________________________
+/*! \brief Generate a string that describe the object.
+    \returns The generated string.
+*/
 string Object::toString(){
     stringstream ss;
     ss << "center: [" << center << "], radius=" << radius << "\n";
@@ -21,13 +30,22 @@ string Object::toString(){
     return(s);
 }
 
+/*! \brief Return the number of points of the object.
+    \returns The number of points.
+*/
 unsigned Object::size(){
     return(points.size());
 }
-unsigned Object::nPoint(){
+/*! \brief Return the number of points of the object.
+    \returns Tthe number of points.
+*/
+unsigned Object::nPoints(){
     return(points.size());
 }
 
+/*! \brief Find the representative center of the object.
+    \details The center is computed as the mean of the minimum and maximum x and y.
+*/
 void Object::computeCenter(){
     if(points.size()>=1){
         int minX=points[0].x(), maxX=points[0].x();
@@ -52,28 +70,39 @@ void Object::computeCenter(){
         center.y( (int)round((minY+maxY)/2.0) );
     }
 }
+
+/*! \brief Compute the radius of the object.
+    \details This function assume that the center of the object is already computed and consistent.
+*/
 void Object::computeRadius(){
     if(points.size()>=1){
         float dist, maxRadius = center.distance(points[0]);
         for(unsigned i=1; i<points.size(); i++){
             dist = center.distance(points[i]);
-            if(dist>radius){
-                radius = dist;
+            if(dist>maxRadius){
+                maxRadius = dist;
             }
         }
-        radius = maxRadius;
+        this.radius = maxRadius;
     }
 }
 
-void Object::offsetting(int offset){
+/*! \brief Enlarge the object of the given offset.
+    \details The function automatically update even the center and the radius.
+
+    \param[in] offset The size of the offset.
+*/
+void Object::offsetting(const int offset){
     //documentation: http://www.angusj.com/delphi/clipper.php
     ClipperLib::Path srcPoly; //A Path represents a polyline or a polygon
     ClipperLib::Paths solution;
     for(unsigned i=0; i<points.size(); i++){
-        srcPoly << ClipperLib::IntPoint(points[i].x(), points[i].y()); //Add the list of points to the Path object using operator <<
+        //Add the list of points to the Path object using operator <<
+        srcPoly << ClipperLib::IntPoint(points[i].x(), points[i].y()); 
     }
     ClipperLib::ClipperOffset co;
-    co.AddPath(srcPoly, ClipperLib::jtSquare, ClipperLib::etClosedPolygon); //A ClipperOffset object provides the methods to offset a given (open or closed) path
+    //A ClipperOffset object provides the methods to offset a given (open or closed) path
+    co.AddPath(srcPoly, ClipperLib::jtSquare, ClipperLib::etClosedPolygon); 
 
     co.Execute(solution, offset);
     //DrawPolygons(solution, 0x4000FF00, 0xFF009900);
@@ -90,11 +119,22 @@ void Object::offsetting(int offset){
     computeCenter();
     computeRadius();
 }
+
+/*! \brief Check if the given point is inside the approximation shape of the object (a circle).
+
+    \param[in] pt The point to be checked.
+    \returns True if the point is inside the object, false otherwise.
+*/
 bool Object::insidePolyApprox(Point2<int> pt){
     //cout << "distance: " << distance(p, center) << endl;
     return((pt.distance(center)<=radius) ? true : false);
 }
 
+/*! \brief Exact check if a point is inside the object (no approximation).
+
+    \param[in] pt The point to be checked.
+    \returns True if the point is inside the object, false otherwise.
+*/
 bool Object::insidePoly(Point2<int> pt){
     if(points.size()<3){
         return(false);
@@ -142,6 +182,11 @@ bool Object::insidePoly(Point2<int> pt){
 }
 
 //_______________________________   Obstacle   _______________________________
+/*! \brief Constructor of the obstacle class and automatically compute center and radius.
+
+    \param[in] vp Vector of points that is the convex hull of the obstacle.
+    \returns Return the created obstacle.
+*/
 Obstacle::Obstacle(vector<Point2<int> > vp){
     points = vp;
     if(vp.size()==0){
@@ -152,14 +197,27 @@ Obstacle::Obstacle(vector<Point2<int> > vp){
         computeRadius();
     }
 }
+
+/*! \brief Generate a string that describe the obstacle.
+    \returns The generated string.
+*/
 string Obstacle::toString(){
     return("Obstacle:\n" + Object::toString());
 }
+
+/*! \brief Print the describing string of the obstacle.
+*/
 void Obstacle::print(){
     cout << toString();
 }
 
 //_______________________________   Victim   _______________________________
+/*! \brief Constructor of the victim class and automatically compute center and radius.
+
+    \param[in] vp Vector of points that is the convex hull of the victim.
+    \param[in] _value The representative number of the victim.
+    \returns Return the created victim.
+*/
 Victim::Victim(vector<Point2<int> > vp, int _value){
     points = vp;
     value = _value;
@@ -172,11 +230,17 @@ Victim::Victim(vector<Point2<int> > vp, int _value){
     }
 }
 
+/*! \brief Generate a string that describe the victim.
+    \returns The generated string.
+*/
 string Victim::toString(){
     stringstream ss;
     ss << "Victim number " << value << ":\n";
     return(ss.str() + Object::toString());
 }
+
+/*! \brief Print the describing string of the victim.
+*/
 void Victim::print(){
     cout << toString();
 }
