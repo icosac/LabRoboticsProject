@@ -30,7 +30,7 @@ class Settings{
 	public:
 	    Settings() : goodInput(false) {}	///< Constructor that sets `goodInput` to false
 			enum Pattern {NOT_EXISTING=0, CHESSBOARD=1};
-			enum InputType {INVALID=0, IMAGE_LIST=3};
+			enum InputType {INVALID=0, IMAGE_LIST=3};
 
 	    void write(FileStorage& fs) const;	
 	    void read(const FileNode& node);	
