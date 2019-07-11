@@ -123,7 +123,7 @@ public:
 
   //Splits arc in pieces of _L length
   //TODO Add last point of curve
-  Tuple<Point2<T2> > splitIt (T2 _L=PIECE_LENGTH){
+  Tuple<Point2<T2> > splitIt (double _L=PIECE_LENGTH){
     Tuple<Point2<T2> > ret;
     Configuration2<T2> _old=Curve<T2>::begin();
     double sum=0;
