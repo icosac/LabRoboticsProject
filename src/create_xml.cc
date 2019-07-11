@@ -8,8 +8,8 @@ using namespace cv;
 using namespace std;
 
 int main(){
-    string filename[2] = {"data/settings.yaml", "data/settings.xml"};
-    for(int i=0; i<2; i++){
+    string filename[2] = {"data/settings.xml", "data/settings.yaml"};
+    for(int i=0; i<1; i++){ //write only on xml, yaml is redundant
         //__________________________________________write__________________________________________
         FileStorage fs(filename[i], FileStorage::WRITE);
         cout << "\tWrite on " << filename[i] << endl;

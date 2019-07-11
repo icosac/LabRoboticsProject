@@ -5,7 +5,7 @@ FileStorage fs_xml;
 vector<Mat> templates;
 
 // #define DEBUG
-#define WAIT
+// #define WAIT
 
 /*! \brief Loads some images and detects shapes according to different colors.
 

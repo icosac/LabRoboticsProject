@@ -17,13 +17,13 @@ INCLUDE=include
 ifneq (,$(findstring Darwin, $(OS)))
 	OPENCV=opencv3
 	CXXFLAGS=$(LDFLAGS) -framework OpenCL `pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wno-everything -O3
-  AR=libtool -static -o
+  	AR=libtool -static -o
 else 
 	CXXFLAGS=`pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wall -O3
 	AR=ar rcs
 endif
 
-LDLIBS=`pkg-config --libs tesseract $(OPENCV)` $(LIBS)
+LDLIBS=$(LIBS) `pkg-config --libs tesseract $(OPENCV)` 
 MORE_FLAGS=
 
 #general documentation optins
@@ -74,6 +74,7 @@ include_local:
 lib/libDubins.a: include_local $(OBJ)
 	@$(MKDIR) lib
 	$(AR) lib/libDubins.a $(OBJ) 
+	@rm -f src/*.o
 
 bin/:
 	$(MKDIR) bin

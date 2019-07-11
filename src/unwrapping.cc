@@ -2,14 +2,13 @@
 
 //debug block the most things, wait only something
 //#define DEBUG
-#define WAIT
+// #define WAIT
 
 #define area_ratio 0.7
 
 const string xml_settings = "data/settings.xml";
 
 static float distance(Point c1, Point c2);
-static void swap(int & a, int & b);
 
 /*! \brief Take some images according to a xml and unwrap the black rectangle inside the image after appling undistortion trasformation.
     \details Load from the xml file 'data/settings.xml' the name of some images, load the images from the file,\n
@@ -217,15 +216,4 @@ void loadCoefficients(  const string filename,
 static float distance(Point c1, Point c2){
     float res = sqrt( pow( c2.x-c1.x ,2) + pow( c2.y-c1.y ,2) );
     return(res);
-}
-
-/*! \brief Swap the two integers passed.
-
-    \param[in, out] a First parameter.
-    \param[in, out] b Second parameter.
-*/
-static void swap(int & a, int & b){
-    int c = a;
-    a = b;
-    b = c;
 }
