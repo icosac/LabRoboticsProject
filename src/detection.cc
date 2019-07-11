@@ -4,7 +4,7 @@ const string xml_settings = "data/settings.xml";
 FileStorage fs_xml;
 vector<Mat> templates;
 
-// #define DEBUG
+#define DEBUG
 #define WAIT
 
 /*! \brief Loads some images and detects shapes according to different colors.
@@ -17,7 +17,7 @@ int detection(){
 
     load_number_template();
 
-    for(unsigned f=0; f<1 && f<fs_xml["mapsUnNames"].size(); f++){
+    for(unsigned f=0;f<fs_xml["mapsUnNames"].size(); f++){
         string filename = (string) fs_xml["mapsUnNames"][f];
         cout << "Elaborating file: " << filename << endl;
 
@@ -177,7 +177,8 @@ void erode_dilation(Mat & img, const int color){
 */
 void find_contours( const Mat & img, 
                     Mat original, 
-                    const int color){
+                    const int color)
+{
     const double MIN_AREA_SIZE = 100;
     vector<vector<Point>> contours, contours_approx;
     vector<Point> approx_curve;
@@ -218,7 +219,8 @@ void find_contours( const Mat & img,
 */
 void save_convex_hull(  const vector<vector<Point>> & contours, 
                         const int color, 
-                        const vector<int> & victims){
+                        const vector<int> & victims)
+{
     vector<vector<Point>> hull;
     vector<Point> hull_i;
     for(unsigned i=0; i<contours.size(); i++){

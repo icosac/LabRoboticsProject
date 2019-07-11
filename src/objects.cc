@@ -94,6 +94,7 @@ bool Object::insidePolyApprox(Point2<int> pt){
     //cout << "distance: " << distance(p, center) << endl;
     return((pt.distance(center)<=radius) ? true : false);
 }
+
 bool Object::insidePoly(Point2<int> pt){
     if(points.size()<3){
         return(false);
