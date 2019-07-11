@@ -156,7 +156,8 @@ int unwrapping(){
 
         // wrap the perspective
         static const int width = 1000;
-        static const int height = (int)width*1.5;
+        static const int height = (int)(width*1.5);
+
         int xm/*in*/ = 0, ym = 0;
         int xM/*ax*/ = width, yM = height;
         Mat corner_pixels = (Mat_<float>(4,2) << rect[0].x, rect[0].y, rect[1].x, rect[1].y, rect[2].x, rect[2].y, rect[3].x, rect[3].y);
@@ -169,7 +170,8 @@ int unwrapping(){
 
         // select a region of interest
         Mat imgCrop;
-        imgCrop = unwarped_frame(Rect(xm, ym, xM-xm, yM-ym));
+        // imgCrop = unwarped_frame(Rect(xm, ym, xM-xm, yM-ym));
+        imgCrop = unwarped_frame(Rect(0, 0, width, height));
         #ifdef WAIT
             my_imshow("cropped image", imgCrop);
         #endif

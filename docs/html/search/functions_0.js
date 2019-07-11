@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['calcboardcornerpositions',['calcBoardCornerPositions',['../calibration_8cc.html#a9deaf00ea7081c5e9ce50a64c9946fa9',1,'calibration.cc']]],
-  ['calibration',['calibration',['../calibration_8cc.html#aac72e7c87050ab15c4158b416e933e96',1,'calibration(const string inputFile):&#160;calibration.cc'],['../calibration_8hh.html#a9deafd96b6adbc102c47af08cde6610c',1,'calibration(const string inputFile=&quot;data/calib_config.xml&quot;):&#160;calibration.cc']]],
-  ['computereprojectionerrors',['computeReprojectionErrors',['../calibration_8cc.html#a595849a1b81e38ffd3e1f7f70f88085e',1,'calibration.cc']]],
-  ['crop_5fnumber_5fsection',['crop_number_section',['../detection_8cc.html#a2a7fdd973151b59a6b324eaf4f70fdfe',1,'crop_number_section(Mat &amp;ROI):&#160;detection.cc'],['../detection_8hh.html#a8edaf0da54add7cd1461bafecef26b56',1,'crop_number_section(Mat &amp;processROI):&#160;detection.cc']]]
+  ['add',['add',['../class_angle.html#ab7279e3fb4ab12c334153f992ede0f1c',1,'Angle::add()'],['../class_tuple.html#a5d3ee2809d790543195a6e2075aef7d0',1,'Tuple::add()']]],
+  ['angle',['Angle',['../class_angle.html#aca3c6e1519b40835d31736430ca082a9',1,'Angle::Angle()'],['../class_angle.html#a25f6adc11a19ce3719ab12c2a5b4eecf',1,'Angle::Angle(double _th, ANGLE_TYPE _type)'],['../class_configuration2.html#a00f073b1127aa9bf9e7a06a833a47555',1,'Configuration2::angle() const'],['../class_configuration2.html#a8ff42470c34aaa1885df5974e8b7896d',1,'Configuration2::angle(const Angle _th)']]]
 ];

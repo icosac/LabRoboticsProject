@@ -1,7 +1,7 @@
 #include"utils.hh"
 
 void my_imshow( const char* win_name, 
-                Mat img, 
+                cv::Mat img, 
                 bool reset/*=false*/){
     const int SIZE     = 250;
     const int W_0      = 0;
@@ -28,3 +28,28 @@ void my_imshow( const char* win_name,
         H_now += SIZE + H_OFFSET;
     }
 }
+
+#ifdef DEBUG
+
+#endif
+
+#if defined PRINT_TO_FILE && defined DEBUG
+
+  void TOFILE(const char* fl_name, const char* msg) {
+    FILE* fl=fopen(fl_name, "a");
+    fprintf(fl, "%s", msg);
+    fclose(fl);
+  }
+  void CLEARFILE(const char* fl_name){
+    FILE* fl1=fopen(fl_name, "w");
+    fclose(fl1);
+  }
+
+#else 
+  
+  void TOFILE(const char* fl_name, const char* msg){}
+  // #define TOFILE(fl_name, msg)  
+  void CLEARFILE(const char* fl_name){}
+  // #define CLEARFILE(fl_name)
+
+#endif

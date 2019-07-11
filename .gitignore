@@ -1,4 +1,6 @@
 # Useless files
+cmake-build-debug/
+.idea/
 *.o
 *.out
 bin/
@@ -10,9 +12,16 @@ Doxyfile
 *.toc
 *.backup
 .DS_store
-doc/
+docs/
+*.test
+libclcxx/
+lib/
+tmp/
+CMakeLists.txt
 #file without extension?
 data/test/
+
+*_UN.jpg
 
 # Except the files
 #!Makefile
