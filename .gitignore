@@ -13,7 +13,6 @@ Doxyfile
 *.backup
 .DS_store
 docs/
-test/
 *.test
 libclcxx/
 lib/
