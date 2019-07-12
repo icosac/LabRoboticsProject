@@ -1,4 +1,4 @@
-#include <fakeQuadTree.hh>
+#include <map.hh>
 #include <iostream>
 
 int main(){

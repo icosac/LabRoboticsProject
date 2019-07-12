@@ -42,7 +42,7 @@ SRC=src/calibration.cc\
 	src/utils.cc\
 	src/clipper.cc\
 	src/objects.cc\
-	src/fakeQuadTree.cc
+	src/map.cc
 
 #test files
 TEST_SRC= test/map_main.cc\
@@ -85,7 +85,7 @@ lib/libDubins.a: include_local $(OBJ)
 bin/:
 	$(MKDIR) bin
 
-bin_test/: bin
+bin_test/: bin/
 	$(MKDIR) bin/test
 
 #compile executables
