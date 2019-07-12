@@ -5,9 +5,7 @@ bool checkPoint(Point2<int> p);
 bool checkSegment(Point2<int> p1, Point2<int> p2);
 */
 
-Map::Map(int _lengthX=1000, int _lengthY=1500, int _xx=5, int _yy=5,
-    vector< vector<Point2<int> > > vvp = vector< vector<Point2<int> > >() ){
-    
+Map::Map(int _lengthX, int _lengthY, int _xx, int _yy, vector< vector<Point2<int> > > vvp){
     lengthX = _lengthX;
     lengthY = _lengthY;
     xx = _xx;
