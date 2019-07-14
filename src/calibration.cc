@@ -218,7 +218,7 @@ int calibration(const string inputFile)
     Size imageSize; //lenght and width of image
     int mode = CAPTURING; //Set the mode based if there is a list of images or not
     const Scalar RED(0,0,255), GREEN(0,255,0);
-
+    const char ESC_KEY = 27 ;
     //get_input
     for(;;)
     {
