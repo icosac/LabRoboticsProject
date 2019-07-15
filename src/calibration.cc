@@ -218,7 +218,9 @@ int calibration(const string inputFile)
     Size imageSize; //lenght and width of image
     int mode = CAPTURING; //Set the mode based if there is a list of images or not
     const Scalar RED(0,0,255), GREEN(0,255,0);
-    const char ESC_KEY = 27 ;
+    #ifdef DEBUG
+        const char ESC_KEY = 27 ;
+    #endif
     //get_input
     for(;;)
     {
@@ -306,9 +308,10 @@ int calibration(const string inputFile)
         //output_undistorted
         //------------------------------ Show image and check for input commands -------------------
         //await_input
-        imshow("Image View", view);
 
         #ifdef DEBUG
+            imshow("Image View", view);
+        
             char key = (char)waitKey(s.inputCapture.isOpened() ? 50 : s.delay);
             if( key  == ESC_KEY )
                 break;
@@ -343,8 +346,8 @@ int calibration(const string inputFile)
             if(view.empty())
                 continue;
             remap(view, rview, map1, map2, INTER_LINEAR);
-            imshow("Image View", rview);
             #ifdef DEBUG
+                imshow("Image View", rview);
                 char c = (char)waitKey();
                 if( c  == ESC_KEY || c == 'q' || c == 'Q' )
                     break;

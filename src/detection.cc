@@ -4,8 +4,8 @@ const string xml_settings = "data/settings.xml";
 FileStorage fs_xml;
 vector<Mat> templates;
 
-// #define DEBUG
-// #define WAIT
+#define DEBUG
+#define WAIT
 
 /*! \brief Loads some images and detects shapes according to different colors.
 
@@ -84,18 +84,36 @@ void shape_detection(const Mat & img, const int color){
     // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
     FileNode mask;
     switch(color){
-        case 0: 
+        case 0: {
             cout << "\tObstacles detection\n";  
             mask = fs_xml["redMask"];
-        break;
-        case 1:  
+            cout << "RED MASK: ";
+            Scalar s = Scalar(mask[0], mask[1], mask[2]);
+            cout << s[0] << " " << s[1] << " " << s[2] << " ";
+            Scalar ss = Scalar(mask[3], mask[4], mask[5]);
+            cout << ss[0] << " " << ss[1] << " " << ss[2] << endl;
+            break;
+        }
+        case 1: {  
             cout << "\tVictim detection\n";   
-            mask = fs_xml["greenMask"];  
-        break;
-        case 2:  
+            mask = fs_xml["greenMask"]; 
+            cout << "GREEN MASK: ";
+            Scalar s = Scalar(mask[0], mask[1], mask[2]);
+            cout << s[0] << " " << s[1] << " " << s[2] << " ";
+            Scalar ss = Scalar(mask[3], mask[4], mask[5]);
+            cout << ss[0] << " " << ss[1] << " " << ss[2] << endl;
+            break;
+        }
+        case 2: {
             cout << "\tGate detection\n";    
             mask = fs_xml["blueMask"];   
-        break;
+            cout << "BLUE MASK: ";
+            Scalar s = Scalar(mask[0], mask[1], mask[2]);
+            cout << s[0] << " " << s[1] << " " << s[2] << " ";
+            Scalar ss = Scalar(mask[3], mask[4], mask[5]);
+            cout << ss[0] << " " << ss[1] << " " << ss[2] << endl;
+            break;
+        }
     }
     
     Mat color_mask;
@@ -131,6 +149,7 @@ void shape_detection(const Mat & img, const int color){
     According to the color the filtering functions apply can change in the type and in the order.
 */
 void erode_dilation(Mat & img, const int color){
+    cout << "erode" << endl;
     const int erode_side = (int) fs_xml["kernelSide"]; //odd number
     const int center = erode_side/2+1;
     Mat kernel = getStructuringElement(MORPH_RECT, Size(erode_side, erode_side), Point(center, center) );
@@ -161,8 +180,9 @@ void erode_dilation(Mat & img, const int color){
         //my_imshow("Erode", img);
     }
 
-    threshold(img, img, 100, 255, 0 ); // threshold and binarize the image, to suppress some noise
+    threshold(img, img, 254, 255, 0 ); // threshold and binarize the image, to suppress some noise
     //my_imshow("treshold", img);
+    cout << "erode done" << endl;
 }
 
 /*! \brief Given an image, in black/white format, identify all the borders that delimit the shapes.
@@ -258,7 +278,10 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     // black filter
     FileNode mask = fs_xml["blackMask"];
     inRange(processROI, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), processROI);
-    
+    #ifdef WAIT
+        my_imshow("before erode", processROI);
+    #endif
+
     erode_dilation(processROI, 3);
     #ifdef WAIT
         my_imshow("ROI filtered", processROI);
@@ -288,6 +311,7 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
         cout << "Best fitting template: -> " << maxIdx << " <- with score of: " << maxScore << endl << endl;
         waitKey();
     #endif
+        cout << "number_recognition done" << endl;
     return(maxIdx%10);  //if we have 20-30-... templates it return the true number
 }
 

@@ -6,6 +6,9 @@ COPY . /rob
 
 ENV DISPLAY=${DISPLAY}
 
-RUN make MORE_FLAGS="-D DEBUG -D WAIT"
+ARG FLAGS="MORE_FLAGS=\"-D DEBUG -D WAIT\""
+
+#MORE_FLAGS="-D DEBUG -D WAIT"
+RUN make 
 
 CMD ["make",  "run"]
