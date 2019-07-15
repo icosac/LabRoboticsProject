@@ -12,6 +12,7 @@ vector<Mat> templates;
     \returns Return 0 if the function reach the end.
 */
 int detection(){
+    cout << "detection" << endl;
 
     fs_xml.open(xml_settings, FileStorage::READ);
 
@@ -58,6 +59,7 @@ int detection(){
 /*! \brief Load some templates and save them in the global variable 'templates'.
 */
 void load_number_template(){ //load the template for number recognition
+    cout << "load_number_template" << endl;
     string folder = fs_xml["templatesFolder"];
     const int n_template = fs_xml["templates"].size();
     string tmp_str;
@@ -69,6 +71,7 @@ void load_number_template(){ //load the template for number recognition
         bitwise_not(tmp, tmp);
         templates.push_back(tmp);
     }
+    cout << "load_number_template done" << endl;
 }
 
 /*! \brief Detect shapes inside the image according to the variable 'color'.
@@ -81,6 +84,7 @@ void load_number_template(){ //load the template for number recognition
     These color identify the possible spectrum that the function search on the image.
 */
 void shape_detection(const Mat & img, const int color){
+    cout << "shape_detection" << endl;
     // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
     FileNode mask;
     switch(color){
@@ -129,12 +133,13 @@ void shape_detection(const Mat & img, const int color){
         my_imshow("Color_filter", color_mask);
     #endif
 
-    erode_dilation(color_mask, color);
-    #ifdef WAIT
-        my_imshow("Color filtered", color_mask);
-    #endif
+    // erode_dilation(color_mask, color);
+    // #ifdef WAIT
+    //     my_imshow("Color filtered", color_mask);
+    // #endif
 
     find_contours(color_mask, img, color);
+    cout << "shape_detection done" << endl;
 }
 
 /*! \brief It apply some filtering function for isolate the subject and remove the noise.
@@ -199,6 +204,7 @@ void find_contours( const Mat & img,
                     Mat original, 
                     const int color)
 {
+    cout << "find_contours" << endl;
     const double MIN_AREA_SIZE = 100;
     vector<vector<Point>> contours, contours_approx;
     vector<Point> approx_curve;
@@ -229,6 +235,7 @@ void find_contours( const Mat & img,
         my_imshow("Detected shape", original);
     #endif
     save_convex_hull(contours_approx, color, victimNum);
+    cout << "find_contours done" << endl;
 }
 
 /*! \brief Given some vector save it in a xml file.
@@ -241,6 +248,7 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
                         const int color, 
                         const vector<int> & victims)
 {
+    cout << "save_convex_hull" << endl;
     vector<vector<Point>> hull;
     vector<Point> hull_i;
     for(unsigned i=0; i<contours.size(); i++){
@@ -260,6 +268,7 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
         fs << "victimsNum" << victims;
     }
     //fs.release(); //if I do this operation I save only the first call of this function...
+    cout << "save_convex_hull done" << endl;
 }
 
 /*! \brief Detect a number on an image inside a region of interest.
@@ -270,6 +279,7 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
     \returns The number recognise, '-1' otherwise.
 */
 int number_recognition(Rect blob, const Mat & base){ //filtering
+    cout << "number_recognition" << endl;
     Mat processROI(base, blob); // extract the ROI containing the digit
     if(processROI.empty()){return(-1);}
     
@@ -296,7 +306,7 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     int maxIdx = -1;
     for (unsigned i=0; i<templates.size(); i++) {
         Mat result;
-        matchTemplate(processROI, templates[i], result, TM_CCOEFF); //TM_SQDIFF
+        (processROI, templates[i], result, TM_CCOEFF); //TM_SQDIFF
         double score;
         minMaxLoc(result, nullptr, &score);
         //my_imshow("templates[i]", templates[i]);
@@ -313,6 +323,7 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     #endif
         cout << "number_recognition done" << endl;
     return(maxIdx%10);  //if we have 20-30-... templates it return the true number
+    cout << "number_recognition done" << endl;
 }
 
 /*! \brief Given an image identify the region of interest(ROI) and crop it out. 
@@ -320,6 +331,7 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     \param[in,out] ROI Is the image that the function will going to elaborate.
 */
 void crop_number_section(Mat & ROI){
+    cout << "crop_number_section" << endl;
     // Tutorial for the min rectangle arround a shape. https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/bounding_rotated_ellipses/bounding_rotated_ellipses.html
     vector<vector<Point>> contours;
     vector<Point> contour;
@@ -371,7 +383,6 @@ void crop_number_section(Mat & ROI){
         my_imshow("Contour", drawing );
     #endif
 
-
     // How RotatedRect angle work: https://namkeenman.wordpress.com/2015/12/18/open-cv-determine-angle-of-rotatedrect-minarearect/
     Mat corner_pixels, transf_pixels;
     Size size;
@@ -393,7 +404,17 @@ void crop_number_section(Mat & ROI){
     warpPerspective(ROI, ROI, transf, size);
     //resize(ROI, ROI, ROI.size());
 
+    for (int i=0; i<ROI.rows; i++){
+        for (int j=0; j<ROI.cols; j++){
+            cout << ROI.at<int>(i, j) << " ";
+        }
+        cout << endl;
+    }
+
     #ifdef DEBUG
         my_imshow("rotated Num", ROI);
+        while((char)waitKey(1)!='q'){}
     #endif
+
+    cout << "crop_number_section done" << endl;
 }
