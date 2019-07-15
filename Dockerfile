@@ -1,4 +1,4 @@
-FROM opencv-tess-lept
+FROM chaff800/opencv-tess-lept
 
 WORKDIR /rob
 
