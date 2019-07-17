@@ -9,11 +9,8 @@
 enum OBJ_TYPE {FREE, VICT, OBST, GATE};
 
 class Mapp{
-    public: 
-        typedef short int myBit;  // it can be chenged to bool
-
     protected:
-        myBit **map;
+        OBJ_TYPE **map;
 
         int lengthX;    // dimension of the arena default: 1000
         int lengthY;    // dimension of the arena d: 1500
@@ -33,8 +30,8 @@ class Mapp{
         string matrixToString();
         void printDimensions();
 
-        bool checkPoint(Point2<int> p);
-        bool checkSegment(Point2<int> p1, Point2<int> p2);
+        OBJ_TYPE getPointType(const Point2<int> p);
+        bool checkSegment(const Point2<int> p1, const Point2<int> p2);
 
 };
 
