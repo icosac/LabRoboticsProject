@@ -9,6 +9,6 @@ services:
     build:
       context: .
     environment:
-      - "DISPLAY=10.196.37.220:0"
+      - "DISPLAY=10.196.185.239:0"
     networks:
       - internal

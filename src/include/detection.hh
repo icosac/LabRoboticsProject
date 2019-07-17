@@ -4,7 +4,7 @@
 //tesseract
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
-#include "utils.hh"
+#include <utils.hh>
 
 #include <iostream>
 #include <fstream>
@@ -23,7 +23,7 @@ using namespace cv;
 int detection();
 
 //core function
-void shape_detection(const Mat & img, const int color); //color: 0=red, 1=green, 2=blue, 3=black
+void shape_detection(const Mat & img, const int color, const Mat& un_img); //color: 0=red, 1=green, 2=blue, 3=black
 void erode_dilation(Mat & img, const int color);
 void find_contours( const Mat & img, 
                     Mat original, 

@@ -35,12 +35,12 @@ MKDIR=mkdir -p
 
 #files that contain code
 #dubins and maths are only libraries
-SRC=src/calibration.cc\
+SRC=src/utils.cc\
+	src/clipper.cc\
+	src/objects.cc\
+	src/calibration.cc\
 	src/detection.cc\
 	src/unwrapping.cc\
-	src/utils.cc\
-	src/clipper.cc\
-	src/objects.cc
 
 #test files
 TEST_SRC=test/maths_test.cc\
@@ -72,10 +72,9 @@ include_local:
 	@rm -rf lib/include
 	$(MKDIR) lib
 	$(MKDIR) lib/include
-	@cp -f src/$(INCLUDE)/*.hh lib/include
+	cp -f src/$(INCLUDE)/*.hh lib/include
 
 lib/libDubins.a: include_local $(OBJ)
-	@$(MKDIR) lib
 	$(AR) lib/libDubins.a $(OBJ) 
 	@rm -f src/*.o
 

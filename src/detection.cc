@@ -4,20 +4,14 @@ const string xml_settings = "data/settings.xml";
 FileStorage fs_xml;
 vector<Mat> templates;
 
-#define DEBUG
-#define WAIT
-
-void mywaitkey() {
-    while((char)waitKey(1)!='q'){}
-}
+// #define DEBUG
+// #define WAIT
 
 /*! \brief Loads some images and detects shapes according to different colors.
 
     \returns Return 0 if the function reach the end.
 */
 int detection(){
-    cout << "detection" << endl;
-
     fs_xml.open(xml_settings, FileStorage::READ);
 
     load_number_template();
@@ -42,7 +36,7 @@ int detection(){
 
         //detection (red-green-blue)
         for(int i=0; i<3; i++){
-            shape_detection(hsv_img, i);
+            shape_detection(hsv_img, i, un_img);
             #ifdef WAIT
                 if(i!=2){
                     mywaitkey();
@@ -63,7 +57,6 @@ int detection(){
 /*! \brief Load some templates and save them in the global variable 'templates'.
 */
 void load_number_template(){ //load the template for number recognition
-    cout << "load_number_template" << endl;
     string folder = fs_xml["templatesFolder"];
     const int n_template = fs_xml["templates"].size();
     string tmp_str;
@@ -75,7 +68,6 @@ void load_number_template(){ //load the template for number recognition
         bitwise_not(tmp, tmp);
         templates.push_back(tmp);
     }
-    cout << "load_number_template done" << endl;
 }
 
 /*! \brief Detect shapes inside the image according to the variable 'color'.
@@ -87,66 +79,40 @@ void load_number_template(){ //load the template for number recognition
     2 -> Blue\n
     These color identify the possible spectrum that the function search on the image.
 */
-void shape_detection(const Mat & img, const int color){
-    cout << "shape_detection" << endl;
+void shape_detection(const Mat & img, const int color, const Mat& un_img){
     // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
     FileNode mask;
     switch(color){
         case 0: {
             cout << "\tObstacles detection\n";  
             mask = fs_xml["redMask"];
-            cout << "RED MASK: ";
-            Scalar s = Scalar(mask[0], mask[1], mask[2]);
-            cout << s[0] << " " << s[1] << " " << s[2] << " ";
-            Scalar ss = Scalar(mask[3], mask[4], mask[5]);
-            cout << ss[0] << " " << ss[1] << " " << ss[2] << endl;
-            while((char)waitKey(1)!='q'){}
             break;
         }
         case 1: {  
             cout << "\tVictim detection\n";   
             mask = fs_xml["greenMask"]; 
-            cout << "GREEN MASK: ";
-            Scalar s = Scalar(mask[0], mask[1], mask[2]);
-            cout << s[0] << " " << s[1] << " " << s[2] << " ";
-            Scalar ss = Scalar(mask[3], mask[4], mask[5]);
-            cout << ss[0] << " " << ss[1] << " " << ss[2] << endl;
             break;
         }
         case 2: {
             cout << "\tGate detection\n";    
             mask = fs_xml["blueMask"];   
-            cout << "BLUE MASK: ";
-            Scalar s = Scalar(mask[0], mask[1], mask[2]);
-            cout << s[0] << " " << s[1] << " " << s[2] << " ";
-            Scalar ss = Scalar(mask[3], mask[4], mask[5]);
-            cout << ss[0] << " " << ss[1] << " " << ss[2] << endl;
             break;
         }
     }
     
     Mat color_mask;
+    inRange(img, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), color_mask);
     if(color==0){
-        Mat red_mask_low, red_mask_high;
-        // inRange(img, Scalar(0, mask[1], mask[2]), Scalar(mask[0], mask[4], mask[5]), red_mask_low);  
-        // inRange(img, Scalar(mask[3], mask[1], mask[2]), Scalar(179, mask[4], mask[5]), red_mask_high);
-        // addWeighted(red_mask_low, 1.0, red_mask_high, 1.0, 0.0, color_mask); // combine together the two binary masks
-        inRange(img, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), color_mask);
         bitwise_not(color_mask, color_mask);
-    } else{
-        inRange(img, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), color_mask);
-    }
+    } 
+    // else{
+    //     inRange(img, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), color_mask);
+    // }
     #ifdef DEBUG
         my_imshow("Color_filter", color_mask);
     #endif
 
-    // erode_dilation(color_mask, color);
-    // #ifdef WAIT
-    //     my_imshow("Color filtered", color_mask);
-    // #endif
-
     find_contours(color_mask, img, color);
-    cout << "shape_detection done" << endl;
 }
 
 /*! \brief It apply some filtering function for isolate the subject and remove the noise.
@@ -161,7 +127,6 @@ void shape_detection(const Mat & img, const int color){
     According to the color the filtering functions apply can change in the type and in the order.
 */
 void erode_dilation(Mat & img, const int color){
-    cout << "erode" << endl;
     const int erode_side = (int) fs_xml["kernelSide"]; //odd number
     const int center = erode_side/2+1;
     Mat kernel = getStructuringElement(MORPH_RECT, Size(erode_side, erode_side), Point(center, center) );
@@ -170,31 +135,24 @@ void erode_dilation(Mat & img, const int color){
 
     //smooth -> gaussian blur
     GaussianBlur(img, img, Size(erode_side, erode_side), 1, 1);
-    //my_imshow("Smooth 1", img);
 
     if(color==0 || color==2 || color==3){
         // Apply the erode operation
         erode(img, img, kernel);
-        //my_imshow("Erode", img);
     }
 
     // Apply the dilation operation
     dilate(img, img, kernel);
-    //my_imshow("Dilation", img);
 
     //smooth -> gaussian blur
     GaussianBlur(img, img, Size(erode_side, erode_side), 1, 1);
-    //my_imshow("Smooth 2", img);
 
     if(color==1){
         // Apply the erode operation
         erode(img, img, kernel);
-        //my_imshow("Erode", img);
     }
 
     threshold(img, img, 254, 255, 0 ); // threshold and binarize the image, to suppress some noise
-    //my_imshow("treshold", img);
-    cout << "erode done" << endl;
 }
 
 /*! \brief Given an image, in black/white format, identify all the borders that delimit the shapes.
@@ -212,7 +170,6 @@ void find_contours( const Mat & img,
                     Mat original, 
                     const int color)
 {
-    cout << "find_contours" << endl;
     const double MIN_AREA_SIZE = 100;
     vector<vector<Point>> contours, contours_approx;
     vector<Point> approx_curve;
@@ -228,7 +185,7 @@ void find_contours( const Mat & img,
             
             if(color==1){ //green
                 Rect blob = boundingRect(Mat(approx_curve)); // find bounding box for each green blob
-                int num_detect = number_recognition(blob, img);
+                int num_detect = number_recognition(blob, original);
                 if(num_detect!=-1){
                     contours_approx.push_back(approx_curve);
                     victimNum.push_back(num_detect);
@@ -244,7 +201,6 @@ void find_contours( const Mat & img,
         my_imshow("Detected shape", original);
     #endif
     save_convex_hull(contours_approx, color, victimNum);
-    cout << "find_contours done" << endl;
 }
 
 /*! \brief Given some vector save it in a xml file.
@@ -257,7 +213,6 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
                         const int color, 
                         const vector<int> & victims)
 {
-    cout << "save_convex_hull" << endl;
     vector<vector<Point>> hull;
     vector<Point> hull_i;
     for(unsigned i=0; i<contours.size(); i++){
@@ -277,43 +232,45 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
         fs << "victimsNum" << victims;
     }
     //fs.release(); //if I do this operation I save only the first call of this function...
-    cout << "save_convex_hull done" << endl;
 }
 
-#define TESS
-#ifdef TESS
+// #define TESS
+#ifdef TESS //TODO actually not working
 int number_recognition(Rect blob, const Mat& base){
-    cout << "number_recognition" << endl;
     Mat processROI(base, blob); // extract the ROI containing the digit
     if(processROI.empty()){return(-1);}
     
     resize(processROI, processROI, Size(200, 200)); // resize the ROI
 
-    // black filter
-    my_imshow("before black filter", processROI);
-    
     erode_dilation(processROI, 3);
     #ifdef WAIT
         my_imshow("ROI filtered", processROI);
+        mywaitkey();
     #endif
-    mywaitkey();
     
     string outText;
-
     tesseract::TessBaseAPI *ocr = new tesseract::TessBaseAPI();
     // Initialize tesseract to use English (eng) and the LSTM OCR engine. 
-    ocr->Init(NULL, "eng", tesseract::OEM_DEFAULT);
+    if (ocr->Init(NULL, "eng", tesseract::OEM_DEFAULT)){
+        fprintf(stderr, "Could not initialize tesseract.\n");
+        exit(1);
+    }
     ocr->SetVariable("tessedit_char_whitelist","0123456789");
     // Set Page segmentation mode to PSM_AUTO (3)
     ocr->SetPageSegMode(tesseract::PSM_SINGLE_CHAR);
-    ocr->SetImage(processROI.data, processROI.cols, processROI.rows, 3, processROI.step);
-    Pix* OCR_image=ocr->getInputImage();
+    ocr->SetImage(processROI.data, processROI.cols, processROI.rows, 1, processROI.step);
+    #ifdef DEBUG
+        Pix* OCR_image=ocr->GetInputImage();
+        Mat MAT_image=pixToMat(OCR_image);
+        my_imshow("ocr_image", MAT_image);
+        mywaitkey();
+    #endif
+
     // Run Tesseract OCR on image
     outText = string(ocr->GetUTF8Text());
     cout << "value recognised: " << outText << endl;
 
     return stoi(outText);
-
 }
 #else 
 /*! \brief Detect a number on an image inside a region of interest.
@@ -324,17 +281,17 @@ int number_recognition(Rect blob, const Mat& base){
     \returns The number recognise, '-1' otherwise.
 */
 int number_recognition(Rect blob, const Mat & base){ //filtering
-    cout << "number_recognition" << endl;
     Mat processROI(base, blob); // extract the ROI containing the digit
     if(processROI.empty()){return(-1);}
     
     resize(processROI, processROI, Size(200, 200)); // resize the ROI
 
     // black filter
-    my_imshow("before black filter", processROI);
-    bitwise_not(processROI, processROI);
-    // FileNode mask = fs_xml["blackMask"];
-    // inRange(processROI, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), processROI);
+    #ifdef DEBUG
+        my_imshow("before black filter", processROI);
+    #endif
+    FileNode mask = fs_xml["victimMask"];
+    inRange(processROI, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), processROI);
     #ifdef WAIT
         my_imshow("before erode", processROI);
     #endif
@@ -342,35 +299,38 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     erode_dilation(processROI, 3);
     #ifdef WAIT
         my_imshow("ROI filtered", processROI);
+        mywaitkey();
     #endif
-    mywaitkey();
     // crop out the number if it is possible
     crop_number_section(processROI);
-    
+
     // matching template
     // Find the template digit with the best matching
     double maxScore = 1e7;  // I don't know what this number represents...
     int maxIdx = -1;
     for (unsigned i=0; i<templates.size(); i++) {
         Mat result;
-        matchTemplate(processROI, templates[i], result, TM_CCOEFF); //TM_SQDIFF
+        Mat _template; 
+        resize(templates[i], _template, Size(200, 200));
+        resize(processROI, processROI, Size(200, 200));
+        matchTemplate(processROI, _template, result, TM_CCOEFF); //TM_SQDIFF
+// #ifdef DEBUG
+//         my_imshow("_resize", processROI, true);
+//         my_imshow("_template", _template);
+//         mywaitkey();
+// #endif
         double score;
         minMaxLoc(result, nullptr, &score);
-        //my_imshow("templates[i]", templates[i]);
-        //cout << i << " score of " << score << endl;
-        //mywaitkey();
         if (score > maxScore) {
             maxScore = score;
             maxIdx = i;
         }
     }
     #ifdef DEBUG
-        cout << "Best fitting template: -> " << maxIdx << " <- with score of: " << maxScore << endl << endl;
+        cout << "Best fitting template: -> " << maxIdx << "->" << maxIdx%10 << " <- with score of: " << maxScore << endl << endl;
         mywaitkey();
     #endif
-        cout << "number_recognition done" << endl;
     return(maxIdx%10);  //if we have 20-30-... templates it return the true number
-    cout << "number_recognition done" << endl;
 }
 #endif
 
@@ -379,7 +339,6 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     \param[in,out] ROI Is the image that the function will going to elaborate.
 */
 void crop_number_section(Mat & ROI){
-    cout << "crop_number_section" << endl;
     // Tutorial for the min rectangle arround a shape. https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/bounding_rotated_ellipses/bounding_rotated_ellipses.html
     vector<vector<Point>> contours;
     vector<Point> contour;
@@ -450,19 +409,10 @@ void crop_number_section(Mat & ROI){
 
     Mat rotNumber;
     warpPerspective(ROI, ROI, transf, size);
-    //resize(ROI, ROI, ROI.size());
-
-    for (int i=0; i<ROI.rows; i++){
-        for (int j=0; j<ROI.cols; j++){
-            cout << ROI.at<int>(i, j) << " ";
-        }
-        cout << endl;
-    }
 
     #ifdef DEBUG
         my_imshow("rotated Num", ROI);
         while((char)waitKey(1)!='q'){}
     #endif
 
-    cout << "crop_number_section done" << endl;
 }

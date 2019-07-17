@@ -23,5 +23,7 @@ using namespace std;
 #endif
 
 void my_imshow(const char* win_name, Mat img, bool reset=false);
+// Mat pixToMat(Pix* pix);
+void mywaitkey();
 
 #endif

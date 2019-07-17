@@ -34,6 +34,10 @@ void my_imshow( const char* win_name,
     }
 }
 
+void mywaitkey() {
+    while((char)waitKey(1)!='q'){}
+}
+
 #ifdef DEBUG
 
 #endif
