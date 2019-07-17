@@ -1,5 +1,5 @@
-#ifndef maths_hh
-#define maths_hh
+#ifndef MATHS_HH
+#define MATHS_HH
 
 #include <iostream>
 #include <cmath>
@@ -422,10 +422,11 @@ public:
   }
 };
 
-extern const Angle A_2PI = Angle(6.283185, Angle::RAD);
-extern const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);
-extern const Angle A_PI = Angle(M_PI, Angle::RAD);
-extern const Angle A_180 = Angle(180, Angle::DEG);
+//TODO Solve this problem
+#define A_2PI Angle(6.283185, Angle::RAD);
+#define A_360 Angle(360.0-Epsi, Angle::DEG);
+#define A_PI Angle(M_PI, Angle::RAD);
+#define A_180 Angle(180, Angle::DEG);
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 

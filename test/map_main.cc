@@ -1,29 +1,21 @@
-//#include <map.hh>
+#include <map.hh>
 #include <iostream>
 #include <bitset>         // std::bitset
 
 using namespace std;
 
-void test(int xx, int yy){
-    int **map = new int*[xx];
-    for(int i = 0; i < xx; i++) {
-        map[i] = new int[yy];
-    }
-    map[1][2] = 5;
-    for(int i=0; i<xx; i++){
-        for(int j=0; j<yy; j++){
-            cout << map[i][j] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
-}
-
 int main(){
     cout << "MAIN MAP\n";
-    test(3, 5);
-    int a = 5;
-    short int b = 3;
-    bool c = 1;
-    cout << sizeof(a) << sizeof(b) << sizeof(c) << endl;
-}
+    Mapp* map = new Mapp(150, 100, 5, 5);
+
+    vector<Point2<int> > vp;
+    vp.push_back(Point2<int>(13, 7));
+    vp.push_back(Point2<int>(32, 7));
+    vp.push_back(Point2<int>(30, 20));
+    vp.push_back(Point2<int>(14,18));
+
+    map->addObject(vp, OBST);
+    map->printMap();
+    
+return(0);
+}   
