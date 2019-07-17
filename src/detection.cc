@@ -12,7 +12,6 @@ vector<Mat> templates;
     \returns Return 0 if the function reach the end.
 */
 int detection(){
-
     fs_xml.open(xml_settings, FileStorage::READ);
 
     load_number_template();
@@ -37,10 +36,10 @@ int detection(){
 
         //detection (red-green-blue)
         for(int i=0; i<3; i++){
-            shape_detection(hsv_img, i);
+            shape_detection(hsv_img, i, un_img);
             #ifdef WAIT
                 if(i!=2){
-                    waitKey();
+                    mywaitkey();
                     destroyAllWindows();
                     my_imshow("unwrapped image", un_img, true);
                 }
@@ -80,40 +79,37 @@ void load_number_template(){ //load the template for number recognition
     2 -> Blue\n
     These color identify the possible spectrum that the function search on the image.
 */
-void shape_detection(const Mat & img, const int color){
+void shape_detection(const Mat & img, const int color, const Mat& un_img){
     // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
     FileNode mask;
     switch(color){
-        case 0: 
+        case 0: {
             cout << "\tObstacles detection\n";  
             mask = fs_xml["redMask"];
-        break;
-        case 1:  
+            break;
+        }
+        case 1: {  
             cout << "\tVictim detection\n";   
-            mask = fs_xml["greenMask"];  
-        break;
-        case 2:  
+            mask = fs_xml["greenMask"]; 
+            break;
+        }
+        case 2: {
             cout << "\tGate detection\n";    
             mask = fs_xml["blueMask"];   
-        break;
+            break;
+        }
     }
     
     Mat color_mask;
+    inRange(img, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), color_mask);
     if(color==0){
-        Mat red_mask_low, red_mask_high;
-        inRange(img, Scalar(0, mask[1], mask[2]), Scalar(mask[0], mask[4], mask[5]), red_mask_low);  
-        inRange(img, Scalar(mask[3], mask[1], mask[2]), Scalar(179, mask[4], mask[5]), red_mask_high);
-        addWeighted(red_mask_low, 1.0, red_mask_high, 1.0, 0.0, color_mask); // combine together the two binary masks
-    } else{
-        inRange(img, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), color_mask);
-    }
+        bitwise_not(color_mask, color_mask);
+    } 
+    // else{
+    //     inRange(img, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), color_mask);
+    // }
     #ifdef DEBUG
         my_imshow("Color_filter", color_mask);
-    #endif
-
-    erode_dilation(color_mask, color);
-    #ifdef WAIT
-        my_imshow("Color filtered", color_mask);
     #endif
 
     find_contours(color_mask, img, color);
@@ -139,30 +135,24 @@ void erode_dilation(Mat & img, const int color){
 
     //smooth -> gaussian blur
     GaussianBlur(img, img, Size(erode_side, erode_side), 1, 1);
-    //my_imshow("Smooth 1", img);
 
     if(color==0 || color==2 || color==3){
         // Apply the erode operation
         erode(img, img, kernel);
-        //my_imshow("Erode", img);
     }
 
     // Apply the dilation operation
     dilate(img, img, kernel);
-    //my_imshow("Dilation", img);
 
     //smooth -> gaussian blur
     GaussianBlur(img, img, Size(erode_side, erode_side), 1, 1);
-    //my_imshow("Smooth 2", img);
 
     if(color==1){
         // Apply the erode operation
         erode(img, img, kernel);
-        //my_imshow("Erode", img);
     }
 
-    threshold(img, img, 100, 255, 0 ); // threshold and binarize the image, to suppress some noise
-    //my_imshow("treshold", img);
+    threshold(img, img, 254, 255, 0 ); // threshold and binarize the image, to suppress some noise
 }
 
 /*! \brief Given an image, in black/white format, identify all the borders that delimit the shapes.
@@ -175,6 +165,7 @@ void erode_dilation(Mat & img, const int color){
     2 -> Blue\n
     Is used for decid which procedure apply to the image.
 */
+#define EPS_CURVE 3
 void find_contours( const Mat & img, 
                     Mat original, 
                     const int color)
@@ -186,11 +177,11 @@ void find_contours( const Mat & img,
     
     findContours(img, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE); // find external contours of each blob
     drawContours(original, contours, -1, Scalar(40,190,40), 1, LINE_AA);
-    
+
     if(color==1){cout << "\tNumber detection\n";}
     for (unsigned i=0; i<contours.size(); ++i){
         if (contourArea(contours[i]) > MIN_AREA_SIZE){ // filter too small contours to remove false positives
-            approxPolyDP(contours[i], approx_curve, 3, true); // fit a closed polygon (with less vertices) to the given contour, with an approximation accuracy (i.e. maximum distance between the original and the approximated curve) of 3
+            approxPolyDP(contours[i], approx_curve, EPS_CURVE, true); // fit a closed polygon (with less vertices) to the given contour, with an approximation accuracy (i.e. maximum distance between the original and the approximated curve) of 3
             
             if(color==1){ //green
                 Rect blob = boundingRect(Mat(approx_curve)); // find bounding box for each green blob
@@ -205,6 +196,7 @@ void find_contours( const Mat & img,
         }
     }
     drawContours(original, contours_approx, -1, Scalar(0,170,220), 5, LINE_AA);
+
     #ifdef WAIT
         my_imshow("Detected shape", original);
     #endif
@@ -242,6 +234,45 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
     //fs.release(); //if I do this operation I save only the first call of this function...
 }
 
+// #define TESS
+#ifdef TESS //TODO actually not working
+int number_recognition(Rect blob, const Mat& base){
+    Mat processROI(base, blob); // extract the ROI containing the digit
+    if(processROI.empty()){return(-1);}
+    
+    resize(processROI, processROI, Size(200, 200)); // resize the ROI
+
+    erode_dilation(processROI, 3);
+    #ifdef WAIT
+        my_imshow("ROI filtered", processROI);
+        mywaitkey();
+    #endif
+    
+    string outText;
+    tesseract::TessBaseAPI *ocr = new tesseract::TessBaseAPI();
+    // Initialize tesseract to use English (eng) and the LSTM OCR engine. 
+    if (ocr->Init(NULL, "eng", tesseract::OEM_DEFAULT)){
+        fprintf(stderr, "Could not initialize tesseract.\n");
+        exit(1);
+    }
+    ocr->SetVariable("tessedit_char_whitelist","0123456789");
+    // Set Page segmentation mode to PSM_AUTO (3)
+    ocr->SetPageSegMode(tesseract::PSM_SINGLE_CHAR);
+    ocr->SetImage(processROI.data, processROI.cols, processROI.rows, 1, processROI.step);
+    #ifdef DEBUG
+        Pix* OCR_image=ocr->GetInputImage();
+        Mat MAT_image=pixToMat(OCR_image);
+        my_imshow("ocr_image", MAT_image);
+        mywaitkey();
+    #endif
+
+    // Run Tesseract OCR on image
+    outText = string(ocr->GetUTF8Text());
+    cout << "value recognised: " << outText << endl;
+
+    return stoi(outText);
+}
+#else 
 /*! \brief Detect a number on an image inside a region of interest.
 
     \param[in] blob Identify the region of interest inside the image 'base'.
@@ -256,40 +287,52 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     resize(processROI, processROI, Size(200, 200)); // resize the ROI
 
     // black filter
-    FileNode mask = fs_xml["blackMask"];
+    #ifdef DEBUG
+        my_imshow("before black filter", processROI);
+    #endif
+    FileNode mask = fs_xml["victimMask"];
     inRange(processROI, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), processROI);
-    
+    #ifdef WAIT
+        my_imshow("before erode", processROI);
+    #endif
+
     erode_dilation(processROI, 3);
     #ifdef WAIT
         my_imshow("ROI filtered", processROI);
+        mywaitkey();
     #endif
-
     // crop out the number if it is possible
     crop_number_section(processROI);
-    
+
     // matching template
     // Find the template digit with the best matching
     double maxScore = 1e7;  // I don't know what this number represents...
     int maxIdx = -1;
     for (unsigned i=0; i<templates.size(); i++) {
         Mat result;
-        matchTemplate(processROI, templates[i], result, TM_CCOEFF); //TM_SQDIFF
+        Mat _template; 
+        resize(templates[i], _template, Size(200, 200));
+        resize(processROI, processROI, Size(200, 200));
+        matchTemplate(processROI, _template, result, TM_CCOEFF); //TM_SQDIFF
+// #ifdef DEBUG
+//         my_imshow("_resize", processROI, true);
+//         my_imshow("_template", _template);
+//         mywaitkey();
+// #endif
         double score;
         minMaxLoc(result, nullptr, &score);
-        //my_imshow("templates[i]", templates[i]);
-        //cout << i << " score of " << score << endl;
-        //waitKey();
         if (score > maxScore) {
             maxScore = score;
             maxIdx = i;
         }
     }
     #ifdef DEBUG
-        cout << "Best fitting template: -> " << maxIdx << " <- with score of: " << maxScore << endl << endl;
-        waitKey();
+        cout << "Best fitting template: -> " << maxIdx << "->" << maxIdx%10 << " <- with score of: " << maxScore << endl << endl;
+        mywaitkey();
     #endif
     return(maxIdx%10);  //if we have 20-30-... templates it return the true number
 }
+#endif
 
 /*! \brief Given an image identify the region of interest(ROI) and crop it out. 
 
@@ -347,7 +390,6 @@ void crop_number_section(Mat & ROI){
         my_imshow("Contour", drawing );
     #endif
 
-
     // How RotatedRect angle work: https://namkeenman.wordpress.com/2015/12/18/open-cv-determine-angle-of-rotatedrect-minarearect/
     Mat corner_pixels, transf_pixels;
     Size size;
@@ -367,9 +409,10 @@ void crop_number_section(Mat & ROI){
 
     Mat rotNumber;
     warpPerspective(ROI, ROI, transf, size);
-    //resize(ROI, ROI, ROI.size());
 
     #ifdef DEBUG
         my_imshow("rotated Num", ROI);
+        while((char)waitKey(1)!='q'){}
     #endif
+
 }

@@ -788,20 +788,30 @@ public:
     return *this;
   }
   /*! \brief Equalize two points.
-      \param [in] A point to be equalized.
+      \param [in] A point to be compared to.
       \returns true if the two points are equal. 
   */
   bool equal (const Point2<T>& A){
     return x()==A.x() && y()==A.y(); 
   }
   /*! \brief Overload of the == operator. Just calls `equal`.
-      \param [in] A point to be equalized.
+      \param [in] A point to be compared to.
       \returns true if the two configurations are equal. 
   */
   bool operator== (const Point2<T>& A){
     return equal(A);
   }
-
+  /*! \brief Overload of the != operator. Just calls `equal` and negates it.
+      \param [in] A point to be compared to.
+      \returns true if the two configurations are different. 
+  */
+  bool operator!= (const Point2<T>& A){
+    return !equal(A);
+  }
+  //TODO find better implementation
+  bool operator< (const Point2<T>& A){
+    return true;
+  }
   // ~Point2(){delete values;}
 };
 

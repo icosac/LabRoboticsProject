@@ -70,7 +70,11 @@ int unwrapping(){
         vector< Point > approx_polygon, rect, rect2;
 
         // Process black mask
+        #if CV_MAJOR_VERSION<4
         findContours(black_mask, contours, CV_RETR_CCOMP, CHAIN_APPROX_SIMPLE); // find external contours of each blob
+        #else 
+        findContours(black_mask, contours, RETR_CCOMP, CHAIN_APPROX_SIMPLE); // find external contours of each blob
+        #endif
 
         double area, area_max = -1000.0, area_max2 = -1000.0;
         //for series of points

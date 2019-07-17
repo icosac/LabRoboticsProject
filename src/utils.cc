@@ -18,8 +18,13 @@ void my_imshow( const char* win_name,
     }
 
     //const string s = win_name;
-    namedWindow(win_name, CV_WINDOW_NORMAL);
-    cvvResizeWindow(win_name, SIZE, SIZE);
+    #if CV_MAJOR_VERSION<4
+      namedWindow(win_name, CV_WINDOW_NORMAL);
+    #else 
+      namedWindow(win_name, WINDOW_NORMAL);
+    #endif
+    
+    cvResizeWindow(win_name, SIZE, SIZE);
     imshow(win_name, img);
     moveWindow(win_name, W_now, H_now);
     W_now += SIZE + W_OFFSET;
@@ -27,6 +32,10 @@ void my_imshow( const char* win_name,
         W_now = W_0;
         H_now += SIZE + H_OFFSET;
     }
+}
+
+void mywaitkey() {
+    while((char)waitKey(1)!='q'){}
 }
 
 #ifdef DEBUG

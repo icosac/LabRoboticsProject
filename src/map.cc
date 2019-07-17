@@ -1,9 +1,5 @@
 #include <map.hh>
 
-/*
-bool checkSegment(const Point2<int> p1, const Point2<int> p2);
-*/
-
 /*! \brief Constructor of the class.
 
     \param[in] _lengthX It is the size in pixel of the horizontal dimension.
@@ -25,13 +21,76 @@ Mapp::Mapp(int _lengthX, int _lengthY, int _pixX, int _pixY, vector< vector<Poin
         map[i] = new OBJ_TYPE[dimX];
     }
 
-    printDimensions();
-    //printMap();
-
     for(uint i=0; i<vvp.size(); i++){
         addObject(vvp[i], OBST);
     }
-    //printMap();
+}
+
+/*! \brief Given a segment (from p0 to p1) it return a set of all the cells that are partly cover from that segment.
+
+    \param[in] p0 First point of the segment.
+    \param[in] p1 Second point of the segment.
+    \returns A set containing all the cells, identified by their row(i or y) and column(j or x).
+*/
+set<pair<int, int> > Mapp::cellsFromSegment(Point2<int> p0, Point2<int> p1){
+    set<pair<int, int> > cells;
+    
+    // save in x0,y0 the point with the lowest x
+    int x0, x1;
+    double y0, y1;
+    if( p0.x() < p1.x() ){
+        x0=p0.x();  x1=p1.x();
+        y0=p0.y();  y1=p1.y();
+    } else{
+        x0=p1.x();  x1=p0.x();
+        y0=p1.y();  y1=p0.y();
+    }
+    //cout << x0 << "," << y0 << " - " << x1 << "," << y1 << endl;
+    double th = atan2(y1-y0, x1-x0);
+
+    int j = x0/pixX;
+    int i = int(y0)/pixY;
+    //cout << "i: " << i << ", j: " << j << endl;
+
+    // iteration over all the cells interssed from the side
+    while(!(x0==x1 && equal(y0, y1, 0.0001))){
+        //cout << "check x: " << (x0==x1) << ", check y: " << equal(y0, y1) << endl;
+        //cout << "check fail on -> " << x0 << "," << y0 << " - " << x1 << "," << y1 << endl;
+        //localize the left point on the grid
+        //cout << "adding pixel: " << i << ", " << j << endl;
+
+        cells.insert(pair<int, int>(i, j));
+
+        // compute the y given the x
+        int x = min(pixX*(j+1), x1);
+        //cout << "x: " << x;
+        
+        double l = (x-x0)*1.0/cos(th);
+        double y;
+        // to manage the situation of a vertical line
+        if(int(l)==0){
+            y = y1;
+        } else{
+            y = y0 + l*sin(th);
+        }
+        //cout << ", y: " << y << endl;
+        
+        // color the whole line between the (j, i (aka i0)) and (j, i1)
+        int i1 = int(floor(y))/pixY;
+        //cout << "i: " << i << " i1: " << i1 << endl;
+        //cout << "for: \n";
+        for(int k=min(i, i1); k<=max(i, i1); k++){
+            //cout << "\t" << k << " " << j << endl;
+            cells.insert(pair<int, int>(k, j));
+        }
+        //cout << endl;
+
+        x0 = x;
+        y0 = y;
+        j++;
+        i = i1;
+    }
+    return(cells);
 }
 
 /*! \brief Given an obstacle it is added to the map.
@@ -40,15 +99,15 @@ Mapp::Mapp(int _lengthX, int _lengthY, int _pixX, int _pixY, vector< vector<Poin
     \param[in] vp It is the vector of points (convex hull) that delimit the object of interest.
     \param[in] type It id the type of the given object. Defined as a OBJ_TYPE.
 */
-void Mapp::addObject(vector<Point2<int> > vp, const OBJ_TYPE type){    
+void Mapp::addObject(vector<Point2<int> > vp, const OBJ_TYPE type){
     if(vp.size()>=3){
         //cout << "Points:\n";
         //min, max of x, y computed
         int yMin=lengthY, yMax=0;
-        for(uint i = 0; i<vp.size(); i++){
-            //cout << "\t" << vp[i] << endl;
-            yMin = min(yMin, vp[i].y());
-            yMax = max(yMax, vp[i].y());
+        for(uint a = 0; a<vp.size(); a++){
+            //cout << "\t" << vp[a] << endl;
+            yMin = min(yMin, vp[a].y());
+            yMax = max(yMax, vp[a].y());
         }
         //cout << endl;
         
@@ -67,77 +126,24 @@ void Mapp::addObject(vector<Point2<int> > vp, const OBJ_TYPE type){
         vp.push_back(vp[0]);
         // for each side of the object
         for(uint s=0; s<vp.size()-1; s++){
-            //cout << "\n_______________________________________________________\nPoint n:" << s+1 << endl;
+            // cout << "\n_______________________________________________________\nCouple n:" << s+1 << endl;
             //save the end points of the segment
-
-            // save in p0 the point with the lowest x
-            Point2<int> p0, p1;
-            if( vp[s].x() < vp[s+1].x() ){
-                p0 = vp[s];
-                p1 = vp[s+1];
-            } else{
-                p0 = vp[s+1];
-                p1 = vp[s];
-            }
-
-            // x and y of point 0 and 1
-            int x0=p0.x(), x1=p1.x();
-            double y0=p0.y(), y1=p1.y();
-            //cout << x0 << "," << y0 << " - " << x1 << "," << y1 << endl;
-            double th = atan2(y1-y0, x1-x0);
-
-            int j = x0/pixX;
-            int i = int(y0)/pixY;
-            //cout << "i: " << i << ", j: " << j << endl;
-
-            // iteration over all the cells intersected from the side
-            while(!(x0==x1 && equal(y0, y1, 0.0001))){
-                //cout << "check x: " << (x0==x1) << ", check y: " << equal(y0, y1) << endl;
-                //cout << "check fail on -> " << x0 << "," << y0 << " - " << x1 << "," << y1 << endl;
-                //localize the left point on the grid
-                //cout << "coloring pixel: " << i << ", " << j << endl;
+            set<pair<int, int> > collisionSet = cellsFromSegment(vp[s], vp[s+1]);
+            // cout << "Set returned:\n";
+            // cout << "size " << collisionSet.size() << endl;
+            for(auto el:collisionSet){
+                int i=get<0>(el), j=el.second;  // two methods for get elements from a pair structure
+                // cout << j << "," << i << " - ";
                 map[i][j] = type;
                 minimums[i-iMin] = min(minimums[i-iMin], j);
                 maximums[i-iMin] = max(maximums[i-iMin], j);
-
-                // compute the y given the x
-                int x = min(pixX*(j+1), x1);
-                //cout << "x: " << x;
-                
-                double l = (x-x0)*1.0/cos(th);
-                double y;
-                // to manage the situation of a vertical line
-                if(int(l)==0){
-                    y = y1;
-                } else{
-                    y = y0 + l*sin(th);
-                }
-                //cout << ", y: " << y << endl;
-                
-                // color the whole line between the (j, i (aka i0)) and (j, i1)
-                int i1 = int(floor(y))/pixY;
-                //cout << "i: " << i << " i1: " << i1 << endl;
-                //cout << "for: \n";
-                for(int k=min(i, i1); k<=max(i, i1); k++){
-                    //cout << "\t" << k << " " << j << endl;
-                    map[k][j] = type;
-                    minimums[k-iMin] = min(minimums[k-iMin], j);
-                    maximums[k-iMin] = max(maximums[k-iMin], j);
-                }
-                //cout << endl;
-
-                x0 = x;
-                y0 = y;
-                j++;
-                i = i1;
             }
-
-            // todo update min & max
-            for(int k=0; k<vectSize; k++){
-                //cout << "line " << k+iMin << ": (" << minimums[k] << ", " << maximums[k] << ")\n";
-                for(int j=minimums[k]+1; j<maximums[k]; j++){
-                    map[k+iMin][j] = type;
-                }
+            // cout << endl;
+        }
+        for(int k=0; k<vectSize; k++){
+            //cout << "line " << k+iMin << ": (" << minimums[k] << ", " << maximums[k] << ")\n";
+            for(int j=minimums[k]+1; j<maximums[k]; j++){
+                map[k+iMin][j] = type;
             }
         }
     } else{
@@ -155,6 +161,35 @@ OBJ_TYPE Mapp::getPointType(const Point2<int> p){
     int i = p.y()/pixY;
 
     return(map[i][j]);
+}
+
+/*! \brief Given a segment and a type, the function answer if that segment cross a cell with the given type.
+
+    \param[in] p0 First point of the segment.
+    \param[in] p1 Second point of the segment.
+    \param[in] type The type to be detected.
+    \returns True if the type was found, false otherwise.
+*/
+bool Mapp::checkSegmentCollisionWithType(const Point2<int> p0, const Point2<int> p1, const OBJ_TYPE type){
+    set<pair<int, int> > collisionSet = cellsFromSegment(p0, p1);
+    for(auto el:collisionSet){
+        int i=get<0>(el), j=el.second;  // two methods for get elements from a pair structure
+        if( map[i][j] == type ){
+            return(true);
+        }
+    }
+    return(false);
+}
+
+/*! \brief Given a segment, the function answer if that segment cross a cell with obstacles.
+    \details It is a wrapper for the function 'checkSegmentCollisionWithType'.
+
+    \param[in] p0 First point of the segment.
+    \param[in] p1 Second point of the segment.
+    \returns True if the obstacles were crossed, false otherwise.
+*/
+bool Mapp::checkSegment(const Point2<int> p0, const Point2<int> p1){
+    return(checkSegmentCollisionWithType(p0, p1, OBST));
 }
 
 /*! \brief Print to the terminal the main informations of the Map.

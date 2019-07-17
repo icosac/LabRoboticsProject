@@ -1,0 +1,14 @@
+version: "3.7"
+
+networks:
+  internal:
+    driver: bridge
+
+services:
+  rob: 
+    build:
+      context: .
+    environment:
+      - "DISPLAY=10.196.185.239:0"
+    networks:
+      - internal

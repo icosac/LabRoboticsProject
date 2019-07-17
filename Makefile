@@ -4,20 +4,19 @@ OS=$(shell uname)
 OPENCV=opencv
 
 LIB_DUBINS=libDubins.a
+INCLUDE=include
 
 CXX=g++
 
-INC= -I./lib/include 
+INC=-I./lib/include 
 LDFLAGS=-Wl,-rpath,/Users/enrico/opencv/lib/
 
 LIBS=-L./lib -lDubins $(INC)
 
-INCLUDE=include
-
 #condition for mac and linux
 ifneq (,$(findstring Darwin, $(OS)))
 	OPENCV=opencv3
-	CXXFLAGS=$(LDFLAGS) -framework OpenCL `pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wno-everything -O3
+	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wno-everything -O3
   	AR=libtool -static -o
 else 
 	CXXFLAGS=`pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wall -O3
@@ -36,12 +35,12 @@ MKDIR=mkdir -p
 
 #files that contain code
 #dubins and maths are only libraries
-SRC=src/calibration.cc\
-	src/detection.cc\
-	src/unwrapping.cc\
-	src/utils.cc\
+SRC=src/utils.cc\
 	src/clipper.cc\
 	src/objects.cc\
+	src/calibration.cc\
+	src/detection.cc\
+	src/unwrapping.cc\
 	src/map.cc
 
 #test files
@@ -75,10 +74,9 @@ include_local:
 	@rm -rf lib/include
 	$(MKDIR) lib
 	$(MKDIR) lib/include
-	@cp -f src/$(INCLUDE)/*.hh lib/include
+	cp -f src/$(INCLUDE)/*.hh lib/include
 
 lib/libDubins.a: include_local $(OBJ)
-	@$(MKDIR) lib
 	$(AR) lib/libDubins.a $(OBJ) 
 	@rm -f src/*.o
 
@@ -111,8 +109,8 @@ run_unwrapping:
 run_detection:
 	./bin/detection_run.out
 
-xml generateXML:
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -Wall -O3 -o bin/create_xml.out src/create_xml.cc $(LDLIBS)
+xml generateXML: bin/
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/create_xml.out src/create_xml.cc $(LDLIBS)
 	./bin/create_xml.out
 
 #clean lib
