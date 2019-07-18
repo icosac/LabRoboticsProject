@@ -1,40 +1,30 @@
 <?xml version="1.0"?>
 <opencv_storage>
-<mapsFolder>data/map</mapsFolder>
+<mapsFolder>
+  data/map</mapsFolder>
 <mapsNames>
-  "2018-12-19-174832.jpg" "2018-12-19-174916.jpg"
-  "2018-12-19-174821.jpg" "2018-12-19-174841.jpg"
-  "2018-12-19-174657.jpg" "2018-12-19-174832.jpg"
-  "2018-12-19-174916.jpg" "2018-12-19-174821.jpg"
-  "2018-12-19-174841.jpg" "2018-12-19-174657.jpg"
-  "2018-12-19-174832.jpg" "2018-12-19-174916.jpg"
-  "2018-12-19-174821.jpg" "2018-12-19-174841.jpg"
-  "2018-12-19-174657.jpg" "2018-12-19-174832.jpg"
-  "2018-12-19-174916.jpg" "2018-12-19-174821.jpg"
-  "2018-12-19-174841.jpg" "2018-12-19-174657.jpg"</mapsNames>
+  "04.jpg"</mapsNames>
 <mapsUnNames>
-  "2018-12-19-174851_UN.jpg" "2018-12-19-174UN926.jpg"
-  "2018-UN12-19-174859.jpg" "2018-12-19-174851_UN.jpg"
-  "2018-12-19-174UN926.jpg" "2018-UN12-19-174859.jpg"
-  "2018-12-19-174851_UN.jpg" "2018-12-19-174UN926.jpg"
-  "2018-UN12-19-174859.jpg" "2018-12-19-174851_UN.jpg"
-  "2018-12-19-174UN926.jpg" "2018-UN12-19-174859.jpg"</mapsUnNames>
-<calibrationFile>data/intrinsic_calibration.xml</calibrationFile>
+  "04.jpg"</mapsUnNames>
+<calibrationFile>"./data/intrinsic_calibration.xml"</calibrationFile>
 <blackMask>
-  0 91 0 180 255 56</blackMask>
+  0 0 0 179 255 70</blackMask>
 <redMask>
-  0 0 0 151 255 255</redMask>
-<greenMask>
-  54 84 48 80 255 170</greenMask>
-<blueMask>
-  88 182 86 124 235 195</blueMask>
+  10 0 0 170 255 255</redMask>
 <victimMask>
-  0 173 48 95 255 138</victimMask>
-  <whiteMask>
-  0 173 48 95 255 138</whiteMask>
+  0 0 0 179 255 80</victimMask>
+<greenMask>
+  40 60 80 80 255 170</greenMask>
+<blueMask>
+  100 100 40 140 200 170</blueMask>
+<whiteMask>
+  100 100 40 140 200 170</whiteMask>
 <kernelSide>9</kernelSide>
 <convexHullFile>data/convexHull.xml</convexHullFile>
 <templatesFolder>data/num_template/</templatesFolder>
 <templates>
-  </templates>
+  "0.png" "1.png" "2.png" "3.png" "4.png" "5.png" "6.png" "7.png"
+  "8.png" "9.png" "0_inv.png" "1_inv.png" "2_inv.png" "3_inv.png"
+  "4_inv.png" "5_inv.png" "6_inv.png" "7_inv.png" "8_inv.png"
+  "9_inv.png"</templates>
 </opencv_storage>

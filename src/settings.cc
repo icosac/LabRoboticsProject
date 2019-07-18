@@ -144,54 +144,60 @@ void Settings::writeToFile(string _path){
 
 void Settings::readFromFile(string _path){
 	FileStorage fs(_path, FileStorage::READ);
-	
+	cout << "ok" << endl;
 	mapsFolder=(string)fs["mapsFolder"];
-	for (int i=0; i<fs["mapsNames"].size(); i++){
+	cout << "ok " << fs["mapsNames"].size() << endl;
+	for (uint i=0; i<fs["mapsNames"].size(); i++){
 		mapsNames.add((string)fs["mapsNames"][i]);
 	}
-	for (int i=0; i<fs["mapsUnNames"].size(); i++){
+	cout << "ok" << endl;
+	for (uint i=0; i<fs["mapsUnNames"].size(); i++){
 		mapsUnNames.add((string)fs["mapsUnNames"][i]);
 	}
+	cout << "ok" << endl;
 
 	calibrationFile=(string)fs["calibrationFile"];
 	
+	cout << "ok" << endl;
+
 	vector<int> filter;
-	for (int i=0; i<fs["blackMask"].size(); i++){
+	for (uint i=0; i<fs["blackMask"].size(); i++){
 		filter.push_back((int)fs["blackMask"][i]);
 	}	
 	blackMask=Filter(filter); filter.clear();
 
-	for (int i=0; i<fs["redMask"].size(); i++){
+	for (uint i=0; i<fs["redMask"].size(); i++){
 		filter.push_back((int)fs["redMask"][i]);
 	}	
 	redMask=Filter(filter); filter.clear();
 	
-	for (int i=0; i<fs["greenMask"].size(); i++){
+	for (uint i=0; i<fs["greenMask"].size(); i++){
 		filter.push_back((int)fs["greenMask"][i]);
 	}	
 	greenMask=Filter(filter); filter.clear();
 	
-
-	for (int i=0; i<fs["blueMask"].size(); i++){
+	for (uint i=0; i<fs["blueMask"].size(); i++){
 		filter.push_back((int)fs["blueMask"][i]);
 	}	
 	blueMask=Filter(filter); filter.clear();
 	
-	for (int i=0; i<fs["whiteMask"].size(); i++){
+	for (uint i=0; i<fs["whiteMask"].size(); i++){
 		filter.push_back((int)fs["whiteMask"][i]);
 	}	
 	whiteMask=Filter(filter); filter.clear();
 
-	for (int i=0; i<fs["victimMask"].size(); i++){
+	for (uint i=0; i<fs["victimMask"].size(); i++){
 		filter.push_back((int)fs["victimMask"][i]);
 	}	
 	victimMask=Filter(filter); filter.clear();
+	
+	cout << "ok" << endl;
 		
 	kernelSide=fs["kernelSide"];
 	convexHullFile=(string)fs["convexHullFile"];
 	
 	templatesFolder=(string)fs["templatesFolder"];	
-	for (int i=0; i<fs["templates"].size(); i++){
+	for (uint i=0; i<fs["templates"].size(); i++){
 		templates.add((string)fs["templates"]);
 	}
 

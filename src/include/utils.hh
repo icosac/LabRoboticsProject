@@ -1,8 +1,10 @@
 #ifndef UTILS_HH
 #define UTILS_HH
 
+#ifdef TESS
 #include <tesseract/baseapi.h> // Tesseract headers
 #include <leptonica/allheaders.h>
+#endif
 
 #include <cstdio>
 

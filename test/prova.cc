@@ -1,15 +1,14 @@
 #include<iostream>
-#include"camera_capture.h"
-#include"opencv2/imgproc.hpp"
-#include"opencv2/highgui.hpp"
-#include"filter.hh"
-#include"settings.hh"
+#include<opencv2/imgproc.hpp>
+#include<opencv2/highgui.hpp>
+
+#include<utils.hh>
+#include<camera_capture.hh>
+#include<filter.hh>
+#include<settings.hh>
 
 using namespace std;
 using namespace cv;
-
-void my_imshow(const char* win_name, cv::Mat img, bool reset=false);
-void mywaitkey();
 
 /** Function Headers */
 void on_low_h_thresh_trackbar(int, void *);
@@ -22,7 +21,6 @@ void update_trackers();
 bool show_all_conditions(Mat& frame, Settings* s);
 
 #define NAME(x) #x
-#define FILE_NAME "data/settings.xml"
 // #define DEBUG
 
 /** Global Variables */
@@ -230,88 +228,4 @@ void on_high_v_thresh_trackbar(int, void *)
 {
     filter.high_v = max(filter.high_v, filter.low_v+1);
     setTrackbarPos("High V", "Filtered Image", filter.high_v);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void my_imshow( const char* win_name, 
-                cv::Mat img, 
-                bool reset/*=false*/){
-    const int SIZE     = 250;
-    const int W_0      = 0;
-    const int H_0      = 0;
-    const int W_OFFSET = 20;
-    const int H_OFFSET = 90;
-    const int LIMIT    = W_0 + 5*SIZE + 4*W_OFFSET;
-
-    static int W_now = W_0;
-    static int H_now = H_0;
-    if(reset){
-        W_now = W_0;
-        H_now = H_0;
-    }
-
-    //const string s = win_name;
-    #if CV_MAJOR_VERSION<4
-      namedWindow(win_name, CV_WINDOW_NORMAL);
-    #else 
-      namedWindow(win_name, WINDOW_NORMAL);
-    #endif
-    
-    cvResizeWindow(win_name, SIZE, SIZE);
-    imshow(win_name, img);
-    moveWindow(win_name, W_now, H_now);
-    W_now += SIZE + W_OFFSET;
-    if(W_now >= LIMIT){
-        W_now = W_0;
-        H_now += SIZE + H_OFFSET;
-    }
-}
-
-void mywaitkey() {
-    while((char)waitKey(1)!='q'){}
 }

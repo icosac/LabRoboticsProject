@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include "../src/maths.hh"
+#include <maths.hh>
 
 using namespace std;
 

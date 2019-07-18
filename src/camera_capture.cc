@@ -3,9 +3,9 @@
 //
 
 #include <iostream>
-#include "utils.h"
+#include <utils.hh>
 #include <cstring>
-#include "camera_capture.h"
+#include <camera_capture.hh>
 
 #define DEBUG
 #ifdef DEBUG
