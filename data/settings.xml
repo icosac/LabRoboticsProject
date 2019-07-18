@@ -8,9 +8,11 @@
 <blackMask>
   0 0 0 179 255 70</blackMask>
 <redMask>
-  15 100 140 160 255 255</redMask>
+  10 0 0 170 255 255</redMask>
+<victimMask>
+  0 0 0 179 255 80</victimMask>
 <greenMask>
-  54 74 25 119 255 88</greenMask>
+  40 60 80 80 255 170</greenMask>
 <blueMask>
   100 100 40 140 200 170</blueMask>
 <kernelSide>9</kernelSide>

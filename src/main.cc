@@ -1,4 +1,5 @@
 // the core of the project
+
 #include <detection.hh>
 #include <unwrapping.hh>
 #include <calibration.hh>
@@ -13,7 +14,13 @@ int main (){
 	unwrapping();
 	cout << "detection" << endl;
 	detection();
-	cout << "end" << endl;
+
+	// cout << "planning" << endl;
+	// planning();
+
+	// the robot start to move
+
+	cout << "\nend\n\n";
 
 	return 0;
 }

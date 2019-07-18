@@ -8,6 +8,13 @@
 
 #include <maths.hh>
 
+#include <opencv2/highgui.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/imgcodecs.hpp>
+
+using namespace cv;
+
 enum OBJ_TYPE {FREE, VICT, OBST, GATE};
 
 class Mapp{
@@ -29,13 +36,15 @@ class Mapp{
 
         void addObject(vector<Point2<int> > vp, const OBJ_TYPE type);
 
-        void printMap();
-        string matrixToString();
-        void printDimensions();
-
         OBJ_TYPE getPointType(const Point2<int> p);
         bool checkSegment(const Point2<int> p1, const Point2<int> p2);
         bool checkSegmentCollisionWithType(const Point2<int> p0, const Point2<int> p1, const OBJ_TYPE type);
+
+        Mat createMapRepresentation(/*eventually add a vector of bubins*/);
+
+        void printMap();
+        string matrixToString();
+        void printDimensions();
 
 };
 

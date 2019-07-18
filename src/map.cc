@@ -192,6 +192,54 @@ bool Mapp::checkSegment(const Point2<int> p0, const Point2<int> p1){
     return(checkSegmentCollisionWithType(p0, p1, OBST));
 }
 
+Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
+    // empty map
+	Mat imageMap = Mat::zeros( Size(lengthX, lengthY), CV_8UC3 );
+    for(int i=0; i<dimY; i++){
+        for(int j=0; j<dimX; j++){
+            if(map[i][j]!=FREE){
+                // choose the color according to the type
+                Scalar color;
+                switch (map[i][j]){
+                    case OBST:
+                        color = Scalar(0, 0, 255); //BGR format
+                        break;
+                    case VICT:
+                        color = Scalar(0, 255, 0); //BGR format
+                        break;
+                    case GATE:
+                        color = Scalar(255, 0, 0); //BGR format
+                        break;
+                    default:
+                        break;
+                }
+                // color the relative rectangle
+                rectangle(imageMap, Point(j*pixX, i*pixY), Point((j+1)*pixX, (i+1)*pixY), color, -1);
+            }
+        }
+    }
+    return(imageMap);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*! \brief Print to the terminal the main informations of the Map.
 */
 void Mapp::printDimensions(){
