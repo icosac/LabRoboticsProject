@@ -26,12 +26,14 @@ int main(){
 
         // map
         fs << "mapsNames" << "[";                              // text - string sequence
-        fs << "./data/map/01.jpg" << "./data/map/02.jpg" << "./data/map/03.jpg";
+        // fs << "./data/map/01.jpg" << "./data/map/02.jpg" << "./data/map/03.jpg" << "./data/map/04.jpg";
+        fs << "./data/map/04.jpg";
         fs << "]";                                            // close sequence
 
         // map_unwrapped
         fs << "mapsUnNames" << "[";                              // text - string sequence
-        fs << "./data/map/01_UN.jpg" << "./data/map/02_UN.jpg" << "./data/map/03_UN.jpg";
+        // fs << "./data/map/01_UN.jpg" << "./data/map/02_UN.jpg" << "./data/map/03_UN.jpg" << "./data/map/04.jpg";
+        fs << "./data/map/04.jpg";
         fs << "]";                                            // close sequence*/
         
         fs << "calibrationFile" << "./data/intrinsic_calibration.xml";

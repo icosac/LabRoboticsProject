@@ -85,29 +85,30 @@ bin_test/: bin
 	$(MKDIR) bin/test
 
 #compile executables
-calibration: bin/
+calibration: xml
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
 
-unwrapping: bin/
+unwrapping: xml
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
 
-detection: bin/
+detection: xml
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
 
 #run executables
 run:
 	./bin/main.out
 
-run_calibration:
+run_calibration: calibration
 	./bin/calibration_run.out
+.PHONY: run_calibration
 
-run_unwrapping:
+run_unwrapping: unwrapping
 	./bin/unwrapping_run.out
 
-run_detection:
+run_detection: detection
 	./bin/detection_run.out
 
-xml generateXML: bin/
+xml generateXML: bin/ lib
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/create_xml.out src/create_xml.cc $(LDLIBS)
 	./bin/create_xml.out
 

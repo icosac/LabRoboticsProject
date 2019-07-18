@@ -222,6 +222,7 @@ int calibration(const string inputFile)
         const char ESC_KEY = 27 ;
     #endif
     //get_input
+
     for(;;)
     {
         Mat view; //The matrix in which the image being considered is stored
@@ -355,7 +356,7 @@ int calibration(const string inputFile)
         }
     }
     //show_results
-
+	
     return 0;
 }
 

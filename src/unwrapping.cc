@@ -27,23 +27,25 @@ int unwrapping(){
         cout << "Elaborating of the file: " << filename << endl << endl;
         // Load image from file
         Mat or_img = imread(filename.c_str());
-        
+
         // Display original image
         #ifdef WAIT
             my_imshow("Original", or_img, true);
+	    mywaitkey();
         #endif
-
         // fix calibration with matrix
         Mat camera_matrix, dist_coeffs;
         loadCoefficients(calib_file, camera_matrix, dist_coeffs);
 
         
         Mat fix_img;
-        undistort(or_img, fix_img, camera_matrix, dist_coeffs);
+        if (f!=3)
+            undistort(or_img, fix_img, camera_matrix, dist_coeffs);
 
         // Display fixed image
         #ifdef DEBUG
             my_imshow("Fixed", fix_img);
+            mywaitkey();
         #endif
 
         //Convert from RGB to HSV= Hue-Saturation-Value
@@ -110,6 +112,7 @@ int unwrapping(){
         drawContours(quadrilateral_img, contours_approx_big, -1, Scalar(0,170,220), 5, LINE_AA);
         #ifdef WAIT
             my_imshow("Find rectangle", quadrilateral_img);
+	    mywaitkey();
         #endif
         
         //sort of 4 points in clockwise order
@@ -205,6 +208,7 @@ void loadCoefficients(  const string filename,
   if (!fs.isOpened()){
     throw runtime_error("Could not open file " + filename);
   }
+
   fs["camera_matrix"] >> camera_matrix;
   fs["distortion_coefficients"] >> dist_coeffs;
   fs.release();
