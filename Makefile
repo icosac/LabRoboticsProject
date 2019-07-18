@@ -16,15 +16,15 @@ LIBS=-L./lib -lDubins $(INC)
 #condition for mac and linux
 ifneq (,$(findstring Darwin, $(OS)))
 	OPENCV=opencv3
-	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wno-everything -O3
+	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags $(OPENCV)` -std=c++11 -Wno-everything -O3
   	AR=libtool -static -o
 else 
-	CXXFLAGS=`pkg-config --cflags tesseract $(OPENCV)` -std=c++11 -Wall -O3
+	CXXFLAGS=`pkg-config --cflags $(OPENCV)` -std=c++11 -Wall -O3
 	AR=ar rcs
 endif
 
 #compiling libs&flags
-LDLIBS=$(LIBS) `pkg-config --libs tesseract $(OPENCV)` 
+LDLIBS=$(LIBS) `pkg-config --libs $(OPENCV)` 
 MORE_FLAGS=
 
 #general documentation optins
@@ -41,7 +41,8 @@ SRC=src/utils.cc\
 	src/calibration.cc\
 	src/detection.cc\
 	src/unwrapping.cc\
-	src/map.cc
+	src/map.cc\
+	src/planning.cc
 
 #test files
 TEST_SRC= test/map_main.cc\
@@ -96,6 +97,9 @@ unwrapping: bin/
 detection: bin/
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
 
+planning: bin/
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
+
 #run executables
 run:
 	./bin/main.out
@@ -108,6 +112,9 @@ run_unwrapping:
 
 run_detection:
 	./bin/detection_run.out
+
+run_planning:
+	./bin/planning_run.out
 
 xml generateXML: bin/
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/create_xml.out src/create_xml.cc $(LDLIBS)

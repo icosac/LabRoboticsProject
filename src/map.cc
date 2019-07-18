@@ -192,6 +192,10 @@ bool Mapp::checkSegment(const Point2<int> p0, const Point2<int> p1){
     return(checkSegmentCollisionWithType(p0, p1, OBST));
 }
 
+/*! \brief The function create an image (Mat) with the dimensions of the Mapp and all its objects inside.
+
+    \returns The generated image is returned.
+*/
 Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
     // empty map
 	Mat imageMap = Mat::zeros( Size(lengthX, lengthY), CV_8UC3 );

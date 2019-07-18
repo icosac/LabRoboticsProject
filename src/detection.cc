@@ -1,7 +1,9 @@
 #include "detection.hh"
 
 const string xml_settings = "data/settings.xml";
-FileStorage fs_xml;
+FileStorage fs_xml(xml_settings, FileStorage::READ);
+string save_file = fs_xml["convexHullFile"];
+FileStorage fs(save_file, FileStorage::WRITE); 
 vector<Mat> templates;
 
 // #define DEBUG
@@ -12,11 +14,10 @@ vector<Mat> templates;
     \returns Return 0 if the function reach the end.
 */
 int detection(){
-    fs_xml.open(xml_settings, FileStorage::READ);
-
+    // fs_xml.open(xml_settings, FileStorage::READ);
     load_number_template();
 
-    for(unsigned f=0;f<fs_xml["mapsUnNames"].size(); f++){
+    for(unsigned f=2;f<fs_xml["mapsUnNames"].size(); f++){
         string filename = (string) fs_xml["mapsUnNames"][f];
         cout << "Elaborating file: " << filename << endl;
 
@@ -51,6 +52,7 @@ int detection(){
             while((char)waitKey(1)!='q'){}
         #endif
     }
+    fs.release();
     return(0);
 }
 
@@ -209,9 +211,10 @@ void find_contours( const Mat & img,
     \param[in] color Is the parameter according to which the function decide if saved ('color==1') or not ('otherwise') the vector 'victims'.
     \param[in] victims Is a vector that is saved in a xml file.
 */
-void save_convex_hull(  const vector<vector<Point>> & contours, 
+void save_convex_hull(  const vector<vector<Point> > & contours, 
                         const int color, 
-                        const vector<int> & victims)
+                        const vector<int> & victims, 
+                        FileStorage& fs)
 {
     vector<vector<Point>> hull;
     vector<Point> hull_i;
@@ -219,19 +222,24 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
         convexHull(contours[i], hull_i, true);//return point in clockwise order
         hull.push_back(hull_i);
     }
-    string save_file = fs_xml["convexHullFile"];
-    static FileStorage fs(save_file, FileStorage::WRITE);
     string str;
     switch(color){
         case 0: str="obstacles"; break;
         case 1: str="victims"; break;
         case 2: str="gate"; break;
     }
+    cout << "pippo\n";
     fs << str << hull;
+    for(unsigned int i=0; i<hull.size(); i++){
+        for(unsigned int j=0; j<hull[i].size(); j++){
+            cout << hull[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << "pippo\n";
     if(color==1){
         fs << "victimsNum" << victims;
     }
-    //fs.release(); //if I do this operation I save only the first call of this function...
 }
 
 // #define TESS

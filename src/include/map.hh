@@ -45,7 +45,6 @@ class Mapp{
         void printMap();
         string matrixToString();
         void printDimensions();
-
 };
 
 #endif

@@ -1,9 +1,6 @@
 #ifndef UTILS_HH
 #define UTILS_HH
 
-#include <tesseract/baseapi.h> // Tesseract headers
-#include <leptonica/allheaders.h>
-
 #include <cstdio>
 
 #include <opencv2/highgui.hpp>
