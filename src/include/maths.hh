@@ -1,5 +1,5 @@
-#ifndef maths_hh
-#define maths_hh
+#ifndef MATHS_HH
+#define MATHS_HH
 
 #include <iostream>
 #include <cmath>
@@ -422,10 +422,10 @@ public:
   }
 };
 
-extern const Angle A_2PI = Angle(6.283185, Angle::RAD);
-extern const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);
-extern const Angle A_PI = Angle(M_PI, Angle::RAD);
-extern const Angle A_180 = Angle(180, Angle::DEG);
+const Angle A_2PI = Angle(6.283185, Angle::RAD);
+const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);
+const Angle A_PI = Angle(M_PI, Angle::RAD);
+const Angle A_180 = Angle(180, Angle::DEG);
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 
@@ -584,14 +584,12 @@ public:
     return ret;
   }
   
-  stringstream to_string() const {
+  stringstream to_string(string _prefix="") const {
     stringstream out;
-    out << '<';
+    string prefix=_prefix.back()=='/' && _prefix!="" ? _prefix : _prefix+"/";
     for (int i=0; i<size(); i++){
-      out << get(i) << ((i!=size()-1) ? ", " : "");
+      out << _prefix << get(i) << ((i!=size()-1) ? ", " : "");
     }
-    out << ">";
-    
     return out;
   }
 
@@ -601,7 +599,9 @@ public:
   		\returns An output stream to be printed.
   */
   friend ostream& operator<<(ostream &out, const Tuple<T>& data) {
+    out << '<';
     out << data.to_string().str();
+    out << ">";
     return out;
   }
 

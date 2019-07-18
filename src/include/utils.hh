@@ -26,4 +26,20 @@ void my_imshow(const char* win_name, Mat img, bool reset=false);
 // Mat pixToMat(Pix* pix);
 void mywaitkey();
 
+
+
+
+
+
+//Taken from Paolo Bevilaqua and Valerio Magnago
+#include <time.h>
+#include <cstdint>
+
+namespace timeutils {
+
+  int64_t timespecDiff(struct timespec *timeA_p, struct timespec *timeB_p);
+  double getTimeS();
+
+}
+
 #endif
