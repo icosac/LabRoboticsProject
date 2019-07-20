@@ -21,6 +21,7 @@ public:
 	string mapsFolder;
 	Tuple<string> mapsNames;
 	Tuple<string> mapsUnNames;
+	string intrinsicCalibrationFile;
 	string calibrationFile;
 	Filter blackMask;
 	Filter redMask;
@@ -38,7 +39,8 @@ public:
 			string _templatesFolder="data/num_template/",
 			vector<string> _mapsNames={},
 			vector<string> _mapsUnNames={},
-			string _calibrationFile="data/intrinsic_calibration.xml",
+			string _calibrationFile="data/calib_config.xml",
+			string _intrinsicCalibrationFile="data/intrinsic_calibration.xml",
 			Filter _blackMask=Filter(0, 0, 0, 179, 255, 70),
 			Filter _redMask=Filter(15, 100, 140, 160, 255, 255),
 			Filter _greenMask=Filter(54, 74, 25, 119, 255, 88),
@@ -57,7 +59,8 @@ public:
 			string _templatesFolder="data/num_template/",
 			vector<string> _mapsNames={},
 			vector<string> _mapsUnNames={},
-			string _calibrationFile="data/intrinsic_calibration.xml",
+			string _calibrationFile="data/calib_config.xml",
+			string _intrinsicCalibrationFile="data/intrinsic_calibration.xml",
 			Filter _blackMask=Filter(0, 0, 0, 179, 255, 70),
 			Filter _redMask=Filter(15, 100, 140, 160, 255, 255),
 			Filter _greenMask=Filter(54, 74, 25, 119, 255, 88),
@@ -83,6 +86,7 @@ public:
 		out << NAME(mapsNames) << ": " << mapsNames << endl;
 		out << NAME(mapsUnNames) << ": " << mapsUnNames << endl;
 		out << NAME(calibrationFile) << ": " << calibrationFile << endl;
+		out << NAME(intrinsicCalibrationFile) << ": " << intrinsicCalibrationFile << endl;
 		out << NAME(blackMask) << ": " << blackMask << endl;
 		out << NAME(redMask) << ": " << redMask << endl;
 		out << NAME(greenMask) << ": " << greenMask << endl;

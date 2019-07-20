@@ -2,11 +2,13 @@
 <opencv_storage>
 <mapsFolder>
   data/map</mapsFolder>
-<mapsNames>
-  "04.jpg"</mapsNames>
-<mapsUnNames>
-  "04.jpg"</mapsUnNames>
-<calibrationFile>"./data/intrinsic_calibration.xml"</calibrationFile>
+<mapsNames></mapsNames>
+<mapsUnNames></mapsUnNames>
+
+<calibrationFile>
+  "data/calib_config.xml"</calibrationFile>
+<intrinsicCalibrationFile>
+  "./data/intrinsic_calibration.xml"</intrinsicCalibrationFile>
 <blackMask>
   0 0 0 179 255 70</blackMask>
 <redMask>

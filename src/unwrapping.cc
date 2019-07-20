@@ -1,12 +1,12 @@
 #include"unwrapping.hh"
 
 //debug blocks most things, wait only something
-// #define DEBUG
-// #define WAIT
+#define DEBUG
+#define WAIT
 
 #define area_ratio 0.7
 
-const string xml_settings = "data/settings.xml";
+///const string xml_settings = "data/settings.xml";
 
 static float distance(Point c1, Point c2);
 
@@ -19,25 +19,28 @@ static float distance(Point c1, Point c2);
     \returns A 0 is return if the function reach the end.
 */
 int unwrapping(){
-    FileStorage fs_xml(xml_settings, FileStorage::READ);
+    ///FileStorage fs_xml(xml_settings, FileStorage::READ);
+    //Load Settings values
+    Settings *s=new Settings();
+    s->readFromFile();
+    cout << *s << endl;
 
-    const string calib_file = (string) fs_xml["calibrationFile"];
-    for(unsigned f=0; f<fs_xml["mapsNames"].size(); f++){
-        string filename = (string) fs_xml["mapsNames"][f];
+    const string calib_file = s->intrinsicCalibrationFile;
+    for(int f=0; f<s->mapsNames.size(); f++){
+        string filename = (s->mapsFolder)+(s->mapsFolder.back()=='/' ? "" : "/")+(s->mapsNames.get(f));
         cout << "Elaborating of the file: " << filename << endl << endl;
         // Load image from file
         Mat or_img = imread(filename.c_str());
-
         // Display original image
+        
         #ifdef WAIT
             my_imshow("Original", or_img, true);
-	    mywaitkey();
+            mywaitkey();
         #endif
         // fix calibration with matrix
         Mat camera_matrix, dist_coeffs;
         loadCoefficients(calib_file, camera_matrix, dist_coeffs);
 
-        
         Mat fix_img;
         if (f!=3)
             undistort(or_img, fix_img, camera_matrix, dist_coeffs);
@@ -59,13 +62,13 @@ int unwrapping(){
 
         // Find black regions (filter on saturation and value)
         // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
-        FileNode Bm = fs_xml["blackMask"];
+        ///FileNode Bm = s->blackMask;
         Mat black_mask;
-        inRange(hsv_img, Scalar(Bm[0], Bm[1], Bm[2]), Scalar(Bm[3], Bm[4], Bm[5]), black_mask);
+        inRange(hsv_img, s->blackMask.Low(), s->blackMask.High(), black_mask);
         #ifdef DEBUG
             my_imshow("BLACK_filter", black_mask);
         #endif
-        
+
         // Find contours
         // https://stackoverflow.com/questions/44127342/detect-card-minarea-quadrilateral-from-contour-opencv
         vector< vector<Point> > contours, contours_approx, contours_approx_big, contours_approx_big2;
@@ -112,7 +115,7 @@ int unwrapping(){
         drawContours(quadrilateral_img, contours_approx_big, -1, Scalar(0,170,220), 5, LINE_AA);
         #ifdef WAIT
             my_imshow("Find rectangle", quadrilateral_img);
-	    mywaitkey();
+            mywaitkey();
         #endif
         
         //sort of 4 points in clockwise order
@@ -183,7 +186,10 @@ int unwrapping(){
         #endif
 
         // Store the cropped image to disk.
-        string save_location = (string) fs_xml["mapsUnNames"][f];
+        // string save_location = (string) fs_xml["mapsUnNames"][f];
+        string save_location = filename.substr(0, filename.find_last_of('.'))+"_UN"+filename.substr(filename.find_last_of('.'), -1);
+        cout << "save_location: " << save_location << endl;
+        s->mapsUnNames.add(save_location);
         imwrite(save_location, imgCrop);
 
         #ifdef WAIT
@@ -204,6 +210,7 @@ return(0);
 void loadCoefficients(  const string filename, 
                         Mat & camera_matrix, 
                         Mat & dist_coeffs){
+  cout << filename << endl;
   FileStorage fs(filename, FileStorage::READ );
   if (!fs.isOpened()){
     throw runtime_error("Could not open file " + filename);

@@ -33,11 +33,12 @@ int main (){
 	s->readFromFile();
 	cout << *s << endl;
 
+	Mat frame;
+	#ifdef DEPLOY //ADD UNWRAPPING
 	//Create camera object
 	CameraCapture::input_options_t options(1080, 1920, 30, 0);
 	CameraCapture *camera=new CameraCapture(options);	
 
-	Mat frame;
 	double time;
 	if (camera->grab(frame, time)){
 		cout << "Success" << endl;
@@ -46,6 +47,10 @@ int main (){
 		cout << "Fail getting camera photo." << endl;
 		return 0;
 	}
+	#else 
+	frame=imread(s->mapsUnNames.get(0));
+	#endif
+	
 	#ifdef DEBUG
 		my_imshow("Frame", frame, false);
 		mywaitkey();
@@ -131,7 +136,9 @@ int main (){
 	
 	s->writeToFile();
 
+	#ifdef DEPLOY 
 	free(camera);
+	#endif
 	return 0;
 }
 

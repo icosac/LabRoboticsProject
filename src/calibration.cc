@@ -5,7 +5,7 @@
     
     \param[in] fs The filename where to write.
 */
-void Settings::write(FileStorage& fs) const 
+void CalSettings::write(FileStorage& fs) const 
 {
     fs << "{"
               << "BoardSize_Width"  << boardSize.width
@@ -31,9 +31,9 @@ void Settings::write(FileStorage& fs) const
     
     \param[in] node The node of the file to consider.
 */
-void Settings::read(const FileNode& node) 
+void CalSettings::read(const FileNode& node) 
 {
-    node["BoardSize_Width" ] >> boardSize.width;
+    node["BoardSize_Width" ] >> boardSize.width;// >> boardSize.width;
     node["BoardSize_Height"] >> boardSize.height;
     node["Calibrate_Pattern"] >> patternToUse;
     node["Square_Size"]  >> squareSize;
@@ -60,10 +60,10 @@ void Settings::read(const FileNode& node)
 
 /*! \brief This function validate the content of the file. 
     \details Even though this function doesn't return anything nor has any parameters 
-    for output, it sets a variable of the `Settings` class, that is `googInput`, 
+    for output, it sets a variable of the `CalSettings` class, that is `googInput`, 
     to `false` if some infos were wrong. `true` otherwise.
 */
-void Settings::validate()
+void CalSettings::validate()
 { 
     goodInput = true;
     ///The options it takes in consideration are the following:
@@ -128,7 +128,7 @@ void Settings::validate()
 /*! \brief Get next image from list.
     \returns A matrix containing the next image to consider.
 */
-Mat Settings::nextImage()
+Mat CalSettings::nextImage()
 {
     return imread(imageList[atImageList++], IMREAD_COLOR);
 }
@@ -140,7 +140,7 @@ Mat Settings::nextImage()
 
     \return `false` if the file could not be opened or if the file doesn't contain a list\n `true` otherwise.
 */
-bool Settings::readStringList(  const string& filename, 
+bool CalSettings::readStringList(  const string& filename, 
                                 vector<string>& l )
 {
     l.clear();
@@ -165,7 +165,7 @@ bool Settings::readStringList(  const string& filename,
     \param[in] filename The name of the file to check for validity.
     \return `false` is the file is not xml or yaml\n `true` otherwise.
 */
-bool Settings::isListOfImages( const string& filename)
+bool CalSettings::isListOfImages( const string& filename)
 {
     string s(filename);
     // Look for file extension
@@ -186,29 +186,37 @@ bool Settings::isListOfImages( const string& filename)
 
     \param[in] inputFile Name of the setting.xml file. It's set to default to default.xml
 
-    \return -2 if the settings file could be load but the input was not well-formed\n
-            -1 if the settings file could not be opened.\n
+    \return -2 if the CalSettings file could be load but the input was not well-formed\n
+            -1 if the CalSettings file could not be opened.\n
             0 if everything went fine.
 */
-int calibration(const string inputFile)
+int calibration(string inputFile)
 {
+    Settings *set=new Settings();
+    set->readFromFile();
+
+    inputFile=set->calibrationFile;
+    inputFile=(inputFile=="" ? set->calibrationFile : inputFile);
     //file_read
-    Settings s;
-    const string inputSettingsFile = inputFile;
-    FileStorage fs(inputSettingsFile, FileStorage::READ); //open the file for reading
+    CalSettings s;
+
+    const string inputCalSettingsFile = inputFile;
+
+    FileStorage fs(inputCalSettingsFile, FileStorage::READ); //open the file for reading
     if (!fs.isOpened()){
-        cout << "Could not open the configuration file: \"" << inputSettingsFile << "\"" << endl;
+        cout << "Could not open the configuration file: \"" << inputCalSettingsFile << "\"" << endl;
         return -1;
     }
+    
     fs["Settings"] >> s; //read everything from file in node "Settings"
     fs.release(); // close Settings file
 
-    //FileStorage fout("settings.yml", FileStorage::WRITE); // write config as YAML
-    //fout << "Settings" << s;
+    //FileStorage fout("CalSettings.yml", FileStorage::WRITE); // write config as YAML
+    //fout << "CalSettings" << s;
 
     if (!s.goodInput)
     {
-        cout << "Invalid input detected. Application stopping. " << endl;
+        cerr << "Invalid input detected. Application stopping. " << endl;
         return -2;
     }
 
@@ -332,7 +340,7 @@ int calibration(const string inputFile)
 
     // -----------------------Show the undistorted image for the image list ------------------------
     //show_results
-    if( s.inputType == Settings::IMAGE_LIST && s.showUndistorsed )
+    if( s.inputType == CalSettings::IMAGE_LIST && s.showUndistorsed )
     {
         Mat view, rview, map1, map2;
 //        Mat optimalCamera = getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0);
@@ -364,15 +372,15 @@ int calibration(const string inputFile)
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-/*! \brief Reads settings from file. If there is none then initiate a new `Settings`.
+/*! \brief Reads CalSettings from file. If there is none then initiate a new `CalSettings`.
     
-    \param[in] node: node to consider for getting settings;
-    \param[in] x: `Settings` to configure;
-    \param[in] default_value: `Settings` default value. Setted to `Settings()`.
+    \param[in] node: node to consider for getting CalSettings;
+    \param[in] x: `CalSettings` to configure;
+    \param[in] default_value: `CalSettings` default value. Setted to `CalSettings()`.
 */
 static inline void read(const FileNode& node, 
-                        Settings& x, 
-                        const Settings& default_value)
+                        CalSettings& x, 
+                        const CalSettings& default_value)
 {
     if(node.empty())
         x = default_value;
@@ -445,7 +453,7 @@ void calcBoardCornerPositions(  Size boardSize,
 
 /*! \brief This function run the calibration creating the matrixed for the camera and the distorsion coefficients.
 
-    \param[in] s The `Settings` read from the file and memorized.
+    \param[in] s The `CalSettings` read from the file and memorized.
     \param[in] imageSize The size of the image used in `calibrateCamera()` to initialize the camera matrix.
     \param[in] imagePoints The projected points for each image.
     \param[in] reprojErrs The re-projection error, that is a geometric error corresponding to the image distance between a projected point and a measured one. 
@@ -457,7 +465,7 @@ void calcBoardCornerPositions(  Size boardSize,
 
     \returns `false` if one or more elements in the `cameraMatrix` and `distCoeffs` are invalid.\n `true` if all the elements are valid.
 */
-static bool runCalibration( Settings& s, 
+static bool runCalibration( CalSettings& s, 
                             Size& imageSize, 
                             Mat& cameraMatrix, 
                             Mat& distCoeffs,
@@ -499,7 +507,7 @@ static bool runCalibration( Settings& s,
 }
 
 /*! \brief Function to save the computed parameters to a file. 
-    \param[in] s Use the `Settings` got at the beginning for information as the output file name, image and board size. 
+    \param[in] s Use the `CalSettings` got at the beginning for information as the output file name, image and board size. 
     \param[in] imageSize The size of the imgage.
     \param[in] cameraMatrix The camera matrix.
     \param[in] distCoeffs The distorsion coefficient matrix. 
@@ -509,7 +517,7 @@ static bool runCalibration( Settings& s,
     \param[in] imagePoints The projected points for each image.
     \param[in] totalAvgErr The total avarage error given from distorsion.
 */
-static void saveCameraParams(   const Settings& s, 
+static void saveCameraParams(   const CalSettings& s, 
                                 const Size& imageSize,
                                 const Mat& cameraMatrix,
                                 const Mat& distCoeffs,
@@ -618,8 +626,8 @@ static void saveCameraParams(   const Settings& s,
     }
 }
 
-/*! \brief Reads settings from file. If there is none then initiate a new `Settings`.
-    \param[in] s The `Settings` being used during the execution.
+/*! \brief Reads CalSettings from file. If there is none then initiate a new `CalSettings`.
+    \param[in] s The `CalSettings` being used during the execution.
     \param[in] imageSize The dimensions of the images.
     \param[in] imagePoints The projected points for each image.
     \param[out] cameraMatrix The matrix which is used to store the values for the camera parameters.
@@ -627,7 +635,7 @@ static void saveCameraParams(   const Settings& s,
 
     \return `true` if the calibration succeded.\n `false` otherwise.
 */
-bool runCalibrationAndSave( Settings& s, 
+bool runCalibrationAndSave( CalSettings& s, 
                             Size imageSize, 
                             Mat& cameraMatrix, 
                             Mat& distCoeffs,

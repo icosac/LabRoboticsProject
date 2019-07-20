@@ -27,6 +27,7 @@ Settings::Settings(
 			string _templatesFolder,
 			vector<string> _mapsNames,
 			vector<string> _mapsUnNames,
+			string _intrinsicCalibrationFile,
 			string _calibrationFile,
 			Filter _blackMask,
 			Filter _redMask,
@@ -39,7 +40,7 @@ Settings::Settings(
 			vector<string> _templates)
 {
 	save(	_mapsFolder, _templatesFolder, _mapsNames, _mapsUnNames, 
-			_calibrationFile, _blackMask, _redMask, _greenMask, 
+			_intrinsicCalibrationFile, _calibrationFile, _blackMask, _redMask, _greenMask, 
 			_victimMask, _blueMask, _whiteMask, _kernelSide, _convexHullFile, _templates);
 }
 
@@ -48,6 +49,7 @@ void Settings::save (
 			string _templatesFolder,
 			vector<string> _mapsNames,
 			vector<string> _mapsUnNames,
+			string _intrinsicCalibrationFile,
 			string _calibrationFile,
 			Filter _blackMask,
 			Filter _redMask,
@@ -75,8 +77,14 @@ void Settings::save (
 			this->mapsUnNames.add(el);
 		}
 	}
+	cout << "Maps: ";
+	for (int i=0; i< this->mapsNames.size(); i++){
+		cout << this->mapsNames.get(i) << " ";
+	}
+	cout << endl;
 
 	//Set all other values
+	this->intrinsicCalibrationFile=_intrinsicCalibrationFile;
 	this->calibrationFile=_calibrationFile;
 	this->blackMask=_blackMask;
 	this->redMask=_redMask;
@@ -121,6 +129,7 @@ void Settings::writeToFile(string _path){
 	}
 	fs << "]";
 	
+	fs << NAME(intrinsicCalibrationFile) << intrinsicCalibrationFile;
 	fs << NAME(calibrationFile) << calibrationFile;
 	fs << NAME(blackMask) << "["; vecToFile(fs, (vector<int>)blackMask); fs <<"]";
 	fs << NAME(redMask) << "["; vecToFile(fs, (vector<int>)redMask); fs <<"]";
@@ -144,21 +153,18 @@ void Settings::writeToFile(string _path){
 
 void Settings::readFromFile(string _path){
 	FileStorage fs(_path, FileStorage::READ);
-	cout << "ok" << endl;
+
 	mapsFolder=(string)fs["mapsFolder"];
-	cout << "ok " << fs["mapsNames"].size() << endl;
 	for (uint i=0; i<fs["mapsNames"].size(); i++){
 		mapsNames.add((string)fs["mapsNames"][i]);
 	}
-	cout << "ok" << endl;
 	for (uint i=0; i<fs["mapsUnNames"].size(); i++){
 		mapsUnNames.add((string)fs["mapsUnNames"][i]);
 	}
-	cout << "ok" << endl;
 
+	intrinsicCalibrationFile=(string)fs["intrinsicCalibrationFile"];
 	calibrationFile=(string)fs["calibrationFile"];
 	
-	cout << "ok" << endl;
 
 	vector<int> filter;
 	for (uint i=0; i<fs["blackMask"].size(); i++){
@@ -190,8 +196,6 @@ void Settings::readFromFile(string _path){
 		filter.push_back((int)fs["victimMask"][i]);
 	}	
 	victimMask=Filter(filter); filter.clear();
-	
-	cout << "ok" << endl;
 		
 	kernelSide=fs["kernelSide"];
 	convexHullFile=(string)fs["convexHullFile"];

@@ -5,7 +5,8 @@
 	\file calibration.hh  
 	\brief Library for calibration
 */
-#include "utils.hh"
+#include <utils.hh>
+#include <settings.hh>
 
 #include <iostream>
 #include <sstream>
@@ -26,9 +27,9 @@ using namespace std;
 
 enum { DETECTION = 0, CAPTURING = 1, CALIBRATED = 2 };
 
-class Settings{
+class CalSettings{
 	public:
-	    Settings() : goodInput(false) {}	///< Constructor that sets `goodInput` to false
+	    CalSettings() : goodInput(false) {}	///< Constructor that sets `goodInput` to false
 			enum Pattern {NOT_EXISTING=0, CHESSBOARD=1};
 			enum InputType {INVALID=0, IMAGE_LIST=3};
 
@@ -75,10 +76,10 @@ class Settings{
 
 
 int calibration( 
-			const string inputFile="data/calib_config.xml"
+			string inputFile=""
 		);
 
-bool runCalibrationAndSave( Settings& s, 
+bool runCalibrationAndSave( CalSettings& s, 
 							Size imageSize, 
 							Mat&  cameraMatrix, 
 							Mat& distCoeffs,
