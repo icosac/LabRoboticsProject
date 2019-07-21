@@ -470,7 +470,7 @@ public:
   
   // ~Tuple () {elements.clear();}
   
-  int size() const { return (n==elements.size() ? n : -1); } ///<\returns The number of stored elements. -1 if the Tuple has a different number of elements.
+  int size() const { return (n==(int)elements.size() ? n : -1); } ///<\returns The number of stored elements. -1 if the Tuple has a different number of elements.
 
 	/*! \brief Gets the n-th element.
 			\param[in] _n The position of the element to retrieve.

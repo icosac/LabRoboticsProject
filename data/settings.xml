@@ -5,23 +5,25 @@
   "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg"
   "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg"
   "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg"
-  "01.jpg" "01.jpg"</mapsNames>
+  "01.jpg" "01.jpg" "01.jpg"</mapsNames>
 <mapsUnNames>
-  "01_UN.jpg" "01_UN.jpg" "01_UN.jpg" "01_UN.jpg"</mapsUnNames>
+  "01_UN.jpg" "01_UN.jpg" "01_UN.jpg" "01_UN.jpg" "01_UN.jpg"</mapsUnNames>
 <intrinsicCalibrationFile>"./data/intrinsic_calibration.xml"</intrinsicCalibrationFile>
 <calibrationFile>data/calib_config.xml</calibrationFile>
 <blackMask>
-  0 0 0 179 255 70</blackMask>
+  0 0 0 180 255 95</blackMask>
 <redMask>
-  10 0 0 170 255 255</redMask>
+  0 0 0 162 255 255</redMask>
 <greenMask>
-  40 60 80 80 255 170</greenMask>
+  62 94 130 80 255 170</greenMask>
 <blueMask>
-  100 100 40 140 200 170</blueMask>
+  106 183 117 126 255 192</blueMask>
 <whiteMask>
-  100 100 40 140 200 170</whiteMask>
+  0 0 0 180 255 227</whiteMask>
 <victimMask>
   0 0 0 179 255 80</victimMask>
+<robotMask>
+  0 0 0 179 255 80</robotMask>
 <kernelSide>9</kernelSide>
 <convexHullFile>data/convexHull.xml</convexHullFile>
 <templatesFolder>data/num_template/</templatesFolder>

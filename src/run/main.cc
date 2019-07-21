@@ -8,7 +8,7 @@ using namespace std;
 
 int main (){
   cout <<"Configure" << endl;
-  configure();
+  configure(false);
 	cout << "unwrapping" << endl;
 	unwrapping();
 	cout << "detection" << endl;
