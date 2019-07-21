@@ -15,14 +15,18 @@
 using namespace std;
 using namespace cv;
 
-void configure();
-void on_low_h_thresh_trackbar(int, void *);
-void on_high_h_thresh_trackbar(int, void *);
-void on_low_s_thresh_trackbar(int, void *);
-void on_high_s_thresh_trackbar(int, void *);
-void on_low_v_thresh_trackbar(int, void *);
-void on_high_v_thresh_trackbar(int, void *);
-void update_trackers();
+/*! \brief If deploy is true then takes a photo from the camera, shows tha various filters and asks if they are
+ *  visually correct. If not then it allows to set the various filters through trackbars.
+ *  If deploy is false then it takes the imd_id-th maps from the folder set in Settings and ask for visual confirmation.
+ */
+void configure(bool deploy=true, int img_id=0);
+
+/*! Function to show a picture with various filters taken from Settings. It then asks for visual confirmation.
+ *
+ * @param frame The image to show.
+ * @param s The Settings to use.
+ * @return True if the filters are okay, false otherwise.
+ */
 bool show_all_conditions(const Mat& frame, Settings* s);
 
 #endif

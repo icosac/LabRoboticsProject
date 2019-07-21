@@ -1,14 +1,21 @@
 var searchData=
 [
-  ['offset',['offset',['../class_point2.html#af484708a23f679425d8434bc24387ab8',1,'Point2::offset(const T1 _offset, const Angle th)'],['../class_point2.html#a206d80b5b86b22039f7565dc2b8bdab1',1,'Point2::offset(const Point2&lt; T &gt; p)'],['../class_point2.html#af25c5bac4c7273d5af0488d7f1196be5',1,'Point2::offset(const Tuple&lt; T &gt; p)'],['../class_configuration2.html#a4c3bb49ce67ceb4b1b492cb7c093ea8c',1,'Configuration2::offset(const T2 _offset, const Angle phi, const Angle _th)'],['../class_configuration2.html#abc07742a00822719024a8a58d003a6f1',1,'Configuration2::offset(Configuration2&lt; T1 &gt; p)'],['../class_configuration2.html#ad2f7df498d8fd4c0e125a1f628fa22b7',1,'Configuration2::offset(Point2&lt; T1 &gt; p, const Angle _th=Angle())']]],
-  ['offset_5fangle',['offset_angle',['../class_configuration2.html#a561351ec15558fdceb9f65ff6296a6a7',1,'Configuration2']]],
-  ['offset_5fx',['offset_x',['../class_point2.html#a5054bfe0d4f8b38cdc6a375624c388b2',1,'Point2::offset_x()'],['../class_configuration2.html#a49f13949ff2fbeefdac31bc0f9e13dab',1,'Configuration2::offset_x()']]],
-  ['offset_5fy',['offset_y',['../class_point2.html#a2f976fd1f064746ae5afb97a484afa13',1,'Point2::offset_y()'],['../class_configuration2.html#ae29330a14b06e1ecb22a6bee4e954f81',1,'Configuration2::offset_y()']]],
-  ['operator_2b',['operator+',['../class_angle.html#aa04bc36c641e1ecfb7aee5019ed8e6ea',1,'Angle']]],
-  ['operator_2b_3d',['operator+=',['../class_angle.html#a8129646ed5390b538ccf7c19f9213967',1,'Angle']]],
-  ['operator_2d',['operator-',['../class_angle.html#a951436019a4c06895ba31a08bf0d6fd2',1,'Angle']]],
-  ['operator_2d_3d',['operator-=',['../class_angle.html#a54a5489837c16a15320f9249d2cabed6',1,'Angle']]],
-  ['operator_3c_3c',['operator&lt;&lt;',['../class_angle.html#a075a4a2521a314d707922253ebf03b4e',1,'Angle::operator&lt;&lt;()'],['../class_tuple.html#ac2623bf66e0b8f6d5c0865c28fb48d60',1,'Tuple::operator&lt;&lt;()'],['../class_point2.html#a9156326af6248209210a7bd67569e5c2',1,'Point2::operator&lt;&lt;()'],['../class_configuration2.html#a8e77688e9288989369a6df919bb5e708',1,'Configuration2::operator&lt;&lt;()']]],
-  ['operator_3d',['operator=',['../class_angle.html#a93da39f08e2e110e278bb94d1c279ac6',1,'Angle']]],
-  ['outputfilename',['outputFileName',['../class_settings.html#a9468f1ad53e982f9541d76c8d3228900',1,'Settings']]]
+  ['left',['left',['../struct_clipper_lib_1_1_int_rect.html#a9bf519994ffc7d1d5752fb1e2411b4cd',1,'ClipperLib::IntRect']]],
+  ['leftbound',['LeftBound',['../struct_clipper_lib_1_1_local_minimum.html#a0e7b997adca472b6e80f3223c45965ea',1,'ClipperLib::LocalMinimum']]],
+  ['length',['length',['../class_dubins_arc.html#a1b0bfacb344d17377f4bda55fdaecae4',1,'DubinsArc::length()'],['../class_dubins.html#ae4978fe0667d364224c0a7521903a225',1,'Dubins::length()']]],
+  ['lo',['lo',['../class_clipper_lib_1_1_int128.html#a991b9da6e53c777a94fca640e505b258',1,'ClipperLib::Int128']]],
+  ['load_5fnumber_5ftemplate',['load_number_template',['../detection_8cc.html#a50993b0aa4f01d89a4e5d0aef4e1e5f4',1,'load_number_template():&#160;detection.cc'],['../detection_8hh.html#a50993b0aa4f01d89a4e5d0aef4e1e5f4',1,'load_number_template():&#160;detection.cc']]],
+  ['loadcoefficients',['loadCoefficients',['../class_camera_capture.html#a69ae39c83c49aa213df7a93487e8f17f',1,'CameraCapture::loadCoefficients()'],['../unwrapping_8cc.html#a3cf7df08897ed4d1a7ddcf055b18cca8',1,'loadCoefficients(const string filename, Mat &amp;camera_matrix, Mat &amp;dist_coeffs):&#160;unwrapping.cc'],['../unwrapping_8hh.html#a3cf7df08897ed4d1a7ddcf055b18cca8',1,'loadCoefficients(const string filename, Mat &amp;camera_matrix, Mat &amp;dist_coeffs):&#160;unwrapping.cc']]],
+  ['localminimapending',['LocalMinimaPending',['../class_clipper_lib_1_1_clipper_base.html#ae091022ac37f757ab489e9217d2e4934',1,'ClipperLib::ClipperBase']]],
+  ['localminimum',['LocalMinimum',['../struct_clipper_lib_1_1_local_minimum.html',1,'ClipperLib']]],
+  ['locminsorter',['LocMinSorter',['../struct_clipper_lib_1_1_loc_min_sorter.html',1,'ClipperLib']]],
+  ['long64',['long64',['../namespace_clipper_lib.html#a7fd564bf34d174b6c96e07d01e5e7a0a',1,'ClipperLib']]],
+  ['lorange',['loRange',['../namespace_clipper_lib.html#abc3cf08ce02b48ae18c320fd492108f1',1,'ClipperLib']]],
+  ['low',['Low',['../class_filter.html#a7b43f7cd0af1647ae9106af1ec159f63',1,'Filter']]],
+  ['low_5fh',['low_h',['../class_filter.html#acc9169ecdd67e37c512e7e50b2257805',1,'Filter']]],
+  ['low_5fs',['low_s',['../class_filter.html#a4eb6f35c78627a310f1476d37917758c',1,'Filter']]],
+  ['low_5fv',['low_v',['../class_filter.html#a80dc06dbdcdec4106c05793affc9738c',1,'Filter']]],
+  ['lrl',['LRL',['../class_dubins.html#ac07e1eb3ab336641a275c28423658155',1,'Dubins']]],
+  ['lsl',['LSL',['../class_dubins.html#a5a153104d874036205068b703f03240a',1,'Dubins']]],
+  ['lsr',['LSR',['../class_dubins.html#a5f2d7cc94c731253dee1c5b668ab2029',1,'Dubins']]]
 ];

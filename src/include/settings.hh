@@ -1,8 +1,6 @@
 #ifndef SETTINGS_HH
 #define SETTINGS_HH
 
-//TODO change maths.hh
-
 #include <filter.hh>
 #include <maths.hh>
 #include <utils.hh>
@@ -17,24 +15,48 @@
 using namespace cv;
 using namespace std;
 
+/*!
+ * Class that stores settings for the projects such as location of files, name of maps and filters to use.
+ * Mind that when created it does not read from file by default but the function must be invoked.
+ */
 class Settings{
 public:
-	string mapsFolder;
-	Tuple<string> mapsNames;
-	Tuple<string> mapsUnNames;
-	string intrinsicCalibrationFile;
-	string calibrationFile;
-	Filter blackMask;
-	Filter redMask;
-	Filter greenMask;
-	Filter victimMask;
-	Filter blueMask;
-	Filter whiteMask;
+	string mapsFolder;                ///<A string containing the path for mapsFolder. No certainty is given about the form of this string
+	Tuple<string> mapsNames;          ///<A Tuple containing the names of the maps. These are not paths but just names.
+	Tuple<string> mapsUnNames;        ///<A Tuple containing the names of the undistorted maps. These are not paths but just names.
+	string intrinsicCalibrationFile;  ///<A string containing the path to the file containing the values of the matrix for the calibration.
+	string calibrationFile;           ///<A string containing the path to the file containing the data for the calibration.
+	Filter blackMask;                 ///<Filter for black.
+	Filter redMask;                   ///<Filter for red.
+	Filter greenMask;                 ///<Filter for green.
+	Filter victimMask;                ///<Filter for the victims.
+	Filter blueMask;                  ///<Filter for blue.
+  Filter whiteMask;                 ///<Filter for white.
+  Filter robotMask;                 ///<Filter for the triangle above the robot.
 	int kernelSide;
-	string convexHullFile;
-	string templatesFolder;
-	Tuple<string> templates;
+	string convexHullFile;            ///<AString containing the path to file containing the points of the elements in the arena.
+	string templatesFolder;           ///<A String containing the path of the folder containing the number templates.
+	Tuple<string> templates;          ///<A Tuple containing the names of the templates. These are not paths but just names.
 
+	/*!\brief Constructor of class Settings. The value are all set by default. The constructor does NOT read from or write to file.
+	 *
+	 * @param mapsFolder A string containing the path for mapsFolder. No certainty is given about the form of this string
+	 * @param _templatesFolder A String containing the path of the folder containing the number templates.
+	 * @param _mapsNames A Tuple containing the names of the maps. These are not paths but just names.
+	 * @param _mapsUnNames A Tuple containing the names of the undistorted maps. These are not paths but just names.
+	 * @param _calibrationFile A string containing the path to the file containing the data for the calibration.
+	 * @param _intrinsicCalibrationFile A string containing the path to the file containing the values of the matrix for the calibration.
+	 * @param _blackMask Filter for black.
+	 * @param _redMask Filter for red.
+	 * @param _greenMask Filter for green.
+	 * @param _victimMask Filter for the victims.
+	 * @param _blueMask Filter for blue.
+	 * @param _whiteMask Filter for white.
+	 * @param _robotMask Filter for the triangle above the robot.
+	 * @param _kernelSide 
+	 * @param _convexHullFile A String containing the path to file containing the points of the elements in the arena.
+	 * @param _templates A Tuple containing the names of the templates. These are not paths but just names.
+	 */
 	Settings(
 			string mapsFolder="data/map",
 			string _templatesFolder="data/num_template/",
@@ -47,14 +69,37 @@ public:
 			Filter _greenMask=Filter(54, 74, 25, 119, 255, 88),
 			Filter _victimMask=Filter(0, 0, 0, 179, 255, 80),
 			Filter _blueMask=Filter(100, 100, 40, 140, 200, 170),
-			Filter _whiteMask=Filter(100, 100, 40, 140, 200, 170),
+      Filter _whiteMask=Filter(100, 100, 40, 140, 200, 170),
+      Filter _roboteMask=Filter(100, 100, 40, 140, 200, 170),
 			int _kernelSide=9,
 			string _convexHullFile="data/convexHull.xml",
 			vector<string> _templates={}
 	);
 
-	~Settings();	
+	/*!
+	 * \brief Destructor.
+	 */
+	~Settings();
 
+  /*!\brief Function to change values. The value are all set by default. This function does NOT read from or write to file.
+   *
+   * @param mapsFolder A string containing the path for mapsFolder. No certainty is given about the form of this string
+   * @param _templatesFolder A String containing the path of the folder containing the number templates.
+   * @param _mapsNames A Tuple containing the names of the maps. These are not paths but just names.
+   * @param _mapsUnNames A Tuple containing the names of the undistorted maps. These are not paths but just names.
+   * @param _calibrationFile A string containing the path to the file containing the data for the calibration.
+   * @param _intrinsicCalibrationFile A string containing the path to the file containing the values of the matrix for the calibration.
+   * @param _blackMask Filter for black.
+   * @param _redMask Filter for red.
+   * @param _greenMask Filter for green.
+   * @param _victimMask Filter for the victims.
+   * @param _blueMask Filter for blue.
+   * @param _whiteMask Filter for white.
+   * @param _robotMask Filter for the triangle above the robot.
+   * @param _kernelSide
+   * @param _convexHullFile A String containing the path to file containing the points of the elements in the arena.
+   * @param _templates A Tuple containing the names of the templates. These are not paths but just names.
+   */
 	void save (
 			string mapsFolder="data/map",
 			string _templatesFolder="data/num_template/",
@@ -68,26 +113,101 @@ public:
 			Filter _victimMask=Filter(0, 0, 0, 179, 255, 80),
 			Filter _blueMask=Filter(100, 100, 40, 140, 200, 170),
 			Filter _whiteMask=Filter(100, 100, 40, 140, 200, 170),
-			int _kernelSide=9,
+      Filter _roboteMask=Filter(100, 100, 40, 140, 200, 170),
+      int _kernelSide=9,
 			string _convexHullFile="data/convexHull.xml",
 			vector<string> _templates={}
 	);
 
+	/*!\brief Function to write settings to file. Default is data/settings.xml.
+	 *
+	 * @param _path The path of the file to write to.
+	 */
 	void writeToFile(string _path="data/settings.xml");
+
+  /*! \brief Function to read from file. Default file is data/settings.xml
+   *
+   * @param _path The path of file to read from.
+   */
 	void readFromFile(string _path="data/settings.xml");
+
+	/*!\brief Function to return the paths of maps. If ids are not specified all maps are returned.
+	 *
+	 * @param ids A Tuple containing the ids (that is the positions in this.mapsNames) of the maps to be retrieved.
+	 * @return A Tuple containing the paths of the maps.
+	 */
+	Tuple<string> maps(Tuple<int> ids=Tuple<int>());
+
+  /*!\brief Function to return the path of a map. If id is not specified all maps are returned.
+   *
+   * @param id A the positions in this.mapsNames of the map to be retrieved
+   * @return A Tuple containing the paths of the maps.
+   */
   Tuple<string> maps(int id=-1);
-  string maps(string mapName);
-  Tuple<string> maps(Tuple<string> mapNames);
+
+  /*!\brief A function to return the path of a given map.
+   *
+   * @param _mapName The name of the map to check in the Tuple.
+   * @return The path to the map if the map is found, an empty string otherwise.
+   */
+  string maps(string _mapName);
+
+  /*!\brief A function to return the paths of a given Tuple of maps.
+   *
+   * @param _mapNames A Tuple containing the names of the maps to check in the Tuple.
+   * @return The paths to the maps if they are found, an empty Tuple otherwise.
+   */
+	Tuple<string> maps(Tuple<string> _mapNames);
+
+  /*!\brief Function to return the paths of undistorted maps. If ids are not specified all undistorted maps are returned.
+   *
+   * @param ids A Tuple containing the ids (that is the positions in this.mapsUnNames) of the undistorted maps to be retrieved.
+   * @return A Tuple containing the paths of the undistorted maps.
+   */
+	Tuple<string> unMaps(Tuple<int> ids=Tuple<int>());
+
+  /*!\brief Function to return the path of an undistorted map. If id is not specified all undistorted maps are returned.
+   *
+   * @param id A the positions in this.mapsUnNames of the undistorted map to be retrieved
+   * @return A Tuple containing the paths of the undistorted maps.
+   */
   Tuple<string> unMaps(int id=-1);
-  string unMaps(string _unMapName);
-  Tuple<string> unMaps(Tuple<string> _unMapNames);
 
-	enum COLOR {BLACK, RED, GREEN, VICTIMS, BLUE, WHITE};
+  /*!\brief A function to return the path of a given undistorted map.
+   *
+   * @param _unMapName The name of the undistorted map to check in the Tuple.
+   * @return The path to the undistorted map if it is found, an empty string otherwise.
+   */
+	string unMaps(string _unMapName);
 
+  /*!\brief A function to return the paths of a given Tuple of undistorted maps.
+   *
+   * @param _unMapNames A Tuple containing the names of the undistorted maps to check in the Tuple.
+   * @return The paths to the undistorted maps if they are found, an empty Tuple otherwise.
+   */
+	Tuple<string> unMaps(Tuple<string> _unMapNames);
 
+	enum COLOR {BLACK, RED, GREEN, VICTIMS, BLUE, WHITE, ROBOT}; ///<Colors refered to the filters.
+
+	/*!\brief Change the values of Tuple of filters. Mind that no write function is called.
+	 *
+	 * @param color A Tuple containing the colors of the filters to change.
+	 * @param fil The new filters to be stored.
+	 */
 	void changeMask(Tuple<COLOR> color, Tuple<Filter> fil);
+
+	/*!\brief Change the values of a filter. Mind that no write function is called.
+   *
+   * @param color The filter to change.
+   * @param fil The new filter to be stored.
+   */
 	void changeMask(COLOR color, Filter fil);
 
+
+	/*!\brief A function that creates a stringstream to print the values stored in settings.
+	 *
+	 * @return A strinstream containing the settings values.
+	 */
 	stringstream to_string () const {
 		stringstream out;
 		out << NAME(mapsNames) << ": " << mapsNames << endl;
@@ -99,7 +219,8 @@ public:
 		out << NAME(greenMask) << ": " << greenMask << endl;
 		out << NAME(blueMask) << ": " << blueMask << endl;
 		out << NAME(whiteMask) << ": " << whiteMask << endl;
-		out << NAME(victimMask) << ": " << victimMask << endl;
+    out << NAME(victimMask) << ": " << victimMask << endl;
+    out << NAME(robotMask) << ": " << robotMask << endl;
 		out << NAME(kernelSide) << ": " << kernelSide << endl;
 		out << NAME(templatesFolder) << ": " << templatesFolder << endl;
 		out << NAME(convexHullFile) << ": " << convexHullFile << endl;
@@ -108,9 +229,9 @@ public:
 	}
 
 
-	/*! This function overload the << operator so to print with `std::cout` the most essential info, that is the dimension and the type of angle.
+	/*! This function overload the << operator so to print with `std::cout`.
 			\param[in] out The out stream.
-			\param[in] data The angle to print.
+			\param[in] data The settings to print.
 			\returns An output stream to be printed.
 	*/
 	friend ostream& operator<<(ostream &out, const Settings& data) {

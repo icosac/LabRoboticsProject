@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['load_5fnumber_5ftemplate',['load_number_template',['../detection_8cc.html#a50993b0aa4f01d89a4e5d0aef4e1e5f4',1,'load_number_template():&#160;detection.cc'],['../detection_8hh.html#a50993b0aa4f01d89a4e5d0aef4e1e5f4',1,'load_number_template():&#160;detection.cc']]],
-  ['loadcoefficients',['loadCoefficients',['../unwrapping_8cc.html#a3cf7df08897ed4d1a7ddcf055b18cca8',1,'loadCoefficients(const string filename, Mat &amp;camera_matrix, Mat &amp;dist_coeffs):&#160;unwrapping.cc'],['../unwrapping_8hh.html#a3cf7df08897ed4d1a7ddcf055b18cca8',1,'loadCoefficients(const string filename, Mat &amp;camera_matrix, Mat &amp;dist_coeffs):&#160;unwrapping.cc']]]
+  ['high',['High',['../class_filter.html#a448a83071e9f33c39ba09ac139a8af31',1,'Filter']]],
+  ['horzsegmentsoverlap',['HorzSegmentsOverlap',['../namespace_clipper_lib.html#a8d010407c49e1ea2e092dd21d8684de4',1,'ClipperLib']]]
 ];

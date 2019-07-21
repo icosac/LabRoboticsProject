@@ -1,36 +1,91 @@
 #include <configure.hh>
 Filter filter = Filter(30, 30, 30, 100, 100, 100);
 
-void configure (){
+/** @function on_low_h_thresh_trackbar */
+void on_low_h_thresh_trackbar(int, void *)
+{
+  filter.low_h = min(filter.high_h-1, filter.low_h);
+  setTrackbarPos("Low H","Filtered Image", filter.low_h);
+}
+
+/** @function on_high_h_thresh_trackbar */
+void on_high_h_thresh_trackbar(int, void *)
+{
+  filter.high_h = max(filter.high_h, filter.low_h+1);
+  setTrackbarPos("High H", "Filtered Image", filter.high_h);
+}
+
+/** @function on_low_s_thresh_trackbar */
+void on_low_s_thresh_trackbar(int, void *)
+{
+  filter.low_s = min(filter.high_s-1, filter.low_s);
+  setTrackbarPos("Low S","Filtered Image", filter.low_s);
+}
+
+/** @function on_high_s_thresh_trackbar */
+void on_high_s_thresh_trackbar(int, void *)
+{
+  filter.high_s = max(filter.high_s, filter.low_s+1);
+  setTrackbarPos("High S", "Filtered Image", filter.high_s);
+}
+
+/** @function on_low_v_thresh_trackbar */
+void on_low_v_thresh_trackbar(int, void *)
+{
+  filter.low_v= min(filter.high_v-1, filter.low_v);
+  setTrackbarPos("Low V","Filtered Image", filter.low_v);
+}
+
+/** @function on_high_v_thresh_trackbar */
+void on_high_v_thresh_trackbar(int, void *)
+{
+  filter.high_v = max(filter.high_v, filter.low_v+1);
+  setTrackbarPos("High V", "Filtered Image", filter.high_v);
+}
+
+/*! Function to update trackers with filter*/
+void update_trackers(){
+  setTrackbarPos("Low H","Filtered Image", filter.low_h);
+  setTrackbarPos("Low S","Filtered Image", filter.low_s);
+  setTrackbarPos("Low V","Filtered Image", filter.low_v);
+  setTrackbarPos("High H","Filtered Image", filter.high_h);
+  setTrackbarPos("High S","Filtered Image", filter.high_s);
+  setTrackbarPos("High V","Filtered Image", filter.high_v);
+}
+
+/*! \brief If DEPLOY is defined then takes a photo from the camera, shows tha various filters and asks if they are
+ *  visually correct. If not then it allows to set the various filters through trackbars.
+ *  If DEPLOY is not defined then it takes a map from the folder set in Settings and ask for visual confirmation.
+ */
+void configure (bool deploy, int img_id){
   Settings* s=new Settings();
   s->readFromFile();
 
   Mat frame;
-#ifdef DEPLOY
-  //Create camera object
-	CameraCapture::input_options_t options(1080, 1920, 30, 0);
-	CameraCapture *camera=new CameraCapture(options);
+  if (deploy) {
+    //Create camera object
+    CameraCapture::input_options_t options(1080, 1920, 30, 0);
+    CameraCapture *camera = new CameraCapture(options);
 
-	double time;
-	if (camera->grab(frame, time)){
-		cout << "Success" << endl;
-	}
-	else {
-		cout << "Fail getting camera photo." << endl;
-		return 0;
-	}
-#else
-  cout << "Reading image: " << s->maps(0).get(0) << endl;
-  frame=imread(s->maps(0).get(0));
-//  frame=cvLoadImageM(s->maps(0).get(0).c_str());
-#endif
+    double time;
+    if (camera->grab(frame, time)) {
+      cout << "Success" << endl;
+    } else {
+      cout << "Fail getting camera photo." << endl;
+      return 0;
+    }
+  }
+  else {
+    cout << "Reading image: " << s->maps(Tuple<int>(1, img_id)).get(0) << endl;
+    frame = imread(s->maps(Tuple<int>(1, img_id)).get(0));
+  }
 
 #ifdef MY_DEBUG
   my_imshow("prova", frame);
     mywaitkey();
 #endif
 
-  if (show_all_conditions(frame, s)){
+  if (!show_all_conditions(frame, s)){
     Mat frame_threshold;
     cvtColor(frame, frame, COLOR_BGR2HSV);
     namedWindow("Filtered Image", WINDOW_NORMAL);
@@ -115,10 +170,17 @@ void configure (){
 #ifdef DEPLOY
   free(camera);
 #endif
+  destroyAllWindows();
 }
 
+/*! Function to show a picture with various filters taken from Settings. It then asks for visual confirmation.
+ *
+ * @param frame The image to show.
+ * @param s The Settings to use.
+ * @return True if the filters are okay, false otherwise.
+ */
 bool show_all_conditions(const Mat& frame, Settings* s){
-  bool ret=true;
+  bool ret=false;
   Mat black, red, green, victim, blue, white;
 
   inRange(frame, s->blackMask.Low(), s->blackMask.High(), black);
@@ -145,59 +207,8 @@ bool show_all_conditions(const Mat& frame, Settings* s){
   destroyAllWindows();
 
   if (c=='y' || c=='Y'){
-    ret=false;
+    ret=true;
   }
 
   return ret;
-}
-
-void update_trackers(){
-  setTrackbarPos("Low H","Filtered Image", filter.low_h);
-  setTrackbarPos("Low S","Filtered Image", filter.low_s);
-  setTrackbarPos("Low V","Filtered Image", filter.low_v);
-  setTrackbarPos("High H","Filtered Image", filter.high_h);
-  setTrackbarPos("High S","Filtered Image", filter.high_s);
-  setTrackbarPos("High V","Filtered Image", filter.high_v);
-}
-
-/** @function on_low_h_thresh_trackbar */
-void on_low_h_thresh_trackbar(int, void *)
-{
-  filter.low_h = min(filter.high_h-1, filter.low_h);
-  setTrackbarPos("Low H","Filtered Image", filter.low_h);
-}
-
-/** @function on_high_h_thresh_trackbar */
-void on_high_h_thresh_trackbar(int, void *)
-{
-  filter.high_h = max(filter.high_h, filter.low_h+1);
-  setTrackbarPos("High H", "Filtered Image", filter.high_h);
-}
-
-/** @function on_low_s_thresh_trackbar */
-void on_low_s_thresh_trackbar(int, void *)
-{
-  filter.low_s = min(filter.high_s-1, filter.low_s);
-  setTrackbarPos("Low S","Filtered Image", filter.low_s);
-}
-
-/** @function on_high_s_thresh_trackbar */
-void on_high_s_thresh_trackbar(int, void *)
-{
-  filter.high_s = max(filter.high_s, filter.low_s+1);
-  setTrackbarPos("High S", "Filtered Image", filter.high_s);
-}
-
-/** @function on_low_v_thresh_trackbar */
-void on_low_v_thresh_trackbar(int, void *)
-{
-  filter.low_v= min(filter.high_v-1, filter.low_v);
-  setTrackbarPos("Low V","Filtered Image", filter.low_v);
-}
-
-/** @function on_high_v_thresh_trackbar */
-void on_high_v_thresh_trackbar(int, void *)
-{
-  filter.high_v = max(filter.high_v, filter.low_v+1);
-  setTrackbarPos("High V", "Filtered Image", filter.high_v);
 }

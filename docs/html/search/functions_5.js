@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['get',['get',['../class_angle.html#a8ec5cc925d4ab3a3232746f254bd33a4',1,'Angle::get()'],['../class_tuple.html#aabf82c5d0f19c9a8f6a8f01d95801162',1,'Tuple::get()']]],
-  ['gettype',['getType',['../class_angle.html#a827079369e1344c8761723be0665bb2e',1,'Angle']]],
-  ['gettypename',['getTypeName',['../class_angle.html#a3253eb4e061fa49be862120370fb836b',1,'Angle']]]
+  ['filter',['Filter',['../class_filter.html#ad15994c30d497afd567a6445446a249e',1,'Filter::Filter()'],['../class_filter.html#a75b792236ffdb9590eb762e2a82802a5',1,'Filter::Filter(int _low_h, int _low_s, int _low_v, int _high_h, int _high_s, int _high_v)'],['../class_filter.html#ae452f351813a2fdb9a32c78e11865447',1,'Filter::Filter(vector&lt; int &gt; v)']]],
+  ['find_5fcontours',['find_contours',['../detection_8cc.html#a93844a9ac3d8be0bd871bb41f8260330',1,'find_contours(const Mat &amp;img, Mat original, const int color):&#160;detection.cc'],['../detection_8hh.html#a93844a9ac3d8be0bd871bb41f8260330',1,'find_contours(const Mat &amp;img, Mat original, const int color):&#160;detection.cc']]],
+  ['findnextlocmin',['FindNextLocMin',['../namespace_clipper_lib.html#a2e62d7a90f565dceab371c8ed250131e',1,'ClipperLib']]],
+  ['firstisbottompt',['FirstIsBottomPt',['../namespace_clipper_lib.html#a9811846db2631994c7e6a54327bf251d',1,'ClipperLib']]]
 ];

@@ -1,6 +1,11 @@
 #include"utils.hh"
 
-void my_imshow( const char* win_name, 
+/*! \brief Function to show images in an order grill.
+ * @param win_name The name of the window to use.
+ * @param img The Mat containing the image.
+ * @param reset If true the image is going to be placed in 0,0 i.e. the top left corner of the screen.
+ */
+void my_imshow( const char* win_name,
                 cv::Mat img, 
                 bool reset/*=false*/){
     const int SIZE     = 250;
@@ -35,16 +40,27 @@ void my_imshow( const char* win_name,
     }
 }
 
+/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed.
+ *
+ */
 void mywaitkey() {
     while((char)waitKey(1)!='q'){}
 }
 
+/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed a specific window is closed.
+ *
+ * @param windowName The window to close after pressing a key.
+ */
 void mywaitkey(string windowName) {
   while((char)waitKey(1)!='q'){}
   cout << "Destroying window " << windowName << endl;
   destroyWindow(windowName);
 }
 
+/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed some windows are closed.
+ *
+ * @param windowNames The names of the windows to close after pressing a key.
+ */
 void mywaitkey(Tuple<string> windowNames) {
   while((char)waitKey(1)!='q'){}
   for (auto name : windowNames) {
@@ -52,56 +68,28 @@ void mywaitkey(Tuple<string> windowNames) {
   }
 }
 
-#if defined PRINT_TO_FILE && defined DEBUG
-
-  void TOFILE(const char* fl_name, const char* msg) {
-    FILE* fl=fopen(fl_name, "a");
-    fprintf(fl, "%s", msg);
-    fclose(fl);
-  }
-  void CLEARFILE(const char* fl_name){
-    FILE* fl1=fopen(fl_name, "w");
-    fclose(fl1);
-  }
-
-#else 
-  
-  void TOFILE(const char* fl_name, const char* msg){}
-  // #define TOFILE(fl_name, msg)  
-  void CLEARFILE(const char* fl_name){}
-  // #define CLEARFILE(fl_name)
-
-
-
-
-
-
-
-
 namespace timeutils {
 
-  int64_t timespecDiff(struct timespec *timeA_p, struct timespec *timeB_p)
-  {
-    return ((timeA_p->tv_sec * 1000000000) + timeA_p->tv_nsec) -
-            ((timeB_p->tv_sec * 1000000000) + timeB_p->tv_nsec);
-  }
-
-  double getTimeS()
-  {
-    static struct timespec t0;
-    static int init = 0;
-    if (!init)
+    int64_t timespecDiff(struct timespec *timeA_p, struct timespec *timeB_p)
     {
-      clock_gettime(CLOCK_REALTIME, &t0);
-      init = 1;
+      return ((timeA_p->tv_sec * 1000000000) + timeA_p->tv_nsec) -
+             ((timeB_p->tv_sec * 1000000000) + timeB_p->tv_nsec);
     }
-    struct timespec spec;
-    clock_gettime(CLOCK_REALTIME, &spec);
-    int64_t timediff = timespecDiff(&spec, &t0);
-    return timediff/1e9;
+
+    double getTimeS()
+    {
+      static struct timespec t0;
+      static int init = 0;
+      if (!init)
+      {
+        clock_gettime(CLOCK_REALTIME, &t0);
+        init = 1;
+      }
+      struct timespec spec;
+      clock_gettime(CLOCK_REALTIME, &spec);
+      int64_t timediff = timespecDiff(&spec, &t0);
+      return timediff/1e9;
 //    return ((spec.tv_sec * 1000000000) + spec.tv_nsec)/1e9;
-  }
+    }
 
 }
-
-#endif

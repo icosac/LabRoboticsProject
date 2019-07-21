@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['distance_5ftype',['DISTANCE_TYPE',['../maths_8hh.html#ac50d7263b1cae8691420b86282b27f90',1,'maths.hh']]]
+  ['cliptype',['ClipType',['../namespace_clipper_lib.html#a3db4fddd50b81ba657107505821d7f46',1,'ClipperLib']]],
+  ['color',['COLOR',['../class_settings.html#a30d85f2e06a54ae9bc8da2d01037658f',1,'Settings']]]
 ];

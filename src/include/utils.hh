@@ -19,21 +19,41 @@
 using namespace cv;
 using namespace std;
 
-#define NAME(x) #x
+#define NAME(x) #x ///<Returns the name of the variable
 
 #ifdef DEBUG
-  #define COUT(x) cout << #x << ": " << x << endl;
-  #define INFO(msg) \
+  #define COUT(x) cout << #x << ": " << x << endl; ///<Print the name of a variable and its content. Only if DEBUG is defined.
+  #define INFO(msg) \ ///<Print a messag to stderr
     fprintf(stderr, "%s\n", msg);
 #else
-  #define COUT(x)
-  #define INFO(msg) 
+  #define COUT(x) ///<Print a messag to stderr
+  #define INFO(msg)  ///<Print the name of a variable and its content. Only if DEBUG is defined.
 #endif
 
+/*! \brief Function to show images in an order grill.
+ * @param win_name The name of the window to use.
+ * @param img The Mat containing the image.
+ * @param reset If true the image is going to be placed in 0,0 i.e. the top left corner of the screen.
+ */
 void my_imshow(const char* win_name, Mat img, bool reset=false);
+
 // Mat pixToMat(Pix* pix);
+
+/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed.
+ *
+ */
 void mywaitkey();
+
+/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed a specific window is closed.
+ *
+ * @param windowName The window to close after pressing a key.
+ */
 void mywaitkey(string windowName);
+
+/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed some windows are closed.
+ *
+ * @param windowNames The names of the windows to close after pressing a key.
+ */
 void mywaitkey(Tuple<string> windowNames);
 
 

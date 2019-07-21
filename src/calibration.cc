@@ -204,7 +204,7 @@ int calibration(string inputFile)
 
     FileStorage fs(inputCalSettingsFile, FileStorage::READ); //open the file for reading
     if (!fs.isOpened()){
-        cout << "Could not open the configuration file: \"" << inputCalSettingsFile << "\"" << endl;
+        cerr << "Could not open the configuration file: \"" << inputCalSettingsFile << "\"" << endl;
         return -1;
     }
     
@@ -495,7 +495,7 @@ static bool runCalibration( CalSettings& s,
                             tvecs, s.flag
                         );
 
-    cout << "Re-projection error reported by calibrateCamera: "<< rms << endl;
+    cerr << "Re-projection error reported by calibrateCamera: "<< rms << endl;
 
     bool ok = checkRange(cameraMatrix) && checkRange(distCoeffs);
 
@@ -650,7 +650,7 @@ bool runCalibrationAndSave( CalSettings& s,
                             reprojErrs, totalAvgErr
                         );
 
-    cout << (ok ? "Calibration succeeded" : "Calibration failed")
+    cerr << (ok ? "Calibration succeeded" : "Calibration failed")
          << ". avg re projection error = " << totalAvgErr << endl;
 
     if (ok) {

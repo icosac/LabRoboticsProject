@@ -1,10 +1,8 @@
 #include <configure.hh>
+#include <unwrapping.hh>
 
 int main(){
-  Settings *s=new Settings();
-  cout << *s << endl;
-  s->readFromFile();
-  cout << *s << endl;
-
+  configure();
+  unwrapping();
   return 0;
 }

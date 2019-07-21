@@ -4,9 +4,10 @@
 <mapsNames>
   "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg"
   "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg"
-  "01.jpg" "01.jpg" "01.jpg" "01.jpg"</mapsNames>
+  "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg" "01.jpg"
+  "01.jpg" "01.jpg"</mapsNames>
 <mapsUnNames>
-  </mapsUnNames>
+  "01_UN.jpg" "01_UN.jpg" "01_UN.jpg" "01_UN.jpg"</mapsUnNames>
 <intrinsicCalibrationFile>"./data/intrinsic_calibration.xml"</intrinsicCalibrationFile>
 <calibrationFile>data/calib_config.xml</calibrationFile>
 <blackMask>
@@ -25,8 +26,8 @@
 <convexHullFile>data/convexHull.xml</convexHullFile>
 <templatesFolder>data/num_template/</templatesFolder>
 <templates>
-  "7_inv.png" ".DS_Store" "6_inv.png" "8.png" "9.png" "4_inv.png"
-  "5_inv.png" "0_inv.png" "9_inv.png" "8_inv.png" "1_inv.png" "4.png"
-  "5.png" "7.png" "6.png" "3_inv.png" "2.png" "3.png" "2_inv.png"
-  "1.png" "0.png"</templates>
+  "7_inv.png" "6_inv.png" "8.png" "9.png" "4_inv.png" "5_inv.png"
+  "0_inv.png" "9_inv.png" "8_inv.png" "1_inv.png" "4.png" "5.png"
+  "7.png" "6.png" "3_inv.png" "2.png" "3.png" "2_inv.png" "1.png"
+  "0.png"</templates>
 </opencv_storage>

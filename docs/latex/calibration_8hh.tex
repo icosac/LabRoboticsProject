@@ -1,11 +1,12 @@
-\hypertarget{calibration_8hh}{}\section{src/calibration.hh File Reference}
-\label{calibration_8hh}\index{src/calibration.\+hh@{src/calibration.\+hh}}
+\hypertarget{calibration_8hh}{}\section{src/include/calibration.hh File Reference}
+\label{calibration_8hh}\index{src/include/calibration.hh@{src/include/calibration.hh}}
 
 
 Library for calibration.  
 
 
-{\ttfamily \#include \char`\"{}utils.\+hh\char`\"{}}\newline
+{\ttfamily \#include $<$utils.\+hh$>$}\newline
+{\ttfamily \#include $<$settings.\+hh$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$sstream$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
@@ -31,13 +32,13 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{calibration_8hh__dep__incl}
+\includegraphics[width=284pt]{calibration_8hh__dep__incl}
 \end{center}
 \end{figure}
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \mbox{\hyperlink{class_settings}{Settings}}
+class \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -50,10 +51,10 @@ enum \{ \mbox{\hyperlink{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55ba167a7
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{calibration_8hh_a9deafd96b6adbc102c47af08cde6610c}{calibration}} (const string input\+File=\char`\"{}data/calib\+\_\+config.\+xml\char`\"{})
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{calibration_8hh_aad0d20455c4c17ca2922fec15835fe94}{calibration}} (string input\+File=\char`\"{}\char`\"{})
 \begin{DoxyCompactList}\small\item\em Function to run the complete calibration. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{calibration_8hh_ac7558c8da6af683fc1c86c2ede7bb31c}{run\+Calibration\+And\+Save}} (\mbox{\hyperlink{class_settings}{Settings}} \&s, Size image\+Size, Mat \&camera\+Matrix, Mat \&dist\+Coeffs, vector$<$ vector$<$ Point2f $>$ $>$ image\+Points)
-\begin{DoxyCompactList}\small\item\em Reads settings from file. If there is none then initiate a new {\ttfamily \mbox{\hyperlink{class_settings}{Settings}}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{calibration_8hh_a4195037da024926ac4f645bd09700052}{run\+Calibration\+And\+Save}} (\mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&s, Size image\+Size, Mat \&camera\+Matrix, Mat \&dist\+Coeffs, vector$<$ vector$<$ Point2f $>$ $>$ image\+Points)
+\begin{DoxyCompactList}\small\item\em Reads \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} from file. If there is none then initiate a new {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -67,15 +68,15 @@ Library for calibration.
 {\footnotesize\ttfamily anonymous enum}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+E\+T\+E\+C\+T\+I\+ON@{D\+E\+T\+E\+C\+T\+I\+ON}!calibration.\+hh@{calibration.\+hh}}\index{calibration.\+hh@{calibration.\+hh}!D\+E\+T\+E\+C\+T\+I\+ON@{D\+E\+T\+E\+C\+T\+I\+ON}}}\mbox{\Hypertarget{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55ba167a7ee1aabe9f27e010fff93c0ba971}\label{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55ba167a7ee1aabe9f27e010fff93c0ba971}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DETECTION@{DETECTION}!calibration.hh@{calibration.hh}}\index{calibration.hh@{calibration.hh}!DETECTION@{DETECTION}}}\mbox{\Hypertarget{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55ba167a7ee1aabe9f27e010fff93c0ba971}\label{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55ba167a7ee1aabe9f27e010fff93c0ba971}} 
 D\+E\+T\+E\+C\+T\+I\+ON&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+A\+P\+T\+U\+R\+I\+NG@{C\+A\+P\+T\+U\+R\+I\+NG}!calibration.\+hh@{calibration.\+hh}}\index{calibration.\+hh@{calibration.\+hh}!C\+A\+P\+T\+U\+R\+I\+NG@{C\+A\+P\+T\+U\+R\+I\+NG}}}\mbox{\Hypertarget{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55ba53f5d985011ab26db21516188f46a94f}\label{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55ba53f5d985011ab26db21516188f46a94f}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAPTURING@{CAPTURING}!calibration.hh@{calibration.hh}}\index{calibration.hh@{calibration.hh}!CAPTURING@{CAPTURING}}}\mbox{\Hypertarget{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55ba53f5d985011ab26db21516188f46a94f}\label{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55ba53f5d985011ab26db21516188f46a94f}} 
 C\+A\+P\+T\+U\+R\+I\+NG&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+A\+L\+I\+B\+R\+A\+T\+ED@{C\+A\+L\+I\+B\+R\+A\+T\+ED}!calibration.\+hh@{calibration.\+hh}}\index{calibration.\+hh@{calibration.\+hh}!C\+A\+L\+I\+B\+R\+A\+T\+ED@{C\+A\+L\+I\+B\+R\+A\+T\+ED}}}\mbox{\Hypertarget{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55baf7834eaf5a327e180e039aa05dd3ebd1}\label{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55baf7834eaf5a327e180e039aa05dd3ebd1}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CALIBRATED@{CALIBRATED}!calibration.hh@{calibration.hh}}\index{calibration.hh@{calibration.hh}!CALIBRATED@{CALIBRATED}}}\mbox{\Hypertarget{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55baf7834eaf5a327e180e039aa05dd3ebd1}\label{calibration_8hh_a06fc87d81c62e9abb8790b6e5713c55baf7834eaf5a327e180e039aa05dd3ebd1}} 
 C\+A\+L\+I\+B\+R\+A\+T\+ED&\\
 \hline
 
@@ -83,11 +84,11 @@ C\+A\+L\+I\+B\+R\+A\+T\+ED&\\
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{calibration_8hh_a9deafd96b6adbc102c47af08cde6610c}\label{calibration_8hh_a9deafd96b6adbc102c47af08cde6610c}} 
-\index{calibration.\+hh@{calibration.\+hh}!calibration@{calibration}}
-\index{calibration@{calibration}!calibration.\+hh@{calibration.\+hh}}
+\mbox{\Hypertarget{calibration_8hh_aad0d20455c4c17ca2922fec15835fe94}\label{calibration_8hh_aad0d20455c4c17ca2922fec15835fe94}} 
+\index{calibration.hh@{calibration.hh}!calibration@{calibration}}
+\index{calibration@{calibration}!calibration.hh@{calibration.hh}}
 \subsubsection{\texorpdfstring{calibration()}{calibration()}}
-{\footnotesize\ttfamily int calibration (\begin{DoxyParamCaption}\item[{const string}]{input\+File }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} calibration (\begin{DoxyParamCaption}\item[{string}]{input\+File }\end{DoxyParamCaption})}
 
 
 
@@ -95,35 +96,35 @@ Function to run the complete calibration.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em input\+File} & Name of the setting.\+xml file. It\textquotesingle{}s set to default to default.\+xml\\
+\mbox{\texttt{ in}}  & {\em input\+File} & Name of the setting.\+xml file. It\textquotesingle{}s set to default to default.\+xml\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
--\/2 if the settings file could be load but the input was not well-\/formed~\newline
- -\/1 if the settings file could not be opened.~\newline
+-\/2 if the \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} file could be load but the input was not well-\/formed~\newline
+ -\/1 if the \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} file could not be opened.~\newline
  0 if everything went fine. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{calibration_8hh_ac7558c8da6af683fc1c86c2ede7bb31c}\label{calibration_8hh_ac7558c8da6af683fc1c86c2ede7bb31c}} 
-\index{calibration.\+hh@{calibration.\+hh}!run\+Calibration\+And\+Save@{run\+Calibration\+And\+Save}}
-\index{run\+Calibration\+And\+Save@{run\+Calibration\+And\+Save}!calibration.\+hh@{calibration.\+hh}}
-\subsubsection{\texorpdfstring{run\+Calibration\+And\+Save()}{runCalibrationAndSave()}}
-{\footnotesize\ttfamily bool run\+Calibration\+And\+Save (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_settings}{Settings}} \&}]{s,  }\item[{Size}]{image\+Size,  }\item[{Mat \&}]{camera\+Matrix,  }\item[{Mat \&}]{dist\+Coeffs,  }\item[{vector$<$ vector$<$ Point2f $>$ $>$}]{image\+Points }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{calibration_8hh_a4195037da024926ac4f645bd09700052}\label{calibration_8hh_a4195037da024926ac4f645bd09700052}} 
+\index{calibration.hh@{calibration.hh}!runCalibrationAndSave@{runCalibrationAndSave}}
+\index{runCalibrationAndSave@{runCalibrationAndSave}!calibration.hh@{calibration.hh}}
+\subsubsection{\texorpdfstring{runCalibrationAndSave()}{runCalibrationAndSave()}}
+{\footnotesize\ttfamily bool run\+Calibration\+And\+Save (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&}]{s,  }\item[{Size}]{image\+Size,  }\item[{Mat \&}]{camera\+Matrix,  }\item[{Mat \&}]{dist\+Coeffs,  }\item[{vector$<$ vector$<$ Point2f $>$ $>$}]{image\+Points }\end{DoxyParamCaption})}
 
 
 
-Reads settings from file. If there is none then initiate a new {\ttfamily \mbox{\hyperlink{class_settings}{Settings}}}. 
+Reads \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} from file. If there is none then initiate a new {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}}. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em s} & The {\ttfamily \mbox{\hyperlink{class_settings}{Settings}}} being used during the execution. \\
+\mbox{\texttt{ in}}  & {\em s} & The {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}} being used during the execution. \\
 \hline
-\mbox{\tt in}  & {\em image\+Size} & The dimensions of the images. \\
+\mbox{\texttt{ in}}  & {\em image\+Size} & The dimensions of the images. \\
 \hline
-\mbox{\tt in}  & {\em image\+Points} & The projected points for each image. \\
+\mbox{\texttt{ in}}  & {\em image\+Points} & The projected points for each image. \\
 \hline
-\mbox{\tt out}  & {\em camera\+Matrix} & The matrix which is used to store the values for the camera parameters. \\
+\mbox{\texttt{ out}}  & {\em camera\+Matrix} & The matrix which is used to store the values for the camera parameters. \\
 \hline
-\mbox{\tt out}  & {\em dist\+Coeffs} & The matrix which is used to store the distortion coefficients.\\
+\mbox{\texttt{ out}}  & {\em dist\+Coeffs} & The matrix which is used to store the distortion coefficients.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

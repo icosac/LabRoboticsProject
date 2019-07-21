@@ -59,6 +59,3 @@ class Victim: public Object{
 };
 
 #endif
-
-//compile command:
-//g++ `pkg-config --cflags opencv` -std=c++11 -Wall -O3  -o objects.out clipper.cc objects.cc `pkg-config --libs opencv`

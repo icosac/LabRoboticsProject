@@ -45,7 +45,8 @@ OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
 TEST_SRC=\
 		test/prova.cc\
 # 		test/maths_test.cc\
-TEST_EXEC=$(TEST_SRC:.cc=.out)
+
+TEST_EXEC=$(subst test/,bin/test/,$(patsubst %.cc, %.out, $(TEST_SRC)))
 
 #Run files
 RUN=$(wildcard src/run/*.cc)
@@ -61,8 +62,8 @@ PROJ_HOME = $(shell pwd)
 src/obj/%.o: src/%.cc
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 #Create executables for testing
-test/%.out: test/%.cc
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@ $< $(LDLIBS)
+bin/test/%.out: test/%.cc
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o $@ $< $(LDLIBS)
 #Create executables for main files.
 bin/%.out: src/run/%.cc
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o $@ $< $(LDLIBS)
@@ -72,7 +73,7 @@ bin/%.out: src/run/%.cc
 all: lib bin/ xml $(RUN_EXEC)
 
 #Create test case files
-test: lib bin_test/ $(TEST_EXEC)
+test: ECHO lib bin_test/ $(TEST_EXEC)
 
 
 ##Debugging
@@ -81,6 +82,8 @@ ECHO:
 	@echo $(OBJ)
 	@echo $(RUN)
 	@echo $(RUN_EXEC)
+	@echo $(TEST_SRC)
+	@echo $(TEST_EXEC)
 
 
 ##LIBRARY TARGETS
@@ -117,13 +120,13 @@ main: lib bin/ xml
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@.out src/run/$@.cc $(LDLIBS)
 #calibrarion executable
 calibration: xml
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/run/$@_run.cc $(LDLIBS)
 #Unwrapping executable
 unwrapping: xml
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/run/$@_run.cc $(LDLIBS)
 #Detection executable
 detection: xml
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/$@_run.cc $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o bin/$@_run.out src/run/$@_run.cc $(LDLIBS)
 
 ##RUN EXECUTABLES
 #Run main program
@@ -179,7 +182,8 @@ doc_clean clean_doc:
 
 #make documentation for html and latex (also compile latex)
 doc:
-	$(MKDIR) docs 
+	$(MKDIR) docs
+	@cp .index.html docs/index.html
 	$(DOXYGEN) $(DOX_CONF_FILE)
 ifneq (,$(shell which pdflatex))
 	@cd docs/latex && make

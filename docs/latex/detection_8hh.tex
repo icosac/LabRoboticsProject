@@ -1,8 +1,8 @@
-\hypertarget{detection_8hh}{}\section{src/detection.hh File Reference}
-\label{detection_8hh}\index{src/detection.\+hh@{src/detection.\+hh}}
+\hypertarget{detection_8hh}{}\section{src/include/detection.hh File Reference}
+\label{detection_8hh}\index{src/include/detection.hh@{src/include/detection.hh}}
 {\ttfamily \#include $<$tesseract/baseapi.\+h$>$}\newline
 {\ttfamily \#include $<$leptonica/allheaders.\+h$>$}\newline
-{\ttfamily \#include \char`\"{}utils.\+hh\char`\"{}}\newline
+{\ttfamily \#include $<$utils.\+hh$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
@@ -30,17 +30,17 @@ This graph shows which files directly or indirectly include this file\+:
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{detection_8hh_a17e13c447692201697b084a1906cf6fb}{detection}} ()
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{detection_8hh_a17e13c447692201697b084a1906cf6fb}{detection}} ()
 \begin{DoxyCompactList}\small\item\em Loads some images and detects shapes according to different colors. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{detection_8hh_a0e5dcc339fb7266424a802866eee62b8}{shape\+\_\+detection}} (const Mat \&img, const int color)
+void \mbox{\hyperlink{detection_8hh_ac47563337453ac7d1314fe83218c87fc}{shape\+\_\+detection}} (const Mat \&img, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} color, const Mat \&un\+\_\+img)
 \begin{DoxyCompactList}\small\item\em Detect shapes inside the image according to the variable \textquotesingle{}color\textquotesingle{}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{detection_8hh_a28d0cdb56cfb2164f939dc2f83d1d9d0}{erode\+\_\+dilation}} (Mat \&img, const int color)
+void \mbox{\hyperlink{detection_8hh_a28d0cdb56cfb2164f939dc2f83d1d9d0}{erode\+\_\+dilation}} (Mat \&img, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} color)
 \begin{DoxyCompactList}\small\item\em It apply some filtering function for isolate the subject and remove the noise. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{detection_8hh_a93844a9ac3d8be0bd871bb41f8260330}{find\+\_\+contours}} (const Mat \&img, Mat original, const int color)
+void \mbox{\hyperlink{detection_8hh_a93844a9ac3d8be0bd871bb41f8260330}{find\+\_\+contours}} (const Mat \&img, Mat original, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} color)
 \begin{DoxyCompactList}\small\item\em Given an image, in black/white format, identify all the borders that delimit the shapes. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{detection_8hh_a785fcf35ca81d113a1ea3d831fbdbc22}{number\+\_\+recognition}} (Rect blob, const Mat \&base)
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{detection_8hh_a785fcf35ca81d113a1ea3d831fbdbc22}{number\+\_\+recognition}} (Rect blob, const Mat \&base)
 \begin{DoxyCompactList}\small\item\em Detect a number on an image inside a region of interest. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{detection_8hh_a923b178671e2272c6b082335d118716a}{save\+\_\+convex\+\_\+hull}} (const vector$<$ vector$<$ Point $>$$>$ \&contours, const int color, const vector$<$ int $>$ \&victims)
+void \mbox{\hyperlink{detection_8hh_a923b178671e2272c6b082335d118716a}{save\+\_\+convex\+\_\+hull}} (const vector$<$ vector$<$ Point $>$$>$ \&contours, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} color, const vector$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&victims)
 \begin{DoxyCompactList}\small\item\em Given some vector save it in a xml file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{detection_8hh_a50993b0aa4f01d89a4e5d0aef4e1e5f4}{load\+\_\+number\+\_\+template}} ()
 \begin{DoxyCompactList}\small\item\em Load some templates and save them in the global variable \textquotesingle{}templates\textquotesingle{}. \end{DoxyCompactList}\item 
@@ -50,9 +50,9 @@ void \mbox{\hyperlink{detection_8hh_a8edaf0da54add7cd1461bafecef26b56}{crop\+\_\
 
 \subsection{Function Documentation}
 \mbox{\Hypertarget{detection_8hh_a8edaf0da54add7cd1461bafecef26b56}\label{detection_8hh_a8edaf0da54add7cd1461bafecef26b56}} 
-\index{detection.\+hh@{detection.\+hh}!crop\+\_\+number\+\_\+section@{crop\+\_\+number\+\_\+section}}
-\index{crop\+\_\+number\+\_\+section@{crop\+\_\+number\+\_\+section}!detection.\+hh@{detection.\+hh}}
-\subsubsection{\texorpdfstring{crop\+\_\+number\+\_\+section()}{crop\_number\_section()}}
+\index{detection.hh@{detection.hh}!crop\_number\_section@{crop\_number\_section}}
+\index{crop\_number\_section@{crop\_number\_section}!detection.hh@{detection.hh}}
+\subsubsection{\texorpdfstring{crop\_number\_section()}{crop\_number\_section()}}
 {\footnotesize\ttfamily void crop\+\_\+number\+\_\+section (\begin{DoxyParamCaption}\item[{Mat \&}]{R\+OI }\end{DoxyParamCaption})}
 
 
@@ -61,14 +61,14 @@ Given an image identify the region of interest(\+R\+O\+I) and crop it out.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em R\+OI} & Is the image that the function will going to elaborate. \\
+\mbox{\texttt{ in,out}}  & {\em R\+OI} & Is the image that the function will going to elaborate. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{detection_8hh_a17e13c447692201697b084a1906cf6fb}\label{detection_8hh_a17e13c447692201697b084a1906cf6fb}} 
-\index{detection.\+hh@{detection.\+hh}!detection@{detection}}
-\index{detection@{detection}!detection.\+hh@{detection.\+hh}}
+\index{detection.hh@{detection.hh}!detection@{detection}}
+\index{detection@{detection}!detection.hh@{detection.hh}}
 \subsubsection{\texorpdfstring{detection()}{detection()}}
-{\footnotesize\ttfamily int detection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} detection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -78,10 +78,10 @@ Loads some images and detects shapes according to different colors.
 Return 0 if the function reach the end. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{detection_8hh_a28d0cdb56cfb2164f939dc2f83d1d9d0}\label{detection_8hh_a28d0cdb56cfb2164f939dc2f83d1d9d0}} 
-\index{detection.\+hh@{detection.\+hh}!erode\+\_\+dilation@{erode\+\_\+dilation}}
-\index{erode\+\_\+dilation@{erode\+\_\+dilation}!detection.\+hh@{detection.\+hh}}
-\subsubsection{\texorpdfstring{erode\+\_\+dilation()}{erode\_dilation()}}
-{\footnotesize\ttfamily void erode\+\_\+dilation (\begin{DoxyParamCaption}\item[{Mat \&}]{img,  }\item[{const int}]{color }\end{DoxyParamCaption})}
+\index{detection.hh@{detection.hh}!erode\_dilation@{erode\_dilation}}
+\index{erode\_dilation@{erode\_dilation}!detection.hh@{detection.hh}}
+\subsubsection{\texorpdfstring{erode\_dilation()}{erode\_dilation()}}
+{\footnotesize\ttfamily void erode\+\_\+dilation (\begin{DoxyParamCaption}\item[{Mat \&}]{img,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{color }\end{DoxyParamCaption})}
 
 
 
@@ -91,9 +91,9 @@ An example of the sub functions called are\+: Gaussian\+Blur, Erosion, Dilation 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em img} & Is the image on which the function apply the filtering. \\
+\mbox{\texttt{ in,out}}  & {\em img} & Is the image on which the function apply the filtering. \\
 \hline
-\mbox{\tt in}  & {\em color} & Can has 4 value\+:~\newline
+\mbox{\texttt{ in}}  & {\em color} & Can has 4 value\+:~\newline
 0 -\/$>$ Red~\newline
 1 -\/$>$ Green~\newline
 2 -\/$>$ Blue~\newline
@@ -102,10 +102,10 @@ According to the color the filtering functions apply can change in the type and 
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{detection_8hh_a93844a9ac3d8be0bd871bb41f8260330}\label{detection_8hh_a93844a9ac3d8be0bd871bb41f8260330}} 
-\index{detection.\+hh@{detection.\+hh}!find\+\_\+contours@{find\+\_\+contours}}
-\index{find\+\_\+contours@{find\+\_\+contours}!detection.\+hh@{detection.\+hh}}
-\subsubsection{\texorpdfstring{find\+\_\+contours()}{find\_contours()}}
-{\footnotesize\ttfamily void find\+\_\+contours (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{Mat}]{original,  }\item[{const int}]{color }\end{DoxyParamCaption})}
+\index{detection.hh@{detection.hh}!find\_contours@{find\_contours}}
+\index{find\_contours@{find\_contours}!detection.hh@{detection.hh}}
+\subsubsection{\texorpdfstring{find\_contours()}{find\_contours()}}
+{\footnotesize\ttfamily void find\+\_\+contours (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{Mat}]{original,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{color }\end{DoxyParamCaption})}
 
 
 
@@ -113,11 +113,11 @@ Given an image, in black/white format, identify all the borders that delimit the
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em img} & Is an image in H\+SV format at the base of the elaboration process. \\
+\mbox{\texttt{ in}}  & {\em img} & Is an image in H\+SV format at the base of the elaboration process. \\
 \hline
-\mbox{\tt out}  & {\em original} & Is the original source of \textquotesingle{}img\textquotesingle{}, it is used for showing the detected contours. \\
+\mbox{\texttt{ out}}  & {\em original} & Is the original source of \textquotesingle{}img\textquotesingle{}, it is used for showing the detected contours. \\
 \hline
-\mbox{\tt in}  & {\em color} & Can has 3 value\+:~\newline
+\mbox{\texttt{ in}}  & {\em color} & Can has 3 value\+:~\newline
 0 -\/$>$ Red~\newline
 1 -\/$>$ Green~\newline
 2 -\/$>$ Blue~\newline
@@ -125,9 +125,9 @@ Is used for decid which procedure apply to the image. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{detection_8hh_a50993b0aa4f01d89a4e5d0aef4e1e5f4}\label{detection_8hh_a50993b0aa4f01d89a4e5d0aef4e1e5f4}} 
-\index{detection.\+hh@{detection.\+hh}!load\+\_\+number\+\_\+template@{load\+\_\+number\+\_\+template}}
-\index{load\+\_\+number\+\_\+template@{load\+\_\+number\+\_\+template}!detection.\+hh@{detection.\+hh}}
-\subsubsection{\texorpdfstring{load\+\_\+number\+\_\+template()}{load\_number\_template()}}
+\index{detection.hh@{detection.hh}!load\_number\_template@{load\_number\_template}}
+\index{load\_number\_template@{load\_number\_template}!detection.hh@{detection.hh}}
+\subsubsection{\texorpdfstring{load\_number\_template()}{load\_number\_template()}}
 {\footnotesize\ttfamily void load\+\_\+number\+\_\+template (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
@@ -135,10 +135,10 @@ Is used for decid which procedure apply to the image. \\
 Load some templates and save them in the global variable \textquotesingle{}templates\textquotesingle{}. 
 
 \mbox{\Hypertarget{detection_8hh_a785fcf35ca81d113a1ea3d831fbdbc22}\label{detection_8hh_a785fcf35ca81d113a1ea3d831fbdbc22}} 
-\index{detection.\+hh@{detection.\+hh}!number\+\_\+recognition@{number\+\_\+recognition}}
-\index{number\+\_\+recognition@{number\+\_\+recognition}!detection.\+hh@{detection.\+hh}}
-\subsubsection{\texorpdfstring{number\+\_\+recognition()}{number\_recognition()}}
-{\footnotesize\ttfamily int number\+\_\+recognition (\begin{DoxyParamCaption}\item[{Rect}]{blob,  }\item[{const Mat \&}]{base }\end{DoxyParamCaption})}
+\index{detection.hh@{detection.hh}!number\_recognition@{number\_recognition}}
+\index{number\_recognition@{number\_recognition}!detection.hh@{detection.hh}}
+\subsubsection{\texorpdfstring{number\_recognition()}{number\_recognition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} number\+\_\+recognition (\begin{DoxyParamCaption}\item[{Rect}]{blob,  }\item[{const Mat \&}]{base }\end{DoxyParamCaption})}
 
 
 
@@ -146,19 +146,19 @@ Detect a number on an image inside a region of interest.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em blob} & Identify the region of interest inside the image \textquotesingle{}base\textquotesingle{}. \\
+\mbox{\texttt{ in}}  & {\em blob} & Identify the region of interest inside the image \textquotesingle{}base\textquotesingle{}. \\
 \hline
-\mbox{\tt in}  & {\em base} & Is the image where the function will going to search the number.\\
+\mbox{\texttt{ in}}  & {\em base} & Is the image where the function will going to search the number.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The number recognise, \textquotesingle{}-\/1\textquotesingle{} otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{detection_8hh_a923b178671e2272c6b082335d118716a}\label{detection_8hh_a923b178671e2272c6b082335d118716a}} 
-\index{detection.\+hh@{detection.\+hh}!save\+\_\+convex\+\_\+hull@{save\+\_\+convex\+\_\+hull}}
-\index{save\+\_\+convex\+\_\+hull@{save\+\_\+convex\+\_\+hull}!detection.\+hh@{detection.\+hh}}
-\subsubsection{\texorpdfstring{save\+\_\+convex\+\_\+hull()}{save\_convex\_hull()}}
-{\footnotesize\ttfamily void save\+\_\+convex\+\_\+hull (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ Point $>$$>$ \&}]{contours,  }\item[{const int}]{color,  }\item[{const vector$<$ int $>$ \&}]{victims }\end{DoxyParamCaption})}
+\index{detection.hh@{detection.hh}!save\_convex\_hull@{save\_convex\_hull}}
+\index{save\_convex\_hull@{save\_convex\_hull}!detection.hh@{detection.hh}}
+\subsubsection{\texorpdfstring{save\_convex\_hull()}{save\_convex\_hull()}}
+{\footnotesize\ttfamily void save\+\_\+convex\+\_\+hull (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ Point $>$$>$ \&}]{contours,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{color,  }\item[{const vector$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{victims }\end{DoxyParamCaption})}
 
 
 
@@ -166,18 +166,18 @@ Given some vector save it in a xml file.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em contours} & Is a vector that is saved in a xml file. \\
+\mbox{\texttt{ in}}  & {\em contours} & Is a vector that is saved in a xml file. \\
 \hline
-\mbox{\tt in}  & {\em color} & Is the parameter according to which the function decide if saved (\textquotesingle{}color==1\textquotesingle{}) or not (\textquotesingle{}otherwise\textquotesingle{}) the vector \textquotesingle{}victims\textquotesingle{}. \\
+\mbox{\texttt{ in}}  & {\em color} & Is the parameter according to which the function decide if saved (\textquotesingle{}color==1\textquotesingle{}) or not (\textquotesingle{}otherwise\textquotesingle{}) the vector \textquotesingle{}victims\textquotesingle{}. \\
 \hline
-\mbox{\tt in}  & {\em victims} & Is a vector that is saved in a xml file. \\
+\mbox{\texttt{ in}}  & {\em victims} & Is a vector that is saved in a xml file. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{detection_8hh_a0e5dcc339fb7266424a802866eee62b8}\label{detection_8hh_a0e5dcc339fb7266424a802866eee62b8}} 
-\index{detection.\+hh@{detection.\+hh}!shape\+\_\+detection@{shape\+\_\+detection}}
-\index{shape\+\_\+detection@{shape\+\_\+detection}!detection.\+hh@{detection.\+hh}}
-\subsubsection{\texorpdfstring{shape\+\_\+detection()}{shape\_detection()}}
-{\footnotesize\ttfamily void shape\+\_\+detection (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{const int}]{color }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{detection_8hh_ac47563337453ac7d1314fe83218c87fc}\label{detection_8hh_ac47563337453ac7d1314fe83218c87fc}} 
+\index{detection.hh@{detection.hh}!shape\_detection@{shape\_detection}}
+\index{shape\_detection@{shape\_detection}!detection.hh@{detection.hh}}
+\subsubsection{\texorpdfstring{shape\_detection()}{shape\_detection()}}
+{\footnotesize\ttfamily void shape\+\_\+detection (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{color,  }\item[{const Mat \&}]{un\+\_\+img }\end{DoxyParamCaption})}
 
 
 
@@ -185,9 +185,9 @@ Detect shapes inside the image according to the variable \textquotesingle{}color
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em img} & Image on which the research will done. \\
+\mbox{\texttt{ in}}  & {\em img} & Image on which the research will done. \\
 \hline
-\mbox{\tt in}  & {\em color} & Can has 3 value\+:~\newline
+\mbox{\texttt{ in}}  & {\em color} & Can has 3 value\+:~\newline
 0 -\/$>$ Red~\newline
 1 -\/$>$ Green~\newline
 2 -\/$>$ Blue~\newline

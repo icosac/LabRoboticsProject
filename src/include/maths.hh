@@ -47,8 +47,8 @@ public:
   enum ANGLE_TYPE {DEG, RAD, INVALID}; ///<The type of angle the class can handle. DEG and RAD are self-expalantory, while INVALID is used as a flag in case of problems.
 
 private:
-  ANGLE_TYPE type;
-  double th;
+  ANGLE_TYPE type; ///<The type of the angle.
+  double th; ///<The value of the angle.
   
 public:
   Angle () : type(RAD), th(0){} ///<A void constructor to create an angle.
@@ -390,7 +390,10 @@ public:
       \returns The value in RAD of the angle casted to long
   */
   operator long()   const { return (long)   toRad(); }
-  
+
+  /*! This function create a strinstream object containing the most essential info, that is the dimension and the type of angle.
+      \returns A string stream.
+  */
   stringstream to_string () const {
     stringstream out;
     switch (getType()){
@@ -422,10 +425,10 @@ public:
   }
 };
 
-const Angle A_2PI = Angle(6.283185, Angle::RAD);
-const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);
-const Angle A_PI = Angle(M_PI, Angle::RAD);
-const Angle A_180 = Angle(180, Angle::DEG);
+const Angle A_2PI = Angle(6.283185, Angle::RAD);  ///<Default Angle for 2pi rad
+const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);///<Default Angle for 360 degree
+const Angle A_PI = Angle(M_PI, Angle::RAD);       ///<Default Angle for pi rad
+const Angle A_180 = Angle(180, Angle::DEG);       ///<Defualt Angle for 180 degree
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 
@@ -436,8 +439,8 @@ enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to 
 template <class T>
 class Tuple {
 private:
-  int n;
-  vector<T> elements;
+  int n; ///<The number of elements.
+  vector<T> elements; ///<The elements.
   
 public:
 	/*! \brief Defualt constructor.
@@ -467,7 +470,7 @@ public:
   
   // ~Tuple () {elements.clear();}
   
-  int size() const { return n; } ///<\returns The number of stored elements.
+  int size() const { return (n==elements.size() ? n : -1); } ///<\returns The number of stored elements. -1 if the Tuple has a different number of elements.
 
 	/*! \brief Gets the n-th element.
 			\param[in] _n The position of the element to retrieve.
@@ -583,7 +586,10 @@ public:
     }
     return ret;
   }
-  
+
+  /*! This function create a strinstream object containing the values of the Tuple.
+    \returns A string stream.
+  */
   stringstream to_string(string _prefix="") const {
     stringstream out;
     string prefix=_prefix.back()=='/' && _prefix!="" ? _prefix : _prefix+"/";
@@ -605,6 +611,9 @@ public:
     return out;
   }
 
+  /*!\brief Overload of cast to vector.
+   * @return A vector containing the values of elements.
+   */
   //TODO This works only when T1 and T are the same
   template <class T1>
   operator vector<T1> () const {
@@ -620,15 +629,16 @@ public:
     }
   }
 
+
   #define tupleIter typename vector<T>::iterator
   #define tupleConstIter const typename vector<T>::iterator
 
   //////FOREACH CODE///////
-  tupleIter begin()           { return elements.begin(); }
-  tupleConstIter begin() const{ return elements.begin(); }
+  tupleIter begin()           { return elements.begin(); } ///<Iterator.\returns the elements.begin() iterator.
+  tupleConstIter begin() const{ return elements.begin(); } ///<Const iterator.\returns the elements.begin() iterator.
 
-  tupleIter end()             { return elements.end(); }
-  tupleConstIter end() const  { return elements.end(); }
+  tupleIter end()             { return elements.end(); } ///<Iterator.\returns the elements.end() iterator.
+  tupleConstIter end() const  { return elements.end(); } ///<Const iterator.\returns the elements.begin() iterator.
 };
 
 
@@ -639,7 +649,7 @@ template <class T>
 class Point2 //: public Tuple<T>
 {
 private:
-  Tuple<T> values;
+  Tuple<T> values; ///<The values stored.
   
 public:
   Point2() {values=Tuple<T>(2, 0, 0);} ///<Default constructor to build an empty Tuple.
@@ -828,8 +838,8 @@ template <class T1>
 class Configuration2 //: public Tuple<T>
 {
 private:
-  Point2<T1> coord;
-  Angle th;
+  Point2<T1> coord; ///<The coordinate for the configuration.
+  Angle th; ///<The angle of the configuration
   
 public:
 	/*!	\brief Default constructor that use as point (0,0) and as angle 0 RAD. 
@@ -988,11 +998,9 @@ public:
     return Tuple<double>(2, dist, dth);
   }
   
-  /*!	\brief Overload of operator << to output the content of a `Configuration2`.
-			\param[in] out The output stream.
-  		\param[in] data The `Configuration2` to print.
-  		\returns An output stream to be printed.
-  */
+  /**\brief Function to create a stringstream containing the detail of the configuration.
+   * @return A stringstream.
+   */
   stringstream to_string() const {
     stringstream out;
     out << "x: " << x();
@@ -1001,11 +1009,21 @@ public:
     return out;
   }
 
+  /*!	\brief Overload of operator << to output the content of a `Configuration2`.
+		\param[in] out The output stream.
+  	\param[in] data The `Configuration2` to print.
+  	\returns An output stream to be printed.
+  */
   friend ostream& operator<< (ostream& out, const Configuration2<T1> &data){
     out << data.to_string().str();
     return out;
   }
 
+  /*!\brief Cast of Configuration to Point2.
+   *
+   * @tparam T2 Type of Point2 to be casted to.
+   * @return A Point2 of type T2.
+   */
   template<class T2>
   operator Point2<T2> () const {
     if (is_same<T1, T2>::value){
