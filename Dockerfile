@@ -12,4 +12,4 @@ ARG FLAGS="MORE_FLAGS=\"-D DEBUG -D WAIT\""
 RUN make 
 RUN make test
 
-CMD ["make",  "run"]
+CMD ["./bin/test/prova.out"]

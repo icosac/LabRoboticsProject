@@ -605,7 +605,7 @@ public:
     return out;
   }
 
-  //TODO I don't think this works
+  //TODO This works only when T1 and T are the same
   template <class T1>
   operator vector<T1> () const {
     if (is_same<T, T1>::value){
@@ -614,12 +614,21 @@ public:
     else {
       std::vector<T1> v;
       for (int i=0; i<size(); i++){
-        v.push_back(elements[i]);
+        v.push_back((T1)elements[i]);
       }
       return v;
     }
   }
 
+  #define tupleIter typename vector<T>::iterator
+  #define tupleConstIter const typename vector<T>::iterator
+
+  //////FOREACH CODE///////
+  tupleIter begin()           { return elements.begin(); }
+  tupleConstIter begin() const{ return elements.begin(); }
+
+  tupleIter end()             { return elements.end(); }
+  tupleConstIter end() const  { return elements.end(); }
 };
 
 

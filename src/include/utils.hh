@@ -6,6 +6,8 @@
 #include <leptonica/allheaders.h>
 #endif
 
+#include <maths.hh>
+
 #include <cstdio>
 
 #include <opencv2/highgui.hpp>
@@ -17,16 +19,22 @@
 using namespace cv;
 using namespace std;
 
+#define NAME(x) #x
+
 #ifdef DEBUG
+  #define COUT(x) cout << #x << ": " << x << endl;
   #define INFO(msg) \
     fprintf(stderr, "%s\n", msg);
 #else
+  #define COUT(x)
   #define INFO(msg) 
 #endif
 
 void my_imshow(const char* win_name, Mat img, bool reset=false);
 // Mat pixToMat(Pix* pix);
 void mywaitkey();
+void mywaitkey(string windowName);
+void mywaitkey(Tuple<string> windowNames);
 
 
 

@@ -23,10 +23,11 @@ void my_imshow( const char* win_name,
     #else 
       namedWindow(win_name, WINDOW_NORMAL);
     #endif
-    
-    cvResizeWindow(win_name, SIZE, SIZE);
+
     imshow(win_name, img);
+    cvResizeWindow(win_name, SIZE, SIZE);
     moveWindow(win_name, W_now, H_now);
+
     W_now += SIZE + W_OFFSET;
     if(W_now >= LIMIT){
         W_now = W_0;
@@ -38,9 +39,18 @@ void mywaitkey() {
     while((char)waitKey(1)!='q'){}
 }
 
-#ifdef DEBUG
+void mywaitkey(string windowName) {
+  while((char)waitKey(1)!='q'){}
+  cout << "Destroying window " << windowName << endl;
+  destroyWindow(windowName);
+}
 
-#endif
+void mywaitkey(Tuple<string> windowNames) {
+  while((char)waitKey(1)!='q'){}
+  for (auto name : windowNames) {
+    destroyWindow(name);
+  }
+}
 
 #if defined PRINT_TO_FILE && defined DEBUG
 

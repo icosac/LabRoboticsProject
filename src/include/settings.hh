@@ -3,18 +3,19 @@
 
 //TODO change maths.hh
 
+#include <filter.hh>
+#include <maths.hh>
+#include <utils.hh>
+
 #include <opencv2/core/core.hpp>
-#include "filter.hh"
+
 #include <iostream>
-#include "maths.hh"
 #include <string>
 #include <dirent.h>
 #include <sstream>
 
 using namespace cv;
 using namespace std;
-
-#define NAME(x) #x
 
 class Settings{
 public:
@@ -74,6 +75,12 @@ public:
 
 	void writeToFile(string _path="data/settings.xml");
 	void readFromFile(string _path="data/settings.xml");
+  Tuple<string> maps(int id=-1);
+  string maps(string mapName);
+  Tuple<string> maps(Tuple<string> mapNames);
+  Tuple<string> unMaps(int id=-1);
+  string unMaps(string _unMapName);
+  Tuple<string> unMaps(Tuple<string> _unMapNames);
 
 	enum COLOR {BLACK, RED, GREEN, VICTIMS, BLUE, WHITE};
 

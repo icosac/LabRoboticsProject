@@ -202,11 +202,87 @@ void Settings::readFromFile(string _path){
 	
 	templatesFolder=(string)fs["templatesFolder"];	
 	for (uint i=0; i<fs["templates"].size(); i++){
-		templates.add((string)fs["templates"]);
+		string app=(string)fs["templates"];
+		if (app!=""){
+		  templates.add(app);
+		}
 	}
 
-
 	fs.release();
+}
+
+
+Tuple<string> Settings::maps(Tuple<string> _mapNames){
+  Tuple<string> ret;
+  for (auto map : _mapNames){
+    string value=maps(map);
+    if (value!=""){
+      ret.add(value);
+    }
+  }
+  return ret;
+}
+
+string Settings::maps(string _mapName){
+  string prefix=this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
+
+  for (auto map : this->mapsNames){
+    if (map==_mapName){
+      return prefix+map;
+    }
+  }
+  return string("");
+}
+
+
+Tuple<string> Settings::maps(int id){
+  string prefix=this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
+  Tuple<string> v;
+    if (id<0){
+      for (auto map : this->mapsNames){
+        v.add(prefix+map);
+      }
+    }
+    else {
+      v.add(prefix+this->mapsNames.get(id));
+    }
+  return v;
+}
+
+Tuple<string> Settings::unMaps(Tuple<string> _unMapNames){
+  Tuple<string> ret;
+  for (auto unMap : _unMapNames){
+    string value=unMaps(unMap);
+    if (value!=""){
+      ret.add(value);
+    }
+  }
+  return ret;
+}
+
+string Settings::unMaps(string _unMapName){
+  string prefix=this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
+
+  for (auto unMap : this->mapsUnNames){
+    if (unMap==_unMapName){
+      return prefix+unMap;
+    }
+  }
+  return string("");
+}
+
+Tuple<string> Settings::unMaps(int id){
+  string prefix=this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
+  Tuple<string> v;
+  if (id<0){
+    for (auto unMap : this->mapsUnNames){
+      v.add(prefix+unMap);
+    }
+  }
+  else {
+    v.add(prefix+this->mapsUnNames.get(id));
+  }
+  return v;
 }
 
 void Settings::changeMask(Tuple<COLOR> color, Tuple<Filter> fil){

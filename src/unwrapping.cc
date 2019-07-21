@@ -27,7 +27,7 @@ int unwrapping(){
 
     const string calib_file = s->intrinsicCalibrationFile;
     for(int f=0; f<s->mapsNames.size(); f++){
-        string filename = (s->mapsFolder)+(s->mapsFolder.back()=='/' ? "" : "/")+(s->mapsNames.get(f));
+        string filename = s->maps(f).get(0);
         cout << "Elaborating of the file: " << filename << endl << endl;
         // Load image from file
         Mat or_img = imread(filename.c_str());
