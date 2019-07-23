@@ -1,10 +1,9 @@
 #ifndef DETECTION_HH
 #define DETECTION_HH
 
-//tesseract
-#include <tesseract/baseapi.h>
-#include <leptonica/allheaders.h>
 #include <utils.hh>
+#include <settings.hh>
+#include <filter.hh>
 
 #include <iostream>
 #include <fstream>

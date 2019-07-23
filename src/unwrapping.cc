@@ -192,8 +192,15 @@ int unwrapping(){
 
         // Store the cropped image to disk.
         // string save_location = (string) fs_xml["mapsUnNames"][f];
-        string save_location = filename.substr(0, filename.find_last_of('.'))+"_UN"+filename.substr(filename.find_last_of('.'), -1);
-        s->mapsUnNames.add(save_location);
+        string file = s->mapsNames.get(f);
+        string save_name = file.substr(0, file.find_last_of('.'))+"_UN"+file.substr(file.find_last_of('.'), -1);
+        string save_location = (s->mapsFolder.back()=='/' ? s->mapsFolder : s->mapsFolder+"/")+save_name;
+        COUT(file)
+        COUT(save_name)
+        COUT(save_location)
+        if (!s->addUnMap(save_name)){
+            cout << "File already indexed." << endl;
+        }
         imwrite(save_location, imgCrop);
         cout << "Unwrapped image saved to: " << save_location << endl;
 
@@ -203,6 +210,8 @@ int unwrapping(){
         #endif
         
     }
+    cout << "Before saving: " << *s << endl;
+    s->writeToFile();
 return(0);
 }
 

@@ -1,8 +1,7 @@
 #include "detection.hh"
 
-const string xml_settings = "data/settings.xml";
-FileStorage fs_xml;
 vector<Mat> templates;
+Settings *s=new Settings;
 
 // #define DEBUG
 // #define WAIT
@@ -12,12 +11,18 @@ vector<Mat> templates;
     \returns Return 0 if the function reach the end.
 */
 int detection(){
-    fs_xml.open(xml_settings, FileStorage::READ);
+    s->cleanAndRead();
+    cout << *s << endl;
 
     load_number_template();
 
-    for(unsigned f=0;f<fs_xml["mapsUnNames"].size(); f++){
-        string filename = (string) fs_xml["mapsUnNames"][f];
+    cout << "size: " << s->unMaps(-1).size();
+
+    for (string filename : s->unMaps(-1)){
+    if (filename.find("03")!=string::npos){continue;}
+
+    // for(unsigned f=0;f<fs_xml["mapsUnNames"].size(); f++){
+        // string filename = (string) fs_xml["mapsUnNames"][f];
         cout << "Elaborating file: " << filename << endl;
 
         // Load unwrapped image from file
@@ -47,8 +52,7 @@ int detection(){
         }
         
         #ifdef WAIT
-            // wait a char 'q' to proceed
-            while((char)waitKey(1)!='q'){}
+            mywaitkey();
         #endif
     }
     return(0);
@@ -57,13 +61,9 @@ int detection(){
 /*! \brief Load some templates and save them in the global variable 'templates'.
 */
 void load_number_template(){ //load the template for number recognition
-    string folder = fs_xml["templatesFolder"];
-    const int n_template = fs_xml["templates"].size();
-    string tmp_str;
     Mat tmp;
-    for(int i=0; i<n_template; i++){
-        fs_xml["templates"][i] >> tmp_str;
-        tmp = imread(folder + tmp_str);
+    for(auto el : s->getTemplates(-1)){
+        tmp = imread(el);
         cvtColor(tmp, tmp, cv::COLOR_BGR2GRAY);
         bitwise_not(tmp, tmp);
         templates.push_back(tmp);
@@ -81,33 +81,30 @@ void load_number_template(){ //load the template for number recognition
 */
 void shape_detection(const Mat & img, const int color, const Mat& un_img){
     // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
-    FileNode mask;
+    Filter mask;
     switch(color){
         case 0: {
             cout << "\tObstacles detection\n";  
-            mask = fs_xml["redMask"];
+            mask = s->redMask;
             break;
         }
         case 1: {  
             cout << "\tVictim detection\n";   
-            mask = fs_xml["greenMask"]; 
+            mask = s->greenMask;; 
             break;
         }
         case 2: {
             cout << "\tGate detection\n";    
-            mask = fs_xml["blueMask"];   
+            mask = s->blueMask;;   
             break;
         }
     }
     
     Mat color_mask;
-    inRange(img, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), color_mask);
+    inRange(img, mask.Low(), mask.High(), color_mask);
     if(color==0){
         bitwise_not(color_mask, color_mask);
     } 
-    // else{
-    //     inRange(img, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), color_mask);
-    // }
     #ifdef DEBUG
         my_imshow("Color_filter", color_mask);
     #endif
@@ -127,7 +124,7 @@ void shape_detection(const Mat & img, const int color, const Mat& un_img){
     According to the color the filtering functions apply can change in the type and in the order.
 */
 void erode_dilation(Mat & img, const int color){
-    const int erode_side = (int) fs_xml["kernelSide"]; //odd number
+    const int erode_side = s->kernelSide; //odd number
     const int center = erode_side/2+1;
     Mat kernel = getStructuringElement(MORPH_RECT, Size(erode_side, erode_side), Point(center, center) );
     // 0red && 2blue    -> smooth - erode - dilation - smooth - treshold
@@ -219,7 +216,7 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
         convexHull(contours[i], hull_i, true);//return point in clockwise order
         hull.push_back(hull_i);
     }
-    string save_file = fs_xml["convexHullFile"];
+    string save_file = s->convexHullFile;
     static FileStorage fs(save_file, FileStorage::WRITE);
     string str;
     switch(color){
@@ -290,8 +287,8 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     #ifdef DEBUG
         my_imshow("before black filter", processROI);
     #endif
-    FileNode mask = fs_xml["victimMask"];
-    inRange(processROI, Scalar(mask[0], mask[1], mask[2]), Scalar(mask[3], mask[4], mask[5]), processROI);
+    Filter mask = s->victimMask;
+    inRange(processROI, mask.Low(), mask.High(), processROI);
     #ifdef WAIT
         my_imshow("before erode", processROI);
     #endif

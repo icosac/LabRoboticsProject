@@ -373,6 +373,16 @@ Tuple<string> Settings::maps(int id){
   return v;
 }
 
+bool Settings::addUnMap(string _unMap){ //TODO document
+	for (auto el : this->mapsUnNames){
+		if (el==_unMap){
+			return false;
+		}
+	}
+	this->mapsUnNames.add(_unMap);
+	return true;
+}
+
 /*!\brief A function to return the paths of a given Tuple of undistorted maps.
  *
  * @param _unMapNames A Tuple containing the names of the undistorted maps to check in the Tuple.
@@ -443,6 +453,57 @@ Tuple<string> Settings::unMaps(int id){
       v.add(prefix + this->mapsUnNames.get(id));
   }
   return v;
+}
+
+/*!\brief Function to return the path of a template. If id is not specified all templates are returned.
+ *
+ * @param id The positions in this.templates of the template to be retrieved
+ * @return A Tuple containing the paths of the templates.
+ */
+Tuple<string> Settings::getTemplates(int id){
+	string prefix=this->templatesFolder+(this->templatesFolder.back()=='/' ? "" : "/");
+	Tuple<string> v;
+	if (id<0){
+		for (auto temp : this->templates){
+			v.add(prefix+temp);
+		}
+	}
+	else {
+		v.add(prefix+this->templates.get(id));
+	}
+	return v;
+}
+
+/*!\brief A function to return the path of a given template.
+ *
+ * @param _templateName The name of the template to check in the Tuple.
+ * @return The path to the template if it is found, an empty string otherwise.
+ */
+string Settings::getTemplates(string _template){
+	string prefix=this->templatesFolder+(this->templatesFolder.back()=='/' ? "" : "/");
+
+  for (auto temp : this->templates){
+    if (temp==_template){
+      return prefix+temp;
+    }
+  }
+  return string("");
+}
+
+/*!\brief A function to return the paths of a given Tuple of templates.
+ *
+ * @param _template A Tuple containing the names of the templates to check in the Tuple.
+ * @return The paths to the templates if they are found, an empty Tuple otherwise.
+ */
+Tuple<string> Settings::getTemplates(Tuple<string> _templates){
+	Tuple<string> ret=Tuple<string>();
+  for (auto temp : _templates){
+    string value=getTemplates(temp);
+    if (value!=""){
+      ret.add(temp);
+    }
+  }
+  return ret;
 }
 
 /*!\brief Change the values of Tuple of filters. Mind that no write function is called.

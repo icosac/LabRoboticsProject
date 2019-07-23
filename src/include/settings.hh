@@ -148,9 +148,9 @@ public:
 	 */
 	Tuple<string> maps(Tuple<int> ids=Tuple<int>());
 
-  /*!\brief Function to return the path of a map. If id is not specified all maps are returned.
+  /*!\brief Function to return the path of a map. If id is negative all maps are returned.
    *
-   * @param id A the positions in this.mapsNames of the map to be retrieved
+   * @param id The positions in this.mapsNames of the map to be retrieved
    * @return A Tuple containing the paths of the maps.
    */
   Tuple<string> maps(int id=-1);
@@ -169,6 +169,8 @@ public:
    */
 	Tuple<string> maps(Tuple<string> _mapNames);
 
+  bool addUnMap(string unMap); //TODO document
+
   /*!\brief Function to return the paths of undistorted maps. If ids are not specified all undistorted maps are returned.
    *
    * @param ids A Tuple containing the ids (that is the positions in this.mapsUnNames) of the undistorted maps to be retrieved.
@@ -176,9 +178,9 @@ public:
    */
 	Tuple<string> unMaps(Tuple<int> ids=Tuple<int>());
 
-  /*!\brief Function to return the path of an undistorted map. If id is not specified all undistorted maps are returned.
+  /*!\brief Function to return the path of an undistorted map. If id is negative all undistorted maps are returned.
    *
-   * @param id A the positions in this.mapsUnNames of the undistorted map to be retrieved
+   * @param id The positions in this.mapsUnNames of the undistorted map to be retrieved
    * @return A Tuple containing the paths of the undistorted maps.
    */
   Tuple<string> unMaps(int id=-1);
@@ -196,6 +198,27 @@ public:
    * @return The paths to the undistorted maps if they are found, an empty Tuple otherwise.
    */
 	Tuple<string> unMaps(Tuple<string> _unMapNames);
+
+	/*!\brief Function to return the path of a template. If id is negative all templates are returned.
+   *
+   * @param id The positions in this.templates of the template to be retrieved
+   * @return A Tuple containing the paths of the templates.
+   */
+  Tuple<string> getTemplates(int id=-1);
+
+	/*!\brief A function to return the path of a given template.
+   *
+   * @param _templateName The name of the template to check in the Tuple.
+   * @return The path to the template if it is found, an empty string otherwise.
+   */
+	string getTemplates(string _template);
+
+	/*!\brief A function to return the paths of a given Tuple of templates.
+   *
+   * @param _template A Tuple containing the names of the templates to check in the Tuple.
+   * @return The paths to the templates if they are found, an empty Tuple otherwise.
+   */
+	Tuple<string> getTemplates(Tuple<string> _templates);
 
 	enum COLOR {BLACK, RED, GREEN, VICTIMS, BLUE, WHITE, ROBOT}; ///<Colors refered to the filters.
 
@@ -241,7 +264,7 @@ public:
 
 	/*! This function overload the << operator so to print with `std::cout`.
 			\param[in] out The out stream.
-			\param[in] data The settings to print.
+			\param[in] datThe settings to print.
 			\returns An output stream to be printed.
 	*/
 	friend ostream& operator<<(ostream &out, const Settings& data) {
