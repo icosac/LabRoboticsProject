@@ -536,4 +536,50 @@ public:
 
 };
 
+/*!\brief Given a set of point, compute the shortest set of Dubins that allows to go from start to end through all points.
+ *
+ */
+template <class T>
+class DubinsSet {
+private: 
+  Tuple<Dubins<T> > dubinses;
+  double Kmax, L;
+
+  DubinsSet(Tuple<Dubins<T> > _dubinses,
+            double _kmax=KMAX){
+    dubinses=_dubinses;
+    Kmax=_kmax;
+    for (Dubins<T> dub : _dubinses){
+      L+=dub.length();
+    } 
+  }
+
+  DubinsSet(Tuple<Configuration2<T> > _confs,
+            double _kmax=KMAX){
+    for (int i=0; i<_confs.size()-1; i++){
+      Dubins<T> dub=Dubins<T>(_confs.get(i), _confs.get(i+1))
+      dubinses.add(dub);
+      L+=dub.length();
+    }
+    Kmax=_kmax;
+  }
+
+  DubinsSet(Configuration2<T> start, 
+            Configuration2<T> end,
+            Tuple<Point2<T> > _points,
+            double _kmax=KMAX){
+  }
+
+  DubinsSet(Tuple<Point2<T> > _points,
+            double _kmax=KMAX){
+    Tuple<Angle> angles;
+    for (Point2<T> point : _points){
+      angles.add(Angle());
+    }
+    for (int i=0; i<_points.size(); i++){
+
+    }
+  }
+};
+
 #endif
