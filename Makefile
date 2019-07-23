@@ -40,12 +40,9 @@ SRC=$(wildcard src/*.cc)
 #object files
 OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
 
-
 #test files
-TEST_SRC=\
-		test/prova.cc\
-# 		test/maths_test.cc\
-
+TEST_SRC= test/map_main.cc\
+# test/maths_test.cc
 TEST_EXEC=$(subst test/,bin/test/,$(patsubst %.cc, %.out, $(TEST_SRC)))
 
 #Run files
@@ -111,8 +108,9 @@ obj/:
 	$(MKDIR) src/obj
 
 #Create folder for tests' executables
-bin_test/: bin
+bin_test/: bin/
 	$(MKDIR) bin/test
+
 
 ##CREATE MAIN EXECUTABLES
 #Main executable

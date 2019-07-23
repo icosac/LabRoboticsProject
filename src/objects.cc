@@ -1,15 +1,5 @@
 #include "objects.hh"
 
-/*! \brief abstract
-    \details more_info
-
-    \param[in] p1 param_for_input
-    \param[out] p2 param_for_output
-    \param[in, out] p3 param_both_for_input_and_output
-
-    \returns value_of_return
-*/
-
 //_______________________________   Object   _______________________________
 /*! \brief Generate a string that describe the object.
     \returns The generated string.

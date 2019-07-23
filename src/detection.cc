@@ -12,17 +12,10 @@ Settings *s=new Settings;
 */
 int detection(){
     s->cleanAndRead();
-    cout << *s << endl;
 
     load_number_template();
 
-    cout << "size: " << s->unMaps(-1).size();
-
     for (string filename : s->unMaps(-1)){
-    if (filename.find("03")!=string::npos){continue;}
-
-    // for(unsigned f=0;f<fs_xml["mapsUnNames"].size(); f++){
-        // string filename = (string) fs_xml["mapsUnNames"][f];
         cout << "Elaborating file: " << filename << endl;
 
         // Load unwrapped image from file

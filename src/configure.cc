@@ -60,7 +60,6 @@ void update_trackers(){
 void configure (bool deploy, int img_id){
   Settings* s=new Settings();
   s->cleanAndRead();
-  cout << *s << endl;
 
   Mat frame;
   if (deploy) {

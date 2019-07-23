@@ -6,6 +6,8 @@
 #include<iostream>
 using namespace std;
 
+//TODO create global settings
+
 int main (){
   cout <<"Configure" << endl;
   configure(false);

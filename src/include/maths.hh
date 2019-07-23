@@ -842,6 +842,11 @@ public:
   operator cv::Point() const { 
     return cv::Point(this->x(), this->y()); 
   }
+
+  //TODO find better implementation
+  bool operator< (const Point2<T>& A){
+    return true;
+  }
   // ~Point2(){delete values;}
 };
 

@@ -513,7 +513,7 @@ Tuple<string> Settings::getTemplates(Tuple<string> _templates){
  */
 void Settings::changeMask(Tuple<COLOR> color, Tuple<Filter> fil){
 	if (color.size()!=fil.size()){
-		cout << "Color and filter tuples must have same size." << endl;
+		cerr << "Color and filter tuples must have same size." << endl;
 	}
 	else {
 		for (int i=0; i<color.size(); i++){
@@ -554,7 +554,7 @@ void Settings::changeMask(COLOR color, Filter fil){
 			break;
 		}
 		default:{
-			cout << "Color is not correct" << endl;
+			cerr << "Color is not correct" << endl;
 		}
 	}
 }
