@@ -20,5 +20,7 @@ using namespace cv;
 //main function
 pair< vector<Point2<int> >, Mat > planning();
 
+void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn);
+void loadVP(vector<Point2<int> > & vp, FileNode fn);
 
 #endif

@@ -38,13 +38,13 @@ int main(){
     int y = rand()%dimY;
 
     // the wait 200 simulate the call every x milliseconds
-	while((char)waitKey(200)!='x'){ // wait a char 'x' to proceed
+    while((char)waitKey(200)!='x'){ // wait a char 'x' to proceed
         //Point p = localize();
         x = (x+(rand()%10))%dimX;
         y = (y+(rand()%10))%dimY;
         // cout << x << " " << y << endl;
         circle(imageMap, Point(x, y), 5, Scalar(0, 255, 255), -1);
         imshow("Map", imageMap);
-	}
+    }
 return(0);
 }   

@@ -11,15 +11,23 @@ using namespace std;
 int main (){
 	cout << "calibration" << endl;
 	// calibration();
+
 	cout << "unwrapping" << endl;
 	unwrapping();
+
 	cout << "detection" << endl;
 	detection();
 
 	cout << "planning" << endl;
-	/*pair< vector<Point2<int> >, Mat > tmpPair = */planning();
+	planning();
+	// pair< vector<Point2<int> >, Mat > tmpPair = planning();
 	// vector<Point2<int> > pathPoints = tmpPair.first;
 	// Mat imageMap = tmpPair.second;
+
+    // namedWindow("Map", WINDOW_AUTOSIZE);
+	// imshow("Map", imageMap);
+
+
 
 	// the robot start to move
 

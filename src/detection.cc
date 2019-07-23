@@ -213,8 +213,7 @@ void find_contours( const Mat & img,
 */
 void save_convex_hull(  const vector<vector<Point> > & contours, 
                         const int color, 
-                        const vector<int> & victims, 
-                        FileStorage& fs)
+                        const vector<int> & victims)
 {
     vector<vector<Point>> hull;
     vector<Point> hull_i;
@@ -228,7 +227,7 @@ void save_convex_hull(  const vector<vector<Point> > & contours,
         case 1: str="victims"; break;
         case 2: str="gate"; break;
     }
-    cout << "pippo\n";
+    cout << "str: " << str << endl;
     fs << str << hull;
     for(unsigned int i=0; i<hull.size(); i++){
         for(unsigned int j=0; j<hull[i].size(); j++){

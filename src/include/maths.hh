@@ -771,7 +771,7 @@ public:
   		\returns An output stream to be printed.
   */
   friend ostream& operator<< (ostream& out, const Point2<T> &data){
-    out << data.to_string().str();
+    out << "[" << data.to_string().str() << "]";
     return out;
   }
 
