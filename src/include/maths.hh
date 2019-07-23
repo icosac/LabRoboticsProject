@@ -631,6 +631,19 @@ public:
     }
   }
 
+  /*!\brief Overloading [] operator to access elements in array style 
+   * \param[in] index Id of value to get.
+   * \returns Value at id position.
+   */
+  int &operator[](int index) { 
+      if (index >= size()) 
+      { 
+          cerr << "Array index out of bound, exiting"; 
+          exit(0); 
+      } 
+      return elements[index]; 
+  } 
+
 
   #define tupleIter typename vector<T>::iterator
   #define tupleConstIter const typename vector<T>::iterator
