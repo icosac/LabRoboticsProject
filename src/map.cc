@@ -1,5 +1,7 @@
 #include <map.hh>
 
+void out(int c){cout << c << endl;}
+
 /*! \brief Constructor of the class.
 
     \param[in] _lengthX It is the size in pixel of the horizontal dimension.
@@ -8,7 +10,8 @@
     \param[in] _pixY It is the vertical granularity of a cell (how many pixels for each cell).
     \param[in] vvp It is a vector, of vector, of point that delimit, as a convex hull, a set of obstacles in the map.
 */
-Mapp::Mapp(int _lengthX, int _lengthY, int _pixX, int _pixY, int _borderSize, vector< vector<Point2<int> > > vvp){
+Mapp::Mapp( const int _lengthX, const int _lengthY, const int _pixX, const int _pixY, const int _borderSize, 
+            const vector< vector<Point2<int> > > & vvp){
     lengthX = _lengthX;
     lengthY = _lengthY;
     pixX = _pixX;
@@ -19,17 +22,15 @@ Mapp::Mapp(int _lengthX, int _lengthY, int _pixX, int _pixY, int _borderSize, ve
     dimY = int(ceil(lengthY*1.0 / pixY));
     map = new OBJ_TYPE*[dimY];
     distances = new int*[dimY];
-    //parents = new int*[dimY];
     parents = new Point2<int>*[dimY];
     for(int i=0; i<dimY; i++){
         map[i] = new OBJ_TYPE[dimX];
         // the initializtion is to -1
         distances[i] = new int[dimX];
-        //parents[i] = new int[dimX];
         parents[i] = new Point2<int>[dimX];
     }
 
-    for(uint i=0; i<vvp.size(); i++){
+    for(unsigned int i=0; i<vvp.size(); i++){
         addObject(vvp[i], OBST);
     }
 }
@@ -40,7 +41,7 @@ Mapp::Mapp(int _lengthX, int _lengthY, int _pixX, int _pixY, int _borderSize, ve
     \param[in] p1 Second point of the segment.
     \returns A set containing all the cells, identified by their row(i or y) and column(j or x).
 */
-set<pair<int, int> > Mapp::cellsFromSegment(Point2<int> p0, Point2<int> p1){
+set<pair<int, int> > Mapp::cellsFromSegment(const Point2<int> p0, const Point2<int> p1){
     set<pair<int, int> > cells;
     
     // save in x0,y0 the point with the lowest x
@@ -107,9 +108,11 @@ set<pair<int, int> > Mapp::cellsFromSegment(Point2<int> p0, Point2<int> p1){
     \param[in] vvp It is the vector of vector of points (set of convex hull) that delimit the objects of interest.
     \param[in] type It is the type of the given object. Defined as a OBJ_TYPE.
 */
-void Mapp::addObjects(vector< vector< Point2<int> > > vvp, const OBJ_TYPE type){
+void Mapp::addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYPE type){
     for(unsigned int i=0; i<vvp.size(); i++){
+        cout << "in\n";  out(i*11111);
         addObject(vvp[i], type);
+        cout << "out\n"; out(i*11111);
     }
 }
 
@@ -119,22 +122,27 @@ void Mapp::addObjects(vector< vector< Point2<int> > > vvp, const OBJ_TYPE type){
     \param[in] vp It is the vector of points (convex hull) that delimit the object of interest.
     \param[in] type It is the type of the given object. Defined as a OBJ_TYPE.
 */
-void Mapp::addObject(vector<Point2<int> > vp, const OBJ_TYPE type){
-    if(vp.size()>=3){
-        //cout << "Points:\n";
-        //min, max of x, y computed
+void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
+    // consistency check
+    if(vp.size()<3){
+        cout << "Invalid object less than 3 sides!\n";
+    } else{
+        cout << "Points: (size" << vp.size() << ")\n";
+        //min, max of y computed (need for min&max for each line)
         int yMin=lengthY, yMax=0;
-        for(uint a = 0; a<vp.size(); a++){
-            //cout << "\t" << vp[a] << endl;
+        for(unsigned int a = 0; a<vp.size(); a++){
+            cout << "\t" << vp[a] << endl;
             yMin = min(yMin, vp[a].y());
             yMax = max(yMax, vp[a].y());
         }
-        //cout << endl;
+        cout << endl;
         
+        // convert (min, max of y) to (min, max of i)
         int iMin=yMin/pixY, iMax=yMax/pixY;
-        //cout << "yMin: " << yMin << ", yMax: " << yMax << endl;
-        //cout << "iMin: " << iMin << ", iMax: " << iMax << endl;
+        cout << "yMin: " << yMin << ", yMax: " << yMax << endl;
+        cout << "iMin: " << iMin << ", iMax: " << iMax << endl;
 
+        // generate vectors of min&max x for each line
         int vectSize = iMax-iMin+1;
         vector<int> minimums;
         vector<int> maximums;
@@ -143,26 +151,33 @@ void Mapp::addObject(vector<Point2<int> > vp, const OBJ_TYPE type){
             maximums.push_back(0);
         }
 
-        vp.push_back(vp[0]);
         // for each side of the object
-        for(uint s=0; s<vp.size()-1; s++){
-            // cout << "\n_______________________________________________________\nCouple n:" << s+1 << endl;
+        for(unsigned int s=0; s<vp.size(); s++){
+            cout << "\n_______________________________________________________\nCouple n:" << s+1 << endl;
             //save the end points of the segment
-            set<pair<int, int> > collisionSet = cellsFromSegment(vp[s], vp[s+1]);
-            // cout << "Set returned:\n";
-            // cout << "size " << collisionSet.size() << endl;
-            for(auto el:collisionSet){
-                int i=get<0>(el), j=el.second;  // two methods for get elements from a pair structure
-                // cout << j << "," << i << " - ";
+            set<pair<int, int> > collisionSet = cellsFromSegment(vp[s], vp[(s+1)%vp.size()]); //I use the module to consider all the n sides of an object with n points
+            cout << "Set returned:\n";
+            cout << "size " << collisionSet.size() << endl;
+            for(pair<int, int> el:collisionSet){
+                int i=el.first, j=el.second;  // two methods for get elements from a pair structure( get<0>(el)==el.first )
+                //int i=70, j=95;
+                cout << j << "," << i << " - ";
                 map[i][j] = ((type==OBST) ? BODA : type);
                 minimums[i-iMin] = min(minimums[i-iMin], j);
-                maximums[i-iMin] = max(maximums[i-iMin], j);
+                cout << "aaaaa" << maximums.size() << "  " << i-iMin << "  " << j << endl;
+                try{
+                    maximums[i-iMin] = max(maximums[i-iMin], j);
+                } catch(const exception& e) {
+                    cout << "\n\n\n\n\n\n\n\n\t\t\tECCEZIONE GENERATA\n\n\n\n\n\n\n\n\n\n";
+                }
             }
-            // cout << endl;
+            cout << endl;
         }
+        cout << "borderSize: " << borderSize << ", vectSize: " << vectSize << ", iMin: " << iMin << endl;
         for(int k=0; k<vectSize; k++){
-            //cout << "line " << k+iMin << ": (" << minimums[k] << ", " << maximums[k] << ")\n";
+            cout << "line " << k+iMin << ": (" << minimums[k] << ", " << maximums[k] << ")\n";
             for(int j=minimums[k]+1; j<maximums[k]; j++){
+                //cout << "\tinside for line: " << k+iMin << endl;
                 // TODO: test
                 if(type==OBST){
                     if( k<borderSize || vectSize-(k+1)<borderSize ||
@@ -176,9 +191,9 @@ void Mapp::addObject(vector<Point2<int> > vp, const OBJ_TYPE type){
                 }
             }
         }
-    } else{
-        cout << "Invalid object less than 3 sides!\n";
+        cout << "out of for\n";
     }
+    cout << "OK" << endl;
 }
 
 /*! \brief Given a point return the type (status) of the cell in the map that contain it.
@@ -222,7 +237,7 @@ bool Mapp::checkSegment(const Point2<int> p0, const Point2<int> p1){
     return(checkSegmentCollisionWithType(p0, p1, OBST));
 }
 
-vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> startP, const Point2<int> endP, bool reset){
+vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> startP, const Point2<int> endP, const bool reset){
     if(reset){
         // unneccessary at the first run if all is initializated to 0. and also (maybe) in other very rare case based on multiple minPath call.
         resetDistanceMap();
@@ -316,7 +331,6 @@ vector<Point2<int> > Mapp::sampleNPoints(const int n, const vector<Point2<int> >
 
 
 /*! \brief The function create an image (Mat) with the dimensions of the Mapp and all its objects inside.
-
     \returns The generated image is returned.
 */
 Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
@@ -360,7 +374,6 @@ void Mapp::printDimensions(){
 }
 
 /*! \brief Generate a string (a grid of pixels) that represent the matrix.
-
     \returns The generated string. 
 */
 string Mapp::matrixToString(){

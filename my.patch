@@ -1,0 +1,512 @@
+diff --git a/src/detection.cc b/src/detection.cc
+index 8541e66..9395762 100644
+--- a/src/detection.cc
++++ b/src/detection.cc
+@@ -213,7 +213,8 @@ void find_contours( const Mat & img,
+ */
+ void save_convex_hull(  const vector<vector<Point> > & contours, 
+                         const int color, 
+-                        const vector<int> & victims)
++                        const vector<int> & victims, 
++                        FileStorage& fs)
+ {
+     vector<vector<Point>> hull;
+     vector<Point> hull_i;
+@@ -227,7 +228,7 @@ void save_convex_hull(  const vector<vector<Point> > & contours,
+         case 1: str="victims"; break;
+         case 2: str="gate"; break;
+     }
+-    cout << "str: " << str << endl;
++    cout << "pippo\n";
+     fs << str << hull;
+     for(unsigned int i=0; i<hull.size(); i++){
+         for(unsigned int j=0; j<hull[i].size(); j++){
+diff --git a/src/include/map.hh b/src/include/map.hh
+index cdb6314..eff8e44 100644
+--- a/src/include/map.hh
++++ b/src/include/map.hh
+@@ -3,12 +3,10 @@
+ 
+ #include <vector>
+ #include <set>
+-#include <queue>
+ #include <tuple>
+ #include <iostream>
+ 
+ #include <maths.hh>
+-//#include <dubins.hh>
+ 
+ #include <opencv2/highgui.hpp>
+ #include <opencv2/core.hpp>
+@@ -17,21 +15,12 @@
+ 
+ using namespace cv;
+ 
+-enum OBJ_TYPE {FREE, VICT, OBST, GATE, BODA/*shortcut for border*/};
++enum OBJ_TYPE {FREE, VICT, OBST, GATE};
+ 
+ class Mapp{
+     protected:
+         OBJ_TYPE **map;
+-        const static int baseDistance = 0;
+-        int **distances;    // neccessary for the min path function distance of the cells from the start cell
+-        //int **parents;      // vector of parents to reconstruct the path
+-            // save as an int according to these "directions"
+-            // -4 -3 -2
+-            // -1  0  1
+-            //  2  3  4
+-        Point2<int> **parents;
+         set<pair<int, int> > cellsFromSegment(Point2<int> p0, Point2<int> p1);
+-        void resetDistanceMap(const int value = baseDistance);
+ 
+         int lengthX;    // dimension of the arena default: 1000
+         int lengthY;    // dimension of the arena d: 1500
+@@ -39,21 +28,17 @@ class Mapp{
+         int dimY;       // how many cells in the map: 300
+         int pixX;       // dimension of the cell (pixels): 5
+         int pixY;       // dimension of the cell (pixels): 5
+-        int borderSize; // how many cells of the object sides are consider border from outside: 2
+-
++        
+     public:
+-        Mapp(int _lengthX=1000, int _lengthY=1500, int _pixX=5, int _pixY=5, int border=2,
++
++        Mapp(int _lengthX=1000, int _lengthY=1500, int _pixX=5, int _pixY=5,
+             vector< vector<Point2<int> > > vvp = vector< vector<Point2<int> > >() );
+ 
+-        void addObjects(vector< vector< Point2<int> > > vvp, const OBJ_TYPE type);
+-            void addObject(vector<Point2<int> > vp, const OBJ_TYPE type);
++        void addObject(vector<Point2<int> > vp, const OBJ_TYPE type);
+ 
+         OBJ_TYPE getPointType(const Point2<int> p);
+         bool checkSegment(const Point2<int> p1, const Point2<int> p2);
+-            bool checkSegmentCollisionWithType(const Point2<int> p0, const Point2<int> p1, const OBJ_TYPE type);
+-        
+-        vector<Point2<int> > minPathTwoPoints(const Point2<int> startP, const Point2<int> endP, bool reset=true);
+-        vector<Point2<int> > sampleNPoints(const int n, const vector<Point2<int> > & points);
++        bool checkSegmentCollisionWithType(const Point2<int> p0, const Point2<int> p1, const OBJ_TYPE type);
+ 
+         Mat createMapRepresentation(/*eventually add a vector of bubins*/);
+ 
+diff --git a/src/include/maths.hh b/src/include/maths.hh
+index 2e5fb2b..dd5676a 100644
+--- a/src/include/maths.hh
++++ b/src/include/maths.hh
+@@ -771,7 +771,7 @@ public:
+   		\returns An output stream to be printed.
+   */
+   friend ostream& operator<< (ostream& out, const Point2<T> &data){
+-    out << "[" << data.to_string().str() << "]";
++    out << data.to_string().str();
+     return out;
+   }
+ 
+diff --git a/src/include/planning.hh b/src/include/planning.hh
+index 739fe63..8a14fb0 100644
+--- a/src/include/planning.hh
++++ b/src/include/planning.hh
+@@ -20,7 +20,5 @@ using namespace cv;
+ //main function
+ pair< vector<Point2<int> >, Mat > planning();
+ 
+-void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn);
+-void loadVP(vector<Point2<int> > & vp, FileNode fn);
+ 
+ #endif
+\ No newline at end of file
+diff --git a/src/main.cc b/src/main.cc
+index 576f268..92be461 100644
+--- a/src/main.cc
++++ b/src/main.cc
+@@ -11,24 +11,16 @@ using namespace std;
+ int main (){
+ 	cout << "calibration" << endl;
+ 	// calibration();
+-
+ 	cout << "unwrapping" << endl;
+ 	unwrapping();
+-
+ 	cout << "detection" << endl;
+ 	detection();
+ 
+ 	cout << "planning" << endl;
+-	planning();
+-	// pair< vector<Point2<int> >, Mat > tmpPair = planning();
++	/*pair< vector<Point2<int> >, Mat > tmpPair = */planning();
+ 	// vector<Point2<int> > pathPoints = tmpPair.first;
+ 	// Mat imageMap = tmpPair.second;
+ 
+-    // namedWindow("Map", WINDOW_AUTOSIZE);
+-	// imshow("Map", imageMap);
+-
+-
+-
+ 	// the robot start to move
+ 
+ 	cout << "\nend\n\n";
+diff --git a/src/map.cc b/src/map.cc
+index 78c510a..bf53eb2 100644
+--- a/src/map.cc
++++ b/src/map.cc
+@@ -8,25 +8,17 @@
+     \param[in] _pixY It is the vertical granularity of a cell (how many pixels for each cell).
+     \param[in] vvp It is a vector, of vector, of point that delimit, as a convex hull, a set of obstacles in the map.
+ */
+-Mapp::Mapp(int _lengthX, int _lengthY, int _pixX, int _pixY, int _borderSize, vector< vector<Point2<int> > > vvp){
++Mapp::Mapp(int _lengthX, int _lengthY, int _pixX, int _pixY, vector< vector<Point2<int> > > vvp){
+     lengthX = _lengthX;
+     lengthY = _lengthY;
+     pixX = _pixX;
+     pixY = _pixY;
+-    borderSize = _borderSize;
+     
+     dimX = int(ceil(lengthX*1.0 / pixX));
+     dimY = int(ceil(lengthY*1.0 / pixY));
+     map = new OBJ_TYPE*[dimY];
+-    distances = new int*[dimY];
+-    //parents = new int*[dimY];
+-    parents = new Point2<int>*[dimY];
+     for(int i=0; i<dimY; i++){
+         map[i] = new OBJ_TYPE[dimX];
+-        // the initializtion is to -1
+-        distances[i] = new int[dimX];
+-        //parents[i] = new int[dimX];
+-        parents[i] = new Point2<int>[dimX];
+     }
+ 
+     for(uint i=0; i<vvp.size(); i++){
+@@ -101,23 +93,11 @@ set<pair<int, int> > Mapp::cellsFromSegment(Point2<int> p0, Point2<int> p1){
+     return(cells);
+ }
+ 
+-/*! \brief Given a vector obstacles it is added them to the map.
+-    \details This means that all the cells of the map that are partly cover from these obstacles will be set to its type. It is a wrapper function of addObject.
+-
+-    \param[in] vvp It is the vector of vector of points (set of convex hull) that delimit the objects of interest.
+-    \param[in] type It is the type of the given object. Defined as a OBJ_TYPE.
+-*/
+-void Mapp::addObjects(vector< vector< Point2<int> > > vvp, const OBJ_TYPE type){
+-    for(unsigned int i=0; i<vvp.size(); i++){
+-        addObject(vvp[i], type);
+-    }
+-}
+-
+ /*! \brief Given an obstacle it is added to the map.
+     \details This means that all the cells of the map that are partly cover from this obstacle will be set to its type.
+ 
+     \param[in] vp It is the vector of points (convex hull) that delimit the object of interest.
+-    \param[in] type It is the type of the given object. Defined as a OBJ_TYPE.
++    \param[in] type It id the type of the given object. Defined as a OBJ_TYPE.
+ */
+ void Mapp::addObject(vector<Point2<int> > vp, const OBJ_TYPE type){
+     if(vp.size()>=3){
+@@ -154,7 +134,7 @@ void Mapp::addObject(vector<Point2<int> > vp, const OBJ_TYPE type){
+             for(auto el:collisionSet){
+                 int i=get<0>(el), j=el.second;  // two methods for get elements from a pair structure
+                 // cout << j << "," << i << " - ";
+-                map[i][j] = ((type==OBST) ? BODA : type);
++                map[i][j] = type;
+                 minimums[i-iMin] = min(minimums[i-iMin], j);
+                 maximums[i-iMin] = max(maximums[i-iMin], j);
+             }
+@@ -163,17 +143,7 @@ void Mapp::addObject(vector<Point2<int> > vp, const OBJ_TYPE type){
+         for(int k=0; k<vectSize; k++){
+             //cout << "line " << k+iMin << ": (" << minimums[k] << ", " << maximums[k] << ")\n";
+             for(int j=minimums[k]+1; j<maximums[k]; j++){
+-                // TODO: test
+-                if(type==OBST){
+-                    if( k<borderSize || vectSize-(k+1)<borderSize ||
+-                        j-minimums[k]<borderSize || maximums[k]-(j+1)<borderSize ){
+-                        map[k+iMin][j] = BODA;
+-                    } else{
+-                        map[k+iMin][j] = OBST;
+-                    }
+-                } else{
+-                    map[k+iMin][j] = type;
+-                }
++                map[k+iMin][j] = type;
+             }
+         }
+     } else{
+@@ -222,99 +192,6 @@ bool Mapp::checkSegment(const Point2<int> p0, const Point2<int> p1){
+     return(checkSegmentCollisionWithType(p0, p1, OBST));
+ }
+ 
+-vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> startP, const Point2<int> endP, bool reset){
+-    if(reset){
+-        // unneccessary at the first run if all is initializated to 0. and also (maybe) in other very rare case based on multiple minPath call.
+-        resetDistanceMap();
+-    }
+-
+-    // P=point, C=cell
+-    Point2<int> startC(startP.x()/pixX, startP.y()/pixY), endC(endP.x()/pixX, endP.y()/pixY);
+-    queue<Point2<int> > toProcess;
+-
+-    toProcess.push(startC);
+-    distances[startC.y()/*i=y()*/][startC.x()/*j=x()*/] = 0;
+-    parents[  startC.y()/*i=y()*/][startC.x()/*j=x()*/] = startC;
+-    bool found = false;
+-
+-    while(!toProcess.empty() && !found){
+-        // for each cell(8) around the selected one
+-        Point2<int> cell = toProcess.front();
+-        toProcess.pop();
+-        int iC = cell.y(), jC = cell.x(); //i and j of the cell
+-        int dist = distances[iC][jC];
+-        {
+-            int iIn = max(iC-1, 0), iEnd = min(iC+1, dimY-1);
+-            int jIn = max(jC-1, 0), jEnd = min(jC+1, dimX-1);
+-            for(int i=iIn; i<=iEnd; i++){
+-                for(int j=jIn; j<=jEnd; j++){
+-                    if(map[i][j] != OBST && map[i][j] != BODA){ 
+-                        if(i==endC.y() && j==endC.x()){
+-                            found = true;
+-                        }
+-                        if(i!=j){ // I do not concider the cell itself
+-                            // if not visited or bigger distance (probably not possible in this breath first search BFS)
+-                            if(distances[i][j]==baseDistance || distances[i][j] > dist+1){ 
+-                                distances[i][j] = dist+1;
+-                                parents[i][j] = cell;
+-                                //parents[i][j] = ( 3*(i-iC) + (j-jC) )*(-1) //the *(-1) is for the inversion: to refer the parent (cell) respect to the destination cell, and not vice versa
+-
+-                                toProcess.push(Point2<int>(j, i));
+-                            }
+-                        }
+-                    }
+-                }
+-            }
+-        }
+-    }
+-    //todo gestire il caso in cui la destinazione non viene ragggiunta
+-
+-    // reconstruct the vector of parents of the cells in the minPath
+-    vector<Point2<int> > computedParents;
+-    computedParents.push_back(endC);
+-    Point2<int> p = endC;    
+-    do {
+-        p = parents[p.y()][p.x()];
+-
+-        // conversion from cell of the grid to point of the system (map)
+-        computedParents.push_back( Point2<int>(p.x()*pixX + pixX/2, p.y()*pixY + pixY/2) );
+-    } while( p==startC );
+-    reverse(computedParents.begin(), computedParents.end()); // I apply the inverse to have the vector from the begin to the end.
+-
+-    return(computedParents);
+-}
+-
+-void Mapp::resetDistanceMap(const int value){
+-    for(int i=0; i<dimY; i++){
+-        for(int j=0; j<dimX; j++){
+-            distances[i][j] = value;
+-            //parents[i][j] = 0; //unneccessary reset (variable never read before the write)
+-        }
+-    }
+-}
+-
+-vector<Point2<int> > Mapp::sampleNPoints(const int n, const vector<Point2<int> > & points){
+-    vector<Point2<int> > vp;
+-    if(points.size() >= 2){
+-        int step = points.size()/(n+1);
+-        for(unsigned int i=0; i<points.size()-1; i+=step){
+-            vp.push_back(points[i]);
+-        }
+-        vp.push_back(points.back());
+-    }
+-    return(vp);    
+-}
+-
+-// todo add in the .hh file
+-// vector< Configuration2<int> >/*is it correct???*/ Mapp::fromPointsToConfiguarations(const vector<Point2<int> > & vp){
+-//     vector< Configuration2<int> > vC;
+-//     for(unsigned int i=0; i<vp.size()-1; i++){
+-//         Angle th = //compute angle from vp[i], vp[i+1]
+-//         vC.push_back( Configuration )
+-//     }
+-// }
+-
+-
+ /*! \brief The function create an image (Mat) with the dimensions of the Mapp and all its objects inside.
+ 
+     \returns The generated image is returned.
+@@ -331,9 +208,6 @@ Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
+                     case OBST:
+                         color = Scalar(0, 0, 255); //BGR format
+                         break;
+-                    case BODA:
+-                        color = Scalar(255, 0, 255); //BGR format
+-                        break;
+                     case VICT:
+                         color = Scalar(0, 255, 0); //BGR format
+                         break;
+@@ -351,6 +225,25 @@ Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
+     return(imageMap);
+ }
+ 
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
+ /*! \brief Print to the terminal the main informations of the Map.
+ */
+ void Mapp::printDimensions(){
+diff --git a/src/planning.cc b/src/planning.cc
+index 9bffb21..7953b81 100644
+--- a/src/planning.cc
++++ b/src/planning.cc
+@@ -4,82 +4,57 @@
+ // #define DEBUG
+ // #define WAIT
+ 
+-pair< vector<Point2<int> >, Mat > planning(){
+-    // load file of saving
+-    FileStorage fs_xml("data/settings.xml", FileStorage::READ);
+-    string loadFile = (string)fs_xml["convexHullFile"];
+-    fs_xml.release();
+-
+-    // open file
+-    cout << "loadFile: " << loadFile << endl;
+-    FileStorage fs(loadFile, FileStorage::READ);
+-    
+-    // load vectors of objects
+-    vector< vector<Point2<int> > > obstacles;
+-    loadVVP(obstacles, fs["obstacles"]);
+-
+-    vector< vector<Point2<int> > > victims;
+-    loadVVP(victims, fs["victims"]);
+-
+-    vector<Point2<int> > gate;
+-    loadVP(gate, fs["gate"]);
++void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fs){
++    /*FileStorage fs(loadFile, FileStorage::READ);
+ 
+-    //create the map
+-    cout << "MAIN MAP\n";
+-    int dimX=300, dimY=450;
+-    Mapp* map = new Mapp(dimX, dimY, 5, 5);
++    FileNode data = fs["obstacles"];
++    for (FileNodeIterator itData = data.begin(); itData != data.end(); itData++){
+ 
+-    map->addObjects(obstacles, OBST);
+-    map->addObjects(victims, VICT);
+-    map->addObject(gate, GATE);
++        // Read each vector
++        vector<Point2<int> > vp;
+ 
+-    map->printMap();
++        FileNode pts = *itData; //points
++        for (FileNodeIterator itPts = pts.begin(); itPts != pts.end(); ++itPts){
++            // Read each point            
++            FileNode pt = *itPts;   // point
++            FileNodeIterator itPt = pt.begin(); //point iterator
+ 
+-    Mat imageMap = map->createMapRepresentation();
+-    namedWindow("Map", WINDOW_AUTOSIZE);
+-	imshow("Map", imageMap);
++            int x = *itPt; itPt++;
++            int y = *itPt; itPt++;
+ 
+-    Point2<int> start(50, 70);
+-    Point2<int> end(80, 20);
+-    vector<Point2<int> > cellsOfPath = map->minPathTwoPoints(start, end);
++            vp.push_back(Point2<int>(x, y));
++        }
++        vvp.push_back(vp);
++    }*/
+ 
+-    // for(unsigned int i=0; i<obstacles.size(); i++){
+-    //     for(unsigned int j=0; j<obstacles[i].size(); j++){
+-    //         cout << obstacles[i][j] << " ";
++    cout << "size: " << fs.size() << endl; 
++    // for(unsigned int i=0; i<fs.size(); i++){
++    //     for(unsigned int j=0; j<(); j++){
++            
+     //     }
+     //     cout << endl;
+     // }
+-    
+-    // vector< vector<Point2<int> > > dubins;
+-    // return( make_pair(gate, imageMap) );/*todo change with dubins*/
+ }
+ 
+-void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn){
+-    FileNode data = fn;
+-    for (FileNodeIterator itData = data.begin(); itData != data.end(); itData++){
+-
+-        // Read the vector
+-        vector<Point2<int> > vp;
+-
+-        FileNode pts = *itData; //points
+-        for (FileNodeIterator itPts = pts.begin(); itPts != pts.end(); itPts++){
+-            int x = *itPts; 
+-            itPts++;
+-            int y = *itPts;
++pair< vector<Point2<int> >, Mat > planning(){
++    FileStorage fs_xml("data/settings.xml", FileStorage::READ);
++    string loadFile = (string)fs_xml["convexHullFile"];
++    fs_xml.release();
++    cout << "loadFile " << loadFile << endl;
+ 
+-            vp.push_back(Point2<int>(x, y));
++    FileStorage fs(loadFile, FileStorage::READ);
++    cout << "ok " << endl;
++    vector< vector<Point2<int> > > vvp;
++    loadVVP(vvp, fs["obstacles"]);
++    cout << "ok " << endl;
++
++    for(unsigned int i=0; i<vvp.size(); i++){
++        for(unsigned int j=0; j<vvp[i].size(); j++){
++            cout << vvp[i][j] << " ";
+         }
+-        vvp.push_back(vp);
++        cout << endl;
+     }
+-}
++    cout << "ok " << endl;
+ 
+-void loadVP(vector<Point2<int> > & vp, FileNode fn){
+-    FileNode pts = fn; //points
+-    for (FileNodeIterator itPts = pts.begin(); itPts != pts.end(); itPts++){
+-        int x = *itPts; 
+-        itPts++;
+-        int y = *itPts;
+-
+-        vp.push_back(Point2<int>(x, y));
+-    }
+ }
++
+diff --git a/test/map_main.cc b/test/map_main.cc
+index d7e61e5..f439da5 100644
+--- a/test/map_main.cc
++++ b/test/map_main.cc
+@@ -38,13 +38,13 @@ int main(){
+     int y = rand()%dimY;
+ 
+     // the wait 200 simulate the call every x milliseconds
+-    while((char)waitKey(200)!='x'){ // wait a char 'x' to proceed
++	while((char)waitKey(200)!='x'){ // wait a char 'x' to proceed
+         //Point p = localize();
+         x = (x+(rand()%10))%dimX;
+         y = (y+(rand()%10))%dimY;
+         // cout << x << " " << y << endl;
+         circle(imageMap, Point(x, y), 5, Scalar(0, 255, 255), -1);
+         imshow("Map", imageMap);
+-    }
++	}
+ return(0);
+ }   
+\ No newline at end of file

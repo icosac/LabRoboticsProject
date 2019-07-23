@@ -227,15 +227,8 @@ void save_convex_hull(  const vector<vector<Point> > & contours,
         case 1: str="victims"; break;
         case 2: str="gate"; break;
     }
-    cout << "str: " << str << endl;
     fs << str << hull;
-    for(unsigned int i=0; i<hull.size(); i++){
-        for(unsigned int j=0; j<hull[i].size(); j++){
-            cout << hull[i][j] << " ";
-        }
-        cout << endl;
-    }
-    cout << "pippo\n";
+    
     if(color==1){
         fs << "victimsNum" << victims;
     }

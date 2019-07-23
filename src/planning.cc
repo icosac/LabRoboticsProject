@@ -4,7 +4,8 @@
 // #define DEBUG
 // #define WAIT
 
-pair< vector<Point2<int> >, Mat > planning(){
+//pair< vector<Point2<int> >, Mat > planning(){
+void planning(){
     // load file of saving
     FileStorage fs_xml("data/settings.xml", FileStorage::READ);
     string loadFile = (string)fs_xml["convexHullFile"];
@@ -26,29 +27,28 @@ pair< vector<Point2<int> >, Mat > planning(){
 
     //create the map
     cout << "MAIN MAP\n";
-    int dimX=300, dimY=450;
-    Mapp* map = new Mapp(dimX, dimY, 5, 5);
-
-    map->addObjects(obstacles, OBST);
-    map->addObjects(victims, VICT);
+    int dimX=1000, dimY=1500;
+    cout << "a\n"; Mapp* map = new Mapp(dimX, dimY, 5, 5);
+    
+    cout << "b\n"; map->addObjects(obstacles, OBST);
+    cout << "c\n"; map->addObjects(victims, VICT);
+    cout << "d\n"; 
+    for(unsigned int i=0; i<gate.size(); i++){
+        cout << gate[i] << " --- ";
+    }
+    cout << endl << endl;
     map->addObject(gate, GATE);
+    cout << "e\n"; 
 
-    map->printMap();
+    // Generate the map representation and print it
+    // map->printMap();
+    // Mat imageMap = map->createMapRepresentation();
+    // namedWindow("Map", WINDOW_AUTOSIZE);
+	// imshow("Map", imageMap);
 
-    Mat imageMap = map->createMapRepresentation();
-    namedWindow("Map", WINDOW_AUTOSIZE);
-	imshow("Map", imageMap);
-
-    Point2<int> start(50, 70);
-    Point2<int> end(80, 20);
-    vector<Point2<int> > cellsOfPath = map->minPathTwoPoints(start, end);
-
-    // for(unsigned int i=0; i<obstacles.size(); i++){
-    //     for(unsigned int j=0; j<obstacles[i].size(); j++){
-    //         cout << obstacles[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
+    // Point2<int> start(50, 70);
+    // Point2<int> end(80, 20);
+    // vector<Point2<int> > cellsOfPath = map->minPathTwoPoints(start, end);
     
     // vector< vector<Point2<int> > > dubins;
     // return( make_pair(gate, imageMap) );/*todo change with dubins*/
