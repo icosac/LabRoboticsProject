@@ -125,11 +125,21 @@ public:
 	 */
 	void writeToFile(string _path="data/settings.xml");
 
-  /*! \brief Function to read from file. Default file is data/settings.xml
+  /*! \brief Function to read from file. The data found is going to be added to the settings. Default file is data/settings.xml
    *
    * @param _path The path of file to read from.
    */
 	void readFromFile(string _path="data/settings.xml");
+
+	/*! \brief Function to clean all settings: number types are set to 0, string are set to "", Tuples are set to Tuple<>() and Filter are set to all 0s.
+	 *
+	 */
+	void clean();
+
+	/*! \brief Function to clean all settings and then read from file. Default is data/settings.xml.
+	 *
+	 */
+	void cleanAndRead(string _path="data/settings.xml");
 
 	/*!\brief Function to return the paths of maps. If ids are not specified all maps are returned.
 	 *

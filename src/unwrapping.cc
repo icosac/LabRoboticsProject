@@ -1,12 +1,11 @@
 #include"unwrapping.hh"
 
 //debug blocks most things, wait only something
-#define DEBUG
-#define WAIT
+// #define DEBUG
+// #define WAIT
 
-#define area_ratio 0.7
-
-///const string xml_settings = "data/settings.xml";
+#define AREA_RATIO 0.7
+#define AREA_MIN 500 //pixel^2
 
 static float distance(Point c1, Point c2);
 
@@ -19,16 +18,14 @@ static float distance(Point c1, Point c2);
     \returns A 0 is return if the function reach the end.
 */
 int unwrapping(){
-    ///FileStorage fs_xml(xml_settings, FileStorage::READ);
     //Load Settings values
     Settings *s=new Settings();
-    s->readFromFile();
-    cout << *s << endl;
+    s->cleanAndRead();
 
     const string calib_file = s->intrinsicCalibrationFile;
     for(int f=0; f<s->mapsNames.size(); f++){
         string filename = s->maps(f).get(0);
-        cout << "Elaborating of the file: " << filename << endl << endl;
+        cout << "Elaborating file: " << filename << endl;
         // Load image from file
         Mat or_img = imread(filename.c_str());
         // Display original image
@@ -42,8 +39,8 @@ int unwrapping(){
         loadCoefficients(calib_file, camera_matrix, dist_coeffs);
 
         Mat fix_img;
-        if (f!=3)
-            undistort(or_img, fix_img, camera_matrix, dist_coeffs);
+        // if (f!=3)
+        undistort(or_img, fix_img, camera_matrix, dist_coeffs);
 
         // Display fixed image
         #ifdef DEBUG
@@ -62,7 +59,6 @@ int unwrapping(){
 
         // Find black regions (filter on saturation and value)
         // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
-        ///FileNode Bm = s->blackMask;
         Mat black_mask;
         inRange(hsv_img, s->blackMask.Low(), s->blackMask.High(), black_mask);
         #ifdef DEBUG
@@ -81,34 +77,42 @@ int unwrapping(){
         findContours(black_mask, contours, RETR_CCOMP, CHAIN_APPROX_SIMPLE); // find external contours of each blob
         #endif
 
+        Mat app_img=fix_img.clone();
+        drawContours(app_img, contours, -1, Scalar(0,170,220), 10, LINE_AA);
+        destroyAllWindows();
+
         double area, area_max = -1000.0, area_max2 = -1000.0;
         //for series of points
         for (unsigned i=0; i<contours.size(); i++){
-            approxPolyDP(contours[i], approx_polygon, 10, true); // fit a closed polygon (with less vertices) to the given contour, with an approximation accuracy (i.e. maximum distance between the original and the approximated curve) of 10
-            contours_approx = {approx_polygon};
+          approxPolyDP(contours[i], approx_polygon, 10, true); // fit a closed polygon (with less vertices) to the given contour, with an approximation accuracy (i.e. maximum distance between the original and the approximated curve) of 10
+          contours_approx = {approx_polygon};
 
-            //if we find a quadrilateral -> compute the max area
-            if(approx_polygon.size()==4){
-                area = contourArea(approx_polygon); //compute area
-                if(area > area_max){ //find the second area max (the big rectangle)
-                    area_max2 = area_max;
-                    contours_approx_big2 = contours_approx_big;
-                    rect2 = rect;
-                    area_max = area;
-                    contours_approx_big = contours_approx;
-                    rect = approx_polygon;
-                } else if(area > area_max2){
-                    area_max2 = area;
-                    contours_approx_big2 = contours_approx;
-                    rect2 = approx_polygon;
-                }
+          area = contourArea(approx_polygon); //compute area
+          if (area>AREA_MIN){
+            app_img=fix_img.clone();
+            if(area > area_max){ //find the second area max (the big rectangle)
+                area_max2 = area_max;
+                contours_approx_big2 = contours_approx_big;
+                rect2 = rect;
+                area_max = area;
+                contours_approx_big = contours_approx;
+                rect = approx_polygon;
+            } else if(area > area_max2){
+                area_max2 = area;
+                contours_approx_big2 = contours_approx;
+                rect2 = approx_polygon;
             }
+          }
+
         }
+
         // I take the largest rectangle if the second one is very small, otherwise the second one
-        if(area_max*area_ratio<area_max2){
+        if(area_max*AREA_RATIO<area_max2){
             rect = rect2;
             contours_approx_big = contours_approx_big2;
         }
+        //Compute the right vertexes from a vector of points.
+        find_rect(rect, fix_img.size().width, fix_img.size().height);
         
         // show the quadrilateral found
         Mat quadrilateral_img = fix_img.clone();
@@ -188,9 +192,9 @@ int unwrapping(){
         // Store the cropped image to disk.
         // string save_location = (string) fs_xml["mapsUnNames"][f];
         string save_location = filename.substr(0, filename.find_last_of('.'))+"_UN"+filename.substr(filename.find_last_of('.'), -1);
-        cout << "save_location: " << save_location << endl;
         s->mapsUnNames.add(save_location);
         imwrite(save_location, imgCrop);
+        cout << "Unwrapped image saved to: " << save_location << endl;
 
         #ifdef WAIT
             // wait a char 'q' to proceed
@@ -199,6 +203,55 @@ int unwrapping(){
         
     }
 return(0);
+}
+
+
+void find_rect(vector<Point>& _rect, const int& width, const int& height){
+    Tuple<Point2<int> > rect;
+    
+    const Point2<int> tl=Point2<int>(0, 0); //Top left corner
+    const Point2<int> tr=Point2<int>(width, 0); //Top right corner 
+    const Point2<int> bl=Point2<int>(0, height); //Bottom left corner
+    const Point2<int> br=Point2<int>(width, height); //Bottom right corner
+
+    //I start with all rect points centered
+    Point2<int> r_tl=Point2<int>((int)(width/2), (int)(height/2)); //Top left corner
+    Point2<int> r_tr=Point2<int>((int)(width/2), (int)(height/2)); //Top right corner 
+    Point2<int> r_bl=Point2<int>((int)(width/2), (int)(height/2)); //Bottom left corner
+    Point2<int> r_br=Point2<int>((int)(width/2), (int)(height/2)); //Bottom right corner
+
+    //Compute intial distances
+    double d_tl=r_tl.distance(tl);
+    double d_tr=r_tr.distance(tr);
+    double d_bl=r_bl.distance(bl);
+    double d_br=r_br.distance(br);
+
+    for (auto el : _rect){
+        double _d_tl=Point2<int>(el).distance(tl);
+        double _d_tr=Point2<int>(el).distance(tr);
+        double _d_bl=Point2<int>(el).distance(bl);
+        double _d_br=Point2<int>(el).distance(br);
+
+        if (_d_tl < d_tl){
+            r_tl=Point2<int>(el);
+            d_tl=_d_tl;
+        }
+        if (_d_tr < d_tr){
+            r_tr=Point2<int>(el);
+            d_tr=_d_tr;
+        }
+        if (_d_bl < d_bl){
+            r_bl=Point2<int>(el);
+            d_bl=_d_bl;
+        }
+        if (_d_br < d_br){
+            r_br=Point2<int>(el);
+            d_br=_d_br;
+        }
+    }
+
+    _rect.clear();
+    _rect={Point(r_tl.x(), r_tl.y()), Point(r_tr.x(), r_tr.y()), Point(r_bl.x(), r_bl.y()), Point(r_br.x(), r_br.y())};
 }
 
 /*! \brief Load coefficients from a file.
@@ -210,7 +263,6 @@ return(0);
 void loadCoefficients(  const string filename, 
                         Mat & camera_matrix, 
                         Mat & dist_coeffs){
-  cout << filename << endl;
   FileStorage fs(filename, FileStorage::READ );
   if (!fs.isOpened()){
     throw runtime_error("Could not open file " + filename);

@@ -8,6 +8,8 @@
 #include <sstream>
 #include <string>
 
+#include <opencv2/opencv.hpp>
+
 using namespace std;
 
 #include<limits>
@@ -660,6 +662,13 @@ public:
   Point2(const T _x, const T _y) {
     values=Tuple<T> (2, _x, _y);
   }
+
+  /*!\brief Constructor that takes a cv::Point and returns a Point2.
+    \param[in] p The cv::Point to be copied.
+  */
+  Point2(const cv::Point p) {
+    values=Tuple<T> (2, p.x, p.y);
+  }
   
   T x() const {return values.get(0);} ///< \returns The abscissa coordinate
   T y() const {return values.get(1);} ///< \returns The ordinate coordinate
@@ -827,6 +836,12 @@ public:
     return !equal(A);
   }
 
+  /*! \brief Cast to cv::Point
+      \returns The value casted to point
+  */
+  operator cv::Point() const { 
+    return cv::Point(this->x(), this->y()); 
+  }
   // ~Point2(){delete values;}
 };
 

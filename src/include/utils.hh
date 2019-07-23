@@ -8,7 +8,7 @@
 
 #include <maths.hh>
 
-#include <cstdio>
+#include <iostream>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/highgui/highgui_c.h>
@@ -21,10 +21,12 @@ using namespace std;
 
 #define NAME(x) #x ///<Returns the name of the variable
 
+#define DEBUG
 #ifdef DEBUG
   #define COUT(x) cout << #x << ": " << x << endl; ///<Print the name of a variable and its content. Only if DEBUG is defined.
-  #define INFO(msg) \ ///<Print a messag to stderr
-    fprintf(stderr, "%s\n", msg);
+  #define INFO(msg) cout << msg << endl; ///<Print a messag to stdout
+  #define INFOV(v)\
+    for (auto el : v){ cout << el << ", " ; } cout << endl;
 #else
   #define COUT(x) ///<Print a messag to stderr
   #define INFO(msg)  ///<Print the name of a variable and its content. Only if DEBUG is defined.

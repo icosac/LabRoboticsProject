@@ -70,11 +70,11 @@ bin/%.out: src/run/%.cc
 
 ##MAIN TARGETS
 #make all
-all: lib bin/ xml $(RUN_EXEC)
+all: lib bin/ xml main
 
 #Create test case files
-test: ECHO lib bin_test/ $(TEST_EXEC)
-
+test: lib bin_test/ $(TEST_EXEC)
+	
 
 ##Debugging
 ECHO:

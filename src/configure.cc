@@ -77,13 +77,12 @@ void configure (bool deploy, int img_id){
     }
   }
   else {
-    cout << "Reading image: " << s->maps(Tuple<int>(1, img_id)).get(0) << endl;
     frame = imread(s->maps(Tuple<int>(1, img_id)).get(0));
   }
 
 #ifdef MY_DEBUG
   my_imshow("prova", frame);
-    mywaitkey();
+  mywaitkey();
 #endif
 
   cvtColor(frame, frame, COLOR_BGR2HSV);
@@ -104,7 +103,6 @@ void configure (bool deploy, int img_id){
     cout << "Black filter. " << filter << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
-      //-- Show the frames
       imshow("Filtered Image", frame_threshold);
     }
     s->changeMask(Settings::BLACK, filter);
@@ -115,7 +113,6 @@ void configure (bool deploy, int img_id){
     cout << "Red filter. " << filter << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
-      //-- Show the frames
       imshow("Filtered Image",frame_threshold);
     }
     s->changeMask(Settings::RED, filter);
@@ -126,7 +123,6 @@ void configure (bool deploy, int img_id){
     cout << "Green filter. " << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
-      //-- Show the frames
       imshow("Filtered Image",frame_threshold);
     }
     s->changeMask(Settings::GREEN, filter);
@@ -137,7 +133,6 @@ void configure (bool deploy, int img_id){
     cout << "Victim filter. " << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
-      //-- Show the frames
       imshow("Filtered Image",frame_threshold);
     }
     s->changeMask(Settings::VICTIMS, filter);
@@ -148,7 +143,6 @@ void configure (bool deploy, int img_id){
     cout << "Blue filter. " << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
-      //-- Show the frames
       imshow("Filtered Image",frame_threshold);
     }
     s->changeMask(Settings::BLUE, filter);
@@ -159,18 +153,16 @@ void configure (bool deploy, int img_id){
     cout << "White filter. " << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
-      //-- Show the frames
       imshow("Filtered Image",frame_threshold);
     }
     s->changeMask(Settings::WHITE, filter);
     cout << "White filter done: " << filter << endl;
 
-    //WHITE FILTER
+    //ROBOT FILTER
     filter=s->robotMask; update_trackers();
     cout << "Robot filter. " << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
-      //-- Show the frames
       imshow("Filtered Image",frame_threshold);
     }
     s->changeMask(Settings::WHITE, filter);
@@ -178,6 +170,8 @@ void configure (bool deploy, int img_id){
   }
 
   s->writeToFile();
+
+  cout << *s << endl;
 
 #ifdef DEPLOY
   free(camera);
@@ -194,14 +188,6 @@ void configure (bool deploy, int img_id){
 bool show_all_conditions(const Mat& frame, Settings* s){
   bool ret=false;
   Mat black, red, green, victim, blue, white, robot;
-
-  cout << s->blackMask.Low().val[0] << ", " << s->blackMask.Low().val[1] << ", " << s->blackMask.Low().val[2] << ", " << s->blackMask.High().val[0] << ", " << s->blackMask.High().val[1] << ", " << s->blackMask.High().val[2] << endl;
-  cout << s->redMask.Low().val[0] << ", " << s->redMask.Low().val[1] << ", " << s->redMask.Low().val[2] << ", " << s->redMask.High().val[0] << ", " << s->redMask.High().val[1] << ", " << s->redMask.High().val[2] << endl;
-  cout << s->greenMask.Low().val[0] << ", " << s->greenMask.Low().val[1] << ", " << s->greenMask.Low().val[2] << ", " << s->greenMask.High().val[0] << ", " << s->greenMask.High().val[1] << ", " << s->greenMask.High().val[2] << endl;
-  cout << s->victimMask.Low().val[0] << ", " << s->victimMask.Low().val[1] << ", " << s->victimMask.Low().val[2] << ", " << s->victimMask.High().val[0] << ", " << s->victimMask.High().val[1] << ", " << s->victimMask.High().val[2] << endl;
-  cout << s->blueMask.Low().val[0] << ", " << s->blueMask.Low().val[1] << ", " << s->blueMask.Low().val[2] << ", " << s->blueMask.High().val[0] << ", " << s->blueMask.High().val[1] << ", " << s->blueMask.High().val[2] << endl;
-  cout << s->whiteMask.Low().val[0] << ", " << s->whiteMask.Low().val[1] << ", " << s->whiteMask.Low().val[2] << ", " << s->whiteMask.High().val[0] << ", " << s->whiteMask.High().val[1] << ", " << s->whiteMask.High().val[2] << endl;
-  cout << s->robotMask.Low().val[0] << ", " << s->robotMask.Low().val[1] << ", " << s->robotMask.Low().val[2] << ", " << s->robotMask.High().val[0] << ", " << s->robotMask.High().val[1] << ", " << s->robotMask.High().val[2] << endl;
 
   inRange(frame, s->blackMask.Low(), s->blackMask.High(), black);
   inRange(frame, s->redMask.Low(), s->redMask.High(), red);

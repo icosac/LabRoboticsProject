@@ -201,7 +201,7 @@ void Settings::writeToFile(string _path){
 	fs.release();
 }
 
-/*! \brief Function to read from file. Default file is data/settings.xml
+/*! \brief Function to read from file. The data found is going to be added to the settings. Default file is data/settings.xml
  *
  * @param _path The path of file to read from.
  */
@@ -258,10 +258,10 @@ void Settings::readFromFile(string _path){
 		
 	kernelSide=fs["kernelSide"];
 	convexHullFile=(string)fs["convexHullFile"];
-	
+
 	templatesFolder=(string)fs["templatesFolder"];	
 	for (uint i=0; i<fs["templates"].size(); i++){
-		string app=(string)fs["templates"];
+		string app=(string)fs["templates"][i];
 		if (app!=""){
 		  templates.add(app);
 		}
@@ -269,6 +269,37 @@ void Settings::readFromFile(string _path){
 
 	fs.release();
 }
+
+/*! \brief Function to clean all settings: number types are set to 0, string are set to "", Tuples are set to Tuple<>() and Filter are set to all 0s.
+ *
+ */
+void Settings::clean(){
+	this->mapsFolder="";
+	this->templatesFolder="";
+	this->mapsNames=Tuple<string>();
+	this->mapsUnNames=Tuple<string>();
+	this->intrinsicCalibrationFile="";
+	this->calibrationFile="";
+	this->blackMask=Filter();
+	this->redMask=Filter();
+	this->greenMask=Filter();
+	this->victimMask=Filter();
+	this->blueMask=Filter();
+  this->whiteMask=Filter();
+  this->robotMask=Filter();
+	this->kernelSide=0;
+	this->convexHullFile="";
+	this->templates=Tuple<string>();
+}
+
+/*! \brief Function to clean all settings and then read from file. Default is data/settings.xml.
+ *
+ */
+void Settings::cleanAndRead(string _path){
+	this->clean();
+	this->readFromFile(_path);
+}
+
 
 /*!\brief A function to return the paths of a given Tuple of maps.
  *
