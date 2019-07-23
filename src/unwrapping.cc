@@ -21,6 +21,7 @@ int unwrapping(){
     //Load Settings values
     Settings *s=new Settings();
     s->cleanAndRead();
+    cout << *s << endl;
 
     const string calib_file = s->intrinsicCalibrationFile;
     for(int f=0; f<s->mapsNames.size(); f++){

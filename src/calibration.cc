@@ -193,7 +193,7 @@ bool CalSettings::isListOfImages( const string& filename)
 int calibration(string inputFile)
 {
     Settings *set=new Settings();
-    set->readFromFile();
+    set->cleanAndRead();
 
     inputFile=set->calibrationFile;
     inputFile=(inputFile=="" ? set->calibrationFile : inputFile);

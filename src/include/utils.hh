@@ -21,7 +21,6 @@ using namespace std;
 
 #define NAME(x) #x ///<Returns the name of the variable
 
-#define DEBUG
 #ifdef DEBUG
   #define COUT(x) cout << #x << ": " << x << endl; ///<Print the name of a variable and its content. Only if DEBUG is defined.
   #define INFO(msg) cout << msg << endl; ///<Print a messag to stdout

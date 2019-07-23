@@ -130,10 +130,10 @@ detection: xml
 
 ##RUN EXECUTABLES
 #Run main program
-run:
+run: main
 	./bin/main.out
 #Run tests
-run_test:
+run_test: test
 	./bin/test/prova.out
 #Run calibration
 run_calibration: calibration

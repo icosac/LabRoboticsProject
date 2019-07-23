@@ -59,7 +59,7 @@ void update_trackers(){
  */
 void configure (bool deploy, int img_id){
   Settings* s=new Settings();
-  s->readFromFile();
+  s->cleanAndRead();
   cout << *s << endl;
 
   Mat frame;
@@ -75,12 +75,13 @@ void configure (bool deploy, int img_id){
       cout << "Fail getting camera photo." << endl;
       return;
     }
+    free(camera);
   }
   else {
     frame = imread(s->maps(Tuple<int>(1, img_id)).get(0));
   }
 
-#ifdef MY_DEBUG
+#ifdef DEBUG
   my_imshow("prova", frame);
   mywaitkey();
 #endif
@@ -172,10 +173,7 @@ void configure (bool deploy, int img_id){
   s->writeToFile();
 
   cout << *s << endl;
-
-#ifdef DEPLOY
-  free(camera);
-#endif
+  
   destroyAllWindows();
 }
 
