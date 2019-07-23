@@ -10,6 +10,5 @@ var searchData=
   ['flag',['flag',['../class_cal_settings.html#a59cd0b6f52c18498cb3f1ad5ac030338',1,'CalSettings']]],
   ['flipvertical',['flipVertical',['../class_cal_settings.html#a9a2cff2a0d53011d5a3b1a03a7460589',1,'CalSettings']]],
   ['frameheight_5fpx',['frameHeight_px',['../struct_camera_capture_1_1input__options__t.html#aee1ab45b4ec0cbebc0a548f0e0b9ab18',1,'CameraCapture::input_options_t']]],
-  ['framewidth_5fpx',['frameWidth_px',['../struct_camera_capture_1_1input__options__t.html#a0b6cfab2f45deab8a4eb56d570385d8a',1,'CameraCapture::input_options_t']]],
-  ['fs_5fxml',['fs_xml',['../detection_8cc.html#a62a6ab4dd608b3e8142718b2a4543e8a',1,'detection.cc']]]
+  ['framewidth_5fpx',['frameWidth_px',['../struct_camera_capture_1_1input__options__t.html#a0b6cfab2f45deab8a4eb56d570385d8a',1,'CameraCapture::input_options_t']]]
 ];

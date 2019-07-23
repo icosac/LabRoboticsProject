@@ -1,8 +1,10 @@
 var searchData=
 [
+  ['obj_5ftype',['OBJ_TYPE',['../map_8hh.html#a714b9c2c276fbae637fee36453d9121e',1,'map.hh']]],
   ['object',['Object',['../class_object.html',1,'']]],
   ['objects_2ecc',['objects.cc',['../objects_8cc.html',1,'']]],
   ['objects_2ehh',['objects.hh',['../objects_8hh.html',1,'']]],
+  ['obst',['OBST',['../map_8hh.html#a714b9c2c276fbae637fee36453d9121ea9bfb772b98998217b3d7caf5a94b9938',1,'map.hh']]],
   ['obstacle',['Obstacle',['../class_obstacle.html',1,'Obstacle'],['../class_obstacle.html#a01dd139293a7b40de8d25c11cdb8cfd8',1,'Obstacle::Obstacle()']]],
   ['offpt',['OffPt',['../struct_clipper_lib_1_1_join.html#afa70561700d774cd762d125f9866327f',1,'ClipperLib::Join']]],
   ['offset',['offset',['../class_point2.html#af484708a23f679425d8434bc24387ab8',1,'Point2::offset(const T1 _offset, const Angle th)'],['../class_point2.html#a206d80b5b86b22039f7565dc2b8bdab1',1,'Point2::offset(const Point2&lt; T &gt; p)'],['../class_point2.html#af25c5bac4c7273d5af0488d7f1196be5',1,'Point2::offset(const Tuple&lt; T &gt; p)'],['../class_configuration2.html#a4c3bb49ce67ceb4b1b492cb7c093ea8c',1,'Configuration2::offset(const T2 _offset, const Angle phi, const Angle _th)'],['../class_configuration2.html#abc07742a00822719024a8a58d003a6f1',1,'Configuration2::offset(Configuration2&lt; T1 &gt; p)'],['../class_configuration2.html#ad2f7df498d8fd4c0e125a1f628fa22b7',1,'Configuration2::offset(Point2&lt; T1 &gt; p, const Angle _th=Angle())']]],
@@ -39,7 +41,7 @@ var searchData=
   ['operator_2d_3d',['operator-=',['../class_angle.html#a54a5489837c16a15320f9249d2cabed6',1,'Angle']]],
   ['operator_2f',['operator/',['../class_angle.html#ac72a246e3e3fd5f1c58d2fd89338b1ff',1,'Angle']]],
   ['operator_2f_3d',['operator/=',['../class_angle.html#ac0421d376bd1c7396088ff465589c4b9',1,'Angle']]],
-  ['operator_3c',['operator&lt;',['../class_clipper_lib_1_1_int128.html#ab55bb6a363e7ced8e5e64a1eefac6000',1,'ClipperLib::Int128']]],
+  ['operator_3c',['operator&lt;',['../class_clipper_lib_1_1_int128.html#ab55bb6a363e7ced8e5e64a1eefac6000',1,'ClipperLib::Int128::operator&lt;()'],['../class_point2.html#a636a84c47519a482cfce43039e981dff',1,'Point2::operator&lt;()']]],
   ['operator_3c_3c',['operator&lt;&lt;',['../class_curve.html#a91af4d37d8aec484114b20623c07058b',1,'Curve::operator&lt;&lt;()'],['../class_dubins_arc.html#a9fbd2f7583b614eba51fd90a9def4b51',1,'DubinsArc::operator&lt;&lt;()'],['../class_dubins.html#a0178baccb8eb26af22a5eb717f394c8c',1,'Dubins::operator&lt;&lt;()'],['../class_filter.html#addf23b41f620f3518eeeb97b8bb2c2e1',1,'Filter::operator&lt;&lt;()'],['../class_angle.html#a075a4a2521a314d707922253ebf03b4e',1,'Angle::operator&lt;&lt;()'],['../class_tuple.html#a2e6e2a2521038ab827ff2aa73023a53d',1,'Tuple::operator&lt;&lt;()'],['../class_point2.html#a9156326af6248209210a7bd67569e5c2',1,'Point2::operator&lt;&lt;()'],['../class_configuration2.html#a90aec83947c9087504b4a9b6f0db8205',1,'Configuration2::operator&lt;&lt;()'],['../class_settings.html#ae9bfb3fa2d38f0ebe2e74b782790da98',1,'Settings::operator&lt;&lt;()'],['../namespace_clipper_lib.html#a2e9613a92f21ac827d5b7f8b5ade5795',1,'ClipperLib::operator&lt;&lt;(std::ostream &amp;s, const IntPoint &amp;p)'],['../namespace_clipper_lib.html#abd88603a8c170404d069edae2e574fe9',1,'ClipperLib::operator&lt;&lt;(std::ostream &amp;s, const Path &amp;p)'],['../namespace_clipper_lib.html#aa8b8872f6e4840cb63769a59a88eab4d',1,'ClipperLib::operator&lt;&lt;(std::ostream &amp;s, const Paths &amp;p)'],['../namespace_clipper_lib.html#a7783da3ed1c2354e45db83cecc596c7e',1,'ClipperLib::operator&lt;&lt;(Path &amp;poly, const IntPoint &amp;p)'],['../namespace_clipper_lib.html#aa0bb38565ca4b15c637b38f476d21036',1,'ClipperLib::operator&lt;&lt;(Paths &amp;polys, const Path &amp;p)']]],
   ['operator_3c_3d',['operator&lt;=',['../class_clipper_lib_1_1_int128.html#ab3667a2abe7b05841b8004496e4e5ddd',1,'ClipperLib::Int128']]],
   ['operator_3d',['operator=',['../class_clipper_lib_1_1_int128.html#a908b1ffab7e190f8db9d2adccbb9eef4',1,'ClipperLib::Int128::operator=()'],['../class_filter.html#ad662158aa60a9a938d94fd45df5a6cd5',1,'Filter::operator=()'],['../class_angle.html#a93da39f08e2e110e278bb94d1c279ac6',1,'Angle::operator=(const Angle phi)'],['../class_angle.html#adf9e68cdeac72b3754bd7d0993a37220',1,'Angle::operator=(const double phi)'],['../class_point2.html#af715722f2b04def60eb23f291e31c4d8',1,'Point2::operator=()'],['../class_configuration2.html#a9ef2f57ddcc1f0c8117a9ed2f13141aa',1,'Configuration2::operator=()']]],
@@ -51,5 +53,6 @@ var searchData=
   ['outpt2',['OutPt2',['../struct_clipper_lib_1_1_join.html#a589b2e1162679def2ccd3889306a9230',1,'ClipperLib::Join']]],
   ['outputfilename',['outputFileName',['../class_cal_settings.html#a9ea48b7c35d4bba18320d3635a333936',1,'CalSettings']]],
   ['outrec',['OutRec',['../struct_clipper_lib_1_1_out_rec.html',1,'ClipperLib']]],
-  ['outrec1rightofoutrec2',['OutRec1RightOfOutRec2',['../namespace_clipper_lib.html#ab7e60ff44337799046ac87d22986da2b',1,'ClipperLib']]]
+  ['outrec1rightofoutrec2',['OutRec1RightOfOutRec2',['../namespace_clipper_lib.html#ab7e60ff44337799046ac87d22986da2b',1,'ClipperLib']]],
+  ['point',['Point',['../class_point2.html#a0d3f17f7d86d02eae126aa329a20861a',1,'Point2']]]
 ];

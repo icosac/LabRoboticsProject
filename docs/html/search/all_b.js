@@ -3,6 +3,8 @@ var searchData=
   ['left',['left',['../struct_clipper_lib_1_1_int_rect.html#a9bf519994ffc7d1d5752fb1e2411b4cd',1,'ClipperLib::IntRect']]],
   ['leftbound',['LeftBound',['../struct_clipper_lib_1_1_local_minimum.html#a0e7b997adca472b6e80f3223c45965ea',1,'ClipperLib::LocalMinimum']]],
   ['length',['length',['../class_dubins_arc.html#a1b0bfacb344d17377f4bda55fdaecae4',1,'DubinsArc::length()'],['../class_dubins.html#ae4978fe0667d364224c0a7521903a225',1,'Dubins::length()']]],
+  ['lengthx',['lengthX',['../class_mapp.html#add62ddc7c9bf47dcf3dc8916dc58d41c',1,'Mapp']]],
+  ['lengthy',['lengthY',['../class_mapp.html#ad108cf6f9d0fa2f7b24405938dd7f74c',1,'Mapp']]],
   ['lo',['lo',['../class_clipper_lib_1_1_int128.html#a991b9da6e53c777a94fca640e505b258',1,'ClipperLib::Int128']]],
   ['load_5fnumber_5ftemplate',['load_number_template',['../detection_8cc.html#a50993b0aa4f01d89a4e5d0aef4e1e5f4',1,'load_number_template():&#160;detection.cc'],['../detection_8hh.html#a50993b0aa4f01d89a4e5d0aef4e1e5f4',1,'load_number_template():&#160;detection.cc']]],
   ['loadcoefficients',['loadCoefficients',['../class_camera_capture.html#a69ae39c83c49aa213df7a93487e8f17f',1,'CameraCapture::loadCoefficients()'],['../unwrapping_8cc.html#a3cf7df08897ed4d1a7ddcf055b18cca8',1,'loadCoefficients(const string filename, Mat &amp;camera_matrix, Mat &amp;dist_coeffs):&#160;unwrapping.cc'],['../unwrapping_8hh.html#a3cf7df08897ed4d1a7ddcf055b18cca8',1,'loadCoefficients(const string filename, Mat &amp;camera_matrix, Mat &amp;dist_coeffs):&#160;unwrapping.cc']]],

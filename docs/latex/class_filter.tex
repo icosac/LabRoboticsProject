@@ -1,0 +1,275 @@
+\hypertarget{class_filter}{}\section{Filter Class Reference}
+\label{class_filter}\index{Filter@{Filter}}
+
+
+{\ttfamily \#include $<$filter.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_filter_ad15994c30d497afd567a6445446a249e}{Filter}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor\+: it set all values to 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_filter_a75b792236ffdb9590eb762e2a82802a5}{Filter}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+low\+\_\+h, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+low\+\_\+s, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+low\+\_\+v, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+high\+\_\+h, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+high\+\_\+s, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+high\+\_\+v)
+\begin{DoxyCompactList}\small\item\em Constructor that sets all the values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_filter_ae452f351813a2fdb9a32c78e11865447}{Filter}} (vector$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ v)
+\begin{DoxyCompactList}\small\item\em Constructor from a vector. \end{DoxyCompactList}\item 
+Scalar \mbox{\hyperlink{class_filter_a7b43f7cd0af1647ae9106af1ec159f63}{Low}} ()
+\begin{DoxyCompactList}\small\item\em Returns a Scalar containing the lower boudary. \end{DoxyCompactList}\item 
+Scalar \mbox{\hyperlink{class_filter_a448a83071e9f33c39ba09ac139a8af31}{High}} ()
+\begin{DoxyCompactList}\small\item\em Returns a Scalar containing the lower boudary. \end{DoxyCompactList}\item 
+stringstream \mbox{\hyperlink{class_filter_aba04694e9b16e23fb27f7ae730c9038f}{to\+\_\+string}} () const
+\begin{DoxyCompactList}\small\item\em Save value in a stringstream. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_filter}{Filter}} \mbox{\hyperlink{class_filter_a54ac470a139c2389861241cdb3cd8cc9}{copy}} (const \mbox{\hyperlink{class_filter}{Filter}} \&fil)
+\begin{DoxyCompactList}\small\item\em A function to copy a filter to this. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_filter}{Filter}} \mbox{\hyperlink{class_filter_ad662158aa60a9a938d94fd45df5a6cd5}{operator=}} (const \mbox{\hyperlink{class_filter}{Filter}} \&filt)
+\begin{DoxyCompactList}\small\item\em Overload of operator =. It just calls the copy function. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_filter_a147633122e621d3052b385237d8f7b6b}{operator vector$<$ int $>$}} () const
+\begin{DoxyCompactList}\small\item\em Overload of operator cast to vector$<$int$>$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_filter_acc9169ecdd67e37c512e7e50b2257805}{low\+\_\+h}}
+\begin{DoxyCompactList}\small\item\em Lower value for hue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_filter_a4eb6f35c78627a310f1476d37917758c}{low\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em Lower value for saturation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_filter_a80dc06dbdcdec4106c05793affc9738c}{low\+\_\+v}}
+\begin{DoxyCompactList}\small\item\em Lower value for value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_filter_a7c77c33e8f7312d1eba4ec414fd21d24}{high\+\_\+h}}
+\begin{DoxyCompactList}\small\item\em Higher value for hue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_filter_a687104612e7a65d786b72a79de954ea3}{high\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em Higher value for saturation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_filter_a5e052ace2bd9e0e424aef5be43df526d}{high\+\_\+v}}
+\begin{DoxyCompactList}\small\item\em Higher value for value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \mbox{\hyperlink{class_filter_addf23b41f620f3518eeeb97b8bb2c2e1}{operator$<$$<$}} (ostream \&out, const \mbox{\hyperlink{class_filter}{Filter}} \&data)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class to store the values for an H\+SV filter with lower and higher boundary. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_filter_ad15994c30d497afd567a6445446a249e}\label{class_filter_ad15994c30d497afd567a6445446a249e}} 
+\index{Filter@{Filter}!Filter@{Filter}}
+\index{Filter@{Filter}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{Filter()}{Filter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Filter\+::\+Filter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor\+: it set all values to 0. 
+
+\mbox{\Hypertarget{class_filter_a75b792236ffdb9590eb762e2a82802a5}\label{class_filter_a75b792236ffdb9590eb762e2a82802a5}} 
+\index{Filter@{Filter}!Filter@{Filter}}
+\index{Filter@{Filter}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{Filter()}{Filter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Filter\+::\+Filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+low\+\_\+h,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+low\+\_\+s,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+low\+\_\+v,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+high\+\_\+h,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+high\+\_\+s,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+high\+\_\+v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor that sets all the values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+low\+\_\+h} & Lower value for hue \\
+\hline
+{\em \+\_\+low\+\_\+s} & Lower value for saturation \\
+\hline
+{\em \+\_\+low\+\_\+v} & Lower value for value \\
+\hline
+{\em \+\_\+high\+\_\+h} & Higher value for hue \\
+\hline
+{\em \+\_\+high\+\_\+s} & Higher value for saturation \\
+\hline
+{\em \+\_\+high\+\_\+v} & Higher value for value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_filter_ae452f351813a2fdb9a32c78e11865447}\label{class_filter_ae452f351813a2fdb9a32c78e11865447}} 
+\index{Filter@{Filter}!Filter@{Filter}}
+\index{Filter@{Filter}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{Filter()}{Filter()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Filter\+::\+Filter (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor from a vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vector containing the 6 values. Mind that they must be 6. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_filter_a54ac470a139c2389861241cdb3cd8cc9}\label{class_filter_a54ac470a139c2389861241cdb3cd8cc9}} 
+\index{Filter@{Filter}!copy@{copy}}
+\index{copy@{copy}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_filter}{Filter}} Filter\+::copy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_filter}{Filter}} \&}]{fil }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A function to copy a filter to this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fil} & The filter to be copied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this filter with the new values copied. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_filter_a448a83071e9f33c39ba09ac139a8af31}\label{class_filter_a448a83071e9f33c39ba09ac139a8af31}} 
+\index{Filter@{Filter}!High@{High}}
+\index{High@{High}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{High()}{High()}}
+{\footnotesize\ttfamily Scalar Filter\+::\+High (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a Scalar containing the lower boudary. 
+
+\mbox{\Hypertarget{class_filter_a7b43f7cd0af1647ae9106af1ec159f63}\label{class_filter_a7b43f7cd0af1647ae9106af1ec159f63}} 
+\index{Filter@{Filter}!Low@{Low}}
+\index{Low@{Low}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{Low()}{Low()}}
+{\footnotesize\ttfamily Scalar Filter\+::\+Low (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a Scalar containing the lower boudary. 
+
+\mbox{\Hypertarget{class_filter_a147633122e621d3052b385237d8f7b6b}\label{class_filter_a147633122e621d3052b385237d8f7b6b}} 
+\index{Filter@{Filter}!operator vector$<$ int $>$@{operator vector$<$ int $>$}}
+\index{operator vector$<$ int $>$@{operator vector$<$ int $>$}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{operator vector$<$ int $>$()}{operator vector< int >()}}
+{\footnotesize\ttfamily Filter\+::operator vector$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Overload of operator cast to vector$<$int$>$. 
+
+\begin{DoxyReturn}{Returns}
+A vector containing the 6 values. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_filter_ad662158aa60a9a938d94fd45df5a6cd5}\label{class_filter_ad662158aa60a9a938d94fd45df5a6cd5}} 
+\index{Filter@{Filter}!operator=@{operator=}}
+\index{operator=@{operator=}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_filter}{Filter}} Filter\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_filter}{Filter}} \&}]{filt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Overload of operator =. It just calls the copy function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filt} & The filter to be copied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this filter with the new values copied. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_filter_aba04694e9b16e23fb27f7ae730c9038f}\label{class_filter_aba04694e9b16e23fb27f7ae730c9038f}} 
+\index{Filter@{Filter}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+{\footnotesize\ttfamily stringstream Filter\+::to\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Save value in a stringstream. 
+
+\begin{DoxyReturn}{Returns}
+A stringstream containing the values of both boundaries. 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_filter_addf23b41f620f3518eeeb97b8bb2c2e1}\label{class_filter_addf23b41f620f3518eeeb97b8bb2c2e1}} 
+\index{Filter@{Filter}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{const \mbox{\hyperlink{class_filter}{Filter}} \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+This function overload the $<$$<$ operator so to print with {\ttfamily std\+::cout} . 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em out} & The out stream. \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & The filter to print. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An output stream to be printed. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_filter_a7c77c33e8f7312d1eba4ec414fd21d24}\label{class_filter_a7c77c33e8f7312d1eba4ec414fd21d24}} 
+\index{Filter@{Filter}!high\_h@{high\_h}}
+\index{high\_h@{high\_h}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{high\_h}{high\_h}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Filter\+::high\+\_\+h}
+
+
+
+Higher value for hue. 
+
+\mbox{\Hypertarget{class_filter_a687104612e7a65d786b72a79de954ea3}\label{class_filter_a687104612e7a65d786b72a79de954ea3}} 
+\index{Filter@{Filter}!high\_s@{high\_s}}
+\index{high\_s@{high\_s}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{high\_s}{high\_s}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Filter\+::high\+\_\+s}
+
+
+
+Higher value for saturation. 
+
+\mbox{\Hypertarget{class_filter_a5e052ace2bd9e0e424aef5be43df526d}\label{class_filter_a5e052ace2bd9e0e424aef5be43df526d}} 
+\index{Filter@{Filter}!high\_v@{high\_v}}
+\index{high\_v@{high\_v}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{high\_v}{high\_v}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Filter\+::high\+\_\+v}
+
+
+
+Higher value for value. 
+
+\mbox{\Hypertarget{class_filter_acc9169ecdd67e37c512e7e50b2257805}\label{class_filter_acc9169ecdd67e37c512e7e50b2257805}} 
+\index{Filter@{Filter}!low\_h@{low\_h}}
+\index{low\_h@{low\_h}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{low\_h}{low\_h}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Filter\+::low\+\_\+h}
+
+
+
+Lower value for hue. 
+
+\mbox{\Hypertarget{class_filter_a4eb6f35c78627a310f1476d37917758c}\label{class_filter_a4eb6f35c78627a310f1476d37917758c}} 
+\index{Filter@{Filter}!low\_s@{low\_s}}
+\index{low\_s@{low\_s}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{low\_s}{low\_s}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Filter\+::low\+\_\+s}
+
+
+
+Lower value for saturation. 
+
+\mbox{\Hypertarget{class_filter_a80dc06dbdcdec4106c05793affc9738c}\label{class_filter_a80dc06dbdcdec4106c05793affc9738c}} 
+\index{Filter@{Filter}!low\_v@{low\_v}}
+\index{low\_v@{low\_v}!Filter@{Filter}}
+\subsubsection{\texorpdfstring{low\_v}{low\_v}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Filter\+::low\+\_\+v}
+
+
+
+Lower value for value. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{filter_8hh}{filter.\+hh}}\end{DoxyCompactItemize}

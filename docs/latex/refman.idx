@@ -1,0 +1,1452 @@
+\indexentry{ClipperLib@{ClipperLib}|hyperpage}{9}
+\indexentry{ClipperLib@{ClipperLib}!cInt@{cInt}|hyperpage}{12}
+\indexentry{cInt@{cInt}!ClipperLib@{ClipperLib}|hyperpage}{12}
+\indexentry{ClipperLib@{ClipperLib}!EdgeList@{EdgeList}|hyperpage}{12}
+\indexentry{EdgeList@{EdgeList}!ClipperLib@{ClipperLib}|hyperpage}{12}
+\indexentry{ClipperLib@{ClipperLib}!IntersectList@{IntersectList}|hyperpage}{12}
+\indexentry{IntersectList@{IntersectList}!ClipperLib@{ClipperLib}|hyperpage}{12}
+\indexentry{ClipperLib@{ClipperLib}!JoinList@{JoinList}|hyperpage}{12}
+\indexentry{JoinList@{JoinList}!ClipperLib@{ClipperLib}|hyperpage}{12}
+\indexentry{ClipperLib@{ClipperLib}!long64@{long64}|hyperpage}{12}
+\indexentry{long64@{long64}!ClipperLib@{ClipperLib}|hyperpage}{12}
+\indexentry{ClipperLib@{ClipperLib}!Path@{Path}|hyperpage}{12}
+\indexentry{Path@{Path}!ClipperLib@{ClipperLib}|hyperpage}{12}
+\indexentry{ClipperLib@{ClipperLib}!Paths@{Paths}|hyperpage}{12}
+\indexentry{Paths@{Paths}!ClipperLib@{ClipperLib}|hyperpage}{12}
+\indexentry{ClipperLib@{ClipperLib}!PolyNodes@{PolyNodes}|hyperpage}{12}
+\indexentry{PolyNodes@{PolyNodes}!ClipperLib@{ClipperLib}|hyperpage}{12}
+\indexentry{ClipperLib@{ClipperLib}!PolyOutList@{PolyOutList}|hyperpage}{13}
+\indexentry{PolyOutList@{PolyOutList}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{ClipperLib@{ClipperLib}!ulong64@{ulong64}|hyperpage}{13}
+\indexentry{ulong64@{ulong64}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{ClipperLib@{ClipperLib}!ClipType@{ClipType}|hyperpage}{13}
+\indexentry{ClipType@{ClipType}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{ctIntersection@{ctIntersection}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{ClipperLib@{ClipperLib}!ctIntersection@{ctIntersection}|hyperpage}{13}
+\indexentry{ctUnion@{ctUnion}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{ClipperLib@{ClipperLib}!ctUnion@{ctUnion}|hyperpage}{13}
+\indexentry{ctDifference@{ctDifference}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{ClipperLib@{ClipperLib}!ctDifference@{ctDifference}|hyperpage}{13}
+\indexentry{ctXor@{ctXor}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{ClipperLib@{ClipperLib}!ctXor@{ctXor}|hyperpage}{13}
+\indexentry{ClipperLib@{ClipperLib}!Direction@{Direction}|hyperpage}{13}
+\indexentry{Direction@{Direction}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{dRightToLeft@{dRightToLeft}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{ClipperLib@{ClipperLib}!dRightToLeft@{dRightToLeft}|hyperpage}{13}
+\indexentry{dLeftToRight@{dLeftToRight}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{ClipperLib@{ClipperLib}!dLeftToRight@{dLeftToRight}|hyperpage}{13}
+\indexentry{ClipperLib@{ClipperLib}!EdgeSide@{EdgeSide}|hyperpage}{13}
+\indexentry{EdgeSide@{EdgeSide}!ClipperLib@{ClipperLib}|hyperpage}{13}
+\indexentry{esLeft@{esLeft}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!esLeft@{esLeft}|hyperpage}{14}
+\indexentry{esRight@{esRight}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!esRight@{esRight}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!EndType@{EndType}|hyperpage}{14}
+\indexentry{EndType@{EndType}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{etClosedPolygon@{etClosedPolygon}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!etClosedPolygon@{etClosedPolygon}|hyperpage}{14}
+\indexentry{etClosedLine@{etClosedLine}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!etClosedLine@{etClosedLine}|hyperpage}{14}
+\indexentry{etOpenButt@{etOpenButt}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!etOpenButt@{etOpenButt}|hyperpage}{14}
+\indexentry{etOpenSquare@{etOpenSquare}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!etOpenSquare@{etOpenSquare}|hyperpage}{14}
+\indexentry{etOpenRound@{etOpenRound}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!etOpenRound@{etOpenRound}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!InitOptions@{InitOptions}|hyperpage}{14}
+\indexentry{InitOptions@{InitOptions}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ioReverseSolution@{ioReverseSolution}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!ioReverseSolution@{ioReverseSolution}|hyperpage}{14}
+\indexentry{ioStrictlySimple@{ioStrictlySimple}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!ioStrictlySimple@{ioStrictlySimple}|hyperpage}{14}
+\indexentry{ioPreserveCollinear@{ioPreserveCollinear}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!ioPreserveCollinear@{ioPreserveCollinear}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!JoinType@{JoinType}|hyperpage}{14}
+\indexentry{JoinType@{JoinType}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{jtSquare@{jtSquare}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!jtSquare@{jtSquare}|hyperpage}{14}
+\indexentry{jtRound@{jtRound}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!jtRound@{jtRound}|hyperpage}{14}
+\indexentry{jtMiter@{jtMiter}!ClipperLib@{ClipperLib}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!jtMiter@{jtMiter}|hyperpage}{14}
+\indexentry{ClipperLib@{ClipperLib}!NodeType@{NodeType}|hyperpage}{15}
+\indexentry{NodeType@{NodeType}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ntAny@{ntAny}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!ntAny@{ntAny}|hyperpage}{15}
+\indexentry{ntOpen@{ntOpen}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!ntOpen@{ntOpen}|hyperpage}{15}
+\indexentry{ntClosed@{ntClosed}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!ntClosed@{ntClosed}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!PolyFillType@{PolyFillType}|hyperpage}{15}
+\indexentry{PolyFillType@{PolyFillType}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{pftEvenOdd@{pftEvenOdd}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!pftEvenOdd@{pftEvenOdd}|hyperpage}{15}
+\indexentry{pftNonZero@{pftNonZero}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!pftNonZero@{pftNonZero}|hyperpage}{15}
+\indexentry{pftPositive@{pftPositive}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!pftPositive@{pftPositive}|hyperpage}{15}
+\indexentry{pftNegative@{pftNegative}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!pftNegative@{pftNegative}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!PolyType@{PolyType}|hyperpage}{15}
+\indexentry{PolyType@{PolyType}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ptSubject@{ptSubject}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!ptSubject@{ptSubject}|hyperpage}{15}
+\indexentry{ptClip@{ptClip}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!ptClip@{ptClip}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!Abs@{Abs}|hyperpage}{15}
+\indexentry{Abs@{Abs}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!AddPolyNodeToPaths@{AddPolyNodeToPaths}|hyperpage}{15}
+\indexentry{AddPolyNodeToPaths@{AddPolyNodeToPaths}!ClipperLib@{ClipperLib}|hyperpage}{15}
+\indexentry{ClipperLib@{ClipperLib}!Area@{Area}|hyperpage}{16}
+\indexentry{Area@{Area}!ClipperLib@{ClipperLib}|hyperpage}{16}
+\indexentry{ClipperLib@{ClipperLib}!Area@{Area}|hyperpage}{16}
+\indexentry{Area@{Area}!ClipperLib@{ClipperLib}|hyperpage}{16}
+\indexentry{ClipperLib@{ClipperLib}!Area@{Area}|hyperpage}{16}
+\indexentry{Area@{Area}!ClipperLib@{ClipperLib}|hyperpage}{16}
+\indexentry{ClipperLib@{ClipperLib}!CleanPolygon@{CleanPolygon}|hyperpage}{16}
+\indexentry{CleanPolygon@{CleanPolygon}!ClipperLib@{ClipperLib}|hyperpage}{16}
+\indexentry{ClipperLib@{ClipperLib}!CleanPolygon@{CleanPolygon}|hyperpage}{16}
+\indexentry{CleanPolygon@{CleanPolygon}!ClipperLib@{ClipperLib}|hyperpage}{16}
+\indexentry{ClipperLib@{ClipperLib}!CleanPolygons@{CleanPolygons}|hyperpage}{16}
+\indexentry{CleanPolygons@{CleanPolygons}!ClipperLib@{ClipperLib}|hyperpage}{16}
+\indexentry{ClipperLib@{ClipperLib}!CleanPolygons@{CleanPolygons}|hyperpage}{17}
+\indexentry{CleanPolygons@{CleanPolygons}!ClipperLib@{ClipperLib}|hyperpage}{17}
+\indexentry{ClipperLib@{ClipperLib}!ClosedPathsFromPolyTree@{ClosedPathsFromPolyTree}|hyperpage}{17}
+\indexentry{ClosedPathsFromPolyTree@{ClosedPathsFromPolyTree}!ClipperLib@{ClipperLib}|hyperpage}{17}
+\indexentry{ClipperLib@{ClipperLib}!DisposeOutPts@{DisposeOutPts}|hyperpage}{17}
+\indexentry{DisposeOutPts@{DisposeOutPts}!ClipperLib@{ClipperLib}|hyperpage}{17}
+\indexentry{ClipperLib@{ClipperLib}!DistanceFromLineSqrd@{DistanceFromLineSqrd}|hyperpage}{17}
+\indexentry{DistanceFromLineSqrd@{DistanceFromLineSqrd}!ClipperLib@{ClipperLib}|hyperpage}{17}
+\indexentry{ClipperLib@{ClipperLib}!DistanceSqrd@{DistanceSqrd}|hyperpage}{17}
+\indexentry{DistanceSqrd@{DistanceSqrd}!ClipperLib@{ClipperLib}|hyperpage}{17}
+\indexentry{ClipperLib@{ClipperLib}!DupOutPt@{DupOutPt}|hyperpage}{17}
+\indexentry{DupOutPt@{DupOutPt}!ClipperLib@{ClipperLib}|hyperpage}{17}
+\indexentry{ClipperLib@{ClipperLib}!E2InsertsBeforeE1@{E2InsertsBeforeE1}|hyperpage}{18}
+\indexentry{E2InsertsBeforeE1@{E2InsertsBeforeE1}!ClipperLib@{ClipperLib}|hyperpage}{18}
+\indexentry{ClipperLib@{ClipperLib}!EdgesAdjacent@{EdgesAdjacent}|hyperpage}{18}
+\indexentry{EdgesAdjacent@{EdgesAdjacent}!ClipperLib@{ClipperLib}|hyperpage}{18}
+\indexentry{ClipperLib@{ClipperLib}!ExcludeOp@{ExcludeOp}|hyperpage}{18}
+\indexentry{ExcludeOp@{ExcludeOp}!ClipperLib@{ClipperLib}|hyperpage}{18}
+\indexentry{ClipperLib@{ClipperLib}!FindNextLocMin@{FindNextLocMin}|hyperpage}{18}
+\indexentry{FindNextLocMin@{FindNextLocMin}!ClipperLib@{ClipperLib}|hyperpage}{18}
+\indexentry{ClipperLib@{ClipperLib}!FirstIsBottomPt@{FirstIsBottomPt}|hyperpage}{18}
+\indexentry{FirstIsBottomPt@{FirstIsBottomPt}!ClipperLib@{ClipperLib}|hyperpage}{18}
+\indexentry{ClipperLib@{ClipperLib}!GetBottomPt@{GetBottomPt}|hyperpage}{18}
+\indexentry{GetBottomPt@{GetBottomPt}!ClipperLib@{ClipperLib}|hyperpage}{18}
+\indexentry{ClipperLib@{ClipperLib}!GetDx@{GetDx}|hyperpage}{19}
+\indexentry{GetDx@{GetDx}!ClipperLib@{ClipperLib}|hyperpage}{19}
+\indexentry{ClipperLib@{ClipperLib}!GetHorzDirection@{GetHorzDirection}|hyperpage}{19}
+\indexentry{GetHorzDirection@{GetHorzDirection}!ClipperLib@{ClipperLib}|hyperpage}{19}
+\indexentry{ClipperLib@{ClipperLib}!GetLowermostRec@{GetLowermostRec}|hyperpage}{19}
+\indexentry{GetLowermostRec@{GetLowermostRec}!ClipperLib@{ClipperLib}|hyperpage}{19}
+\indexentry{ClipperLib@{ClipperLib}!GetMaximaPair@{GetMaximaPair}|hyperpage}{19}
+\indexentry{GetMaximaPair@{GetMaximaPair}!ClipperLib@{ClipperLib}|hyperpage}{19}
+\indexentry{ClipperLib@{ClipperLib}!GetMaximaPairEx@{GetMaximaPairEx}|hyperpage}{19}
+\indexentry{GetMaximaPairEx@{GetMaximaPairEx}!ClipperLib@{ClipperLib}|hyperpage}{19}
+\indexentry{ClipperLib@{ClipperLib}!GetNextInAEL@{GetNextInAEL}|hyperpage}{19}
+\indexentry{GetNextInAEL@{GetNextInAEL}!ClipperLib@{ClipperLib}|hyperpage}{19}
+\indexentry{ClipperLib@{ClipperLib}!GetOverlap@{GetOverlap}|hyperpage}{20}
+\indexentry{GetOverlap@{GetOverlap}!ClipperLib@{ClipperLib}|hyperpage}{20}
+\indexentry{ClipperLib@{ClipperLib}!GetOverlapSegment@{GetOverlapSegment}|hyperpage}{20}
+\indexentry{GetOverlapSegment@{GetOverlapSegment}!ClipperLib@{ClipperLib}|hyperpage}{20}
+\indexentry{ClipperLib@{ClipperLib}!GetUnitNormal@{GetUnitNormal}|hyperpage}{20}
+\indexentry{GetUnitNormal@{GetUnitNormal}!ClipperLib@{ClipperLib}|hyperpage}{20}
+\indexentry{ClipperLib@{ClipperLib}!HorzSegmentsOverlap@{HorzSegmentsOverlap}|hyperpage}{20}
+\indexentry{HorzSegmentsOverlap@{HorzSegmentsOverlap}!ClipperLib@{ClipperLib}|hyperpage}{20}
+\indexentry{ClipperLib@{ClipperLib}!InitEdge@{InitEdge}|hyperpage}{20}
+\indexentry{InitEdge@{InitEdge}!ClipperLib@{ClipperLib}|hyperpage}{20}
+\indexentry{ClipperLib@{ClipperLib}!InitEdge2@{InitEdge2}|hyperpage}{21}
+\indexentry{InitEdge2@{InitEdge2}!ClipperLib@{ClipperLib}|hyperpage}{21}
+\indexentry{ClipperLib@{ClipperLib}!Int128Mul@{Int128Mul}|hyperpage}{21}
+\indexentry{Int128Mul@{Int128Mul}!ClipperLib@{ClipperLib}|hyperpage}{21}
+\indexentry{ClipperLib@{ClipperLib}!IntersectListSort@{IntersectListSort}|hyperpage}{21}
+\indexentry{IntersectListSort@{IntersectListSort}!ClipperLib@{ClipperLib}|hyperpage}{21}
+\indexentry{ClipperLib@{ClipperLib}!IntersectPoint@{IntersectPoint}|hyperpage}{21}
+\indexentry{IntersectPoint@{IntersectPoint}!ClipperLib@{ClipperLib}|hyperpage}{21}
+\indexentry{ClipperLib@{ClipperLib}!IsHorizontal@{IsHorizontal}|hyperpage}{21}
+\indexentry{IsHorizontal@{IsHorizontal}!ClipperLib@{ClipperLib}|hyperpage}{21}
+\indexentry{ClipperLib@{ClipperLib}!IsIntermediate@{IsIntermediate}|hyperpage}{21}
+\indexentry{IsIntermediate@{IsIntermediate}!ClipperLib@{ClipperLib}|hyperpage}{21}
+\indexentry{ClipperLib@{ClipperLib}!IsMaxima@{IsMaxima}|hyperpage}{22}
+\indexentry{IsMaxima@{IsMaxima}!ClipperLib@{ClipperLib}|hyperpage}{22}
+\indexentry{ClipperLib@{ClipperLib}!IsMinima@{IsMinima}|hyperpage}{22}
+\indexentry{IsMinima@{IsMinima}!ClipperLib@{ClipperLib}|hyperpage}{22}
+\indexentry{ClipperLib@{ClipperLib}!JoinHorz@{JoinHorz}|hyperpage}{22}
+\indexentry{JoinHorz@{JoinHorz}!ClipperLib@{ClipperLib}|hyperpage}{22}
+\indexentry{ClipperLib@{ClipperLib}!Minkowski@{Minkowski}|hyperpage}{22}
+\indexentry{Minkowski@{Minkowski}!ClipperLib@{ClipperLib}|hyperpage}{22}
+\indexentry{ClipperLib@{ClipperLib}!MinkowskiDiff@{MinkowskiDiff}|hyperpage}{22}
+\indexentry{MinkowskiDiff@{MinkowskiDiff}!ClipperLib@{ClipperLib}|hyperpage}{22}
+\indexentry{ClipperLib@{ClipperLib}!MinkowskiSum@{MinkowskiSum}|hyperpage}{23}
+\indexentry{MinkowskiSum@{MinkowskiSum}!ClipperLib@{ClipperLib}|hyperpage}{23}
+\indexentry{ClipperLib@{ClipperLib}!MinkowskiSum@{MinkowskiSum}|hyperpage}{23}
+\indexentry{MinkowskiSum@{MinkowskiSum}!ClipperLib@{ClipperLib}|hyperpage}{23}
+\indexentry{ClipperLib@{ClipperLib}!OpenPathsFromPolyTree@{OpenPathsFromPolyTree}|hyperpage}{23}
+\indexentry{OpenPathsFromPolyTree@{OpenPathsFromPolyTree}!ClipperLib@{ClipperLib}|hyperpage}{23}
+\indexentry{ClipperLib@{ClipperLib}!operator$<$$<$@{operator$<$$<$}|hyperpage}{23}
+\indexentry{operator$<$$<$@{operator$<$$<$}!ClipperLib@{ClipperLib}|hyperpage}{23}
+\indexentry{ClipperLib@{ClipperLib}!operator$<$$<$@{operator$<$$<$}|hyperpage}{23}
+\indexentry{operator$<$$<$@{operator$<$$<$}!ClipperLib@{ClipperLib}|hyperpage}{23}
+\indexentry{ClipperLib@{ClipperLib}!operator$<$$<$@{operator$<$$<$}|hyperpage}{23}
+\indexentry{operator$<$$<$@{operator$<$$<$}!ClipperLib@{ClipperLib}|hyperpage}{23}
+\indexentry{ClipperLib@{ClipperLib}!operator$<$$<$@{operator$<$$<$}|hyperpage}{24}
+\indexentry{operator$<$$<$@{operator$<$$<$}!ClipperLib@{ClipperLib}|hyperpage}{24}
+\indexentry{ClipperLib@{ClipperLib}!operator$<$$<$@{operator$<$$<$}|hyperpage}{24}
+\indexentry{operator$<$$<$@{operator$<$$<$}!ClipperLib@{ClipperLib}|hyperpage}{24}
+\indexentry{ClipperLib@{ClipperLib}!Orientation@{Orientation}|hyperpage}{24}
+\indexentry{Orientation@{Orientation}!ClipperLib@{ClipperLib}|hyperpage}{24}
+\indexentry{ClipperLib@{ClipperLib}!OutRec1RightOfOutRec2@{OutRec1RightOfOutRec2}|hyperpage}{24}
+\indexentry{OutRec1RightOfOutRec2@{OutRec1RightOfOutRec2}!ClipperLib@{ClipperLib}|hyperpage}{24}
+\indexentry{ClipperLib@{ClipperLib}!ParseFirstLeft@{ParseFirstLeft}|hyperpage}{24}
+\indexentry{ParseFirstLeft@{ParseFirstLeft}!ClipperLib@{ClipperLib}|hyperpage}{24}
+\indexentry{ClipperLib@{ClipperLib}!PointCount@{PointCount}|hyperpage}{24}
+\indexentry{PointCount@{PointCount}!ClipperLib@{ClipperLib}|hyperpage}{24}
+\indexentry{ClipperLib@{ClipperLib}!PointInPolygon@{PointInPolygon}|hyperpage}{25}
+\indexentry{PointInPolygon@{PointInPolygon}!ClipperLib@{ClipperLib}|hyperpage}{25}
+\indexentry{ClipperLib@{ClipperLib}!PointInPolygon@{PointInPolygon}|hyperpage}{25}
+\indexentry{PointInPolygon@{PointInPolygon}!ClipperLib@{ClipperLib}|hyperpage}{25}
+\indexentry{ClipperLib@{ClipperLib}!PointIsVertex@{PointIsVertex}|hyperpage}{25}
+\indexentry{PointIsVertex@{PointIsVertex}!ClipperLib@{ClipperLib}|hyperpage}{25}
+\indexentry{ClipperLib@{ClipperLib}!PointsAreClose@{PointsAreClose}|hyperpage}{25}
+\indexentry{PointsAreClose@{PointsAreClose}!ClipperLib@{ClipperLib}|hyperpage}{25}
+\indexentry{ClipperLib@{ClipperLib}!Poly2ContainsPoly1@{Poly2ContainsPoly1}|hyperpage}{25}
+\indexentry{Poly2ContainsPoly1@{Poly2ContainsPoly1}!ClipperLib@{ClipperLib}|hyperpage}{25}
+\indexentry{ClipperLib@{ClipperLib}!PolyTreeToPaths@{PolyTreeToPaths}|hyperpage}{25}
+\indexentry{PolyTreeToPaths@{PolyTreeToPaths}!ClipperLib@{ClipperLib}|hyperpage}{25}
+\indexentry{ClipperLib@{ClipperLib}!Pt2IsBetweenPt1AndPt3@{Pt2IsBetweenPt1AndPt3}|hyperpage}{26}
+\indexentry{Pt2IsBetweenPt1AndPt3@{Pt2IsBetweenPt1AndPt3}!ClipperLib@{ClipperLib}|hyperpage}{26}
+\indexentry{ClipperLib@{ClipperLib}!RangeTest@{RangeTest}|hyperpage}{26}
+\indexentry{RangeTest@{RangeTest}!ClipperLib@{ClipperLib}|hyperpage}{26}
+\indexentry{ClipperLib@{ClipperLib}!RemoveEdge@{RemoveEdge}|hyperpage}{26}
+\indexentry{RemoveEdge@{RemoveEdge}!ClipperLib@{ClipperLib}|hyperpage}{26}
+\indexentry{ClipperLib@{ClipperLib}!ReverseHorizontal@{ReverseHorizontal}|hyperpage}{26}
+\indexentry{ReverseHorizontal@{ReverseHorizontal}!ClipperLib@{ClipperLib}|hyperpage}{26}
+\indexentry{ClipperLib@{ClipperLib}!ReversePath@{ReversePath}|hyperpage}{26}
+\indexentry{ReversePath@{ReversePath}!ClipperLib@{ClipperLib}|hyperpage}{26}
+\indexentry{ClipperLib@{ClipperLib}!ReversePaths@{ReversePaths}|hyperpage}{26}
+\indexentry{ReversePaths@{ReversePaths}!ClipperLib@{ClipperLib}|hyperpage}{26}
+\indexentry{ClipperLib@{ClipperLib}!ReversePolyPtLinks@{ReversePolyPtLinks}|hyperpage}{27}
+\indexentry{ReversePolyPtLinks@{ReversePolyPtLinks}!ClipperLib@{ClipperLib}|hyperpage}{27}
+\indexentry{ClipperLib@{ClipperLib}!Round@{Round}|hyperpage}{27}
+\indexentry{Round@{Round}!ClipperLib@{ClipperLib}|hyperpage}{27}
+\indexentry{ClipperLib@{ClipperLib}!SetDx@{SetDx}|hyperpage}{27}
+\indexentry{SetDx@{SetDx}!ClipperLib@{ClipperLib}|hyperpage}{27}
+\indexentry{ClipperLib@{ClipperLib}!SimplifyPolygon@{SimplifyPolygon}|hyperpage}{27}
+\indexentry{SimplifyPolygon@{SimplifyPolygon}!ClipperLib@{ClipperLib}|hyperpage}{27}
+\indexentry{ClipperLib@{ClipperLib}!SimplifyPolygons@{SimplifyPolygons}|hyperpage}{27}
+\indexentry{SimplifyPolygons@{SimplifyPolygons}!ClipperLib@{ClipperLib}|hyperpage}{27}
+\indexentry{ClipperLib@{ClipperLib}!SimplifyPolygons@{SimplifyPolygons}|hyperpage}{27}
+\indexentry{SimplifyPolygons@{SimplifyPolygons}!ClipperLib@{ClipperLib}|hyperpage}{27}
+\indexentry{ClipperLib@{ClipperLib}!SlopesEqual@{SlopesEqual}|hyperpage}{28}
+\indexentry{SlopesEqual@{SlopesEqual}!ClipperLib@{ClipperLib}|hyperpage}{28}
+\indexentry{ClipperLib@{ClipperLib}!SlopesEqual@{SlopesEqual}|hyperpage}{28}
+\indexentry{SlopesEqual@{SlopesEqual}!ClipperLib@{ClipperLib}|hyperpage}{28}
+\indexentry{ClipperLib@{ClipperLib}!SlopesEqual@{SlopesEqual}|hyperpage}{28}
+\indexentry{SlopesEqual@{SlopesEqual}!ClipperLib@{ClipperLib}|hyperpage}{28}
+\indexentry{ClipperLib@{ClipperLib}!SlopesNearCollinear@{SlopesNearCollinear}|hyperpage}{28}
+\indexentry{SlopesNearCollinear@{SlopesNearCollinear}!ClipperLib@{ClipperLib}|hyperpage}{28}
+\indexentry{ClipperLib@{ClipperLib}!SwapIntersectNodes@{SwapIntersectNodes}|hyperpage}{28}
+\indexentry{SwapIntersectNodes@{SwapIntersectNodes}!ClipperLib@{ClipperLib}|hyperpage}{28}
+\indexentry{ClipperLib@{ClipperLib}!SwapPoints@{SwapPoints}|hyperpage}{29}
+\indexentry{SwapPoints@{SwapPoints}!ClipperLib@{ClipperLib}|hyperpage}{29}
+\indexentry{ClipperLib@{ClipperLib}!SwapPolyIndexes@{SwapPolyIndexes}|hyperpage}{29}
+\indexentry{SwapPolyIndexes@{SwapPolyIndexes}!ClipperLib@{ClipperLib}|hyperpage}{29}
+\indexentry{ClipperLib@{ClipperLib}!SwapSides@{SwapSides}|hyperpage}{29}
+\indexentry{SwapSides@{SwapSides}!ClipperLib@{ClipperLib}|hyperpage}{29}
+\indexentry{ClipperLib@{ClipperLib}!TopX@{TopX}|hyperpage}{29}
+\indexentry{TopX@{TopX}!ClipperLib@{ClipperLib}|hyperpage}{29}
+\indexentry{ClipperLib@{ClipperLib}!TranslatePath@{TranslatePath}|hyperpage}{29}
+\indexentry{TranslatePath@{TranslatePath}!ClipperLib@{ClipperLib}|hyperpage}{29}
+\indexentry{ClipperLib@{ClipperLib}!UpdateOutPtIdxs@{UpdateOutPtIdxs}|hyperpage}{29}
+\indexentry{UpdateOutPtIdxs@{UpdateOutPtIdxs}!ClipperLib@{ClipperLib}|hyperpage}{29}
+\indexentry{ClipperLib@{ClipperLib}!def\_arc\_tolerance@{def\_arc\_tolerance}|hyperpage}{30}
+\indexentry{def\_arc\_tolerance@{def\_arc\_tolerance}!ClipperLib@{ClipperLib}|hyperpage}{30}
+\indexentry{ClipperLib@{ClipperLib}!hiRange@{hiRange}|hyperpage}{30}
+\indexentry{hiRange@{hiRange}!ClipperLib@{ClipperLib}|hyperpage}{30}
+\indexentry{ClipperLib@{ClipperLib}!loRange@{loRange}|hyperpage}{30}
+\indexentry{loRange@{loRange}!ClipperLib@{ClipperLib}|hyperpage}{30}
+\indexentry{ClipperLib@{ClipperLib}!pi@{pi}|hyperpage}{30}
+\indexentry{pi@{pi}!ClipperLib@{ClipperLib}|hyperpage}{30}
+\indexentry{ClipperLib@{ClipperLib}!Skip@{Skip}|hyperpage}{30}
+\indexentry{Skip@{Skip}!ClipperLib@{ClipperLib}|hyperpage}{30}
+\indexentry{ClipperLib@{ClipperLib}!two\_pi@{two\_pi}|hyperpage}{30}
+\indexentry{two\_pi@{two\_pi}!ClipperLib@{ClipperLib}|hyperpage}{30}
+\indexentry{ClipperLib@{ClipperLib}!Unassigned@{Unassigned}|hyperpage}{30}
+\indexentry{Unassigned@{Unassigned}!ClipperLib@{ClipperLib}|hyperpage}{30}
+\indexentry{DW@{DW}|hyperpage}{31}
+\indexentry{DW@{DW}!changeBuffer@{changeBuffer}|hyperpage}{31}
+\indexentry{changeBuffer@{changeBuffer}!DW@{DW}|hyperpage}{31}
+\indexentry{DW@{DW}!init@{init}|hyperpage}{31}
+\indexentry{init@{init}!DW@{DW}|hyperpage}{31}
+\indexentry{DW@{DW}!map\_buffer@{map\_buffer}|hyperpage}{31}
+\indexentry{map\_buffer@{map\_buffer}!DW@{DW}|hyperpage}{31}
+\indexentry{DW@{DW}!window@{window}|hyperpage}{31}
+\indexentry{window@{window}!DW@{DW}|hyperpage}{31}
+\indexentry{timeutils@{timeutils}|hyperpage}{32}
+\indexentry{timeutils@{timeutils}!getTimeS@{getTimeS}|hyperpage}{32}
+\indexentry{getTimeS@{getTimeS}!timeutils@{timeutils}|hyperpage}{32}
+\indexentry{timeutils@{timeutils}!timespecDiff@{timespecDiff}|hyperpage}{32}
+\indexentry{timespecDiff@{timespecDiff}!timeutils@{timeutils}|hyperpage}{32}
+\indexentry{Angle@{Angle}|hyperpage}{33}
+\indexentry{Angle@{Angle}!ANGLE\_TYPE@{ANGLE\_TYPE}|hyperpage}{35}
+\indexentry{ANGLE\_TYPE@{ANGLE\_TYPE}!Angle@{Angle}|hyperpage}{35}
+\indexentry{DEG@{DEG}!Angle@{Angle}|hyperpage}{35}
+\indexentry{Angle@{Angle}!DEG@{DEG}|hyperpage}{35}
+\indexentry{RAD@{RAD}!Angle@{Angle}|hyperpage}{35}
+\indexentry{Angle@{Angle}!RAD@{RAD}|hyperpage}{35}
+\indexentry{INVALID@{INVALID}!Angle@{Angle}|hyperpage}{35}
+\indexentry{Angle@{Angle}!INVALID@{INVALID}|hyperpage}{35}
+\indexentry{Angle@{Angle}!Angle@{Angle}|hyperpage}{35}
+\indexentry{Angle@{Angle}!Angle@{Angle}|hyperpage}{35}
+\indexentry{Angle@{Angle}!Angle@{Angle}|hyperpage}{35}
+\indexentry{Angle@{Angle}!Angle@{Angle}|hyperpage}{35}
+\indexentry{Angle@{Angle}!add@{add}|hyperpage}{36}
+\indexentry{add@{add}!Angle@{Angle}|hyperpage}{36}
+\indexentry{Angle@{Angle}!checkValue@{checkValue}|hyperpage}{36}
+\indexentry{checkValue@{checkValue}!Angle@{Angle}|hyperpage}{36}
+\indexentry{Angle@{Angle}!copy@{copy}|hyperpage}{36}
+\indexentry{copy@{copy}!Angle@{Angle}|hyperpage}{36}
+\indexentry{Angle@{Angle}!cos@{cos}|hyperpage}{37}
+\indexentry{cos@{cos}!Angle@{Angle}|hyperpage}{37}
+\indexentry{Angle@{Angle}!degToRad@{degToRad}|hyperpage}{37}
+\indexentry{degToRad@{degToRad}!Angle@{Angle}|hyperpage}{37}
+\indexentry{Angle@{Angle}!div@{div}|hyperpage}{37}
+\indexentry{div@{div}!Angle@{Angle}|hyperpage}{37}
+\indexentry{Angle@{Angle}!equal@{equal}|hyperpage}{37}
+\indexentry{equal@{equal}!Angle@{Angle}|hyperpage}{37}
+\indexentry{Angle@{Angle}!get@{get}|hyperpage}{38}
+\indexentry{get@{get}!Angle@{Angle}|hyperpage}{38}
+\indexentry{Angle@{Angle}!getType@{getType}|hyperpage}{38}
+\indexentry{getType@{getType}!Angle@{Angle}|hyperpage}{38}
+\indexentry{Angle@{Angle}!getTypeName@{getTypeName}|hyperpage}{38}
+\indexentry{getTypeName@{getTypeName}!Angle@{Angle}|hyperpage}{38}
+\indexentry{Angle@{Angle}!mul@{mul}|hyperpage}{38}
+\indexentry{mul@{mul}!Angle@{Angle}|hyperpage}{38}
+\indexentry{Angle@{Angle}!normalize@{normalize}|hyperpage}{39}
+\indexentry{normalize@{normalize}!Angle@{Angle}|hyperpage}{39}
+\indexentry{Angle@{Angle}!operator $\ast$@{operator $\ast$}|hyperpage}{39}
+\indexentry{operator $\ast$@{operator $\ast$}!Angle@{Angle}|hyperpage}{39}
+\indexentry{Angle@{Angle}!operator $\ast$=@{operator $\ast$=}|hyperpage}{39}
+\indexentry{operator $\ast$=@{operator $\ast$=}!Angle@{Angle}|hyperpage}{39}
+\indexentry{Angle@{Angle}!operator double@{operator double}|hyperpage}{40}
+\indexentry{operator double@{operator double}!Angle@{Angle}|hyperpage}{40}
+\indexentry{Angle@{Angle}!operator float@{operator float}|hyperpage}{40}
+\indexentry{operator float@{operator float}!Angle@{Angle}|hyperpage}{40}
+\indexentry{Angle@{Angle}!operator int@{operator int}|hyperpage}{40}
+\indexentry{operator int@{operator int}!Angle@{Angle}|hyperpage}{40}
+\indexentry{Angle@{Angle}!operator long@{operator long}|hyperpage}{40}
+\indexentry{operator long@{operator long}!Angle@{Angle}|hyperpage}{40}
+\indexentry{Angle@{Angle}!operator"!=@{operator"!=}|hyperpage}{41}
+\indexentry{operator"!=@{operator"!=}!Angle@{Angle}|hyperpage}{41}
+\indexentry{Angle@{Angle}!operator+@{operator+}|hyperpage}{41}
+\indexentry{operator+@{operator+}!Angle@{Angle}|hyperpage}{41}
+\indexentry{Angle@{Angle}!operator+=@{operator+=}|hyperpage}{41}
+\indexentry{operator+=@{operator+=}!Angle@{Angle}|hyperpage}{41}
+\indexentry{Angle@{Angle}!operator-\/@{operator-\/}|hyperpage}{42}
+\indexentry{operator-\/@{operator-\/}!Angle@{Angle}|hyperpage}{42}
+\indexentry{Angle@{Angle}!operator-\/=@{operator-\/=}|hyperpage}{42}
+\indexentry{operator-\/=@{operator-\/=}!Angle@{Angle}|hyperpage}{42}
+\indexentry{Angle@{Angle}!operator/@{operator/}|hyperpage}{43}
+\indexentry{operator/@{operator/}!Angle@{Angle}|hyperpage}{43}
+\indexentry{Angle@{Angle}!operator/=@{operator/=}|hyperpage}{43}
+\indexentry{operator/=@{operator/=}!Angle@{Angle}|hyperpage}{43}
+\indexentry{Angle@{Angle}!operator=@{operator=}|hyperpage}{43}
+\indexentry{operator=@{operator=}!Angle@{Angle}|hyperpage}{43}
+\indexentry{Angle@{Angle}!operator=@{operator=}|hyperpage}{44}
+\indexentry{operator=@{operator=}!Angle@{Angle}|hyperpage}{44}
+\indexentry{Angle@{Angle}!operator==@{operator==}|hyperpage}{44}
+\indexentry{operator==@{operator==}!Angle@{Angle}|hyperpage}{44}
+\indexentry{Angle@{Angle}!radToDeg@{radToDeg}|hyperpage}{44}
+\indexentry{radToDeg@{radToDeg}!Angle@{Angle}|hyperpage}{44}
+\indexentry{Angle@{Angle}!set@{set}|hyperpage}{44}
+\indexentry{set@{set}!Angle@{Angle}|hyperpage}{44}
+\indexentry{Angle@{Angle}!setType@{setType}|hyperpage}{45}
+\indexentry{setType@{setType}!Angle@{Angle}|hyperpage}{45}
+\indexentry{Angle@{Angle}!sin@{sin}|hyperpage}{45}
+\indexentry{sin@{sin}!Angle@{Angle}|hyperpage}{45}
+\indexentry{Angle@{Angle}!sub@{sub}|hyperpage}{45}
+\indexentry{sub@{sub}!Angle@{Angle}|hyperpage}{45}
+\indexentry{Angle@{Angle}!tan@{tan}|hyperpage}{46}
+\indexentry{tan@{tan}!Angle@{Angle}|hyperpage}{46}
+\indexentry{Angle@{Angle}!to\_string@{to\_string}|hyperpage}{46}
+\indexentry{to\_string@{to\_string}!Angle@{Angle}|hyperpage}{46}
+\indexentry{Angle@{Angle}!toDeg@{toDeg}|hyperpage}{46}
+\indexentry{toDeg@{toDeg}!Angle@{Angle}|hyperpage}{46}
+\indexentry{Angle@{Angle}!toRad@{toRad}|hyperpage}{46}
+\indexentry{toRad@{toRad}!Angle@{Angle}|hyperpage}{46}
+\indexentry{Angle@{Angle}!operator$<$$<$@{operator$<$$<$}|hyperpage}{46}
+\indexentry{operator$<$$<$@{operator$<$$<$}!Angle@{Angle}|hyperpage}{46}
+\indexentry{CalSettings@{CalSettings}|hyperpage}{47}
+\indexentry{CalSettings@{CalSettings}!InputType@{InputType}|hyperpage}{49}
+\indexentry{InputType@{InputType}!CalSettings@{CalSettings}|hyperpage}{49}
+\indexentry{INVALID@{INVALID}!CalSettings@{CalSettings}|hyperpage}{49}
+\indexentry{CalSettings@{CalSettings}!INVALID@{INVALID}|hyperpage}{49}
+\indexentry{IMAGE\_LIST@{IMAGE\_LIST}!CalSettings@{CalSettings}|hyperpage}{49}
+\indexentry{CalSettings@{CalSettings}!IMAGE\_LIST@{IMAGE\_LIST}|hyperpage}{49}
+\indexentry{CalSettings@{CalSettings}!Pattern@{Pattern}|hyperpage}{49}
+\indexentry{Pattern@{Pattern}!CalSettings@{CalSettings}|hyperpage}{49}
+\indexentry{NOT\_EXISTING@{NOT\_EXISTING}!CalSettings@{CalSettings}|hyperpage}{49}
+\indexentry{CalSettings@{CalSettings}!NOT\_EXISTING@{NOT\_EXISTING}|hyperpage}{49}
+\indexentry{CHESSBOARD@{CHESSBOARD}!CalSettings@{CalSettings}|hyperpage}{49}
+\indexentry{CalSettings@{CalSettings}!CHESSBOARD@{CHESSBOARD}|hyperpage}{49}
+\indexentry{CalSettings@{CalSettings}!CalSettings@{CalSettings}|hyperpage}{49}
+\indexentry{CalSettings@{CalSettings}!CalSettings@{CalSettings}|hyperpage}{49}
+\indexentry{CalSettings@{CalSettings}!isListOfImages@{isListOfImages}|hyperpage}{49}
+\indexentry{isListOfImages@{isListOfImages}!CalSettings@{CalSettings}|hyperpage}{49}
+\indexentry{CalSettings@{CalSettings}!nextImage@{nextImage}|hyperpage}{50}
+\indexentry{nextImage@{nextImage}!CalSettings@{CalSettings}|hyperpage}{50}
+\indexentry{CalSettings@{CalSettings}!read@{read}|hyperpage}{50}
+\indexentry{read@{read}!CalSettings@{CalSettings}|hyperpage}{50}
+\indexentry{CalSettings@{CalSettings}!readStringList@{readStringList}|hyperpage}{50}
+\indexentry{readStringList@{readStringList}!CalSettings@{CalSettings}|hyperpage}{50}
+\indexentry{CalSettings@{CalSettings}!validate@{validate}|hyperpage}{51}
+\indexentry{validate@{validate}!CalSettings@{CalSettings}|hyperpage}{51}
+\indexentry{CalSettings@{CalSettings}!write@{write}|hyperpage}{51}
+\indexentry{write@{write}!CalSettings@{CalSettings}|hyperpage}{51}
+\indexentry{CalSettings@{CalSettings}!aspectRatio@{aspectRatio}|hyperpage}{52}
+\indexentry{aspectRatio@{aspectRatio}!CalSettings@{CalSettings}|hyperpage}{52}
+\indexentry{CalSettings@{CalSettings}!atImageList@{atImageList}|hyperpage}{52}
+\indexentry{atImageList@{atImageList}!CalSettings@{CalSettings}|hyperpage}{52}
+\indexentry{CalSettings@{CalSettings}!boardSize@{boardSize}|hyperpage}{52}
+\indexentry{boardSize@{boardSize}!CalSettings@{CalSettings}|hyperpage}{52}
+\indexentry{CalSettings@{CalSettings}!calibFixPrincipalPoint@{calibFixPrincipalPoint}|hyperpage}{52}
+\indexentry{calibFixPrincipalPoint@{calibFixPrincipalPoint}!CalSettings@{CalSettings}|hyperpage}{52}
+\indexentry{CalSettings@{CalSettings}!calibrationPattern@{calibrationPattern}|hyperpage}{52}
+\indexentry{calibrationPattern@{calibrationPattern}!CalSettings@{CalSettings}|hyperpage}{52}
+\indexentry{CalSettings@{CalSettings}!calibZeroTangentDist@{calibZeroTangentDist}|hyperpage}{52}
+\indexentry{calibZeroTangentDist@{calibZeroTangentDist}!CalSettings@{CalSettings}|hyperpage}{52}
+\indexentry{CalSettings@{CalSettings}!cameraID@{cameraID}|hyperpage}{52}
+\indexentry{cameraID@{cameraID}!CalSettings@{CalSettings}|hyperpage}{52}
+\indexentry{CalSettings@{CalSettings}!delay@{delay}|hyperpage}{53}
+\indexentry{delay@{delay}!CalSettings@{CalSettings}|hyperpage}{53}
+\indexentry{CalSettings@{CalSettings}!fixK1@{fixK1}|hyperpage}{53}
+\indexentry{fixK1@{fixK1}!CalSettings@{CalSettings}|hyperpage}{53}
+\indexentry{CalSettings@{CalSettings}!fixK2@{fixK2}|hyperpage}{53}
+\indexentry{fixK2@{fixK2}!CalSettings@{CalSettings}|hyperpage}{53}
+\indexentry{CalSettings@{CalSettings}!fixK3@{fixK3}|hyperpage}{53}
+\indexentry{fixK3@{fixK3}!CalSettings@{CalSettings}|hyperpage}{53}
+\indexentry{CalSettings@{CalSettings}!fixK4@{fixK4}|hyperpage}{53}
+\indexentry{fixK4@{fixK4}!CalSettings@{CalSettings}|hyperpage}{53}
+\indexentry{CalSettings@{CalSettings}!fixK5@{fixK5}|hyperpage}{53}
+\indexentry{fixK5@{fixK5}!CalSettings@{CalSettings}|hyperpage}{53}
+\indexentry{CalSettings@{CalSettings}!flag@{flag}|hyperpage}{54}
+\indexentry{flag@{flag}!CalSettings@{CalSettings}|hyperpage}{54}
+\indexentry{CalSettings@{CalSettings}!flipVertical@{flipVertical}|hyperpage}{54}
+\indexentry{flipVertical@{flipVertical}!CalSettings@{CalSettings}|hyperpage}{54}
+\indexentry{CalSettings@{CalSettings}!goodInput@{goodInput}|hyperpage}{54}
+\indexentry{goodInput@{goodInput}!CalSettings@{CalSettings}|hyperpage}{54}
+\indexentry{CalSettings@{CalSettings}!imageList@{imageList}|hyperpage}{54}
+\indexentry{imageList@{imageList}!CalSettings@{CalSettings}|hyperpage}{54}
+\indexentry{CalSettings@{CalSettings}!input@{input}|hyperpage}{54}
+\indexentry{input@{input}!CalSettings@{CalSettings}|hyperpage}{54}
+\indexentry{CalSettings@{CalSettings}!inputCapture@{inputCapture}|hyperpage}{54}
+\indexentry{inputCapture@{inputCapture}!CalSettings@{CalSettings}|hyperpage}{54}
+\indexentry{CalSettings@{CalSettings}!inputType@{inputType}|hyperpage}{54}
+\indexentry{inputType@{inputType}!CalSettings@{CalSettings}|hyperpage}{54}
+\indexentry{CalSettings@{CalSettings}!nrFrames@{nrFrames}|hyperpage}{55}
+\indexentry{nrFrames@{nrFrames}!CalSettings@{CalSettings}|hyperpage}{55}
+\indexentry{CalSettings@{CalSettings}!outputFileName@{outputFileName}|hyperpage}{55}
+\indexentry{outputFileName@{outputFileName}!CalSettings@{CalSettings}|hyperpage}{55}
+\indexentry{CalSettings@{CalSettings}!showUndistorsed@{showUndistorsed}|hyperpage}{55}
+\indexentry{showUndistorsed@{showUndistorsed}!CalSettings@{CalSettings}|hyperpage}{55}
+\indexentry{CalSettings@{CalSettings}!squareSize@{squareSize}|hyperpage}{55}
+\indexentry{squareSize@{squareSize}!CalSettings@{CalSettings}|hyperpage}{55}
+\indexentry{CalSettings@{CalSettings}!useFisheye@{useFisheye}|hyperpage}{55}
+\indexentry{useFisheye@{useFisheye}!CalSettings@{CalSettings}|hyperpage}{55}
+\indexentry{CalSettings@{CalSettings}!writeExtrinsics@{writeExtrinsics}|hyperpage}{55}
+\indexentry{writeExtrinsics@{writeExtrinsics}!CalSettings@{CalSettings}|hyperpage}{55}
+\indexentry{CalSettings@{CalSettings}!writePoints@{writePoints}|hyperpage}{56}
+\indexentry{writePoints@{writePoints}!CalSettings@{CalSettings}|hyperpage}{56}
+\indexentry{CameraCapture@{CameraCapture}|hyperpage}{56}
+\indexentry{CameraCapture@{CameraCapture}!CameraCapture@{CameraCapture}|hyperpage}{56}
+\indexentry{CameraCapture@{CameraCapture}!CameraCapture@{CameraCapture}|hyperpage}{56}
+\indexentry{CameraCapture@{CameraCapture}!````~CameraCapture@{$\sim$CameraCapture}|hyperpage}{57}
+\indexentry{````~CameraCapture@{$\sim$CameraCapture}!CameraCapture@{CameraCapture}|hyperpage}{57}
+\indexentry{CameraCapture@{CameraCapture}!grab@{grab}|hyperpage}{57}
+\indexentry{grab@{grab}!CameraCapture@{CameraCapture}|hyperpage}{57}
+\indexentry{CameraCapture@{CameraCapture}!isAlive@{isAlive}|hyperpage}{57}
+\indexentry{isAlive@{isAlive}!CameraCapture@{CameraCapture}|hyperpage}{57}
+\indexentry{CameraCapture@{CameraCapture}!isOpened@{isOpened}|hyperpage}{57}
+\indexentry{isOpened@{isOpened}!CameraCapture@{CameraCapture}|hyperpage}{57}
+\indexentry{CameraCapture@{CameraCapture}!loadCoefficients@{loadCoefficients}|hyperpage}{58}
+\indexentry{loadCoefficients@{loadCoefficients}!CameraCapture@{CameraCapture}|hyperpage}{58}
+\indexentry{CameraCapture@{CameraCapture}!startCamera@{startCamera}|hyperpage}{58}
+\indexentry{startCamera@{startCamera}!CameraCapture@{CameraCapture}|hyperpage}{58}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{58}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}!Clipper@{Clipper}|hyperpage}{59}
+\indexentry{Clipper@{Clipper}!ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{59}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}!Execute@{Execute}|hyperpage}{60}
+\indexentry{Execute@{Execute}!ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{60}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}!Execute@{Execute}|hyperpage}{60}
+\indexentry{Execute@{Execute}!ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{60}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}!Execute@{Execute}|hyperpage}{60}
+\indexentry{Execute@{Execute}!ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{60}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}!Execute@{Execute}|hyperpage}{60}
+\indexentry{Execute@{Execute}!ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{60}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}!ExecuteInternal@{ExecuteInternal}|hyperpage}{60}
+\indexentry{ExecuteInternal@{ExecuteInternal}!ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{60}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}!ReverseSolution@{ReverseSolution}|hyperpage}{61}
+\indexentry{ReverseSolution@{ReverseSolution}!ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{61}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}!ReverseSolution@{ReverseSolution}|hyperpage}{61}
+\indexentry{ReverseSolution@{ReverseSolution}!ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{61}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}!StrictlySimple@{StrictlySimple}|hyperpage}{61}
+\indexentry{StrictlySimple@{StrictlySimple}!ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{61}
+\indexentry{ClipperLib::Clipper@{ClipperLib::Clipper}!StrictlySimple@{StrictlySimple}|hyperpage}{61}
+\indexentry{StrictlySimple@{StrictlySimple}!ClipperLib::Clipper@{ClipperLib::Clipper}|hyperpage}{61}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{62}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!MinimaList@{MinimaList}|hyperpage}{63}
+\indexentry{MinimaList@{MinimaList}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{63}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!ScanbeamList@{ScanbeamList}|hyperpage}{63}
+\indexentry{ScanbeamList@{ScanbeamList}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{63}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!ClipperBase@{ClipperBase}|hyperpage}{64}
+\indexentry{ClipperBase@{ClipperBase}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{64}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!````~ClipperBase@{$\sim$ClipperBase}|hyperpage}{64}
+\indexentry{````~ClipperBase@{$\sim$ClipperBase}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{64}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!AddBoundsToLML@{AddBoundsToLML}|hyperpage}{64}
+\indexentry{AddBoundsToLML@{AddBoundsToLML}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{64}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!AddPath@{AddPath}|hyperpage}{64}
+\indexentry{AddPath@{AddPath}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{64}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!AddPaths@{AddPaths}|hyperpage}{64}
+\indexentry{AddPaths@{AddPaths}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{64}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!Clear@{Clear}|hyperpage}{64}
+\indexentry{Clear@{Clear}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{64}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!CreateOutRec@{CreateOutRec}|hyperpage}{65}
+\indexentry{CreateOutRec@{CreateOutRec}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{65}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!DeleteFromAEL@{DeleteFromAEL}|hyperpage}{65}
+\indexentry{DeleteFromAEL@{DeleteFromAEL}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{65}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!DisposeAllOutRecs@{DisposeAllOutRecs}|hyperpage}{65}
+\indexentry{DisposeAllOutRecs@{DisposeAllOutRecs}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{65}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!DisposeLocalMinimaList@{DisposeLocalMinimaList}|hyperpage}{65}
+\indexentry{DisposeLocalMinimaList@{DisposeLocalMinimaList}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{65}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!DisposeOutRec@{DisposeOutRec}|hyperpage}{65}
+\indexentry{DisposeOutRec@{DisposeOutRec}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{65}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!GetBounds@{GetBounds}|hyperpage}{65}
+\indexentry{GetBounds@{GetBounds}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{65}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!InsertScanbeam@{InsertScanbeam}|hyperpage}{65}
+\indexentry{InsertScanbeam@{InsertScanbeam}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{65}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!LocalMinimaPending@{LocalMinimaPending}|hyperpage}{66}
+\indexentry{LocalMinimaPending@{LocalMinimaPending}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{66}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!PopLocalMinima@{PopLocalMinima}|hyperpage}{66}
+\indexentry{PopLocalMinima@{PopLocalMinima}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{66}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!PopScanbeam@{PopScanbeam}|hyperpage}{66}
+\indexentry{PopScanbeam@{PopScanbeam}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{66}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!PreserveCollinear@{PreserveCollinear}|hyperpage}{66}
+\indexentry{PreserveCollinear@{PreserveCollinear}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{66}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!PreserveCollinear@{PreserveCollinear}|hyperpage}{66}
+\indexentry{PreserveCollinear@{PreserveCollinear}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{66}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!ProcessBound@{ProcessBound}|hyperpage}{66}
+\indexentry{ProcessBound@{ProcessBound}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{66}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!Reset@{Reset}|hyperpage}{66}
+\indexentry{Reset@{Reset}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{66}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!SwapPositionsInAEL@{SwapPositionsInAEL}|hyperpage}{67}
+\indexentry{SwapPositionsInAEL@{SwapPositionsInAEL}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{67}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!UpdateEdgeIntoAEL@{UpdateEdgeIntoAEL}|hyperpage}{67}
+\indexentry{UpdateEdgeIntoAEL@{UpdateEdgeIntoAEL}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{67}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!m\_ActiveEdges@{m\_ActiveEdges}|hyperpage}{67}
+\indexentry{m\_ActiveEdges@{m\_ActiveEdges}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{67}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!m\_CurrentLM@{m\_CurrentLM}|hyperpage}{67}
+\indexentry{m\_CurrentLM@{m\_CurrentLM}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{67}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!m\_edges@{m\_edges}|hyperpage}{67}
+\indexentry{m\_edges@{m\_edges}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{67}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!m\_HasOpenPaths@{m\_HasOpenPaths}|hyperpage}{67}
+\indexentry{m\_HasOpenPaths@{m\_HasOpenPaths}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{67}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!m\_MinimaList@{m\_MinimaList}|hyperpage}{67}
+\indexentry{m\_MinimaList@{m\_MinimaList}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{67}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!m\_PolyOuts@{m\_PolyOuts}|hyperpage}{68}
+\indexentry{m\_PolyOuts@{m\_PolyOuts}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{68}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!m\_PreserveCollinear@{m\_PreserveCollinear}|hyperpage}{68}
+\indexentry{m\_PreserveCollinear@{m\_PreserveCollinear}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{68}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!m\_Scanbeam@{m\_Scanbeam}|hyperpage}{68}
+\indexentry{m\_Scanbeam@{m\_Scanbeam}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{68}
+\indexentry{ClipperLib::ClipperBase@{ClipperLib::ClipperBase}!m\_UseFullRange@{m\_UseFullRange}|hyperpage}{68}
+\indexentry{m\_UseFullRange@{m\_UseFullRange}!ClipperLib::ClipperBase@{ClipperLib::ClipperBase}|hyperpage}{68}
+\indexentry{ClipperLib::clipperException@{ClipperLib::clipperException}|hyperpage}{68}
+\indexentry{ClipperLib::clipperException@{ClipperLib::clipperException}!clipperException@{clipperException}|hyperpage}{69}
+\indexentry{clipperException@{clipperException}!ClipperLib::clipperException@{ClipperLib::clipperException}|hyperpage}{69}
+\indexentry{ClipperLib::clipperException@{ClipperLib::clipperException}!````~clipperException@{$\sim$clipperException}|hyperpage}{69}
+\indexentry{````~clipperException@{$\sim$clipperException}!ClipperLib::clipperException@{ClipperLib::clipperException}|hyperpage}{69}
+\indexentry{ClipperLib::clipperException@{ClipperLib::clipperException}!what@{what}|hyperpage}{69}
+\indexentry{what@{what}!ClipperLib::clipperException@{ClipperLib::clipperException}|hyperpage}{69}
+\indexentry{ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}|hyperpage}{69}
+\indexentry{ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}!ClipperOffset@{ClipperOffset}|hyperpage}{70}
+\indexentry{ClipperOffset@{ClipperOffset}!ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}|hyperpage}{70}
+\indexentry{ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}!````~ClipperOffset@{$\sim$ClipperOffset}|hyperpage}{70}
+\indexentry{````~ClipperOffset@{$\sim$ClipperOffset}!ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}|hyperpage}{70}
+\indexentry{ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}!AddPath@{AddPath}|hyperpage}{70}
+\indexentry{AddPath@{AddPath}!ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}|hyperpage}{70}
+\indexentry{ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}!AddPaths@{AddPaths}|hyperpage}{70}
+\indexentry{AddPaths@{AddPaths}!ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}|hyperpage}{70}
+\indexentry{ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}!Clear@{Clear}|hyperpage}{70}
+\indexentry{Clear@{Clear}!ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}|hyperpage}{70}
+\indexentry{ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}!Execute@{Execute}|hyperpage}{70}
+\indexentry{Execute@{Execute}!ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}|hyperpage}{70}
+\indexentry{ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}!Execute@{Execute}|hyperpage}{71}
+\indexentry{Execute@{Execute}!ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}|hyperpage}{71}
+\indexentry{ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}!ArcTolerance@{ArcTolerance}|hyperpage}{71}
+\indexentry{ArcTolerance@{ArcTolerance}!ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}|hyperpage}{71}
+\indexentry{ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}!MiterLimit@{MiterLimit}|hyperpage}{71}
+\indexentry{MiterLimit@{MiterLimit}!ClipperLib::ClipperOffset@{ClipperLib::ClipperOffset}|hyperpage}{71}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{71}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!Configuration2@{Configuration2}|hyperpage}{73}
+\indexentry{Configuration2@{Configuration2}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{73}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!Configuration2@{Configuration2}|hyperpage}{73}
+\indexentry{Configuration2@{Configuration2}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{73}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!Configuration2@{Configuration2}|hyperpage}{74}
+\indexentry{Configuration2@{Configuration2}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{74}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!angle@{angle}|hyperpage}{74}
+\indexentry{angle@{angle}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{74}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!angle@{angle}|hyperpage}{74}
+\indexentry{angle@{angle}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{74}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!copy@{copy}|hyperpage}{75}
+\indexentry{copy@{copy}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{75}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!distance@{distance}|hyperpage}{75}
+\indexentry{distance@{distance}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{75}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!equal@{equal}|hyperpage}{75}
+\indexentry{equal@{equal}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{75}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!EuDistance@{EuDistance}|hyperpage}{76}
+\indexentry{EuDistance@{EuDistance}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{76}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!MaDistance@{MaDistance}|hyperpage}{76}
+\indexentry{MaDistance@{MaDistance}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{76}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset@{offset}|hyperpage}{77}
+\indexentry{offset@{offset}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{77}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset@{offset}|hyperpage}{77}
+\indexentry{offset@{offset}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{77}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset@{offset}|hyperpage}{77}
+\indexentry{offset@{offset}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{77}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset\_angle@{offset\_angle}|hyperpage}{78}
+\indexentry{offset\_angle@{offset\_angle}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{78}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset\_x@{offset\_x}|hyperpage}{78}
+\indexentry{offset\_x@{offset\_x}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{78}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset\_y@{offset\_y}|hyperpage}{79}
+\indexentry{offset\_y@{offset\_y}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{79}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator Point2$<$ T2 $>$@{operator Point2$<$ T2 $>$}|hyperpage}{79}
+\indexentry{operator Point2$<$ T2 $>$@{operator Point2$<$ T2 $>$}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{79}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator=@{operator=}|hyperpage}{79}
+\indexentry{operator=@{operator=}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{79}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator==@{operator==}|hyperpage}{80}
+\indexentry{operator==@{operator==}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{80}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!point@{point}|hyperpage}{80}
+\indexentry{point@{point}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{80}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!to\_string@{to\_string}|hyperpage}{80}
+\indexentry{to\_string@{to\_string}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{80}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!x@{x}|hyperpage}{80}
+\indexentry{x@{x}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{80}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!x@{x}|hyperpage}{81}
+\indexentry{x@{x}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{81}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!y@{y}|hyperpage}{81}
+\indexentry{y@{y}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{81}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!y@{y}|hyperpage}{81}
+\indexentry{y@{y}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{81}
+\indexentry{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator$<$$<$@{operator$<$$<$}|hyperpage}{82}
+\indexentry{operator$<$$<$@{operator$<$$<$}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}|hyperpage}{82}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{82}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!Curve@{Curve}|hyperpage}{84}
+\indexentry{Curve@{Curve}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{84}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!Curve@{Curve}|hyperpage}{84}
+\indexentry{Curve@{Curve}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{84}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!Curve@{Curve}|hyperpage}{84}
+\indexentry{Curve@{Curve}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{84}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!Curve@{Curve}|hyperpage}{84}
+\indexentry{Curve@{Curve}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{84}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!begin@{begin}|hyperpage}{84}
+\indexentry{begin@{begin}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{84}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!begin@{begin}|hyperpage}{85}
+\indexentry{begin@{begin}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{85}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!end@{end}|hyperpage}{85}
+\indexentry{end@{end}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{85}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!end@{end}|hyperpage}{85}
+\indexentry{end@{end}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{85}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!to\_string@{to\_string}|hyperpage}{85}
+\indexentry{to\_string@{to\_string}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{85}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!operator$<$$<$@{operator$<$$<$}|hyperpage}{85}
+\indexentry{operator$<$$<$@{operator$<$$<$}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{85}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!P0@{P0}|hyperpage}{86}
+\indexentry{P0@{P0}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{86}
+\indexentry{Curve$<$ T $>$@{Curve$<$ T $>$}!P1@{P1}|hyperpage}{86}
+\indexentry{P1@{P1}!Curve$<$ T $>$@{Curve$<$ T $>$}|hyperpage}{86}
+\indexentry{ClipperLib::DoublePoint@{ClipperLib::DoublePoint}|hyperpage}{86}
+\indexentry{ClipperLib::DoublePoint@{ClipperLib::DoublePoint}!DoublePoint@{DoublePoint}|hyperpage}{86}
+\indexentry{DoublePoint@{DoublePoint}!ClipperLib::DoublePoint@{ClipperLib::DoublePoint}|hyperpage}{86}
+\indexentry{ClipperLib::DoublePoint@{ClipperLib::DoublePoint}!DoublePoint@{DoublePoint}|hyperpage}{86}
+\indexentry{DoublePoint@{DoublePoint}!ClipperLib::DoublePoint@{ClipperLib::DoublePoint}|hyperpage}{86}
+\indexentry{ClipperLib::DoublePoint@{ClipperLib::DoublePoint}!X@{X}|hyperpage}{87}
+\indexentry{X@{X}!ClipperLib::DoublePoint@{ClipperLib::DoublePoint}|hyperpage}{87}
+\indexentry{ClipperLib::DoublePoint@{ClipperLib::DoublePoint}!Y@{Y}|hyperpage}{87}
+\indexentry{Y@{Y}!ClipperLib::DoublePoint@{ClipperLib::DoublePoint}|hyperpage}{87}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{87}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!Dubins@{Dubins}|hyperpage}{89}
+\indexentry{Dubins@{Dubins}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{89}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!Dubins@{Dubins}|hyperpage}{89}
+\indexentry{Dubins@{Dubins}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{89}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!Dubins@{Dubins}|hyperpage}{89}
+\indexentry{Dubins@{Dubins}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{89}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!Dubins@{Dubins}|hyperpage}{89}
+\indexentry{Dubins@{Dubins}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{89}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!check@{check}|hyperpage}{90}
+\indexentry{check@{check}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{90}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!getA1@{getA1}|hyperpage}{90}
+\indexentry{getA1@{getA1}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{90}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!getA2@{getA2}|hyperpage}{90}
+\indexentry{getA2@{getA2}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{90}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!getA3@{getA3}|hyperpage}{90}
+\indexentry{getA3@{getA3}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{90}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!getId@{getId}|hyperpage}{90}
+\indexentry{getId@{getId}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{90}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!getKMax@{getKMax}|hyperpage}{90}
+\indexentry{getKMax@{getKMax}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{90}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!length@{length}|hyperpage}{91}
+\indexentry{length@{length}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{91}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!LRL@{LRL}|hyperpage}{91}
+\indexentry{LRL@{LRL}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{91}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!LSL@{LSL}|hyperpage}{91}
+\indexentry{LSL@{LSL}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{91}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!LSR@{LSR}|hyperpage}{91}
+\indexentry{LSR@{LSR}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{91}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!rangeSymm@{rangeSymm}|hyperpage}{91}
+\indexentry{rangeSymm@{rangeSymm}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{91}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!RLR@{RLR}|hyperpage}{91}
+\indexentry{RLR@{RLR}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{91}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!RSL@{RSL}|hyperpage}{92}
+\indexentry{RSL@{RSL}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{92}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!RSR@{RSR}|hyperpage}{92}
+\indexentry{RSR@{RSR}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{92}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!scaleFromStandard@{scaleFromStandard}|hyperpage}{92}
+\indexentry{scaleFromStandard@{scaleFromStandard}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{92}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!scaleToStandard@{scaleToStandard}|hyperpage}{92}
+\indexentry{scaleToStandard@{scaleToStandard}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{92}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!shortest\_path@{shortest\_path}|hyperpage}{92}
+\indexentry{shortest\_path@{shortest\_path}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{92}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!splitIt@{splitIt}|hyperpage}{93}
+\indexentry{splitIt@{splitIt}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{93}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!to\_string@{to\_string}|hyperpage}{93}
+\indexentry{to\_string@{to\_string}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{93}
+\indexentry{Dubins$<$ T $>$@{Dubins$<$ T $>$}!operator$<$$<$@{operator$<$$<$}|hyperpage}{93}
+\indexentry{operator$<$$<$@{operator$<$$<$}!Dubins$<$ T $>$@{Dubins$<$ T $>$}|hyperpage}{93}
+\indexentry{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}|hyperpage}{94}
+\indexentry{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!DubinsArc@{DubinsArc}|hyperpage}{95}
+\indexentry{DubinsArc@{DubinsArc}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}|hyperpage}{95}
+\indexentry{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!DubinsArc@{DubinsArc}|hyperpage}{95}
+\indexentry{DubinsArc@{DubinsArc}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}|hyperpage}{95}
+\indexentry{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!getK@{getK}|hyperpage}{95}
+\indexentry{getK@{getK}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}|hyperpage}{95}
+\indexentry{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!length@{length}|hyperpage}{95}
+\indexentry{length@{length}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}|hyperpage}{95}
+\indexentry{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!splitIt@{splitIt}|hyperpage}{95}
+\indexentry{splitIt@{splitIt}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}|hyperpage}{95}
+\indexentry{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!to\_string@{to\_string}|hyperpage}{96}
+\indexentry{to\_string@{to\_string}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}|hyperpage}{96}
+\indexentry{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!operator$<$$<$@{operator$<$$<$}|hyperpage}{96}
+\indexentry{operator$<$$<$@{operator$<$$<$}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}|hyperpage}{96}
+\indexentry{Filter@{Filter}|hyperpage}{96}
+\indexentry{Filter@{Filter}!Filter@{Filter}|hyperpage}{97}
+\indexentry{Filter@{Filter}!Filter@{Filter}|hyperpage}{97}
+\indexentry{Filter@{Filter}!Filter@{Filter}|hyperpage}{97}
+\indexentry{Filter@{Filter}!Filter@{Filter}|hyperpage}{97}
+\indexentry{Filter@{Filter}!Filter@{Filter}|hyperpage}{98}
+\indexentry{Filter@{Filter}!Filter@{Filter}|hyperpage}{98}
+\indexentry{Filter@{Filter}!copy@{copy}|hyperpage}{98}
+\indexentry{copy@{copy}!Filter@{Filter}|hyperpage}{98}
+\indexentry{Filter@{Filter}!High@{High}|hyperpage}{98}
+\indexentry{High@{High}!Filter@{Filter}|hyperpage}{98}
+\indexentry{Filter@{Filter}!Low@{Low}|hyperpage}{99}
+\indexentry{Low@{Low}!Filter@{Filter}|hyperpage}{99}
+\indexentry{Filter@{Filter}!operator vector$<$ int $>$@{operator vector$<$ int $>$}|hyperpage}{99}
+\indexentry{operator vector$<$ int $>$@{operator vector$<$ int $>$}!Filter@{Filter}|hyperpage}{99}
+\indexentry{Filter@{Filter}!operator=@{operator=}|hyperpage}{99}
+\indexentry{operator=@{operator=}!Filter@{Filter}|hyperpage}{99}
+\indexentry{Filter@{Filter}!to\_string@{to\_string}|hyperpage}{99}
+\indexentry{to\_string@{to\_string}!Filter@{Filter}|hyperpage}{99}
+\indexentry{Filter@{Filter}!operator$<$$<$@{operator$<$$<$}|hyperpage}{100}
+\indexentry{operator$<$$<$@{operator$<$$<$}!Filter@{Filter}|hyperpage}{100}
+\indexentry{Filter@{Filter}!high\_h@{high\_h}|hyperpage}{100}
+\indexentry{high\_h@{high\_h}!Filter@{Filter}|hyperpage}{100}
+\indexentry{Filter@{Filter}!high\_s@{high\_s}|hyperpage}{100}
+\indexentry{high\_s@{high\_s}!Filter@{Filter}|hyperpage}{100}
+\indexentry{Filter@{Filter}!high\_v@{high\_v}|hyperpage}{100}
+\indexentry{high\_v@{high\_v}!Filter@{Filter}|hyperpage}{100}
+\indexentry{Filter@{Filter}!low\_h@{low\_h}|hyperpage}{101}
+\indexentry{low\_h@{low\_h}!Filter@{Filter}|hyperpage}{101}
+\indexentry{Filter@{Filter}!low\_s@{low\_s}|hyperpage}{101}
+\indexentry{low\_s@{low\_s}!Filter@{Filter}|hyperpage}{101}
+\indexentry{Filter@{Filter}!low\_v@{low\_v}|hyperpage}{101}
+\indexentry{low\_v@{low\_v}!Filter@{Filter}|hyperpage}{101}
+\indexentry{CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}|hyperpage}{101}
+\indexentry{CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}!input\_options\_t@{input\_options\_t}|hyperpage}{102}
+\indexentry{input\_options\_t@{input\_options\_t}!CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}|hyperpage}{102}
+\indexentry{CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}!input\_options\_t@{input\_options\_t}|hyperpage}{102}
+\indexentry{input\_options\_t@{input\_options\_t}!CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}|hyperpage}{102}
+\indexentry{CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}!input\_options\_t@{input\_options\_t}|hyperpage}{102}
+\indexentry{input\_options\_t@{input\_options\_t}!CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}|hyperpage}{102}
+\indexentry{CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}!cameraFPS@{cameraFPS}|hyperpage}{102}
+\indexentry{cameraFPS@{cameraFPS}!CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}|hyperpage}{102}
+\indexentry{CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}!frameHeight\_px@{frameHeight\_px}|hyperpage}{103}
+\indexentry{frameHeight\_px@{frameHeight\_px}!CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}|hyperpage}{103}
+\indexentry{CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}!frameWidth\_px@{frameWidth\_px}|hyperpage}{103}
+\indexentry{frameWidth\_px@{frameWidth\_px}!CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}|hyperpage}{103}
+\indexentry{CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}!nameCamera@{nameCamera}|hyperpage}{103}
+\indexentry{nameCamera@{nameCamera}!CameraCapture::input\_options\_t@{CameraCapture::input\_options\_t}|hyperpage}{103}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{103}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!Int128@{Int128}|hyperpage}{104}
+\indexentry{Int128@{Int128}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{104}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!Int128@{Int128}|hyperpage}{104}
+\indexentry{Int128@{Int128}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{104}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!Int128@{Int128}|hyperpage}{104}
+\indexentry{Int128@{Int128}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{104}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator "!=@{operator "!=}|hyperpage}{104}
+\indexentry{operator "!=@{operator "!=}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{104}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator -\/@{operator -\/}|hyperpage}{104}
+\indexentry{operator -\/@{operator -\/}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{104}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator -\/=@{operator -\/=}|hyperpage}{104}
+\indexentry{operator -\/=@{operator -\/=}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{104}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator $>$@{operator $>$}|hyperpage}{105}
+\indexentry{operator $>$@{operator $>$}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{105}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator $>$=@{operator $>$=}|hyperpage}{105}
+\indexentry{operator $>$=@{operator $>$=}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{105}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator double@{operator double}|hyperpage}{105}
+\indexentry{operator double@{operator double}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{105}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator+@{operator+}|hyperpage}{105}
+\indexentry{operator+@{operator+}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{105}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator+=@{operator+=}|hyperpage}{105}
+\indexentry{operator+=@{operator+=}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{105}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator-\/@{operator-\/}|hyperpage}{105}
+\indexentry{operator-\/@{operator-\/}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{105}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator$<$@{operator$<$}|hyperpage}{105}
+\indexentry{operator$<$@{operator$<$}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{105}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator$<$=@{operator$<$=}|hyperpage}{106}
+\indexentry{operator$<$=@{operator$<$=}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{106}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator=@{operator=}|hyperpage}{106}
+\indexentry{operator=@{operator=}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{106}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!operator==@{operator==}|hyperpage}{106}
+\indexentry{operator==@{operator==}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{106}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!hi@{hi}|hyperpage}{106}
+\indexentry{hi@{hi}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{106}
+\indexentry{ClipperLib::Int128@{ClipperLib::Int128}!lo@{lo}|hyperpage}{106}
+\indexentry{lo@{lo}!ClipperLib::Int128@{ClipperLib::Int128}|hyperpage}{106}
+\indexentry{ClipperLib::IntersectNode@{ClipperLib::IntersectNode}|hyperpage}{107}
+\indexentry{ClipperLib::IntersectNode@{ClipperLib::IntersectNode}!Edge1@{Edge1}|hyperpage}{107}
+\indexentry{Edge1@{Edge1}!ClipperLib::IntersectNode@{ClipperLib::IntersectNode}|hyperpage}{107}
+\indexentry{ClipperLib::IntersectNode@{ClipperLib::IntersectNode}!Edge2@{Edge2}|hyperpage}{107}
+\indexentry{Edge2@{Edge2}!ClipperLib::IntersectNode@{ClipperLib::IntersectNode}|hyperpage}{107}
+\indexentry{ClipperLib::IntersectNode@{ClipperLib::IntersectNode}!Pt@{Pt}|hyperpage}{107}
+\indexentry{Pt@{Pt}!ClipperLib::IntersectNode@{ClipperLib::IntersectNode}|hyperpage}{107}
+\indexentry{ClipperLib::IntPoint@{ClipperLib::IntPoint}|hyperpage}{108}
+\indexentry{ClipperLib::IntPoint@{ClipperLib::IntPoint}!IntPoint@{IntPoint}|hyperpage}{108}
+\indexentry{IntPoint@{IntPoint}!ClipperLib::IntPoint@{ClipperLib::IntPoint}|hyperpage}{108}
+\indexentry{ClipperLib::IntPoint@{ClipperLib::IntPoint}!operator"!=@{operator"!=}|hyperpage}{108}
+\indexentry{operator"!=@{operator"!=}!ClipperLib::IntPoint@{ClipperLib::IntPoint}|hyperpage}{108}
+\indexentry{ClipperLib::IntPoint@{ClipperLib::IntPoint}!operator==@{operator==}|hyperpage}{109}
+\indexentry{operator==@{operator==}!ClipperLib::IntPoint@{ClipperLib::IntPoint}|hyperpage}{109}
+\indexentry{ClipperLib::IntPoint@{ClipperLib::IntPoint}!X@{X}|hyperpage}{109}
+\indexentry{X@{X}!ClipperLib::IntPoint@{ClipperLib::IntPoint}|hyperpage}{109}
+\indexentry{ClipperLib::IntPoint@{ClipperLib::IntPoint}!Y@{Y}|hyperpage}{109}
+\indexentry{Y@{Y}!ClipperLib::IntPoint@{ClipperLib::IntPoint}|hyperpage}{109}
+\indexentry{ClipperLib::IntRect@{ClipperLib::IntRect}|hyperpage}{109}
+\indexentry{ClipperLib::IntRect@{ClipperLib::IntRect}!bottom@{bottom}|hyperpage}{110}
+\indexentry{bottom@{bottom}!ClipperLib::IntRect@{ClipperLib::IntRect}|hyperpage}{110}
+\indexentry{ClipperLib::IntRect@{ClipperLib::IntRect}!left@{left}|hyperpage}{110}
+\indexentry{left@{left}!ClipperLib::IntRect@{ClipperLib::IntRect}|hyperpage}{110}
+\indexentry{ClipperLib::IntRect@{ClipperLib::IntRect}!right@{right}|hyperpage}{110}
+\indexentry{right@{right}!ClipperLib::IntRect@{ClipperLib::IntRect}|hyperpage}{110}
+\indexentry{ClipperLib::IntRect@{ClipperLib::IntRect}!top@{top}|hyperpage}{110}
+\indexentry{top@{top}!ClipperLib::IntRect@{ClipperLib::IntRect}|hyperpage}{110}
+\indexentry{ClipperLib::Join@{ClipperLib::Join}|hyperpage}{110}
+\indexentry{ClipperLib::Join@{ClipperLib::Join}!OffPt@{OffPt}|hyperpage}{111}
+\indexentry{OffPt@{OffPt}!ClipperLib::Join@{ClipperLib::Join}|hyperpage}{111}
+\indexentry{ClipperLib::Join@{ClipperLib::Join}!OutPt1@{OutPt1}|hyperpage}{111}
+\indexentry{OutPt1@{OutPt1}!ClipperLib::Join@{ClipperLib::Join}|hyperpage}{111}
+\indexentry{ClipperLib::Join@{ClipperLib::Join}!OutPt2@{OutPt2}|hyperpage}{111}
+\indexentry{OutPt2@{OutPt2}!ClipperLib::Join@{ClipperLib::Join}|hyperpage}{111}
+\indexentry{ClipperLib::LocalMinimum@{ClipperLib::LocalMinimum}|hyperpage}{112}
+\indexentry{ClipperLib::LocalMinimum@{ClipperLib::LocalMinimum}!LeftBound@{LeftBound}|hyperpage}{112}
+\indexentry{LeftBound@{LeftBound}!ClipperLib::LocalMinimum@{ClipperLib::LocalMinimum}|hyperpage}{112}
+\indexentry{ClipperLib::LocalMinimum@{ClipperLib::LocalMinimum}!RightBound@{RightBound}|hyperpage}{112}
+\indexentry{RightBound@{RightBound}!ClipperLib::LocalMinimum@{ClipperLib::LocalMinimum}|hyperpage}{112}
+\indexentry{ClipperLib::LocalMinimum@{ClipperLib::LocalMinimum}!Y@{Y}|hyperpage}{112}
+\indexentry{Y@{Y}!ClipperLib::LocalMinimum@{ClipperLib::LocalMinimum}|hyperpage}{112}
+\indexentry{ClipperLib::LocMinSorter@{ClipperLib::LocMinSorter}|hyperpage}{113}
+\indexentry{ClipperLib::LocMinSorter@{ClipperLib::LocMinSorter}!operator()@{operator()}|hyperpage}{113}
+\indexentry{operator()@{operator()}!ClipperLib::LocMinSorter@{ClipperLib::LocMinSorter}|hyperpage}{113}
+\indexentry{Mapp@{Mapp}|hyperpage}{113}
+\indexentry{Mapp@{Mapp}!Mapp@{Mapp}|hyperpage}{114}
+\indexentry{Mapp@{Mapp}!Mapp@{Mapp}|hyperpage}{114}
+\indexentry{Mapp@{Mapp}!addObject@{addObject}|hyperpage}{114}
+\indexentry{addObject@{addObject}!Mapp@{Mapp}|hyperpage}{114}
+\indexentry{Mapp@{Mapp}!cellsFromSegment@{cellsFromSegment}|hyperpage}{115}
+\indexentry{cellsFromSegment@{cellsFromSegment}!Mapp@{Mapp}|hyperpage}{115}
+\indexentry{Mapp@{Mapp}!checkSegment@{checkSegment}|hyperpage}{115}
+\indexentry{checkSegment@{checkSegment}!Mapp@{Mapp}|hyperpage}{115}
+\indexentry{Mapp@{Mapp}!checkSegmentCollisionWithType@{checkSegmentCollisionWithType}|hyperpage}{115}
+\indexentry{checkSegmentCollisionWithType@{checkSegmentCollisionWithType}!Mapp@{Mapp}|hyperpage}{115}
+\indexentry{Mapp@{Mapp}!getPointType@{getPointType}|hyperpage}{116}
+\indexentry{getPointType@{getPointType}!Mapp@{Mapp}|hyperpage}{116}
+\indexentry{Mapp@{Mapp}!matrixToString@{matrixToString}|hyperpage}{116}
+\indexentry{matrixToString@{matrixToString}!Mapp@{Mapp}|hyperpage}{116}
+\indexentry{Mapp@{Mapp}!printDimensions@{printDimensions}|hyperpage}{116}
+\indexentry{printDimensions@{printDimensions}!Mapp@{Mapp}|hyperpage}{116}
+\indexentry{Mapp@{Mapp}!printMap@{printMap}|hyperpage}{117}
+\indexentry{printMap@{printMap}!Mapp@{Mapp}|hyperpage}{117}
+\indexentry{Mapp@{Mapp}!dimX@{dimX}|hyperpage}{117}
+\indexentry{dimX@{dimX}!Mapp@{Mapp}|hyperpage}{117}
+\indexentry{Mapp@{Mapp}!dimY@{dimY}|hyperpage}{117}
+\indexentry{dimY@{dimY}!Mapp@{Mapp}|hyperpage}{117}
+\indexentry{Mapp@{Mapp}!lengthX@{lengthX}|hyperpage}{117}
+\indexentry{lengthX@{lengthX}!Mapp@{Mapp}|hyperpage}{117}
+\indexentry{Mapp@{Mapp}!lengthY@{lengthY}|hyperpage}{117}
+\indexentry{lengthY@{lengthY}!Mapp@{Mapp}|hyperpage}{117}
+\indexentry{Mapp@{Mapp}!map@{map}|hyperpage}{117}
+\indexentry{map@{map}!Mapp@{Mapp}|hyperpage}{117}
+\indexentry{Mapp@{Mapp}!pixX@{pixX}|hyperpage}{117}
+\indexentry{pixX@{pixX}!Mapp@{Mapp}|hyperpage}{117}
+\indexentry{Mapp@{Mapp}!pixY@{pixY}|hyperpage}{118}
+\indexentry{pixY@{pixY}!Mapp@{Mapp}|hyperpage}{118}
+\indexentry{Object@{Object}|hyperpage}{118}
+\indexentry{Object@{Object}!computeCenter@{computeCenter}|hyperpage}{119}
+\indexentry{computeCenter@{computeCenter}!Object@{Object}|hyperpage}{119}
+\indexentry{Object@{Object}!computeRadius@{computeRadius}|hyperpage}{119}
+\indexentry{computeRadius@{computeRadius}!Object@{Object}|hyperpage}{119}
+\indexentry{Object@{Object}!insidePoly@{insidePoly}|hyperpage}{119}
+\indexentry{insidePoly@{insidePoly}!Object@{Object}|hyperpage}{119}
+\indexentry{Object@{Object}!insidePolyApprox@{insidePolyApprox}|hyperpage}{120}
+\indexentry{insidePolyApprox@{insidePolyApprox}!Object@{Object}|hyperpage}{120}
+\indexentry{Object@{Object}!nPoints@{nPoints}|hyperpage}{120}
+\indexentry{nPoints@{nPoints}!Object@{Object}|hyperpage}{120}
+\indexentry{Object@{Object}!offsetting@{offsetting}|hyperpage}{120}
+\indexentry{offsetting@{offsetting}!Object@{Object}|hyperpage}{120}
+\indexentry{Object@{Object}!size@{size}|hyperpage}{121}
+\indexentry{size@{size}!Object@{Object}|hyperpage}{121}
+\indexentry{Object@{Object}!toString@{toString}|hyperpage}{121}
+\indexentry{toString@{toString}!Object@{Object}|hyperpage}{121}
+\indexentry{Object@{Object}!center@{center}|hyperpage}{121}
+\indexentry{center@{center}!Object@{Object}|hyperpage}{121}
+\indexentry{Object@{Object}!points@{points}|hyperpage}{121}
+\indexentry{points@{points}!Object@{Object}|hyperpage}{121}
+\indexentry{Object@{Object}!radius@{radius}|hyperpage}{121}
+\indexentry{radius@{radius}!Object@{Object}|hyperpage}{121}
+\indexentry{Obstacle@{Obstacle}|hyperpage}{122}
+\indexentry{Obstacle@{Obstacle}!Obstacle@{Obstacle}|hyperpage}{123}
+\indexentry{Obstacle@{Obstacle}!Obstacle@{Obstacle}|hyperpage}{123}
+\indexentry{Obstacle@{Obstacle}!print@{print}|hyperpage}{123}
+\indexentry{print@{print}!Obstacle@{Obstacle}|hyperpage}{123}
+\indexentry{Obstacle@{Obstacle}!toString@{toString}|hyperpage}{123}
+\indexentry{toString@{toString}!Obstacle@{Obstacle}|hyperpage}{123}
+\indexentry{ClipperLib::OutPt@{ClipperLib::OutPt}|hyperpage}{124}
+\indexentry{ClipperLib::OutPt@{ClipperLib::OutPt}!Idx@{Idx}|hyperpage}{124}
+\indexentry{Idx@{Idx}!ClipperLib::OutPt@{ClipperLib::OutPt}|hyperpage}{124}
+\indexentry{ClipperLib::OutPt@{ClipperLib::OutPt}!Next@{Next}|hyperpage}{124}
+\indexentry{Next@{Next}!ClipperLib::OutPt@{ClipperLib::OutPt}|hyperpage}{124}
+\indexentry{ClipperLib::OutPt@{ClipperLib::OutPt}!Prev@{Prev}|hyperpage}{125}
+\indexentry{Prev@{Prev}!ClipperLib::OutPt@{ClipperLib::OutPt}|hyperpage}{125}
+\indexentry{ClipperLib::OutPt@{ClipperLib::OutPt}!Pt@{Pt}|hyperpage}{125}
+\indexentry{Pt@{Pt}!ClipperLib::OutPt@{ClipperLib::OutPt}|hyperpage}{125}
+\indexentry{ClipperLib::OutRec@{ClipperLib::OutRec}|hyperpage}{125}
+\indexentry{ClipperLib::OutRec@{ClipperLib::OutRec}!BottomPt@{BottomPt}|hyperpage}{126}
+\indexentry{BottomPt@{BottomPt}!ClipperLib::OutRec@{ClipperLib::OutRec}|hyperpage}{126}
+\indexentry{ClipperLib::OutRec@{ClipperLib::OutRec}!FirstLeft@{FirstLeft}|hyperpage}{126}
+\indexentry{FirstLeft@{FirstLeft}!ClipperLib::OutRec@{ClipperLib::OutRec}|hyperpage}{126}
+\indexentry{ClipperLib::OutRec@{ClipperLib::OutRec}!Idx@{Idx}|hyperpage}{126}
+\indexentry{Idx@{Idx}!ClipperLib::OutRec@{ClipperLib::OutRec}|hyperpage}{126}
+\indexentry{ClipperLib::OutRec@{ClipperLib::OutRec}!IsHole@{IsHole}|hyperpage}{126}
+\indexentry{IsHole@{IsHole}!ClipperLib::OutRec@{ClipperLib::OutRec}|hyperpage}{126}
+\indexentry{ClipperLib::OutRec@{ClipperLib::OutRec}!IsOpen@{IsOpen}|hyperpage}{126}
+\indexentry{IsOpen@{IsOpen}!ClipperLib::OutRec@{ClipperLib::OutRec}|hyperpage}{126}
+\indexentry{ClipperLib::OutRec@{ClipperLib::OutRec}!PolyNd@{PolyNd}|hyperpage}{126}
+\indexentry{PolyNd@{PolyNd}!ClipperLib::OutRec@{ClipperLib::OutRec}|hyperpage}{126}
+\indexentry{ClipperLib::OutRec@{ClipperLib::OutRec}!Pts@{Pts}|hyperpage}{126}
+\indexentry{Pts@{Pts}!ClipperLib::OutRec@{ClipperLib::OutRec}|hyperpage}{126}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{127}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!Point2@{Point2}|hyperpage}{128}
+\indexentry{Point2@{Point2}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{128}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!Point2@{Point2}|hyperpage}{128}
+\indexentry{Point2@{Point2}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{128}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!Point2@{Point2}|hyperpage}{129}
+\indexentry{Point2@{Point2}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{129}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!copy@{copy}|hyperpage}{129}
+\indexentry{copy@{copy}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{129}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!distance@{distance}|hyperpage}{129}
+\indexentry{distance@{distance}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{129}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!equal@{equal}|hyperpage}{130}
+\indexentry{equal@{equal}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{130}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!EuDistance@{EuDistance}|hyperpage}{130}
+\indexentry{EuDistance@{EuDistance}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{130}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!MaDistance@{MaDistance}|hyperpage}{131}
+\indexentry{MaDistance@{MaDistance}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{131}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!offset@{offset}|hyperpage}{131}
+\indexentry{offset@{offset}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{131}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!offset@{offset}|hyperpage}{131}
+\indexentry{offset@{offset}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{131}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!offset@{offset}|hyperpage}{132}
+\indexentry{offset@{offset}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{132}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!offset\_x@{offset\_x}|hyperpage}{132}
+\indexentry{offset\_x@{offset\_x}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{132}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!offset\_y@{offset\_y}|hyperpage}{133}
+\indexentry{offset\_y@{offset\_y}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{133}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!operator cv::Point@{operator cv::Point}|hyperpage}{133}
+\indexentry{operator cv::Point@{operator cv::Point}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{133}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!operator"!=@{operator"!=}|hyperpage}{133}
+\indexentry{operator"!=@{operator"!=}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{133}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!operator$<$@{operator$<$}|hyperpage}{134}
+\indexentry{operator$<$@{operator$<$}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{134}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!operator=@{operator=}|hyperpage}{134}
+\indexentry{operator=@{operator=}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{134}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!operator==@{operator==}|hyperpage}{134}
+\indexentry{operator==@{operator==}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{134}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!to\_string@{to\_string}|hyperpage}{134}
+\indexentry{to\_string@{to\_string}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{134}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!x@{x}|hyperpage}{135}
+\indexentry{x@{x}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{135}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!x@{x}|hyperpage}{135}
+\indexentry{x@{x}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{135}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!y@{y}|hyperpage}{135}
+\indexentry{y@{y}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{135}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!y@{y}|hyperpage}{135}
+\indexentry{y@{y}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{135}
+\indexentry{Point2$<$ T $>$@{Point2$<$ T $>$}!operator$<$$<$@{operator$<$$<$}|hyperpage}{136}
+\indexentry{operator$<$$<$@{operator$<$$<$}!Point2$<$ T $>$@{Point2$<$ T $>$}|hyperpage}{136}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{136}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!PolyNode@{PolyNode}|hyperpage}{137}
+\indexentry{PolyNode@{PolyNode}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{137}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!````~PolyNode@{$\sim$PolyNode}|hyperpage}{138}
+\indexentry{````~PolyNode@{$\sim$PolyNode}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{138}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!ChildCount@{ChildCount}|hyperpage}{138}
+\indexentry{ChildCount@{ChildCount}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{138}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!GetNext@{GetNext}|hyperpage}{138}
+\indexentry{GetNext@{GetNext}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{138}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!IsHole@{IsHole}|hyperpage}{138}
+\indexentry{IsHole@{IsHole}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{138}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!IsOpen@{IsOpen}|hyperpage}{138}
+\indexentry{IsOpen@{IsOpen}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{138}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!Clipper@{Clipper}|hyperpage}{138}
+\indexentry{Clipper@{Clipper}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{138}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!ClipperOffset@{ClipperOffset}|hyperpage}{138}
+\indexentry{ClipperOffset@{ClipperOffset}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{138}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!Childs@{Childs}|hyperpage}{139}
+\indexentry{Childs@{Childs}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{139}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!Contour@{Contour}|hyperpage}{139}
+\indexentry{Contour@{Contour}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{139}
+\indexentry{ClipperLib::PolyNode@{ClipperLib::PolyNode}!Parent@{Parent}|hyperpage}{139}
+\indexentry{Parent@{Parent}!ClipperLib::PolyNode@{ClipperLib::PolyNode}|hyperpage}{139}
+\indexentry{ClipperLib::PolyTree@{ClipperLib::PolyTree}|hyperpage}{139}
+\indexentry{ClipperLib::PolyTree@{ClipperLib::PolyTree}!````~PolyTree@{$\sim$PolyTree}|hyperpage}{140}
+\indexentry{````~PolyTree@{$\sim$PolyTree}!ClipperLib::PolyTree@{ClipperLib::PolyTree}|hyperpage}{140}
+\indexentry{ClipperLib::PolyTree@{ClipperLib::PolyTree}!Clear@{Clear}|hyperpage}{140}
+\indexentry{Clear@{Clear}!ClipperLib::PolyTree@{ClipperLib::PolyTree}|hyperpage}{140}
+\indexentry{ClipperLib::PolyTree@{ClipperLib::PolyTree}!GetFirst@{GetFirst}|hyperpage}{140}
+\indexentry{GetFirst@{GetFirst}!ClipperLib::PolyTree@{ClipperLib::PolyTree}|hyperpage}{140}
+\indexentry{ClipperLib::PolyTree@{ClipperLib::PolyTree}!Total@{Total}|hyperpage}{141}
+\indexentry{Total@{Total}!ClipperLib::PolyTree@{ClipperLib::PolyTree}|hyperpage}{141}
+\indexentry{ClipperLib::PolyTree@{ClipperLib::PolyTree}!Clipper@{Clipper}|hyperpage}{141}
+\indexentry{Clipper@{Clipper}!ClipperLib::PolyTree@{ClipperLib::PolyTree}|hyperpage}{141}
+\indexentry{Settings@{Settings}|hyperpage}{141}
+\indexentry{Settings@{Settings}!COLOR@{COLOR}|hyperpage}{144}
+\indexentry{COLOR@{COLOR}!Settings@{Settings}|hyperpage}{144}
+\indexentry{BLACK@{BLACK}!Settings@{Settings}|hyperpage}{144}
+\indexentry{Settings@{Settings}!BLACK@{BLACK}|hyperpage}{144}
+\indexentry{RED@{RED}!Settings@{Settings}|hyperpage}{144}
+\indexentry{Settings@{Settings}!RED@{RED}|hyperpage}{144}
+\indexentry{GREEN@{GREEN}!Settings@{Settings}|hyperpage}{144}
+\indexentry{Settings@{Settings}!GREEN@{GREEN}|hyperpage}{144}
+\indexentry{VICTIMS@{VICTIMS}!Settings@{Settings}|hyperpage}{144}
+\indexentry{Settings@{Settings}!VICTIMS@{VICTIMS}|hyperpage}{144}
+\indexentry{BLUE@{BLUE}!Settings@{Settings}|hyperpage}{144}
+\indexentry{Settings@{Settings}!BLUE@{BLUE}|hyperpage}{144}
+\indexentry{WHITE@{WHITE}!Settings@{Settings}|hyperpage}{144}
+\indexentry{Settings@{Settings}!WHITE@{WHITE}|hyperpage}{144}
+\indexentry{ROBOT@{ROBOT}!Settings@{Settings}|hyperpage}{144}
+\indexentry{Settings@{Settings}!ROBOT@{ROBOT}|hyperpage}{144}
+\indexentry{Settings@{Settings}!Settings@{Settings}|hyperpage}{144}
+\indexentry{Settings@{Settings}!Settings@{Settings}|hyperpage}{144}
+\indexentry{Settings@{Settings}!````~Settings@{$\sim$Settings}|hyperpage}{145}
+\indexentry{````~Settings@{$\sim$Settings}!Settings@{Settings}|hyperpage}{145}
+\indexentry{Settings@{Settings}!addUnMap@{addUnMap}|hyperpage}{145}
+\indexentry{addUnMap@{addUnMap}!Settings@{Settings}|hyperpage}{145}
+\indexentry{Settings@{Settings}!changeMask@{changeMask}|hyperpage}{145}
+\indexentry{changeMask@{changeMask}!Settings@{Settings}|hyperpage}{145}
+\indexentry{Settings@{Settings}!changeMask@{changeMask}|hyperpage}{146}
+\indexentry{changeMask@{changeMask}!Settings@{Settings}|hyperpage}{146}
+\indexentry{Settings@{Settings}!clean@{clean}|hyperpage}{146}
+\indexentry{clean@{clean}!Settings@{Settings}|hyperpage}{146}
+\indexentry{Settings@{Settings}!cleanAndRead@{cleanAndRead}|hyperpage}{146}
+\indexentry{cleanAndRead@{cleanAndRead}!Settings@{Settings}|hyperpage}{146}
+\indexentry{Settings@{Settings}!getTemplates@{getTemplates}|hyperpage}{146}
+\indexentry{getTemplates@{getTemplates}!Settings@{Settings}|hyperpage}{146}
+\indexentry{Settings@{Settings}!getTemplates@{getTemplates}|hyperpage}{147}
+\indexentry{getTemplates@{getTemplates}!Settings@{Settings}|hyperpage}{147}
+\indexentry{Settings@{Settings}!getTemplates@{getTemplates}|hyperpage}{147}
+\indexentry{getTemplates@{getTemplates}!Settings@{Settings}|hyperpage}{147}
+\indexentry{Settings@{Settings}!maps@{maps}|hyperpage}{147}
+\indexentry{maps@{maps}!Settings@{Settings}|hyperpage}{147}
+\indexentry{Settings@{Settings}!maps@{maps}|hyperpage}{149}
+\indexentry{maps@{maps}!Settings@{Settings}|hyperpage}{149}
+\indexentry{Settings@{Settings}!maps@{maps}|hyperpage}{149}
+\indexentry{maps@{maps}!Settings@{Settings}|hyperpage}{149}
+\indexentry{Settings@{Settings}!maps@{maps}|hyperpage}{150}
+\indexentry{maps@{maps}!Settings@{Settings}|hyperpage}{150}
+\indexentry{Settings@{Settings}!readFromFile@{readFromFile}|hyperpage}{150}
+\indexentry{readFromFile@{readFromFile}!Settings@{Settings}|hyperpage}{150}
+\indexentry{Settings@{Settings}!save@{save}|hyperpage}{150}
+\indexentry{save@{save}!Settings@{Settings}|hyperpage}{150}
+\indexentry{Settings@{Settings}!to\_string@{to\_string}|hyperpage}{151}
+\indexentry{to\_string@{to\_string}!Settings@{Settings}|hyperpage}{151}
+\indexentry{Settings@{Settings}!unMaps@{unMaps}|hyperpage}{151}
+\indexentry{unMaps@{unMaps}!Settings@{Settings}|hyperpage}{151}
+\indexentry{Settings@{Settings}!unMaps@{unMaps}|hyperpage}{152}
+\indexentry{unMaps@{unMaps}!Settings@{Settings}|hyperpage}{152}
+\indexentry{Settings@{Settings}!unMaps@{unMaps}|hyperpage}{152}
+\indexentry{unMaps@{unMaps}!Settings@{Settings}|hyperpage}{152}
+\indexentry{Settings@{Settings}!unMaps@{unMaps}|hyperpage}{153}
+\indexentry{unMaps@{unMaps}!Settings@{Settings}|hyperpage}{153}
+\indexentry{Settings@{Settings}!writeToFile@{writeToFile}|hyperpage}{153}
+\indexentry{writeToFile@{writeToFile}!Settings@{Settings}|hyperpage}{153}
+\indexentry{Settings@{Settings}!operator$<$$<$@{operator$<$$<$}|hyperpage}{153}
+\indexentry{operator$<$$<$@{operator$<$$<$}!Settings@{Settings}|hyperpage}{153}
+\indexentry{Settings@{Settings}!blackMask@{blackMask}|hyperpage}{154}
+\indexentry{blackMask@{blackMask}!Settings@{Settings}|hyperpage}{154}
+\indexentry{Settings@{Settings}!blueMask@{blueMask}|hyperpage}{154}
+\indexentry{blueMask@{blueMask}!Settings@{Settings}|hyperpage}{154}
+\indexentry{Settings@{Settings}!calibrationFile@{calibrationFile}|hyperpage}{154}
+\indexentry{calibrationFile@{calibrationFile}!Settings@{Settings}|hyperpage}{154}
+\indexentry{Settings@{Settings}!convexHullFile@{convexHullFile}|hyperpage}{154}
+\indexentry{convexHullFile@{convexHullFile}!Settings@{Settings}|hyperpage}{154}
+\indexentry{Settings@{Settings}!greenMask@{greenMask}|hyperpage}{154}
+\indexentry{greenMask@{greenMask}!Settings@{Settings}|hyperpage}{154}
+\indexentry{Settings@{Settings}!intrinsicCalibrationFile@{intrinsicCalibrationFile}|hyperpage}{155}
+\indexentry{intrinsicCalibrationFile@{intrinsicCalibrationFile}!Settings@{Settings}|hyperpage}{155}
+\indexentry{Settings@{Settings}!kernelSide@{kernelSide}|hyperpage}{155}
+\indexentry{kernelSide@{kernelSide}!Settings@{Settings}|hyperpage}{155}
+\indexentry{Settings@{Settings}!mapsFolder@{mapsFolder}|hyperpage}{155}
+\indexentry{mapsFolder@{mapsFolder}!Settings@{Settings}|hyperpage}{155}
+\indexentry{Settings@{Settings}!mapsNames@{mapsNames}|hyperpage}{155}
+\indexentry{mapsNames@{mapsNames}!Settings@{Settings}|hyperpage}{155}
+\indexentry{Settings@{Settings}!mapsUnNames@{mapsUnNames}|hyperpage}{155}
+\indexentry{mapsUnNames@{mapsUnNames}!Settings@{Settings}|hyperpage}{155}
+\indexentry{Settings@{Settings}!redMask@{redMask}|hyperpage}{155}
+\indexentry{redMask@{redMask}!Settings@{Settings}|hyperpage}{155}
+\indexentry{Settings@{Settings}!robotMask@{robotMask}|hyperpage}{156}
+\indexentry{robotMask@{robotMask}!Settings@{Settings}|hyperpage}{156}
+\indexentry{Settings@{Settings}!templates@{templates}|hyperpage}{156}
+\indexentry{templates@{templates}!Settings@{Settings}|hyperpage}{156}
+\indexentry{Settings@{Settings}!templatesFolder@{templatesFolder}|hyperpage}{156}
+\indexentry{templatesFolder@{templatesFolder}!Settings@{Settings}|hyperpage}{156}
+\indexentry{Settings@{Settings}!victimMask@{victimMask}|hyperpage}{156}
+\indexentry{victimMask@{victimMask}!Settings@{Settings}|hyperpage}{156}
+\indexentry{Settings@{Settings}!whiteMask@{whiteMask}|hyperpage}{156}
+\indexentry{whiteMask@{whiteMask}!Settings@{Settings}|hyperpage}{156}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{157}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!Bot@{Bot}|hyperpage}{157}
+\indexentry{Bot@{Bot}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{157}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!Curr@{Curr}|hyperpage}{158}
+\indexentry{Curr@{Curr}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{158}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!Dx@{Dx}|hyperpage}{158}
+\indexentry{Dx@{Dx}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{158}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!Next@{Next}|hyperpage}{158}
+\indexentry{Next@{Next}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{158}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!NextInAEL@{NextInAEL}|hyperpage}{158}
+\indexentry{NextInAEL@{NextInAEL}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{158}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!NextInLML@{NextInLML}|hyperpage}{158}
+\indexentry{NextInLML@{NextInLML}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{158}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!NextInSEL@{NextInSEL}|hyperpage}{158}
+\indexentry{NextInSEL@{NextInSEL}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{158}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!OutIdx@{OutIdx}|hyperpage}{158}
+\indexentry{OutIdx@{OutIdx}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{158}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!PolyTyp@{PolyTyp}|hyperpage}{158}
+\indexentry{PolyTyp@{PolyTyp}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{158}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!Prev@{Prev}|hyperpage}{159}
+\indexentry{Prev@{Prev}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{159}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!PrevInAEL@{PrevInAEL}|hyperpage}{159}
+\indexentry{PrevInAEL@{PrevInAEL}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{159}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!PrevInSEL@{PrevInSEL}|hyperpage}{159}
+\indexentry{PrevInSEL@{PrevInSEL}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{159}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!Side@{Side}|hyperpage}{159}
+\indexentry{Side@{Side}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{159}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!Top@{Top}|hyperpage}{159}
+\indexentry{Top@{Top}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{159}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!WindCnt@{WindCnt}|hyperpage}{159}
+\indexentry{WindCnt@{WindCnt}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{159}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!WindCnt2@{WindCnt2}|hyperpage}{159}
+\indexentry{WindCnt2@{WindCnt2}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{159}
+\indexentry{ClipperLib::TEdge@{ClipperLib::TEdge}!WindDelta@{WindDelta}|hyperpage}{159}
+\indexentry{WindDelta@{WindDelta}!ClipperLib::TEdge@{ClipperLib::TEdge}|hyperpage}{159}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{160}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!Tuple@{Tuple}|hyperpage}{161}
+\indexentry{Tuple@{Tuple}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{161}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!Tuple@{Tuple}|hyperpage}{161}
+\indexentry{Tuple@{Tuple}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{161}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!add@{add}|hyperpage}{162}
+\indexentry{add@{add}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{162}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!begin@{begin}|hyperpage}{162}
+\indexentry{begin@{begin}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{162}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!begin@{begin}|hyperpage}{162}
+\indexentry{begin@{begin}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{162}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!distance@{distance}|hyperpage}{162}
+\indexentry{distance@{distance}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{162}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!end@{end}|hyperpage}{163}
+\indexentry{end@{end}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{163}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!end@{end}|hyperpage}{163}
+\indexentry{end@{end}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{163}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!EuDistance@{EuDistance}|hyperpage}{163}
+\indexentry{EuDistance@{EuDistance}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{163}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!get@{get}|hyperpage}{164}
+\indexentry{get@{get}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{164}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!MaDistance@{MaDistance}|hyperpage}{164}
+\indexentry{MaDistance@{MaDistance}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{164}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!operator vector$<$ T1 $>$@{operator vector$<$ T1 $>$}|hyperpage}{164}
+\indexentry{operator vector$<$ T1 $>$@{operator vector$<$ T1 $>$}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{164}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!remove@{remove}|hyperpage}{165}
+\indexentry{remove@{remove}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{165}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!set@{set}|hyperpage}{165}
+\indexentry{set@{set}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{165}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!size@{size}|hyperpage}{166}
+\indexentry{size@{size}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{166}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!to\_string@{to\_string}|hyperpage}{166}
+\indexentry{to\_string@{to\_string}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{166}
+\indexentry{Tuple$<$ T $>$@{Tuple$<$ T $>$}!operator$<$$<$@{operator$<$$<$}|hyperpage}{166}
+\indexentry{operator$<$$<$@{operator$<$$<$}!Tuple$<$ T $>$@{Tuple$<$ T $>$}|hyperpage}{166}
+\indexentry{Victim@{Victim}|hyperpage}{167}
+\indexentry{Victim@{Victim}!Victim@{Victim}|hyperpage}{168}
+\indexentry{Victim@{Victim}!Victim@{Victim}|hyperpage}{168}
+\indexentry{Victim@{Victim}!getValue@{getValue}|hyperpage}{168}
+\indexentry{getValue@{getValue}!Victim@{Victim}|hyperpage}{168}
+\indexentry{Victim@{Victim}!print@{print}|hyperpage}{168}
+\indexentry{print@{print}!Victim@{Victim}|hyperpage}{168}
+\indexentry{Victim@{Victim}!setValue@{setValue}|hyperpage}{168}
+\indexentry{setValue@{setValue}!Victim@{Victim}|hyperpage}{168}
+\indexentry{Victim@{Victim}!toString@{toString}|hyperpage}{168}
+\indexentry{toString@{toString}!Victim@{Victim}|hyperpage}{168}
+\indexentry{Victim@{Victim}!value@{value}|hyperpage}{169}
+\indexentry{value@{value}!Victim@{Victim}|hyperpage}{169}
+\indexentry{src/calibration.cc@{src/calibration.cc}|hyperpage}{171}
+\indexentry{calibration.cc@{calibration.cc}!calcBoardCornerPositions@{calcBoardCornerPositions}|hyperpage}{172}
+\indexentry{calcBoardCornerPositions@{calcBoardCornerPositions}!calibration.cc@{calibration.cc}|hyperpage}{172}
+\indexentry{calibration.cc@{calibration.cc}!calibration@{calibration}|hyperpage}{172}
+\indexentry{calibration@{calibration}!calibration.cc@{calibration.cc}|hyperpage}{172}
+\indexentry{calibration.cc@{calibration.cc}!computeReprojectionErrors@{computeReprojectionErrors}|hyperpage}{172}
+\indexentry{computeReprojectionErrors@{computeReprojectionErrors}!calibration.cc@{calibration.cc}|hyperpage}{172}
+\indexentry{calibration.cc@{calibration.cc}!read@{read}|hyperpage}{173}
+\indexentry{read@{read}!calibration.cc@{calibration.cc}|hyperpage}{173}
+\indexentry{calibration.cc@{calibration.cc}!runCalibration@{runCalibration}|hyperpage}{173}
+\indexentry{runCalibration@{runCalibration}!calibration.cc@{calibration.cc}|hyperpage}{173}
+\indexentry{calibration.cc@{calibration.cc}!runCalibrationAndSave@{runCalibrationAndSave}|hyperpage}{174}
+\indexentry{runCalibrationAndSave@{runCalibrationAndSave}!calibration.cc@{calibration.cc}|hyperpage}{174}
+\indexentry{calibration.cc@{calibration.cc}!saveCameraParams@{saveCameraParams}|hyperpage}{174}
+\indexentry{saveCameraParams@{saveCameraParams}!calibration.cc@{calibration.cc}|hyperpage}{174}
+\indexentry{src/camera\_capture.cc@{src/camera\_capture.cc}|hyperpage}{175}
+\indexentry{camera\_capture.cc@{camera\_capture.cc}!DEBUG@{DEBUG}|hyperpage}{176}
+\indexentry{DEBUG@{DEBUG}!camera\_capture.cc@{camera\_capture.cc}|hyperpage}{176}
+\indexentry{camera\_capture.cc@{camera\_capture.cc}!SDEBUG@{SDEBUG}|hyperpage}{176}
+\indexentry{SDEBUG@{SDEBUG}!camera\_capture.cc@{camera\_capture.cc}|hyperpage}{176}
+\indexentry{src/clipper.cc@{src/clipper.cc}|hyperpage}{176}
+\indexentry{clipper.cc@{clipper.cc}!HORIZONTAL@{HORIZONTAL}|hyperpage}{179}
+\indexentry{HORIZONTAL@{HORIZONTAL}!clipper.cc@{clipper.cc}|hyperpage}{179}
+\indexentry{clipper.cc@{clipper.cc}!NEAR\_ZERO@{NEAR\_ZERO}|hyperpage}{179}
+\indexentry{NEAR\_ZERO@{NEAR\_ZERO}!clipper.cc@{clipper.cc}|hyperpage}{179}
+\indexentry{clipper.cc@{clipper.cc}!TOLERANCE@{TOLERANCE}|hyperpage}{179}
+\indexentry{TOLERANCE@{TOLERANCE}!clipper.cc@{clipper.cc}|hyperpage}{179}
+\indexentry{src/configure.cc@{src/configure.cc}|hyperpage}{180}
+\indexentry{configure.cc@{configure.cc}!configure@{configure}|hyperpage}{180}
+\indexentry{configure@{configure}!configure.cc@{configure.cc}|hyperpage}{180}
+\indexentry{configure.cc@{configure.cc}!on\_high\_h\_thresh\_trackbar@{on\_high\_h\_thresh\_trackbar}|hyperpage}{180}
+\indexentry{on\_high\_h\_thresh\_trackbar@{on\_high\_h\_thresh\_trackbar}!configure.cc@{configure.cc}|hyperpage}{180}
+\indexentry{configure.cc@{configure.cc}!on\_high\_s\_thresh\_trackbar@{on\_high\_s\_thresh\_trackbar}|hyperpage}{181}
+\indexentry{on\_high\_s\_thresh\_trackbar@{on\_high\_s\_thresh\_trackbar}!configure.cc@{configure.cc}|hyperpage}{181}
+\indexentry{configure.cc@{configure.cc}!on\_high\_v\_thresh\_trackbar@{on\_high\_v\_thresh\_trackbar}|hyperpage}{181}
+\indexentry{on\_high\_v\_thresh\_trackbar@{on\_high\_v\_thresh\_trackbar}!configure.cc@{configure.cc}|hyperpage}{181}
+\indexentry{configure.cc@{configure.cc}!on\_low\_h\_thresh\_trackbar@{on\_low\_h\_thresh\_trackbar}|hyperpage}{181}
+\indexentry{on\_low\_h\_thresh\_trackbar@{on\_low\_h\_thresh\_trackbar}!configure.cc@{configure.cc}|hyperpage}{181}
+\indexentry{configure.cc@{configure.cc}!on\_low\_s\_thresh\_trackbar@{on\_low\_s\_thresh\_trackbar}|hyperpage}{181}
+\indexentry{on\_low\_s\_thresh\_trackbar@{on\_low\_s\_thresh\_trackbar}!configure.cc@{configure.cc}|hyperpage}{181}
+\indexentry{configure.cc@{configure.cc}!on\_low\_v\_thresh\_trackbar@{on\_low\_v\_thresh\_trackbar}|hyperpage}{181}
+\indexentry{on\_low\_v\_thresh\_trackbar@{on\_low\_v\_thresh\_trackbar}!configure.cc@{configure.cc}|hyperpage}{181}
+\indexentry{configure.cc@{configure.cc}!show\_all\_conditions@{show\_all\_conditions}|hyperpage}{181}
+\indexentry{show\_all\_conditions@{show\_all\_conditions}!configure.cc@{configure.cc}|hyperpage}{181}
+\indexentry{configure.cc@{configure.cc}!update\_trackers@{update\_trackers}|hyperpage}{182}
+\indexentry{update\_trackers@{update\_trackers}!configure.cc@{configure.cc}|hyperpage}{182}
+\indexentry{configure.cc@{configure.cc}!filter@{filter}|hyperpage}{182}
+\indexentry{filter@{filter}!configure.cc@{configure.cc}|hyperpage}{182}
+\indexentry{src/detection.cc@{src/detection.cc}|hyperpage}{182}
+\indexentry{detection.cc@{detection.cc}!EPS\_CURVE@{EPS\_CURVE}|hyperpage}{183}
+\indexentry{EPS\_CURVE@{EPS\_CURVE}!detection.cc@{detection.cc}|hyperpage}{183}
+\indexentry{detection.cc@{detection.cc}!crop\_number\_section@{crop\_number\_section}|hyperpage}{184}
+\indexentry{crop\_number\_section@{crop\_number\_section}!detection.cc@{detection.cc}|hyperpage}{184}
+\indexentry{detection.cc@{detection.cc}!detection@{detection}|hyperpage}{184}
+\indexentry{detection@{detection}!detection.cc@{detection.cc}|hyperpage}{184}
+\indexentry{detection.cc@{detection.cc}!erode\_dilation@{erode\_dilation}|hyperpage}{184}
+\indexentry{erode\_dilation@{erode\_dilation}!detection.cc@{detection.cc}|hyperpage}{184}
+\indexentry{detection.cc@{detection.cc}!find\_contours@{find\_contours}|hyperpage}{185}
+\indexentry{find\_contours@{find\_contours}!detection.cc@{detection.cc}|hyperpage}{185}
+\indexentry{detection.cc@{detection.cc}!load\_number\_template@{load\_number\_template}|hyperpage}{185}
+\indexentry{load\_number\_template@{load\_number\_template}!detection.cc@{detection.cc}|hyperpage}{185}
+\indexentry{detection.cc@{detection.cc}!number\_recognition@{number\_recognition}|hyperpage}{185}
+\indexentry{number\_recognition@{number\_recognition}!detection.cc@{detection.cc}|hyperpage}{185}
+\indexentry{detection.cc@{detection.cc}!save\_convex\_hull@{save\_convex\_hull}|hyperpage}{185}
+\indexentry{save\_convex\_hull@{save\_convex\_hull}!detection.cc@{detection.cc}|hyperpage}{185}
+\indexentry{detection.cc@{detection.cc}!shape\_detection@{shape\_detection}|hyperpage}{186}
+\indexentry{shape\_detection@{shape\_detection}!detection.cc@{detection.cc}|hyperpage}{186}
+\indexentry{detection.cc@{detection.cc}!s@{s}|hyperpage}{186}
+\indexentry{s@{s}!detection.cc@{detection.cc}|hyperpage}{186}
+\indexentry{detection.cc@{detection.cc}!templates@{templates}|hyperpage}{186}
+\indexentry{templates@{templates}!detection.cc@{detection.cc}|hyperpage}{186}
+\indexentry{src/dubins.cc@{src/dubins.cc}|hyperpage}{187}
+\indexentry{src/include/calibration.hh@{src/include/calibration.hh}|hyperpage}{187}
+\indexentry{DETECTION@{DETECTION}!calibration.hh@{calibration.hh}|hyperpage}{189}
+\indexentry{calibration.hh@{calibration.hh}!DETECTION@{DETECTION}|hyperpage}{189}
+\indexentry{CAPTURING@{CAPTURING}!calibration.hh@{calibration.hh}|hyperpage}{189}
+\indexentry{calibration.hh@{calibration.hh}!CAPTURING@{CAPTURING}|hyperpage}{189}
+\indexentry{CALIBRATED@{CALIBRATED}!calibration.hh@{calibration.hh}|hyperpage}{189}
+\indexentry{calibration.hh@{calibration.hh}!CALIBRATED@{CALIBRATED}|hyperpage}{189}
+\indexentry{calibration.hh@{calibration.hh}!calibration@{calibration}|hyperpage}{189}
+\indexentry{calibration@{calibration}!calibration.hh@{calibration.hh}|hyperpage}{189}
+\indexentry{calibration.hh@{calibration.hh}!runCalibrationAndSave@{runCalibrationAndSave}|hyperpage}{189}
+\indexentry{runCalibrationAndSave@{runCalibrationAndSave}!calibration.hh@{calibration.hh}|hyperpage}{189}
+\indexentry{src/include/camera\_capture.hh@{src/include/camera\_capture.hh}|hyperpage}{190}
+\indexentry{src/include/clipper.hh@{src/include/clipper.hh}|hyperpage}{191}
+\indexentry{clipper.hh@{clipper.hh}!CLIPPER\_VERSION@{CLIPPER\_VERSION}|hyperpage}{193}
+\indexentry{CLIPPER\_VERSION@{CLIPPER\_VERSION}!clipper.hh@{clipper.hh}|hyperpage}{193}
+\indexentry{clipper.hh@{clipper.hh}!use\_lines@{use\_lines}|hyperpage}{193}
+\indexentry{use\_lines@{use\_lines}!clipper.hh@{clipper.hh}|hyperpage}{193}
+\indexentry{src/include/configure.hh@{src/include/configure.hh}|hyperpage}{193}
+\indexentry{configure.hh@{configure.hh}!configure@{configure}|hyperpage}{194}
+\indexentry{configure@{configure}!configure.hh@{configure.hh}|hyperpage}{194}
+\indexentry{configure.hh@{configure.hh}!show\_all\_conditions@{show\_all\_conditions}|hyperpage}{194}
+\indexentry{show\_all\_conditions@{show\_all\_conditions}!configure.hh@{configure.hh}|hyperpage}{194}
+\indexentry{src/include/detection.hh@{src/include/detection.hh}|hyperpage}{195}
+\indexentry{detection.hh@{detection.hh}!crop\_number\_section@{crop\_number\_section}|hyperpage}{196}
+\indexentry{crop\_number\_section@{crop\_number\_section}!detection.hh@{detection.hh}|hyperpage}{196}
+\indexentry{detection.hh@{detection.hh}!detection@{detection}|hyperpage}{196}
+\indexentry{detection@{detection}!detection.hh@{detection.hh}|hyperpage}{196}
+\indexentry{detection.hh@{detection.hh}!erode\_dilation@{erode\_dilation}|hyperpage}{196}
+\indexentry{erode\_dilation@{erode\_dilation}!detection.hh@{detection.hh}|hyperpage}{196}
+\indexentry{detection.hh@{detection.hh}!find\_contours@{find\_contours}|hyperpage}{197}
+\indexentry{find\_contours@{find\_contours}!detection.hh@{detection.hh}|hyperpage}{197}
+\indexentry{detection.hh@{detection.hh}!load\_number\_template@{load\_number\_template}|hyperpage}{197}
+\indexentry{load\_number\_template@{load\_number\_template}!detection.hh@{detection.hh}|hyperpage}{197}
+\indexentry{detection.hh@{detection.hh}!number\_recognition@{number\_recognition}|hyperpage}{197}
+\indexentry{number\_recognition@{number\_recognition}!detection.hh@{detection.hh}|hyperpage}{197}
+\indexentry{detection.hh@{detection.hh}!save\_convex\_hull@{save\_convex\_hull}|hyperpage}{198}
+\indexentry{save\_convex\_hull@{save\_convex\_hull}!detection.hh@{detection.hh}|hyperpage}{198}
+\indexentry{detection.hh@{detection.hh}!shape\_detection@{shape\_detection}|hyperpage}{198}
+\indexentry{shape\_detection@{shape\_detection}!detection.hh@{detection.hh}|hyperpage}{198}
+\indexentry{src/include/draw.hh@{src/include/draw.hh}|hyperpage}{199}
+\indexentry{draw.hh@{draw.hh}!int@{int}|hyperpage}{199}
+\indexentry{int@{int}!draw.hh@{draw.hh}|hyperpage}{199}
+\indexentry{src/include/dubins.hh@{src/include/dubins.hh}|hyperpage}{200}
+\indexentry{dubins.hh@{dubins.hh}!KMAX@{KMAX}|hyperpage}{201}
+\indexentry{KMAX@{KMAX}!dubins.hh@{dubins.hh}|hyperpage}{201}
+\indexentry{dubins.hh@{dubins.hh}!MORE\_FUNCTIONS@{MORE\_FUNCTIONS}|hyperpage}{201}
+\indexentry{MORE\_FUNCTIONS@{MORE\_FUNCTIONS}!dubins.hh@{dubins.hh}|hyperpage}{201}
+\indexentry{dubins.hh@{dubins.hh}!PIECE\_LENGTH@{PIECE\_LENGTH}|hyperpage}{201}
+\indexentry{PIECE\_LENGTH@{PIECE\_LENGTH}!dubins.hh@{dubins.hh}|hyperpage}{201}
+\indexentry{dubins.hh@{dubins.hh}!circline@{circline}|hyperpage}{201}
+\indexentry{circline@{circline}!dubins.hh@{dubins.hh}|hyperpage}{201}
+\indexentry{dubins.hh@{dubins.hh}!sinc@{sinc}|hyperpage}{201}
+\indexentry{sinc@{sinc}!dubins.hh@{dubins.hh}|hyperpage}{201}
+\indexentry{src/include/filter.hh@{src/include/filter.hh}|hyperpage}{202}
+\indexentry{src/include/map.hh@{src/include/map.hh}|hyperpage}{202}
+\indexentry{map.hh@{map.hh}!OBJ\_TYPE@{OBJ\_TYPE}|hyperpage}{203}
+\indexentry{OBJ\_TYPE@{OBJ\_TYPE}!map.hh@{map.hh}|hyperpage}{203}
+\indexentry{FREE@{FREE}!map.hh@{map.hh}|hyperpage}{203}
+\indexentry{map.hh@{map.hh}!FREE@{FREE}|hyperpage}{203}
+\indexentry{VICT@{VICT}!map.hh@{map.hh}|hyperpage}{203}
+\indexentry{map.hh@{map.hh}!VICT@{VICT}|hyperpage}{203}
+\indexentry{OBST@{OBST}!map.hh@{map.hh}|hyperpage}{203}
+\indexentry{map.hh@{map.hh}!OBST@{OBST}|hyperpage}{203}
+\indexentry{GATE@{GATE}!map.hh@{map.hh}|hyperpage}{203}
+\indexentry{map.hh@{map.hh}!GATE@{GATE}|hyperpage}{203}
+\indexentry{src/include/maths.hh@{src/include/maths.hh}|hyperpage}{203}
+\indexentry{maths.hh@{maths.hh}!DEGTORAD@{DEGTORAD}|hyperpage}{205}
+\indexentry{DEGTORAD@{DEGTORAD}!maths.hh@{maths.hh}|hyperpage}{205}
+\indexentry{maths.hh@{maths.hh}!DInf@{DInf}|hyperpage}{205}
+\indexentry{DInf@{DInf}!maths.hh@{maths.hh}|hyperpage}{205}
+\indexentry{maths.hh@{maths.hh}!Epsi@{Epsi}|hyperpage}{205}
+\indexentry{Epsi@{Epsi}!maths.hh@{maths.hh}|hyperpage}{205}
+\indexentry{maths.hh@{maths.hh}!RADTODEG@{RADTODEG}|hyperpage}{205}
+\indexentry{RADTODEG@{RADTODEG}!maths.hh@{maths.hh}|hyperpage}{205}
+\indexentry{maths.hh@{maths.hh}!tupleConstIter@{tupleConstIter}|hyperpage}{205}
+\indexentry{tupleConstIter@{tupleConstIter}!maths.hh@{maths.hh}|hyperpage}{205}
+\indexentry{maths.hh@{maths.hh}!tupleIter@{tupleIter}|hyperpage}{206}
+\indexentry{tupleIter@{tupleIter}!maths.hh@{maths.hh}|hyperpage}{206}
+\indexentry{maths.hh@{maths.hh}!DISTANCE\_TYPE@{DISTANCE\_TYPE}|hyperpage}{206}
+\indexentry{DISTANCE\_TYPE@{DISTANCE\_TYPE}!maths.hh@{maths.hh}|hyperpage}{206}
+\indexentry{EUCLIDEAN@{EUCLIDEAN}!maths.hh@{maths.hh}|hyperpage}{206}
+\indexentry{maths.hh@{maths.hh}!EUCLIDEAN@{EUCLIDEAN}|hyperpage}{206}
+\indexentry{MANHATTAN@{MANHATTAN}!maths.hh@{maths.hh}|hyperpage}{206}
+\indexentry{maths.hh@{maths.hh}!MANHATTAN@{MANHATTAN}|hyperpage}{206}
+\indexentry{maths.hh@{maths.hh}!equal@{equal}|hyperpage}{206}
+\indexentry{equal@{equal}!maths.hh@{maths.hh}|hyperpage}{206}
+\indexentry{maths.hh@{maths.hh}!pow2@{pow2}|hyperpage}{207}
+\indexentry{pow2@{pow2}!maths.hh@{maths.hh}|hyperpage}{207}
+\indexentry{maths.hh@{maths.hh}!A\_180@{A\_180}|hyperpage}{207}
+\indexentry{A\_180@{A\_180}!maths.hh@{maths.hh}|hyperpage}{207}
+\indexentry{maths.hh@{maths.hh}!A\_2PI@{A\_2PI}|hyperpage}{207}
+\indexentry{A\_2PI@{A\_2PI}!maths.hh@{maths.hh}|hyperpage}{207}
+\indexentry{maths.hh@{maths.hh}!A\_360@{A\_360}|hyperpage}{207}
+\indexentry{A\_360@{A\_360}!maths.hh@{maths.hh}|hyperpage}{207}
+\indexentry{maths.hh@{maths.hh}!A\_PI@{A\_PI}|hyperpage}{207}
+\indexentry{A\_PI@{A\_PI}!maths.hh@{maths.hh}|hyperpage}{207}
+\indexentry{src/include/objects.hh@{src/include/objects.hh}|hyperpage}{208}
+\indexentry{src/include/settings.hh@{src/include/settings.hh}|hyperpage}{208}
+\indexentry{src/include/unwrapping.hh@{src/include/unwrapping.hh}|hyperpage}{209}
+\indexentry{unwrapping.hh@{unwrapping.hh}!find\_rect@{find\_rect}|hyperpage}{210}
+\indexentry{find\_rect@{find\_rect}!unwrapping.hh@{unwrapping.hh}|hyperpage}{210}
+\indexentry{unwrapping.hh@{unwrapping.hh}!loadCoefficients@{loadCoefficients}|hyperpage}{210}
+\indexentry{loadCoefficients@{loadCoefficients}!unwrapping.hh@{unwrapping.hh}|hyperpage}{210}
+\indexentry{unwrapping.hh@{unwrapping.hh}!unwrapping@{unwrapping}|hyperpage}{211}
+\indexentry{unwrapping@{unwrapping}!unwrapping.hh@{unwrapping.hh}|hyperpage}{211}
+\indexentry{src/include/utils.hh@{src/include/utils.hh}|hyperpage}{211}
+\indexentry{utils.hh@{utils.hh}!COUT@{COUT}|hyperpage}{213}
+\indexentry{COUT@{COUT}!utils.hh@{utils.hh}|hyperpage}{213}
+\indexentry{utils.hh@{utils.hh}!INFO@{INFO}|hyperpage}{213}
+\indexentry{INFO@{INFO}!utils.hh@{utils.hh}|hyperpage}{213}
+\indexentry{utils.hh@{utils.hh}!NAME@{NAME}|hyperpage}{213}
+\indexentry{NAME@{NAME}!utils.hh@{utils.hh}|hyperpage}{213}
+\indexentry{utils.hh@{utils.hh}!my\_imshow@{my\_imshow}|hyperpage}{213}
+\indexentry{my\_imshow@{my\_imshow}!utils.hh@{utils.hh}|hyperpage}{213}
+\indexentry{utils.hh@{utils.hh}!mywaitkey@{mywaitkey}|hyperpage}{214}
+\indexentry{mywaitkey@{mywaitkey}!utils.hh@{utils.hh}|hyperpage}{214}
+\indexentry{utils.hh@{utils.hh}!mywaitkey@{mywaitkey}|hyperpage}{214}
+\indexentry{mywaitkey@{mywaitkey}!utils.hh@{utils.hh}|hyperpage}{214}
+\indexentry{utils.hh@{utils.hh}!mywaitkey@{mywaitkey}|hyperpage}{214}
+\indexentry{mywaitkey@{mywaitkey}!utils.hh@{utils.hh}|hyperpage}{214}
+\indexentry{src/map.cc@{src/map.cc}|hyperpage}{214}
+\indexentry{src/maths.cc@{src/maths.cc}|hyperpage}{215}
+\indexentry{src/objects.cc@{src/objects.cc}|hyperpage}{215}
+\indexentry{src/run/calibration\_run.cc@{src/run/calibration\_run.cc}|hyperpage}{216}
+\indexentry{calibration\_run.cc@{calibration\_run.cc}!main@{main}|hyperpage}{216}
+\indexentry{main@{main}!calibration\_run.cc@{calibration\_run.cc}|hyperpage}{216}
+\indexentry{src/run/detection\_run.cc@{src/run/detection\_run.cc}|hyperpage}{216}
+\indexentry{detection\_run.cc@{detection\_run.cc}!main@{main}|hyperpage}{217}
+\indexentry{main@{main}!detection\_run.cc@{detection\_run.cc}|hyperpage}{217}
+\indexentry{src/run/main.cc@{src/run/main.cc}|hyperpage}{217}
+\indexentry{main.cc@{main.cc}!main@{main}|hyperpage}{217}
+\indexentry{main@{main}!main.cc@{main.cc}|hyperpage}{217}
+\indexentry{src/run/unwrapping\_run.cc@{src/run/unwrapping\_run.cc}|hyperpage}{217}
+\indexentry{unwrapping\_run.cc@{unwrapping\_run.cc}!main@{main}|hyperpage}{218}
+\indexentry{main@{main}!unwrapping\_run.cc@{unwrapping\_run.cc}|hyperpage}{218}
+\indexentry{src/settings.cc@{src/settings.cc}|hyperpage}{218}
+\indexentry{settings.cc@{settings.cc}!NPOS@{NPOS}|hyperpage}{218}
+\indexentry{NPOS@{NPOS}!settings.cc@{settings.cc}|hyperpage}{218}
+\indexentry{settings.cc@{settings.cc}!getFiles@{getFiles}|hyperpage}{219}
+\indexentry{getFiles@{getFiles}!settings.cc@{settings.cc}|hyperpage}{219}
+\indexentry{settings.cc@{settings.cc}!vecToFile@{vecToFile}|hyperpage}{219}
+\indexentry{vecToFile@{vecToFile}!settings.cc@{settings.cc}|hyperpage}{219}
+\indexentry{src/unwrapping.cc@{src/unwrapping.cc}|hyperpage}{219}
+\indexentry{unwrapping.cc@{unwrapping.cc}!AREA\_MIN@{AREA\_MIN}|hyperpage}{220}
+\indexentry{AREA\_MIN@{AREA\_MIN}!unwrapping.cc@{unwrapping.cc}|hyperpage}{220}
+\indexentry{unwrapping.cc@{unwrapping.cc}!AREA\_RATIO@{AREA\_RATIO}|hyperpage}{220}
+\indexentry{AREA\_RATIO@{AREA\_RATIO}!unwrapping.cc@{unwrapping.cc}|hyperpage}{220}
+\indexentry{unwrapping.cc@{unwrapping.cc}!distance@{distance}|hyperpage}{220}
+\indexentry{distance@{distance}!unwrapping.cc@{unwrapping.cc}|hyperpage}{220}
+\indexentry{unwrapping.cc@{unwrapping.cc}!find\_rect@{find\_rect}|hyperpage}{221}
+\indexentry{find\_rect@{find\_rect}!unwrapping.cc@{unwrapping.cc}|hyperpage}{221}
+\indexentry{unwrapping.cc@{unwrapping.cc}!loadCoefficients@{loadCoefficients}|hyperpage}{221}
+\indexentry{loadCoefficients@{loadCoefficients}!unwrapping.cc@{unwrapping.cc}|hyperpage}{221}
+\indexentry{unwrapping.cc@{unwrapping.cc}!unwrapping@{unwrapping}|hyperpage}{221}
+\indexentry{unwrapping@{unwrapping}!unwrapping.cc@{unwrapping.cc}|hyperpage}{221}
+\indexentry{src/utils.cc@{src/utils.cc}|hyperpage}{222}
+\indexentry{utils.cc@{utils.cc}!my\_imshow@{my\_imshow}|hyperpage}{223}
+\indexentry{my\_imshow@{my\_imshow}!utils.cc@{utils.cc}|hyperpage}{223}
+\indexentry{utils.cc@{utils.cc}!mywaitkey@{mywaitkey}|hyperpage}{223}
+\indexentry{mywaitkey@{mywaitkey}!utils.cc@{utils.cc}|hyperpage}{223}
+\indexentry{utils.cc@{utils.cc}!mywaitkey@{mywaitkey}|hyperpage}{223}
+\indexentry{mywaitkey@{mywaitkey}!utils.cc@{utils.cc}|hyperpage}{223}
+\indexentry{utils.cc@{utils.cc}!mywaitkey@{mywaitkey}|hyperpage}{223}
+\indexentry{mywaitkey@{mywaitkey}!utils.cc@{utils.cc}|hyperpage}{223}

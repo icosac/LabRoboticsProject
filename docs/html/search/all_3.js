@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['debug',['DEBUG',['../camera__capture_8cc.html#ad72dbcf6d0153db1b8d8a58001feed83',1,'DEBUG():&#160;camera_capture.cc'],['../unwrapping_8cc.html#ad72dbcf6d0153db1b8d8a58001feed83',1,'DEBUG():&#160;unwrapping.cc']]],
+  ['debug',['DEBUG',['../camera__capture_8cc.html#ad72dbcf6d0153db1b8d8a58001feed83',1,'camera_capture.cc']]],
   ['def_5farc_5ftolerance',['def_arc_tolerance',['../namespace_clipper_lib.html#ab44dd4f071b7d92294a2af242e8c70d4',1,'ClipperLib']]],
   ['deg',['DEG',['../class_angle.html#a4f7b9849ce8780bcba95ca3ee45cff77a65e2aa4bc05730c9c2e8fdaf73612282',1,'Angle']]],
   ['degtorad',['degToRad',['../class_angle.html#a0db2d1c054e899c7f5d27091a82dec4a',1,'Angle::degToRad()'],['../maths_8hh.html#abbfb1b8e88373781c6238d647110f5d2',1,'DEGTORAD():&#160;maths.hh']]],
@@ -10,6 +10,8 @@ var searchData=
   ['detection_2ecc',['detection.cc',['../detection_8cc.html',1,'']]],
   ['detection_2ehh',['detection.hh',['../detection_8hh.html',1,'']]],
   ['detection_5frun_2ecc',['detection_run.cc',['../detection__run_8cc.html',1,'']]],
+  ['dimx',['dimX',['../class_mapp.html#aeb3ba1ee2b2ac64b01a459b85610f524',1,'Mapp']]],
+  ['dimy',['dimY',['../class_mapp.html#a7d830edb47e7a9b8d2574e53150a906c',1,'Mapp']]],
   ['dinf',['DInf',['../maths_8hh.html#a995779faef78614d4f074b7d444de767',1,'maths.hh']]],
   ['direction',['Direction',['../namespace_clipper_lib.html#a50027cc5a43f727ff89bcadf7e4524a7',1,'ClipperLib']]],
   ['disposealloutrecs',['DisposeAllOutRecs',['../class_clipper_lib_1_1_clipper_base.html#a59e59d75571ee6db76c2b17f1e6d5496',1,'ClipperLib::ClipperBase']]],
