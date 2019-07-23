@@ -10,7 +10,7 @@ using namespace std;
 
 int main (){
   cout <<"Configure" << endl;
-  configure(false);
+  configure(true);
 	cout << "unwrapping" << endl;
 	unwrapping();
 	cout << "detection" << endl;
