@@ -74,6 +74,7 @@ void configure (bool deploy, int img_id){
       cout << "Fail getting camera photo." << endl;
       return;
     }
+    imwrite("data/map/01.jpg", frame);
     free(camera);
   }
   else {
