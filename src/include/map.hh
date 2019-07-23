@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include <maths.hh>
+#include <utils.hh>
 //#include <dubins.hh>
 
 #include <opencv2/highgui.hpp>

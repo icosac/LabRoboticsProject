@@ -22,8 +22,8 @@ void planning(){
     vector< vector<Point2<int> > > victims;
     loadVVP(victims, fs["victims"]);
 
-    vector<Point2<int> > gate;
-    loadVP(gate, fs["gate"]);
+    vector< vector<Point2<int> > > gate;
+    loadVVP(gate, fs["gate"]);
 
     //create the map
     cout << "MAIN MAP\n";
@@ -32,19 +32,15 @@ void planning(){
     
     cout << "b\n"; map->addObjects(obstacles, OBST);
     cout << "c\n"; map->addObjects(victims, VICT);
-    cout << "d\n"; 
-    for(unsigned int i=0; i<gate.size(); i++){
-        cout << gate[i] << " --- ";
-    }
-    cout << endl << endl;
-    map->addObject(gate, GATE);
+    cout << "d\n"; map->addObjects(gate, GATE);
     cout << "e\n"; 
 
     // Generate the map representation and print it
     // map->printMap();
-    // Mat imageMap = map->createMapRepresentation();
-    // namedWindow("Map", WINDOW_AUTOSIZE);
-	// imshow("Map", imageMap);
+    Mat imageMap = map->createMapRepresentation();
+    //my_imshow("map", imageMap);
+    namedWindow("Map", WINDOW_NORMAL);
+    imshow("Map", imageMap);
 
     // Point2<int> start(50, 70);
     // Point2<int> end(80, 20);
@@ -74,12 +70,12 @@ void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn){
 }
 
 void loadVP(vector<Point2<int> > & vp, FileNode fn){
-    FileNode pts = fn; //points
-    for (FileNodeIterator itPts = pts.begin(); itPts != pts.end(); itPts++){
+    // useless function at the moment
+    FileNode data = fn; //points
+    for (FileNodeIterator itPts = data.begin(); itPts != data.end(); itPts++){
         int x = *itPts; 
         itPts++;
         int y = *itPts;
-
         vp.push_back(Point2<int>(x, y));
     }
 }

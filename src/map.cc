@@ -25,6 +25,9 @@ Mapp::Mapp( const int _lengthX, const int _lengthY, const int _pixX, const int _
     parents = new Point2<int>*[dimY];
     for(int i=0; i<dimY; i++){
         map[i] = new OBJ_TYPE[dimX];
+        for(int j=0; j<dimX; j++){
+            map[i][j] = FREE;
+        }
         // the initializtion is to -1
         distances[i] = new int[dimX];
         parents[i] = new Point2<int>[dimX];
@@ -127,57 +130,52 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
     if(vp.size()<3){
         cout << "Invalid object less than 3 sides!\n";
     } else{
-        cout << "Points: (size" << vp.size() << ")\n";
+        //cout << "Points: (size" << vp.size() << ")\n";
         //min, max of y computed (need for min&max for each line)
         int yMin=lengthY, yMax=0;
         for(unsigned int a = 0; a<vp.size(); a++){
-            cout << "\t" << vp[a] << endl;
+            //cout << "\t" << vp[a] << endl;
             yMin = min(yMin, vp[a].y());
             yMax = max(yMax, vp[a].y());
         }
-        cout << endl;
+        //cout << endl;
         
         // convert (min, max of y) to (min, max of i)
         int iMin=yMin/pixY, iMax=yMax/pixY;
-        cout << "yMin: " << yMin << ", yMax: " << yMax << endl;
-        cout << "iMin: " << iMin << ", iMax: " << iMax << endl;
+        //cout << "yMin: " << yMin << ", yMax: " << yMax << endl;
+        //cout << "iMin: " << iMin << ", iMax: " << iMax << endl;
 
         // generate vectors of min&max x for each line
         int vectSize = iMax-iMin+1;
-        vector<int> minimums;
-        vector<int> maximums;
+        int * minimums = new int[vectSize];
+        int * maximums = new int[vectSize];
+        // vector<int> _maximums(vectSize);
         for(int a=0; a<vectSize; a++){
-            minimums.push_back(dimX);
-            maximums.push_back(0);
+            minimums[a] = dimX;
+            maximums[a] = 0;
+            // _maximums[a]=0;
         }
 
         // for each side of the object
         for(unsigned int s=0; s<vp.size(); s++){
-            cout << "\n_______________________________________________________\nCouple n:" << s+1 << endl;
+            //cout << "\n_______________________________________________________\nCouple n:" << s+1 << endl;
             //save the end points of the segment
             set<pair<int, int> > collisionSet = cellsFromSegment(vp[s], vp[(s+1)%vp.size()]); //I use the module to consider all the n sides of an object with n points
-            cout << "Set returned:\n";
-            cout << "size " << collisionSet.size() << endl;
-            for(pair<int, int> el:collisionSet){
+            //cout << "Set returned:\n";
+            //cout << "size " << collisionSet.size() << endl;
+            for(pair<int, int> el : collisionSet){
                 int i=el.first, j=el.second;  // two methods for get elements from a pair structure( get<0>(el)==el.first )
-                //int i=70, j=95;
-                cout << j << "," << i << " - ";
+                //cout << j << "," << i << " - ";
                 map[i][j] = ((type==OBST) ? BODA : type);
                 minimums[i-iMin] = min(minimums[i-iMin], j);
-                cout << "aaaaa" << maximums.size() << "  " << i-iMin << "  " << j << endl;
-                try{
-                    maximums[i-iMin] = max(maximums[i-iMin], j);
-                } catch(const exception& e) {
-                    cout << "\n\n\n\n\n\n\n\n\t\t\tECCEZIONE GENERATA\n\n\n\n\n\n\n\n\n\n";
-                }
+                maximums[i-iMin] = max(maximums[i-iMin], j);
+                // _maximums[i-iMin] = max(_maximums[i-iMin], j);
             }
-            cout << endl;
         }
-        cout << "borderSize: " << borderSize << ", vectSize: " << vectSize << ", iMin: " << iMin << endl;
+        //cout << "borderSize: " << borderSize << ", vectSize: " << vectSize << ", iMin: " << iMin << endl;
         for(int k=0; k<vectSize; k++){
-            cout << "line " << k+iMin << ": (" << minimums[k] << ", " << maximums[k] << ")\n";
+            //cout << "line " << k+iMin << ": (" << minimums[k] << ", " << maximums[k] << ")\n";
             for(int j=minimums[k]+1; j<maximums[k]; j++){
-                //cout << "\tinside for line: " << k+iMin << endl;
                 // TODO: test
                 if(type==OBST){
                     if( k<borderSize || vectSize-(k+1)<borderSize ||
@@ -192,6 +190,8 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
             }
         }
         cout << "out of for\n";
+        delete[] minimums;
+        // delete[] maximums; //NEVER uncomment this line. it cause "double free or corruption (out)" error ! ! ! 
     }
     cout << "OK" << endl;
 }
@@ -335,8 +335,9 @@ vector<Point2<int> > Mapp::sampleNPoints(const int n, const vector<Point2<int> >
 */
 Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
     // empty map
-	Mat imageMap = Mat::zeros( Size(lengthX, lengthY), CV_8UC3 );
-    for(int i=0; i<dimY; i++){
+	//Mat imageMap = Mat::zeros( Size(lengthX, lengthY), CV_8UC3 );
+    Mat imageMap(lengthX, lengthY, CV_8UC3, Scalar(0,0,0));
+    /*for(int i=0; i<dimY; i++){
         for(int j=0; j<dimX; j++){
             if(map[i][j]!=FREE){
                 // choose the color according to the type
@@ -361,7 +362,7 @@ Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
                 rectangle(imageMap, Point(j*pixX, i*pixY), Point((j+1)*pixX, (i+1)*pixY), color, -1);
             }
         }
-    }
+    }*/
     return(imageMap);
 }
 
@@ -381,7 +382,7 @@ string Mapp::matrixToString(){
     
     for(int i=0; i<dimY; i++){
         for(int j=0; j<dimX; j++){
-            ss << map[i][j] << " ";
+            ss << map[i][j] << "";
         }
         ss << endl;
     }
