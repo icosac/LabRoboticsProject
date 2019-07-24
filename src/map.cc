@@ -1,16 +1,17 @@
 #include <map.hh>
 
-
 /*! \brief Constructor of the class.
 
     \param[in] _lengthX It is the size in pixel of the horizontal dimension.
     \param[in] _lengthY It is the size in pixel of the vertical dimension.
     \param[in] _pixX It is the horizontal granularity of a cell (how many pixels for each cell).
     \param[in] _pixY It is the vertical granularity of a cell (how many pixels for each cell).
+    \param[in] _borderSize It is the dimension (defined based on cells of the map) of the border of each obstascles.
     \param[in] vvp It is a vector, of vector, of point that delimit, as a convex hull, a set of obstacles in the map.
 */
 Mapp::Mapp( const int _lengthX, const int _lengthY, const int _pixX, const int _pixY, const int _borderSize, 
-            const vector< vector<Point2<int> > > & vvp){
+            const vector< vector<Point2<int> > > & vvp)
+{
     lengthX = _lengthX;
     lengthY = _lengthY;
     pixX = _pixX;
@@ -56,25 +57,19 @@ set<pair<int, int> > Mapp::cellsFromSegment(const Point2<int> p0, const Point2<i
         x0=p1.x();  x1=p0.x();
         y0=p1.y();  y1=p0.y();
     }
-    //cout << x0 << "," << y0 << " - " << x1 << "," << y1 << endl;
-    double th = atan2(y1-y0, x1-x0);
 
+    double th = atan2(y1-y0, x1-x0);
     int j = x0/pixX;
     int i = int(y0)/pixY;
-    //cout << "i: " << i << ", j: " << j << endl;
 
     // iteration over all the cells interssed from the side
     while(!(x0==x1 && equal(y0, y1, 0.0001))){
-        //cout << "check x: " << (x0==x1) << ", check y: " << equal(y0, y1) << endl;
-        //cout << "check fail on -> " << x0 << "," << y0 << " - " << x1 << "," << y1 << endl;
         //localize the left point on the grid
-        //cout << "adding pixel: " << i << ", " << j << endl;
 
         cells.insert(pair<int, int>(i, j));
 
         // compute the y given the x
         int x = min(pixX*(j+1), x1);
-        //cout << "x: " << x;
         
         double l = (x-x0)*1.0/cos(th);
         double y;
@@ -84,17 +79,12 @@ set<pair<int, int> > Mapp::cellsFromSegment(const Point2<int> p0, const Point2<i
         } else{
             y = y0 + l*sin(th);
         }
-        //cout << ", y: " << y << endl;
         
         // color the whole line between the (j, i (aka i0)) and (j, i1)
         int i1 = int(floor(y))/pixY;
-        //cout << "i: " << i << " i1: " << i1 << endl;
-        //cout << "for: \n";
         for(int k=min(i, i1); k<=max(i, i1); k++){
-            //cout << "\t" << k << " " << j << endl;
             cells.insert(pair<int, int>(k, j));
         }
-        //cout << endl;
 
         x0 = x;
         y0 = y;
@@ -127,26 +117,22 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
     if(vp.size()<3){
         cout << "Invalid object less than 3 sides!\n";
     } else{
-        //cout << "Points: (size" << vp.size() << ")\n";
         //min, max of y computed (need for min&max for each line)
         int yMin=lengthY, yMax=0;
         for(unsigned int a = 0; a<vp.size(); a++){
-            //cout << "\t" << vp[a] << endl;
             yMin = min(yMin, vp[a].y());
             yMax = max(yMax, vp[a].y());
         }
-        //cout << endl;
         
         // convert (min, max of y) to (min, max of i)
         int iMin=yMin/pixY, iMax=yMax/pixY;
-        //cout << "yMin: " << yMin << ", yMax: " << yMax << endl;
-        //cout << "iMin: " << iMin << ", iMax: " << iMax << endl;
 
         // generate vectors of min&max x for each line
         int vectSize = iMax-iMin+1;
         int * minimums = new int[vectSize];
         int * maximums = new int[vectSize];
-        // vector<int> _maximums(vectSize);
+        // vector<int> _maximums(vectSize); // fantastic example of a bug of std::vector
+
         for(int a=0; a<vectSize; a++){
             minimums[a] = dimX;
             maximums[a] = 0;
@@ -155,25 +141,21 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
 
         // for each side of the object
         for(unsigned int s=0; s<vp.size(); s++){
-            //cout << "\n_______________________________________________________\nCouple n:" << s+1 << endl;
+
             //save the end points of the segment
             set<pair<int, int> > collisionSet = cellsFromSegment(vp[s], vp[(s+1)%vp.size()]); //I use the module to consider all the n sides of an object with n points
-            //cout << "Set returned:\n";
-            //cout << "size " << collisionSet.size() << endl;
             for(pair<int, int> el : collisionSet){
-                int i=el.first, j=el.second;  // two methods for get elements from a pair structure( get<0>(el)==el.first )
-                //cout << j << "," << i << " - ";
+
+                int i=get<0>(el), j=el.second;  // two methods for get elements from a pair structure( get<0>(el)==el.first )
                 map[i][j] = ((type==OBST) ? BODA : type);
+
                 minimums[i-iMin] = min(minimums[i-iMin], j);
                 maximums[i-iMin] = max(maximums[i-iMin], j);
                 // _maximums[i-iMin] = max(_maximums[i-iMin], j);
             }
         }
-        //cout << "borderSize: " << borderSize << ", vectSize: " << vectSize << ", iMin: " << iMin << endl;
         for(int k=0; k<vectSize; k++){
-            //cout << "line " << k+iMin << ": (" << minimums[k] << ", " << maximums[k] << ")\n";
             for(int j=minimums[k]+1; j<maximums[k]; j++){
-                // TODO: test
                 if(type==OBST){
                     if( k<borderSize || vectSize-(k+1)<borderSize ||
                         j-minimums[k]<borderSize || maximums[k]-(j+1)<borderSize ){
@@ -232,6 +214,14 @@ bool Mapp::checkSegment(const Point2<int> p0, const Point2<int> p1){
     return(checkSegmentCollisionWithType(p0, p1, OBST));
 }
 
+/*! \brief Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
+    \details The function is based on a Breadth-first search (BFS).
+
+    \param[in] startP The source point.
+    \param[in] endP The destination point.
+    \param[in] reset A boolean that reset the parameters of the BFS, by default it is true (highly recomended).
+    \returns It is a vector of points along the path (one for each cell of the grid of the map).
+*/
 vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> startP, const Point2<int> endP, const bool reset){
     if(reset){
         // unneccessary at the first run if all is initializated to 0. and also (maybe) in other very rare case based on multiple minPath call.
@@ -294,15 +284,24 @@ vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> startP, const Poin
     return(computedParents);
 }
 
+/*! \brief It reset, to the given value, the matrix of distances, to compute again the minPath search.
+
+    \param[in] value The value to be set.
+*/
 void Mapp::resetDistanceMap(const int value){
     for(int i=0; i<dimY; i++){
         for(int j=0; j<dimX; j++){
             distances[i][j] = value;
-            //parents[i][j] = 0; //unneccessary reset (variable never read before the write)
         }
     }
 }
 
+/*! \brief It extracts from the given vector of points, a subset of points that always contains the first one and the last one.
+
+    \param[in] n The number of points to select exept the extremes.
+    \param[in] points The vector of points to be selected.
+    \returns The vector containing the subset of n+2(begin and end) points.
+*/
 vector<Point2<int> > Mapp::sampleNPoints(const int n, const vector<Point2<int> > & points){
     vector<Point2<int> > vp;
     if(points.size() >= 2){
@@ -318,9 +317,8 @@ vector<Point2<int> > Mapp::sampleNPoints(const int n, const vector<Point2<int> >
 /*! \brief The function create an image (Mat) with the dimensions of the Mapp and all its objects inside.
     \returns The generated image is returned.
 */
-Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
-    // empty map
-    Mat imageMap(lengthY, lengthX, CV_8UC3, Scalar(47, 98, 145));
+Mat Mapp::createMapRepresentation(){
+    Mat imageMap(lengthY, lengthX, CV_8UC3, Scalar(47, 98, 145));// empty map
     for(int i=0; i<dimY; i++){
         for(int j=0; j<dimX; j++){
             if(map[i][j]!=FREE){

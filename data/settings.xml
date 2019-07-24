@@ -8,17 +8,17 @@
 <intrinsicCalibrationFile>"./data/intrinsic_calibration.xml"</intrinsicCalibrationFile>
 <calibrationFile>data/calib_config.xml</calibrationFile>
 <blackMask>
-  40 0 0 180 255 48</blackMask>
+  72 0 0 180 255 54</blackMask>
 <redMask>
-  150 47 37 180 255 255</redMask>
+  163 94 60 180 255 255</redMask>
 <greenMask>
-  54 128 38 80 255 170</greenMask>
+  50 89 26 79 252 255</greenMask>
 <blueMask>
-  100 187 83 124 239 255</blueMask>
+  89 178 65 124 239 255</blueMask>
 <whiteMask>
-  87 189 127 125 236 253</whiteMask>
+  89 149 164 179 255 204</whiteMask>
 <victimMask>
-  41 0 0 180 255 56</victimMask>
+  75 0 0 180 255 56</victimMask>
 <robotMask>
   89 149 164 179 255 204</robotMask>
 <kernelSide>9</kernelSide>

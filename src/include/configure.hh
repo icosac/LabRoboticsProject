@@ -24,9 +24,8 @@ void configure(bool deploy=true, int img_id=0);
 /*! Function to show a picture with various filters taken from Settings. It then asks for visual confirmation.
  *
  * @param frame The image to show.
- * @param s The Settings to use.
  * @return True if the filters are okay, false otherwise.
  */
-bool show_all_conditions(const Mat& frame, Settings* s);
+bool show_all_conditions(const Mat& frame);
 
 #endif

@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include <maths.hh>
+#include <settings.hh>
 #include <utils.hh>
 //#include <dubins.hh>
 

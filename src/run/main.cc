@@ -5,32 +5,40 @@
 #include <calibration.hh>
 #include <planning.hh>
 #include <configure.hh>
+#include <settings.hh>
 
 
 #include<iostream>
 using namespace std;
 
+Settings *sett =new Settings();
+
 int main (){
+	sett->cleanAndRead();
 	// cout << "calibration" << endl;
 	// calibration(); //BUG????!?!?!?!?!?!??!?!?!
-	cout <<"Configure" << endl;
+	cout << endl <<"Configure" << endl;
 	configure(true);
 
-	cout << "unwrapping" << endl;
+	cout << endl << "unwrapping" << endl;
 	unwrapping();
 
-	cout << "detection" << endl;
+	cout << endl << "detection" << endl;
 	detection();
 
-	cout << "planning" << endl;
+	cout << endl << "planning" << endl;
 
-	pair< vector<Point2<int> >, Mat > tmpPair = planning();
+	pair< vector<Point2<int> >, Mapp* > tmpPair = planning();
 	vector<Point2<int> > pathPoints = tmpPair.first;
-	Mat imageMap = tmpPair.second;
+	Mapp * map = tmpPair.second;
 
-    namedWindow("Map", WINDOW_NORMAL);
+	Mat imageMap = map->createMapRepresentation();
+
+	#ifdef WAIT
+	namedWindow("Map", WINDOW_NORMAL);
 	imshow("Map", imageMap);
 	waitKey();
+	#endif
 
 	// the robot starts to move MAYBE
 

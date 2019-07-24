@@ -1,21 +1,15 @@
 #include "detection.hh"
 
 vector<Mat> templates;
-Settings *s=new Settings;
-
-// #define DEBUG
-// #define WAIT
 
 /*! \brief Loads some images and detects shapes according to different colors.
 
     \returns Return 0 if the function reach the end.
 */
 int detection(){
-    s->cleanAndRead();
-
     load_number_template();
 
-    for (string filename : s->unMaps(-1)){
+    for (string filename : sett->unMaps(-1)){
         cout << "Elaborating file: " << filename << endl;
 
         // Load unwrapped image from file
@@ -55,7 +49,7 @@ int detection(){
 */
 void load_number_template(){ //load the template for number recognition
     Mat tmp;
-    for(auto el : s->getTemplates(-1)){
+    for(auto el : sett->getTemplates(-1)){
         tmp = imread(el);
         cvtColor(tmp, tmp, cv::COLOR_BGR2GRAY);
         bitwise_not(tmp, tmp);
@@ -78,17 +72,17 @@ void shape_detection(const Mat & img, const int color, const Mat& un_img){
     switch(color){
         case 0: {
             cout << "\tObstacles detection\n";  
-            mask = s->redMask;
+            mask = sett->redMask;
             break;
         }
         case 1: {  
             cout << "\tVictim detection\n";   
-            mask = s->greenMask; 
+            mask = sett->greenMask; 
             break;
         }
         case 2: {
             cout << "\tGate detection\n";    
-            mask = s->blueMask;   
+            mask = sett->blueMask;   
             break;
         }
     }
@@ -117,7 +111,7 @@ void shape_detection(const Mat & img, const int color, const Mat& un_img){
     According to the color the filtering functions apply can change in the type and in the order.
 */
 void erode_dilation(Mat & img, const int color){
-    const int erode_side = s->kernelSide; //odd number
+    const int erode_side = sett->kernelSide; //odd number
     const int center = erode_side/2+1;
     Mat kernel = getStructuringElement(MORPH_RECT, Size(erode_side, erode_side), Point(center, center) );
     // 0red && 2blue    -> smooth - erode - dilation - smooth - treshold
@@ -165,7 +159,7 @@ void find_contours( const Mat & img,
                     Mat original, 
                     const int color)
 {
-    #define MIN_AREA_SIZE 150
+    #define MIN_AREA_SIZE 1000 //defined as pixels^2 (in our scenaria it means mm^2)
     vector<vector<Point>> contours, contours_approx;
     vector<Point> approx_curve;
     vector<int> victimNum;
@@ -209,18 +203,16 @@ void find_contours( const Mat & img,
         contours_approx.swap(tmp);
     }
 
-    save_convex_hull(contours_approx, color, victimNum);
+    save_convex_hull(contours_approx, color);
 }
 
 /*! \brief Given some vector save it in a xml file.
 
     \param[in] contours Is a vector that is saved in a xml file.
     \param[in] color Is the parameter according to which the function decide if saved ('color==1') or not ('otherwise') the vector 'victims'.
-    \param[in] victims Is a vector that is saved in a xml file.
 */
 void save_convex_hull(  const vector<vector<Point> > & contours, 
-                        const int color, 
-                        const vector<int> & victims)
+                        const int color)
 {
     vector<vector<Point>> hull;
     vector<Point> hull_i;
@@ -228,7 +220,7 @@ void save_convex_hull(  const vector<vector<Point> > & contours,
         convexHull(contours[i], hull_i, true);//return point in clockwise order
         hull.push_back(hull_i);
     }
-    string save_file = s->convexHullFile;
+    string save_file = sett->convexHullFile;
     static FileStorage fs(save_file, FileStorage::WRITE);
 
     string str;
@@ -240,9 +232,6 @@ void save_convex_hull(  const vector<vector<Point> > & contours,
 
     fs << str << hull;
     
-    if(color==1){
-        fs << "victimsNum" << victims;
-    }
     if (color==2){
         fs.release();
     }
@@ -265,7 +254,7 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     #ifdef DEBUG
         my_imshow("before black filter", processROI, true);
     #endif
-    Filter mask = s->victimMask;
+    Filter mask = sett->victimMask;
     inRange(processROI, mask.Low(), mask.High(), processROI);
     #ifdef WAIT
         my_imshow("before erode", processROI);
@@ -308,7 +297,8 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     \param[in,out] ROI Is the image that the function will going to elaborate.
 */
 void crop_number_section(Mat & ROI){
-    // Tutorial for the min rectangle arround a shape. https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/bounding_rotated_ellipses/bounding_rotated_ellipses.html
+    // Tutorial for the min rectangle arround a shape. 
+    // https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/bounding_rotated_ellipses/bounding_rotated_ellipses.html
     vector<vector<Point>> contours;
     vector<Point> contour;
 
@@ -324,7 +314,10 @@ void crop_number_section(Mat & ROI){
                 tmpContour.push_back(contours[i][j]);
             }
         }
-        convexHull(tmpContour, contour, true);//return point in clockwise order
+        if(tmpContour.size()==0){
+            return; // extreme rare case that can occours if the filters are not well setted (it cause core dumped)
+        }
+        convexHull(tmpContour, contour, true);//return points in clockwise order
     }
     
     // Find the rotated rectangles for the contour
