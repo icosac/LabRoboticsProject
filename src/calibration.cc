@@ -246,12 +246,14 @@ int calibration(string inputFile)
             else
               mode = DETECTION;
         }
+
         // If there are no more images stop the loop
         if(view.empty())
         {   
             // if calibration threshold was not reached yet, calibrate now
           if( mode != CALIBRATED && !imagePoints.empty() )
             runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints);
+
           break;
         }
 
@@ -285,6 +287,7 @@ int calibration(string inputFile)
             // Draw the corners.
             drawChessboardCorners( view, s.boardSize, Mat(pointBuf), found );
         }
+
         //pattern_found
         //----------------------------- Output Text ------------------------------------------------
         //output_text
@@ -334,10 +337,11 @@ int calibration(string inputFile)
                 imagePoints.clear();
             }
         #endif
+
         //await_input
     }
-    //End of for cycle
 
+    //End of for cycle
     // -----------------------Show the undistorted image for the image list ------------------------
     //show_results
     if( s.inputType == CalSettings::IMAGE_LIST && s.showUndistorsed )
@@ -659,5 +663,6 @@ bool runCalibrationAndSave( CalSettings& s,
                         totalAvgErr
                     );
     }
+
     return ok;
 }

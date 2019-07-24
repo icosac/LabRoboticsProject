@@ -7,6 +7,7 @@
 #include <cstdarg> //#include <stdarg.h>
 #include <sstream>
 #include <string>
+#include <opencv2/opencv.hpp>
 
 #include <opencv2/opencv.hpp>
 
@@ -806,7 +807,7 @@ public:
   		\returns An output stream to be printed.
   */
   friend ostream& operator<< (ostream& out, const Point2<T> &data){
-    out << data.to_string().str();
+    out << "[" << data.to_string().str() << "]";
     return out;
   }
 
@@ -860,6 +861,14 @@ public:
   bool operator< (const Point2<T>& A){
     return true;
   }
+
+  /*! \brief Cast to cv::Point
+      \returns The value casted to point
+  */
+  operator cv::Point() const { 
+    return cv::Point(x(), y()); 
+  }
+
   // ~Point2(){delete values;}
 };
 

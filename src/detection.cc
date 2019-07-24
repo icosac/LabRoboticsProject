@@ -48,6 +48,7 @@ int detection(){
             mywaitkey();
         #endif
     }
+    fs.release();
     return(0);
 }
 
@@ -199,7 +200,7 @@ void find_contours( const Mat & img,
     \param[in] color Is the parameter according to which the function decide if saved ('color==1') or not ('otherwise') the vector 'victims'.
     \param[in] victims Is a vector that is saved in a xml file.
 */
-void save_convex_hull(  const vector<vector<Point>> & contours, 
+void save_convex_hull(  const vector<vector<Point> > & contours, 
                         const int color, 
                         const vector<int> & victims)
 {
@@ -211,6 +212,7 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
     }
     string save_file = s->convexHullFile;
     static FileStorage fs(save_file, FileStorage::WRITE);
+
     string str;
     switch(color){
         case 0: str="obstacles"; break;
@@ -218,10 +220,10 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
         case 2: str="gate"; break;
     }
     fs << str << hull;
+    
     if(color==1){
         fs << "victimsNum" << victims;
     }
-    //fs.release(); //if I do this operation I save only the first call of this function...
 }
 
 // #define TESS
