@@ -315,22 +315,12 @@ vector<Point2<int> > Mapp::sampleNPoints(const int n, const vector<Point2<int> >
     return(vp);    
 }
 
-// todo add in the .hh file
-// vector< Configuration2<int> >/*is it correct???*/ Mapp::fromPointsToConfiguarations(const vector<Point2<int> > & vp){
-//     vector< Configuration2<int> > vC;
-//     for(unsigned int i=0; i<vp.size()-1; i++){
-//         Angle th = //compute angle from vp[i], vp[i+1]
-//         vC.push_back( Configuration )
-//     }
-// }
-
-
 /*! \brief The function create an image (Mat) with the dimensions of the Mapp and all its objects inside.
     \returns The generated image is returned.
 */
 Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
     // empty map
-    Mat imageMap(lengthX, lengthY, CV_8UC3, Scalar(0,0,0));
+    Mat imageMap(lengthY, lengthX, CV_8UC3, Scalar(47, 98, 145));
     for(int i=0; i<dimY; i++){
         for(int j=0; j<dimX; j++){
             if(map[i][j]!=FREE){
@@ -341,7 +331,7 @@ Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
                         color = Scalar(0, 0, 255); //BGR format
                         break;
                     case BODA:
-                        color = Scalar(255, 0, 255); //BGR format
+                        color = Scalar(0, 0, 50); //BGR format
                         break;
                     case VICT:
                         color = Scalar(0, 255, 0); //BGR format

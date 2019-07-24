@@ -9,8 +9,8 @@
 using namespace std;
 
 int main (){
-	cout << "calibration" << endl;
-	// calibration();
+	// cout << "calibration" << endl;
+	// calibration(); //BUG????!?!?!?!?!?!??!?!?!
 
 	cout << "unwrapping" << endl;
 	unwrapping();
@@ -19,15 +19,15 @@ int main (){
 	detection();
 
 	cout << "planning" << endl;
-	planning();
+	// planning();
 
-	// pair< vector<Point2<int> >, Mat > tmpPair = planning();
-	// vector<Point2<int> > pathPoints = tmpPair.first;
-	// Mat imageMap = tmpPair.second;
+	pair< vector<Point2<int> >, Mat > tmpPair = planning();
+	vector<Point2<int> > pathPoints = tmpPair.first;
+	Mat imageMap = tmpPair.second;
 
-    // namedWindow("Map", WINDOW_AUTOSIZE);
-	// imshow("Map", imageMap);
-
+    namedWindow("Map", WINDOW_NORMAL);
+	imshow("Map", imageMap);
+	waitKey();
 
 
 	// the robot start to move

@@ -222,12 +222,16 @@ int calibration(const string inputFile)
         const char ESC_KEY = 27 ;
     #endif
     //get_input
+    int i=1;
     for(;;)
     {
         Mat view; //The matrix in which the image being considered is stored
         bool blinkOutput = false;
         //Store next image
+        cout << endl << endl << "ciao0" << endl;
+        cout << i << endl << endl; i++;
         view = s.nextImage(); 
+        cout << endl << endl << "ciaoa" << endl << endl << endl;
 
         // If no more image, or got enough, then stop calibration and show result
         if( mode == CAPTURING && imagePoints.size() >= (size_t)s.nrFrames )
@@ -237,20 +241,26 @@ int calibration(const string inputFile)
             else
               mode = DETECTION;
         }
+        cout << endl << endl << "ciaob" << endl << endl << endl;
+
         // If there are no more images stop the loop
         if(view.empty())
         {   
             // if calibration threshold was not reached yet, calibrate now
           if( mode != CALIBRATED && !imagePoints.empty() )
             runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints);
+
+          cout << endl << endl << "ciaob1" << endl << endl << endl;
           break;
         }
+        cout << endl << endl << "ciaoc" << endl << endl << endl;
 
         //get_input
         imageSize = view.size();  // Format input image.
         if( s.flipVertical )    {
             flip( view, view, 0 );
         }
+        cout << endl << endl << "ciaod" << endl << endl << endl;
 
         //find_pattern
         vector<Point2f> pointBuf;
@@ -276,6 +286,8 @@ int calibration(const string inputFile)
             // Draw the corners.
             drawChessboardCorners( view, s.boardSize, Mat(pointBuf), found );
         }
+        cout << endl << endl << "ciaoe" << endl << endl << endl;
+
         //pattern_found
         //----------------------------- Output Text ------------------------------------------------
         //output_text
@@ -284,6 +296,7 @@ int calibration(const string inputFile)
         int baseLine = 0;
         Size textSize = getTextSize(msg, 1, 1, 1, &baseLine);
         Point textOrigin(view.cols - 2*textSize.width - 10, view.rows - 2*baseLine - 10);
+        cout << endl << endl << "ciaof" << endl << endl << endl;
 
         if( mode == CAPTURING )
         {
@@ -294,12 +307,14 @@ int calibration(const string inputFile)
         }
 
         putText( view, msg, textOrigin, 1, 1, mode == CALIBRATED ?  GREEN : RED);
+        cout << endl << endl << "ciaog" << endl << endl << endl;
 
         if( blinkOutput )
             bitwise_not(view, view);
         //output_text
         //------------------------- Video capture  output  undistorted ------------------------------
         //output_undistorted
+        cout << endl << endl << "ciaoh" << endl << endl << endl;
         if( mode == CALIBRATED && s.showUndistorsed )
         {
             Mat temp = view.clone();
@@ -308,6 +323,7 @@ int calibration(const string inputFile)
         //output_undistorted
         //------------------------------ Show image and check for input commands -------------------
         //await_input
+        cout << endl << endl << "ciaoi" << endl << endl << endl;
 
         #ifdef DEBUG
             imshow("Image View", view);
@@ -325,10 +341,13 @@ int calibration(const string inputFile)
                 imagePoints.clear();
             }
         #endif
+        cout << endl << endl << "ciaoj" << endl << endl << endl;
+
         //await_input
     }
-    //End of for cycle
+    cout << endl << endl << "ciaok" << endl << endl << endl;
 
+    //End of for cycle
     // -----------------------Show the undistorted image for the image list ------------------------
     //show_results
     if( s.inputType == Settings::IMAGE_LIST && s.showUndistorsed )
@@ -650,5 +669,7 @@ bool runCalibrationAndSave( Settings& s,
                         totalAvgErr
                     );
     }
+    cout << endl << endl << "ciao" << endl << endl << endl;
+
     return ok;
 }

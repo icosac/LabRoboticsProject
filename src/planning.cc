@@ -4,8 +4,8 @@
 // #define DEBUG
 // #define WAIT
 
-//pair< vector<Point2<int> >, Mat > planning(){
-void planning(){
+pair< vector<Point2<int> >, Mat > planning(){
+//void planning(){
     // load file of saving
     FileStorage fs_xml("data/settings.xml", FileStorage::READ);
     string loadFile = (string)fs_xml["convexHullFile"];
@@ -38,16 +38,13 @@ void planning(){
     // Generate the map representation and print it
     Mat imageMap = map->createMapRepresentation();
 
-    namedWindow("Map", WINDOW_NORMAL);
-    imshow("Map", imageMap);
-    waitKey();
-
-    // Point2<int> start(50, 70);
-    // Point2<int> end(80, 20);
-    // vector<Point2<int> > cellsOfPath = map->minPathTwoPoints(start, end);
+    // TODO test and verify
+    Point2<int> start(120, 120);
+    Point2<int> end(900, 1400);
+    vector<Point2<int> > cellsOfPath = map->minPathTwoPoints(start, end);
+    cout << "cellsOfPath size: " << cellsOfPath.size() <<endl;
     
-    // vector< vector<Point2<int> > > dubins;
-    // return( make_pair(gate, imageMap) );/*todo change with dubins*/
+    return( make_pair(cellsOfPath, imageMap) );/*todo change with points from dubins*/
 }
 
 void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn){
