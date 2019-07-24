@@ -28,19 +28,19 @@ void planning(){
     //create the map
     cout << "MAIN MAP\n";
     int dimX=1000, dimY=1500;
-    cout << "a\n"; Mapp* map = new Mapp(dimX, dimY, 5, 5);
+    Mapp* map = new Mapp(dimX, dimY, 5, 5);
     
-    cout << "b\n"; map->addObjects(obstacles, OBST);
-    cout << "c\n"; map->addObjects(victims, VICT);
-    cout << "d\n"; map->addObjects(gate, GATE);
-    cout << "e\n"; 
+    map->addObjects(obstacles, OBST);
+    map->addObjects(victims, VICT);
+    map->addObjects(gate, GATE);
+    
 
     // Generate the map representation and print it
-    // map->printMap();
     Mat imageMap = map->createMapRepresentation();
-    //my_imshow("map", imageMap);
+
     namedWindow("Map", WINDOW_NORMAL);
     imshow("Map", imageMap);
+    waitKey();
 
     // Point2<int> start(50, 70);
     // Point2<int> end(80, 20);

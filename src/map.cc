@@ -1,6 +1,5 @@
 #include <map.hh>
 
-void out(int c){cout << c << endl;}
 
 /*! \brief Constructor of the class.
 
@@ -113,9 +112,7 @@ set<pair<int, int> > Mapp::cellsFromSegment(const Point2<int> p0, const Point2<i
 */
 void Mapp::addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYPE type){
     for(unsigned int i=0; i<vvp.size(); i++){
-        cout << "in\n";  out(i*11111);
         addObject(vvp[i], type);
-        cout << "out\n"; out(i*11111);
     }
 }
 
@@ -189,11 +186,9 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
                 }
             }
         }
-        cout << "out of for\n";
-        delete[] minimums;
+        // delete[] minimums;
         // delete[] maximums; //NEVER uncomment this line. it cause "double free or corruption (out)" error ! ! ! 
     }
-    cout << "OK" << endl;
 }
 
 /*! \brief Given a point return the type (status) of the cell in the map that contain it.
@@ -335,9 +330,8 @@ vector<Point2<int> > Mapp::sampleNPoints(const int n, const vector<Point2<int> >
 */
 Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
     // empty map
-	//Mat imageMap = Mat::zeros( Size(lengthX, lengthY), CV_8UC3 );
     Mat imageMap(lengthX, lengthY, CV_8UC3, Scalar(0,0,0));
-    /*for(int i=0; i<dimY; i++){
+    for(int i=0; i<dimY; i++){
         for(int j=0; j<dimX; j++){
             if(map[i][j]!=FREE){
                 // choose the color according to the type
@@ -362,7 +356,7 @@ Mat Mapp::createMapRepresentation(/*eventually add a vector of bubins*/){
                 rectangle(imageMap, Point(j*pixX, i*pixY), Point((j+1)*pixX, (i+1)*pixY), color, -1);
             }
         }
-    }*/
+    }
     return(imageMap);
 }
 
