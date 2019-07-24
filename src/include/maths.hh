@@ -862,13 +862,6 @@ public:
     return true;
   }
 
-  /*! \brief Cast to cv::Point
-      \returns The value casted to point
-  */
-  operator cv::Point() const { 
-    return cv::Point(x(), y()); 
-  }
-
   // ~Point2(){delete values;}
 };
 

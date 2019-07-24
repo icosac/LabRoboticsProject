@@ -7,7 +7,6 @@
 #include <cstring>
 #include <camera_capture.hh>
 
-#define DEBUG
 #ifdef DEBUG
 #define SDEBUG(X) { std::cout << X << std::endl; }
 #else

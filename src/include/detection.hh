@@ -9,6 +9,7 @@
 #include <fstream>
 #include <string>
 #include <cmath>
+#include <algorithm>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/core.hpp>

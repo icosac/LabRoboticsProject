@@ -20,7 +20,11 @@ static float distance(Point c1, Point c2);
 int unwrapping(){
     //Load Settings values
     Settings *s=new Settings();
+    cout << endl << endl;
+    cout << *s << endl;
     s->cleanAndRead();
+    cout << endl << endl;
+    cout << *s << endl;
 
     const string calib_file = s->intrinsicCalibrationFile;
     for(int f=0; f<s->mapsNames.size(); f++){
