@@ -38,7 +38,7 @@ int main (){
 	Mat imageMap = map->createMapRepresentation();
 
 	map->imageAddPoint(imageMap, Point2<int>(100, 150) );
-	map->imageAddPoint(imageMap, Point2<int>(500, 750) );
+	map->imageAddPoint(imageMap, Point2<int>(200, 300) );
 	map->imageAddPoint(imageMap, Point2<int>(50, 1100) );
 	map->imageAddPoint(imageMap, Point2<int>(900, 1450));
 	map->imageAddPoint(imageMap, Point2<int>(800, 200) );

@@ -214,18 +214,18 @@ bool Mapp::checkSegment(const Point2<int> & p0, const Point2<int> & p1){
 
     \param[in] p0 The source point.
     \param[in] p1 The destination point.
-    \returns It is a vector of points along the path (one for each cell of the grid of the map).
+    \returns It is a pointer to a vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-1 connecctions.
 */
 vector<vector<Point2<int> > > * Mapp::minPathNPoints(const vector<Point2<int> > & vp){
-    int ** distances = new int*[dimY];
+    double ** distances = new double*[dimY];
     Point2<int> ** parents = new Point2<int>*[dimY];
     for(int i=0; i<dimY; i++){
         // the initializtion is to -1
-        distances[i] = new int[dimX];
+        distances[i] = new double[dimX];
         parents[i] = new Point2<int>[dimX];
     }
 
-    vector<vector<Point2<int> > > * vvp = new vector< vector<Point2<int> > >;
+    vector<vector<Point2<int> > > * vvp = new vector< vector<Point2<int> > >();
     for(unsigned int i=0; i<vp.size()-1; i++){
         resetDistanceMap(distances);
         vector<Point2<int> > * pathPoints = minPathTwoPointsInternal(vp[i], vp[i+1], distances, parents);
@@ -239,14 +239,14 @@ vector<vector<Point2<int> > > * Mapp::minPathNPoints(const vector<Point2<int> > 
 
     \param[in] p0 The source point.
     \param[in] p1 The destination point.
-    \returns It is a vector of points along the path (one for each cell of the grid of the map).
+    \returns It is a pointer to a vector of points along the path (one for each cell of the grid of the map).
 */
 vector<Point2<int> > * Mapp::minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1){
-    int ** distances = new int*[dimY];
+    double ** distances = new double*[dimY];
     Point2<int> ** parents = new Point2<int>*[dimY];
     for(int i=0; i<dimY; i++){
         // the initializtion is to -1
-        distances[i] = new int[dimX];
+        distances[i] = new double[dimX];
         parents[i] = new Point2<int>[dimX];
     }
 
@@ -265,69 +265,108 @@ vector<Point2<int> > * Mapp::minPathTwoPoints(const Point2<int> & p0, const Poin
 */
 vector<Point2<int> > * Mapp::minPathTwoPointsInternal(
                         const Point2<int> & startP, const Point2<int> & endP, 
-                        int ** distances, Point2<int> ** parents)
+                        double ** distances, Point2<int> ** parents)
 {
     // P=point, C=cell
-    cout << "f" << endl;
     Point2<int> startC(startP.x()/pixX, startP.y()/pixY), endC(endP.x()/pixX, endP.y()/pixY);
     queue<Point2<int> > toProcess;
 
     toProcess.push(startC);
-    distances[startC.y()/*i=y()*/][startC.x()/*j=x()*/] = 0;
+    distances[startC.y()/*i=y()*/][startC.x()/*j=x()*/] = 0.0;
     parents[  startC.y()/*i=y()*/][startC.x()/*j=x()*/] = startC;
     bool found = false;
 
-    cout << "g" << endl;
+    // precompute the computation of the distances inn the square of edges around the cell of interest
+    int r = 1; //range
+    int side = 2*r+1;
+    double computedDistances[(int)pow(side, 2)]; // all the cells in a sqare of side where the center is the cell of interest
+    cout << "computedDistances size: " << pow(side, 2) << endl;
+    for(int i=(-r); i<=r; i++){
+        for(int j=(-r); j<=r; j++){
+            computedDistances[(i+r)*side + (j+r)] = sqrt( pow(i,2) + pow(j,2) );
+        }
+    }
+
     while(!toProcess.empty() && !found){
-        // for each cell(8) around the selected one
+        // for each cell from the queue
         Point2<int> cell = toProcess.front();
         toProcess.pop();
-        int iC = cell.y(), jC = cell.x(); //i and j of the cell
-        int dist = distances[iC][jC];
-        {
-            int iIn = max(iC-1, 0), iEnd = min(iC+1, dimY-1);
-            int jIn = max(jC-1, 0), jEnd = min(jC+1, dimX-1);
-            for(int i=iIn; i<=iEnd; i++){
-                for(int j=jIn; j<=jEnd; j++){
-                    if(map[i][j] != OBST && map[i][j] != BODA){ 
-                        if(i==endC.y() && j==endC.x()){
-                            found = true;
-                        }
-                        if(i!=j){ // I do not concider the cell itself
-                            // if not visited or bigger distance (probably not possible in this breath first search BFS)
-                            if(distances[i][j]==baseDistance || distances[i][j] > dist+1){ 
-                                distances[i][j] = dist+1;
-                                parents[i][j] = cell;
-                                //parents[i][j] = ( 3*(i-iC) + (j-jC) )*(-1) //the *(-1) is for the inversion: to refer the parent (cell) respect to the destination cell, and not vice versa
 
-                                toProcess.push(Point2<int>(j, i));
-                            }
-                        }
+        int iC = cell.y(), jC = cell.x(); //i and j of the cell
+        double dist = distances[iC][jC];
+                
+        // for each possible edge
+        for(int i=(-r); i<=r; i++){
+            for(int j=(-r); j<=r; j++){
+                // i&j are relative coordinates, ii&jj are absolute coordinates
+                int ii = i+iC, jj = j+jC;
+                // The cell itself (when i=0 and j=0) is considered (here) but never added to the queue due to the logic of the BFS
+
+                if(map[ii][jj] != OBST && map[ii][jj] != BODA){ 
+                    cout << "e" << endl;
+                    if(ii==endC.y() && jj==endC.x()){
+                        found = true;
+                        cout << "\n\n\t\tFOUND TRUE\n\n";
                     }
+                    cout << "f" << endl;
+                    double myDist = computedDistances[(i+r)*r + (j+r)];
+                    cout << "f1" << endl;
+                    // if not visited or bigger distance
+                    if( equal(distances[ii][jj], baseDistance, 0.001) || distances[ii][jj] > dist + myDist ){
+                            cout << "f3" << endl;
+                            distances[ii][jj] = dist + myDist;
+                            parents[ii][jj] = cell;
+
+                            toProcess.push(Point2<int>(jj, ii));
+                    }
+                    cout << "g" << endl;
                 }
             }
         }
     }
-    //todo gestire il caso in cui la destinazione non viene ragggiunta
     cout << "h" << endl;
 
     // reconstruct the vector of parents of the cells in the minPath
-    vector<Point2<int> > * computedParents = new vector<Point2<int> >;
-    cout << "h1" << endl;
-    computedParents->push_back(endC);
-    cout << "h2" << endl;
-    Point2<int> p = endC;    
+    vector<Point2<int> > * computedParents = new vector<Point2<int> >();
+
+    if(!found){
+        return(computedParents);
+    }
+
     cout << "i" << endl;
-    do {
+    computedParents->push_back(endP);
+    cout << "j" << endl;
+    Point2<int> p = endC;    
+    cout << "k" << endl;
+    for(int i=0; i<dimY; i++){
+        for(int j=0; j<dimX; j++){
+            cout << distances[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl << endl << endl << endl << endl << endl;
+
+
+    for(int i=0; i<dimY; i++){
+        for(int j=0; j<dimX; j++){
+            cout << parents[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl << endl << endl << endl << endl << endl;
+    while( p!=startC ){
+        cout << "l" << endl;
+        //cout << p << endl;
         p = parents[p.y()][p.x()];
 
         // conversion from cell of the grid to point of the system (map)
+        cout << "m" << endl;
         computedParents->push_back( Point2<int>(p.x()*pixX + pixX/2, p.y()*pixY + pixY/2) );
-    } while( p==startC );
-    cout << "j" << endl;
+    }
+    cout << "n" << endl;
     reverse(computedParents->begin(), computedParents->end()); // I apply the inverse to have the vector from the begin to the end.
+    cout << "o" << endl;
 
-    cout << "k" << endl;
     return(computedParents);
 }
 
@@ -335,7 +374,7 @@ vector<Point2<int> > * Mapp::minPathTwoPointsInternal(
 
     \param[in] value The value to be set.
 */
-void Mapp::resetDistanceMap(int ** distances, const int value){
+void Mapp::resetDistanceMap(double ** distances, const double value){
     for(int i=0; i<dimY; i++){
         for(int j=0; j<dimX; j++){
             distances[i][j] = value;

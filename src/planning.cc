@@ -11,13 +11,25 @@ pair< vector<Point2<int> >, Mapp* > planning(){
     // TODO test and verify
     vector<Point2<int> > vp;
     vp.push_back( Point2<int>(100, 150) );
+    vp.push_back( Point2<int>(200, 300) );
     vp.push_back( Point2<int>(500, 750) );
     vp.push_back( Point2<int>(50, 1100) );
     vp.push_back( Point2<int>(900, 1450));
     vp.push_back( Point2<int>(800, 200) );
     vp.push_back( Point2<int>(300, 100) );
 
-    vector<Point2<int> > * cellsOfPath = map->minPathTwoPoints(vp[0], vp[1]);
+    vector<Point2<int> > * cellsOfPath = new vector<Point2<int> >();
+    if(true){
+        cellsOfPath = map->minPathTwoPoints(vp[3], vp[4]);
+    } else {
+        vector<vector<Point2<int> > > * vvp = map->minPathNPoints(vp);
+        for(unsigned int i=0; i<vvp->size(); i++){
+            for(unsigned int j=0; j<vvp[i].size(); j++){
+                // cellsOfPath->push_back();
+                //cout << vvp[i][j] << endl;
+            }
+        }
+    }
     cout << "cellsOfPath size: " << cellsOfPath->size() <<endl;
     
     return( make_pair(*cellsOfPath, map) );//todo change with points from dubins

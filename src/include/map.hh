@@ -10,13 +10,13 @@
 #include <maths.hh>
 #include <settings.hh>
 #include <utils.hh>
-//#include <dubins.hh>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs.hpp>
 
+using namespace std;
 using namespace cv;
 
 enum OBJ_TYPE {FREE, VICT, OBST, GATE, BODA/*shortcut for border*/};
@@ -24,13 +24,13 @@ enum OBJ_TYPE {FREE, VICT, OBST, GATE, BODA/*shortcut for border*/};
 class Mapp{
     protected:
         OBJ_TYPE **map;
-        const static int baseDistance = -1;  //it is the reference base distance for the matrix of distances
+        constexpr static double baseDistance = -1.0;  //it is the reference base distance for the matrix of distances
 
         set<pair<int, int> > cellsFromSegment(const Point2<int> & p0, const Point2<int> & p1);
         vector<Point2<int> > * minPathTwoPointsInternal(
                                 const Point2<int> & startP, const Point2<int> & endP, 
-                                int ** distances, Point2<int> ** parents);
-        void resetDistanceMap(int ** distances, const int value = baseDistance);
+                                double ** distances, Point2<int> ** parents);
+        void resetDistanceMap(double ** distances, const double value = baseDistance);
 
         int lengthX;    // dimension of the arena default: 1000
         int lengthY;    // dimension of the arena d: 1500

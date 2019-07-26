@@ -26,16 +26,6 @@ inline bool equal (const double& A, const double& B, const double E=Epsi) {
   return std::fabs(A-B)<E;
 }
 
-/*!\brief Function to compare two floats as \f$\vert A-B\vert < \varepsilon\f$.
-   \param [in] A First number.
-   \param [in] B Second number.
-   \param [in] E \f$\varepsilon\f$, set at `std::numeric_limits<double>::epsilon()` as default.
-   \returns `true` if \f$\vert A-B\vert < \varepsilon\f$, `false` otherwise.
-*/
-inline bool equal (const float& A, const float& B, const double E=Epsi) {
-  return std::fabs(A-B)<E;
-}
-
 /*| \brief Simple function that takes an input \f$x\f$ and returns \f$x^2\f$.
 		\tparam T The type of the input and the output;
 		\param[in] x The value \f$x\f$
