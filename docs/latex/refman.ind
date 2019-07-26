@@ -1,0 +1,1924 @@
+\begin{theindex}
+
+  \item {$\sim$CameraCapture}
+    \subitem {CameraCapture}, \hyperpage{57}
+  \item {$\sim$ClipperBase}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{64}
+  \item {$\sim$ClipperOffset}
+    \subitem {ClipperLib::ClipperOffset}, \hyperpage{70}
+  \item {$\sim$PolyNode}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{138}
+  \item {$\sim$PolyTree}
+    \subitem {ClipperLib::PolyTree}, \hyperpage{140}
+  \item {$\sim$Settings}
+    \subitem {Settings}, \hyperpage{145}
+  \item {$\sim$clipperException}
+    \subitem {ClipperLib::clipperException}, \hyperpage{69}
+
+  \indexspace
+
+  \item {A\_180}
+    \subitem {maths.hh}, \hyperpage{207}
+  \item {A\_2PI}
+    \subitem {maths.hh}, \hyperpage{207}
+  \item {A\_360}
+    \subitem {maths.hh}, \hyperpage{207}
+  \item {A\_PI}
+    \subitem {maths.hh}, \hyperpage{207}
+  \item {Abs}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {add}
+    \subitem {Angle}, \hyperpage{36}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{162}
+  \item {AddBoundsToLML}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{64}
+  \item {addObject}
+    \subitem {Mapp}, \hyperpage{114}
+  \item {AddPath}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{64}
+    \subitem {ClipperLib::ClipperOffset}, \hyperpage{70}
+  \item {AddPaths}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{64}
+    \subitem {ClipperLib::ClipperOffset}, \hyperpage{70}
+  \item {AddPolyNodeToPaths}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {addUnMap}
+    \subitem {Settings}, \hyperpage{145}
+  \item {Angle}, \hyperpage{33}
+    \subitem {add}, \hyperpage{36}
+    \subitem {Angle}, \hyperpage{35}
+    \subitem {ANGLE\_TYPE}, \hyperpage{35}
+    \subitem {checkValue}, \hyperpage{36}
+    \subitem {copy}, \hyperpage{36}
+    \subitem {cos}, \hyperpage{37}
+    \subitem {DEG}, \hyperpage{35}
+    \subitem {degToRad}, \hyperpage{37}
+    \subitem {div}, \hyperpage{37}
+    \subitem {equal}, \hyperpage{37}
+    \subitem {get}, \hyperpage{38}
+    \subitem {getType}, \hyperpage{38}
+    \subitem {getTypeName}, \hyperpage{38}
+    \subitem {INVALID}, \hyperpage{35}
+    \subitem {mul}, \hyperpage{38}
+    \subitem {normalize}, \hyperpage{39}
+    \subitem {operator $\ast$}, \hyperpage{39}
+    \subitem {operator $\ast$=}, \hyperpage{39}
+    \subitem {operator double}, \hyperpage{40}
+    \subitem {operator float}, \hyperpage{40}
+    \subitem {operator int}, \hyperpage{40}
+    \subitem {operator long}, \hyperpage{40}
+    \subitem {operator!=}, \hyperpage{41}
+    \subitem {operator$<$$<$}, \hyperpage{46}
+    \subitem {operator+}, \hyperpage{41}
+    \subitem {operator+=}, \hyperpage{41}
+    \subitem {operator-\/}, \hyperpage{42}
+    \subitem {operator-\/=}, \hyperpage{42}
+    \subitem {operator/}, \hyperpage{43}
+    \subitem {operator/=}, \hyperpage{43}
+    \subitem {operator=}, \hyperpage{43, 44}
+    \subitem {operator==}, \hyperpage{44}
+    \subitem {RAD}, \hyperpage{35}
+    \subitem {radToDeg}, \hyperpage{44}
+    \subitem {set}, \hyperpage{44}
+    \subitem {setType}, \hyperpage{45}
+    \subitem {sin}, \hyperpage{45}
+    \subitem {sub}, \hyperpage{45}
+    \subitem {tan}, \hyperpage{46}
+    \subitem {to\_string}, \hyperpage{46}
+    \subitem {toDeg}, \hyperpage{46}
+    \subitem {toRad}, \hyperpage{46}
+  \item {angle}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{74}
+  \item {ANGLE\_TYPE}
+    \subitem {Angle}, \hyperpage{35}
+  \item {ArcTolerance}
+    \subitem {ClipperLib::ClipperOffset}, \hyperpage{71}
+  \item {Area}
+    \subitem {ClipperLib}, \hyperpage{16}
+  \item {AREA\_MIN}
+    \subitem {unwrapping.cc}, \hyperpage{220}
+  \item {AREA\_RATIO}
+    \subitem {unwrapping.cc}, \hyperpage{220}
+  \item {aspectRatio}
+    \subitem {CalSettings}, \hyperpage{52}
+  \item {atImageList}
+    \subitem {CalSettings}, \hyperpage{52}
+
+  \indexspace
+
+  \item {begin}
+    \subitem {Curve$<$ T $>$}, \hyperpage{84, 85}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{162}
+  \item {BLACK}
+    \subitem {Settings}, \hyperpage{144}
+  \item {blackMask}
+    \subitem {Settings}, \hyperpage{154}
+  \item {BLUE}
+    \subitem {Settings}, \hyperpage{144}
+  \item {blueMask}
+    \subitem {Settings}, \hyperpage{154}
+  \item {boardSize}
+    \subitem {CalSettings}, \hyperpage{52}
+  \item {Bot}
+    \subitem {ClipperLib::TEdge}, \hyperpage{157}
+  \item {bottom}
+    \subitem {ClipperLib::IntRect}, \hyperpage{110}
+  \item {BottomPt}
+    \subitem {ClipperLib::OutRec}, \hyperpage{126}
+
+  \indexspace
+
+  \item {calcBoardCornerPositions}
+    \subitem {calibration.cc}, \hyperpage{172}
+  \item {calibFixPrincipalPoint}
+    \subitem {CalSettings}, \hyperpage{52}
+  \item {CALIBRATED}
+    \subitem {calibration.hh}, \hyperpage{189}
+  \item {calibration}
+    \subitem {calibration.cc}, \hyperpage{172}
+    \subitem {calibration.hh}, \hyperpage{189}
+  \item {calibration.cc}
+    \subitem {calcBoardCornerPositions}, \hyperpage{172}
+    \subitem {calibration}, \hyperpage{172}
+    \subitem {computeReprojectionErrors}, \hyperpage{172}
+    \subitem {read}, \hyperpage{173}
+    \subitem {runCalibration}, \hyperpage{173}
+    \subitem {runCalibrationAndSave}, \hyperpage{174}
+    \subitem {saveCameraParams}, \hyperpage{174}
+  \item {calibration.hh}
+    \subitem {CALIBRATED}, \hyperpage{189}
+    \subitem {calibration}, \hyperpage{189}
+    \subitem {CAPTURING}, \hyperpage{189}
+    \subitem {DETECTION}, \hyperpage{189}
+    \subitem {runCalibrationAndSave}, \hyperpage{189}
+  \item {calibration\_run.cc}
+    \subitem {main}, \hyperpage{216}
+  \item {calibrationFile}
+    \subitem {Settings}, \hyperpage{154}
+  \item {calibrationPattern}
+    \subitem {CalSettings}, \hyperpage{52}
+  \item {calibZeroTangentDist}
+    \subitem {CalSettings}, \hyperpage{52}
+  \item {CalSettings}, \hyperpage{47}
+    \subitem {aspectRatio}, \hyperpage{52}
+    \subitem {atImageList}, \hyperpage{52}
+    \subitem {boardSize}, \hyperpage{52}
+    \subitem {calibFixPrincipalPoint}, \hyperpage{52}
+    \subitem {calibrationPattern}, \hyperpage{52}
+    \subitem {calibZeroTangentDist}, \hyperpage{52}
+    \subitem {CalSettings}, \hyperpage{49}
+    \subitem {cameraID}, \hyperpage{52}
+    \subitem {CHESSBOARD}, \hyperpage{49}
+    \subitem {delay}, \hyperpage{53}
+    \subitem {fixK1}, \hyperpage{53}
+    \subitem {fixK2}, \hyperpage{53}
+    \subitem {fixK3}, \hyperpage{53}
+    \subitem {fixK4}, \hyperpage{53}
+    \subitem {fixK5}, \hyperpage{53}
+    \subitem {flag}, \hyperpage{54}
+    \subitem {flipVertical}, \hyperpage{54}
+    \subitem {goodInput}, \hyperpage{54}
+    \subitem {IMAGE\_LIST}, \hyperpage{49}
+    \subitem {imageList}, \hyperpage{54}
+    \subitem {input}, \hyperpage{54}
+    \subitem {inputCapture}, \hyperpage{54}
+    \subitem {InputType}, \hyperpage{49}
+    \subitem {inputType}, \hyperpage{54}
+    \subitem {INVALID}, \hyperpage{49}
+    \subitem {isListOfImages}, \hyperpage{49}
+    \subitem {nextImage}, \hyperpage{50}
+    \subitem {NOT\_EXISTING}, \hyperpage{49}
+    \subitem {nrFrames}, \hyperpage{55}
+    \subitem {outputFileName}, \hyperpage{55}
+    \subitem {Pattern}, \hyperpage{49}
+    \subitem {read}, \hyperpage{50}
+    \subitem {readStringList}, \hyperpage{50}
+    \subitem {showUndistorsed}, \hyperpage{55}
+    \subitem {squareSize}, \hyperpage{55}
+    \subitem {useFisheye}, \hyperpage{55}
+    \subitem {validate}, \hyperpage{51}
+    \subitem {write}, \hyperpage{51}
+    \subitem {writeExtrinsics}, \hyperpage{55}
+    \subitem {writePoints}, \hyperpage{56}
+  \item {camera\_capture.cc}
+    \subitem {DEBUG}, \hyperpage{176}
+    \subitem {SDEBUG}, \hyperpage{176}
+  \item {CameraCapture}, \hyperpage{56}
+    \subitem {$\sim$CameraCapture}, \hyperpage{57}
+    \subitem {CameraCapture}, \hyperpage{56}
+    \subitem {grab}, \hyperpage{57}
+    \subitem {isAlive}, \hyperpage{57}
+    \subitem {isOpened}, \hyperpage{57}
+    \subitem {loadCoefficients}, \hyperpage{58}
+    \subitem {startCamera}, \hyperpage{58}
+  \item {CameraCapture::input\_options\_t}, \hyperpage{101}
+    \subitem {cameraFPS}, \hyperpage{102}
+    \subitem {frameHeight\_px}, \hyperpage{103}
+    \subitem {frameWidth\_px}, \hyperpage{103}
+    \subitem {input\_options\_t}, \hyperpage{102}
+    \subitem {nameCamera}, \hyperpage{103}
+  \item {cameraFPS}
+    \subitem {CameraCapture::input\_options\_t}, \hyperpage{102}
+  \item {cameraID}
+    \subitem {CalSettings}, \hyperpage{52}
+  \item {CAPTURING}
+    \subitem {calibration.hh}, \hyperpage{189}
+  \item {cellsFromSegment}
+    \subitem {Mapp}, \hyperpage{115}
+  \item {center}
+    \subitem {Object}, \hyperpage{121}
+  \item {changeBuffer}
+    \subitem {DW}, \hyperpage{31}
+  \item {changeMask}
+    \subitem {Settings}, \hyperpage{145, 146}
+  \item {check}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{90}
+  \item {checkSegment}
+    \subitem {Mapp}, \hyperpage{115}
+  \item {checkSegmentCollisionWithType}
+    \subitem {Mapp}, \hyperpage{115}
+  \item {checkValue}
+    \subitem {Angle}, \hyperpage{36}
+  \item {CHESSBOARD}
+    \subitem {CalSettings}, \hyperpage{49}
+  \item {ChildCount}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{138}
+  \item {Childs}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{139}
+  \item {cInt}
+    \subitem {ClipperLib}, \hyperpage{12}
+  \item {circline}
+    \subitem {dubins.hh}, \hyperpage{201}
+  \item {clean}
+    \subitem {Settings}, \hyperpage{146}
+  \item {cleanAndRead}
+    \subitem {Settings}, \hyperpage{146}
+  \item {CleanPolygon}
+    \subitem {ClipperLib}, \hyperpage{16}
+  \item {CleanPolygons}
+    \subitem {ClipperLib}, \hyperpage{16, 17}
+  \item {Clear}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{64}
+    \subitem {ClipperLib::ClipperOffset}, \hyperpage{70}
+    \subitem {ClipperLib::PolyTree}, \hyperpage{140}
+  \item {Clipper}
+    \subitem {ClipperLib::Clipper}, \hyperpage{59}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{138}
+    \subitem {ClipperLib::PolyTree}, \hyperpage{141}
+  \item {clipper.cc}
+    \subitem {HORIZONTAL}, \hyperpage{179}
+    \subitem {NEAR\_ZERO}, \hyperpage{179}
+    \subitem {TOLERANCE}, \hyperpage{179}
+  \item {clipper.hh}
+    \subitem {CLIPPER\_VERSION}, \hyperpage{193}
+    \subitem {use\_lines}, \hyperpage{193}
+  \item {CLIPPER\_VERSION}
+    \subitem {clipper.hh}, \hyperpage{193}
+  \item {ClipperBase}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{64}
+  \item {clipperException}
+    \subitem {ClipperLib::clipperException}, \hyperpage{69}
+  \item {ClipperLib}, \hyperpage{9}
+    \subitem {Abs}, \hyperpage{15}
+    \subitem {AddPolyNodeToPaths}, \hyperpage{15}
+    \subitem {Area}, \hyperpage{16}
+    \subitem {cInt}, \hyperpage{12}
+    \subitem {CleanPolygon}, \hyperpage{16}
+    \subitem {CleanPolygons}, \hyperpage{16, 17}
+    \subitem {ClipType}, \hyperpage{13}
+    \subitem {ClosedPathsFromPolyTree}, \hyperpage{17}
+    \subitem {ctDifference}, \hyperpage{13}
+    \subitem {ctIntersection}, \hyperpage{13}
+    \subitem {ctUnion}, \hyperpage{13}
+    \subitem {ctXor}, \hyperpage{13}
+    \subitem {def\_arc\_tolerance}, \hyperpage{30}
+    \subitem {Direction}, \hyperpage{13}
+    \subitem {DisposeOutPts}, \hyperpage{17}
+    \subitem {DistanceFromLineSqrd}, \hyperpage{17}
+    \subitem {DistanceSqrd}, \hyperpage{17}
+    \subitem {dLeftToRight}, \hyperpage{13}
+    \subitem {dRightToLeft}, \hyperpage{13}
+    \subitem {DupOutPt}, \hyperpage{17}
+    \subitem {E2InsertsBeforeE1}, \hyperpage{18}
+    \subitem {EdgeList}, \hyperpage{12}
+    \subitem {EdgesAdjacent}, \hyperpage{18}
+    \subitem {EdgeSide}, \hyperpage{13}
+    \subitem {EndType}, \hyperpage{14}
+    \subitem {esLeft}, \hyperpage{14}
+    \subitem {esRight}, \hyperpage{14}
+    \subitem {etClosedLine}, \hyperpage{14}
+    \subitem {etClosedPolygon}, \hyperpage{14}
+    \subitem {etOpenButt}, \hyperpage{14}
+    \subitem {etOpenRound}, \hyperpage{14}
+    \subitem {etOpenSquare}, \hyperpage{14}
+    \subitem {ExcludeOp}, \hyperpage{18}
+    \subitem {FindNextLocMin}, \hyperpage{18}
+    \subitem {FirstIsBottomPt}, \hyperpage{18}
+    \subitem {GetBottomPt}, \hyperpage{18}
+    \subitem {GetDx}, \hyperpage{19}
+    \subitem {GetHorzDirection}, \hyperpage{19}
+    \subitem {GetLowermostRec}, \hyperpage{19}
+    \subitem {GetMaximaPair}, \hyperpage{19}
+    \subitem {GetMaximaPairEx}, \hyperpage{19}
+    \subitem {GetNextInAEL}, \hyperpage{19}
+    \subitem {GetOverlap}, \hyperpage{20}
+    \subitem {GetOverlapSegment}, \hyperpage{20}
+    \subitem {GetUnitNormal}, \hyperpage{20}
+    \subitem {hiRange}, \hyperpage{30}
+    \subitem {HorzSegmentsOverlap}, \hyperpage{20}
+    \subitem {InitEdge}, \hyperpage{20}
+    \subitem {InitEdge2}, \hyperpage{21}
+    \subitem {InitOptions}, \hyperpage{14}
+    \subitem {Int128Mul}, \hyperpage{21}
+    \subitem {IntersectList}, \hyperpage{12}
+    \subitem {IntersectListSort}, \hyperpage{21}
+    \subitem {IntersectPoint}, \hyperpage{21}
+    \subitem {ioPreserveCollinear}, \hyperpage{14}
+    \subitem {ioReverseSolution}, \hyperpage{14}
+    \subitem {ioStrictlySimple}, \hyperpage{14}
+    \subitem {IsHorizontal}, \hyperpage{21}
+    \subitem {IsIntermediate}, \hyperpage{21}
+    \subitem {IsMaxima}, \hyperpage{22}
+    \subitem {IsMinima}, \hyperpage{22}
+    \subitem {JoinHorz}, \hyperpage{22}
+    \subitem {JoinList}, \hyperpage{12}
+    \subitem {JoinType}, \hyperpage{14}
+    \subitem {jtMiter}, \hyperpage{14}
+    \subitem {jtRound}, \hyperpage{14}
+    \subitem {jtSquare}, \hyperpage{14}
+    \subitem {long64}, \hyperpage{12}
+    \subitem {loRange}, \hyperpage{30}
+    \subitem {Minkowski}, \hyperpage{22}
+    \subitem {MinkowskiDiff}, \hyperpage{22}
+    \subitem {MinkowskiSum}, \hyperpage{23}
+    \subitem {NodeType}, \hyperpage{15}
+    \subitem {ntAny}, \hyperpage{15}
+    \subitem {ntClosed}, \hyperpage{15}
+    \subitem {ntOpen}, \hyperpage{15}
+    \subitem {OpenPathsFromPolyTree}, \hyperpage{23}
+    \subitem {operator$<$$<$}, \hyperpage{23, 24}
+    \subitem {Orientation}, \hyperpage{24}
+    \subitem {OutRec1RightOfOutRec2}, \hyperpage{24}
+    \subitem {ParseFirstLeft}, \hyperpage{24}
+    \subitem {Path}, \hyperpage{12}
+    \subitem {Paths}, \hyperpage{12}
+    \subitem {pftEvenOdd}, \hyperpage{15}
+    \subitem {pftNegative}, \hyperpage{15}
+    \subitem {pftNonZero}, \hyperpage{15}
+    \subitem {pftPositive}, \hyperpage{15}
+    \subitem {pi}, \hyperpage{30}
+    \subitem {PointCount}, \hyperpage{24}
+    \subitem {PointInPolygon}, \hyperpage{25}
+    \subitem {PointIsVertex}, \hyperpage{25}
+    \subitem {PointsAreClose}, \hyperpage{25}
+    \subitem {Poly2ContainsPoly1}, \hyperpage{25}
+    \subitem {PolyFillType}, \hyperpage{15}
+    \subitem {PolyNodes}, \hyperpage{12}
+    \subitem {PolyOutList}, \hyperpage{13}
+    \subitem {PolyTreeToPaths}, \hyperpage{25}
+    \subitem {PolyType}, \hyperpage{15}
+    \subitem {Pt2IsBetweenPt1AndPt3}, \hyperpage{26}
+    \subitem {ptClip}, \hyperpage{15}
+    \subitem {ptSubject}, \hyperpage{15}
+    \subitem {RangeTest}, \hyperpage{26}
+    \subitem {RemoveEdge}, \hyperpage{26}
+    \subitem {ReverseHorizontal}, \hyperpage{26}
+    \subitem {ReversePath}, \hyperpage{26}
+    \subitem {ReversePaths}, \hyperpage{26}
+    \subitem {ReversePolyPtLinks}, \hyperpage{27}
+    \subitem {Round}, \hyperpage{27}
+    \subitem {SetDx}, \hyperpage{27}
+    \subitem {SimplifyPolygon}, \hyperpage{27}
+    \subitem {SimplifyPolygons}, \hyperpage{27}
+    \subitem {Skip}, \hyperpage{30}
+    \subitem {SlopesEqual}, \hyperpage{28}
+    \subitem {SlopesNearCollinear}, \hyperpage{28}
+    \subitem {SwapIntersectNodes}, \hyperpage{28}
+    \subitem {SwapPoints}, \hyperpage{29}
+    \subitem {SwapPolyIndexes}, \hyperpage{29}
+    \subitem {SwapSides}, \hyperpage{29}
+    \subitem {TopX}, \hyperpage{29}
+    \subitem {TranslatePath}, \hyperpage{29}
+    \subitem {two\_pi}, \hyperpage{30}
+    \subitem {ulong64}, \hyperpage{13}
+    \subitem {Unassigned}, \hyperpage{30}
+    \subitem {UpdateOutPtIdxs}, \hyperpage{29}
+  \item {ClipperLib::Clipper}, \hyperpage{58}
+    \subitem {Clipper}, \hyperpage{59}
+    \subitem {Execute}, \hyperpage{60}
+    \subitem {ExecuteInternal}, \hyperpage{60}
+    \subitem {ReverseSolution}, \hyperpage{61}
+    \subitem {StrictlySimple}, \hyperpage{61}
+  \item {ClipperLib::ClipperBase}, \hyperpage{62}
+    \subitem {$\sim$ClipperBase}, \hyperpage{64}
+    \subitem {AddBoundsToLML}, \hyperpage{64}
+    \subitem {AddPath}, \hyperpage{64}
+    \subitem {AddPaths}, \hyperpage{64}
+    \subitem {Clear}, \hyperpage{64}
+    \subitem {ClipperBase}, \hyperpage{64}
+    \subitem {CreateOutRec}, \hyperpage{65}
+    \subitem {DeleteFromAEL}, \hyperpage{65}
+    \subitem {DisposeAllOutRecs}, \hyperpage{65}
+    \subitem {DisposeLocalMinimaList}, \hyperpage{65}
+    \subitem {DisposeOutRec}, \hyperpage{65}
+    \subitem {GetBounds}, \hyperpage{65}
+    \subitem {InsertScanbeam}, \hyperpage{65}
+    \subitem {LocalMinimaPending}, \hyperpage{66}
+    \subitem {m\_ActiveEdges}, \hyperpage{67}
+    \subitem {m\_CurrentLM}, \hyperpage{67}
+    \subitem {m\_edges}, \hyperpage{67}
+    \subitem {m\_HasOpenPaths}, \hyperpage{67}
+    \subitem {m\_MinimaList}, \hyperpage{67}
+    \subitem {m\_PolyOuts}, \hyperpage{68}
+    \subitem {m\_PreserveCollinear}, \hyperpage{68}
+    \subitem {m\_Scanbeam}, \hyperpage{68}
+    \subitem {m\_UseFullRange}, \hyperpage{68}
+    \subitem {MinimaList}, \hyperpage{63}
+    \subitem {PopLocalMinima}, \hyperpage{66}
+    \subitem {PopScanbeam}, \hyperpage{66}
+    \subitem {PreserveCollinear}, \hyperpage{66}
+    \subitem {ProcessBound}, \hyperpage{66}
+    \subitem {Reset}, \hyperpage{66}
+    \subitem {ScanbeamList}, \hyperpage{63}
+    \subitem {SwapPositionsInAEL}, \hyperpage{67}
+    \subitem {UpdateEdgeIntoAEL}, \hyperpage{67}
+  \item {ClipperLib::clipperException}, \hyperpage{68}
+    \subitem {$\sim$clipperException}, \hyperpage{69}
+    \subitem {clipperException}, \hyperpage{69}
+    \subitem {what}, \hyperpage{69}
+  \item {ClipperLib::ClipperOffset}, \hyperpage{69}
+    \subitem {$\sim$ClipperOffset}, \hyperpage{70}
+    \subitem {AddPath}, \hyperpage{70}
+    \subitem {AddPaths}, \hyperpage{70}
+    \subitem {ArcTolerance}, \hyperpage{71}
+    \subitem {Clear}, \hyperpage{70}
+    \subitem {ClipperOffset}, \hyperpage{70}
+    \subitem {Execute}, \hyperpage{70, 71}
+    \subitem {MiterLimit}, \hyperpage{71}
+  \item {ClipperLib::DoublePoint}, \hyperpage{86}
+    \subitem {DoublePoint}, \hyperpage{86}
+    \subitem {X}, \hyperpage{87}
+    \subitem {Y}, \hyperpage{87}
+  \item {ClipperLib::Int128}, \hyperpage{103}
+    \subitem {hi}, \hyperpage{106}
+    \subitem {Int128}, \hyperpage{104}
+    \subitem {lo}, \hyperpage{106}
+    \subitem {operator !=}, \hyperpage{104}
+    \subitem {operator $>$}, \hyperpage{105}
+    \subitem {operator $>$=}, \hyperpage{105}
+    \subitem {operator -\/}, \hyperpage{104}
+    \subitem {operator -\/=}, \hyperpage{104}
+    \subitem {operator double}, \hyperpage{105}
+    \subitem {operator$<$}, \hyperpage{105}
+    \subitem {operator$<$=}, \hyperpage{106}
+    \subitem {operator+}, \hyperpage{105}
+    \subitem {operator+=}, \hyperpage{105}
+    \subitem {operator-\/}, \hyperpage{105}
+    \subitem {operator=}, \hyperpage{106}
+    \subitem {operator==}, \hyperpage{106}
+  \item {ClipperLib::IntersectNode}, \hyperpage{107}
+    \subitem {Edge1}, \hyperpage{107}
+    \subitem {Edge2}, \hyperpage{107}
+    \subitem {Pt}, \hyperpage{107}
+  \item {ClipperLib::IntPoint}, \hyperpage{108}
+    \subitem {IntPoint}, \hyperpage{108}
+    \subitem {operator!=}, \hyperpage{108}
+    \subitem {operator==}, \hyperpage{109}
+    \subitem {X}, \hyperpage{109}
+    \subitem {Y}, \hyperpage{109}
+  \item {ClipperLib::IntRect}, \hyperpage{109}
+    \subitem {bottom}, \hyperpage{110}
+    \subitem {left}, \hyperpage{110}
+    \subitem {right}, \hyperpage{110}
+    \subitem {top}, \hyperpage{110}
+  \item {ClipperLib::Join}, \hyperpage{110}
+    \subitem {OffPt}, \hyperpage{111}
+    \subitem {OutPt1}, \hyperpage{111}
+    \subitem {OutPt2}, \hyperpage{111}
+  \item {ClipperLib::LocalMinimum}, \hyperpage{112}
+    \subitem {LeftBound}, \hyperpage{112}
+    \subitem {RightBound}, \hyperpage{112}
+    \subitem {Y}, \hyperpage{112}
+  \item {ClipperLib::LocMinSorter}, \hyperpage{113}
+    \subitem {operator()}, \hyperpage{113}
+  \item {ClipperLib::OutPt}, \hyperpage{124}
+    \subitem {Idx}, \hyperpage{124}
+    \subitem {Next}, \hyperpage{124}
+    \subitem {Prev}, \hyperpage{125}
+    \subitem {Pt}, \hyperpage{125}
+  \item {ClipperLib::OutRec}, \hyperpage{125}
+    \subitem {BottomPt}, \hyperpage{126}
+    \subitem {FirstLeft}, \hyperpage{126}
+    \subitem {Idx}, \hyperpage{126}
+    \subitem {IsHole}, \hyperpage{126}
+    \subitem {IsOpen}, \hyperpage{126}
+    \subitem {PolyNd}, \hyperpage{126}
+    \subitem {Pts}, \hyperpage{126}
+  \item {ClipperLib::PolyNode}, \hyperpage{136}
+    \subitem {$\sim$PolyNode}, \hyperpage{138}
+    \subitem {ChildCount}, \hyperpage{138}
+    \subitem {Childs}, \hyperpage{139}
+    \subitem {Clipper}, \hyperpage{138}
+    \subitem {ClipperOffset}, \hyperpage{138}
+    \subitem {Contour}, \hyperpage{139}
+    \subitem {GetNext}, \hyperpage{138}
+    \subitem {IsHole}, \hyperpage{138}
+    \subitem {IsOpen}, \hyperpage{138}
+    \subitem {Parent}, \hyperpage{139}
+    \subitem {PolyNode}, \hyperpage{137}
+  \item {ClipperLib::PolyTree}, \hyperpage{139}
+    \subitem {$\sim$PolyTree}, \hyperpage{140}
+    \subitem {Clear}, \hyperpage{140}
+    \subitem {Clipper}, \hyperpage{141}
+    \subitem {GetFirst}, \hyperpage{140}
+    \subitem {Total}, \hyperpage{141}
+  \item {ClipperLib::TEdge}, \hyperpage{157}
+    \subitem {Bot}, \hyperpage{157}
+    \subitem {Curr}, \hyperpage{158}
+    \subitem {Dx}, \hyperpage{158}
+    \subitem {Next}, \hyperpage{158}
+    \subitem {NextInAEL}, \hyperpage{158}
+    \subitem {NextInLML}, \hyperpage{158}
+    \subitem {NextInSEL}, \hyperpage{158}
+    \subitem {OutIdx}, \hyperpage{158}
+    \subitem {PolyTyp}, \hyperpage{158}
+    \subitem {Prev}, \hyperpage{159}
+    \subitem {PrevInAEL}, \hyperpage{159}
+    \subitem {PrevInSEL}, \hyperpage{159}
+    \subitem {Side}, \hyperpage{159}
+    \subitem {Top}, \hyperpage{159}
+    \subitem {WindCnt}, \hyperpage{159}
+    \subitem {WindCnt2}, \hyperpage{159}
+    \subitem {WindDelta}, \hyperpage{159}
+  \item {ClipperOffset}
+    \subitem {ClipperLib::ClipperOffset}, \hyperpage{70}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{138}
+  \item {ClipType}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {ClosedPathsFromPolyTree}
+    \subitem {ClipperLib}, \hyperpage{17}
+  \item {COLOR}
+    \subitem {Settings}, \hyperpage{144}
+  \item {computeCenter}
+    \subitem {Object}, \hyperpage{119}
+  \item {computeRadius}
+    \subitem {Object}, \hyperpage{119}
+  \item {computeReprojectionErrors}
+    \subitem {calibration.cc}, \hyperpage{172}
+  \item {Configuration2}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{73, 74}
+  \item {Configuration2$<$ T1 $>$}, \hyperpage{71}
+    \subitem {angle}, \hyperpage{74}
+    \subitem {Configuration2}, \hyperpage{73, 74}
+    \subitem {copy}, \hyperpage{75}
+    \subitem {distance}, \hyperpage{75}
+    \subitem {equal}, \hyperpage{75}
+    \subitem {EuDistance}, \hyperpage{76}
+    \subitem {MaDistance}, \hyperpage{76}
+    \subitem {offset}, \hyperpage{77}
+    \subitem {offset\_angle}, \hyperpage{78}
+    \subitem {offset\_x}, \hyperpage{78}
+    \subitem {offset\_y}, \hyperpage{79}
+    \subitem {operator Point2$<$ T2 $>$}, \hyperpage{79}
+    \subitem {operator$<$$<$}, \hyperpage{82}
+    \subitem {operator=}, \hyperpage{79}
+    \subitem {operator==}, \hyperpage{80}
+    \subitem {point}, \hyperpage{80}
+    \subitem {to\_string}, \hyperpage{80}
+    \subitem {x}, \hyperpage{80, 81}
+    \subitem {y}, \hyperpage{81}
+  \item {configure}
+    \subitem {configure.cc}, \hyperpage{180}
+    \subitem {configure.hh}, \hyperpage{194}
+  \item {configure.cc}
+    \subitem {configure}, \hyperpage{180}
+    \subitem {filter}, \hyperpage{182}
+    \subitem {on\_high\_h\_thresh\_trackbar}, \hyperpage{180}
+    \subitem {on\_high\_s\_thresh\_trackbar}, \hyperpage{181}
+    \subitem {on\_high\_v\_thresh\_trackbar}, \hyperpage{181}
+    \subitem {on\_low\_h\_thresh\_trackbar}, \hyperpage{181}
+    \subitem {on\_low\_s\_thresh\_trackbar}, \hyperpage{181}
+    \subitem {on\_low\_v\_thresh\_trackbar}, \hyperpage{181}
+    \subitem {show\_all\_conditions}, \hyperpage{181}
+    \subitem {update\_trackers}, \hyperpage{182}
+  \item {configure.hh}
+    \subitem {configure}, \hyperpage{194}
+    \subitem {show\_all\_conditions}, \hyperpage{194}
+  \item {Contour}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{139}
+  \item {convexHullFile}
+    \subitem {Settings}, \hyperpage{154}
+  \item {copy}
+    \subitem {Angle}, \hyperpage{36}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{75}
+    \subitem {Filter}, \hyperpage{98}
+    \subitem {Point2$<$ T $>$}, \hyperpage{129}
+  \item {cos}
+    \subitem {Angle}, \hyperpage{37}
+  \item {COUT}
+    \subitem {utils.hh}, \hyperpage{213}
+  \item {CreateOutRec}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{65}
+  \item {crop\_number\_section}
+    \subitem {detection.cc}, \hyperpage{184}
+    \subitem {detection.hh}, \hyperpage{196}
+  \item {ctDifference}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {ctIntersection}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {ctUnion}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {ctXor}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {Curr}
+    \subitem {ClipperLib::TEdge}, \hyperpage{158}
+  \item {Curve}
+    \subitem {Curve$<$ T $>$}, \hyperpage{84}
+  \item {Curve$<$ T $>$}, \hyperpage{82}
+    \subitem {begin}, \hyperpage{84, 85}
+    \subitem {Curve}, \hyperpage{84}
+    \subitem {end}, \hyperpage{85}
+    \subitem {operator$<$$<$}, \hyperpage{85}
+    \subitem {P0}, \hyperpage{86}
+    \subitem {P1}, \hyperpage{86}
+    \subitem {to\_string}, \hyperpage{85}
+
+  \indexspace
+
+  \item {DEBUG}
+    \subitem {camera\_capture.cc}, \hyperpage{176}
+  \item {def\_arc\_tolerance}
+    \subitem {ClipperLib}, \hyperpage{30}
+  \item {DEG}
+    \subitem {Angle}, \hyperpage{35}
+  \item {DEGTORAD}
+    \subitem {maths.hh}, \hyperpage{205}
+  \item {degToRad}
+    \subitem {Angle}, \hyperpage{37}
+  \item {delay}
+    \subitem {CalSettings}, \hyperpage{53}
+  \item {DeleteFromAEL}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{65}
+  \item {DETECTION}
+    \subitem {calibration.hh}, \hyperpage{189}
+  \item {detection}
+    \subitem {detection.cc}, \hyperpage{184}
+    \subitem {detection.hh}, \hyperpage{196}
+  \item {detection.cc}
+    \subitem {crop\_number\_section}, \hyperpage{184}
+    \subitem {detection}, \hyperpage{184}
+    \subitem {EPS\_CURVE}, \hyperpage{183}
+    \subitem {erode\_dilation}, \hyperpage{184}
+    \subitem {find\_contours}, \hyperpage{185}
+    \subitem {load\_number\_template}, \hyperpage{185}
+    \subitem {number\_recognition}, \hyperpage{185}
+    \subitem {s}, \hyperpage{186}
+    \subitem {save\_convex\_hull}, \hyperpage{185}
+    \subitem {shape\_detection}, \hyperpage{186}
+    \subitem {templates}, \hyperpage{186}
+  \item {detection.hh}
+    \subitem {crop\_number\_section}, \hyperpage{196}
+    \subitem {detection}, \hyperpage{196}
+    \subitem {erode\_dilation}, \hyperpage{196}
+    \subitem {find\_contours}, \hyperpage{197}
+    \subitem {load\_number\_template}, \hyperpage{197}
+    \subitem {number\_recognition}, \hyperpage{197}
+    \subitem {save\_convex\_hull}, \hyperpage{198}
+    \subitem {shape\_detection}, \hyperpage{198}
+  \item {detection\_run.cc}
+    \subitem {main}, \hyperpage{217}
+  \item {dimX}
+    \subitem {Mapp}, \hyperpage{117}
+  \item {dimY}
+    \subitem {Mapp}, \hyperpage{117}
+  \item {DInf}
+    \subitem {maths.hh}, \hyperpage{205}
+  \item {Direction}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {DisposeAllOutRecs}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{65}
+  \item {DisposeLocalMinimaList}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{65}
+  \item {DisposeOutPts}
+    \subitem {ClipperLib}, \hyperpage{17}
+  \item {DisposeOutRec}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{65}
+  \item {distance}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{75}
+    \subitem {Point2$<$ T $>$}, \hyperpage{129}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{162}
+    \subitem {unwrapping.cc}, \hyperpage{220}
+  \item {DISTANCE\_TYPE}
+    \subitem {maths.hh}, \hyperpage{206}
+  \item {DistanceFromLineSqrd}
+    \subitem {ClipperLib}, \hyperpage{17}
+  \item {DistanceSqrd}
+    \subitem {ClipperLib}, \hyperpage{17}
+  \item {div}
+    \subitem {Angle}, \hyperpage{37}
+  \item {dLeftToRight}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {DoublePoint}
+    \subitem {ClipperLib::DoublePoint}, \hyperpage{86}
+  \item {draw.hh}
+    \subitem {int}, \hyperpage{199}
+  \item {dRightToLeft}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {Dubins}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{89}
+  \item {Dubins$<$ T $>$}, \hyperpage{87}
+    \subitem {check}, \hyperpage{90}
+    \subitem {Dubins}, \hyperpage{89}
+    \subitem {getA1}, \hyperpage{90}
+    \subitem {getA2}, \hyperpage{90}
+    \subitem {getA3}, \hyperpage{90}
+    \subitem {getId}, \hyperpage{90}
+    \subitem {getKMax}, \hyperpage{90}
+    \subitem {length}, \hyperpage{91}
+    \subitem {LRL}, \hyperpage{91}
+    \subitem {LSL}, \hyperpage{91}
+    \subitem {LSR}, \hyperpage{91}
+    \subitem {operator$<$$<$}, \hyperpage{93}
+    \subitem {rangeSymm}, \hyperpage{91}
+    \subitem {RLR}, \hyperpage{91}
+    \subitem {RSL}, \hyperpage{92}
+    \subitem {RSR}, \hyperpage{92}
+    \subitem {scaleFromStandard}, \hyperpage{92}
+    \subitem {scaleToStandard}, \hyperpage{92}
+    \subitem {shortest\_path}, \hyperpage{92}
+    \subitem {splitIt}, \hyperpage{93}
+    \subitem {to\_string}, \hyperpage{93}
+  \item {dubins.hh}
+    \subitem {circline}, \hyperpage{201}
+    \subitem {KMAX}, \hyperpage{201}
+    \subitem {MORE\_FUNCTIONS}, \hyperpage{201}
+    \subitem {PIECE\_LENGTH}, \hyperpage{201}
+    \subitem {sinc}, \hyperpage{201}
+  \item {DubinsArc}
+    \subitem {DubinsArc$<$ T1, T2 $>$}, \hyperpage{95}
+  \item {DubinsArc$<$ T1, T2 $>$}, \hyperpage{94}
+    \subitem {DubinsArc}, \hyperpage{95}
+    \subitem {getK}, \hyperpage{95}
+    \subitem {length}, \hyperpage{95}
+    \subitem {operator$<$$<$}, \hyperpage{96}
+    \subitem {splitIt}, \hyperpage{95}
+    \subitem {to\_string}, \hyperpage{96}
+  \item {DupOutPt}
+    \subitem {ClipperLib}, \hyperpage{17}
+  \item {DW}, \hyperpage{31}
+    \subitem {changeBuffer}, \hyperpage{31}
+    \subitem {init}, \hyperpage{31}
+    \subitem {map\_buffer}, \hyperpage{31}
+    \subitem {window}, \hyperpage{31}
+  \item {Dx}
+    \subitem {ClipperLib::TEdge}, \hyperpage{158}
+
+  \indexspace
+
+  \item {E2InsertsBeforeE1}
+    \subitem {ClipperLib}, \hyperpage{18}
+  \item {Edge1}
+    \subitem {ClipperLib::IntersectNode}, \hyperpage{107}
+  \item {Edge2}
+    \subitem {ClipperLib::IntersectNode}, \hyperpage{107}
+  \item {EdgeList}
+    \subitem {ClipperLib}, \hyperpage{12}
+  \item {EdgesAdjacent}
+    \subitem {ClipperLib}, \hyperpage{18}
+  \item {EdgeSide}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {end}
+    \subitem {Curve$<$ T $>$}, \hyperpage{85}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{163}
+  \item {EndType}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {EPS\_CURVE}
+    \subitem {detection.cc}, \hyperpage{183}
+  \item {Epsi}
+    \subitem {maths.hh}, \hyperpage{205}
+  \item {equal}
+    \subitem {Angle}, \hyperpage{37}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{75}
+    \subitem {maths.hh}, \hyperpage{206}
+    \subitem {Point2$<$ T $>$}, \hyperpage{130}
+  \item {erode\_dilation}
+    \subitem {detection.cc}, \hyperpage{184}
+    \subitem {detection.hh}, \hyperpage{196}
+  \item {esLeft}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {esRight}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {etClosedLine}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {etClosedPolygon}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {etOpenButt}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {etOpenRound}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {etOpenSquare}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {EUCLIDEAN}
+    \subitem {maths.hh}, \hyperpage{206}
+  \item {EuDistance}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{76}
+    \subitem {Point2$<$ T $>$}, \hyperpage{130}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{163}
+  \item {ExcludeOp}
+    \subitem {ClipperLib}, \hyperpage{18}
+  \item {Execute}
+    \subitem {ClipperLib::Clipper}, \hyperpage{60}
+    \subitem {ClipperLib::ClipperOffset}, \hyperpage{70, 71}
+  \item {ExecuteInternal}
+    \subitem {ClipperLib::Clipper}, \hyperpage{60}
+
+  \indexspace
+
+  \item {Filter}, \hyperpage{96}
+    \subitem {copy}, \hyperpage{98}
+    \subitem {Filter}, \hyperpage{97, 98}
+    \subitem {High}, \hyperpage{98}
+    \subitem {high\_h}, \hyperpage{100}
+    \subitem {high\_s}, \hyperpage{100}
+    \subitem {high\_v}, \hyperpage{100}
+    \subitem {Low}, \hyperpage{99}
+    \subitem {low\_h}, \hyperpage{101}
+    \subitem {low\_s}, \hyperpage{101}
+    \subitem {low\_v}, \hyperpage{101}
+    \subitem {operator vector$<$ int $>$}, \hyperpage{99}
+    \subitem {operator$<$$<$}, \hyperpage{100}
+    \subitem {operator=}, \hyperpage{99}
+    \subitem {to\_string}, \hyperpage{99}
+  \item {filter}
+    \subitem {configure.cc}, \hyperpage{182}
+  \item {find\_contours}
+    \subitem {detection.cc}, \hyperpage{185}
+    \subitem {detection.hh}, \hyperpage{197}
+  \item {find\_rect}
+    \subitem {unwrapping.cc}, \hyperpage{221}
+    \subitem {unwrapping.hh}, \hyperpage{210}
+  \item {FindNextLocMin}
+    \subitem {ClipperLib}, \hyperpage{18}
+  \item {FirstIsBottomPt}
+    \subitem {ClipperLib}, \hyperpage{18}
+  \item {FirstLeft}
+    \subitem {ClipperLib::OutRec}, \hyperpage{126}
+  \item {fixK1}
+    \subitem {CalSettings}, \hyperpage{53}
+  \item {fixK2}
+    \subitem {CalSettings}, \hyperpage{53}
+  \item {fixK3}
+    \subitem {CalSettings}, \hyperpage{53}
+  \item {fixK4}
+    \subitem {CalSettings}, \hyperpage{53}
+  \item {fixK5}
+    \subitem {CalSettings}, \hyperpage{53}
+  \item {flag}
+    \subitem {CalSettings}, \hyperpage{54}
+  \item {flipVertical}
+    \subitem {CalSettings}, \hyperpage{54}
+  \item {frameHeight\_px}
+    \subitem {CameraCapture::input\_options\_t}, \hyperpage{103}
+  \item {frameWidth\_px}
+    \subitem {CameraCapture::input\_options\_t}, \hyperpage{103}
+  \item {FREE}
+    \subitem {map.hh}, \hyperpage{203}
+
+  \indexspace
+
+  \item {GATE}
+    \subitem {map.hh}, \hyperpage{203}
+  \item {get}
+    \subitem {Angle}, \hyperpage{38}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{164}
+  \item {getA1}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{90}
+  \item {getA2}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{90}
+  \item {getA3}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{90}
+  \item {GetBottomPt}
+    \subitem {ClipperLib}, \hyperpage{18}
+  \item {GetBounds}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{65}
+  \item {GetDx}
+    \subitem {ClipperLib}, \hyperpage{19}
+  \item {getFiles}
+    \subitem {settings.cc}, \hyperpage{219}
+  \item {GetFirst}
+    \subitem {ClipperLib::PolyTree}, \hyperpage{140}
+  \item {GetHorzDirection}
+    \subitem {ClipperLib}, \hyperpage{19}
+  \item {getId}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{90}
+  \item {getK}
+    \subitem {DubinsArc$<$ T1, T2 $>$}, \hyperpage{95}
+  \item {getKMax}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{90}
+  \item {GetLowermostRec}
+    \subitem {ClipperLib}, \hyperpage{19}
+  \item {GetMaximaPair}
+    \subitem {ClipperLib}, \hyperpage{19}
+  \item {GetMaximaPairEx}
+    \subitem {ClipperLib}, \hyperpage{19}
+  \item {GetNext}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{138}
+  \item {GetNextInAEL}
+    \subitem {ClipperLib}, \hyperpage{19}
+  \item {GetOverlap}
+    \subitem {ClipperLib}, \hyperpage{20}
+  \item {GetOverlapSegment}
+    \subitem {ClipperLib}, \hyperpage{20}
+  \item {getPointType}
+    \subitem {Mapp}, \hyperpage{116}
+  \item {getTemplates}
+    \subitem {Settings}, \hyperpage{146, 147}
+  \item {getTimeS}
+    \subitem {timeutils}, \hyperpage{32}
+  \item {getType}
+    \subitem {Angle}, \hyperpage{38}
+  \item {getTypeName}
+    \subitem {Angle}, \hyperpage{38}
+  \item {GetUnitNormal}
+    \subitem {ClipperLib}, \hyperpage{20}
+  \item {getValue}
+    \subitem {Victim}, \hyperpage{168}
+  \item {goodInput}
+    \subitem {CalSettings}, \hyperpage{54}
+  \item {grab}
+    \subitem {CameraCapture}, \hyperpage{57}
+  \item {GREEN}
+    \subitem {Settings}, \hyperpage{144}
+  \item {greenMask}
+    \subitem {Settings}, \hyperpage{154}
+
+  \indexspace
+
+  \item {hi}
+    \subitem {ClipperLib::Int128}, \hyperpage{106}
+  \item {High}
+    \subitem {Filter}, \hyperpage{98}
+  \item {high\_h}
+    \subitem {Filter}, \hyperpage{100}
+  \item {high\_s}
+    \subitem {Filter}, \hyperpage{100}
+  \item {high\_v}
+    \subitem {Filter}, \hyperpage{100}
+  \item {hiRange}
+    \subitem {ClipperLib}, \hyperpage{30}
+  \item {HORIZONTAL}
+    \subitem {clipper.cc}, \hyperpage{179}
+  \item {HorzSegmentsOverlap}
+    \subitem {ClipperLib}, \hyperpage{20}
+
+  \indexspace
+
+  \item {Idx}
+    \subitem {ClipperLib::OutPt}, \hyperpage{124}
+    \subitem {ClipperLib::OutRec}, \hyperpage{126}
+  \item {IMAGE\_LIST}
+    \subitem {CalSettings}, \hyperpage{49}
+  \item {imageList}
+    \subitem {CalSettings}, \hyperpage{54}
+  \item {INFO}
+    \subitem {utils.hh}, \hyperpage{213}
+  \item {init}
+    \subitem {DW}, \hyperpage{31}
+  \item {InitEdge}
+    \subitem {ClipperLib}, \hyperpage{20}
+  \item {InitEdge2}
+    \subitem {ClipperLib}, \hyperpage{21}
+  \item {InitOptions}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {input}
+    \subitem {CalSettings}, \hyperpage{54}
+  \item {input\_options\_t}
+    \subitem {CameraCapture::input\_options\_t}, \hyperpage{102}
+  \item {inputCapture}
+    \subitem {CalSettings}, \hyperpage{54}
+  \item {InputType}
+    \subitem {CalSettings}, \hyperpage{49}
+  \item {inputType}
+    \subitem {CalSettings}, \hyperpage{54}
+  \item {InsertScanbeam}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{65}
+  \item {insidePoly}
+    \subitem {Object}, \hyperpage{119}
+  \item {insidePolyApprox}
+    \subitem {Object}, \hyperpage{120}
+  \item {int}
+    \subitem {draw.hh}, \hyperpage{199}
+  \item {Int128}
+    \subitem {ClipperLib::Int128}, \hyperpage{104}
+  \item {Int128Mul}
+    \subitem {ClipperLib}, \hyperpage{21}
+  \item {IntersectList}
+    \subitem {ClipperLib}, \hyperpage{12}
+  \item {IntersectListSort}
+    \subitem {ClipperLib}, \hyperpage{21}
+  \item {IntersectPoint}
+    \subitem {ClipperLib}, \hyperpage{21}
+  \item {IntPoint}
+    \subitem {ClipperLib::IntPoint}, \hyperpage{108}
+  \item {intrinsicCalibrationFile}
+    \subitem {Settings}, \hyperpage{155}
+  \item {INVALID}
+    \subitem {Angle}, \hyperpage{35}
+    \subitem {CalSettings}, \hyperpage{49}
+  \item {ioPreserveCollinear}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {ioReverseSolution}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {ioStrictlySimple}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {isAlive}
+    \subitem {CameraCapture}, \hyperpage{57}
+  \item {IsHole}
+    \subitem {ClipperLib::OutRec}, \hyperpage{126}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{138}
+  \item {IsHorizontal}
+    \subitem {ClipperLib}, \hyperpage{21}
+  \item {IsIntermediate}
+    \subitem {ClipperLib}, \hyperpage{21}
+  \item {isListOfImages}
+    \subitem {CalSettings}, \hyperpage{49}
+  \item {IsMaxima}
+    \subitem {ClipperLib}, \hyperpage{22}
+  \item {IsMinima}
+    \subitem {ClipperLib}, \hyperpage{22}
+  \item {IsOpen}
+    \subitem {ClipperLib::OutRec}, \hyperpage{126}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{138}
+  \item {isOpened}
+    \subitem {CameraCapture}, \hyperpage{57}
+
+  \indexspace
+
+  \item {JoinHorz}
+    \subitem {ClipperLib}, \hyperpage{22}
+  \item {JoinList}
+    \subitem {ClipperLib}, \hyperpage{12}
+  \item {JoinType}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {jtMiter}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {jtRound}
+    \subitem {ClipperLib}, \hyperpage{14}
+  \item {jtSquare}
+    \subitem {ClipperLib}, \hyperpage{14}
+
+  \indexspace
+
+  \item {kernelSide}
+    \subitem {Settings}, \hyperpage{155}
+  \item {KMAX}
+    \subitem {dubins.hh}, \hyperpage{201}
+
+  \indexspace
+
+  \item {left}
+    \subitem {ClipperLib::IntRect}, \hyperpage{110}
+  \item {LeftBound}
+    \subitem {ClipperLib::LocalMinimum}, \hyperpage{112}
+  \item {length}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{91}
+    \subitem {DubinsArc$<$ T1, T2 $>$}, \hyperpage{95}
+  \item {lengthX}
+    \subitem {Mapp}, \hyperpage{117}
+  \item {lengthY}
+    \subitem {Mapp}, \hyperpage{117}
+  \item {lo}
+    \subitem {ClipperLib::Int128}, \hyperpage{106}
+  \item {load\_number\_template}
+    \subitem {detection.cc}, \hyperpage{185}
+    \subitem {detection.hh}, \hyperpage{197}
+  \item {loadCoefficients}
+    \subitem {CameraCapture}, \hyperpage{58}
+    \subitem {unwrapping.cc}, \hyperpage{221}
+    \subitem {unwrapping.hh}, \hyperpage{210}
+  \item {LocalMinimaPending}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{66}
+  \item {long64}
+    \subitem {ClipperLib}, \hyperpage{12}
+  \item {loRange}
+    \subitem {ClipperLib}, \hyperpage{30}
+  \item {Low}
+    \subitem {Filter}, \hyperpage{99}
+  \item {low\_h}
+    \subitem {Filter}, \hyperpage{101}
+  \item {low\_s}
+    \subitem {Filter}, \hyperpage{101}
+  \item {low\_v}
+    \subitem {Filter}, \hyperpage{101}
+  \item {LRL}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{91}
+  \item {LSL}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{91}
+  \item {LSR}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{91}
+
+  \indexspace
+
+  \item {m\_ActiveEdges}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{67}
+  \item {m\_CurrentLM}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{67}
+  \item {m\_edges}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{67}
+  \item {m\_HasOpenPaths}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{67}
+  \item {m\_MinimaList}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{67}
+  \item {m\_PolyOuts}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{68}
+  \item {m\_PreserveCollinear}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{68}
+  \item {m\_Scanbeam}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{68}
+  \item {m\_UseFullRange}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{68}
+  \item {MaDistance}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{76}
+    \subitem {Point2$<$ T $>$}, \hyperpage{131}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{164}
+  \item {main}
+    \subitem {calibration\_run.cc}, \hyperpage{216}
+    \subitem {detection\_run.cc}, \hyperpage{217}
+    \subitem {main.cc}, \hyperpage{217}
+    \subitem {unwrapping\_run.cc}, \hyperpage{218}
+  \item {main.cc}
+    \subitem {main}, \hyperpage{217}
+  \item {MANHATTAN}
+    \subitem {maths.hh}, \hyperpage{206}
+  \item {map}
+    \subitem {Mapp}, \hyperpage{117}
+  \item {map.hh}
+    \subitem {FREE}, \hyperpage{203}
+    \subitem {GATE}, \hyperpage{203}
+    \subitem {OBJ\_TYPE}, \hyperpage{203}
+    \subitem {OBST}, \hyperpage{203}
+    \subitem {VICT}, \hyperpage{203}
+  \item {map\_buffer}
+    \subitem {DW}, \hyperpage{31}
+  \item {Mapp}, \hyperpage{113}
+    \subitem {addObject}, \hyperpage{114}
+    \subitem {cellsFromSegment}, \hyperpage{115}
+    \subitem {checkSegment}, \hyperpage{115}
+    \subitem {checkSegmentCollisionWithType}, \hyperpage{115}
+    \subitem {dimX}, \hyperpage{117}
+    \subitem {dimY}, \hyperpage{117}
+    \subitem {getPointType}, \hyperpage{116}
+    \subitem {lengthX}, \hyperpage{117}
+    \subitem {lengthY}, \hyperpage{117}
+    \subitem {map}, \hyperpage{117}
+    \subitem {Mapp}, \hyperpage{114}
+    \subitem {matrixToString}, \hyperpage{116}
+    \subitem {pixX}, \hyperpage{117}
+    \subitem {pixY}, \hyperpage{118}
+    \subitem {printDimensions}, \hyperpage{116}
+    \subitem {printMap}, \hyperpage{117}
+  \item {maps}
+    \subitem {Settings}, \hyperpage{147}, \hyperpage{149, 150}
+  \item {mapsFolder}
+    \subitem {Settings}, \hyperpage{155}
+  \item {mapsNames}
+    \subitem {Settings}, \hyperpage{155}
+  \item {mapsUnNames}
+    \subitem {Settings}, \hyperpage{155}
+  \item {maths.hh}
+    \subitem {A\_180}, \hyperpage{207}
+    \subitem {A\_2PI}, \hyperpage{207}
+    \subitem {A\_360}, \hyperpage{207}
+    \subitem {A\_PI}, \hyperpage{207}
+    \subitem {DEGTORAD}, \hyperpage{205}
+    \subitem {DInf}, \hyperpage{205}
+    \subitem {DISTANCE\_TYPE}, \hyperpage{206}
+    \subitem {Epsi}, \hyperpage{205}
+    \subitem {equal}, \hyperpage{206}
+    \subitem {EUCLIDEAN}, \hyperpage{206}
+    \subitem {MANHATTAN}, \hyperpage{206}
+    \subitem {pow2}, \hyperpage{207}
+    \subitem {RADTODEG}, \hyperpage{205}
+    \subitem {tupleConstIter}, \hyperpage{205}
+    \subitem {tupleIter}, \hyperpage{206}
+  \item {matrixToString}
+    \subitem {Mapp}, \hyperpage{116}
+  \item {MinimaList}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{63}
+  \item {Minkowski}
+    \subitem {ClipperLib}, \hyperpage{22}
+  \item {MinkowskiDiff}
+    \subitem {ClipperLib}, \hyperpage{22}
+  \item {MinkowskiSum}
+    \subitem {ClipperLib}, \hyperpage{23}
+  \item {MiterLimit}
+    \subitem {ClipperLib::ClipperOffset}, \hyperpage{71}
+  \item {MORE\_FUNCTIONS}
+    \subitem {dubins.hh}, \hyperpage{201}
+  \item {mul}
+    \subitem {Angle}, \hyperpage{38}
+  \item {my\_imshow}
+    \subitem {utils.cc}, \hyperpage{223}
+    \subitem {utils.hh}, \hyperpage{213}
+  \item {mywaitkey}
+    \subitem {utils.cc}, \hyperpage{223}
+    \subitem {utils.hh}, \hyperpage{214}
+
+  \indexspace
+
+  \item {NAME}
+    \subitem {utils.hh}, \hyperpage{213}
+  \item {nameCamera}
+    \subitem {CameraCapture::input\_options\_t}, \hyperpage{103}
+  \item {NEAR\_ZERO}
+    \subitem {clipper.cc}, \hyperpage{179}
+  \item {Next}
+    \subitem {ClipperLib::OutPt}, \hyperpage{124}
+    \subitem {ClipperLib::TEdge}, \hyperpage{158}
+  \item {nextImage}
+    \subitem {CalSettings}, \hyperpage{50}
+  \item {NextInAEL}
+    \subitem {ClipperLib::TEdge}, \hyperpage{158}
+  \item {NextInLML}
+    \subitem {ClipperLib::TEdge}, \hyperpage{158}
+  \item {NextInSEL}
+    \subitem {ClipperLib::TEdge}, \hyperpage{158}
+  \item {NodeType}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {normalize}
+    \subitem {Angle}, \hyperpage{39}
+  \item {NOT\_EXISTING}
+    \subitem {CalSettings}, \hyperpage{49}
+  \item {nPoints}
+    \subitem {Object}, \hyperpage{120}
+  \item {NPOS}
+    \subitem {settings.cc}, \hyperpage{218}
+  \item {nrFrames}
+    \subitem {CalSettings}, \hyperpage{55}
+  \item {ntAny}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {ntClosed}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {ntOpen}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {number\_recognition}
+    \subitem {detection.cc}, \hyperpage{185}
+    \subitem {detection.hh}, \hyperpage{197}
+
+  \indexspace
+
+  \item {OBJ\_TYPE}
+    \subitem {map.hh}, \hyperpage{203}
+  \item {Object}, \hyperpage{118}
+    \subitem {center}, \hyperpage{121}
+    \subitem {computeCenter}, \hyperpage{119}
+    \subitem {computeRadius}, \hyperpage{119}
+    \subitem {insidePoly}, \hyperpage{119}
+    \subitem {insidePolyApprox}, \hyperpage{120}
+    \subitem {nPoints}, \hyperpage{120}
+    \subitem {offsetting}, \hyperpage{120}
+    \subitem {points}, \hyperpage{121}
+    \subitem {radius}, \hyperpage{121}
+    \subitem {size}, \hyperpage{121}
+    \subitem {toString}, \hyperpage{121}
+  \item {OBST}
+    \subitem {map.hh}, \hyperpage{203}
+  \item {Obstacle}, \hyperpage{122}
+    \subitem {Obstacle}, \hyperpage{123}
+    \subitem {print}, \hyperpage{123}
+    \subitem {toString}, \hyperpage{123}
+  \item {OffPt}
+    \subitem {ClipperLib::Join}, \hyperpage{111}
+  \item {offset}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{77}
+    \subitem {Point2$<$ T $>$}, \hyperpage{131, 132}
+  \item {offset\_angle}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{78}
+  \item {offset\_x}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{78}
+    \subitem {Point2$<$ T $>$}, \hyperpage{132}
+  \item {offset\_y}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{79}
+    \subitem {Point2$<$ T $>$}, \hyperpage{133}
+  \item {offsetting}
+    \subitem {Object}, \hyperpage{120}
+  \item {on\_high\_h\_thresh\_trackbar}
+    \subitem {configure.cc}, \hyperpage{180}
+  \item {on\_high\_s\_thresh\_trackbar}
+    \subitem {configure.cc}, \hyperpage{181}
+  \item {on\_high\_v\_thresh\_trackbar}
+    \subitem {configure.cc}, \hyperpage{181}
+  \item {on\_low\_h\_thresh\_trackbar}
+    \subitem {configure.cc}, \hyperpage{181}
+  \item {on\_low\_s\_thresh\_trackbar}
+    \subitem {configure.cc}, \hyperpage{181}
+  \item {on\_low\_v\_thresh\_trackbar}
+    \subitem {configure.cc}, \hyperpage{181}
+  \item {OpenPathsFromPolyTree}
+    \subitem {ClipperLib}, \hyperpage{23}
+  \item {operator !=}
+    \subitem {ClipperLib::Int128}, \hyperpage{104}
+  \item {operator $>$}
+    \subitem {ClipperLib::Int128}, \hyperpage{105}
+  \item {operator $>$=}
+    \subitem {ClipperLib::Int128}, \hyperpage{105}
+  \item {operator $\ast$}
+    \subitem {Angle}, \hyperpage{39}
+  \item {operator $\ast$=}
+    \subitem {Angle}, \hyperpage{39}
+  \item {operator -\/}
+    \subitem {ClipperLib::Int128}, \hyperpage{104}
+  \item {operator -\/=}
+    \subitem {ClipperLib::Int128}, \hyperpage{104}
+  \item {operator cv::Point}
+    \subitem {Point2$<$ T $>$}, \hyperpage{133}
+  \item {operator double}
+    \subitem {Angle}, \hyperpage{40}
+    \subitem {ClipperLib::Int128}, \hyperpage{105}
+  \item {operator float}
+    \subitem {Angle}, \hyperpage{40}
+  \item {operator int}
+    \subitem {Angle}, \hyperpage{40}
+  \item {operator long}
+    \subitem {Angle}, \hyperpage{40}
+  \item {operator Point2$<$ T2 $>$}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{79}
+  \item {operator vector$<$ int $>$}
+    \subitem {Filter}, \hyperpage{99}
+  \item {operator vector$<$ T1 $>$}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{164}
+  \item {operator!=}
+    \subitem {Angle}, \hyperpage{41}
+    \subitem {ClipperLib::IntPoint}, \hyperpage{108}
+    \subitem {Point2$<$ T $>$}, \hyperpage{133}
+  \item {operator$<$}
+    \subitem {ClipperLib::Int128}, \hyperpage{105}
+    \subitem {Point2$<$ T $>$}, \hyperpage{134}
+  \item {operator$<$$<$}
+    \subitem {Angle}, \hyperpage{46}
+    \subitem {ClipperLib}, \hyperpage{23, 24}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{82}
+    \subitem {Curve$<$ T $>$}, \hyperpage{85}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{93}
+    \subitem {DubinsArc$<$ T1, T2 $>$}, \hyperpage{96}
+    \subitem {Filter}, \hyperpage{100}
+    \subitem {Point2$<$ T $>$}, \hyperpage{136}
+    \subitem {Settings}, \hyperpage{153}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{166}
+  \item {operator$<$=}
+    \subitem {ClipperLib::Int128}, \hyperpage{106}
+  \item {operator()}
+    \subitem {ClipperLib::LocMinSorter}, \hyperpage{113}
+  \item {operator+}
+    \subitem {Angle}, \hyperpage{41}
+    \subitem {ClipperLib::Int128}, \hyperpage{105}
+  \item {operator+=}
+    \subitem {Angle}, \hyperpage{41}
+    \subitem {ClipperLib::Int128}, \hyperpage{105}
+  \item {operator-\/}
+    \subitem {Angle}, \hyperpage{42}
+    \subitem {ClipperLib::Int128}, \hyperpage{105}
+  \item {operator-\/=}
+    \subitem {Angle}, \hyperpage{42}
+  \item {operator/}
+    \subitem {Angle}, \hyperpage{43}
+  \item {operator/=}
+    \subitem {Angle}, \hyperpage{43}
+  \item {operator=}
+    \subitem {Angle}, \hyperpage{43, 44}
+    \subitem {ClipperLib::Int128}, \hyperpage{106}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{79}
+    \subitem {Filter}, \hyperpage{99}
+    \subitem {Point2$<$ T $>$}, \hyperpage{134}
+  \item {operator==}
+    \subitem {Angle}, \hyperpage{44}
+    \subitem {ClipperLib::Int128}, \hyperpage{106}
+    \subitem {ClipperLib::IntPoint}, \hyperpage{109}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{80}
+    \subitem {Point2$<$ T $>$}, \hyperpage{134}
+  \item {Orientation}
+    \subitem {ClipperLib}, \hyperpage{24}
+  \item {OutIdx}
+    \subitem {ClipperLib::TEdge}, \hyperpage{158}
+  \item {OutPt1}
+    \subitem {ClipperLib::Join}, \hyperpage{111}
+  \item {OutPt2}
+    \subitem {ClipperLib::Join}, \hyperpage{111}
+  \item {outputFileName}
+    \subitem {CalSettings}, \hyperpage{55}
+  \item {OutRec1RightOfOutRec2}
+    \subitem {ClipperLib}, \hyperpage{24}
+
+  \indexspace
+
+  \item {P0}
+    \subitem {Curve$<$ T $>$}, \hyperpage{86}
+  \item {P1}
+    \subitem {Curve$<$ T $>$}, \hyperpage{86}
+  \item {Parent}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{139}
+  \item {ParseFirstLeft}
+    \subitem {ClipperLib}, \hyperpage{24}
+  \item {Path}
+    \subitem {ClipperLib}, \hyperpage{12}
+  \item {Paths}
+    \subitem {ClipperLib}, \hyperpage{12}
+  \item {Pattern}
+    \subitem {CalSettings}, \hyperpage{49}
+  \item {pftEvenOdd}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {pftNegative}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {pftNonZero}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {pftPositive}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {pi}
+    \subitem {ClipperLib}, \hyperpage{30}
+  \item {PIECE\_LENGTH}
+    \subitem {dubins.hh}, \hyperpage{201}
+  \item {pixX}
+    \subitem {Mapp}, \hyperpage{117}
+  \item {pixY}
+    \subitem {Mapp}, \hyperpage{118}
+  \item {point}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{80}
+  \item {Point2}
+    \subitem {Point2$<$ T $>$}, \hyperpage{128, 129}
+  \item {Point2$<$ T $>$}, \hyperpage{127}
+    \subitem {copy}, \hyperpage{129}
+    \subitem {distance}, \hyperpage{129}
+    \subitem {equal}, \hyperpage{130}
+    \subitem {EuDistance}, \hyperpage{130}
+    \subitem {MaDistance}, \hyperpage{131}
+    \subitem {offset}, \hyperpage{131, 132}
+    \subitem {offset\_x}, \hyperpage{132}
+    \subitem {offset\_y}, \hyperpage{133}
+    \subitem {operator cv::Point}, \hyperpage{133}
+    \subitem {operator!=}, \hyperpage{133}
+    \subitem {operator$<$}, \hyperpage{134}
+    \subitem {operator$<$$<$}, \hyperpage{136}
+    \subitem {operator=}, \hyperpage{134}
+    \subitem {operator==}, \hyperpage{134}
+    \subitem {Point2}, \hyperpage{128, 129}
+    \subitem {to\_string}, \hyperpage{134}
+    \subitem {x}, \hyperpage{135}
+    \subitem {y}, \hyperpage{135}
+  \item {PointCount}
+    \subitem {ClipperLib}, \hyperpage{24}
+  \item {PointInPolygon}
+    \subitem {ClipperLib}, \hyperpage{25}
+  \item {PointIsVertex}
+    \subitem {ClipperLib}, \hyperpage{25}
+  \item {points}
+    \subitem {Object}, \hyperpage{121}
+  \item {PointsAreClose}
+    \subitem {ClipperLib}, \hyperpage{25}
+  \item {Poly2ContainsPoly1}
+    \subitem {ClipperLib}, \hyperpage{25}
+  \item {PolyFillType}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {PolyNd}
+    \subitem {ClipperLib::OutRec}, \hyperpage{126}
+  \item {PolyNode}
+    \subitem {ClipperLib::PolyNode}, \hyperpage{137}
+  \item {PolyNodes}
+    \subitem {ClipperLib}, \hyperpage{12}
+  \item {PolyOutList}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {PolyTreeToPaths}
+    \subitem {ClipperLib}, \hyperpage{25}
+  \item {PolyTyp}
+    \subitem {ClipperLib::TEdge}, \hyperpage{158}
+  \item {PolyType}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {PopLocalMinima}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{66}
+  \item {PopScanbeam}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{66}
+  \item {pow2}
+    \subitem {maths.hh}, \hyperpage{207}
+  \item {PreserveCollinear}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{66}
+  \item {Prev}
+    \subitem {ClipperLib::OutPt}, \hyperpage{125}
+    \subitem {ClipperLib::TEdge}, \hyperpage{159}
+  \item {PrevInAEL}
+    \subitem {ClipperLib::TEdge}, \hyperpage{159}
+  \item {PrevInSEL}
+    \subitem {ClipperLib::TEdge}, \hyperpage{159}
+  \item {print}
+    \subitem {Obstacle}, \hyperpage{123}
+    \subitem {Victim}, \hyperpage{168}
+  \item {printDimensions}
+    \subitem {Mapp}, \hyperpage{116}
+  \item {printMap}
+    \subitem {Mapp}, \hyperpage{117}
+  \item {ProcessBound}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{66}
+  \item {Pt}
+    \subitem {ClipperLib::IntersectNode}, \hyperpage{107}
+    \subitem {ClipperLib::OutPt}, \hyperpage{125}
+  \item {Pt2IsBetweenPt1AndPt3}
+    \subitem {ClipperLib}, \hyperpage{26}
+  \item {ptClip}
+    \subitem {ClipperLib}, \hyperpage{15}
+  \item {Pts}
+    \subitem {ClipperLib::OutRec}, \hyperpage{126}
+  \item {ptSubject}
+    \subitem {ClipperLib}, \hyperpage{15}
+
+  \indexspace
+
+  \item {RAD}
+    \subitem {Angle}, \hyperpage{35}
+  \item {radius}
+    \subitem {Object}, \hyperpage{121}
+  \item {RADTODEG}
+    \subitem {maths.hh}, \hyperpage{205}
+  \item {radToDeg}
+    \subitem {Angle}, \hyperpage{44}
+  \item {rangeSymm}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{91}
+  \item {RangeTest}
+    \subitem {ClipperLib}, \hyperpage{26}
+  \item {read}
+    \subitem {calibration.cc}, \hyperpage{173}
+    \subitem {CalSettings}, \hyperpage{50}
+  \item {readFromFile}
+    \subitem {Settings}, \hyperpage{150}
+  \item {readStringList}
+    \subitem {CalSettings}, \hyperpage{50}
+  \item {RED}
+    \subitem {Settings}, \hyperpage{144}
+  \item {redMask}
+    \subitem {Settings}, \hyperpage{155}
+  \item {remove}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{165}
+  \item {RemoveEdge}
+    \subitem {ClipperLib}, \hyperpage{26}
+  \item {Reset}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{66}
+  \item {ReverseHorizontal}
+    \subitem {ClipperLib}, \hyperpage{26}
+  \item {ReversePath}
+    \subitem {ClipperLib}, \hyperpage{26}
+  \item {ReversePaths}
+    \subitem {ClipperLib}, \hyperpage{26}
+  \item {ReversePolyPtLinks}
+    \subitem {ClipperLib}, \hyperpage{27}
+  \item {ReverseSolution}
+    \subitem {ClipperLib::Clipper}, \hyperpage{61}
+  \item {right}
+    \subitem {ClipperLib::IntRect}, \hyperpage{110}
+  \item {RightBound}
+    \subitem {ClipperLib::LocalMinimum}, \hyperpage{112}
+  \item {RLR}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{91}
+  \item {ROBOT}
+    \subitem {Settings}, \hyperpage{144}
+  \item {robotMask}
+    \subitem {Settings}, \hyperpage{156}
+  \item {Round}
+    \subitem {ClipperLib}, \hyperpage{27}
+  \item {RSL}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{92}
+  \item {RSR}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{92}
+  \item {runCalibration}
+    \subitem {calibration.cc}, \hyperpage{173}
+  \item {runCalibrationAndSave}
+    \subitem {calibration.cc}, \hyperpage{174}
+    \subitem {calibration.hh}, \hyperpage{189}
+
+  \indexspace
+
+  \item {s}
+    \subitem {detection.cc}, \hyperpage{186}
+  \item {save}
+    \subitem {Settings}, \hyperpage{150}
+  \item {save\_convex\_hull}
+    \subitem {detection.cc}, \hyperpage{185}
+    \subitem {detection.hh}, \hyperpage{198}
+  \item {saveCameraParams}
+    \subitem {calibration.cc}, \hyperpage{174}
+  \item {scaleFromStandard}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{92}
+  \item {scaleToStandard}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{92}
+  \item {ScanbeamList}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{63}
+  \item {SDEBUG}
+    \subitem {camera\_capture.cc}, \hyperpage{176}
+  \item {set}
+    \subitem {Angle}, \hyperpage{44}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{165}
+  \item {SetDx}
+    \subitem {ClipperLib}, \hyperpage{27}
+  \item {Settings}, \hyperpage{141}
+    \subitem {$\sim$Settings}, \hyperpage{145}
+    \subitem {addUnMap}, \hyperpage{145}
+    \subitem {BLACK}, \hyperpage{144}
+    \subitem {blackMask}, \hyperpage{154}
+    \subitem {BLUE}, \hyperpage{144}
+    \subitem {blueMask}, \hyperpage{154}
+    \subitem {calibrationFile}, \hyperpage{154}
+    \subitem {changeMask}, \hyperpage{145, 146}
+    \subitem {clean}, \hyperpage{146}
+    \subitem {cleanAndRead}, \hyperpage{146}
+    \subitem {COLOR}, \hyperpage{144}
+    \subitem {convexHullFile}, \hyperpage{154}
+    \subitem {getTemplates}, \hyperpage{146, 147}
+    \subitem {GREEN}, \hyperpage{144}
+    \subitem {greenMask}, \hyperpage{154}
+    \subitem {intrinsicCalibrationFile}, \hyperpage{155}
+    \subitem {kernelSide}, \hyperpage{155}
+    \subitem {maps}, \hyperpage{147}, \hyperpage{149, 150}
+    \subitem {mapsFolder}, \hyperpage{155}
+    \subitem {mapsNames}, \hyperpage{155}
+    \subitem {mapsUnNames}, \hyperpage{155}
+    \subitem {operator$<$$<$}, \hyperpage{153}
+    \subitem {readFromFile}, \hyperpage{150}
+    \subitem {RED}, \hyperpage{144}
+    \subitem {redMask}, \hyperpage{155}
+    \subitem {ROBOT}, \hyperpage{144}
+    \subitem {robotMask}, \hyperpage{156}
+    \subitem {save}, \hyperpage{150}
+    \subitem {Settings}, \hyperpage{144}
+    \subitem {templates}, \hyperpage{156}
+    \subitem {templatesFolder}, \hyperpage{156}
+    \subitem {to\_string}, \hyperpage{151}
+    \subitem {unMaps}, \hyperpage{151--153}
+    \subitem {victimMask}, \hyperpage{156}
+    \subitem {VICTIMS}, \hyperpage{144}
+    \subitem {WHITE}, \hyperpage{144}
+    \subitem {whiteMask}, \hyperpage{156}
+    \subitem {writeToFile}, \hyperpage{153}
+  \item {settings.cc}
+    \subitem {getFiles}, \hyperpage{219}
+    \subitem {NPOS}, \hyperpage{218}
+    \subitem {vecToFile}, \hyperpage{219}
+  \item {setType}
+    \subitem {Angle}, \hyperpage{45}
+  \item {setValue}
+    \subitem {Victim}, \hyperpage{168}
+  \item {shape\_detection}
+    \subitem {detection.cc}, \hyperpage{186}
+    \subitem {detection.hh}, \hyperpage{198}
+  \item {shortest\_path}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{92}
+  \item {show\_all\_conditions}
+    \subitem {configure.cc}, \hyperpage{181}
+    \subitem {configure.hh}, \hyperpage{194}
+  \item {showUndistorsed}
+    \subitem {CalSettings}, \hyperpage{55}
+  \item {Side}
+    \subitem {ClipperLib::TEdge}, \hyperpage{159}
+  \item {SimplifyPolygon}
+    \subitem {ClipperLib}, \hyperpage{27}
+  \item {SimplifyPolygons}
+    \subitem {ClipperLib}, \hyperpage{27}
+  \item {sin}
+    \subitem {Angle}, \hyperpage{45}
+  \item {sinc}
+    \subitem {dubins.hh}, \hyperpage{201}
+  \item {size}
+    \subitem {Object}, \hyperpage{121}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{166}
+  \item {Skip}
+    \subitem {ClipperLib}, \hyperpage{30}
+  \item {SlopesEqual}
+    \subitem {ClipperLib}, \hyperpage{28}
+  \item {SlopesNearCollinear}
+    \subitem {ClipperLib}, \hyperpage{28}
+  \item {splitIt}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{93}
+    \subitem {DubinsArc$<$ T1, T2 $>$}, \hyperpage{95}
+  \item {squareSize}
+    \subitem {CalSettings}, \hyperpage{55}
+  \item {src/calibration.cc}, \hyperpage{171}
+  \item {src/camera\_capture.cc}, \hyperpage{175}
+  \item {src/clipper.cc}, \hyperpage{176}
+  \item {src/configure.cc}, \hyperpage{180}
+  \item {src/detection.cc}, \hyperpage{182}
+  \item {src/dubins.cc}, \hyperpage{187}
+  \item {src/include/calibration.hh}, \hyperpage{187}
+  \item {src/include/camera\_capture.hh}, \hyperpage{190}
+  \item {src/include/clipper.hh}, \hyperpage{191}
+  \item {src/include/configure.hh}, \hyperpage{193}
+  \item {src/include/detection.hh}, \hyperpage{195}
+  \item {src/include/draw.hh}, \hyperpage{199}
+  \item {src/include/dubins.hh}, \hyperpage{200}
+  \item {src/include/filter.hh}, \hyperpage{202}
+  \item {src/include/map.hh}, \hyperpage{202}
+  \item {src/include/maths.hh}, \hyperpage{203}
+  \item {src/include/objects.hh}, \hyperpage{208}
+  \item {src/include/settings.hh}, \hyperpage{208}
+  \item {src/include/unwrapping.hh}, \hyperpage{209}
+  \item {src/include/utils.hh}, \hyperpage{211}
+  \item {src/map.cc}, \hyperpage{214}
+  \item {src/maths.cc}, \hyperpage{215}
+  \item {src/objects.cc}, \hyperpage{215}
+  \item {src/run/calibration\_run.cc}, \hyperpage{216}
+  \item {src/run/detection\_run.cc}, \hyperpage{216}
+  \item {src/run/main.cc}, \hyperpage{217}
+  \item {src/run/unwrapping\_run.cc}, \hyperpage{217}
+  \item {src/settings.cc}, \hyperpage{218}
+  \item {src/unwrapping.cc}, \hyperpage{219}
+  \item {src/utils.cc}, \hyperpage{222}
+  \item {startCamera}
+    \subitem {CameraCapture}, \hyperpage{58}
+  \item {StrictlySimple}
+    \subitem {ClipperLib::Clipper}, \hyperpage{61}
+  \item {sub}
+    \subitem {Angle}, \hyperpage{45}
+  \item {SwapIntersectNodes}
+    \subitem {ClipperLib}, \hyperpage{28}
+  \item {SwapPoints}
+    \subitem {ClipperLib}, \hyperpage{29}
+  \item {SwapPolyIndexes}
+    \subitem {ClipperLib}, \hyperpage{29}
+  \item {SwapPositionsInAEL}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{67}
+  \item {SwapSides}
+    \subitem {ClipperLib}, \hyperpage{29}
+
+  \indexspace
+
+  \item {tan}
+    \subitem {Angle}, \hyperpage{46}
+  \item {templates}
+    \subitem {detection.cc}, \hyperpage{186}
+    \subitem {Settings}, \hyperpage{156}
+  \item {templatesFolder}
+    \subitem {Settings}, \hyperpage{156}
+  \item {timespecDiff}
+    \subitem {timeutils}, \hyperpage{32}
+  \item {timeutils}, \hyperpage{32}
+    \subitem {getTimeS}, \hyperpage{32}
+    \subitem {timespecDiff}, \hyperpage{32}
+  \item {to\_string}
+    \subitem {Angle}, \hyperpage{46}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{80}
+    \subitem {Curve$<$ T $>$}, \hyperpage{85}
+    \subitem {Dubins$<$ T $>$}, \hyperpage{93}
+    \subitem {DubinsArc$<$ T1, T2 $>$}, \hyperpage{96}
+    \subitem {Filter}, \hyperpage{99}
+    \subitem {Point2$<$ T $>$}, \hyperpage{134}
+    \subitem {Settings}, \hyperpage{151}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{166}
+  \item {toDeg}
+    \subitem {Angle}, \hyperpage{46}
+  \item {TOLERANCE}
+    \subitem {clipper.cc}, \hyperpage{179}
+  \item {Top}
+    \subitem {ClipperLib::TEdge}, \hyperpage{159}
+  \item {top}
+    \subitem {ClipperLib::IntRect}, \hyperpage{110}
+  \item {TopX}
+    \subitem {ClipperLib}, \hyperpage{29}
+  \item {toRad}
+    \subitem {Angle}, \hyperpage{46}
+  \item {toString}
+    \subitem {Object}, \hyperpage{121}
+    \subitem {Obstacle}, \hyperpage{123}
+    \subitem {Victim}, \hyperpage{168}
+  \item {Total}
+    \subitem {ClipperLib::PolyTree}, \hyperpage{141}
+  \item {TranslatePath}
+    \subitem {ClipperLib}, \hyperpage{29}
+  \item {Tuple}
+    \subitem {Tuple$<$ T $>$}, \hyperpage{161}
+  \item {Tuple$<$ T $>$}, \hyperpage{160}
+    \subitem {add}, \hyperpage{162}
+    \subitem {begin}, \hyperpage{162}
+    \subitem {distance}, \hyperpage{162}
+    \subitem {end}, \hyperpage{163}
+    \subitem {EuDistance}, \hyperpage{163}
+    \subitem {get}, \hyperpage{164}
+    \subitem {MaDistance}, \hyperpage{164}
+    \subitem {operator vector$<$ T1 $>$}, \hyperpage{164}
+    \subitem {operator$<$$<$}, \hyperpage{166}
+    \subitem {remove}, \hyperpage{165}
+    \subitem {set}, \hyperpage{165}
+    \subitem {size}, \hyperpage{166}
+    \subitem {to\_string}, \hyperpage{166}
+    \subitem {Tuple}, \hyperpage{161}
+  \item {tupleConstIter}
+    \subitem {maths.hh}, \hyperpage{205}
+  \item {tupleIter}
+    \subitem {maths.hh}, \hyperpage{206}
+  \item {two\_pi}
+    \subitem {ClipperLib}, \hyperpage{30}
+
+  \indexspace
+
+  \item {ulong64}
+    \subitem {ClipperLib}, \hyperpage{13}
+  \item {Unassigned}
+    \subitem {ClipperLib}, \hyperpage{30}
+  \item {unMaps}
+    \subitem {Settings}, \hyperpage{151--153}
+  \item {unwrapping}
+    \subitem {unwrapping.cc}, \hyperpage{221}
+    \subitem {unwrapping.hh}, \hyperpage{211}
+  \item {unwrapping.cc}
+    \subitem {AREA\_MIN}, \hyperpage{220}
+    \subitem {AREA\_RATIO}, \hyperpage{220}
+    \subitem {distance}, \hyperpage{220}
+    \subitem {find\_rect}, \hyperpage{221}
+    \subitem {loadCoefficients}, \hyperpage{221}
+    \subitem {unwrapping}, \hyperpage{221}
+  \item {unwrapping.hh}
+    \subitem {find\_rect}, \hyperpage{210}
+    \subitem {loadCoefficients}, \hyperpage{210}
+    \subitem {unwrapping}, \hyperpage{211}
+  \item {unwrapping\_run.cc}
+    \subitem {main}, \hyperpage{218}
+  \item {update\_trackers}
+    \subitem {configure.cc}, \hyperpage{182}
+  \item {UpdateEdgeIntoAEL}
+    \subitem {ClipperLib::ClipperBase}, \hyperpage{67}
+  \item {UpdateOutPtIdxs}
+    \subitem {ClipperLib}, \hyperpage{29}
+  \item {use\_lines}
+    \subitem {clipper.hh}, \hyperpage{193}
+  \item {useFisheye}
+    \subitem {CalSettings}, \hyperpage{55}
+  \item {utils.cc}
+    \subitem {my\_imshow}, \hyperpage{223}
+    \subitem {mywaitkey}, \hyperpage{223}
+  \item {utils.hh}
+    \subitem {COUT}, \hyperpage{213}
+    \subitem {INFO}, \hyperpage{213}
+    \subitem {my\_imshow}, \hyperpage{213}
+    \subitem {mywaitkey}, \hyperpage{214}
+    \subitem {NAME}, \hyperpage{213}
+
+  \indexspace
+
+  \item {validate}
+    \subitem {CalSettings}, \hyperpage{51}
+  \item {value}
+    \subitem {Victim}, \hyperpage{169}
+  \item {vecToFile}
+    \subitem {settings.cc}, \hyperpage{219}
+  \item {VICT}
+    \subitem {map.hh}, \hyperpage{203}
+  \item {Victim}, \hyperpage{167}
+    \subitem {getValue}, \hyperpage{168}
+    \subitem {print}, \hyperpage{168}
+    \subitem {setValue}, \hyperpage{168}
+    \subitem {toString}, \hyperpage{168}
+    \subitem {value}, \hyperpage{169}
+    \subitem {Victim}, \hyperpage{168}
+  \item {victimMask}
+    \subitem {Settings}, \hyperpage{156}
+  \item {VICTIMS}
+    \subitem {Settings}, \hyperpage{144}
+
+  \indexspace
+
+  \item {what}
+    \subitem {ClipperLib::clipperException}, \hyperpage{69}
+  \item {WHITE}
+    \subitem {Settings}, \hyperpage{144}
+  \item {whiteMask}
+    \subitem {Settings}, \hyperpage{156}
+  \item {WindCnt}
+    \subitem {ClipperLib::TEdge}, \hyperpage{159}
+  \item {WindCnt2}
+    \subitem {ClipperLib::TEdge}, \hyperpage{159}
+  \item {WindDelta}
+    \subitem {ClipperLib::TEdge}, \hyperpage{159}
+  \item {window}
+    \subitem {DW}, \hyperpage{31}
+  \item {write}
+    \subitem {CalSettings}, \hyperpage{51}
+  \item {writeExtrinsics}
+    \subitem {CalSettings}, \hyperpage{55}
+  \item {writePoints}
+    \subitem {CalSettings}, \hyperpage{56}
+  \item {writeToFile}
+    \subitem {Settings}, \hyperpage{153}
+
+  \indexspace
+
+  \item {X}
+    \subitem {ClipperLib::DoublePoint}, \hyperpage{87}
+    \subitem {ClipperLib::IntPoint}, \hyperpage{109}
+  \item {x}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{80, 81}
+    \subitem {Point2$<$ T $>$}, \hyperpage{135}
+
+  \indexspace
+
+  \item {Y}
+    \subitem {ClipperLib::DoublePoint}, \hyperpage{87}
+    \subitem {ClipperLib::IntPoint}, \hyperpage{109}
+    \subitem {ClipperLib::LocalMinimum}, \hyperpage{112}
+  \item {y}
+    \subitem {Configuration2$<$ T1 $>$}, \hyperpage{81}
+    \subitem {Point2$<$ T $>$}, \hyperpage{135}
+
+\end{theindex}

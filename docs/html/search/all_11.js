@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['s',['s',['../detection_8cc.html#a9090f9756293390c57567a0bf7630abf',1,'detection.cc']]],
   ['save',['save',['../class_settings.html#a6e40d9eca9f6794dee65e519ea73bb24',1,'Settings']]],
   ['save_5fconvex_5fhull',['save_convex_hull',['../detection_8cc.html#a923b178671e2272c6b082335d118716a',1,'save_convex_hull(const vector&lt; vector&lt; Point &gt;&gt; &amp;contours, const int color, const vector&lt; int &gt; &amp;victims):&#160;detection.cc'],['../detection_8hh.html#a923b178671e2272c6b082335d118716a',1,'save_convex_hull(const vector&lt; vector&lt; Point &gt;&gt; &amp;contours, const int color, const vector&lt; int &gt; &amp;victims):&#160;detection.cc']]],
   ['savecameraparams',['saveCameraParams',['../calibration_8cc.html#a9a94e87ed45e2dd9c2c5a49b7d01e42f',1,'calibration.cc']]],

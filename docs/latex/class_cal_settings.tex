@@ -1,0 +1,502 @@
+\hypertarget{class_cal_settings}{}\section{Cal\+Settings Class Reference}
+\label{class_cal_settings}\index{CalSettings@{CalSettings}}
+
+
+{\ttfamily \#include $<$calibration.\+hh$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_cal_settings_a0a24f2a2a233efe9213f28e527314500}{Pattern}} \{ \mbox{\hyperlink{class_cal_settings_a0a24f2a2a233efe9213f28e527314500ae4a4d43b266ad7071b87781d63db6325}{N\+O\+T\+\_\+\+E\+X\+I\+S\+T\+I\+NG}} =0, 
+\mbox{\hyperlink{class_cal_settings_a0a24f2a2a233efe9213f28e527314500abbce277bb8f1f2450efbf10d14258264}{C\+H\+E\+S\+S\+B\+O\+A\+RD}} =1
+ \}
+\item 
+enum \mbox{\hyperlink{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58}{Input\+Type}} \{ \mbox{\hyperlink{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58ac7f02a9057bd231c457feb514f4ecff6}{I\+N\+V\+A\+L\+ID}} =0, 
+\mbox{\hyperlink{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58a42620be27f3baf3945f97c4a0451b56a}{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}} =3
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_cal_settings_aaac5ae85b32281c75a540211a183ae5b}{Cal\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Constructor that sets {\ttfamily good\+Input} to false. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_cal_settings_a1e7ebff7ec6beb793febbe245ac753bd}{write}} (File\+Storage \&fs) const
+\begin{DoxyCompactList}\small\item\em Write serialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_cal_settings_a984d8ace934885b4da7bad3618db714d}{read}} (const File\+Node \&node)
+\begin{DoxyCompactList}\small\item\em Read serialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_cal_settings_ae7f2a16c9f1839485cc12f52cf98f67e}{validate}} ()
+\begin{DoxyCompactList}\small\item\em This function validate the content of the file. \end{DoxyCompactList}\item 
+Mat \mbox{\hyperlink{class_cal_settings_ad68c39e7310537b4eb00b244da338b17}{next\+Image}} ()
+\begin{DoxyCompactList}\small\item\em Get next image from list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_cal_settings_a33788fa83ce965ffa2e27c5690f5aa8e}{read\+String\+List}} (const string \&filename, vector$<$ string $>$ \&l)
+\begin{DoxyCompactList}\small\item\em Read from file a list of images. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_cal_settings_a43c8b23d4f8d7c8cb1fd9204e9478ce0}{is\+List\+Of\+Images}} (const string \&filename)
+\begin{DoxyCompactList}\small\item\em Check if the file from which is trying to retrive a list is a valid format (xml or yaml). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Size \mbox{\hyperlink{class_cal_settings_a873bc1dc2387dbb8a73c8e47f53e1df8}{board\+Size}}
+\begin{DoxyCompactList}\small\item\em The size of the board -\/$>$ Number of items by width and height. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_cal_settings_a0a24f2a2a233efe9213f28e527314500}{Pattern}} \mbox{\hyperlink{class_cal_settings_a500d222eca5419dcf8d3923b8f9d45a1}{calibration\+Pattern}} = \mbox{\hyperlink{class_cal_settings_a0a24f2a2a233efe9213f28e527314500abbce277bb8f1f2450efbf10d14258264}{C\+H\+E\+S\+S\+B\+O\+A\+RD}}
+\begin{DoxyCompactList}\small\item\em One of the Chessboard, circles, or asymmetric circle pattern. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_cal_settings_a14597574ec3d7c1a4d5f3cb9e555b887}{square\+Size}}
+\begin{DoxyCompactList}\small\item\em The size of a square in your defined unit (point, millimeter,etc). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_cal_settings_a952a1f99909768b2af2580b9be94ce9d}{nr\+Frames}}
+\begin{DoxyCompactList}\small\item\em The number of frames to use from the input for calibration. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_cal_settings_a25bbf73423679421ceff2f9f8cf485cd}{aspect\+Ratio}}
+\begin{DoxyCompactList}\small\item\em The aspect ratio. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_cal_settings_abefb1d66ea3a38cdc937ab0647643479}{delay}}
+\begin{DoxyCompactList}\small\item\em In case of a video input. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_ae02acb9427145d18a3c6a070b3cb16f9}{write\+Points}}
+\begin{DoxyCompactList}\small\item\em Write detected feature points. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_a474530e6edf434e35e8b8727627e1fcb}{write\+Extrinsics}}
+\begin{DoxyCompactList}\small\item\em Write extrinsic parameters. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_a77e82318d82b8325bc0d4e87d08b732c}{calib\+Zero\+Tangent\+Dist}}
+\begin{DoxyCompactList}\small\item\em Assume zero tangential distortion. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_a0987198584271e224daffc66c87808d7}{calib\+Fix\+Principal\+Point}}
+\begin{DoxyCompactList}\small\item\em Fix the principal point at the center. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_a9a2cff2a0d53011d5a3b1a03a7460589}{flip\+Vertical}}
+\begin{DoxyCompactList}\small\item\em Flip the captured images around the horizontal axis. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_cal_settings_a9ea48b7c35d4bba18320d3635a333936}{output\+File\+Name}}
+\begin{DoxyCompactList}\small\item\em The name of the file where to write. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_a3c70a81781bda96826362983a3a78bf2}{show\+Undistorsed}}
+\begin{DoxyCompactList}\small\item\em Show undistorted images after calibration. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_cal_settings_af5c2593c9b0ede5badd13709641582c9}{input}}
+\begin{DoxyCompactList}\small\item\em The input. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_a5bd22c0af6208eb2733625a23e209b94}{use\+Fisheye}} = false
+\begin{DoxyCompactList}\small\item\em use fisheye camera model for calibration \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_a062c6f2dcf6356c1260a7dfbfae4488a}{fix\+K1}}
+\begin{DoxyCompactList}\small\item\em fix K1 distortion coefficient \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_af4cc9513c1717b53bf7112197e185784}{fix\+K2}}
+\begin{DoxyCompactList}\small\item\em fix K2 distortion coefficient \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_ad5b43b38acd876e10dda7525c235034e}{fix\+K3}}
+\begin{DoxyCompactList}\small\item\em fix K3 distortion coefficient \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_a0d0848f0958b4cdaed7a3f2e32a1496e}{fix\+K4}}
+\begin{DoxyCompactList}\small\item\em fix K4 distortion coefficient \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cal_settings_a2f22ee23f05778e7a44e2f8b15c1298d}{fix\+K5}}
+\begin{DoxyCompactList}\small\item\em fix K5 distortion coefficient \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_cal_settings_a94ef868bedd92ddce22dfebc25df9d1f}{camera\+ID}}
+\item 
+vector$<$ string $>$ \mbox{\hyperlink{class_cal_settings_a93efb0e90500e865060c8ed64ca19c7e}{image\+List}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_cal_settings_adfcbf4c58e69a9d6dadae2068cb79341}{at\+Image\+List}}
+\item 
+Video\+Capture \mbox{\hyperlink{class_cal_settings_a43c759c4226fc06b1cb823e1d93e61c7}{input\+Capture}}
+\item 
+\mbox{\hyperlink{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58}{Input\+Type}} \mbox{\hyperlink{class_cal_settings_a8ca51064aed3517fc742fd81c81b8315}{input\+Type}} = \mbox{\hyperlink{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58a42620be27f3baf3945f97c4a0451b56a}{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}}
+\item 
+bool \mbox{\hyperlink{class_cal_settings_a0ee37fdc0b7a0589f5f1c990bfd0eceb}{good\+Input}}
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_cal_settings_a59cd0b6f52c18498cb3f1ad5ac030338}{flag}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58}\label{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58}} 
+\index{CalSettings@{CalSettings}!InputType@{InputType}}
+\index{InputType@{InputType}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{InputType}{InputType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58}{Cal\+Settings\+::\+Input\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID@{INVALID}!CalSettings@{CalSettings}}\index{CalSettings@{CalSettings}!INVALID@{INVALID}}}\mbox{\Hypertarget{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58ac7f02a9057bd231c457feb514f4ecff6}\label{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58ac7f02a9057bd231c457feb514f4ecff6}} 
+I\+N\+V\+A\+L\+ID&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IMAGE\_LIST@{IMAGE\_LIST}!CalSettings@{CalSettings}}\index{CalSettings@{CalSettings}!IMAGE\_LIST@{IMAGE\_LIST}}}\mbox{\Hypertarget{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58a42620be27f3baf3945f97c4a0451b56a}\label{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58a42620be27f3baf3945f97c4a0451b56a}} 
+I\+M\+A\+G\+E\+\_\+\+L\+I\+ST&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_cal_settings_a0a24f2a2a233efe9213f28e527314500}\label{class_cal_settings_a0a24f2a2a233efe9213f28e527314500}} 
+\index{CalSettings@{CalSettings}!Pattern@{Pattern}}
+\index{Pattern@{Pattern}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{Pattern}{Pattern}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_cal_settings_a0a24f2a2a233efe9213f28e527314500}{Cal\+Settings\+::\+Pattern}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT\_EXISTING@{NOT\_EXISTING}!CalSettings@{CalSettings}}\index{CalSettings@{CalSettings}!NOT\_EXISTING@{NOT\_EXISTING}}}\mbox{\Hypertarget{class_cal_settings_a0a24f2a2a233efe9213f28e527314500ae4a4d43b266ad7071b87781d63db6325}\label{class_cal_settings_a0a24f2a2a233efe9213f28e527314500ae4a4d43b266ad7071b87781d63db6325}} 
+N\+O\+T\+\_\+\+E\+X\+I\+S\+T\+I\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHESSBOARD@{CHESSBOARD}!CalSettings@{CalSettings}}\index{CalSettings@{CalSettings}!CHESSBOARD@{CHESSBOARD}}}\mbox{\Hypertarget{class_cal_settings_a0a24f2a2a233efe9213f28e527314500abbce277bb8f1f2450efbf10d14258264}\label{class_cal_settings_a0a24f2a2a233efe9213f28e527314500abbce277bb8f1f2450efbf10d14258264}} 
+C\+H\+E\+S\+S\+B\+O\+A\+RD&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_cal_settings_aaac5ae85b32281c75a540211a183ae5b}\label{class_cal_settings_aaac5ae85b32281c75a540211a183ae5b}} 
+\index{CalSettings@{CalSettings}!CalSettings@{CalSettings}}
+\index{CalSettings@{CalSettings}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{CalSettings()}{CalSettings()}}
+{\footnotesize\ttfamily Cal\+Settings\+::\+Cal\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor that sets {\ttfamily good\+Input} to false. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_cal_settings_a43c8b23d4f8d7c8cb1fd9204e9478ce0}\label{class_cal_settings_a43c8b23d4f8d7c8cb1fd9204e9478ce0}} 
+\index{CalSettings@{CalSettings}!isListOfImages@{isListOfImages}}
+\index{isListOfImages@{isListOfImages}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{isListOfImages()}{isListOfImages()}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::is\+List\+Of\+Images (\begin{DoxyParamCaption}\item[{const string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if the file from which is trying to retrive a list is a valid format (xml or yaml). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em filename} & The name of the file to check for validity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily false} is the file is not xml or yaml~\newline
+ {\ttfamily true} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_cal_settings_ad68c39e7310537b4eb00b244da338b17}\label{class_cal_settings_ad68c39e7310537b4eb00b244da338b17}} 
+\index{CalSettings@{CalSettings}!nextImage@{nextImage}}
+\index{nextImage@{nextImage}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{nextImage()}{nextImage()}}
+{\footnotesize\ttfamily Mat Cal\+Settings\+::next\+Image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get next image from list. 
+
+\begin{DoxyReturn}{Returns}
+A matrix containing the next image to consider. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_cal_settings_a984d8ace934885b4da7bad3618db714d}\label{class_cal_settings_a984d8ace934885b4da7bad3618db714d}} 
+\index{CalSettings@{CalSettings}!read@{read}}
+\index{read@{read}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily void Cal\+Settings\+::read (\begin{DoxyParamCaption}\item[{const File\+Node \&}]{node }\end{DoxyParamCaption})}
+
+
+
+Read serialization. 
+
+This function read data from a file and stores each node in their corresponding variables.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em node} & The node of the file to consider. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_cal_settings_a33788fa83ce965ffa2e27c5690f5aa8e}\label{class_cal_settings_a33788fa83ce965ffa2e27c5690f5aa8e}} 
+\index{CalSettings@{CalSettings}!readStringList@{readStringList}}
+\index{readStringList@{readStringList}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{readStringList()}{readStringList()}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::read\+String\+List (\begin{DoxyParamCaption}\item[{const string \&}]{filename,  }\item[{vector$<$ string $>$ \&}]{l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read from file a list of images. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em filename} & The name of the file from which to read. \\
+\hline
+\mbox{\texttt{ out}}  & {\em l} & A vector which will contain the names of the file from the list.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily false} if the file could not be opened or if the file doesn\textquotesingle{}t contain a list~\newline
+ {\ttfamily true} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_cal_settings_ae7f2a16c9f1839485cc12f52cf98f67e}\label{class_cal_settings_ae7f2a16c9f1839485cc12f52cf98f67e}} 
+\index{CalSettings@{CalSettings}!validate@{validate}}
+\index{validate@{validate}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{validate()}{validate()}}
+{\footnotesize\ttfamily void Cal\+Settings\+::validate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function validate the content of the file. 
+
+Even though this function doesn\textquotesingle{}t return anything nor has any parameters for output, it sets a variable of the {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}} class, that is {\ttfamily goog\+Input}, to {\ttfamily false} if some infos were wrong. {\ttfamily true} otherwise. The options it takes in consideration are the following\+:
+\begin{DoxyItemize}
+\item Size must be positive.~\newline
+
+\item Cells must be greater than $10^{-6}$.
+\item The number of frames considered, that is images, must be greater than 0.
+\item Check for valid input, that is a valid list of images.
+\item Else a list of image is being used.
+\item Check the field pattern\+: if it doesn\textquotesingle{}t correspond to a known one than it\textquotesingle{}s invalid. 
+\end{DoxyItemize}\mbox{\Hypertarget{class_cal_settings_a1e7ebff7ec6beb793febbe245ac753bd}\label{class_cal_settings_a1e7ebff7ec6beb793febbe245ac753bd}} 
+\index{CalSettings@{CalSettings}!write@{write}}
+\index{write@{write}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily void Cal\+Settings\+::write (\begin{DoxyParamCaption}\item[{File\+Storage \&}]{fs }\end{DoxyParamCaption}) const}
+
+
+
+Write serialization. 
+
+This function write data to a file.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & The filename where to write. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_cal_settings_a25bbf73423679421ceff2f9f8cf485cd}\label{class_cal_settings_a25bbf73423679421ceff2f9f8cf485cd}} 
+\index{CalSettings@{CalSettings}!aspectRatio@{aspectRatio}}
+\index{aspectRatio@{aspectRatio}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{aspectRatio}{aspectRatio}}
+{\footnotesize\ttfamily float Cal\+Settings\+::aspect\+Ratio}
+
+
+
+The aspect ratio. 
+
+\mbox{\Hypertarget{class_cal_settings_adfcbf4c58e69a9d6dadae2068cb79341}\label{class_cal_settings_adfcbf4c58e69a9d6dadae2068cb79341}} 
+\index{CalSettings@{CalSettings}!atImageList@{atImageList}}
+\index{atImageList@{atImageList}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{atImageList}{atImageList}}
+{\footnotesize\ttfamily size\+\_\+t Cal\+Settings\+::at\+Image\+List}
+
+\mbox{\Hypertarget{class_cal_settings_a873bc1dc2387dbb8a73c8e47f53e1df8}\label{class_cal_settings_a873bc1dc2387dbb8a73c8e47f53e1df8}} 
+\index{CalSettings@{CalSettings}!boardSize@{boardSize}}
+\index{boardSize@{boardSize}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{boardSize}{boardSize}}
+{\footnotesize\ttfamily Size Cal\+Settings\+::board\+Size}
+
+
+
+The size of the board -\/$>$ Number of items by width and height. 
+
+\mbox{\Hypertarget{class_cal_settings_a0987198584271e224daffc66c87808d7}\label{class_cal_settings_a0987198584271e224daffc66c87808d7}} 
+\index{CalSettings@{CalSettings}!calibFixPrincipalPoint@{calibFixPrincipalPoint}}
+\index{calibFixPrincipalPoint@{calibFixPrincipalPoint}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{calibFixPrincipalPoint}{calibFixPrincipalPoint}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::calib\+Fix\+Principal\+Point}
+
+
+
+Fix the principal point at the center. 
+
+\mbox{\Hypertarget{class_cal_settings_a500d222eca5419dcf8d3923b8f9d45a1}\label{class_cal_settings_a500d222eca5419dcf8d3923b8f9d45a1}} 
+\index{CalSettings@{CalSettings}!calibrationPattern@{calibrationPattern}}
+\index{calibrationPattern@{calibrationPattern}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{calibrationPattern}{calibrationPattern}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_cal_settings_a0a24f2a2a233efe9213f28e527314500}{Pattern}} Cal\+Settings\+::calibration\+Pattern = \mbox{\hyperlink{class_cal_settings_a0a24f2a2a233efe9213f28e527314500abbce277bb8f1f2450efbf10d14258264}{C\+H\+E\+S\+S\+B\+O\+A\+RD}}}
+
+
+
+One of the Chessboard, circles, or asymmetric circle pattern. 
+
+\mbox{\Hypertarget{class_cal_settings_a77e82318d82b8325bc0d4e87d08b732c}\label{class_cal_settings_a77e82318d82b8325bc0d4e87d08b732c}} 
+\index{CalSettings@{CalSettings}!calibZeroTangentDist@{calibZeroTangentDist}}
+\index{calibZeroTangentDist@{calibZeroTangentDist}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{calibZeroTangentDist}{calibZeroTangentDist}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::calib\+Zero\+Tangent\+Dist}
+
+
+
+Assume zero tangential distortion. 
+
+\mbox{\Hypertarget{class_cal_settings_a94ef868bedd92ddce22dfebc25df9d1f}\label{class_cal_settings_a94ef868bedd92ddce22dfebc25df9d1f}} 
+\index{CalSettings@{CalSettings}!cameraID@{cameraID}}
+\index{cameraID@{cameraID}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{cameraID}{cameraID}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Cal\+Settings\+::camera\+ID}
+
+\mbox{\Hypertarget{class_cal_settings_abefb1d66ea3a38cdc937ab0647643479}\label{class_cal_settings_abefb1d66ea3a38cdc937ab0647643479}} 
+\index{CalSettings@{CalSettings}!delay@{delay}}
+\index{delay@{delay}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{delay}{delay}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Cal\+Settings\+::delay}
+
+
+
+In case of a video input. 
+
+\mbox{\Hypertarget{class_cal_settings_a062c6f2dcf6356c1260a7dfbfae4488a}\label{class_cal_settings_a062c6f2dcf6356c1260a7dfbfae4488a}} 
+\index{CalSettings@{CalSettings}!fixK1@{fixK1}}
+\index{fixK1@{fixK1}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{fixK1}{fixK1}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::fix\+K1}
+
+
+
+fix K1 distortion coefficient 
+
+\mbox{\Hypertarget{class_cal_settings_af4cc9513c1717b53bf7112197e185784}\label{class_cal_settings_af4cc9513c1717b53bf7112197e185784}} 
+\index{CalSettings@{CalSettings}!fixK2@{fixK2}}
+\index{fixK2@{fixK2}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{fixK2}{fixK2}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::fix\+K2}
+
+
+
+fix K2 distortion coefficient 
+
+\mbox{\Hypertarget{class_cal_settings_ad5b43b38acd876e10dda7525c235034e}\label{class_cal_settings_ad5b43b38acd876e10dda7525c235034e}} 
+\index{CalSettings@{CalSettings}!fixK3@{fixK3}}
+\index{fixK3@{fixK3}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{fixK3}{fixK3}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::fix\+K3}
+
+
+
+fix K3 distortion coefficient 
+
+\mbox{\Hypertarget{class_cal_settings_a0d0848f0958b4cdaed7a3f2e32a1496e}\label{class_cal_settings_a0d0848f0958b4cdaed7a3f2e32a1496e}} 
+\index{CalSettings@{CalSettings}!fixK4@{fixK4}}
+\index{fixK4@{fixK4}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{fixK4}{fixK4}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::fix\+K4}
+
+
+
+fix K4 distortion coefficient 
+
+\mbox{\Hypertarget{class_cal_settings_a2f22ee23f05778e7a44e2f8b15c1298d}\label{class_cal_settings_a2f22ee23f05778e7a44e2f8b15c1298d}} 
+\index{CalSettings@{CalSettings}!fixK5@{fixK5}}
+\index{fixK5@{fixK5}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{fixK5}{fixK5}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::fix\+K5}
+
+
+
+fix K5 distortion coefficient 
+
+\mbox{\Hypertarget{class_cal_settings_a59cd0b6f52c18498cb3f1ad5ac030338}\label{class_cal_settings_a59cd0b6f52c18498cb3f1ad5ac030338}} 
+\index{CalSettings@{CalSettings}!flag@{flag}}
+\index{flag@{flag}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{flag}{flag}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Cal\+Settings\+::flag}
+
+\mbox{\Hypertarget{class_cal_settings_a9a2cff2a0d53011d5a3b1a03a7460589}\label{class_cal_settings_a9a2cff2a0d53011d5a3b1a03a7460589}} 
+\index{CalSettings@{CalSettings}!flipVertical@{flipVertical}}
+\index{flipVertical@{flipVertical}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{flipVertical}{flipVertical}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::flip\+Vertical}
+
+
+
+Flip the captured images around the horizontal axis. 
+
+\mbox{\Hypertarget{class_cal_settings_a0ee37fdc0b7a0589f5f1c990bfd0eceb}\label{class_cal_settings_a0ee37fdc0b7a0589f5f1c990bfd0eceb}} 
+\index{CalSettings@{CalSettings}!goodInput@{goodInput}}
+\index{goodInput@{goodInput}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{goodInput}{goodInput}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::good\+Input}
+
+\mbox{\Hypertarget{class_cal_settings_a93efb0e90500e865060c8ed64ca19c7e}\label{class_cal_settings_a93efb0e90500e865060c8ed64ca19c7e}} 
+\index{CalSettings@{CalSettings}!imageList@{imageList}}
+\index{imageList@{imageList}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{imageList}{imageList}}
+{\footnotesize\ttfamily vector$<$string$>$ Cal\+Settings\+::image\+List}
+
+\mbox{\Hypertarget{class_cal_settings_af5c2593c9b0ede5badd13709641582c9}\label{class_cal_settings_af5c2593c9b0ede5badd13709641582c9}} 
+\index{CalSettings@{CalSettings}!input@{input}}
+\index{input@{input}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{input}{input}}
+{\footnotesize\ttfamily string Cal\+Settings\+::input}
+
+
+
+The input. 
+
+\mbox{\Hypertarget{class_cal_settings_a43c759c4226fc06b1cb823e1d93e61c7}\label{class_cal_settings_a43c759c4226fc06b1cb823e1d93e61c7}} 
+\index{CalSettings@{CalSettings}!inputCapture@{inputCapture}}
+\index{inputCapture@{inputCapture}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{inputCapture}{inputCapture}}
+{\footnotesize\ttfamily Video\+Capture Cal\+Settings\+::input\+Capture}
+
+\mbox{\Hypertarget{class_cal_settings_a8ca51064aed3517fc742fd81c81b8315}\label{class_cal_settings_a8ca51064aed3517fc742fd81c81b8315}} 
+\index{CalSettings@{CalSettings}!inputType@{inputType}}
+\index{inputType@{inputType}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{inputType}{inputType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58}{Input\+Type}} Cal\+Settings\+::input\+Type = \mbox{\hyperlink{class_cal_settings_aeec3099e1fed6e349e9e006004bc3d58a42620be27f3baf3945f97c4a0451b56a}{I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}}}
+
+\mbox{\Hypertarget{class_cal_settings_a952a1f99909768b2af2580b9be94ce9d}\label{class_cal_settings_a952a1f99909768b2af2580b9be94ce9d}} 
+\index{CalSettings@{CalSettings}!nrFrames@{nrFrames}}
+\index{nrFrames@{nrFrames}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{nrFrames}{nrFrames}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Cal\+Settings\+::nr\+Frames}
+
+
+
+The number of frames to use from the input for calibration. 
+
+\mbox{\Hypertarget{class_cal_settings_a9ea48b7c35d4bba18320d3635a333936}\label{class_cal_settings_a9ea48b7c35d4bba18320d3635a333936}} 
+\index{CalSettings@{CalSettings}!outputFileName@{outputFileName}}
+\index{outputFileName@{outputFileName}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{outputFileName}{outputFileName}}
+{\footnotesize\ttfamily string Cal\+Settings\+::output\+File\+Name}
+
+
+
+The name of the file where to write. 
+
+\mbox{\Hypertarget{class_cal_settings_a3c70a81781bda96826362983a3a78bf2}\label{class_cal_settings_a3c70a81781bda96826362983a3a78bf2}} 
+\index{CalSettings@{CalSettings}!showUndistorsed@{showUndistorsed}}
+\index{showUndistorsed@{showUndistorsed}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{showUndistorsed}{showUndistorsed}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::show\+Undistorsed}
+
+
+
+Show undistorted images after calibration. 
+
+\mbox{\Hypertarget{class_cal_settings_a14597574ec3d7c1a4d5f3cb9e555b887}\label{class_cal_settings_a14597574ec3d7c1a4d5f3cb9e555b887}} 
+\index{CalSettings@{CalSettings}!squareSize@{squareSize}}
+\index{squareSize@{squareSize}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{squareSize}{squareSize}}
+{\footnotesize\ttfamily float Cal\+Settings\+::square\+Size}
+
+
+
+The size of a square in your defined unit (point, millimeter,etc). 
+
+\mbox{\Hypertarget{class_cal_settings_a5bd22c0af6208eb2733625a23e209b94}\label{class_cal_settings_a5bd22c0af6208eb2733625a23e209b94}} 
+\index{CalSettings@{CalSettings}!useFisheye@{useFisheye}}
+\index{useFisheye@{useFisheye}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{useFisheye}{useFisheye}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::use\+Fisheye = false}
+
+
+
+use fisheye camera model for calibration 
+
+\mbox{\Hypertarget{class_cal_settings_a474530e6edf434e35e8b8727627e1fcb}\label{class_cal_settings_a474530e6edf434e35e8b8727627e1fcb}} 
+\index{CalSettings@{CalSettings}!writeExtrinsics@{writeExtrinsics}}
+\index{writeExtrinsics@{writeExtrinsics}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{writeExtrinsics}{writeExtrinsics}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::write\+Extrinsics}
+
+
+
+Write extrinsic parameters. 
+
+\mbox{\Hypertarget{class_cal_settings_ae02acb9427145d18a3c6a070b3cb16f9}\label{class_cal_settings_ae02acb9427145d18a3c6a070b3cb16f9}} 
+\index{CalSettings@{CalSettings}!writePoints@{writePoints}}
+\index{writePoints@{writePoints}!CalSettings@{CalSettings}}
+\subsubsection{\texorpdfstring{writePoints}{writePoints}}
+{\footnotesize\ttfamily bool Cal\+Settings\+::write\+Points}
+
+
+
+Write detected feature points. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{calibration_8hh}{calibration.\+hh}}\item 
+src/\mbox{\hyperlink{calibration_8cc}{calibration.\+cc}}\end{DoxyCompactItemize}

@@ -114,13 +114,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1afc50e91691fae24114ba5e248dfd87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to write settings to file. Default is data/settings.xml.  <a href="#a1afc50e91691fae24114ba5e248dfd87">More...</a><br /></td></tr>
 <tr class="separator:a1afc50e91691fae24114ba5e248dfd87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a016ac9600bf42a2814847f14e5a3d58f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a016ac9600bf42a2814847f14e5a3d58f">readFromFile</a> (string _path=&quot;data/settings.xml&quot;)</td></tr>
-<tr class="memdesc:a016ac9600bf42a2814847f14e5a3d58f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read from file. Default file is data/settings.xml.  <a href="#a016ac9600bf42a2814847f14e5a3d58f">More...</a><br /></td></tr>
+<tr class="memdesc:a016ac9600bf42a2814847f14e5a3d58f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read from file. The data found is going to be added to the settings. Default file is data/settings.xml.  <a href="#a016ac9600bf42a2814847f14e5a3d58f">More...</a><br /></td></tr>
 <tr class="separator:a016ac9600bf42a2814847f14e5a3d58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ad60105ab9848720d05ebd19c5063f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a8ad60105ab9848720d05ebd19c5063f2">clean</a> ()</td></tr>
+<tr class="memdesc:a8ad60105ab9848720d05ebd19c5063f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to clean all settings: number types are set to 0, string are set to "", Tuples are set to Tuple&lt;&gt;() and <a class="el" href="class_filter.html">Filter</a> are set to all 0s.  <a href="#a8ad60105ab9848720d05ebd19c5063f2">More...</a><br /></td></tr>
+<tr class="separator:a8ad60105ab9848720d05ebd19c5063f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2157ac946bff77fef41a2fba737ae4c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a2157ac946bff77fef41a2fba737ae4c2">cleanAndRead</a> (string _path=&quot;data/settings.xml&quot;)</td></tr>
+<tr class="memdesc:a2157ac946bff77fef41a2fba737ae4c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to clean all settings and then read from file. Default is data/settings.xml.  <a href="#a2157ac946bff77fef41a2fba737ae4c2">More...</a><br /></td></tr>
+<tr class="separator:a2157ac946bff77fef41a2fba737ae4c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa924e455cc6ac356ba6a4c59ab09591c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#aa924e455cc6ac356ba6a4c59ab09591c">maps</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; ids=<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt;())</td></tr>
 <tr class="memdesc:aa924e455cc6ac356ba6a4c59ab09591c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to return the paths of maps. If ids are not specified all maps are returned.  <a href="#aa924e455cc6ac356ba6a4c59ab09591c">More...</a><br /></td></tr>
 <tr class="separator:aa924e455cc6ac356ba6a4c59ab09591c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc050f187f4040f5e897b2ff41caedd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#adc050f187f4040f5e897b2ff41caedd0">maps</a> (<a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> id=-1)</td></tr>
-<tr class="memdesc:adc050f187f4040f5e897b2ff41caedd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to return the path of a map. If id is not specified all maps are returned.  <a href="#adc050f187f4040f5e897b2ff41caedd0">More...</a><br /></td></tr>
+<tr class="memdesc:adc050f187f4040f5e897b2ff41caedd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to return the path of a map. If id is negative all maps are returned.  <a href="#adc050f187f4040f5e897b2ff41caedd0">More...</a><br /></td></tr>
 <tr class="separator:adc050f187f4040f5e897b2ff41caedd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa34e6004beffad1bc5fd81f99353d3e1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#aa34e6004beffad1bc5fd81f99353d3e1">maps</a> (string _mapName)</td></tr>
 <tr class="memdesc:aa34e6004beffad1bc5fd81f99353d3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to return the path of a given map.  <a href="#aa34e6004beffad1bc5fd81f99353d3e1">More...</a><br /></td></tr>
@@ -128,11 +134,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab638c9895f57ed5e8ab64084752c660d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#ab638c9895f57ed5e8ab64084752c660d">maps</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt; _mapNames)</td></tr>
 <tr class="memdesc:ab638c9895f57ed5e8ab64084752c660d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to return the paths of a given <a class="el" href="class_tuple.html">Tuple</a> of maps.  <a href="#ab638c9895f57ed5e8ab64084752c660d">More...</a><br /></td></tr>
 <tr class="separator:ab638c9895f57ed5e8ab64084752c660d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeee4537bd39c18ca3a711a73c9c2277e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#aeee4537bd39c18ca3a711a73c9c2277e">addUnMap</a> (string unMap)</td></tr>
+<tr class="separator:aeee4537bd39c18ca3a711a73c9c2277e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cbf0234eaca6582ce982f0cf756d282"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a7cbf0234eaca6582ce982f0cf756d282">unMaps</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; ids=<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt;())</td></tr>
 <tr class="memdesc:a7cbf0234eaca6582ce982f0cf756d282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to return the paths of undistorted maps. If ids are not specified all undistorted maps are returned.  <a href="#a7cbf0234eaca6582ce982f0cf756d282">More...</a><br /></td></tr>
 <tr class="separator:a7cbf0234eaca6582ce982f0cf756d282"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0619c378aff05b5762afe0280b40e07a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a0619c378aff05b5762afe0280b40e07a">unMaps</a> (<a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> id=-1)</td></tr>
-<tr class="memdesc:a0619c378aff05b5762afe0280b40e07a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to return the path of an undistorted map. If id is not specified all undistorted maps are returned.  <a href="#a0619c378aff05b5762afe0280b40e07a">More...</a><br /></td></tr>
+<tr class="memdesc:a0619c378aff05b5762afe0280b40e07a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to return the path of an undistorted map. If id is negative all undistorted maps are returned.  <a href="#a0619c378aff05b5762afe0280b40e07a">More...</a><br /></td></tr>
 <tr class="separator:a0619c378aff05b5762afe0280b40e07a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e62c5eb18f6abc4bcbcd11e018fda8b"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a6e62c5eb18f6abc4bcbcd11e018fda8b">unMaps</a> (string _unMapName)</td></tr>
 <tr class="memdesc:a6e62c5eb18f6abc4bcbcd11e018fda8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to return the path of a given undistorted map.  <a href="#a6e62c5eb18f6abc4bcbcd11e018fda8b">More...</a><br /></td></tr>
@@ -140,6 +148,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa89550d142cb4101faf35af214f4edff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#aa89550d142cb4101faf35af214f4edff">unMaps</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt; _unMapNames)</td></tr>
 <tr class="memdesc:aa89550d142cb4101faf35af214f4edff"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to return the paths of a given <a class="el" href="class_tuple.html">Tuple</a> of undistorted maps.  <a href="#aa89550d142cb4101faf35af214f4edff">More...</a><br /></td></tr>
 <tr class="separator:aa89550d142cb4101faf35af214f4edff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af68cb84ba3c8d21e004661fee7c0efe7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#af68cb84ba3c8d21e004661fee7c0efe7">getTemplates</a> (<a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> id=-1)</td></tr>
+<tr class="memdesc:af68cb84ba3c8d21e004661fee7c0efe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to return the path of a template. If id is negative all templates are returned.  <a href="#af68cb84ba3c8d21e004661fee7c0efe7">More...</a><br /></td></tr>
+<tr class="separator:af68cb84ba3c8d21e004661fee7c0efe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa77f9d559fb0f14d551c4ee8a742e6b0"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#aa77f9d559fb0f14d551c4ee8a742e6b0">getTemplates</a> (string _template)</td></tr>
+<tr class="memdesc:aa77f9d559fb0f14d551c4ee8a742e6b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to return the path of a given template.  <a href="#aa77f9d559fb0f14d551c4ee8a742e6b0">More...</a><br /></td></tr>
+<tr class="separator:aa77f9d559fb0f14d551c4ee8a742e6b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fe58de6135c30ec02bccfc20cc15fe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a2fe58de6135c30ec02bccfc20cc15fe3">getTemplates</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt; _templates)</td></tr>
+<tr class="memdesc:a2fe58de6135c30ec02bccfc20cc15fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to return the paths of a given <a class="el" href="class_tuple.html">Tuple</a> of templates.  <a href="#a2fe58de6135c30ec02bccfc20cc15fe3">More...</a><br /></td></tr>
+<tr class="separator:a2fe58de6135c30ec02bccfc20cc15fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0d55c536a84990b048463b924c7d88e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#ad0d55c536a84990b048463b924c7d88e">changeMask</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_settings.html#a30d85f2e06a54ae9bc8da2d01037658f">COLOR</a> &gt; color, <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_filter.html">Filter</a> &gt; fil)</td></tr>
 <tr class="memdesc:ad0d55c536a84990b048463b924c7d88e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the values of <a class="el" href="class_tuple.html">Tuple</a> of filters. Mind that no write function is called.  <a href="#ad0d55c536a84990b048463b924c7d88e">More...</a><br /></td></tr>
 <tr class="separator:ad0d55c536a84990b048463b924c7d88e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -387,6 +404,24 @@ Friends</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aeee4537bd39c18ca3a711a73c9c2277e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeee4537bd39c18ca3a711a73c9c2277e">&#9670;&nbsp;</a></span>addUnMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Settings::addUnMap </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>unMap</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad0d55c536a84990b048463b924c7d88e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad0d55c536a84990b048463b924c7d88e">&#9670;&nbsp;</a></span>changeMask() <span class="overload">[1/2]</span></h2>
 
@@ -461,6 +496,127 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="a8ad60105ab9848720d05ebd19c5063f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ad60105ab9848720d05ebd19c5063f2">&#9670;&nbsp;</a></span>clean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Settings::clean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to clean all settings: number types are set to 0, string are set to "", Tuples are set to Tuple&lt;&gt;() and <a class="el" href="class_filter.html">Filter</a> are set to all 0s. </p>
+
+</div>
+</div>
+<a id="a2157ac946bff77fef41a2fba737ae4c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2157ac946bff77fef41a2fba737ae4c2">&#9670;&nbsp;</a></span>cleanAndRead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Settings::cleanAndRead </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>_path</em> = <code>&quot;data/settings.xml&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to clean all settings and then read from file. Default is data/settings.xml. </p>
+
+</div>
+</div>
+<a id="af68cb84ba3c8d21e004661fee7c0efe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68cb84ba3c8d21e004661fee7c0efe7">&#9670;&nbsp;</a></span>getTemplates() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt; Settings::getTemplates </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>id</em> = <code>-1</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to return the path of a template. If id is negative all templates are returned. </p>
+<p>Function to return the path of a template. If id is not specified all templates are returned.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The positions in this.templates of the template to be retrieved </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_tuple.html">Tuple</a> containing the paths of the templates. </dd></dl>
+
+</div>
+</div>
+<a id="aa77f9d559fb0f14d551c4ee8a742e6b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa77f9d559fb0f14d551c4ee8a742e6b0">&#9670;&nbsp;</a></span>getTemplates() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Settings::getTemplates </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>_template</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A function to return the path of a given template. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_templateName</td><td>The name of the template to check in the <a class="el" href="class_tuple.html">Tuple</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The path to the template if it is found, an empty string otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a2fe58de6135c30ec02bccfc20cc15fe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fe58de6135c30ec02bccfc20cc15fe3">&#9670;&nbsp;</a></span>getTemplates() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt; Settings::getTemplates </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>_templates</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A function to return the paths of a given <a class="el" href="class_tuple.html">Tuple</a> of templates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_template</td><td>A <a class="el" href="class_tuple.html">Tuple</a> containing the names of the templates to check in the <a class="el" href="class_tuple.html">Tuple</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The paths to the templates if they are found, an empty <a class="el" href="class_tuple.html">Tuple</a> otherwise. </dd></dl>
+
+</div>
+</div>
 <a id="aa924e455cc6ac356ba6a4c59ab09591c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa924e455cc6ac356ba6a4c59ab09591c">&#9670;&nbsp;</a></span>maps() <span class="overload">[1/4]</span></h2>
 
@@ -504,7 +660,15 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function to return the path of a map. If id is not specified all maps are returned. </p>
+<p>Function to return the path of a map. If id is negative all maps are returned. </p>
+<p>Function to return the path of a map. If id is not specified all maps are returned.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The positions in this.mapsNames of the map to be retrieved </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_tuple.html">Tuple</a> containing the paths of the maps.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>A the positions in this.mapsNames of the map to be retrieved </td></tr>
@@ -585,7 +749,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function to read from file. Default file is data/settings.xml. </p>
+<p>Function to read from file. The data found is going to be added to the settings. Default file is data/settings.xml. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_path</td><td>The path of file to read from. </td></tr>
@@ -801,7 +965,15 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function to return the path of an undistorted map. If id is not specified all undistorted maps are returned. </p>
+<p>Function to return the path of an undistorted map. If id is negative all undistorted maps are returned. </p>
+<p>Function to return the path of an undistorted map. If id is not specified all undistorted maps are returned.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The positions in this.mapsUnNames of the undistorted map to be retrieved </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="class_tuple.html">Tuple</a> containing the paths of the undistorted maps.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>A the positions in this.mapsUnNames of the undistorted map to be retrieved </td></tr>
@@ -929,7 +1101,7 @@ Friends</h2></td></tr>
 <p>This function overload the &lt;&lt; operator so to print with <code>std::cout</code>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">out</td><td>The out stream. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>The settings to print. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">datThe</td><td>settings to print. </td></tr>
   </table>
   </dd>
 </dl>

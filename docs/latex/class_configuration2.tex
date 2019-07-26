@@ -1,0 +1,549 @@
+\hypertarget{class_configuration2}{}\section{Configuration2$<$ T1 $>$ Class Template Reference}
+\label{class_configuration2}\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+
+
+This class stores a configuration, that is a point and an angle.  
+
+
+
+
+{\ttfamily \#include $<$maths.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_configuration2_a6fc5a5a723da700b6a869db09ec5614f}{Configuration2}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor that use as point (0,0) and as angle 0 R\+AD. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_configuration2_a09e73e9fe2ae9a67a037a0b3d0619047}{Configuration2}} (const T1 \+\_\+x, const T1 \+\_\+y, const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+th)
+\begin{DoxyCompactList}\small\item\em Default constructor that takes the coordinates, the angle, and stores them. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_configuration2_aab6ae19e1f7703bbfd9e1d0be1ca76a5}{Configuration2}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ P, const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+th)
+\begin{DoxyCompactList}\small\item\em Default constructor that takes the point, the angle, and stores them. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ \mbox{\hyperlink{class_configuration2_a15ce37ad4eae9f4a980fc3578765984d}{point}} () const
+\item 
+T1 \mbox{\hyperlink{class_configuration2_a430b4b412cbdad376feec03c52bde56f}{x}} () const
+\item 
+T1 \mbox{\hyperlink{class_configuration2_a6f92f5478bb05304dae587203c8de9c1}{y}} () const
+\item 
+\mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_configuration2_a00f073b1127aa9bf9e7a06a833a47555}{angle}} () const
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2_ac8b1ca22acbfd0c59d145eb3ac42f39d}{x}} (const T1 \+\_\+x)
+\begin{DoxyCompactList}\small\item\em This function stores a new value for the abscissa. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2_a6cc23545dd1c7d17aa32c96126f1f727}{y}} (const T1 \+\_\+y)
+\begin{DoxyCompactList}\small\item\em This function stores a new value for the ordinate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_configuration2_a8ff42470c34aaa1885df5974e8b7896d}{angle}} (const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+th)
+\begin{DoxyCompactList}\small\item\em This function stores a new value for the angle. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T2 $>$ }\\\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2_a4c3bb49ce67ceb4b1b492cb7c093ea8c}{offset}} (const T2 \+\_\+offset, const \mbox{\hyperlink{class_angle}{Angle}} phi, const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+th)
+\begin{DoxyCompactList}\small\item\em This function compute the offset of the point given a vector, that is the lenght of the vector and its angle. The angle must be an {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} variable. It takes also another {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} to change the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} in the configuration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2_abc07742a00822719024a8a58d003a6f1}{offset}} (\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ p)
+\begin{DoxyCompactList}\small\item\em This function compute the offset of the point given another {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2_ad2f7df498d8fd4c0e125a1f628fa22b7}{offset}} (\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ p, const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+th=\mbox{\hyperlink{class_angle}{Angle}}())
+\begin{DoxyCompactList}\small\item\em This function compute the offset of the point given a {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} containing the offsets for the abscissa and the ordiante and an {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} to change the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} in the configuration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2_a49f13949ff2fbeefdac31bc0f9e13dab}{offset\+\_\+x}} (const T1 \+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Function to add an offset to the abscissa. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2_ae29330a14b06e1ecb22a6bee4e954f81}{offset\+\_\+y}} (const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Function to add an offset to the ordinate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_configuration2_a561351ec15558fdceb9f65ff6296a6a7}{offset\+\_\+angle}} (const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+th)
+\begin{DoxyCompactList}\small\item\em Function to add an offset to the angle. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T2 $>$ }\\\mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_configuration2_a5cf4a74b6fe52cd7d8c9ff8472ff2df9}{distance}} (\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$ B, \mbox{\hyperlink{maths_8hh_ac50d7263b1cae8691420b86282b27f90}{D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+T\+Y\+PE}} dist\+\_\+type=\mbox{\hyperlink{maths_8hh_ac50d7263b1cae8691420b86282b27f90a81bbbc4428c3ff3f1327e94957e2b5f1}{E\+U\+C\+L\+I\+D\+E\+AN}})
+\begin{DoxyCompactList}\small\item\em Wrapper to compute different distances. \textbackslash{}tparan T2 The type of the elements in the second {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T2 $>$ }\\\mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_configuration2_aae3e1b7e718b227b6fa65db67ab2b8eb}{Eu\+Distance}} (\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$ B)
+\begin{DoxyCompactList}\small\item\em Function that compute the Euclidean Distance between two configurations. \textbackslash{}tparan T2 The type of the elements in the second {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T2 $>$ }\\\mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_configuration2_afb287896fc721e64bc50425795a84a77}{Ma\+Distance}} (\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$ B)
+\begin{DoxyCompactList}\small\item\em Function that compute the Manhattan Distance between two configurations. \textbackslash{}tparan T2 The type of the elements in the second {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. \end{DoxyCompactList}\item 
+stringstream \mbox{\hyperlink{class_configuration2_ac68ba3be6be597763a5caa4bd7efa3d8}{to\+\_\+string}} () const
+\begin{DoxyCompactList}\small\item\em Function to create a stringstream containing the detail of the configuration. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T2 $>$ }\\\mbox{\hyperlink{class_configuration2_a68bfa8b94c1cff3179698e00edb2890e}{operator Point2$<$ T2 $>$}} () const
+\begin{DoxyCompactList}\small\item\em Cast of Configuration to \mbox{\hyperlink{class_point2}{Point2}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \mbox{\hyperlink{class_configuration2_a8b0bb9f80a69ff8d70af39adf97ceb46}{copy}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&A)
+\begin{DoxyCompactList}\small\item\em Copy a configuration into another one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \mbox{\hyperlink{class_configuration2_a9ef2f57ddcc1f0c8117a9ed2f13141aa}{operator=}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&A)
+\begin{DoxyCompactList}\small\item\em Overload of the = operatore. Just calls {\ttfamily copy}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_configuration2_a1744207d1346e2ec554795255a58c241}{equal}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&A)
+\begin{DoxyCompactList}\small\item\em Equalize two configurations. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_configuration2_a7dda6b86ded2376a78a7f3d9f2811740}{operator==}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&A)
+\begin{DoxyCompactList}\small\item\em Overload of the == operator. Just calls {\ttfamily equal}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \mbox{\hyperlink{class_configuration2_a90aec83947c9087504b4a9b6f0db8205}{operator$<$$<$}} (ostream \&out, const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&data)
+\begin{DoxyCompactList}\small\item\em Overload of operator $<$$<$ to output the content of a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T1$>$\newline
+class Configuration2$<$ T1 $>$}
+
+This class stores a configuration, that is a point and an angle. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & The type of the coordinates. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_configuration2_a6fc5a5a723da700b6a869db09ec5614f}\label{class_configuration2_a6fc5a5a723da700b6a869db09ec5614f}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!Configuration2@{Configuration2}}
+\index{Configuration2@{Configuration2}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{Configuration2()}{Configuration2()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::\mbox{\hyperlink{class_configuration2}{Configuration2}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor that use as point (0,0) and as angle 0 R\+AD. 
+
+\mbox{\Hypertarget{class_configuration2_a09e73e9fe2ae9a67a037a0b3d0619047}\label{class_configuration2_a09e73e9fe2ae9a67a037a0b3d0619047}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!Configuration2@{Configuration2}}
+\index{Configuration2@{Configuration2}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{Configuration2()}{Configuration2()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::\mbox{\hyperlink{class_configuration2}{Configuration2}} (\begin{DoxyParamCaption}\item[{const T1}]{\+\_\+x,  }\item[{const T1}]{\+\_\+y,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor that takes the coordinates, the angle, and stores them. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+x} & The abscissa coordinate. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+y} & The ordinate coordinate. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+th} & The angle. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_configuration2_aab6ae19e1f7703bbfd9e1d0be1ca76a5}\label{class_configuration2_aab6ae19e1f7703bbfd9e1d0be1ca76a5}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!Configuration2@{Configuration2}}
+\index{Configuration2@{Configuration2}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{Configuration2()}{Configuration2()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::\mbox{\hyperlink{class_configuration2}{Configuration2}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$}]{P,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor that takes the point, the angle, and stores them. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em P} & The coordinates. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+th} & The angle. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_configuration2_a00f073b1127aa9bf9e7a06a833a47555}\label{class_configuration2_a00f073b1127aa9bf9e7a06a833a47555}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!angle@{angle}}
+\index{angle@{angle}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{angle()}{angle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::angle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The angle. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a8ff42470c34aaa1885df5974e8b7896d}\label{class_configuration2_a8ff42470c34aaa1885df5974e8b7896d}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!angle@{angle}}
+\index{angle@{angle}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{angle()}{angle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+void \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::angle (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function stores a new value for the angle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+th} & The value to be stored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if everything went ok, 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a8b0bb9f80a69ff8d70af39adf97ceb46}\label{class_configuration2_a8b0bb9f80a69ff8d70af39adf97ceb46}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!copy@{copy}}
+\index{copy@{copy}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$T1$>$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::copy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy a configuration into another one. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Configuration to be coppied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a5cf4a74b6fe52cd7d8c9ff8472ff2df9}\label{class_configuration2_a5cf4a74b6fe52cd7d8c9ff8472ff2df9}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!distance@{distance}}
+\index{distance@{distance}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+template$<$class T2 $>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$}]{B,  }\item[{\mbox{\hyperlink{maths_8hh_ac50d7263b1cae8691420b86282b27f90}{D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+T\+Y\+PE}}}]{dist\+\_\+type = {\ttfamily \mbox{\hyperlink{maths_8hh_ac50d7263b1cae8691420b86282b27f90a81bbbc4428c3ff3f1327e94957e2b5f1}{E\+U\+C\+L\+I\+D\+E\+AN}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Wrapper to compute different distances. \textbackslash{}tparan T2 The type of the elements in the second {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em B} & The second {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to use for computing the distance. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dist} & The type of distance to be computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The distance between the two configurations. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a1744207d1346e2ec554795255a58c241}\label{class_configuration2_a1744207d1346e2ec554795255a58c241}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!equal@{equal}}
+\index{equal@{equal}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{equal()}{equal()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+bool \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::equal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Equalize two configurations. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Configuration to be equalized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the two configurations are equal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_aae3e1b7e718b227b6fa65db67ab2b8eb}\label{class_configuration2_aae3e1b7e718b227b6fa65db67ab2b8eb}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!EuDistance@{EuDistance}}
+\index{EuDistance@{EuDistance}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{EuDistance()}{EuDistance()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+template$<$class T2 $>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::Eu\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function that compute the Euclidean Distance between two configurations. \textbackslash{}tparan T2 The type of the elements in the second {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em B} & the second {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to use for computing the distance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Euclidean distance between the two configurations. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_afb287896fc721e64bc50425795a84a77}\label{class_configuration2_afb287896fc721e64bc50425795a84a77}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!MaDistance@{MaDistance}}
+\index{MaDistance@{MaDistance}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{MaDistance()}{MaDistance()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+template$<$class T2 $>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::Ma\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function that compute the Manhattan Distance between two configurations. \textbackslash{}tparan T2 The type of the elements in the second {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em B} & the second {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to use for computing the distance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Manhattan distance between the two configurations. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a4c3bb49ce67ceb4b1b492cb7c093ea8c}\label{class_configuration2_a4c3bb49ce67ceb4b1b492cb7c093ea8c}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset@{offset}}
+\index{offset@{offset}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{offset()}{offset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+template$<$class T2 $>$ \\
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::offset (\begin{DoxyParamCaption}\item[{const T2}]{\+\_\+offset,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{phi,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function compute the offset of the point given a vector, that is the lenght of the vector and its angle. The angle must be an {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} variable. It takes also another {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} to change the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} in the configuration. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em } & \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{class_configuration2_abc07742a00822719024a8a58d003a6f1}\label{class_configuration2_abc07742a00822719024a8a58d003a6f1}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset@{offset}}
+\index{offset@{offset}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{offset()}{offset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::offset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function compute the offset of the point given another {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p} & The configuration containing the offsets. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if everything went fine, 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_ad2f7df498d8fd4c0e125a1f628fa22b7}\label{class_configuration2_ad2f7df498d8fd4c0e125a1f628fa22b7}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset@{offset}}
+\index{offset@{offset}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{offset()}{offset()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::offset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$}]{p,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th = {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function compute the offset of the point given a {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} containing the offsets for the abscissa and the ordiante and an {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} to change the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} in the configuration. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p} & The point containing the offsets. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+th} & The offset for the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} in the configuration. It\textquotesingle{}s set to 0 as default so to easily change just the coordinates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if everything went fine, 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a561351ec15558fdceb9f65ff6296a6a7}\label{class_configuration2_a561351ec15558fdceb9f65ff6296a6a7}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset\_angle@{offset\_angle}}
+\index{offset\_angle@{offset\_angle}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{offset\_angle()}{offset\_angle()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+void \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::offset\+\_\+angle (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to add an offset to the angle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+offset} & The offset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if everything went fine, 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a49f13949ff2fbeefdac31bc0f9e13dab}\label{class_configuration2_a49f13949ff2fbeefdac31bc0f9e13dab}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset\_x@{offset\_x}}
+\index{offset\_x@{offset\_x}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{offset\_x()}{offset\_x()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::offset\+\_\+x (\begin{DoxyParamCaption}\item[{const T1}]{\+\_\+offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to add an offset to the abscissa. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+offset} & The offset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if everything went fine, 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_ae29330a14b06e1ecb22a6bee4e954f81}\label{class_configuration2_ae29330a14b06e1ecb22a6bee4e954f81}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!offset\_y@{offset\_y}}
+\index{offset\_y@{offset\_y}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{offset\_y()}{offset\_y()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::offset\+\_\+y (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to add an offset to the ordinate. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+offset} & The offset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if everything went fine, 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a68bfa8b94c1cff3179698e00edb2890e}\label{class_configuration2_a68bfa8b94c1cff3179698e00edb2890e}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator Point2$<$ T2 $>$@{operator Point2$<$ T2 $>$}}
+\index{operator Point2$<$ T2 $>$@{operator Point2$<$ T2 $>$}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{operator Point2$<$ T2 $>$()}{operator Point2< T2 >()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+template$<$class T2 $>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::operator \mbox{\hyperlink{class_point2}{Point2}}$<$ T2 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cast of Configuration to \mbox{\hyperlink{class_point2}{Point2}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T2} & Type of \mbox{\hyperlink{class_point2}{Point2}} to be casted to. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_point2}{Point2}} of type T2. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a9ef2f57ddcc1f0c8117a9ed2f13141aa}\label{class_configuration2_a9ef2f57ddcc1f0c8117a9ed2f13141aa}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$T1$>$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Overload of the = operatore. Just calls {\ttfamily copy}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Configuration to be coppied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a7dda6b86ded2376a78a7f3d9f2811740}\label{class_configuration2_a7dda6b86ded2376a78a7f3d9f2811740}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+bool \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Overload of the == operator. Just calls {\ttfamily equal}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Configuration to be equalized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the two configurations are equal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a15ce37ad4eae9f4a980fc3578765984d}\label{class_configuration2_a15ce37ad4eae9f4a980fc3578765984d}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!point@{point}}
+\index{point@{point}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{point()}{point()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{class_point2}{Point2}}$<$T1$>$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} variable containing the coordinates. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_ac68ba3be6be597763a5caa4bd7efa3d8}\label{class_configuration2_ac68ba3be6be597763a5caa4bd7efa3d8}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+stringstream \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::to\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to create a stringstream containing the detail of the configuration. 
+
+\begin{DoxyReturn}{Returns}
+A stringstream. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a430b4b412cbdad376feec03c52bde56f}\label{class_configuration2_a430b4b412cbdad376feec03c52bde56f}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!x@{x}}
+\index{x@{x}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{x()}{x()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+T1 \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The abscissa coordinate. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_ac8b1ca22acbfd0c59d145eb3ac42f39d}\label{class_configuration2_ac8b1ca22acbfd0c59d145eb3ac42f39d}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!x@{x}}
+\index{x@{x}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{x()}{x()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::x (\begin{DoxyParamCaption}\item[{const T1}]{\+\_\+x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function stores a new value for the abscissa. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+x} & The value to be stored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if everything went ok, 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a6f92f5478bb05304dae587203c8de9c1}\label{class_configuration2_a6f92f5478bb05304dae587203c8de9c1}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!y@{y}}
+\index{y@{y}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{y()}{y()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+T1 \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The ordinate coordinate. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a6cc23545dd1c7d17aa32c96126f1f727}\label{class_configuration2_a6cc23545dd1c7d17aa32c96126f1f727}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!y@{y}}
+\index{y@{y}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{y()}{y()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::y (\begin{DoxyParamCaption}\item[{const T1}]{\+\_\+y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function stores a new value for the ordinate. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+y} & The value to be stored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if everything went ok, 0 otherwise. 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_configuration2_a90aec83947c9087504b4a9b6f0db8205}\label{class_configuration2_a90aec83947c9087504b4a9b6f0db8205}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Overload of operator $<$$<$ to output the content of a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em out} & The output stream. \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & The {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to print. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An output stream to be printed. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{maths_8hh}{maths.\+hh}}\end{DoxyCompactItemize}

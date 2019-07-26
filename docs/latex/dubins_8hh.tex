@@ -1,0 +1,85 @@
+\hypertarget{dubins_8hh}{}\section{src/include/dubins.hh File Reference}
+\label{dubins_8hh}\index{src/include/dubins.hh@{src/include/dubins.hh}}
+{\ttfamily \#include \char`\"{}maths.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils.\+hh\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for dubins.\+hh\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dubins_8hh__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{dubins_8hh__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_curve}{Curve$<$ T $>$}}
+\item 
+class \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc$<$ T1, T2 $>$}}
+\item 
+class \mbox{\hyperlink{class_dubins}{Dubins$<$ T $>$}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dubins_8hh_a76156c41a8252ae92ac829a621c7bd0f}{M\+O\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}}
+\item 
+\#define \mbox{\hyperlink{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}{P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}}~2
+\item 
+\#define \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}~1.\+0
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{dubins_8hh_a5c88710b236a514392351a4d13d2e767}{sinc}} (double t)
+\item 
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \mbox{\hyperlink{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}{circline}} (double \+\_\+L, \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \+\_\+\+P0, double \+\_\+K)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{dubins_8hh_a940b85a83458e94519f2685b33ddd276}\label{dubins_8hh_a940b85a83458e94519f2685b33ddd276}} 
+\index{dubins.hh@{dubins.hh}!KMAX@{KMAX}}
+\index{KMAX@{KMAX}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{KMAX}{KMAX}}
+{\footnotesize\ttfamily \#define K\+M\+AX~1.\+0}
+
+\mbox{\Hypertarget{dubins_8hh_a76156c41a8252ae92ac829a621c7bd0f}\label{dubins_8hh_a76156c41a8252ae92ac829a621c7bd0f}} 
+\index{dubins.hh@{dubins.hh}!MORE\_FUNCTIONS@{MORE\_FUNCTIONS}}
+\index{MORE\_FUNCTIONS@{MORE\_FUNCTIONS}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{MORE\_FUNCTIONS}{MORE\_FUNCTIONS}}
+{\footnotesize\ttfamily \#define M\+O\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}
+
+\mbox{\Hypertarget{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}\label{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}} 
+\index{dubins.hh@{dubins.hh}!PIECE\_LENGTH@{PIECE\_LENGTH}}
+\index{PIECE\_LENGTH@{PIECE\_LENGTH}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{PIECE\_LENGTH}{PIECE\_LENGTH}}
+{\footnotesize\ttfamily \#define P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH~2}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}\label{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}} 
+\index{dubins.hh@{dubins.hh}!circline@{circline}}
+\index{circline@{circline}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{circline()}{circline()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$double$>$ circline (\begin{DoxyParamCaption}\item[{double}]{\+\_\+L,  }\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$}]{\+\_\+\+P0,  }\item[{double}]{\+\_\+K }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dubins_8hh_a5c88710b236a514392351a4d13d2e767}\label{dubins_8hh_a5c88710b236a514392351a4d13d2e767}} 
+\index{dubins.hh@{dubins.hh}!sinc@{sinc}}
+\index{sinc@{sinc}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{sinc()}{sinc()}}
+{\footnotesize\ttfamily static double sinc (\begin{DoxyParamCaption}\item[{double}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

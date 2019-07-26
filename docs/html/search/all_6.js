@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['gate',['GATE',['../map_8hh.html#a714b9c2c276fbae637fee36453d9121eac00a9212e2a45c125c4e3ca32bbfc0f8',1,'map.hh']]],
   ['get',['get',['../class_angle.html#a8ec5cc925d4ab3a3232746f254bd33a4',1,'Angle::get()'],['../class_tuple.html#aabf82c5d0f19c9a8f6a8f01d95801162',1,'Tuple::get()']]],
   ['geta1',['getA1',['../class_dubins.html#af21928e1891ba40fd036af507a67b0bb',1,'Dubins']]],
   ['geta2',['getA2',['../class_dubins.html#a5157eff5ac184488b43cf9933cab6479',1,'Dubins']]],
@@ -20,6 +21,8 @@ var searchData=
   ['getnextinael',['GetNextInAEL',['../namespace_clipper_lib.html#a151a08d2bb95f884d30d2cdbb68b14c2',1,'ClipperLib']]],
   ['getoverlap',['GetOverlap',['../namespace_clipper_lib.html#a489c460712308f4a5026b8618b6b319b',1,'ClipperLib']]],
   ['getoverlapsegment',['GetOverlapSegment',['../namespace_clipper_lib.html#a8817de6dc5a080ead872b1373074c07f',1,'ClipperLib']]],
+  ['getpointtype',['getPointType',['../class_mapp.html#af00af0c0dce4cf7dd235c81ec256f024',1,'Mapp']]],
+  ['gettemplates',['getTemplates',['../class_settings.html#af68cb84ba3c8d21e004661fee7c0efe7',1,'Settings::getTemplates(int id=-1)'],['../class_settings.html#aa77f9d559fb0f14d551c4ee8a742e6b0',1,'Settings::getTemplates(string _template)'],['../class_settings.html#a2fe58de6135c30ec02bccfc20cc15fe3',1,'Settings::getTemplates(Tuple&lt; string &gt; _templates)']]],
   ['gettimes',['getTimeS',['../namespacetimeutils.html#aa732b7f41462ff727daef77bd5030b9c',1,'timeutils']]],
   ['gettype',['getType',['../class_angle.html#a827079369e1344c8761723be0665bb2e',1,'Angle']]],
   ['gettypename',['getTypeName',['../class_angle.html#a3253eb4e061fa49be862120370fb836b',1,'Angle']]],

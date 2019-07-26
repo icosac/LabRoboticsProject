@@ -40,23 +40,35 @@ void \mbox{\hyperlink{class_settings_a6e40d9eca9f6794dee65e519ea73bb24}{save}} (
 void \mbox{\hyperlink{class_settings_a1afc50e91691fae24114ba5e248dfd87}{write\+To\+File}} (string \+\_\+path=\char`\"{}data/settings.\+xml\char`\"{})
 \begin{DoxyCompactList}\small\item\em Function to write settings to file. Default is data/settings.\+xml. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_settings_a016ac9600bf42a2814847f14e5a3d58f}{read\+From\+File}} (string \+\_\+path=\char`\"{}data/settings.\+xml\char`\"{})
-\begin{DoxyCompactList}\small\item\em Function to read from file. Default file is data/settings.\+xml. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Function to read from file. The data found is going to be added to the settings. Default file is data/settings.\+xml. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_settings_a8ad60105ab9848720d05ebd19c5063f2}{clean}} ()
+\begin{DoxyCompactList}\small\item\em Function to clean all settings\+: number types are set to 0, string are set to \char`\"{}\char`\"{}, Tuples are set to Tuple$<$$>$() and \mbox{\hyperlink{class_filter}{Filter}} are set to all 0s. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_settings_a2157ac946bff77fef41a2fba737ae4c2}{clean\+And\+Read}} (string \+\_\+path=\char`\"{}data/settings.\+xml\char`\"{})
+\begin{DoxyCompactList}\small\item\em Function to clean all settings and then read from file. Default is data/settings.\+xml. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_aa924e455cc6ac356ba6a4c59ab09591c}{maps}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ ids=\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$())
 \begin{DoxyCompactList}\small\item\em Function to return the paths of maps. If ids are not specified all maps are returned. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_adc050f187f4040f5e897b2ff41caedd0}{maps}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} id=-\/1)
-\begin{DoxyCompactList}\small\item\em Function to return the path of a map. If id is not specified all maps are returned. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Function to return the path of a map. If id is negative all maps are returned. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_settings_aa34e6004beffad1bc5fd81f99353d3e1}{maps}} (string \+\_\+map\+Name)
 \begin{DoxyCompactList}\small\item\em A function to return the path of a given map. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_ab638c9895f57ed5e8ab64084752c660d}{maps}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \+\_\+map\+Names)
 \begin{DoxyCompactList}\small\item\em A function to return the paths of a given \mbox{\hyperlink{class_tuple}{Tuple}} of maps. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_settings_aeee4537bd39c18ca3a711a73c9c2277e}{add\+Un\+Map}} (string un\+Map)
+\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_a7cbf0234eaca6582ce982f0cf756d282}{un\+Maps}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ ids=\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$())
 \begin{DoxyCompactList}\small\item\em Function to return the paths of undistorted maps. If ids are not specified all undistorted maps are returned. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_a0619c378aff05b5762afe0280b40e07a}{un\+Maps}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} id=-\/1)
-\begin{DoxyCompactList}\small\item\em Function to return the path of an undistorted map. If id is not specified all undistorted maps are returned. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Function to return the path of an undistorted map. If id is negative all undistorted maps are returned. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_settings_a6e62c5eb18f6abc4bcbcd11e018fda8b}{un\+Maps}} (string \+\_\+un\+Map\+Name)
 \begin{DoxyCompactList}\small\item\em A function to return the path of a given undistorted map. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_aa89550d142cb4101faf35af214f4edff}{un\+Maps}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \+\_\+un\+Map\+Names)
 \begin{DoxyCompactList}\small\item\em A function to return the paths of a given \mbox{\hyperlink{class_tuple}{Tuple}} of undistorted maps. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_af68cb84ba3c8d21e004661fee7c0efe7}{get\+Templates}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} id=-\/1)
+\begin{DoxyCompactList}\small\item\em Function to return the path of a template. If id is negative all templates are returned. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_settings_aa77f9d559fb0f14d551c4ee8a742e6b0}{get\+Templates}} (string \+\_\+template)
+\begin{DoxyCompactList}\small\item\em A function to return the path of a given template. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_a2fe58de6135c30ec02bccfc20cc15fe3}{get\+Templates}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \+\_\+templates)
+\begin{DoxyCompactList}\small\item\em A function to return the paths of a given \mbox{\hyperlink{class_tuple}{Tuple}} of templates. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_settings_ad0d55c536a84990b048463b924c7d88e}{change\+Mask}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_settings_a30d85f2e06a54ae9bc8da2d01037658f}{C\+O\+L\+OR}} $>$ color, \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_filter}{Filter}} $>$ fil)
 \begin{DoxyCompactList}\small\item\em Change the values of \mbox{\hyperlink{class_tuple}{Tuple}} of filters. Mind that no write function is called. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_settings_ad00eb6c82b7e6af5afbb8d881c50dea8}{change\+Mask}} (\mbox{\hyperlink{class_settings_a30d85f2e06a54ae9bc8da2d01037658f}{C\+O\+L\+OR}} color, \mbox{\hyperlink{class_filter}{Filter}} fil)
@@ -206,6 +218,12 @@ Destructor.
 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_settings_aeee4537bd39c18ca3a711a73c9c2277e}\label{class_settings_aeee4537bd39c18ca3a711a73c9c2277e}} 
+\index{Settings@{Settings}!addUnMap@{addUnMap}}
+\index{addUnMap@{addUnMap}!Settings@{Settings}}
+\subsubsection{\texorpdfstring{addUnMap()}{addUnMap()}}
+{\footnotesize\ttfamily bool Settings\+::add\+Un\+Map (\begin{DoxyParamCaption}\item[{string}]{un\+Map }\end{DoxyParamCaption})}
+
 \mbox{\Hypertarget{class_settings_ad0d55c536a84990b048463b924c7d88e}\label{class_settings_ad0d55c536a84990b048463b924c7d88e}} 
 \index{Settings@{Settings}!changeMask@{changeMask}}
 \index{changeMask@{changeMask}!Settings@{Settings}}
@@ -240,6 +258,82 @@ Change the values of a filter. Mind that no write function is called.
 {\em fil} & The new filter to be stored. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{class_settings_a8ad60105ab9848720d05ebd19c5063f2}\label{class_settings_a8ad60105ab9848720d05ebd19c5063f2}} 
+\index{Settings@{Settings}!clean@{clean}}
+\index{clean@{clean}!Settings@{Settings}}
+\subsubsection{\texorpdfstring{clean()}{clean()}}
+{\footnotesize\ttfamily void Settings\+::clean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to clean all settings\+: number types are set to 0, string are set to \char`\"{}\char`\"{}, Tuples are set to Tuple$<$$>$() and \mbox{\hyperlink{class_filter}{Filter}} are set to all 0s. 
+
+\mbox{\Hypertarget{class_settings_a2157ac946bff77fef41a2fba737ae4c2}\label{class_settings_a2157ac946bff77fef41a2fba737ae4c2}} 
+\index{Settings@{Settings}!cleanAndRead@{cleanAndRead}}
+\index{cleanAndRead@{cleanAndRead}!Settings@{Settings}}
+\subsubsection{\texorpdfstring{cleanAndRead()}{cleanAndRead()}}
+{\footnotesize\ttfamily void Settings\+::clean\+And\+Read (\begin{DoxyParamCaption}\item[{string}]{\+\_\+path = {\ttfamily \char`\"{}data/settings.xml\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Function to clean all settings and then read from file. Default is data/settings.\+xml. 
+
+\mbox{\Hypertarget{class_settings_af68cb84ba3c8d21e004661fee7c0efe7}\label{class_settings_af68cb84ba3c8d21e004661fee7c0efe7}} 
+\index{Settings@{Settings}!getTemplates@{getTemplates}}
+\index{getTemplates@{getTemplates}!Settings@{Settings}}
+\subsubsection{\texorpdfstring{getTemplates()}{getTemplates()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ Settings\+::get\+Templates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{id = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+Function to return the path of a template. If id is negative all templates are returned. 
+
+Function to return the path of a template. If id is not specified all templates are returned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The positions in this.\+templates of the template to be retrieved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_tuple}{Tuple}} containing the paths of the templates. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_settings_aa77f9d559fb0f14d551c4ee8a742e6b0}\label{class_settings_aa77f9d559fb0f14d551c4ee8a742e6b0}} 
+\index{Settings@{Settings}!getTemplates@{getTemplates}}
+\index{getTemplates@{getTemplates}!Settings@{Settings}}
+\subsubsection{\texorpdfstring{getTemplates()}{getTemplates()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily string Settings\+::get\+Templates (\begin{DoxyParamCaption}\item[{string}]{\+\_\+template }\end{DoxyParamCaption})}
+
+
+
+A function to return the path of a given template. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+template\+Name} & The name of the template to check in the \mbox{\hyperlink{class_tuple}{Tuple}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The path to the template if it is found, an empty string otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_settings_a2fe58de6135c30ec02bccfc20cc15fe3}\label{class_settings_a2fe58de6135c30ec02bccfc20cc15fe3}} 
+\index{Settings@{Settings}!getTemplates@{getTemplates}}
+\index{getTemplates@{getTemplates}!Settings@{Settings}}
+\subsubsection{\texorpdfstring{getTemplates()}{getTemplates()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ Settings\+::get\+Templates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$}]{\+\_\+templates }\end{DoxyParamCaption})}
+
+
+
+A function to return the paths of a given \mbox{\hyperlink{class_tuple}{Tuple}} of templates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+template} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the templates to check in the \mbox{\hyperlink{class_tuple}{Tuple}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The paths to the templates if they are found, an empty \mbox{\hyperlink{class_tuple}{Tuple}} otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_settings_aa924e455cc6ac356ba6a4c59ab09591c}\label{class_settings_aa924e455cc6ac356ba6a4c59ab09591c}} 
 \index{Settings@{Settings}!maps@{maps}}
 \index{maps@{maps}!Settings@{Settings}}
@@ -266,8 +360,18 @@ A \mbox{\hyperlink{class_tuple}{Tuple}} containing the paths of the maps.
 
 
 
-Function to return the path of a map. If id is not specified all maps are returned. 
+Function to return the path of a map. If id is negative all maps are returned. 
 
+Function to return the path of a map. If id is not specified all maps are returned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The positions in this.\+maps\+Names of the map to be retrieved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_tuple}{Tuple}} containing the paths of the maps.
+\end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em id} & A the positions in this.\+maps\+Names of the map to be retrieved \\
@@ -320,7 +424,7 @@ The paths to the maps if they are found, an empty \mbox{\hyperlink{class_tuple}{
 
 
 
-Function to read from file. Default file is data/settings.\+xml. 
+Function to read from file. The data found is going to be added to the settings. Default file is data/settings.\+xml. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -411,8 +515,18 @@ A \mbox{\hyperlink{class_tuple}{Tuple}} containing the paths of the undistorted 
 
 
 
-Function to return the path of an undistorted map. If id is not specified all undistorted maps are returned. 
+Function to return the path of an undistorted map. If id is negative all undistorted maps are returned. 
 
+Function to return the path of an undistorted map. If id is not specified all undistorted maps are returned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The positions in this.\+maps\+Un\+Names of the undistorted map to be retrieved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_tuple}{Tuple}} containing the paths of the undistorted maps.
+\end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
 {\em id} & A the positions in this.\+maps\+Un\+Names of the undistorted map to be retrieved \\
@@ -485,7 +599,7 @@ This function overload the $<$$<$ operator so to print with {\ttfamily std\+::co
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em out} & The out stream. \\
 \hline
-\mbox{\texttt{ in}}  & {\em data} & The settings to print. \\
+\mbox{\texttt{ in}}  & {\em dat\+The} & settings to print. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

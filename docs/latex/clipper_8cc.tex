@@ -1,0 +1,263 @@
+\hypertarget{clipper_8cc}{}\section{src/clipper.cc File Reference}
+\label{clipper_8cc}\index{src/clipper.cc@{src/clipper.cc}}
+{\ttfamily \#include \char`\"{}clipper.\+hh\char`\"{}}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$ostream$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+Include dependency graph for clipper.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{clipper_8cc__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_clipper_lib_1_1_t_edge}{Clipper\+Lib\+::\+T\+Edge}}
+\item 
+struct \mbox{\hyperlink{struct_clipper_lib_1_1_intersect_node}{Clipper\+Lib\+::\+Intersect\+Node}}
+\item 
+struct \mbox{\hyperlink{struct_clipper_lib_1_1_local_minimum}{Clipper\+Lib\+::\+Local\+Minimum}}
+\item 
+struct \mbox{\hyperlink{struct_clipper_lib_1_1_out_rec}{Clipper\+Lib\+::\+Out\+Rec}}
+\item 
+struct \mbox{\hyperlink{struct_clipper_lib_1_1_out_pt}{Clipper\+Lib\+::\+Out\+Pt}}
+\item 
+struct \mbox{\hyperlink{struct_clipper_lib_1_1_join}{Clipper\+Lib\+::\+Join}}
+\item 
+struct \mbox{\hyperlink{struct_clipper_lib_1_1_loc_min_sorter}{Clipper\+Lib\+::\+Loc\+Min\+Sorter}}
+\item 
+class \mbox{\hyperlink{class_clipper_lib_1_1_int128}{Clipper\+Lib\+::\+Int128}}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_clipper_lib}{Clipper\+Lib}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{clipper_8cc_a583cfe7670aa69f02d684bb5c5d3799e}{H\+O\+R\+I\+Z\+O\+N\+T\+AL}}~(-\/1.\+0\+E+40)
+\item 
+\#define \mbox{\hyperlink{clipper_8cc_a30c17564229ec2e37dfea9c6c9ad643e}{T\+O\+L\+E\+R\+A\+N\+CE}}~(1.\+0e-\/20)
+\item 
+\#define \mbox{\hyperlink{clipper_8cc_abc7dddd0f7b471d49cce3e0ea6790d84}{N\+E\+A\+R\+\_\+\+Z\+E\+RO}}(val)~(((val) $>$ -\/\mbox{\hyperlink{clipper_8cc_a30c17564229ec2e37dfea9c6c9ad643e}{T\+O\+L\+E\+R\+A\+N\+CE}}) \&\& ((val) $<$ \mbox{\hyperlink{clipper_8cc_a30c17564229ec2e37dfea9c6c9ad643e}{T\+O\+L\+E\+R\+A\+N\+CE}}))
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespace_clipper_lib_a50027cc5a43f727ff89bcadf7e4524a7}{Clipper\+Lib\+::\+Direction}} \{ \mbox{\hyperlink{namespace_clipper_lib_a50027cc5a43f727ff89bcadf7e4524a7a7b983c40ff2c1405f1bc0bfc079af6b0}{Clipper\+Lib\+::d\+Right\+To\+Left}}, 
+\mbox{\hyperlink{namespace_clipper_lib_a50027cc5a43f727ff89bcadf7e4524a7afbbd8280f1b1879e6ed0dfadaf3b0739}{Clipper\+Lib\+::d\+Left\+To\+Right}}
+ \}
+\item 
+enum \mbox{\hyperlink{namespace_clipper_lib_a31e9eef1fdd14cee54118420090b61d3}{Clipper\+Lib\+::\+Node\+Type}} \{ \mbox{\hyperlink{namespace_clipper_lib_a31e9eef1fdd14cee54118420090b61d3a09c9a9c0c8c053a8448acca58516d189}{Clipper\+Lib\+::nt\+Any}}, 
+\mbox{\hyperlink{namespace_clipper_lib_a31e9eef1fdd14cee54118420090b61d3ada15652825339e4dd39f49e3ad377919}{Clipper\+Lib\+::nt\+Open}}, 
+\mbox{\hyperlink{namespace_clipper_lib_a31e9eef1fdd14cee54118420090b61d3a8d3c6a25728d41b1de5343657e4ea070}{Clipper\+Lib\+::nt\+Closed}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+c\+Int \mbox{\hyperlink{namespace_clipper_lib_a6635b2c24fa0147ff4ecab56d80e7293}{Clipper\+Lib\+::\+Round}} (double val)
+\item 
+c\+Int \mbox{\hyperlink{namespace_clipper_lib_ad29f252d45c594ccd3030cf966baa2e4}{Clipper\+Lib\+::\+Abs}} (c\+Int val)
+\item 
+Int128 \mbox{\hyperlink{namespace_clipper_lib_a54fd38efeb2ae1bb84d1390bff3cf6bc}{Clipper\+Lib\+::\+Int128\+Mul}} (long64 lhs, long64 rhs)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a806a3d33d76bb9d4479d384f876ce8bd}{Clipper\+Lib\+::\+Orientation}} (const Path \&poly)
+\item 
+double \mbox{\hyperlink{namespace_clipper_lib_a4a96cc48117e1dba6cf51bbc2d91fe97}{Clipper\+Lib\+::\+Area}} (const Path \&poly)
+\item 
+double \mbox{\hyperlink{namespace_clipper_lib_afb282ff102fcfdf7b36b7b9101060f04}{Clipper\+Lib\+::\+Area}} (const Out\+Pt $\ast$op)
+\item 
+double \mbox{\hyperlink{namespace_clipper_lib_ae138536c4535e0a97e2e5787ae41bac3}{Clipper\+Lib\+::\+Area}} (const Out\+Rec \&out\+Rec)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_aa0616b922b887c38de1f2af2eee82357}{Clipper\+Lib\+::\+Point\+Is\+Vertex}} (const Int\+Point \&Pt, Out\+Pt $\ast$pp)
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{namespace_clipper_lib_ac7314f2a1f45c627bac20e9ba2a68212}{Clipper\+Lib\+::\+Point\+In\+Polygon}} (const Int\+Point \&pt, const Path \&path)
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{namespace_clipper_lib_a35576f17125b022fdc726cbc4cb1ea50}{Clipper\+Lib\+::\+Point\+In\+Polygon}} (const Int\+Point \&pt, Out\+Pt $\ast$op)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a9a24c8b4723d9c93c2d3eabb139c4366}{Clipper\+Lib\+::\+Poly2\+Contains\+Poly1}} (Out\+Pt $\ast$Out\+Pt1, Out\+Pt $\ast$Out\+Pt2)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a052da0ab7e1690b61e36e007769df9f8}{Clipper\+Lib\+::\+Slopes\+Equal}} (const T\+Edge \&e1, const T\+Edge \&e2, bool Use\+Full\+Int64\+Range)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a85fe5803e6f06dd9963cb4b222824ff3}{Clipper\+Lib\+::\+Slopes\+Equal}} (const Int\+Point pt1, const Int\+Point pt2, const Int\+Point pt3, bool Use\+Full\+Int64\+Range)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a5ce63c03021b0da24f00de41a2a72bcd}{Clipper\+Lib\+::\+Slopes\+Equal}} (const Int\+Point pt1, const Int\+Point pt2, const Int\+Point pt3, const Int\+Point pt4, bool Use\+Full\+Int64\+Range)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_af9afcf65d7038ec26bf32b7d0c312c37}{Clipper\+Lib\+::\+Is\+Horizontal}} (T\+Edge \&e)
+\item 
+double \mbox{\hyperlink{namespace_clipper_lib_adb890cca4fa2a71731b91968cf4ff49d}{Clipper\+Lib\+::\+Get\+Dx}} (const Int\+Point pt1, const Int\+Point pt2)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_ae6087af5cfe151e4b98723135e3575f7}{Clipper\+Lib\+::\+Set\+Dx}} (T\+Edge \&e)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a63ceaffceda5d8e57ef98a0d7317b342}{Clipper\+Lib\+::\+Swap\+Sides}} (T\+Edge \&Edge1, T\+Edge \&Edge2)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a17c02161ee129cdb347b0a6a18a73849}{Clipper\+Lib\+::\+Swap\+Poly\+Indexes}} (T\+Edge \&Edge1, T\+Edge \&Edge2)
+\item 
+c\+Int \mbox{\hyperlink{namespace_clipper_lib_a63e0b77cf7232cbd4f9909b25bd300be}{Clipper\+Lib\+::\+TopX}} (T\+Edge \&edge, const c\+Int currentY)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_acc907411a778b9ae34f8d852aaa7622a}{Clipper\+Lib\+::\+Intersect\+Point}} (T\+Edge \&Edge1, T\+Edge \&Edge2, Int\+Point \&ip)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a5148d4f90b324e0e4a13d1b13055661f}{Clipper\+Lib\+::\+Reverse\+Poly\+Pt\+Links}} (Out\+Pt $\ast$pp)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_aefcf521aa7d6c94a55e4426872170bdf}{Clipper\+Lib\+::\+Dispose\+Out\+Pts}} (Out\+Pt $\ast$\&pp)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a1b822f020efce65b1e0c4fcdb264fd35}{Clipper\+Lib\+::\+Init\+Edge}} (T\+Edge $\ast$e, T\+Edge $\ast$e\+Next, T\+Edge $\ast$e\+Prev, const Int\+Point \&Pt)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_ae5ad4a2545fa1528f81bd2a89d9cddcb}{Clipper\+Lib\+::\+Init\+Edge2}} (T\+Edge \&e, Poly\+Type Pt)
+\item 
+T\+Edge $\ast$ \mbox{\hyperlink{namespace_clipper_lib_ab1ca13d57b512273ce6821c26f9abda0}{Clipper\+Lib\+::\+Remove\+Edge}} (T\+Edge $\ast$e)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a308e107fa8e429684f57440687d77adc}{Clipper\+Lib\+::\+Reverse\+Horizontal}} (T\+Edge \&e)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_af8338b22ca335b55a1fc1a17f0b0c453}{Clipper\+Lib\+::\+Swap\+Points}} (Int\+Point \&pt1, Int\+Point \&pt2)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a8817de6dc5a080ead872b1373074c07f}{Clipper\+Lib\+::\+Get\+Overlap\+Segment}} (Int\+Point pt1a, Int\+Point pt1b, Int\+Point pt2a, Int\+Point pt2b, Int\+Point \&pt1, Int\+Point \&pt2)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a9811846db2631994c7e6a54327bf251d}{Clipper\+Lib\+::\+First\+Is\+Bottom\+Pt}} (const Out\+Pt $\ast$btm\+Pt1, const Out\+Pt $\ast$btm\+Pt2)
+\item 
+Out\+Pt $\ast$ \mbox{\hyperlink{namespace_clipper_lib_a52148a9babd2c3227e9088881faa4fe5}{Clipper\+Lib\+::\+Get\+Bottom\+Pt}} (Out\+Pt $\ast$pp)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a0a448254ee6419dfde0a539080502d88}{Clipper\+Lib\+::\+Pt2\+Is\+Between\+Pt1\+And\+Pt3}} (const Int\+Point pt1, const Int\+Point pt2, const Int\+Point pt3)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a8d010407c49e1ea2e092dd21d8684de4}{Clipper\+Lib\+::\+Horz\+Segments\+Overlap}} (c\+Int seg1a, c\+Int seg1b, c\+Int seg2a, c\+Int seg2b)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_add09a980dfa1da81e1693a55cd912908}{Clipper\+Lib\+::\+Range\+Test}} (const Int\+Point \&Pt, bool \&use\+Full\+Range)
+\item 
+T\+Edge $\ast$ \mbox{\hyperlink{namespace_clipper_lib_a2e62d7a90f565dceab371c8ed250131e}{Clipper\+Lib\+::\+Find\+Next\+Loc\+Min}} (T\+Edge $\ast$E)
+\item 
+Out\+Rec $\ast$ \mbox{\hyperlink{namespace_clipper_lib_a4460fbf56cbd0c6b6928867a189b9c91}{Clipper\+Lib\+::\+Get\+Lowermost\+Rec}} (Out\+Rec $\ast$out\+Rec1, Out\+Rec $\ast$out\+Rec2)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_ab7e60ff44337799046ac87d22986da2b}{Clipper\+Lib\+::\+Out\+Rec1\+Right\+Of\+Out\+Rec2}} (Out\+Rec $\ast$out\+Rec1, Out\+Rec $\ast$out\+Rec2)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_adebe3bd08021b5329adfc84089913b32}{Clipper\+Lib\+::\+Is\+Minima}} (T\+Edge $\ast$e)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a7a9e26585f642573f49208a47dc458c3}{Clipper\+Lib\+::\+Is\+Maxima}} (T\+Edge $\ast$e, const c\+Int Y)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_af6efe5b4046206e5c152374d384384c1}{Clipper\+Lib\+::\+Is\+Intermediate}} (T\+Edge $\ast$e, const c\+Int Y)
+\item 
+T\+Edge $\ast$ \mbox{\hyperlink{namespace_clipper_lib_ab04424175ecd1d0e89628e0837e70e8d}{Clipper\+Lib\+::\+Get\+Maxima\+Pair}} (T\+Edge $\ast$e)
+\item 
+T\+Edge $\ast$ \mbox{\hyperlink{namespace_clipper_lib_aa71581201c285fa900577b2d5b73e9c7}{Clipper\+Lib\+::\+Get\+Maxima\+Pair\+Ex}} (T\+Edge $\ast$e)
+\item 
+T\+Edge $\ast$ \mbox{\hyperlink{namespace_clipper_lib_a151a08d2bb95f884d30d2cdbb68b14c2}{Clipper\+Lib\+::\+Get\+Next\+In\+A\+EL}} (T\+Edge $\ast$e, Direction dir)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a3a6a98076d47afe4c2e033833ae89bf5}{Clipper\+Lib\+::\+Get\+Horz\+Direction}} (T\+Edge \&Horz\+Edge, Direction \&Dir, c\+Int \&Left, c\+Int \&Right)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_aeb44a42315262aee3bfbecbc6a1eac77}{Clipper\+Lib\+::\+Intersect\+List\+Sort}} (Intersect\+Node $\ast$node1, Intersect\+Node $\ast$node2)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a178785f2e51a19d1e6bdb8848d14b924}{Clipper\+Lib\+::\+Edges\+Adjacent}} (const Intersect\+Node \&inode)
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{namespace_clipper_lib_a116d97a3199f4a29f2327b498af00469}{Clipper\+Lib\+::\+Point\+Count}} (Out\+Pt $\ast$Pts)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_ac299ceb4a2a28061aa452bd069e2c4a3}{Clipper\+Lib\+::\+Swap\+Intersect\+Nodes}} (Intersect\+Node \&int1, Intersect\+Node \&int2)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_ae002e65db41b2e12c6a29b6c53d95e3d}{Clipper\+Lib\+::\+E2\+Inserts\+Before\+E1}} (T\+Edge \&e1, T\+Edge \&e2)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a489c460712308f4a5026b8618b6b319b}{Clipper\+Lib\+::\+Get\+Overlap}} (const c\+Int a1, const c\+Int a2, const c\+Int b1, const c\+Int b2, c\+Int \&Left, c\+Int \&Right)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a06a3e837b8fbaa3fc7e2640a8e4fe4a2}{Clipper\+Lib\+::\+Update\+Out\+Pt\+Idxs}} (Out\+Rec \&outrec)
+\item 
+Out\+Pt $\ast$ \mbox{\hyperlink{namespace_clipper_lib_aa1703e1ae9853c08c859b7b1230b5b00}{Clipper\+Lib\+::\+Dup\+Out\+Pt}} (Out\+Pt $\ast$out\+Pt, bool Insert\+After)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_acd026a4d43018ae65b8d253fbf44b680}{Clipper\+Lib\+::\+Join\+Horz}} (Out\+Pt $\ast$op1, Out\+Pt $\ast$op1b, Out\+Pt $\ast$op2, Out\+Pt $\ast$op2b, const Int\+Point Pt, bool Discard\+Left)
+\item 
+static Out\+Rec $\ast$ \mbox{\hyperlink{namespace_clipper_lib_ab4671015e7694c784513f3d3ea4405ce}{Clipper\+Lib\+::\+Parse\+First\+Left}} (Out\+Rec $\ast$First\+Left)
+\item 
+Double\+Point \mbox{\hyperlink{namespace_clipper_lib_a5a62f42148b8b9991da9cfe8cb9cb065}{Clipper\+Lib\+::\+Get\+Unit\+Normal}} (const Int\+Point \&pt1, const Int\+Point \&pt2)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_ab6376320953c60093dc73462c74589e1}{Clipper\+Lib\+::\+Reverse\+Path}} (Path \&p)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_ade103cad7caf2aa357b2d5410866ea62}{Clipper\+Lib\+::\+Reverse\+Paths}} (Paths \&p)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_af374cea59a991e49f36c3530efc45feb}{Clipper\+Lib\+::\+Simplify\+Polygon}} (const Path \&in\+\_\+poly, Paths \&out\+\_\+polys, Poly\+Fill\+Type fill\+Type)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_ac9ebbe437e4c08816bffeced6d001cf6}{Clipper\+Lib\+::\+Simplify\+Polygons}} (const Paths \&in\+\_\+polys, Paths \&out\+\_\+polys, Poly\+Fill\+Type fill\+Type)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_ac43b677f95d30bd595bbdd5eb79cdcec}{Clipper\+Lib\+::\+Simplify\+Polygons}} (Paths \&polys, Poly\+Fill\+Type fill\+Type)
+\item 
+double \mbox{\hyperlink{namespace_clipper_lib_ab3ea29b9e123ab56ede03ce6946c9e7d}{Clipper\+Lib\+::\+Distance\+Sqrd}} (const Int\+Point \&pt1, const Int\+Point \&pt2)
+\item 
+double \mbox{\hyperlink{namespace_clipper_lib_ac57923512d57903663fed9778585ca18}{Clipper\+Lib\+::\+Distance\+From\+Line\+Sqrd}} (const Int\+Point \&pt, const Int\+Point \&ln1, const Int\+Point \&ln2)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a6a8d461810e4bcb5c67bf8e3026839b6}{Clipper\+Lib\+::\+Slopes\+Near\+Collinear}} (const Int\+Point \&pt1, const Int\+Point \&pt2, const Int\+Point \&pt3, double dist\+Sqrd)
+\item 
+bool \mbox{\hyperlink{namespace_clipper_lib_a52757887bc031d0052ae95dccb83cd2c}{Clipper\+Lib\+::\+Points\+Are\+Close}} (Int\+Point pt1, Int\+Point pt2, double dist\+Sqrd)
+\item 
+Out\+Pt $\ast$ \mbox{\hyperlink{namespace_clipper_lib_a5d4e245ecf47a87cf3c88876f55ab3a3}{Clipper\+Lib\+::\+Exclude\+Op}} (Out\+Pt $\ast$op)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a9246a3146ac112581e82be58e158be7b}{Clipper\+Lib\+::\+Clean\+Polygon}} (const Path \&in\+\_\+poly, Path \&out\+\_\+poly, double \mbox{\hyperlink{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}{distance}})
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a819f3ac34feed7ca8c64c54bc534eb1b}{Clipper\+Lib\+::\+Clean\+Polygon}} (Path \&poly, double \mbox{\hyperlink{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}{distance}})
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a770cbc6ce4f16d02b8fe27c5abf6159c}{Clipper\+Lib\+::\+Clean\+Polygons}} (const Paths \&in\+\_\+polys, Paths \&out\+\_\+polys, double \mbox{\hyperlink{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}{distance}})
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_aeee397f9f7e7cb5f0bb4723b7c4969e9}{Clipper\+Lib\+::\+Clean\+Polygons}} (Paths \&polys, double \mbox{\hyperlink{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}{distance}})
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a63c9e744bc436b681c98c2f238e22455}{Clipper\+Lib\+::\+Minkowski}} (const Path \&poly, const Path \&path, Paths \&solution, bool is\+Sum, bool is\+Closed)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_ad12b5697c25579dce65d369a2e3cf608}{Clipper\+Lib\+::\+Minkowski\+Sum}} (const Path \&pattern, const Path \&path, Paths \&solution, bool path\+Is\+Closed)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a3fd004390023c8780f3b60e728d8ab8f}{Clipper\+Lib\+::\+Translate\+Path}} (const Path \&input, Path \&output, const Int\+Point delta)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_ae4893aa579fd7c46ce695fd3d1c66e64}{Clipper\+Lib\+::\+Minkowski\+Sum}} (const Path \&pattern, const Paths \&paths, Paths \&solution, bool path\+Is\+Closed)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a76dac24102863220c7bc13be222a1dda}{Clipper\+Lib\+::\+Minkowski\+Diff}} (const Path \&poly1, const Path \&poly2, Paths \&solution)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a4644758856e780ca359c3e37065397a6}{Clipper\+Lib\+::\+Add\+Poly\+Node\+To\+Paths}} (const Poly\+Node \&polynode, Node\+Type nodetype, Paths \&paths)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a3713b024b773e4e041f3de4595ff0f77}{Clipper\+Lib\+::\+Poly\+Tree\+To\+Paths}} (const Poly\+Tree \&polytree, Paths \&paths)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_a83f3a341799f94dd6bd9649b319d85fa}{Clipper\+Lib\+::\+Closed\+Paths\+From\+Poly\+Tree}} (const Poly\+Tree \&polytree, Paths \&paths)
+\item 
+void \mbox{\hyperlink{namespace_clipper_lib_aa8b0b36c4c1e8108f39b10e4fba81cc5}{Clipper\+Lib\+::\+Open\+Paths\+From\+Poly\+Tree}} (Poly\+Tree \&polytree, Paths \&paths)
+\item 
+std\+::ostream \& \mbox{\hyperlink{namespace_clipper_lib_a2e9613a92f21ac827d5b7f8b5ade5795}{Clipper\+Lib\+::operator$<$$<$}} (std\+::ostream \&\mbox{\hyperlink{detection_8cc_a9090f9756293390c57567a0bf7630abf}{s}}, const Int\+Point \&p)
+\item 
+std\+::ostream \& \mbox{\hyperlink{namespace_clipper_lib_abd88603a8c170404d069edae2e574fe9}{Clipper\+Lib\+::operator$<$$<$}} (std\+::ostream \&\mbox{\hyperlink{detection_8cc_a9090f9756293390c57567a0bf7630abf}{s}}, const Path \&p)
+\item 
+std\+::ostream \& \mbox{\hyperlink{namespace_clipper_lib_aa8b8872f6e4840cb63769a59a88eab4d}{Clipper\+Lib\+::operator$<$$<$}} (std\+::ostream \&\mbox{\hyperlink{detection_8cc_a9090f9756293390c57567a0bf7630abf}{s}}, const Paths \&p)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static double const \mbox{\hyperlink{namespace_clipper_lib_a3226215bdfa5b0d7f01e40fc8f131485}{Clipper\+Lib\+::pi}} = 3.\+141592653589793238
+\item 
+static double const \mbox{\hyperlink{namespace_clipper_lib_afdf9089a4f64d08fe88fa1b075fa6a71}{Clipper\+Lib\+::two\+\_\+pi}} = pi $\ast$2
+\item 
+static double const \mbox{\hyperlink{namespace_clipper_lib_ab44dd4f071b7d92294a2af242e8c70d4}{Clipper\+Lib\+::def\+\_\+arc\+\_\+tolerance}} = 0.\+25
+\item 
+static \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} const \mbox{\hyperlink{namespace_clipper_lib_ae8c8149f9414a1459f7691ecd2f94669}{Clipper\+Lib\+::\+Unassigned}} = -\/1
+\item 
+static \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} const \mbox{\hyperlink{namespace_clipper_lib_a6e9f2a3266e14dced8a5fee78224c1bf}{Clipper\+Lib\+::\+Skip}} = -\/2
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{clipper_8cc_a583cfe7670aa69f02d684bb5c5d3799e}\label{clipper_8cc_a583cfe7670aa69f02d684bb5c5d3799e}} 
+\index{clipper.cc@{clipper.cc}!HORIZONTAL@{HORIZONTAL}}
+\index{HORIZONTAL@{HORIZONTAL}!clipper.cc@{clipper.cc}}
+\subsubsection{\texorpdfstring{HORIZONTAL}{HORIZONTAL}}
+{\footnotesize\ttfamily \#define H\+O\+R\+I\+Z\+O\+N\+T\+AL~(-\/1.\+0\+E+40)}
+
+\mbox{\Hypertarget{clipper_8cc_abc7dddd0f7b471d49cce3e0ea6790d84}\label{clipper_8cc_abc7dddd0f7b471d49cce3e0ea6790d84}} 
+\index{clipper.cc@{clipper.cc}!NEAR\_ZERO@{NEAR\_ZERO}}
+\index{NEAR\_ZERO@{NEAR\_ZERO}!clipper.cc@{clipper.cc}}
+\subsubsection{\texorpdfstring{NEAR\_ZERO}{NEAR\_ZERO}}
+{\footnotesize\ttfamily \#define N\+E\+A\+R\+\_\+\+Z\+E\+RO(\begin{DoxyParamCaption}\item[{}]{val }\end{DoxyParamCaption})~(((val) $>$ -\/\mbox{\hyperlink{clipper_8cc_a30c17564229ec2e37dfea9c6c9ad643e}{T\+O\+L\+E\+R\+A\+N\+CE}}) \&\& ((val) $<$ \mbox{\hyperlink{clipper_8cc_a30c17564229ec2e37dfea9c6c9ad643e}{T\+O\+L\+E\+R\+A\+N\+CE}}))}
+
+\mbox{\Hypertarget{clipper_8cc_a30c17564229ec2e37dfea9c6c9ad643e}\label{clipper_8cc_a30c17564229ec2e37dfea9c6c9ad643e}} 
+\index{clipper.cc@{clipper.cc}!TOLERANCE@{TOLERANCE}}
+\index{TOLERANCE@{TOLERANCE}!clipper.cc@{clipper.cc}}
+\subsubsection{\texorpdfstring{TOLERANCE}{TOLERANCE}}
+{\footnotesize\ttfamily \#define T\+O\+L\+E\+R\+A\+N\+CE~(1.\+0e-\/20)}
+
