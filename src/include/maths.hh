@@ -7,6 +7,7 @@
 #include <cstdarg> //#include <stdarg.h>
 #include <sstream>
 #include <string>
+#include <opencv2/opencv.hpp>
 
 #include <opencv2/opencv.hpp>
 
@@ -806,7 +807,7 @@ public:
   		\returns An output stream to be printed.
   */
   friend ostream& operator<< (ostream& out, const Point2<T> &data){
-    out << data.to_string().str();
+    out << "[" << data.to_string().str() << "]";
     return out;
   }
 
@@ -860,6 +861,7 @@ public:
   bool operator< (const Point2<T>& A){
     return true;
   }
+
   // ~Point2(){delete values;}
 };
 

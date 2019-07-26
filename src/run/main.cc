@@ -1,21 +1,47 @@
 // the core of the project
+
 #include <detection.hh>
 #include <unwrapping.hh>
+#include <calibration.hh>
+#include <planning.hh>
 #include <configure.hh>
+#include <settings.hh>
+
 
 #include<iostream>
 using namespace std;
 
-//TODO create global settings
+Settings *sett =new Settings();
 
 int main (){
-  cout <<"Configure" << endl;
-  configure(true);
-	cout << "unwrapping" << endl;
-	unwrapping();
-	cout << "detection" << endl;
-	detection();
-	cout << "end" << endl;
+	sett->cleanAndRead();
+	// cout << "calibration" << endl;
+	// calibration(); //BUG????!?!?!?!?!?!??!?!?!
+	cout << endl <<"Configure" << endl;
+	configure(true);
 
-	return 0;
+	cout << endl << "unwrapping" << endl;
+	unwrapping();
+
+	cout << endl << "detection" << endl;
+	detection();
+
+	cout << endl << "planning" << endl;
+
+	pair< vector<Point2<int> >, Mapp* > tmpPair = planning();
+	vector<Point2<int> > pathPoints = tmpPair.first;
+	Mapp * map = tmpPair.second;
+
+	Mat imageMap = map->createMapRepresentation();
+
+	#ifdef WAIT
+	namedWindow("Map", WINDOW_NORMAL);
+	imshow("Map", imageMap);
+	waitKey();
+	#endif
+
+	// the robot starts to move MAYBE
+
+	cout << "\nend\n\n";
+	return(0);
 }

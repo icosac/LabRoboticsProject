@@ -9,6 +9,7 @@
 #include <fstream>
 #include <string>
 #include <cmath>
+#include <algorithm>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/core.hpp>
@@ -75,11 +76,9 @@ int number_recognition(Rect blob, const Mat & base);
 
     \param[in] contours Is a vector that is saved in a xml file.
     \param[in] color Is the parameter according to which the function decide if saved ('color==1') or not ('otherwise') the vector 'victims'.
-    \param[in] victims Is a vector that is saved in a xml file.
 */
 void save_convex_hull(  const vector<vector<Point>> & contours,
-                        const int color, 
-                        const vector<int> & victims);
+                        const int color);
 
 /*! \brief Load some templates and save them in the global variable 'templates'.
 */

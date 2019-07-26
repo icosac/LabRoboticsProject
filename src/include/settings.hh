@@ -167,7 +167,7 @@ public:
    * @param _mapNames A Tuple containing the names of the maps to check in the Tuple.
    * @return The paths to the maps if they are found, an empty Tuple otherwise.
    */
-	Tuple<string> maps(Tuple<string> _mapNames);
+  Tuple<string> maps(Tuple<string> _mapNames);
 
   bool addUnMap(string unMap); //TODO document
 
@@ -273,4 +273,7 @@ public:
 	}
 
 };
+
+extern Settings *sett; ///<Global variable defined in main.cc.
+
 #endif

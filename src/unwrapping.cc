@@ -19,12 +19,12 @@ static float distance(Point c1, Point c2);
 */
 int unwrapping(){
     //Load Settings values
-    Settings *s=new Settings();
-    s->cleanAndRead();
+    // Settings *sett=new Settings();
+    // sett->cleanAndRead();
 
-    const string calib_file = s->intrinsicCalibrationFile;
-    for(int f=0; f<s->mapsNames.size(); f++){
-        string filename = s->maps(f).get(0);
+    const string calib_file = sett->intrinsicCalibrationFile;
+    for(int f=0; f<sett->mapsNames.size(); f++){
+        string filename = sett->maps(f).get(0);
         cout << "Elaborating file: " << filename << endl;
         // Load image from file
         Mat or_img = imread(filename.c_str());
@@ -60,7 +60,7 @@ int unwrapping(){
         // Find black regions (filter on saturation and value)
         // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
         Mat black_mask;
-        inRange(hsv_img, s->blackMask.Low(), s->blackMask.High(), black_mask);
+        inRange(hsv_img, sett->blackMask.Low(), sett->blackMask.High(), black_mask);
         #ifdef DEBUG
             my_imshow("BLACK_filter", black_mask);
         #endif
@@ -191,10 +191,10 @@ int unwrapping(){
 
         // Store the cropped image to disk.
         // string save_location = (string) fs_xml["mapsUnNames"][f];
-        string file = s->mapsNames.get(f);
+        string file = sett->mapsNames.get(f);
         string save_name = file.substr(0, file.find_last_of('.'))+"_UN"+file.substr(file.find_last_of('.'), -1);
-        string save_location = (s->mapsFolder.back()=='/' ? s->mapsFolder : s->mapsFolder+"/")+save_name;
-        if (!s->addUnMap(save_name)){
+        string save_location = (sett->mapsFolder.back()=='/' ? sett->mapsFolder : sett->mapsFolder+"/")+save_name;
+        if (!sett->addUnMap(save_name)){
             cerr << "File already indexed." << endl;
         }
         imwrite(save_location, imgCrop);
@@ -206,8 +206,8 @@ int unwrapping(){
         #endif
         
     }
-    cout << "Before saving: " << *s << endl;
-    s->writeToFile();
+    // cout << "Before saving: " << *sett << endl;
+    sett->writeToFile();
 return(0);
 }
 

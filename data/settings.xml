@@ -2,23 +2,23 @@
 <opencv_storage>
 <mapsFolder>data/map</mapsFolder>
 <mapsNames>
-  "01.jpg" "03.jpg" "02.jpg" "04.jpg"</mapsNames>
+  "01.jpg"</mapsNames>
 <mapsUnNames>
-  "01_UN.jpg" "03_UN.jpg" "02_UN.jpg" "04_UN.jpg"</mapsUnNames>
+  "01_UN.jpg"</mapsUnNames>
 <intrinsicCalibrationFile>"./data/intrinsic_calibration.xml"</intrinsicCalibrationFile>
 <calibrationFile>data/calib_config.xml</calibrationFile>
 <blackMask>
-  0 0 0 180 255 95</blackMask>
+  72 0 0 180 255 54</blackMask>
 <redMask>
-  0 0 0 162 255 255</redMask>
+  163 94 60 180 255 255</redMask>
 <greenMask>
-  62 94 130 80 255 170</greenMask>
+  50 89 26 79 252 255</greenMask>
 <blueMask>
-  106 183 117 126 255 192</blueMask>
+  89 178 65 124 239 255</blueMask>
 <whiteMask>
   89 149 164 179 255 204</whiteMask>
 <victimMask>
-  0 0 0 179 255 80</victimMask>
+  75 0 0 180 255 56</victimMask>
 <robotMask>
   89 149 164 179 255 204</robotMask>
 <kernelSide>9</kernelSide>

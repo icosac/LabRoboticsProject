@@ -1,21 +1,15 @@
 #include "detection.hh"
 
 vector<Mat> templates;
-Settings *s=new Settings;
-
-// #define DEBUG
-// #define WAIT
 
 /*! \brief Loads some images and detects shapes according to different colors.
 
     \returns Return 0 if the function reach the end.
 */
 int detection(){
-    s->cleanAndRead();
-
     load_number_template();
 
-    for (string filename : s->unMaps(-1)){
+    for (string filename : sett->unMaps(-1)){
         cout << "Elaborating file: " << filename << endl;
 
         // Load unwrapped image from file
@@ -43,7 +37,7 @@ int detection(){
                 }
             #endif
         }
-        
+
         #ifdef WAIT
             mywaitkey();
         #endif
@@ -55,7 +49,7 @@ int detection(){
 */
 void load_number_template(){ //load the template for number recognition
     Mat tmp;
-    for(auto el : s->getTemplates(-1)){
+    for(auto el : sett->getTemplates(-1)){
         tmp = imread(el);
         cvtColor(tmp, tmp, cv::COLOR_BGR2GRAY);
         bitwise_not(tmp, tmp);
@@ -78,26 +72,26 @@ void shape_detection(const Mat & img, const int color, const Mat& un_img){
     switch(color){
         case 0: {
             cout << "\tObstacles detection\n";  
-            mask = s->redMask;
+            mask = sett->redMask;
             break;
         }
         case 1: {  
             cout << "\tVictim detection\n";   
-            mask = s->greenMask;; 
+            mask = sett->greenMask; 
             break;
         }
         case 2: {
             cout << "\tGate detection\n";    
-            mask = s->blueMask;;   
+            mask = sett->blueMask;   
             break;
         }
     }
     
     Mat color_mask;
     inRange(img, mask.Low(), mask.High(), color_mask);
-    if(color==0){
-        bitwise_not(color_mask, color_mask);
-    } 
+    // if(color==0){
+    //     bitwise_not(color_mask, color_mask);
+    // } 
     #ifdef DEBUG
         my_imshow("Color_filter", color_mask);
     #endif
@@ -117,7 +111,7 @@ void shape_detection(const Mat & img, const int color, const Mat& un_img){
     According to the color the filtering functions apply can change in the type and in the order.
 */
 void erode_dilation(Mat & img, const int color){
-    const int erode_side = s->kernelSide; //odd number
+    const int erode_side = sett->kernelSide; //odd number
     const int center = erode_side/2+1;
     Mat kernel = getStructuringElement(MORPH_RECT, Size(erode_side, erode_side), Point(center, center) );
     // 0red && 2blue    -> smooth - erode - dilation - smooth - treshold
@@ -145,6 +139,11 @@ void erode_dilation(Mat & img, const int color){
     threshold(img, img, 254, 255, 0 ); // threshold and binarize the image, to suppress some noise
 }
 
+bool _compare (  const pair<int, int > & a, 
+                const pair<int, int > & b ){ 
+    return (a.first<b.first); 
+}
+
 /*! \brief Given an image, in black/white format, identify all the borders that delimit the shapes.
     
     \param[in] img Is an image in HSV format at the base of the elaboration process.
@@ -160,7 +159,7 @@ void find_contours( const Mat & img,
                     Mat original, 
                     const int color)
 {
-    const double MIN_AREA_SIZE = 100;
+    #define MIN_AREA_SIZE 1000 //defined as pixels^2 (in our scenaria it means mm^2)
     vector<vector<Point>> contours, contours_approx;
     vector<Point> approx_curve;
     vector<int> victimNum;
@@ -190,18 +189,30 @@ void find_contours( const Mat & img,
     #ifdef WAIT
         my_imshow("Detected shape", original);
     #endif
-    save_convex_hull(contours_approx, color, victimNum);
+
+    if(color==1){
+        vector<pair<int, int > > vicPoints;
+        for (uint i=0; i<victimNum.size(); i++){
+            vicPoints.push_back(make_pair(victimNum[i], i));
+        }
+        std::sort(vicPoints.begin(), vicPoints.end(), _compare);
+        vector<vector<Point> > tmp;
+        for (auto el : vicPoints){
+            tmp.push_back(contours_approx[el.second]);
+        }
+        contours_approx.swap(tmp);
+    }
+
+    save_convex_hull(contours_approx, color);
 }
 
 /*! \brief Given some vector save it in a xml file.
 
     \param[in] contours Is a vector that is saved in a xml file.
     \param[in] color Is the parameter according to which the function decide if saved ('color==1') or not ('otherwise') the vector 'victims'.
-    \param[in] victims Is a vector that is saved in a xml file.
 */
-void save_convex_hull(  const vector<vector<Point>> & contours, 
-                        const int color, 
-                        const vector<int> & victims)
+void save_convex_hull(  const vector<vector<Point> > & contours, 
+                        const int color)
 {
     vector<vector<Point>> hull;
     vector<Point> hull_i;
@@ -209,60 +220,23 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
         convexHull(contours[i], hull_i, true);//return point in clockwise order
         hull.push_back(hull_i);
     }
-    string save_file = s->convexHullFile;
+    string save_file = sett->convexHullFile;
     static FileStorage fs(save_file, FileStorage::WRITE);
+
     string str;
     switch(color){
-        case 0: str="obstacles"; break;
-        case 1: str="victims"; break;
-        case 2: str="gate"; break;
+        case 0: {str="obstacles"; break;}
+        case 1: {str="victims"; break;}
+        case 2: {str="gate"; break;}
     }
+
     fs << str << hull;
-    if(color==1){
-        fs << "victimsNum" << victims;
+    
+    if (color==2){
+        fs.release();
     }
-    //fs.release(); //if I do this operation I save only the first call of this function...
 }
 
-// #define TESS
-#ifdef TESS //TODO actually not working
-int number_recognition(Rect blob, const Mat& base){
-    Mat processROI(base, blob); // extract the ROI containing the digit
-    if(processROI.empty()){return(-1);}
-    
-    resize(processROI, processROI, Size(200, 200)); // resize the ROI
-
-    erode_dilation(processROI, 3);
-    #ifdef WAIT
-        my_imshow("ROI filtered", processROI);
-        mywaitkey();
-    #endif
-    
-    string outText;
-    tesseract::TessBaseAPI *ocr = new tesseract::TessBaseAPI();
-    // Initialize tesseract to use English (eng) and the LSTM OCR engine. 
-    if (ocr->Init(NULL, "eng", tesseract::OEM_DEFAULT)){
-        fprintf(stderr, "Could not initialize tesseract.\n");
-        exit(1);
-    }
-    ocr->SetVariable("tessedit_char_whitelist","0123456789");
-    // Set Page segmentation mode to PSM_AUTO (3)
-    ocr->SetPageSegMode(tesseract::PSM_SINGLE_CHAR);
-    ocr->SetImage(processROI.data, processROI.cols, processROI.rows, 1, processROI.step);
-    #ifdef DEBUG
-        Pix* OCR_image=ocr->GetInputImage();
-        Mat MAT_image=pixToMat(OCR_image);
-        my_imshow("ocr_image", MAT_image);
-        mywaitkey();
-    #endif
-
-    // Run Tesseract OCR on image
-    outText = string(ocr->GetUTF8Text());
-    cout << "value recognised: " << outText << endl;
-
-    return stoi(outText);
-}
-#else 
 /*! \brief Detect a number on an image inside a region of interest.
 
     \param[in] blob Identify the region of interest inside the image 'base'.
@@ -278,9 +252,9 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
 
     // black filter
     #ifdef DEBUG
-        my_imshow("before black filter", processROI);
+        my_imshow("before black filter", processROI, true);
     #endif
-    Filter mask = s->victimMask;
+    Filter mask = sett->victimMask;
     inRange(processROI, mask.Low(), mask.High(), processROI);
     #ifdef WAIT
         my_imshow("before erode", processROI);
@@ -289,7 +263,6 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     erode_dilation(processROI, 3);
     #ifdef WAIT
         my_imshow("ROI filtered", processROI);
-        mywaitkey();
     #endif
     // crop out the number if it is possible
     crop_number_section(processROI);
@@ -304,11 +277,7 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
         resize(templates[i], _template, Size(200, 200));
         resize(processROI, processROI, Size(200, 200));
         matchTemplate(processROI, _template, result, TM_CCOEFF); //TM_SQDIFF
-// #ifdef DEBUG
-//         my_imshow("_resize", processROI, true);
-//         my_imshow("_template", _template);
-//         mywaitkey();
-// #endif
+
         double score;
         minMaxLoc(result, nullptr, &score);
         if (score > maxScore) {
@@ -322,14 +291,14 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
     #endif
     return(maxIdx%10);  //if we have 20-30-... templates it return the true number
 }
-#endif
 
 /*! \brief Given an image identify the region of interest(ROI) and crop it out. 
 
     \param[in,out] ROI Is the image that the function will going to elaborate.
 */
 void crop_number_section(Mat & ROI){
-    // Tutorial for the min rectangle arround a shape. https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/bounding_rotated_ellipses/bounding_rotated_ellipses.html
+    // Tutorial for the min rectangle arround a shape. 
+    // https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/bounding_rotated_ellipses/bounding_rotated_ellipses.html
     vector<vector<Point>> contours;
     vector<Point> contour;
 
@@ -345,7 +314,10 @@ void crop_number_section(Mat & ROI){
                 tmpContour.push_back(contours[i][j]);
             }
         }
-        convexHull(tmpContour, contour, true);//return point in clockwise order
+        if(tmpContour.size()==0){
+            return; // extreme rare case that can occours if the filters are not well setted (it cause core dumped)
+        }
+        convexHull(tmpContour, contour, true);//return points in clockwise order
     }
     
     // Find the rotated rectangles for the contour
@@ -402,7 +374,6 @@ void crop_number_section(Mat & ROI){
 
     #ifdef DEBUG
         my_imshow("rotated Num", ROI);
-        while((char)waitKey(1)!='q'){}
     #endif
 
 }

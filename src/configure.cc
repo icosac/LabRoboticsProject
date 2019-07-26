@@ -58,8 +58,8 @@ void update_trackers(){
  *  If DEPLOY is not defined then it takes a map from the folder set in Settings and ask for visual confirmation.
  */
 void configure (bool deploy, int img_id){
-  Settings* s=new Settings();
-  s->cleanAndRead();
+  // Settings* sett=new Settings();
+  // sett->cleanAndRead();
 
   Mat frame;
   if (deploy) {
@@ -78,7 +78,7 @@ void configure (bool deploy, int img_id){
     free(camera);
   }
   else {
-    frame = imread(s->maps(Tuple<int>(1, img_id)).get(0));
+    frame = imread(sett->maps(Tuple<int>(1, img_id)).get(0));
   }
 
 #ifdef DEBUG
@@ -87,7 +87,7 @@ void configure (bool deploy, int img_id){
 #endif
 
   cvtColor(frame, frame, COLOR_BGR2HSV);
-  if (!show_all_conditions(frame, s)){
+  if (!show_all_conditions(frame)){
     Mat frame_threshold;
     namedWindow("Filtered Image", WINDOW_NORMAL);
 
@@ -100,79 +100,79 @@ void configure (bool deploy, int img_id){
     createTrackbar("High V","Filtered Image", &(filter.high_v), 255, on_high_v_thresh_trackbar);
 
     //BLACK FILTER
-    filter=s->blackMask; update_trackers();
+    filter=sett->blackMask; update_trackers();
     cout << "Black filter. " << filter << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image", frame_threshold);
     }
-    s->changeMask(Settings::BLACK, filter);
+    sett->changeMask(Settings::BLACK, filter);
     cout << "Black filter done: " << filter << endl;
 
     //RED FILTER
-    filter=s->redMask; update_trackers();
+    filter=sett->redMask; update_trackers();
     cout << "Red filter. " << filter << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
     }
-    s->changeMask(Settings::RED, filter);
+    sett->changeMask(Settings::RED, filter);
     cout << "Red filter done: " << filter << endl;
 
     //GREEN FILTER
-    filter=s->greenMask; update_trackers();
+    filter=sett->greenMask; update_trackers();
     cout << "Green filter. " << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
     }
-    s->changeMask(Settings::GREEN, filter);
+    sett->changeMask(Settings::GREEN, filter);
     cout << "Green filter done: " << filter << endl;
 
     //VICTIMS FILTER
-    filter=s->victimMask; update_trackers();
+    filter=sett->victimMask; update_trackers();
     cout << "Victim filter. " << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
     }
-    s->changeMask(Settings::VICTIMS, filter);
+    sett->changeMask(Settings::VICTIMS, filter);
     cout << "Victims filter done: " << filter << endl;
 
     //BLUE FILTER
-    filter=s->blueMask; update_trackers();
+    filter=sett->blueMask; update_trackers();
     cout << "Blue filter. " << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
     }
-    s->changeMask(Settings::BLUE, filter);
+    sett->changeMask(Settings::BLUE, filter);
     cout << "Victims blue done: " << filter << endl;
 
     //WHITE FILTER
-    filter=s->whiteMask; update_trackers();
+    filter=sett->whiteMask; update_trackers();
     cout << "White filter. " << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
     }
-    s->changeMask(Settings::WHITE, filter);
+    sett->changeMask(Settings::WHITE, filter);
     cout << "White filter done: " << filter << endl;
 
     //ROBOT FILTER
-    filter=s->robotMask; update_trackers();
+    filter=sett->robotMask; update_trackers();
     cout << "Robot filter. " << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
     }
-    s->changeMask(Settings::WHITE, filter);
+    sett->changeMask(Settings::WHITE, filter);
     cout << "Robot filter done: " << filter << endl;
   }
 
-  s->writeToFile();
+  sett->writeToFile();
 
-  cout << *s << endl;
+  cout << *sett << endl;
   
   destroyAllWindows();
 }
@@ -180,20 +180,19 @@ void configure (bool deploy, int img_id){
 /*! Function to show a picture with various filters taken from Settings. It then asks for visual confirmation.
  *
  * @param frame The image to show.
- * @param s The Settings to use.
  * @return True if the filters are okay, false otherwise.
  */
-bool show_all_conditions(const Mat& frame, Settings* s){
+bool show_all_conditions(const Mat& frame){
   bool ret=false;
   Mat black, red, green, victim, blue, white, robot;
 
-  inRange(frame, s->blackMask.Low(), s->blackMask.High(), black);
-  inRange(frame, s->redMask.Low(), s->redMask.High(), red);
-  inRange(frame, s->greenMask.Low(), s->greenMask.High(), green);
-  inRange(frame, s->victimMask.Low(), s->victimMask.High(), victim);
-  inRange(frame, s->blueMask.Low(), s->blueMask.High(), blue);
-  inRange(frame, s->whiteMask.Low(), s->whiteMask.High(), white);
-  inRange(frame, s->robotMask.Low(), s->robotMask.High(), robot);
+  inRange(frame, sett->blackMask.Low(), sett->blackMask.High(), black);
+  inRange(frame, sett->redMask.Low(), sett->redMask.High(), red);
+  inRange(frame, sett->greenMask.Low(), sett->greenMask.High(), green);
+  inRange(frame, sett->victimMask.Low(), sett->victimMask.High(), victim);
+  inRange(frame, sett->blueMask.Low(), sett->blueMask.High(), blue);
+  inRange(frame, sett->whiteMask.Low(), sett->whiteMask.High(), white);
+  inRange(frame, sett->robotMask.Low(), sett->robotMask.High(), robot);
 
   my_imshow(NAME(frame), frame, true);
   my_imshow(NAME(black), black);
