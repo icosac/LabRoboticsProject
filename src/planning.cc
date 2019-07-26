@@ -17,10 +17,10 @@ pair< vector<Point2<int> >, Mapp* > planning(){
     vp.push_back( Point2<int>(800, 200) );
     vp.push_back( Point2<int>(300, 100) );
 
-    vector<Point2<int> > cellsOfPath = map->minPathTwoPoints(vp[0], vp[1]);
-    cout << "cellsOfPath size: " << cellsOfPath.size() <<endl;
+    vector<Point2<int> > * cellsOfPath = map->minPathTwoPoints(vp[0], vp[1]);
+    cout << "cellsOfPath size: " << cellsOfPath->size() <<endl;
     
-    return( make_pair(cellsOfPath, map) );//todo change with points from dubins
+    return( make_pair(*cellsOfPath, map) );//todo change with points from dubins
 }
 
 /*! \brief The goal is to load, all the neccessary data, from files and create a Mapp that store everything.

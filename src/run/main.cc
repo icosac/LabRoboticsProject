@@ -31,7 +31,7 @@ int main (){
 
 	cout << endl << "planning" << endl;
 
-	pair< vector<Point2<int> >, Mapp* > tmpPair = planning();
+	pair< vector<Point2<int> >, Mapp * > tmpPair = planning();
 	vector<Point2<int> > pathPoints = tmpPair.first;
 	Mapp * map = tmpPair.second;
 

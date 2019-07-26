@@ -24,12 +24,13 @@ enum OBJ_TYPE {FREE, VICT, OBST, GATE, BODA/*shortcut for border*/};
 class Mapp{
     protected:
         OBJ_TYPE **map;
-        const static int baseDistance = 0;
-        int **distances;    // neccessary for the min path function distance of the cells from the start cell
-        Point2<int> **parents;
+        const static int baseDistance = -1;  //it is the reference base distance for the matrix of distances
 
-        set<pair<int, int> > cellsFromSegment(const Point2<int> p0, const Point2<int> p1);
-        void resetDistanceMap(const int value = baseDistance);
+        set<pair<int, int> > cellsFromSegment(const Point2<int> & p0, const Point2<int> & p1);
+        vector<Point2<int> > * minPathTwoPointsInternal(
+                                const Point2<int> & startP, const Point2<int> & endP, 
+                                int ** distances, Point2<int> ** parents);
+        void resetDistanceMap(int ** distances, const int value = baseDistance);
 
         int lengthX;    // dimension of the arena default: 1000
         int lengthY;    // dimension of the arena d: 1500
@@ -46,11 +47,12 @@ class Mapp{
         void addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYPE type);
             void addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type);
 
-        OBJ_TYPE getPointType(const Point2<int> p);
-        bool checkSegment(const Point2<int> p1, const Point2<int> p2);
-            bool checkSegmentCollisionWithType(const Point2<int> p0, const Point2<int> p1, const OBJ_TYPE type);
+        OBJ_TYPE getPointType(const Point2<int> & p);
+        bool checkSegment(const Point2<int> & p0, const Point2<int> & p1);
+            bool checkSegmentCollisionWithType(const Point2<int> & p0, const Point2<int> & p1, const OBJ_TYPE type);
         
-        vector<Point2<int> > minPathTwoPoints(const Point2<int> startP, const Point2<int> endP, const bool reset=true);
+        vector<vector<Point2<int> > > * minPathNPoints(const vector<Point2<int> > & vp);
+        vector<Point2<int> > * minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1);
         vector<Point2<int> > sampleNPoints(const int n, const vector<Point2<int> > & points);
 
         Mat createMapRepresentation();

@@ -21,16 +21,11 @@ Mapp::Mapp( const int _lengthX, const int _lengthY, const int _pixX, const int _
     dimX = int(ceil(lengthX*1.0 / pixX));
     dimY = int(ceil(lengthY*1.0 / pixY));
     map = new OBJ_TYPE*[dimY];
-    distances = new int*[dimY];
-    parents = new Point2<int>*[dimY];
     for(int i=0; i<dimY; i++){
         map[i] = new OBJ_TYPE[dimX];
         for(int j=0; j<dimX; j++){
             map[i][j] = FREE;
         }
-        // the initializtion is to -1
-        distances[i] = new int[dimX];
-        parents[i] = new Point2<int>[dimX];
     }
 
     for(unsigned int i=0; i<vvp.size(); i++){
@@ -44,7 +39,7 @@ Mapp::Mapp( const int _lengthX, const int _lengthY, const int _pixX, const int _
     \param[in] p1 Second point of the segment.
     \returns A set containing all the cells, identified by their row(i or y) and column(j or x).
 */
-set<pair<int, int> > Mapp::cellsFromSegment(const Point2<int> p0, const Point2<int> p1){
+set<pair<int, int> > Mapp::cellsFromSegment(const Point2<int> & p0, const Point2<int> & p1){
     set<pair<int, int> > cells;
     
     // save in x0,y0 the point with the lowest x
@@ -178,7 +173,7 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
     \param[in] p The point of which we want to know the informations.
     \returns The type (OBJ_TYPE) of the cell.
 */
-OBJ_TYPE Mapp::getPointType(const Point2<int> p){
+OBJ_TYPE Mapp::getPointType(const Point2<int> & p){
     int j = p.x()/pixX;
     int i = p.y()/pixY;
 
@@ -192,7 +187,7 @@ OBJ_TYPE Mapp::getPointType(const Point2<int> p){
     \param[in] type The type to be detected.
     \returns True if the type was found, false otherwise.
 */
-bool Mapp::checkSegmentCollisionWithType(const Point2<int> p0, const Point2<int> p1, const OBJ_TYPE type){
+bool Mapp::checkSegmentCollisionWithType(const Point2<int> & p0, const Point2<int> & p1, const OBJ_TYPE type){
     set<pair<int, int> > collisionSet = cellsFromSegment(p0, p1);
     for(auto el:collisionSet){
         int i=get<0>(el), j=el.second;  // two methods for get elements from a pair structure
@@ -210,8 +205,53 @@ bool Mapp::checkSegmentCollisionWithType(const Point2<int> p0, const Point2<int>
     \param[in] p1 Second point of the segment.
     \returns True if the obstacles were crossed, false otherwise.
 */
-bool Mapp::checkSegment(const Point2<int> p0, const Point2<int> p1){
+bool Mapp::checkSegment(const Point2<int> & p0, const Point2<int> & p1){
     return(checkSegmentCollisionWithType(p0, p1, OBST));
+}
+
+/*! \brief Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
+    \details The function is based on a Breadth-first search (BFS).
+
+    \param[in] p0 The source point.
+    \param[in] p1 The destination point.
+    \returns It is a vector of points along the path (one for each cell of the grid of the map).
+*/
+vector<vector<Point2<int> > > * Mapp::minPathNPoints(const vector<Point2<int> > & vp){
+    int ** distances = new int*[dimY];
+    Point2<int> ** parents = new Point2<int>*[dimY];
+    for(int i=0; i<dimY; i++){
+        // the initializtion is to -1
+        distances[i] = new int[dimX];
+        parents[i] = new Point2<int>[dimX];
+    }
+
+    vector<vector<Point2<int> > > * vvp = new vector< vector<Point2<int> > >;
+    for(unsigned int i=0; i<vp.size()-1; i++){
+        resetDistanceMap(distances);
+        vector<Point2<int> > * pathPoints = minPathTwoPointsInternal(vp[i], vp[i+1], distances, parents);
+        vvp->push_back(*pathPoints);
+    }
+    return(vvp);
+}
+
+/*! \brief Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
+    \details The function is based on a Breadth-first search (BFS).
+
+    \param[in] p0 The source point.
+    \param[in] p1 The destination point.
+    \returns It is a vector of points along the path (one for each cell of the grid of the map).
+*/
+vector<Point2<int> > * Mapp::minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1){
+    int ** distances = new int*[dimY];
+    Point2<int> ** parents = new Point2<int>*[dimY];
+    for(int i=0; i<dimY; i++){
+        // the initializtion is to -1
+        distances[i] = new int[dimX];
+        parents[i] = new Point2<int>[dimX];
+    }
+
+    resetDistanceMap(distances);
+    return( minPathTwoPointsInternal(p0, p1, distances, parents) );
 }
 
 /*! \brief Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
@@ -219,16 +259,16 @@ bool Mapp::checkSegment(const Point2<int> p0, const Point2<int> p1){
 
     \param[in] startP The source point.
     \param[in] endP The destination point.
-    \param[in] reset A boolean that reset the parameters of the BFS, by default it is true (highly recomended).
-    \returns It is a vector of points along the path (one for each cell of the grid of the map).
+    \param[in] distances A matrix that is needed to store the distances of the visited cells.
+    \param[in] parents A matrix that is needed to store the parent of each cell (AKA the one that have discovered that cell with the minimum distance).
+    \returns It is a pointer to a vector of points along the path (one for each cell of the grid of the map).
 */
-vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> startP, const Point2<int> endP, const bool reset){
-    if(reset){
-        // unneccessary at the first run if all is initializated to 0. and also (maybe) in other very rare case based on multiple minPath call.
-        resetDistanceMap();
-    }
-
+vector<Point2<int> > * Mapp::minPathTwoPointsInternal(
+                        const Point2<int> & startP, const Point2<int> & endP, 
+                        int ** distances, Point2<int> ** parents)
+{
     // P=point, C=cell
+    cout << "f" << endl;
     Point2<int> startC(startP.x()/pixX, startP.y()/pixY), endC(endP.x()/pixX, endP.y()/pixY);
     queue<Point2<int> > toProcess;
 
@@ -237,6 +277,7 @@ vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> startP, const Poin
     parents[  startC.y()/*i=y()*/][startC.x()/*j=x()*/] = startC;
     bool found = false;
 
+    cout << "g" << endl;
     while(!toProcess.empty() && !found){
         // for each cell(8) around the selected one
         Point2<int> cell = toProcess.front();
@@ -268,19 +309,25 @@ vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> startP, const Poin
         }
     }
     //todo gestire il caso in cui la destinazione non viene ragggiunta
+    cout << "h" << endl;
 
     // reconstruct the vector of parents of the cells in the minPath
-    vector<Point2<int> > computedParents;
-    computedParents.push_back(endC);
+    vector<Point2<int> > * computedParents = new vector<Point2<int> >;
+    cout << "h1" << endl;
+    computedParents->push_back(endC);
+    cout << "h2" << endl;
     Point2<int> p = endC;    
+    cout << "i" << endl;
     do {
         p = parents[p.y()][p.x()];
 
         // conversion from cell of the grid to point of the system (map)
-        computedParents.push_back( Point2<int>(p.x()*pixX + pixX/2, p.y()*pixY + pixY/2) );
+        computedParents->push_back( Point2<int>(p.x()*pixX + pixX/2, p.y()*pixY + pixY/2) );
     } while( p==startC );
-    reverse(computedParents.begin(), computedParents.end()); // I apply the inverse to have the vector from the begin to the end.
+    cout << "j" << endl;
+    reverse(computedParents->begin(), computedParents->end()); // I apply the inverse to have the vector from the begin to the end.
 
+    cout << "k" << endl;
     return(computedParents);
 }
 
@@ -288,7 +335,7 @@ vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> startP, const Poin
 
     \param[in] value The value to be set.
 */
-void Mapp::resetDistanceMap(const int value){
+void Mapp::resetDistanceMap(int ** distances, const int value){
     for(int i=0; i<dimY; i++){
         for(int j=0; j<dimX; j++){
             distances[i][j] = value;
