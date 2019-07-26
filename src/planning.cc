@@ -9,9 +9,15 @@ pair< vector<Point2<int> >, Mapp* > planning(){
     Mapp * map = createMapp();
 
     // TODO test and verify
-    Point2<int> start(120, 120);
-    Point2<int> end(900, 1400);
-    vector<Point2<int> > cellsOfPath = map->minPathTwoPoints(start, end);
+    vector<Point2<int> > vp;
+    vp.push_back( Point2<int>(100, 150) );
+    vp.push_back( Point2<int>(500, 750) );
+    vp.push_back( Point2<int>(50, 1100) );
+    vp.push_back( Point2<int>(900, 1450));
+    vp.push_back( Point2<int>(800, 200) );
+    vp.push_back( Point2<int>(300, 100) );
+
+    vector<Point2<int> > cellsOfPath = map->minPathTwoPoints(vp[0], vp[1]);
     cout << "cellsOfPath size: " << cellsOfPath.size() <<endl;
     
     return( make_pair(cellsOfPath, map) );//todo change with points from dubins

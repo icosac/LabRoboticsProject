@@ -1,5 +1,6 @@
 // the core of the project
 
+#include <utils.hh>
 #include <detection.hh>
 #include <unwrapping.hh>
 #include <calibration.hh>
@@ -7,9 +8,11 @@
 #include <configure.hh>
 #include <settings.hh>
 
-
 #include<iostream>
 using namespace std;
+
+#define WAIT
+#define DEBUG
 
 Settings *sett =new Settings();
 
@@ -18,7 +21,7 @@ int main (){
 	// cout << "calibration" << endl;
 	// calibration(); //BUG????!?!?!?!?!?!??!?!?!
 	cout << endl <<"Configure" << endl;
-	configure(true);
+	configure(false);
 
 	cout << endl << "unwrapping" << endl;
 	unwrapping();
@@ -34,10 +37,19 @@ int main (){
 
 	Mat imageMap = map->createMapRepresentation();
 
+	map->imageAddPoint(imageMap, Point2<int>(100, 150) );
+	map->imageAddPoint(imageMap, Point2<int>(500, 750) );
+	map->imageAddPoint(imageMap, Point2<int>(50, 1100) );
+	map->imageAddPoint(imageMap, Point2<int>(900, 1450));
+	map->imageAddPoint(imageMap, Point2<int>(800, 200) );
+	map->imageAddPoint(imageMap, Point2<int>(300, 100) );
+
+	map->imageAddSegments(imageMap, pathPoints);
+
 	#ifdef WAIT
-	namedWindow("Map", WINDOW_NORMAL);
-	imshow("Map", imageMap);
-	waitKey();
+		namedWindow("Map", WINDOW_NORMAL);
+		imshow("Map", imageMap);
+		mywaitkey();
 	#endif
 
 	// the robot starts to move MAYBE

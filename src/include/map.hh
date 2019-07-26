@@ -53,7 +53,9 @@ class Mapp{
         vector<Point2<int> > minPathTwoPoints(const Point2<int> startP, const Point2<int> endP, const bool reset=true);
         vector<Point2<int> > sampleNPoints(const int n, const vector<Point2<int> > & points);
 
-        Mat createMapRepresentation(/*eventually add a vector of bubins*/);
+        Mat createMapRepresentation();
+            void imageAddSegments(Mat & map, const vector<Point2<int> > & vp, const int thickness=3);
+            void imageAddPoint(Mat & map, const Point2<int> & p, const int radius=7);
 
         void printMap();
         string matrixToString();

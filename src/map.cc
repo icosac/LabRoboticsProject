@@ -318,6 +318,7 @@ vector<Point2<int> > Mapp::sampleNPoints(const int n, const vector<Point2<int> >
     \returns The generated image is returned.
 */
 Mat Mapp::createMapRepresentation(){
+    // example code at: https://docs.opencv.org/2.4/doc/tutorials/core/basic_geometric_drawing/basic_geometric_drawing.html
     Mat imageMap(lengthY, lengthX, CV_8UC3, Scalar(47, 98, 145));// empty map
     for(int i=0; i<dimY; i++){
         for(int j=0; j<dimX; j++){
@@ -346,6 +347,30 @@ Mat Mapp::createMapRepresentation(){
         }
     }
     return(imageMap);
+}
+
+/*! \brief It add to the given image a set of (n-1) segments specified by the n points given.
+
+    \param[in/out] map The where the segments will be added.
+    \param[in] vp The vector of points that identify the segments.
+*/
+void Mapp::imageAddSegments(Mat & image, const vector<Point2<int> > & vp, const int thickness){
+    for(unsigned int i=0; i<vp.size()-1; i++){
+        line( image, 
+            Point(vp[ i ].x(), vp[ i ].y()), 
+            Point(vp[i+1].x(), vp[i+1].y()), 
+            Scalar(0, 255, 255),
+            thickness);
+    }
+}
+
+/*! \brief It add to the given image a point.
+
+    \param[in/out] map The where the point will be added.
+    \param[in]p The point to add.
+*/
+void Mapp::imageAddPoint(Mat & image, const Point2<int> & p, const int radius){
+    circle(image, Point(p.x(), p.y()), radius, Scalar(0, 255, 255), -1);
 }
 
 /*! \brief Print to the terminal the main informations of the Map.
