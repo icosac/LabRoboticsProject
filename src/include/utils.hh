@@ -7,6 +7,7 @@
 #endif
 
 #include <iostream>
+#include <exception>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/highgui/highgui_c.h>
@@ -49,6 +50,25 @@ void mywaitkey();
  */
 void mywaitkey(string windowName);
 
+
+//TODO document
+template<class T>
+class ExistingElementException : public exception {
+private:
+  stringstream exceptString(T value) const {
+    stringstream out;
+    out << value;
+    return out;
+  }
+  
+public:
+  T a,id;
+  ExistingElementException(T _a, int _id) : a(_a), id(_id) {}
+  
+  const char * what() const throw (){
+    return (NAME(*this)+string(" Element already exists: ")+exceptString(a).str()+" at pos: "+exceptString(id).str()).c_str();
+  }
+};
 
 //Taken from Paolo Bevilaqua and Valerio Magnago
 #include <time.h>
