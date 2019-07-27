@@ -536,6 +536,32 @@ public:
 
 };
 
+//TODO find non recursive approach
+/*! \brief Compute the arrangements.
+*/
+// Tuple<Tuple<int> > t;
+// void disp (Tuple<int>& z, int i, int N){
+//   if (i==0){
+//     for (uint a=1; a<N+1; a++){
+//       t.addIfNot(z);
+//       z[i]=a;
+//       if (a==N){
+//         t.addIfNot(z);
+//       }
+//     }
+//     z[i]=0;
+//   }
+//   else {
+//     for (uint a=1; a<N+1; a++){
+//       disp(z, i-1, N);
+//       z[i]=a;
+//       if (a==N)
+//         disp(z, i-1, N);
+//     }
+//     z[i]=0;
+//   }
+// }
+
 /*!\brief Given a set of point, compute the shortest set of Dubins that allows to go from start to end through all points.
  *
  */
@@ -557,7 +583,7 @@ private:
   DubinsSet(Tuple<Configuration2<T> > _confs,
             double _kmax=KMAX){
     for (int i=0; i<_confs.size()-1; i++){
-      Dubins<T> dub=Dubins<T>(_confs.get(i), _confs.get(i+1))
+      Dubins<T> dub=Dubins<T>(_confs.get(i), _confs.get(i+1));
       dubinses.add(dub);
       L+=dub.length();
     }
@@ -572,13 +598,9 @@ private:
 
   DubinsSet(Tuple<Point2<T> > _points,
             double _kmax=KMAX){
-    Tuple<Angle> angles;
-    for (Point2<T> point : _points){
-      angles.add(Angle());
-    }
-    for (int i=0; i<_points.size(); i++){
-
-    }
+    // uint size=_points.size();
+    // for (uint i=0; i<size-1; i++){ //Cycle through all pair of points
+    // }
   }
 };
 

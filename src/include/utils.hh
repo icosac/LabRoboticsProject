@@ -6,10 +6,7 @@
 #include <leptonica/allheaders.h>
 #endif
 
-#include <maths.hh>
-
 #include <iostream>
-
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/highgui/highgui_c.h>
@@ -51,16 +48,6 @@ void mywaitkey();
  * @param windowName The window to close after pressing a key.
  */
 void mywaitkey(string windowName);
-
-/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed some windows are closed.
- *
- * @param windowNames The names of the windows to close after pressing a key.
- */
-void mywaitkey(Tuple<string> windowNames);
-
-
-
-
 
 
 //Taken from Paolo Bevilaqua and Valerio Magnago

@@ -1,17 +1,38 @@
 #ifndef MATHS_HH
 #define MATHS_HH
 
+#include <utils.hh>
+
 #include <iostream>
 #include <cmath>
 #include <vector>
 #include <cstdarg> //#include <stdarg.h>
 #include <sstream>
 #include <string>
-#include <opencv2/opencv.hpp>
+#include <exception>
 
 #include <opencv2/opencv.hpp>
 
 using namespace std;
+
+//TODO move this in utils.hh 
+template<class T>
+class ExistingElementException : public exception {
+private:
+  stringstream exceptString(T value) const {
+    stringstream out;
+    out << value;
+    return out;
+  }
+  
+public:
+  T a,id;
+  ExistingElementException(T _a, int _id) : a(_a), id(_id) {}
+  
+  const char * what() const throw (){
+    return (NAME(*this)+string(" Element already exists: ")+exceptString(a).str()+" at pos: "+exceptString(id).str()).c_str();
+  }
+};
 
 #include<limits>
 #define DInf numeric_limits<double>::infinity()
@@ -483,12 +504,31 @@ public:
     return ((_n>=0&&_n<size()) ? elements.at(_n) : T());
   }
   
+  int find (T _el){
+    for (int i=0; i<this->size(); i++){
+      if (this->get(i)==_el){
+        return i;
+      }
+    }
+    return -1;
+  }
+
   /*! \brief Adds a value at the end of the list.
   		\param[in] _new The new value to be added.
 	*/
   void add (const T _new){
   	n++;
   	elements.push_back(_new);
+  }
+
+  void addIfNot(T _el){
+    int id=find(_el); 
+    if (id<0){
+      this->add(_el);
+    }
+    else {
+      throw ExistingElementException<T>(_el, id);
+    }
   }
 
   /*! \brief Removes a value from the list.
@@ -526,6 +566,21 @@ public:
     return res;
   }
   
+  bool equal(Tuple<T> _t){
+    if (this->size()!=_t.size()){ return false; }
+
+    for (int i=0; i<this->size(); i++){
+      if (this->get(i) != _t.get(i)){
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  bool operator== (Tuple<T> _t){
+    return equal(_t);
+  }
+
   /*! \brief Function that compute the Euclidean Distance between two tuples. 
   		They must have the same number of elements.
   		\tparan T1 The type of the elements in the second Tuple.
@@ -590,6 +645,7 @@ public:
     return ret;
   }
 
+  //TODO check this prefix thing
   /*! This function create a strinstream object containing the values of the Tuple.
     \returns A string stream.
   */
@@ -612,6 +668,14 @@ public:
     out << data.to_string().str();
     out << ">";
     return out;
+  }
+
+  string to_std_string() const {
+    return this->to_string().str();
+  }
+  
+  operator std::string() const {
+    return to_std_string();
   }
 
   /*!\brief Overload of cast to vector.
