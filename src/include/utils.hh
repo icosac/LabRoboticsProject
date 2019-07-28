@@ -6,6 +6,7 @@
 #include <leptonica/allheaders.h>
 #endif
 
+#include <sstream>
 #include <iostream>
 #include <exception>
 
@@ -36,8 +37,6 @@ using namespace std;
  * @param reset If true the image is going to be placed in 0,0 i.e. the top left corner of the screen.
  */
 void my_imshow(const char* win_name, Mat img, bool reset=false);
-
-// Mat pixToMat(Pix* pix);
 
 /*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed.
  *

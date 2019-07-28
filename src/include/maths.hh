@@ -1,7 +1,8 @@
 #ifndef MATHS_HH
 #define MATHS_HH
 
-#include <utils.hh>
+//#include <utils.hh>
+#include "utils.hh"
 
 #include <iostream>
 #include <cmath>
@@ -10,7 +11,7 @@
 #include <sstream>
 #include <string>
 
-#include <opencv2/opencv.hpp>
+//#include <opencv2/opencv.hpp>
 
 using namespace std;
 
@@ -171,9 +172,19 @@ public:
   		\returns The angle summed. 
   */
   Angle add (const Angle phi){
-    double dth = th+phi.get();
-    if (type!=phi.getType()){
-    	dth = th+(type==RAD ? phi.toRad() : phi.toDeg()); 
+    double dth=0.0;
+    switch(type){
+      case RAD:{
+        dth=get()+phi.toRad();
+        break;
+      }
+      case DEG:{
+        dth=get()+phi.toDeg();
+        break;
+      }
+      default:{
+        cerr << "Wrong type" << endl;
+      }
     }
     Angle alpha (dth, type);
     return alpha;
@@ -183,9 +194,19 @@ public:
   		\returns The angle subtracted. 
   */
   Angle sub (const Angle phi){
-  	double dth = th-phi.get();
-    if (type!=phi.getType()){
-    	dth = th-(type==RAD ? phi.toRad() : phi.toDeg()); 
+  	double dth=0.0;
+    switch(type){
+      case RAD:{
+        dth=get()-phi.toRad();
+        break;
+      }
+      case DEG:{
+        dth=get()-phi.toDeg();
+        break;
+      }
+      default:{
+        cerr << "Wrong type" << endl;
+      }
     }
     Angle alpha (dth, type);
     return alpha;
@@ -222,16 +243,7 @@ public:
     type=phi.getType();
     return *this;
   }
-  /*! This function takes the value in radiants of two angles, an using the equal function 
-      for `double` calculare if they are equal or not.
-      \param[in] th0 The first angle.
-      \param[in] th1 The second angle.
-      \returns `true` if the two angle are equal, `false` otherwise. 
-  */
-  bool equal (const Angle& th0, const Angle& th1){
-    return ::equal(th0.toRad(), th1.toRad()) ? true : false; 
-  }
-  
+    
   /*! This function overload the operator +. It simply calls the `add()` function.
   		\param[in] phi The angle to be summed.
   		\returns The angle summed. 
@@ -317,19 +329,69 @@ public:
     (*this)=alpha;
     return (*this);
   }
+
+  /*! This function takes an angle to copare, an using the `equal` function 
+      for `double`s calculates if it is equal or not to `this`.
+      \param[in] phi The angle to compare.
+      \returns `true` if the two angle are equal, `false` otherwise. 
+  */
+  bool equal (const Angle& phi){
+    return ::equal(this->toRad(), phi.toRad(), 0.0000001) ? true : false; 
+  }
+
+  /*! This function takes the value in radiants of an angle and compares it with this.
+      \param[in] phi The angle to compare.
+      \returns `true` if this is less than phi, `false` otherwise. 
+  */
+  bool less (const Angle& phi){
+    return this->toRad()<phi.toRad(); 
+  }
+
+  /*! This function takes the value in radiants of an angle and compares it with this.
+      \param[in] phi The angle to compare.
+      \returns `true` if this is more than phi, `false` otherwise. 
+  */
+  bool greater (const Angle& phi){
+    return this->toRad()>phi.toRad(); 
+  }
+
   /*! This function overload the operator ==. It simply calls the `equal()` function.
       \param[in] phi The second angle.
       \returns `true` if the two angle are equal, `false` otherwise.  
   */
   bool operator== (const Angle& phi){
-    return equal(*this, phi);
+    cout << "this: " << (*this) << "   , phi: " << phi << endl;
+    return this->equal(phi);
   }
+
+  /*! This function overload the operator ==. It simply calls the `equal()` function.
+      \param[in] phi The second angle.
+      \returns `true` if the two angle are equal, `false` otherwise.  
+  */
+
   /*! This function overload the operator ==. It simply calls the `equal()` function and negates it.
       \param[in] phi The second angle.
       \returns `false` if the two angle are equal, `true` otherwise.  
   */
   bool operator!= (const Angle& phi){
-    return !equal(*this, phi);
+    return !(this->equal(phi));
+  }
+
+  //TODO document
+  bool operator< (const Angle& phi){
+    return this->less(phi);
+  }
+
+  bool operator> (const Angle& phi){
+    return this->greater(phi);
+  }
+
+  bool operator<= (const Angle& phi){
+    return (this->less(phi) || this->equal(phi));
+  }
+
+  bool operator>= (const Angle& phi){
+    return (this->greater(phi) || this->equal(phi));
   }
 
   /*! \brief Compute the cosine of the angle.
@@ -396,17 +458,19 @@ public:
   operator long()   const { return (long)   toRad(); }
 
   /*! This function create a strinstream object containing the most essential info, that is the dimension and the type of angle.
+      \param[in] The type of values to be printed. Default is set to INVALID and it'll print the data of the `Angle` as it was saved.
       \returns A string stream.
   */
-  stringstream to_string () const {
+  stringstream to_string (ANGLE_TYPE _type=INVALID) const {
     stringstream out;
-    switch (getType()){
+    ANGLE_TYPE search=_type==INVALID ? this->getType() : _type;
+    switch (search){
       case DEG:{
-        out << get() << "°";
+        out << this->toDeg() << "°";
         break;
       }
       case RAD:{
-        double phi=get()/M_PI;
+        double phi=toRad()/M_PI;
         out << phi << "pi";
         break;
       }
@@ -429,10 +493,14 @@ public:
   }
 };
 
-const Angle A_2PI = Angle(6.283185, Angle::RAD);  ///<Default Angle for 2pi rad
+const Angle A_2PI = Angle(M_PI*2.0, Angle::RAD);  ///<Default Angle for 2pi rad
 const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);///<Default Angle for 360 degree
 const Angle A_PI = Angle(M_PI, Angle::RAD);       ///<Default Angle for pi rad
 const Angle A_180 = Angle(180, Angle::DEG);       ///<Defualt Angle for 180 degree
+const Angle A_PI2 = Angle(M_PI/2.0, Angle::RAD);       ///<Default Angle for pi/2 rad
+const Angle A_90 = Angle(90, Angle::DEG);       ///<Defualt Angle for 90 degree
+const Angle A_DEG_NULL = Angle(0, Angle::DEG);       ///<Default Angle for 0 rad
+const Angle A_RAD_NULL = Angle(0, Angle::RAD);       ///<Defualt Angle for 0 degree
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 
@@ -452,6 +520,10 @@ public:
   Tuple () : n(0) {elements.clear();}
   /*! \brief Constructors that takes the number of objectes to be stored, 
   		the objects and then stores them. 
+      For compatibility problem we strongly suggest to use this constructor 
+      only with standard types or types that can be promotted to one of the standard ones.
+      For any other type we suggest to use an empty constructor and then use 
+      the `add()` function.
 
   		\param[in] _n Number of obejctes to store.
   		\param[in] ... Objects to store.
@@ -461,7 +533,7 @@ public:
     va_list ap;
     va_start(ap, _n);
     for (int i=0; i<n; i++){
-      T temp=T(0.0);
+      T temp;
       if (std::is_same<T, float>::value){
         temp=va_arg(ap, double);
       }
@@ -869,8 +941,7 @@ public:
       \returns this. 
   */
   Point2<T> operator= (const Point2<T>& A){
-    copy(A);
-    return *this;
+    return copy(A);
   }
   /*! \brief Equalize two points.
       \param [in] A point to be compared to.
@@ -902,8 +973,14 @@ public:
   }
 
   //TODO find better implementation
-  bool operator< (const Point2<T>& A){
+  bool operator<(const Point2<T>& A){ 
     return true;
+  }
+
+  //TODO document
+  Angle th (Point2 P1, 
+            Angle::ANGLE_TYPE type=Angle::RAD){
+    return Angle(atan((P1.y()-this->y())/(P1.x()-this->x())), Angle::RAD);
   }
 
   // ~Point2(){delete values;}

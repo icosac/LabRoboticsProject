@@ -538,29 +538,38 @@ public:
 
 //TODO find non recursive approach
 /*! \brief Compute the arrangements.
-*/
-// Tuple<Tuple<int> > t;
-// void disp (Tuple<int>& z, int i, int N){
-//   if (i==0){
-//     for (uint a=1; a<N+1; a++){
-//       t.addIfNot(z);
-//       z[i]=a;
-//       if (a==N){
-//         t.addIfNot(z);
-//       }
-//     }
-//     z[i]=0;
-//   }
-//   else {
-//     for (uint a=1; a<N+1; a++){
-//       disp(z, i-1, N);
-//       z[i]=a;
-//       if (a==N)
-//         disp(z, i-1, N);
-//     }
-//     z[i]=0;
-//   }
-// }
+ */
+Tuple<Tuple<Angle> > t;
+void disp ( Tuple<Angle>& z,    ///<Vector to use
+           int id,             ///<Position on the vector to change
+           int N,              ///<Number of time to "iterate"
+           const Angle& inc)   ///<Incrementation
+// const Angle& start) ///<Starting `Angle`
+{
+  if (id==0){
+    Angle start=z.get(id);
+    for (int i=0; i<N; i++){
+      t.addIfNot(z);
+      // a+=inc;
+      z.set(id, z.get(id)+inc);
+      if (i==N-1){
+        t.addIfNot(z);
+      }
+    }
+    z.set(id, start);
+  }
+  else {
+    Angle start=z.get(id);
+    for (int i=0; i<N; i++){
+      disp(z, id-1, N, inc);
+      // a+=inc;
+      z.set(id, z.get(id)+inc);
+      if (i==N-1)
+        disp(z, id-1, N, inc);
+    }
+    z.set(id, start);
+  }
+}
 
 /*!\brief Given a set of point, compute the shortest set of Dubins that allows to go from start to end through all points.
  *
