@@ -1,13 +1,17 @@
 #include <iostream>
 #include <maths.hh>
 #include <dubins.hh>
+#include <utils.hh>
 #include <cmath>
 
 #define DEBUG
 
 using namespace std;
 
-#define M 2.0
+typedef double TYPE;
+
+#define M 8.0
+#define startPos 1
 extern Tuple<Tuple<Angle> > t;
 extern const Angle A_PI;
 extern const Angle A_2PI;
@@ -17,15 +21,16 @@ extern const Angle A_RAD_NULL;
 const Angle inc(A_PI.toRad()/(2*M), Angle::RAD);
 
 int main(){  
-  // cout << std::is_same<Point2<int>, float>::value << endl;
-  Tuple<Point2<int> > points;
-  points.add(Point2<int> (1,1));
-  points.add(Point2<int> (3,3));
-  points.add(Point2<int> (5,5));
-  points.add(Point2<int> (4,1));
-  points.add(Point2<int> (6,5));
-  points.add(Point2<int> (8,2));
-  points.add(Point2<int> (9,5));
+  // cout << std::is_same<Point2<TYPE>, float>::value << endl;
+  Tuple<Point2<TYPE> > points;
+  // points.add(Point2<TYPE> (1*100,1*100));
+  points.add(Point2<TYPE> (3*100,3*100));
+  // points.add(Point2<TYPE> (5*100,5*100));
+  points.add(Point2<TYPE> (4*100,1*100));
+  points.add(Point2<TYPE> (4*100,2*100));
+  points.add(Point2<TYPE> (6*100,5*100));
+  points.add(Point2<TYPE> (8*100,2*100));
+  points.add(Point2<TYPE> (9*100,5*100));
   
   int size=points.size()-1;
   
@@ -41,7 +46,10 @@ int main(){
     z.add(toNext-Angle(A_PI2.toRad()/2, Angle::RAD));
   }
   z.add(A_RAD_NULL);
-  
+
+  points.ahead(Point2<TYPE> (1*100,1*100));
+  z.ahead(Angle(315, Angle::DEG));
+
   #ifdef DEBUG
     cout << "Starting angles: " << endl;
     for (auto el : z){
@@ -49,8 +57,8 @@ int main(){
     } cout << endl << endl;
   #endif
 
-  disp(z, size-1, M, inc);
-  
+  disp(z, size-1, M, inc, startPos);
+
   #ifdef DEBUG
     cout << "Considered angles: " << endl;
     for (auto tupla : t){
@@ -60,20 +68,84 @@ int main(){
       }
       cout << ">" << endl;
     }
-    cout << "expected: " << pow(M+1, size) << ",  got: " << t.size() << endl;
+    cout << "expected: " << pow(M+1, size-startPos) << ",  got: " << t.size() << endl;
     cout << endl;
   #endif 
 
-  //Compute Dubins
-  Tuple<Dubins<int> > allDubins;
-  for (int i=0; i<z.size()-1; i++){
-    Dubins<int> best;
-    Dubins<int> d=Dubins<int>(points.get(i), points.get(i+1), z.get(i), z.get(i+1));
-    if (i==0) best=d;
-    if (best.length()>d.length()) best=d;
+  #define DIMX 1000
+  #define DIMY 650
+  #define INC 35
+  Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
 
-    allDubins.add(d);
+  for (auto point : points){
+      rectangle(image, Point(point.x(), point.y()), Point(point.x()+INC, point.y()+INC), Scalar(0,0,0) , -1);
   }
+
+  my_imshow("dubin", image, true);
+  mywaitkey();
+
+  //Compute Dubins
+  Tuple<Tuple<Dubins<TYPE> > > allDubins;
+  Tuple<Dubins<TYPE> > best;
+  double best_l=DInf;
+  for (auto angleT : t){
+
+    Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+    for (auto point : points){
+        rectangle(image, Point(point.x()-INC/2, point.y()-INC/2), Point(point.x()+INC/2, point.y()+INC/2), Scalar(0,0,0) , -1);
+    }
+    
+    Tuple<Dubins<TYPE> > app;
+    double l=0.0;
+    for (int i=0; i<angleT.size()-1; i++){
+      Dubins<TYPE> d=Dubins<TYPE>(points.get(i), points.get(i+1), angleT.get(i), angleT.get(i+1), 0.01);
+      if (d.getId()<0){
+        app=Tuple<Dubins<TYPE> > ();
+        break;
+      }
+      app.add(d);
+      l+=d.length();
+      #ifdef DEBUG
+        // d.draw(1500, 1000, 1, Scalar(255, 0, 0), image);
+      #endif
+    }
+    
+    if (best_l>l) {
+      best=app; 
+      best_l=l;
+      #ifdef DEBUG 
+        // my_imshow("dubin", image, true);
+        // mywaitkey();
+      #endif
+    }
+
+    allDubins.add(app);
+  }
+
+  #ifdef DEBUG
+    // cout << "Dubins: " << endl;
+    // for (auto dub : allDubins){
+    //   cout << dub << endl << endl;
+    // }
+    // cout << endl << endl << endl << endl;
+
+    cout << "Best length: " << best_l << endl;
+    for (auto dub : best){
+      cout << dub << endl;
+    }
+  #endif
+
+  Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+  for (auto point : points){
+    rectangle(best_img, Point(point.x()-INC/2, point.y()-INC/2), Point(point.x()+INC/2, point.y()+INC/2), Scalar(0,0,0) , -1);
+  }
+  for (auto dub : best){
+    dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img);
+  }
+  #ifdef DEBUG 
+    my_imshow("best", best_img, true);
+    mywaitkey();
+  #endif
 
   return 0;
 }

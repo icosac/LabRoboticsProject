@@ -36,13 +36,15 @@ MKDIR=mkdir -p
 
 #files that contain code
 #dubins and maths are only libraries
-SRC=$(wildcard src/*.cc)
+# SRC=$(wildcard src/*.cc)
+SRC=src/utils.cc 
 #object files
 OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
 
 #test files
 TEST_SRC= test/prova.cc\
-# test/maths_test.cc
+					test/dubins_test.cc\
+# 				test/maths_test.cc
 TEST_EXEC=$(subst test/,bin/test/,$(patsubst %.cc, %.out, $(TEST_SRC)))
 
 #Run files
@@ -75,12 +77,12 @@ test: lib bin_test/ $(TEST_EXEC)
 
 ##Debugging
 ECHO:
-	@echo $(SRC)
-	@echo $(OBJ)
-	@echo $(RUN)
-	@echo $(RUN_EXEC)
-	@echo $(TEST_SRC)
-	@echo $(TEST_EXEC)
+	@echo "SRC: " $(SRC)
+	@echo "OBJ: " $(OBJ)
+	@echo "RUN: " $(RUN)
+	@echo "RUN_EXEC: " $(RUN_EXEC)
+	@echo "TEST_SRC: " $(TEST_SRC)
+	@echo "TEST_EXEC: " $(TEST_EXEC)
 
 
 ##LIBRARY TARGETS
@@ -132,7 +134,7 @@ run: main
 	./bin/main.out
 #Run tests
 run_test: test
-	./bin/test/prova.out
+	$(TEST_EXEC)
 #Run calibration
 run_calibration: calibration
 	./bin/calibration_run.out

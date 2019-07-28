@@ -78,12 +78,13 @@ static double sinc(double t) {
 //Computes an arrival point from an initial configuration through an arc of length _L and curvature _K.
 Configuration2<double> circline(double _L,
                                 Configuration2<double> _P0,
-                                double _K){
-  double x=_P0.x()+_L*sinc(_K*_L/2.0) * cos(_P0.angle().get()+_K*_L/2);
-  double y=_P0.y()+_L*sinc(_K*_L/2.0) * sin(_P0.angle().get()+_K*_L/2);
-  Angle th=_P0.angle()+Angle(_K*_L, Angle::RAD);
-  
-  return Configuration2<double>(x, y, th);
+                                double _K)
+{
+  double x=_P0.x()+_L*sinc(_K*_L/2.0) * cos(_P0.angle().toRad()+_K*_L/2);
+  double y=_P0.y()+_L*sinc(_K*_L/2.0) * sin(_P0.angle().toRad()+_K*_L/2);
+  Angle th=Angle(_K*_L+_P0.angle().toRad(), Angle::RAD);
+
+  return Configuration2<double>(x, y, th.get());
 }
 
 template <class T1=double, class T2=double>
@@ -98,19 +99,19 @@ public:
   DubinsArc () : L(0), K(0), Curve<T2>() {}
 
 #ifdef MORE_FUNCTIONS
-  DubinsArc ( const Configuration2<T2> _P0,
-              const T1 _k,
-              const T1 _l) : Curve<T2>() {
+  DubinsArc <T2>( const Configuration2<T2> _P0,
+                  const T1 _k,
+                  const T1 _l) : Curve<T2>() {
     K=_k;
     L=_l;
     Configuration2<T2> _P1 = circline(L, _P0, K);
     Curve<T2>::begin(_P0); Curve<T2>::end(_P1);
   }
 #else
-  DubinsArc (const Configuration2<T2> _P0,
-             const Configuration2<T2> _P1,
-             const T1 _k,
-             const T1 _l) : Curve<T2>(_P0, _P1) {
+  DubinsArc <T2>(const Configuration2<T2> _P0,
+                 const Configuration2<T2> _P1,
+                 const T1 _k,
+                 const T1 _l) : Curve<T2>(_P0, _P1) {
     K=_k;
     L=_l;
     // cout << "_P0: " << _P0 << endl;
@@ -147,6 +148,7 @@ public:
     out << "begin: " << Curve<T2>::begin();
     out << ", end: " << Curve<T2>::end();
     out << ", K: " << getK();
+    out << ", l: " << length();
     return out;
   }
   
@@ -155,25 +157,43 @@ public:
     return out;
   }
 
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image){
+    // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
+    for (auto point : this->splitIt(1)){
+      if (point.x()>dimX || point.y()>dimY){
+        double x=point.x()>dimX ? point.x() : dimX;
+        double y=point.y()>dimY ? point.y() : dimY;
+        Mat newMat(x, y, CV_8UC3, Scalar(255, 255, 255));
+        for (double _x=0; _x<dimX; _x++){
+          for (double _y=0; _y<dimY; _y++){
+            rectangle(newMat, Point(_x, _y),Point(_x+inc, _y+inc), scl, -1);
+          }
+        }
+        image=newMat;
+      }
+      rectangle(image, Point(point.x(), point.y()), Point(point.x()+inc, point.y()+inc), scl, -1);
+    }
+  }
+
 };
 
 
-#define KMAX 1.0
+#define KMAX 0.5
 template<class T>
 class Dubins : protected Curve<T>
 {
 private:
   double Kmax, L;
   int pid;
-  DubinsArc<> A1, A2, A3;
+  DubinsArc<T> A1, A2, A3;
 
   using Curve<T>::Curve;
-  // using DubinsArc<>::DubinsArc;
+  // using DubinsArc<T>::DubinsArc;
 public:
   Dubins () : Kmax(KMAX), Curve<T>() {
-    A1=DubinsArc<>();
-    A2=DubinsArc<>();
-    A3=DubinsArc<>();
+    A1=DubinsArc<T>();
+    A2=DubinsArc<T>();
+    A3=DubinsArc<T>();
   }
 
   Dubins (const Configuration2<T> _P0,
@@ -182,9 +202,9 @@ public:
   Curve<T>(_P0, _P1), Kmax(_K) {
     pid=shortest_path();
     if (pid<0){
-      A1=DubinsArc<>();
-      A2=DubinsArc<>();
-      A3=DubinsArc<>();
+      A1=DubinsArc<T>();
+      A2=DubinsArc<T>();
+      A3=DubinsArc<T>();
     }
   }
 
@@ -196,9 +216,9 @@ public:
   Curve<T>(_P0, _P1, _th0, _th1), Kmax(_K) {
     pid=shortest_path();
     if (pid<0){
-      A1=DubinsArc<>();
-      A2=DubinsArc<>();
-      A3=DubinsArc<>();
+      A1=DubinsArc<T>();
+      A2=DubinsArc<T>();
+      A3=DubinsArc<T>();
     }
   }
 
@@ -210,9 +230,9 @@ public:
   Curve<T>(x0, y0, _th0, x1, y1, _th1), Kmax(_K) {
     pid=shortest_path();
     if (pid<0){
-      A1=DubinsArc<>();
-      A2=DubinsArc<>();
-      A3=DubinsArc<>();
+      A1=DubinsArc<T>();
+      A2=DubinsArc<T>();
+      A3=DubinsArc<T>();
     }
   }
 
@@ -220,9 +240,9 @@ public:
   double length   () const { return L; }
   double getId    ()  { return pid; }
 
-  DubinsArc<> getA1() const { return A1; }
-  DubinsArc<> getA2() const { return A2; }
-  DubinsArc<> getA3() const { return A3; }
+  DubinsArc<T> getA1() const { return A1; }
+  DubinsArc<T> getA2() const { return A2; }
+  DubinsArc<T> getA3() const { return A3; }
 
 #ifndef OPENCL_COMPILE
   Tuple<double> LSL (Angle th0, Angle th1, double _kmax)
@@ -259,12 +279,12 @@ public:
     double sc_s1=Angle(th0.get()-atan2(C,S), Angle::RAD).get()*invK;
     double sc_s2=invK*sqrt(temp1);
     double sc_s3=Angle(atan2(C,S)-th1.get(), Angle::RAD).get()*invK;
-    
+
     return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
   Tuple<double> LSR (Angle th0, Angle th1, double _kmax)
-  {
+  {    
     double C = th0.cos()+th1.cos();
     double S=2*_kmax+th0.sin()+th1.sin();
     
@@ -278,7 +298,7 @@ public:
     double sc_s2=invK*sqrt(temp1);
     double sc_s1= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th0.get(), Angle::RAD).get()*invK;
     double sc_s3= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th1.get(), Angle::RAD).get()*invK;
-    
+
     return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
@@ -354,15 +374,17 @@ public:
     double dy=Curve<T>::end().y() - Curve<T>::begin().y();
 
     double _phi=atan2(dy, dx);
+
     Angle phi= Angle(_phi, Angle::RAD);
 
     double lambda=sqrt(pow2(dx)+pow2(dy))/2; //hypt
 
     Angle sc_th0 = Curve<T>::begin().angle()-phi;
     Angle sc_th1 = Curve<T>::end().angle()-phi;
+
     double sc_Kmax = Kmax*lambda;
 
-    return Tuple<double> (4, sc_th0.get(), sc_th1.get(), sc_Kmax, lambda);
+    return Tuple<double> (4, sc_th0.toRad(), sc_th1.toRad(), sc_Kmax, lambda);
   }
 
   Tuple<double> scaleFromStandard(double lambda,
@@ -426,22 +448,22 @@ public:
       };
 
 #ifdef MORE_FUNCTIONS
-      A1=DubinsArc<>(Curve<T>::begin(), ksigns[pidx][0], sc_std.get(0));
-      A2=DubinsArc<>(A1.end(), ksigns[pidx][1], sc_std.get(1));
-      A3=DubinsArc<>(A2.end(), ksigns[pidx][2], sc_std.get(2));
+      A1=DubinsArc<T>(Curve<T>::begin(), ksigns[pidx][0]*Kmax, sc_std.get(0));
+      A2=DubinsArc<T>(A1.end(), ksigns[pidx][1]*Kmax, sc_std.get(1));
+      A3=DubinsArc<T>(A2.end(), ksigns[pidx][2]*Kmax, sc_std.get(2));
 #else
       double L = sc_std.get(0);
       double K = ksigns[pidx][0];
       Configuration2<double> _P1 = circline(L, Curve<T>::begin(), K);
-      A1=DubinsArc<>(Curve<T>::begin(), _P1, K, L);
+      A1=DubinsArc<T>(Curve<T>::begin(), _P1, K, L);
       
       L = sc_std.get(1); K = ksigns[pidx][1];
       _P1 = circline(L, A1.begin(), K);
-      A2=DubinsArc<>(A1.begin(), _P1, K, L);
+      A2=DubinsArc<T>(A1.begin(), _P1, K, L);
       
       L = sc_std.get(2); K = ksigns[pidx][2];
       _P1 = circline(L, A2.begin(), K);
-      A3=DubinsArc<>(A2.begin(), _P1, K, L);
+      A3=DubinsArc<T>(A2.begin(), _P1, K, L);
 #endif
       L=A1.length()+A2.length()+A3.length(); //Save total length of Dubins curve
 
@@ -534,6 +556,12 @@ public:
     return out;
   }
 
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image){
+    A1.draw(dimX, dimY, inc, scl, image);
+    A2.draw(dimX, dimY, inc, scl, image);
+    A3.draw(dimX, dimY, inc, scl, image);
+  }
+
 };
 
 //TODO find non recursive approach
@@ -541,12 +569,13 @@ public:
  */
 Tuple<Tuple<Angle> > t;
 void disp ( Tuple<Angle>& z,    ///<Vector to use
-           int id,             ///<Position on the vector to change
-           int N,              ///<Number of time to "iterate"
-           const Angle& inc)   ///<Incrementation
+            int id,             ///<Position on the vector to change
+            int N,              ///<Number of time to "iterate"
+            const Angle& inc,   ///<Incrementation
+            int startPos=0)        ///<If there are values at the beginning of the tuple not to change.
 // const Angle& start) ///<Starting `Angle`
 {
-  if (id==0){
+  if (id==startPos){
     Angle start=z.get(id);
     for (int i=0; i<N; i++){
       t.addIfNot(z);
@@ -561,11 +590,11 @@ void disp ( Tuple<Angle>& z,    ///<Vector to use
   else {
     Angle start=z.get(id);
     for (int i=0; i<N; i++){
-      disp(z, id-1, N, inc);
+      disp(z, id-1, N, inc, startPos);
       // a+=inc;
       z.set(id, z.get(id)+inc);
       if (i==N-1)
-        disp(z, id-1, N, inc);
+        disp(z, id-1, N, inc, startPos);
     }
     z.set(id, start);
   }

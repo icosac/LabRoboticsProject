@@ -38,8 +38,8 @@ inline T pow2 (const T x){
   return x*x;
 }
 
-#define DEGTORAD M_PI/180
-#define RADTODEG 180/M_PI
+#define DEGTORAD (M_PI/180)
+#define RADTODEG (180/M_PI)
 
 
 /*! \brief This class allows to save and handle angles. It supports DEG and RAD, 
@@ -616,6 +616,17 @@ public:
     	res=1;
     }
     return res;
+  }
+
+  //TODO Document and also should test......
+  void ahead (const T _new){
+    Tuple<T> newT;
+    newT.add(_new);
+    for (auto el : *this){
+      newT.add(el);
+    }
+    this->add(T());
+    *this=newT;
   }
   
   bool equal(Tuple<T> _t){
@@ -1220,6 +1231,12 @@ public:
   */
   bool operator== (const Configuration2<T1>& A){
     return equal(A);
+  }
+
+  //TODO document
+  template<class T2>
+  operator Configuration2<T2>() const {
+    return ( Configuration2<T2>((T2)(this->x()), (T2)(this->y()), this->angle()) );
   }
 
   // ~Configuration2(){delete coord;}
