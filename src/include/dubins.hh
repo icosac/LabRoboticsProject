@@ -564,6 +564,8 @@ public:
 
 };
 
+// #define EXP
+#ifdef EXP
 //TODO find non recursive approach
 /*! \brief Compute the arrangements.
  */
@@ -599,6 +601,22 @@ void disp ( Tuple<Tuple<Angle> >& t,
     z.set(id, start);
   }
 }
+#else
+/*! \brief Compute the arrangements.
+ */
+void disp(Tuple<Tuple<int> >& t,
+          Tuple<int>& z,    ///<Vector to use
+          int N,              ///<Number of time to "iterate"
+          // const Angle& inc,   ///<Incrementation
+          int startPos=0){
+  cout << "size: " << pow(z.size(), N) << endl;
+  for (unsigned long i=0; i<pow(z.size(), N) && i<3; i++){
+    z.set((int)(i/N), i%N);
+    t.add(z);
+  }
+  COUT(t)
+}
+#endif
 
 /*!\brief Given a set of point, compute the shortest set of Dubins that allows to go from start to end through all points.
  *
@@ -640,7 +658,7 @@ private:
             double _kmax=KMAX){
     #ifdef DEBUG
       cout << "Considered points: " << endl;
-      cout << points << endl;
+      cout << _points << endl;
       cout << endl;
     #endif
     int size=_points.size();
@@ -664,7 +682,7 @@ private:
     Tuple<Tuple<Angle> > angles;
 
     //Create all angles to check
-    disp(angles, init_angl, size, tries, inc, 0); //startPos=0 since I've to look for all angles
+    // disp(angles, init_angl, size, tries, inc, 0); //startPos=0 since I've to look for all angles
 
     #ifdef DEBUG
       cout << "Considered angles: " << endl;
@@ -683,7 +701,7 @@ private:
       #define INC 35
       Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
 
-      for (auto point : points){
+      for (auto point : _points){
         rectangle(image, Point(point.x(), point.y()), Point(point.x()+INC, point.y()+INC), Scalar(0,0,0) , -1);
       }
 
@@ -698,7 +716,7 @@ private:
       
       #ifdef DEBUG
         Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
-        for (auto point : points){
+        for (auto point : _points){
             rectangle(image, Point(point.x()-INC/2, point.y()-INC/2), Point(point.x()+INC/2, point.y()+INC/2), Scalar(0,0,0) , -1);
         }
       #endif
@@ -725,7 +743,7 @@ private:
 
     #ifdef DEBUG 
       Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
-      for (auto point : points){
+      for (auto point : _points){
         rectangle(best_img, Point(point.x()-INC/2, point.y()-INC/2), Point(point.x()+INC/2, point.y()+INC/2), Scalar(0,0,0) , -1);
       }
       for (auto dub : this->dubinses){

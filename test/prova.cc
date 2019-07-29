@@ -12,15 +12,16 @@ typedef double TYPE;
 
 #define M 4.0
 #define startPos 1
-extern Tuple<Tuple<Angle> > t;
 
-extern Angle A_PI;
-extern Angle A_2PI;
-extern Angle A_PI2;
-extern Angle A_90;
-extern Angle A_RAD_NULL;
+extern const Angle A_PI;
+extern const Angle A_2PI;
+extern const Angle A_PI2;
+extern const Angle A_90;
+extern const Angle A_RAD_NULL;
 
 const Angle inc(A_PI.toRad()/(2*M), Angle::RAD);
+
+
 
 int main(){  
   Tuple<Point2<TYPE> > points;
@@ -32,6 +33,10 @@ int main(){
   points.add(Point2<TYPE> (6*100,5*100));
   points.add(Point2<TYPE> (8*100,2*100));
   points.add(Point2<TYPE> (9*100,5*100));
+
+  Tuple<Tuple<int> > t;
+  Tuple<int> z(3, 0, 0, 0);
+  disp(t, z, 4, Angle());
   
   // int size=points.size()-1;
   
