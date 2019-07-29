@@ -1,8 +1,8 @@
 #ifndef DUBINS_HH
 #define DUBINS_HH
 
-#include "maths.hh"
-#include "utils.hh"
+#include <maths.hh>
+#include <utils.hh>
 
 #include <iostream>
 #include <sstream>
@@ -99,7 +99,7 @@ public:
   DubinsArc () : L(0), K(0), Curve<T2>() {}
 
 #ifdef MORE_FUNCTIONS
-  DubinsArc <T2>( const Configuration2<T2> _P0,
+  DubinsArc( const Configuration2<T2> _P0,
                   const T1 _k,
                   const T1 _l) : Curve<T2>() {
     K=_k;

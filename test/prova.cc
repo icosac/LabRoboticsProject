@@ -10,18 +10,19 @@ using namespace std;
 
 typedef double TYPE;
 
-#define M 8.0
+#define M 4.0
 #define startPos 1
 extern Tuple<Tuple<Angle> > t;
-extern const Angle A_PI;
-extern const Angle A_2PI;
-extern const Angle A_PI2;
-extern const Angle A_RAD_NULL;
+
+extern Angle A_PI;
+extern Angle A_2PI;
+extern Angle A_PI2;
+extern Angle A_90;
+extern Angle A_RAD_NULL;
 
 const Angle inc(A_PI.toRad()/(2*M), Angle::RAD);
 
 int main(){  
-  // cout << std::is_same<Point2<TYPE>, float>::value << endl;
   Tuple<Point2<TYPE> > points;
   // points.add(Point2<TYPE> (1*100,1*100));
   points.add(Point2<TYPE> (3*100,3*100));
@@ -45,7 +46,7 @@ int main(){
     Angle toNext=points.get(i).th(points.get(i+1));
     z.add(toNext-Angle(A_PI2.toRad()/2, Angle::RAD));
   }
-  z.add(A_RAD_NULL);
+  z.add(Angle(270, Angle::DEG));
 
   points.ahead(Point2<TYPE> (1*100,1*100));
   z.ahead(Angle(315, Angle::DEG));

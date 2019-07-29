@@ -38,8 +38,8 @@ inline T pow2 (const T x){
   return x*x;
 }
 
-#define DEGTORAD (M_PI/180)
-#define RADTODEG (180/M_PI)
+const double DEGTORAD=(M_PI/180.0);
+const double RADTODEG=(180.0/M_PI);
 
 
 /*! \brief This class allows to save and handle angles. It supports DEG and RAD, 
@@ -121,14 +121,14 @@ public:
   		\returns The value of the angle
   */  
   inline double toRad () const {
-    return type==DEG ? (double)(th*DEGTORAD) : th;
+    return (type==DEG ? (double)(th*DEGTORAD) : th);
   }
 
   /*!	\brief Converts but does not store the value of the angle from RAD to DEG.
   		\returns The value of the angle
   */
   inline double toDeg () const {
-    return type==RAD ? (double)(th*RADTODEG) : th;
+    return (type==RAD ? (double)(th*RADTODEG) : th);
   }
   
   static inline bool checkValue (const double th) {
@@ -493,14 +493,14 @@ public:
   }
 };
 
-const Angle A_2PI = Angle(M_PI*2.0, Angle::RAD);  ///<Default Angle for 2pi rad
-const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);///<Default Angle for 360 degree
-const Angle A_PI = Angle(M_PI, Angle::RAD);       ///<Default Angle for pi rad
-const Angle A_180 = Angle(180, Angle::DEG);       ///<Defualt Angle for 180 degree
-const Angle A_PI2 = Angle(M_PI/2.0, Angle::RAD);       ///<Default Angle for pi/2 rad
-const Angle A_90 = Angle(90, Angle::DEG);       ///<Defualt Angle for 90 degree
-const Angle A_DEG_NULL = Angle(0, Angle::DEG);       ///<Default Angle for 0 rad
-const Angle A_RAD_NULL = Angle(0, Angle::RAD);       ///<Defualt Angle for 0 degree
+Angle A_2PI = Angle(6.2831853071, Angle::RAD);  ///<Default Angle for 2pi rad
+Angle A_360 = Angle(360.0-Epsi, Angle::DEG);///<Default Angle for 360 degree
+Angle A_PI = Angle(M_PI, Angle::RAD);       ///<Default Angle for pi rad
+Angle A_180 = Angle(180, Angle::DEG);       ///<Defualt Angle for 180 degree
+Angle A_PI2 = Angle(M_PI/2.0, Angle::RAD);       ///<Default Angle for pi/2 rad
+Angle A_90 = Angle(90, Angle::DEG);       ///<Defualt Angle for 90 degree
+Angle A_DEG_NULL = Angle(0, Angle::DEG);       ///<Default Angle for 0 rad
+Angle A_RAD_NULL = Angle(0, Angle::RAD);       ///<Defualt Angle for 0 degree
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 
