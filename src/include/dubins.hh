@@ -1,8 +1,8 @@
 #ifndef DUBINS_HH
 #define DUBINS_HH
 
-#include <maths.hh>
 #include <utils.hh>
+#include <maths.hh>
 
 #include <iostream>
 #include <sstream>
@@ -567,8 +567,8 @@ public:
 //TODO find non recursive approach
 /*! \brief Compute the arrangements.
  */
-Tuple<Tuple<Angle> > t;
-void disp ( Tuple<Angle>& z,    ///<Vector to use
+void disp ( Tuple<Tuple<Angle> >& t,
+            Tuple<Angle>& z,    ///<Vector to use
             int id,             ///<Position on the vector to change
             int N,              ///<Number of time to "iterate"
             const Angle& inc,   ///<Incrementation
@@ -590,11 +590,11 @@ void disp ( Tuple<Angle>& z,    ///<Vector to use
   else {
     Angle start=z.get(id);
     for (int i=0; i<N; i++){
-      disp(z, id-1, N, inc, startPos);
+      disp(t, z, id-1, N, inc, startPos);
       // a+=inc;
       z.set(id, z.get(id)+inc);
       if (i==N-1)
-        disp(z, id-1, N, inc, startPos);
+        disp(t, z, id-1, N, inc, startPos);
     }
     z.set(id, start);
   }
@@ -611,10 +611,10 @@ private:
 
   DubinsSet(Tuple<Dubins<T> > _dubinses,
             double _kmax=KMAX){
-    dubinses=_dubinses;
-    Kmax=_kmax;
-    for (Dubins<T> dub : _dubinses){
-      L+=dub.length();
+    this->dubinses=_dubinses;
+    this->Kmax=_kmax;
+    for (Dubins<T> dub : this->dubinses){
+      this->L+=dub.length();
     } 
   }
 
@@ -622,10 +622,10 @@ private:
             double _kmax=KMAX){
     for (int i=0; i<_confs.size()-1; i++){
       Dubins<T> dub=Dubins<T>(_confs.get(i), _confs.get(i+1));
-      dubinses.add(dub);
-      L+=dub.length();
+      this->dubinses.add(dub);
+      this->L+=dub.length();
     }
-    Kmax=_kmax;
+    this->Kmax=_kmax;
   }
 
   DubinsSet(Configuration2<T> start, 
@@ -635,11 +635,133 @@ private:
   }
 
   DubinsSet(Tuple<Point2<T> > _points,
+            Angle area,
+            int tries,
             double _kmax=KMAX){
-    // uint size=_points.size();
-    // for (uint i=0; i<size-1; i++){ //Cycle through all pair of points
-    // }
+    #ifdef DEBUG
+      cout << "Considered points: " << endl;
+      cout << points << endl;
+      cout << endl;
+    #endif
+    int size=_points.size();
+
+    //Compute all initial angles, that is the coeficient for the line that connects two points
+    Tuple<Angle> init_angl;
+    for (int i=0; i<size; i++){
+      Angle toNext=_points.get(i).th(_points.get(i+1));
+      init_angl.add(toNext-Angle(area.toRad()/2, Angle::RAD));
+    }
+
+    #ifdef DEBUG
+      cout << "Starting angles: " << endl;
+      for (auto el : init_angl){
+        cout << el.to_string(Angle::DEG).str() << "  ";
+      } cout << endl << endl;
+    #endif
+    
+    //Compute inc:
+    Angle inc=(area.toRad()/tries, Angle::RAD);
+    Tuple<Tuple<Angle> > angles;
+
+    //Create all angles to check
+    disp(angles, init_angl, size, tries, inc, 0); //startPos=0 since I've to look for all angles
+
+    #ifdef DEBUG
+      cout << "Considered angles: " << endl;
+      for (auto tupla : angles){
+        cout << "<";
+        for (int i=0; i<tupla.size(); i++){
+          cout << tupla.get(i).to_string(Angle::DEG).str() << (i==tupla.size()-1 ? "" : ", ");
+        }
+        cout << ">" << endl;
+      }
+      cout << "expected: " << pow(tries+1, size) << ",  got: " << angles.size() << endl;
+      cout << endl;
+
+      #define DIMX 1000
+      #define DIMY 650
+      #define INC 35
+      Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+
+      for (auto point : points){
+        rectangle(image, Point(point.x(), point.y()), Point(point.x()+INC, point.y()+INC), Scalar(0,0,0) , -1);
+      }
+
+      my_imshow("dubin", image, true);
+      mywaitkey();
+    #endif
+
+    //Compute Dubins
+    Tuple<Tuple<Dubins<T> > > allDubins;
+    this->L=DInf;
+    for (auto angleT : angles){
+      
+      #ifdef DEBUG
+        Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+        for (auto point : points){
+            rectangle(image, Point(point.x()-INC/2, point.y()-INC/2), Point(point.x()+INC/2, point.y()+INC/2), Scalar(0,0,0) , -1);
+        }
+      #endif
+
+      Tuple<Dubins<T> > app;
+      double l=0.0;
+      for (int i=0; i<angleT.size()-1; i++){
+        Dubins<T> d=Dubins<T>(_points.get(i), _points.get(i+1), angleT.get(i), angleT.get(i+1), 0.01);
+        if (d.getId()<0){
+          app=Tuple<Dubins<T> > ();
+          break;
+        }
+        app.add(d);
+        l+=d.length();
+      }
+      
+      if ((this->L)>l) {
+        this->dubinses=app; 
+        this->L=l;
+      }
+
+      allDubins.add(app);
+    }
+
+    #ifdef DEBUG 
+      Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+      for (auto point : points){
+        rectangle(best_img, Point(point.x()-INC/2, point.y()-INC/2), Point(point.x()+INC/2, point.y()+INC/2), Scalar(0,0,0) , -1);
+      }
+      for (auto dub : this->dubinses){
+        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img);
+      }
+      my_imshow("best", best_img, true);
+      mywaitkey();
+    #endif
   }
+
+  double getLength()              { return this->L; }  
+  double getKmax()                { return this->Kmax; } 
+  double getSize()                { return this->dubinses.size(); }
+  Tuple<Dubins<T> > getDubinses() { return this->dubinses; }
+  
+  Dubins<T> getDubins(int id){
+    if (id<this->size()){
+      return dubinses.get(id);
+    }
+    return Dubins<T>();
+  }
+
+  stringstream to_string() const {
+    stringstream out;
+    for (auto dub : this->dubinses){
+      out << dub << endl;
+    }
+    return out;
+  }
+
+  friend ostream& operator<<(ostream &out, const DubinsSet& data) {
+    out << data.to_string().str();
+    return out;
+  }
+
+
 };
 
 #endif

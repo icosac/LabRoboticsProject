@@ -36,8 +36,8 @@ MKDIR=mkdir -p
 
 #files that contain code
 #dubins and maths are only libraries
-# SRC=$(wildcard src/*.cc)
-SRC=src/utils.cc 
+SRC=$(wildcard src/*.cc)
+# SRC=src/utils.cc 
 #object files
 OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
 

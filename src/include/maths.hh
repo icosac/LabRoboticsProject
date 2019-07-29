@@ -493,14 +493,14 @@ public:
   }
 };
 
-Angle A_2PI = Angle(6.2831853071, Angle::RAD);  ///<Default Angle for 2pi rad
-Angle A_360 = Angle(360.0-Epsi, Angle::DEG);///<Default Angle for 360 degree
-Angle A_PI = Angle(M_PI, Angle::RAD);       ///<Default Angle for pi rad
-Angle A_180 = Angle(180, Angle::DEG);       ///<Defualt Angle for 180 degree
-Angle A_PI2 = Angle(M_PI/2.0, Angle::RAD);       ///<Default Angle for pi/2 rad
-Angle A_90 = Angle(90, Angle::DEG);       ///<Defualt Angle for 90 degree
-Angle A_DEG_NULL = Angle(0, Angle::DEG);       ///<Default Angle for 0 rad
-Angle A_RAD_NULL = Angle(0, Angle::RAD);       ///<Defualt Angle for 0 degree
+const Angle A_2PI = Angle(6.2831853071-Epsi, Angle::RAD);  ///<Default Angle for 2pi rad
+const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);///<Default Angle for 360 degree
+const Angle A_PI = Angle(M_PI, Angle::RAD);       ///<Default Angle for pi rad
+const Angle A_180 = Angle(180, Angle::DEG);       ///<Defualt Angle for 180 degree
+const Angle A_PI2 = Angle(M_PI/2.0, Angle::RAD);       ///<Default Angle for pi/2 rad
+const Angle A_90 = Angle(90, Angle::DEG);       ///<Defualt Angle for 90 degree
+const Angle A_DEG_NULL = Angle(0, Angle::DEG);       ///<Default Angle for 0 rad
+const Angle A_RAD_NULL = Angle(0, Angle::RAD);       ///<Defualt Angle for 0 degree
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 
