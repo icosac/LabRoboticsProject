@@ -11,6 +11,7 @@
 #include <maths.hh>
 #include <settings.hh>
 #include <utils.hh>
+#include <objects.hh>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/core.hpp>
@@ -25,7 +26,13 @@ enum OBJ_TYPE {FREE, VICT, OBST, GATE, BODA/*shortcut for border*/};
 class Mapp{
     protected:
         OBJ_TYPE **map;
-        constexpr static double baseDistance = -1.0;  //it is the reference base distance for the matrix of distances
+
+        constexpr static double baseDistance = -1.0;  //It is the reference base distance for the matrix of distances
+        const int range = 3;        // It is the foundamental parameter of the function minPath (the right compromise its 3)
+        const int foundLimit = 5;   // Empiric limit of found, it represent how many times the destination will be visited before the end of the BFS. 0 is the base case (first visit=stop) ~150, or better, none is the opposite limit.
+        const int offsetValue = 60; // It is the offset applied to the obstacles defined in millimeters.
+        static const int borderSizeDefault = 10;    // It is the default of the enlargement of the border for the obstacles.
+        static const int cellSize = 10;     // It is the default size of the each cell: 10x10 pixels
 
         set<pair<int, int> > cellsFromSegment(const Point2<int> & p0, const Point2<int> & p1);
         vector<Point2<int> > minPathTwoPointsInternal(
@@ -41,12 +48,21 @@ class Mapp{
         int pixY;       // dimension of the cell (pixels): 5
         int borderSize; // how many cells of the object sides are consider border from outside: 2
 
-    public:
-        Mapp(const int _lengthX=1000, const int _lengthY=1500, const int _pixX=10, const int _pixY=10, const int border=2,
-            const vector< vector<Point2<int> > > & vvp = vector< vector<Point2<int> > >() );
+        vector<Obstacle> vObstacles;    // It is the vector containing all the obstacles of the map
+        vector<Victim> vVictims;        // It is the vector containing all the victims   of the map
+        vector<Gate> vGates;            // It is the vector containing all the gates     of the map
 
-        void addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYPE type);
-            void addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type);
+    public:
+        Mapp(const int _lengthX=1000, const int _lengthY=1500, const int _pixX=cellSize, const int _pixY=cellSize, const int _borderSize=borderSizeDefault, const vector< vector<Point2<int> > > & vvp = vector< vector<Point2<int> > >() );
+
+        void addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type);
+            void addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYPE type);
+            void addObjects(const vector<Obstacle> & objs);
+            void addObjects(const vector<Victim> & objs);
+            void addObjects(const vector<Gate> & objs);
+            
+        void getVictimCenters(vector<Point2<int> > & vp);
+        void getGateCenter(vector<Point2<int> > & vp);
 
         OBJ_TYPE getPointType(const Point2<int> & p);
         bool checkSegment(const Point2<int> & p0, const Point2<int> & p1);

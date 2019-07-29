@@ -38,12 +38,6 @@ int main (){
 	Mat imageMap = map->createMapRepresentation();
 
 	map->imageAddPoint(imageMap, Point2<int>(100, 150) );
-	map->imageAddPoint(imageMap, Point2<int>(200, 300) );
-	map->imageAddPoint(imageMap, Point2<int>(50, 1100) );
-	map->imageAddPoint(imageMap, Point2<int>(900, 1450));
-	map->imageAddPoint(imageMap, Point2<int>(800, 200) );
-	map->imageAddPoint(imageMap, Point2<int>(300, 100) );
-
 	map->imageAddSegments(imageMap, pathPoints);
 
 	#ifdef WAIT

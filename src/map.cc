@@ -89,18 +89,6 @@ set<pair<int, int> > Mapp::cellsFromSegment(const Point2<int> & p0, const Point2
     return(cells);
 }
 
-/*! \brief Given a vector obstacles it is added them to the map.
-    \details This means that all the cells of the map that are partly cover from these obstacles will be set to its type. It is a wrapper function of addObject.
-
-    \param[in] vvp It is the vector of vector of points (set of convex hull) that delimit the objects of interest.
-    \param[in] type It is the type of the given object. Defined as a OBJ_TYPE.
-*/
-void Mapp::addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYPE type){
-    for(unsigned int i=0; i<vvp.size(); i++){
-        addObject(vvp[i], type);
-    }
-}
-
 /*! \brief Given an obstacle it is added to the map.
     \details This means that all the cells of the map that are partly cover from this obstacle will be set to its type.
 
@@ -165,6 +153,73 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
         }
         // delete[] minimums;
         // delete[] maximums; //NEVER uncomment this line. it cause "double free or corruption (out)" error ! ! ! 
+    }
+}
+
+/*! \brief Given a vector objects it is added them to the map.
+    \details This means that all the cells of the map that are partly cover from these obstacles will be set to its type. It is a wrapper function of addObject.
+
+    \param[in] vvp It is the vector of vector of points (set of convex hull) that delimit the objects of interest.
+    \param[in] type It is the type of the given object. Defined as a OBJ_TYPE.
+*/
+void Mapp::addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYPE type){
+    for(unsigned int i=0; i<vvp.size(); i++){
+        addObject(vvp[i], type);
+    }
+}
+
+/*! \brief Given a vector of obstacles adds them to the map.
+    \details This means that all the cells of the map that are partly cover from these obstacles will be set to its type. It is a wrapper function of addObject.
+
+    \param[in] objs It is the vector of obstacles to be loaded in the map structure.
+*/
+void Mapp::addObjects(const vector<Obstacle> & objs){
+    for(auto el : objs){
+        //el.offsetting(offsetValue);
+        vObstacles.push_back(el);
+        addObject(el.getPoints(), OBST);
+    }
+}
+
+/*! \brief Given a vector of gates (tipically this vector contain only one element) adds it to the map.
+    \details This means that all the cells of the map that are partly cover from this gate will be set to its type. It is a wrapper function of addObject.
+
+    \param[in] objs It is the vector of gates to be loaded in the map structure.
+*/
+void Mapp::addObjects(const vector<Gate> & objs){
+    for(auto el : objs){
+        vGates.push_back(el);
+        addObject(el.getPoints(), GATE);
+    }
+}
+
+/*! \brief Given a vector of victims adds them to the map.
+    \details This means that all the cells of the map that are partly cover from these victims will be set to its type. It is a wrapper function of addObject.
+
+    \param[in] objs It is the vector of victims to be loaded in the map structure.
+*/
+void Mapp::addObjects(const vector<Victim> & objs){
+    for(auto el : objs){
+        vVictims.push_back(el);
+        addObject(el.getPoints(), VICT);
+    }
+}
+
+/*! \brief Add to the given vector the set of centers of the victims of the map.
+    \param[out] vp A vector where the requested centers will be added.
+*/
+void Mapp::getVictimCenters(vector<Point2<int> > & vp){
+    for(auto el : vVictims){
+        vp.push_back( el.getCenter() );
+    }
+}
+
+/*! \brief Add to the given vector the center of the gate of the map.
+    \param[out] vp A vector where the requested center will be added.
+*/
+void Mapp::getGateCenter(vector<Point2<int> > & vp){
+    if(vGates.size()>=0){
+        vp.push_back( vGates[0].getCenter() );
     }
 }
 
@@ -298,8 +353,8 @@ vector<Point2<int> > Mapp::minPathTwoPointsInternal(
     int found = 0;
 
     // precompute the computation of the distances inn the square of edges around the cell of interest
-    int r = 3; //range
-    int side = 2*r+1;
+    const int r = range; //range from class variable (default=3)
+    const int side = 2*r+1;
     double computedDistances[(int)pow(side, 2)]; // all the cells in a sqare of side where the center is the cell of interest
     for(int i=(-r); i<=r; i++){
         for(int j=(-r); j<=r; j++){
@@ -309,7 +364,7 @@ vector<Point2<int> > Mapp::minPathTwoPointsInternal(
 
     // start iteration of the BFS
     while   (  !toProcess.empty()
-              && found<=5
+              && found<=foundLimit
             ){
         // for each cell from the queue
         Point2<int> cell = toProcess.front();
@@ -347,7 +402,7 @@ vector<Point2<int> > Mapp::minPathTwoPointsInternal(
     // reconstruct the vector of parents of the cells in the minPath
     vector<Point2<int> > computedParents;
 
-    if(!found){
+    if(found==0){
         cerr << "\n\n\t\tDestination of minPath not reached ! ! !\n\n\n";
     } else {
         // computing the vector of parents

@@ -9,6 +9,7 @@
 #include <utils.hh>
 #include <maths.hh>
 #include <settings.hh>
+#include <objects.hh>
 
 using namespace std;
 using namespace cv;

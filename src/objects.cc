@@ -23,14 +23,36 @@ string Object::toString(){
 /*! \brief Return the number of points of the object.
     \returns The number of points.
 */
-unsigned Object::size(){
+unsigned int Object::size(){
     return(points.size());
 }
+
 /*! \brief Return the number of points of the object.
-    \returns Tthe number of points.
+    \returns The number of points.
 */
-unsigned Object::nPoints(){
+unsigned int Object::nPoints(){
     return(points.size());
+}
+
+/*! \brief Return the of points of the object.
+    \returns The vector of points.
+*/
+vector<Point2<int> > Object::getPoints(){
+    return(points);
+}
+
+/*! \brief Retrieve the center of the object.
+    \returns The center.
+*/
+Point2<int> Object::getCenter(){
+    return(center);
+}
+
+/*! \brief Retrieve the radius of the object.
+    \returns The radius.
+*/
+double Object::getRadius(){
+    return(radius);
 }
 
 /*! \brief Find the representative center of the object.
@@ -66,7 +88,7 @@ void Object::computeCenter(){
 */
 void Object::computeRadius(){
     if(points.size()>=1){
-        float dist, maxRadius = center.distance(points[0]);
+        double dist, maxRadius = center.distance(points[0]);
         for(unsigned i=1; i<points.size(); i++){
             dist = center.distance(points[i]);
             if(dist>maxRadius){
@@ -77,7 +99,7 @@ void Object::computeRadius(){
     }
 }
 
-/*! \brief Enlarge the object of the given offset.
+/*! \brief Enlarge the object of the given offset (defined as pixels=mm in our scenario).
     \details The function automatically update even the center and the radius.
 
     \param[in] offset The size of the offset.
@@ -116,7 +138,7 @@ void Object::offsetting(const int offset){
     \returns True if the point is inside the object, false otherwise.
 */
 bool Object::insidePolyApprox(Point2<int> pt){
-    //cout << "distance: " << distance(p, center) << endl;
+    // cout << "distance: " << pt.distance(center) << endl;
     return((pt.distance(center)<=radius) ? true : false);
 }
 
@@ -177,7 +199,7 @@ bool Object::insidePoly(Point2<int> pt){
     \param[in] vp Vector of points that is the convex hull of the obstacle.
     \returns Return the created obstacle.
 */
-Obstacle::Obstacle(vector<Point2<int> > vp){
+Obstacle::Obstacle(vector<Point2<int> > & vp){
     points = vp;
     if(vp.size()==0){
         center = Point2<int>(-1, -1);
@@ -201,6 +223,36 @@ void Obstacle::print(){
     cout << toString();
 }
 
+//_______________________________   Gate   _______________________________
+/*! \brief Constructor of the gate class and automatically compute center and radius.
+
+    \param[in] vp Vector of points that is the convex hull of the gate.
+    \returns Return the created gate.
+*/
+Gate::Gate(vector<Point2<int> > & vp){
+    points = vp;
+    if(vp.size()==0){
+        center = Point2<int>(-1, -1);
+        radius = -1.0;
+    } else{
+        computeCenter();
+        computeRadius();
+    }
+}
+
+/*! \brief Generate a string that describe the gate.
+    \returns The generated string.
+*/
+string Gate::toString(){
+    return("Gate:\n" + Object::toString());
+}
+
+/*! \brief Print the describing string of the gate.
+*/
+void Gate::print(){
+    cout << toString();
+}
+
 //_______________________________   Victim   _______________________________
 /*! \brief Constructor of the victim class and automatically compute center and radius.
 
@@ -208,7 +260,7 @@ void Obstacle::print(){
     \param[in] _value The representative number of the victim.
     \returns Return the created victim.
 */
-Victim::Victim(vector<Point2<int> > vp, int _value){
+Victim::Victim(vector<Point2<int> > & vp, int _value){
     points = vp;
     value = _value;
     if(vp.size()==0){
@@ -235,28 +287,3 @@ void Victim::print(){
     cout << toString();
 }
 
-/*int main(){ // basic main that test the functionalities of the classes
-    // vector<Point2<int> > o;
-    // o.push_back(Point2<int>(1, 1));
-    // o.push_back(Point2<int>(4, 3));
-    // Obstacle obj(o);
-    // obj.print();
-    // cout << obj.insidePolyApprox(Point2<int>(4, 1)) << endl << endl;
-
-
-    vector<Point2<int> > v;
-    v.push_back(Point2<int>(1, 1));
-    v.push_back(Point2<int>(4, 2));
-    v.push_back(Point2<int>(2, 7));
-    Victim vict(v, 3);
-    vict.print();
-    Point2<int> pt(4, 4);
-    cout << "Point: " << pt << "\n\tapprox: " << vict.insidePolyApprox(pt) << " - real: " << vict.insidePoly(pt) << endl;
-
-    cout << "\nCompute offsetting\n";
-    vict.offsetting(2);
-    vict.print();
-    cout << "Point: " << pt << "\n\tapprox: " << vict.insidePolyApprox(pt) << " - real: " << vict.insidePoly(pt) << endl;
-
-return(0);   
-}*/
