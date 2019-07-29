@@ -6,6 +6,7 @@
 #include <queue>
 #include <tuple>
 #include <iostream>
+#include <iomanip>
 
 #include <maths.hh>
 #include <settings.hh>
@@ -27,7 +28,7 @@ class Mapp{
         constexpr static double baseDistance = -1.0;  //it is the reference base distance for the matrix of distances
 
         set<pair<int, int> > cellsFromSegment(const Point2<int> & p0, const Point2<int> & p1);
-        vector<Point2<int> > * minPathTwoPointsInternal(
+        vector<Point2<int> > minPathTwoPointsInternal(
                                 const Point2<int> & startP, const Point2<int> & endP, 
                                 double ** distances, Point2<int> ** parents);
         void resetDistanceMap(double ** distances, const double value = baseDistance);
@@ -41,7 +42,7 @@ class Mapp{
         int borderSize; // how many cells of the object sides are consider border from outside: 2
 
     public:
-        Mapp(const int _lengthX=1000, const int _lengthY=1500, const int _pixX=5, const int _pixY=5, const int border=2,
+        Mapp(const int _lengthX=1000, const int _lengthY=1500, const int _pixX=10, const int _pixY=10, const int border=2,
             const vector< vector<Point2<int> > > & vvp = vector< vector<Point2<int> > >() );
 
         void addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYPE type);
@@ -51,8 +52,8 @@ class Mapp{
         bool checkSegment(const Point2<int> & p0, const Point2<int> & p1);
             bool checkSegmentCollisionWithType(const Point2<int> & p0, const Point2<int> & p1, const OBJ_TYPE type);
         
-        vector<vector<Point2<int> > > * minPathNPoints(const vector<Point2<int> > & vp);
-        vector<Point2<int> > * minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1);
+        vector<vector<Point2<int> > > minPathNPoints(const vector<Point2<int> > & vp);
+        vector<Point2<int> > minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1);
         vector<Point2<int> > sampleNPoints(const int n, const vector<Point2<int> > & points);
 
         Mat createMapRepresentation();

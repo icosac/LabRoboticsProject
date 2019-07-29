@@ -18,21 +18,20 @@ pair< vector<Point2<int> >, Mapp* > planning(){
     vp.push_back( Point2<int>(800, 200) );
     vp.push_back( Point2<int>(300, 100) );
 
-    vector<Point2<int> > * cellsOfPath = new vector<Point2<int> >();
-    if(true){
-        cellsOfPath = map->minPathTwoPoints(vp[3], vp[4]);
+    vector<Point2<int> > cellsOfPath;
+    if(false){
+        cellsOfPath = map->minPathTwoPoints(vp[0], vp[1]);
     } else {
-        vector<vector<Point2<int> > > * vvp = map->minPathNPoints(vp);
-        for(unsigned int i=0; i<vvp->size(); i++){
+        vector<vector<Point2<int> > > vvp = map->minPathNPoints(vp);
+        for(unsigned int i=0; i<vvp.size(); i++){
             for(unsigned int j=0; j<vvp[i].size(); j++){
-                // cellsOfPath->push_back();
-                //cout << vvp[i][j] << endl;
+                cellsOfPath.push_back(vvp[i][j]);
             }
         }
     }
-    cout << "cellsOfPath size: " << cellsOfPath->size() <<endl;
-    
-    return( make_pair(*cellsOfPath, map) );//todo change with points from dubins
+    cout << "cellsOfPath size: " << cellsOfPath.size() <<endl;
+
+    return( make_pair(cellsOfPath, map) );//todo change with points from dubins
 }
 
 /*! \brief The goal is to load, all the neccessary data, from files and create a Mapp that store everything.
@@ -57,9 +56,8 @@ Mapp * createMapp(){
     loadVVP(gate, fs["gate"]);
 
     //create the map
-    cout << "MAIN MAP\n";
     int dimX=1000, dimY=1500;
-    Mapp * map = new Mapp(dimX, dimY, 5, 5);
+    Mapp * map = new Mapp(dimX, dimY, 10, 10);
     
     map->addObjects(obstacles, OBST);
     map->addObjects(victims, VICT);

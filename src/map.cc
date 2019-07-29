@@ -214,9 +214,10 @@ bool Mapp::checkSegment(const Point2<int> & p0, const Point2<int> & p1){
 
     \param[in] p0 The source point.
     \param[in] p1 The destination point.
-    \returns It is a pointer to a vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-1 connecctions.
+    \returns A vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-1 connecctions.
 */
-vector<vector<Point2<int> > > * Mapp::minPathNPoints(const vector<Point2<int> > & vp){
+vector<vector<Point2<int> > > Mapp::minPathNPoints(const vector<Point2<int> > & vp){
+    //allocate
     double ** distances = new double*[dimY];
     Point2<int> ** parents = new Point2<int>*[dimY];
     for(int i=0; i<dimY; i++){
@@ -225,12 +226,21 @@ vector<vector<Point2<int> > > * Mapp::minPathNPoints(const vector<Point2<int> > 
         parents[i] = new Point2<int>[dimX];
     }
 
-    vector<vector<Point2<int> > > * vvp = new vector< vector<Point2<int> > >();
+    //function
+    vector<vector<Point2<int> > > vvp;
     for(unsigned int i=0; i<vp.size()-1; i++){
         resetDistanceMap(distances);
-        vector<Point2<int> > * pathPoints = minPathTwoPointsInternal(vp[i], vp[i+1], distances, parents);
-        vvp->push_back(*pathPoints);
+        vvp.push_back( minPathTwoPointsInternal(vp[i], vp[i+1], distances, parents) );
     }
+
+    //delete
+    for(int i=0; i<dimY; i++){
+        delete [] distances[i];
+        delete [] parents[i];
+    }
+    delete[] distances;
+    delete[] parents;
+
     return(vvp);
 }
 
@@ -239,19 +249,30 @@ vector<vector<Point2<int> > > * Mapp::minPathNPoints(const vector<Point2<int> > 
 
     \param[in] p0 The source point.
     \param[in] p1 The destination point.
-    \returns It is a pointer to a vector of points along the path (one for each cell of the grid of the map).
+    \returns A vector of points along the path (one for each cell of the grid of the map).
 */
-vector<Point2<int> > * Mapp::minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1){
+vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1){
+    //allocate
     double ** distances = new double*[dimY];
     Point2<int> ** parents = new Point2<int>*[dimY];
     for(int i=0; i<dimY; i++){
-        // the initializtion is to -1
         distances[i] = new double[dimX];
         parents[i] = new Point2<int>[dimX];
     }
 
+    // function
     resetDistanceMap(distances);
-    return( minPathTwoPointsInternal(p0, p1, distances, parents) );
+    vector<Point2<int> > tmp = minPathTwoPointsInternal(p0, p1, distances, parents);
+
+    //delete
+    for(int i=0; i<dimY; i++){
+        delete [] distances[i];
+        delete [] parents[i];
+    }
+    delete[] distances;
+    delete[] parents;
+
+    return( tmp );
 }
 
 /*! \brief Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
@@ -261,33 +282,35 @@ vector<Point2<int> > * Mapp::minPathTwoPoints(const Point2<int> & p0, const Poin
     \param[in] endP The destination point.
     \param[in] distances A matrix that is needed to store the distances of the visited cells.
     \param[in] parents A matrix that is needed to store the parent of each cell (AKA the one that have discovered that cell with the minimum distance).
-    \returns It is a pointer to a vector of points along the path (one for each cell of the grid of the map).
+    \returns A vector of points along the path (one for each cell of the grid of the map).
 */
-vector<Point2<int> > * Mapp::minPathTwoPointsInternal(
+vector<Point2<int> > Mapp::minPathTwoPointsInternal(
                         const Point2<int> & startP, const Point2<int> & endP, 
                         double ** distances, Point2<int> ** parents)
 {
     // P=point, C=cell
     Point2<int> startC(startP.x()/pixX, startP.y()/pixY), endC(endP.x()/pixX, endP.y()/pixY);
     queue<Point2<int> > toProcess;
-
+    // initialization of BFS
     toProcess.push(startC);
     distances[startC.y()/*i=y()*/][startC.x()/*j=x()*/] = 0.0;
     parents[  startC.y()/*i=y()*/][startC.x()/*j=x()*/] = startC;
-    bool found = false;
+    int found = 0;
 
     // precompute the computation of the distances inn the square of edges around the cell of interest
-    int r = 1; //range
+    int r = 3; //range
     int side = 2*r+1;
     double computedDistances[(int)pow(side, 2)]; // all the cells in a sqare of side where the center is the cell of interest
-    cout << "computedDistances size: " << pow(side, 2) << endl;
     for(int i=(-r); i<=r; i++){
         for(int j=(-r); j<=r; j++){
             computedDistances[(i+r)*side + (j+r)] = sqrt( pow(i,2) + pow(j,2) );
         }
     }
 
-    while(!toProcess.empty() && !found){
+    // start iteration of the BFS
+    while   (  !toProcess.empty()
+              && found<=5
+            ){
         // for each cell from the queue
         Point2<int> cell = toProcess.front();
         toProcess.pop();
@@ -300,73 +323,44 @@ vector<Point2<int> > * Mapp::minPathTwoPointsInternal(
             for(int j=(-r); j<=r; j++){
                 // i&j are relative coordinates, ii&jj are absolute coordinates
                 int ii = i+iC, jj = j+jC;
-                // The cell itself (when i=0 and j=0) is considered (here) but never added to the queue due to the logic of the BFS
 
-                if(map[ii][jj] != OBST && map[ii][jj] != BODA){ 
-                    cout << "e" << endl;
-                    if(ii==endC.y() && jj==endC.x()){
-                        found = true;
-                        cout << "\n\n\t\tFOUND TRUE\n\n";
-                    }
-                    cout << "f" << endl;
-                    double myDist = computedDistances[(i+r)*r + (j+r)];
-                    cout << "f1" << endl;
-                    // if not visited or bigger distance
-                    if( equal(distances[ii][jj], baseDistance, 0.001) || distances[ii][jj] > dist + myDist ){
-                            cout << "f3" << endl;
+                // The cell itself (when i=0 and j=0) is considered (here) but never added to the queue due to the logic of the BFS
+                if(0<=ii && 0<=jj && ii<dimY && jj<dimX){
+                    if(map[ii][jj] != OBST && map[ii][jj] != BODA){ 
+                        if(ii==endC.y() && jj==endC.x()){
+                            found++;
+                        }
+                        double myDist = computedDistances[(i+r)*side + (j+r)];
+                        // if not visited or bigger distance
+                        if( equal(distances[ii][jj], baseDistance, 0.001) || distances[ii][jj] > dist + myDist ){
                             distances[ii][jj] = dist + myDist;
                             parents[ii][jj] = cell;
 
                             toProcess.push(Point2<int>(jj, ii));
+                        }
                     }
-                    cout << "g" << endl;
                 }
             }
         }
     }
-    cout << "h" << endl;
 
     // reconstruct the vector of parents of the cells in the minPath
-    vector<Point2<int> > * computedParents = new vector<Point2<int> >();
+    vector<Point2<int> > computedParents;
 
     if(!found){
-        return(computedParents);
-    }
+        cerr << "\n\n\t\tDestination of minPath not reached ! ! !\n\n\n";
+    } else {
+        // computing the vector of parents
+        computedParents.push_back(endP);
+        Point2<int> p = endC;
+        while( p!=startC ){
+            p = parents[p.y()][p.x()];
 
-    cout << "i" << endl;
-    computedParents->push_back(endP);
-    cout << "j" << endl;
-    Point2<int> p = endC;    
-    cout << "k" << endl;
-    for(int i=0; i<dimY; i++){
-        for(int j=0; j<dimX; j++){
-            cout << distances[i][j] << " ";
+            // conversion from cell of the grid to point of the system (map)
+            computedParents.push_back( Point2<int>(p.x()*pixX + pixX/2, p.y()*pixY + pixY/2) );
         }
-        cout << endl;
+        reverse(computedParents.begin(), computedParents.end()); // I apply the inverse to have the vector from the begin to the end.
     }
-    cout << endl << endl << endl << endl << endl << endl;
-
-
-    for(int i=0; i<dimY; i++){
-        for(int j=0; j<dimX; j++){
-            cout << parents[i][j] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl << endl << endl << endl << endl << endl;
-    while( p!=startC ){
-        cout << "l" << endl;
-        //cout << p << endl;
-        p = parents[p.y()][p.x()];
-
-        // conversion from cell of the grid to point of the system (map)
-        cout << "m" << endl;
-        computedParents->push_back( Point2<int>(p.x()*pixX + pixX/2, p.y()*pixY + pixY/2) );
-    }
-    cout << "n" << endl;
-    reverse(computedParents->begin(), computedParents->end()); // I apply the inverse to have the vector from the begin to the end.
-    cout << "o" << endl;
-
     return(computedParents);
 }
 
