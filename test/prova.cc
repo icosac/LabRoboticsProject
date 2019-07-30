@@ -1,7 +1,7 @@
 #include <iostream>
 #include <maths.hh>
 #include <dubins.hh>
-#include <utils.hh>
+// #include <utils.hh>
 #include <cmath>
 
 #ifndef DEBUG
@@ -12,14 +12,14 @@ using namespace std;
 
 typedef double TYPE;
 
-#define M 8.0
+#define M 1
 #define startPos 1
 
 const Angle inc(A_PI.toRad()/M, Angle::RAD);
 
 #define N 6
 
-int main(){  
+int main(){ 
   Tuple<Point2<TYPE> > points;
   points.add(Point2<TYPE> (1*100,1*100));
   points.add(Point2<TYPE> (3*100,3*100));
@@ -93,7 +93,7 @@ int main(){
   int count=0;
   double elapsed=0;
   for (auto angleT : t){
-    auto start=Clock::now();
+    // auto start=Clock::now();
     Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
     for (auto point : points){
         rectangle(image, Point(point.x()-INC/2, point.y()-INC/2), Point(point.x()+INC/2, point.y()+INC/2), Scalar(0,0,0) , -1);
@@ -114,8 +114,8 @@ int main(){
       #endif
     }
     count++;
-    auto stop=Clock::now();
-    elapsed+=chrono::duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
+    // auto stop=Clock::now();
+    // elapsed+=chrono::duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
     if (elapsed/1000000.0>5.0){
       elapsed=0.0;
       COUT(count)
