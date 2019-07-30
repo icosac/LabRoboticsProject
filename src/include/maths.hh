@@ -11,7 +11,7 @@
 #include <sstream>
 #include <string>
 
-//#include <opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 
 using namespace std;
 
@@ -493,14 +493,14 @@ public:
   }
 };
 
-const Angle A_2PI = Angle(6.2831853071-Epsi, Angle::RAD);  ///<Default Angle for 2pi rad
-const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);///<Default Angle for 360 degree
-const Angle A_PI = Angle(M_PI, Angle::RAD);       ///<Default Angle for pi rad
-const Angle A_180 = Angle(180, Angle::DEG);       ///<Defualt Angle for 180 degree
-const Angle A_PI2 = Angle(M_PI/2.0, Angle::RAD);       ///<Default Angle for pi/2 rad
-const Angle A_90 = Angle(90, Angle::DEG);       ///<Defualt Angle for 90 degree
-const Angle A_DEG_NULL = Angle(0, Angle::DEG);       ///<Default Angle for 0 rad
-const Angle A_RAD_NULL = Angle(0, Angle::RAD);       ///<Defualt Angle for 0 degree
+#define A_2PI Angle(6.2831853071-Epsi, Angle::RAD)  ///<Default Angle for 2pi rad
+#define A_360 Angle(360.0-Epsi, Angle::DEG)         ///<Default Angle for 360 degree
+#define A_PI Angle(M_PI, Angle::RAD)                ///<Default Angle for pi rad
+#define A_180 Angle(180, Angle::DEG)                ///<Defualt Angle for 180 degree
+#define A_PI2 Angle(M_PI/2.0, Angle::RAD)           ///<Default Angle for pi/2 rad
+#define A_90 Angle(90, Angle::DEG)                  ///<Defualt Angle for 90 degree
+#define A_DEG_NULL Angle(0, Angle::DEG)             ///<Default Angle for 0 rad
+#define A_RAD_NULL Angle(0, Angle::RAD)             ///<Defualt Angle for 0 degree
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 
@@ -579,7 +579,7 @@ public:
       this->add(_el);
     }
     else {
-      throw ExistingElementException<T>(_el, id);
+      throw MyException<T>(EXCEPTION_TYPE::EXISTS, _el, id);
     }
   }
 
@@ -629,6 +629,7 @@ public:
     *this=newT;
   }
   
+
   bool equal(Tuple<T> _t){
     if (this->size()!=_t.size()){ return false; }
 
@@ -642,6 +643,56 @@ public:
   
   bool operator== (Tuple<T> _t){
     return equal(_t);
+  }
+
+  Tuple<T> sum(Tuple<T> t){
+    if (this->size()!=t.size()){
+      throw MyException<int>(EXCEPTION_TYPE::SIZE, this->size, t.size());
+    }
+    for (int i=0; i<this->size(); i++){
+      this->set(i, (this->get(i)+t.get(i)));
+    }
+    return (*this);
+  }
+
+  Tuple<T> sum(T inc){
+    for (int i=0; i<this->size(); i++){
+      this->set(i, (this->get(i)+inc));
+    }
+    return (*this);
+  }
+
+  Tuple<T> operator+ (T inc){
+    return this->sum(inc);
+  }
+
+  Tuple<T>& operator+= (T inc){
+    return this->sum(inc);
+  }
+
+  Tuple<T> mul(Tuple<T> t){
+    if (this->size()!=t.size()){
+      throw MyException<int>(EXCEPTION_TYPE::SIZE, this->size, t.size());
+    }
+    for (int i=0; i<this->size(); i++){
+      this->set(i, (this->get(i)*t.get(i)));
+    }
+    return (*this);
+  }
+
+  Tuple<T> mul(T inc){
+    for (int i=0; i<this->size(); i++){
+      this->set(i, (this->get(i)*inc));
+    }
+    return (*this);
+  }
+
+  Tuple<T> operator* (T inc){
+    return this->mul(inc);
+  }
+
+  Tuple<T>& operator*= (T inc){
+    return this->mul(inc);
   }
 
   /*! \brief Function that compute the Euclidean Distance between two tuples. 

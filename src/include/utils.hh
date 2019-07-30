@@ -9,6 +9,7 @@
 #include <sstream>
 #include <iostream>
 #include <exception>
+#include <chrono>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/highgui/highgui_c.h>
@@ -18,6 +19,33 @@
 
 using namespace cv;
 using namespace std;
+
+enum TIME_TYPE {SEC, MSEC, MUSEC, NSEC};
+typedef chrono::high_resolution_clock Clock;
+
+// double getElapsed(TIME_TYPE type=NSEC, 
+//                   Clock::time_point start, 
+//                   Clock::time_point stop){
+//   switch(type){
+//     case SEC:{
+//       return duration_cast<chrono::seconds>(stop - start).count();
+//       break;
+//     }
+//     case MSEC:{
+//       return duration_cast<chrono::milliseconds>(stop - start).count();
+//       break;
+//     }
+//     case MUSEC:{
+//       return duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
+//       break;
+//     }
+//     case NSEC:{
+//       return duration_cast<chrono::nanoseconds>(stop - start).count();
+//       break;
+//     }
+//   }
+// }
+
 
 #define NAME(x) #x ///<Returns the name of the variable
 
@@ -50,9 +78,11 @@ void mywaitkey();
 void mywaitkey(string windowName);
 
 
+enum EXCEPTION_TYPE {EXISTS, SIZE};
+
 //TODO document
 template<class T>
-class ExistingElementException : public exception {
+class MyException : public exception {
 private:
   stringstream exceptString(T value) const {
     stringstream out;
@@ -61,11 +91,23 @@ private:
   }
   
 public:
-  T a,id;
-  ExistingElementException(T _a, int _id) : a(_a), id(_id) {}
+  EXCEPTION_TYPE type;
+  T a;
+  int b;
+  MyException(EXCEPTION_TYPE _type, T _a, int _b) : type(_type), a(_a), b(_b) {}
   
   const char * what() const throw (){
-    return (NAME(*this)+string(" Element already exists: ")+exceptString(a).str()+" at pos: "+exceptString(id).str()).c_str();
+    string ret;
+    switch(type){
+      case EXISTS:{
+        ret=NAME(type)+string("_Exception: element already exists: ")+exceptString(a).str()+" at pos: "+exceptString(b).str();
+        break;
+      }
+      case SIZE:{
+        ret=NAME(tyoe)+string("_Exception: sizes are different: ")+exceptString(a).str()+"!="+exceptString(b).str();
+      }
+    }
+    return ret.c_str();
   }
 };
 

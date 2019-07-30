@@ -602,19 +602,40 @@ void disp ( Tuple<Tuple<Angle> >& t,
   }
 }
 #else
+
+Tuple<Angle> toBase(Tuple<Angle> z, int n, int base, const Angle& inc){
+  int i=z.size()-1;
+  do {
+    z.set(i, (z.get(i)+Angle(inc.toRad()*(n%base), Angle::RAD)));
+    n=(int)(n/base);
+    i--;
+  } while(n!=0 && i>-1);
+
+  return z;
+}
+
 /*! \brief Compute the arrangements.
  */
-void disp(Tuple<Tuple<int> >& t,
-          Tuple<int>& z,    ///<Vector to use
+void disp(Tuple<Tuple<Angle> >& t,
+          Tuple<Angle>& z,    ///<Vector to use
           int N,              ///<Number of time to "iterate"
-          // const Angle& inc,   ///<Incrementation
+          const Angle& inc,   ///<Incrementation
           int startPos=0){
-  cout << "size: " << pow(z.size(), N) << endl;
-  for (unsigned long i=0; i<pow(z.size(), N) && i<3; i++){
-    z.set((int)(i/N), i%N);
-    t.add(z);
+  unsigned long iter_n=pow(N, z.size());
+  for (unsigned long i=0; i<iter_n; i++){
+    auto start = Clock::now();
+    #ifdef DEBUG
+      Tuple<Angle> app=toBase(z, i, N, inc);
+      t.add(app);
+      // COUT(app)
+    #else
+      t.add(toBase(z, i, N, inc));
+    #endif
   }
-  COUT(t)
+  // for (auto T : t) {
+  //   COUT(T)
+  // }
+
 }
 #endif
 
@@ -682,7 +703,7 @@ private:
     Tuple<Tuple<Angle> > angles;
 
     //Create all angles to check
-    // disp(angles, init_angl, size, tries, inc, 0); //startPos=0 since I've to look for all angles
+    disp(angles, init_angl, tries, inc); //startPos=0 since I've to look for all angles
 
     #ifdef DEBUG
       cout << "Considered angles: " << endl;
