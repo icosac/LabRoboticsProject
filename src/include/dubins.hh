@@ -157,7 +157,7 @@ public:
     return out;
   }
 
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image){
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT){
     // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
     for (auto point : this->splitIt(1)){
       if (point.x()>dimX || point.y()>dimY){
@@ -166,12 +166,12 @@ public:
         Mat newMat(x, y, CV_8UC3, Scalar(255, 255, 255));
         for (double _x=0; _x<dimX; _x++){
           for (double _y=0; _y<dimY; _y++){
-            rectangle(newMat, Point(_x, _y),Point(_x+inc, _y+inc), scl, -1);
+            rectangle(newMat, Point(_x+SHIFT, _y+SHIFT),Point(_x+inc+SHIFT, _y+inc+SHIFT), scl, -1);
           }
         }
         image=newMat;
       }
-      rectangle(image, Point(point.x(), point.y()), Point(point.x()+inc, point.y()+inc), scl, -1);
+      rectangle(image, Point(point.x()+SHIFT, point.y()+SHIFT), Point(point.x()+inc+SHIFT, point.y()+inc+SHIFT), scl, -1);
     }
   }
 
@@ -556,10 +556,10 @@ public:
     return out;
   }
 
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image){
-    A1.draw(dimX, dimY, inc, scl, image);
-    A2.draw(dimX, dimY, inc, scl, image);
-    A3.draw(dimX, dimY, inc, scl, image);
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
+    A1.draw(dimX, dimY, inc, scl, image, SHIFT);
+    A2.draw(dimX, dimY, inc, scl, image, SHIFT);
+    A3.draw(dimX, dimY, inc, scl, image, SHIFT);
   }
 
 };
@@ -603,11 +603,14 @@ void disp ( Tuple<Tuple<Angle> >& t,
 }
 #else
 
-Tuple<Angle> toBase(Tuple<Angle> z, int n, int base, const Angle& inc){
+Tuple<Angle> toBase(Tuple<Angle> z, int n, int base, const Angle& inc, int startPos, int endPos){
   int i=z.size()-1;
   do {
-    z.set(i, (z.get(i)+Angle(inc.toRad()*(n%base), Angle::RAD)));
-    n=(int)(n/base);
+    if (i<startPos || i>endPos){}
+    else {
+      z.set(i, (z.get(i)+Angle(inc.toRad()*(n%base), Angle::RAD)));
+      n=(int)(n/base);
+    }
     i--;
   } while(n!=0 && i>-1);
 
@@ -620,18 +623,28 @@ void disp(Tuple<Tuple<Angle> >& t,
           Tuple<Angle>& z,    ///<Vector to use
           int N,              ///<Number of time to "iterate"
           const Angle& inc,   ///<Incrementation
-          int startPos=0){
-  unsigned long iter_n=pow(N, z.size());
+          int startPos=0, 
+          int endPos=0){
+  unsigned long M=z.size()-startPos;
+  if (endPos!=0 && endPos>startPos){
+    M-=(z.size()-endPos-1);
+  }
+  unsigned long iter_n=pow(N, M);
+  COUT(N)
+  COUT(iter_n)
+  COUT(z.size())
+  COUT(startPos)
+  COUT(endPos)
   for (unsigned long i=0; i<iter_n; i++){
-    auto start = Clock::now();
     #ifdef DEBUG
-      Tuple<Angle> app=toBase(z, i, N, inc);
+      Tuple<Angle> app=toBase(z, i, N, inc, startPos, endPos);
       t.add(app);
       // COUT(app)
     #else
       t.add(toBase(z, i, N, inc));
     #endif
   }
+  cout << "Expected: " << iter_n << " got: " << t.size() << endl;
   // for (auto T : t) {
   //   COUT(T)
   // }
@@ -677,6 +690,13 @@ private:
             Angle area,
             int tries,
             double _kmax=KMAX){
+    find_best(_points, area, tries, _kmax);
+  }
+
+  void find_best(Tuple<Point2<T> > _points,
+                Angle area,
+                int tries,
+                double _kmax=KMAX){
     #ifdef DEBUG
       cout << "Considered points: " << endl;
       cout << _points << endl;
