@@ -504,6 +504,8 @@ public:
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 
+extern double elapsedTuple;
+extern double elapsedTupleSet;
 /*! \bried This class allows the definition and storage of tuples of different dimensions. 
 		Functions to compute distance between tuples are also available.
 		\tparam T The type of elements to be stored.
@@ -530,8 +532,13 @@ public:
 	*/
   Tuple <T> (int _n, ...){
     n=_n;
+    auto start=Clock::now();
+    elements.resize(n);
+    auto stop=Clock::now();
+    elapsedTupleSet+=CHRONO::getElapsed(start, stop);
     va_list ap;
     va_start(ap, _n);
+    start=Clock::now();
     for (int i=0; i<n; i++){
       T temp;
       if (std::is_same<T, float>::value){
@@ -540,8 +547,10 @@ public:
       else {
         temp=va_arg(ap, T);
       }
-      elements.push_back(temp);
+      elements[i]=temp;
     }
+    stop=Clock::now();
+    elapsedTuple+=CHRONO::getElapsed(start, stop);
   }
   
   // ~Tuple () {elements.clear();}
@@ -550,7 +559,7 @@ public:
 
 	/*! \brief Gets the n-th element.
 			\param[in] _n The position of the element to retrieve.
-			\returns The element in the n-th position or -1 if _n is greater then n or less than 0.
+			\returns The element in the n-th position or an empty costructor if _n is greater then n or less than 0.
 	*/  
   T get (const int _n) const {
     return ((_n>=0&&_n<size()) ? elements.at(_n) : T());

@@ -13,6 +13,16 @@
 #include <cstdio> // For sprintf
 #endif
 
+extern double elapsedScale;
+extern double elapsedPrimitives;
+extern double elapsedBest;
+extern double elapsedArcs;
+extern double elapsedCheck;
+extern unsigned long countTries;
+extern double elapsedVar;
+extern double elapsedCirc;
+extern double elapsedSet;
+
 //TODO find which function is faster
 #define MORE_FUNCTIONS
 #define PIECE_LENGTH 2 //cm
@@ -80,9 +90,13 @@ Configuration2<double> circline(double _L,
                                 Configuration2<double> _P0,
                                 double _K)
 {
-  double x=_P0.x()+_L*sinc(_K*_L/2.0) * cos(_P0.angle().toRad()+_K*_L/2);
-  double y=_P0.y()+_L*sinc(_K*_L/2.0) * sin(_P0.angle().toRad()+_K*_L/2);
-  Angle th=Angle(_K*_L+_P0.angle().toRad(), Angle::RAD);
+  double sincc=_L*sinc(_K*_L/2.0);
+  double app=_K*_L/2.0;
+  double phi=_P0.angle().toRad();
+  
+  double x=_P0.x() + sincc * cos(phi+app);
+  double y=_P0.y() + sincc * sin(phi+app);
+  Angle th=Angle(_K*_L+phi, Angle::RAD);
 
   return Configuration2<double>(x, y, th.get());
 }
@@ -102,20 +116,33 @@ public:
   DubinsArc( const Configuration2<T2> _P0,
                   const T1 _k,
                   const T1 _l) : Curve<T2>() {
+    auto start=Clock::now();
     K=_k;
     L=_l;
+    auto stop=Clock::now();
+    elapsedVar+=CHRONO::getElapsed(start, stop);
+
+    start=Clock::now();
     Configuration2<T2> _P1 = circline(L, _P0, K);
+    stop=Clock::now();
+    elapsedCirc+=CHRONO::getElapsed(start, stop);
+
+    start=Clock::now();
     Curve<T2>::begin(_P0); Curve<T2>::end(_P1);
+    stop=Clock::now();
+    elapsedSet+=CHRONO::getElapsed(start, stop);
   }
 #else
-  DubinsArc <T2>(const Configuration2<T2> _P0,
-                 const Configuration2<T2> _P1,
-                 const T1 _k,
-                 const T1 _l) : Curve<T2>(_P0, _P1) {
+  DubinsArc(const Configuration2<T2> _P0,
+            const Configuration2<T2> _P1,
+            const T1 _k,
+            const T1 _l) : Curve<T2>(_P0, _P1) {
     K=_k;
     L=_l;
-    // cout << "_P0: " << _P0 << endl;
-    // cout << "begin: " << Curve<T2>::begin() << endl;
+    cout << "_P0: " << _P0 << endl;
+    cout << "begin: " << Curve<T2>::begin() << endl;
+    cout << "_P1: " << _P1 << endl;
+    cout << "end: " << Curve<T2>::end() << endl;
   }
 #endif
 
@@ -403,6 +430,7 @@ public:
     Tuple<double> scaled = scaleToStandard();
     auto stop=Clock::now();
     // cout << CHRONO::getElapsed(start, stop, "scaleToStandard: ") << endl;
+    elapsedScale+=CHRONO::getElapsed(start, stop);
 
     Angle  sc_th0     =  Angle(scaled.get(0), Angle::RAD);
     Angle  sc_th1     =  Angle(scaled.get(1), Angle::RAD); 
@@ -424,6 +452,7 @@ public:
     res.push_back(LRL(sc_th0, sc_th1, sc_Kmax));
     stop=Clock::now();
     // cout << CHRONO::getElapsed(start, stop, "Compute primitives: ") << endl;
+    elapsedPrimitives+=CHRONO::getElapsed(start, stop);
 
     int i=0; 
     start=Clock::now(); 
@@ -442,6 +471,7 @@ public:
     }
 
     if (pidx>=0){
+      countTries++;
       Tuple<double> sc_std = scaleFromStandard(sc_lambda, sc_s1, sc_s2, sc_s3);
       vector<vector<int> > ksigns ={
         { 1,  0,  1}, // LSL
@@ -452,24 +482,35 @@ public:
         { 1, -1,  1}  // LRL
       };
 
+      stop=Clock::now();
+      // cout << CHRONO::getElapsed(start, stop, "Choose best ") << endl;
+      elapsedBest+=CHRONO::getElapsed(start, stop);
+
+      start=Clock::now();
 #ifdef MORE_FUNCTIONS
       A1=DubinsArc<T>(Curve<T>::begin(), ksigns[pidx][0]*Kmax, sc_std.get(0));
       A2=DubinsArc<T>(A1.end(), ksigns[pidx][1]*Kmax, sc_std.get(1));
       A3=DubinsArc<T>(A2.end(), ksigns[pidx][2]*Kmax, sc_std.get(2));
 #else
       double L = sc_std.get(0);
-      double K = ksigns[pidx][0];
+      double K = ksigns[pidx][0]*Kmax;
       Configuration2<double> _P1 = circline(L, Curve<T>::begin(), K);
+      COUT(_P1)  
       A1=DubinsArc<T>(Curve<T>::begin(), _P1, K, L);
       
-      L = sc_std.get(1); K = ksigns[pidx][1];
-      _P1 = circline(L, A1.begin(), K);
-      A2=DubinsArc<T>(A1.begin(), _P1, K, L);
+      L = sc_std.get(1); K = ksigns[pidx][1]*Kmax;
+      _P1 = circline(L, A1.end(), K);
+      A2=DubinsArc<T>(A1.end(), _P1, K, L);
       
-      L = sc_std.get(2); K = ksigns[pidx][2];
-      _P1 = circline(L, A2.begin(), K);
-      A3=DubinsArc<T>(A2.begin(), _P1, K, L);
+      L = sc_std.get(2); K = ksigns[pidx][2]*Kmax;
+      _P1 = circline(L, A2.end(), K);
+      A3=DubinsArc<T>(A2.end(), _P1, K, L);
 #endif
+      stop=Clock::now();
+      // cout << CHRONO::getElapsed(start, stop, "Create arcs ") << endl;
+      elapsedArcs+=CHRONO::getElapsed(start, stop);
+
+      start=Clock::now();
       L=A1.length()+A2.length()+A3.length(); //Save total length of Dubins curve
 
       bool check_ = check(sc_s1, ksigns[pidx][0]*sc_Kmax,
@@ -480,9 +521,13 @@ public:
                         );
       if (!check_)
         pidx=-1.0;
+
+      stop=Clock::now();
+      elapsedCheck+=CHRONO::getElapsed(start, stop);
+
     }
-    stop=Clock::now();
-    // cout << CHRONO::getElapsed(start, stop, "Choose best ");
+    
+    
     return pidx;
   }
 
