@@ -22,6 +22,12 @@ extern unsigned long countTries;
 extern double elapsedVar;
 extern double elapsedCirc;
 extern double elapsedSet;
+extern double elapsedLSL;
+extern double elapsedRSR;
+extern double elapsedLSR;
+extern double elapsedRSL;
+extern double elapsedRLR;
+extern double elapsedLRL;
 
 //TODO find which function is faster
 #define MORE_FUNCTIONS
@@ -272,91 +278,139 @@ public:
   DubinsArc<T> getA3() const { return A3; }
 
 #ifndef OPENCL_COMPILE
-  Tuple<double> LSL (Angle th0, Angle th1, double _kmax)
+  double LSL (double th0, double th1, double _kmax)
   {
-    double C=th1.cos()-th0.cos();
-    double S=2*_kmax+th0.sin()-th1.sin();
+    auto start=Clock::now();
+    double C=cos(th1)-cos(th0);
+    double S=2*_kmax+sin(th0)-sin(th1);
+    double tan2=atan2(C, S);
     
-    double temp1=2+4*pow2(_kmax)-2*(th0-th1).cos()+4*_kmax*(th0.sin()-th1.sin());
+    double temp1=2+4*pow2(_kmax)-2*cos(th0-th1)+4*_kmax*(sin(th0)-sin(th1));
     
     if (temp1<0){
-      return Tuple<double> (0);
+      // return Tuple<double> (0);
+      return nullptr;
     }
     
     double invK=1/_kmax;
-    double sc_s1=Angle(atan2(C,S)-th0.get(), Angle::RAD).get()*invK;
+    double sc_s1=Angle(tan2-th0, Angle::RAD).get()*invK;
     double sc_s2=invK*sqrt(temp1);
-    double sc_s3=Angle(th1.get()-atan2(C,S), Angle::RAD).get()*invK;
+    double sc_s3=Angle(th1-tan2, Angle::RAD).get()*invK;
     
-    return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
+    auto stop=Clock::now();
+    elapsedLSL+=CHRONO::getElapsed(start, stop);
+
+    double* ret=new double[3];
+    ret[0]=sc_s1;
+    ret[1]=sc_s2;
+    ret[2]=sc_s3;
+
+    return ret;
+    // return Tuple<double>(3, sc_s1.get(), sc_s2, sc_s3.get());
   }
 
-  Tuple<double> RSR (Angle th0, Angle th1, double _kmax)
+  double* RSR (double th0, double th1, double _kmax)
   {
-    double C=th0.cos()-th1.cos();
-    double S=2*_kmax-th0.sin()+th1.sin();
+    auto start=Clock::now();
+    double C=cos(th0)-cos(th1);
+    double S=2*_kmax-sin(th0)+sin(th1);
     
-    double temp1=2+4*pow2(_kmax)-2*(th0-th1).cos()-4*_kmax*(th0.sin()-th1.sin());
+    double temp1=2+4*pow2(_kmax)-2*cos(th0-th1)-4*_kmax*(sin(th0)-sin(th1));
     
     if (temp1<0){
-      return Tuple<double> (0);
+      // return Tuple<double> (0);
+      return nullptr;
     }
     
     double invK=1/_kmax;
-    double sc_s1=Angle(th0.get()-atan2(C,S), Angle::RAD).get()*invK;
+    double sc_s1=Angle(th0-atan2(C,S), Angle::RAD).get()*invK;
     double sc_s2=invK*sqrt(temp1);
-    double sc_s3=Angle(atan2(C,S)-th1.get(), Angle::RAD).get()*invK;
+    double sc_s3=Angle(atan2(C,S)-th1, Angle::RAD).get()*invK;
+    
+    auto stop=Clock::now();
+    elapsedRSR+=CHRONO::getElapsed(start, stop);
 
-    return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
+    double* ret=new double[3];
+    ret[0]=sc_s1;
+    ret[1]=sc_s2;
+    ret[2]=sc_s3;
+
+    return ret;
+    
+    // return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
-  Tuple<double> LSR (Angle th0, Angle th1, double _kmax)
+  double* LSR (double th0, double th1, double _kmax)
   {    
-    double C = th0.cos()+th1.cos();
-    double S=2*_kmax+th0.sin()+th1.sin();
+    auto start=Clock::now();
+    double C = cos(th0)+cos(th1);
+    double S=2*_kmax+sin(th0)+sin(th1);
     
-    double temp1=-2+4*pow2(_kmax)+2*(th0-th1).cos()+4*_kmax*(th0.sin()+th1.sin());
+    double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)+4*_kmax*(sin(th0)+sin(th1));
     if (temp1<0){
-      return Tuple<double> (0);
+      // return Tuple<double> (0);
+      return nullptr;
     }
     
     double invK=1/_kmax;
     
     double sc_s2=invK*sqrt(temp1);
-    double sc_s1= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th0.get(), Angle::RAD).get()*invK;
-    double sc_s3= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th1.get(), Angle::RAD).get()*invK;
+    double sc_s1= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th0, Angle::RAD).get()*invK;
+    double sc_s3= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th1, Angle::RAD).get()*invK;
 
-    return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
+    auto stop=Clock::now();
+    elapsedLSR+=CHRONO::getElapsed(start, stop);
+
+    double* ret=new double[3];
+    ret[0]=sc_s1;
+    ret[1]=sc_s2;
+    ret[2]=sc_s3;
+
+    return ret;
+    // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
-  Tuple<double> RSL (Angle th0, Angle th1, double _kmax)
+  Tuple<double> RSL (double th0, double th1, double _kmax)
   {
-    double C = th0.cos()+th1.cos();
-    double S=2*_kmax-th0.sin()-th1.sin();
+    auto start=Clock::now();
+    double C = cos(th0)+cos(th1);
+    double S=2*_kmax-sin(th0)-sin(th1);
     
-    double temp1=-2+4*pow2(_kmax)+2*(th0-th1).cos()-4*_kmax*(th0.sin()+th1.sin());
+    double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)+sin(th1));
     if (temp1<0){
-      return Tuple<double> (0);
+      // return Tuple<double> (0);
+      return nullptr;
     }
     
     double invK=1/_kmax;
     
     double sc_s2=invK*sqrt(temp1);
-    double sc_s1= Angle(th0.get()-atan2(C,S)+atan2(2, _kmax*sc_s2), Angle::RAD).get()*invK;
-    double sc_s3= Angle(th1.get()-atan2(C,S)+atan2(2, _kmax*sc_s2), Angle::RAD).get()*invK;
+    double sc_s1= Angle(th0-atan2(C,S)+atan2(2, _kmax*sc_s2), Angle::RAD).get()*invK;
+    double sc_s3= Angle(th1-atan2(C,S)+atan2(2, _kmax*sc_s2), Angle::RAD).get()*invK;
     
-    return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
+    auto stop=Clock::now();
+    elapsedRSL+=CHRONO::getElapsed(start, stop);
+    
+    double* ret=new double[3];
+    ret[0]=sc_s1;
+    ret[1]=sc_s2;
+    ret[2]=sc_s3;
+
+    return ret;
+    // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
-  Tuple<double> RLR (Angle th0, Angle th1, double _kmax)
+  Tuple<double> RLR (double th0, double th1, double _kmax)
   {
-    double C=th0.cos()-th1.cos();
-    double S=2*_kmax-th0.sin()+th1.sin();
+    auto start=Clock::now();
+    double C=cos(th0)-cos(th1);
+    double S=2*_kmax-sin(th0)+sin(th1);
     
-    double temp1=0.125*(6-4*pow2(_kmax)+2*(th0-th1).cos()+4*_kmax*(th0.sin()-th1.sin()));
+    double temp1=0.125*(6-4*pow2(_kmax)+2*cos(th0-th1)+4*_kmax*(sin(th0)-sin(th1)));
     
     if (fabs(temp1)-Epsi>1.0){
-      return Tuple<double> (0);
+      // return Tuple<double> (0);
+      return nullptr;
     }
 
     if (equal(fabs(temp1), 1.0) ){
@@ -365,21 +419,32 @@ public:
     
     double invK=1/_kmax;
     double sc_s2 = Angle(2*M_PI-acos(temp1), Angle::RAD).get()*invK;
-    double sc_s1 = Angle(th0.get()-atan2(C, S)+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
-    double sc_s3 = Angle(th0.get()-th1.get()+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
+    double sc_s1 = Angle(th0-atan2(C, S)+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
+    double sc_s3 = Angle(th0-th1+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
     
-    return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
+    auto stop=Clock::now();
+    elapsedRLR+=CHRONO::getElapsed(start, stop);
+    
+    double* ret=new double[3];
+    ret[0]=sc_s1;
+    ret[1]=sc_s2;
+    ret[2]=sc_s3;
+
+    return ret;
+    // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
-  Tuple<double> LRL (Angle th0, Angle th1, double _kmax)
+  Tuple<double> LRL (double th0, double th1, double _kmax)
   {
-    double C=th1.cos()-th0.cos();
-    double S=2*_kmax+th0.sin()-th1.sin();
+    auto start=Clock::now();
+    double C=cos(th1)-cos(th0);
+    double S=2*_kmax+sin(th0)-sin(th1);
     
-    double temp1=0.125*(6-4*pow2(_kmax)+2*(th0-th1).cos()-4*_kmax*(th0.sin()-th1.sin()));
+    double temp1=0.125*(6-4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)-sin(th1)));
 
     if (fabs(temp1)-Epsi>1.0){
-      return Tuple<double> (0);
+      // return Tuple<double> (0);
+      return nullptr;
     }
 
     if (equal(fabs(temp1), 1.0) ){
@@ -388,10 +453,20 @@ public:
 
     double invK=1/_kmax;
     double sc_s2 = Angle(2*M_PI-acos(temp1), Angle::RAD).get()*invK;
-    double sc_s1 = Angle(atan2(C, S)-th0.get()+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
-    double sc_s3 = Angle(th1.get()-th0.get()+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
+    double sc_s1 = Angle(atan2(C, S)-th0+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
+    double sc_s3 = Angle(th1-th0+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
     
-    return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
+    auto stop=Clock::now();
+    elapsedLRL+=CHRONO::getElapsed(start, stop);
+    
+    double* ret=new double[3];
+    ret[0]=sc_s1;
+    ret[1]=sc_s2;
+    ret[2]=sc_s3;
+
+    return ret;
+
+    // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 #endif
 
@@ -443,13 +518,13 @@ public:
     double sc_s3  = 0.0;
 
     start=Clock::now();
-    std::vector<Tuple<double> > res;
-    res.push_back(LSL(sc_th0, sc_th1, sc_Kmax));
-    res.push_back(RSR(sc_th0, sc_th1, sc_Kmax));
-    res.push_back(LSR(sc_th0, sc_th1, sc_Kmax));
-    res.push_back(RSL(sc_th0, sc_th1, sc_Kmax));
-    res.push_back(RLR(sc_th0, sc_th1, sc_Kmax));
-    res.push_back(LRL(sc_th0, sc_th1, sc_Kmax));
+    Tuple<double* > res;
+    res.add(LSL(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
+    res.add(RSR(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
+    res.add(LSR(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
+    res.add(RSL(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
+    res.add(RLR(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
+    res.add(LRL(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
     stop=Clock::now();
     // cout << CHRONO::getElapsed(start, stop, "Compute primitives: ") << endl;
     elapsedPrimitives+=CHRONO::getElapsed(start, stop);
@@ -457,16 +532,27 @@ public:
     int i=0; 
     start=Clock::now(); 
     for (auto value : res){
-      if (value.size()>0){
-        double appL=value.get(0)+value.get(1)+value.get(2);
+      if (value!=nullptr){
+        double appL=value[0]+value[1]+value[2];
         if (appL<Length){
           Length = appL;
-          sc_s1=value.get(0);
-          sc_s2=value.get(1);
-          sc_s3=value.get(2);
+          sc_s1=value[0];
+          sc_s2=value[1];
+          sc_s3=value[2];
           pidx=i;
         }
       }
+
+      // if (value.size()>0){
+      //   double appL=value.get(0)+value.get(1)+value.get(2);
+      //   if (appL<Length){
+      //     Length = appL;
+      //     sc_s1=value.get(0);
+      //     sc_s2=value.get(1);
+      //     sc_s3=value.get(2);
+      //     pidx=i;
+      //   }
+      // }
       i++;
     }
 

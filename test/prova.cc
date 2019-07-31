@@ -32,6 +32,12 @@ double elapsedCirc=0.0;
 double elapsedSet=0.0;
 double elapsedTuple=0.0;
 double elapsedTupleSet=0.0;
+double elapsedLSL=0.0;
+double elapsedRSR=0.0;
+double elapsedLSR=0.0;
+double elapsedRSL=0.0;
+double elapsedRLR=0.0;
+double elapsedLRL=0.0;
 unsigned long countTries=0;
 
 int main(){ 
@@ -200,6 +206,13 @@ int main(){
   COUT(elapsedVar+elapsedCirc+elapsedSet)
   COUT(elapsedTuple)
   COUT(elapsedTupleSet)
+  COUT(elapsedLSL)
+  COUT(elapsedRSR)
+  COUT(elapsedLSR)
+  COUT(elapsedRSL)
+  COUT(elapsedRLR)
+  COUT(elapsedLRL)
+  COUT(elapsedLSL+elapsedRSR+elapsedLSR+elapsedRSL+elapsedRLR+elapsedLRL)
 
   #ifdef DEBUG
     // cout << "Dubins: " << endl;

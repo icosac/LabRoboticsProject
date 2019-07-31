@@ -533,7 +533,7 @@ public:
   Tuple <T> (int _n, ...){
     n=_n;
     auto start=Clock::now();
-    elements.resize(n);
+    elements.reserve(n);
     auto stop=Clock::now();
     elapsedTupleSet+=CHRONO::getElapsed(start, stop);
     va_list ap;
@@ -547,7 +547,7 @@ public:
       else {
         temp=va_arg(ap, T);
       }
-      elements[i]=temp;
+      elements.push_back(temp);
     }
     stop=Clock::now();
     elapsedTuple+=CHRONO::getElapsed(start, stop);
@@ -852,38 +852,34 @@ template <class T>
 class Point2 //: public Tuple<T>
 {
 private:
-  Tuple<T> values; ///<The values stored.
-  
+  // Tuple<T> values; ///<The values stored.
+  T X, Y;
 public:
-  Point2() {values=Tuple<T>(2, 0, 0);} ///<Default constructor to build an empty Tuple.
+  Point2() : X(0), Y(0) {} ///<Default constructor to build an empty Tuple.
   /*!	\brief Constructor that taked to elements and builds a point.
   		\param[in] _x The abscissa coordinate.
   		\param[in] _y The ordinate coordinate.
   */
-  Point2(const T _x, const T _y) {
-    values=Tuple<T> (2, _x, _y);
-  }
+  Point2(const T _x, const T _y) : X(_x), Y(_y){}
 
   /*!\brief Constructor that takes a cv::Point and returns a Point2.
     \param[in] p The cv::Point to be copied.
   */
-  Point2(const cv::Point p) {
-    values=Tuple<T> (2, p.x, p.y);
-  }
+  Point2(const cv::Point p) : X(p.x), Y(p.y){}
   
-  T x() const {return values.get(0);} ///< \returns The abscissa coordinate
-  T y() const {return values.get(1);} ///< \returns The ordinate coordinate
+  T x() const {return X;} ///< \returns The abscissa coordinate
+  T y() const {return Y;} ///< \returns The ordinate coordinate
   
   /*! \brief Set the abscissa value.
   		\param[in] _x The new abscissa value
   		\returns 1 if it was successful, 0 otherwise.
   */
-  int x(const T _x) {return values.set(0, _x);}
+  void x(const T _x) {X=_x;}
   /*! \brief Set the ordinate value.
   		\param[in] _x The new ordinate value
   		\returns 1 if it was successful, 0 otherwise.
   */
-  int y(const T _y) {return values.set(1, _y);}
+  void y(const T _y) {Y=_y;}
   
   /*! \brief This function compute the offset of the point given a vector, 
   		that is the lenght of the vector and its angle. The angle must be an 
@@ -894,18 +890,16 @@ public:
 			\returns 1 if everything went fine, 0 otherwise.
   */
   template <class T1>
-  int offset(const T1 _offset, const Angle th){
-    double dth = th.getType()==Angle::RAD ? th.get() : th.toRad();
-    double dx=_offset*cos(dth);
-    double dy=_offset*sin(dth);
+  void offset(const T1 _offset, const Angle th){
+    double dx=_offset*th.cos();
+    double dy=_offset*th.sin();
     if (is_same<T, int>::value){ //Since casting truncates the value, adding 0.5 is the best way to round the numbr
       dx+=0.5;
       dy+=0.5;
     }
     T _x=x()+(T)dx;
     T _y=y()+(T)dy;
-    return (values.set(0, _x) &&
-            values.set(1, _y));
+    x(_x); y(_y);
   }
   
   /*! \brief This function compute an offset given another point made 
@@ -913,9 +907,9 @@ public:
   		\param[in] p The point with the offsets.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  int offset (const Point2<T> p){
-    return (values.set(0, p.x()+x()) &&
-            values.set(1, p.y()+y())); 
+  void offset (const Point2<T> p){
+    x(p.x()+x());
+    y(p.y()+y()); 
   }
   
   /*! \brief This function compute an offset given a `Tuple` made 
@@ -923,11 +917,11 @@ public:
   		\param[in] p The `Tuple` with the offsets. Its dimension must be 2.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  int offset (const Tuple<T> p){
+  void offset (const Tuple<T> p){
     int res=0;
     if (p.size()==2){
-      res= (values.set(0, p.get(0)+x())) &&
-      			values.set(1, p.get(1)+y());
+      x(p.get(0)+x());
+      y(p.get(1)+y());
     }
     return res;
   }
@@ -936,8 +930,8 @@ public:
   		\param[in] _offset The offset.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  int offset_x(const T _offset){
-    return values.set(0, _offset+x());
+  void offset_x(const T _offset){
+    x(_offset+x());
     // return values.set(0, _offset+values.get(0));
   }
   
@@ -945,8 +939,8 @@ public:
   		\param[in] _offset The offset.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  int offset_y(const T _offset){
-    return values.set(1, _offset+y());
+  void offset_y(const T _offset){
+    y(_offset+y());
     // return values.set(1, _offset+values.get(1));
   }
   
@@ -958,7 +952,10 @@ public:
   */
   template<class T1>
   double distance (Point2<T1> B, DISTANCE_TYPE dist=EUCLIDEAN){
-    return values.distance(Tuple<T1>(2, B.x(), B.y()), dist);
+    switch(dist){
+      case EUCLIDEAN: return EuDistance(B);
+      case MANHATTAN: return MaDistance(B);
+    }
   }
 
   /*! \brief Function that compute the Manhattan Distance between two points. 
@@ -968,7 +965,7 @@ public:
 	*/
   template<class T1>
   double MaDistance (Point2<T1> B){
-    return values.MaDistance(Tuple<T1>(2, B.x(), B.y()));
+    return (x()-B.x())+(y()-B.y());
   }
   
   /*! \brief Function that compute the Euclidean Distance between two points. 
@@ -978,7 +975,7 @@ public:
 	*/
   template<class T1>
   double EuDistance (Point2<T1> B){
-    return values.EuDistance(Tuple<T1>(2, B.x(), B.y()));
+    return sqrt(pow2(x()-B.x())+pow2(y()-B.y()));
   }
   
   stringstream to_string () const {
