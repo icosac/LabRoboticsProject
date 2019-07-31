@@ -657,10 +657,18 @@ void disp ( Tuple<Tuple<Angle> >& t,
 
 Tuple<Angle> toBase(Tuple<Angle> z, int n, int base, const Angle& inc, int startPos, int endPos){
   int i=z.size()-1;
+  COUT(i)
+  COUT(n)
+  COUT(base)
+  COUT(inc)
+  COUT(startPos)
+  COUT(endPos)
   do {
     if (i<startPos || i>endPos){}
     else {
+      COUT(z.get(i))
       z.set(i, (z.get(i)+Angle(inc.toRad()*(n%base), Angle::RAD)));
+      COUT(z.get(i))
       n=(int)(n/base);
     }
     i--;
@@ -687,19 +695,21 @@ void disp(Tuple<Tuple<Angle> >& t,
   COUT(z.size())
   COUT(startPos)
   COUT(endPos)
-  for (unsigned long i=0; i<iter_n; i++){
+  Tuple<Angle>* app;
+  for (unsigned long i=0; i<iter_n && i< 3; i++){
     #ifdef DEBUG
-      Tuple<Angle> app=toBase(z, i, N, inc, startPos, endPos);
+      *app=toBase(z, i, N, inc, startPos, endPos);
       t.add(app);
-      // COUT(app)
+      COUT(app)
+
     #else
-      t.add(toBase(z, i, N, inc));
+      t.add(toBase(z, i, N, inc, startPos, endPos));
     #endif
   }
   cout << "Expected: " << iter_n << " got: " << t.size() << endl;
-  // for (auto T : t) {
-  //   COUT(T)
-  // }
+  for (auto T : t) {
+    COUT(T)
+  }
 
 }
 #endif

@@ -94,7 +94,7 @@ void mywaitkey();
 void mywaitkey(string windowName);
 
 
-enum EXCEPTION_TYPE {EXISTS, SIZE};
+enum EXCEPTION_TYPE {EXISTS, SIZE, INDEX_OUT_OF_BOUND};
 
 //TODO document
 template<class T>
@@ -120,7 +120,10 @@ public:
         break;
       }
       case SIZE:{
-        ret=NAME(tyoe)+string("_Exception: sizes are different: ")+exceptString(a).str()+"!="+exceptString(b).str();
+        ret=NAME(type)+string("_Exception: sizes are different: ")+exceptString(a).str()+"!="+exceptString(b).str();
+      }
+      case INDEX_OUT_OF_BOUND:{
+        ret=NAME(tyoe)+string("_Exception: index out of bound ")+exceptString(a).str()+">"+exceptString(b).str();
       }
     }
     return ret.c_str();

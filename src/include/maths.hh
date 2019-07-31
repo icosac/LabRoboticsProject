@@ -514,12 +514,12 @@ template <class T>
 class Tuple {
 private:
   int n; ///<The number of elements.
-  vector<T> elements; ///<The elements.
+  T* elements; ///<The elements.
   
 public:
 	/*! \brief Defualt constructor.
 	*/
-  Tuple () : n(0) {elements.clear();}
+  Tuple () : n(0) {elements=new T [0];}
   /*! \brief Constructors that takes the number of objectes to be stored, 
   		the objects and then stores them. 
       For compatibility problem we strongly suggest to use this constructor 
@@ -533,7 +533,7 @@ public:
   Tuple <T> (int _n, ...){
     n=_n;
     auto start=Clock::now();
-    elements.resize(n);
+    elements = new T [n];
     auto stop=Clock::now();
     elapsedTupleSet+=CHRONO::getElapsed(start, stop);
     va_list ap;
@@ -553,16 +553,16 @@ public:
     elapsedTuple+=CHRONO::getElapsed(start, stop);
   }
   
-  // ~Tuple () {elements.clear();}
+  ~Tuple () {delete [] elements;}
   
-  int size() const { return (n==(int)elements.size() ? n : -1); } ///<\returns The number of stored elements. -1 if the Tuple has a different number of elements.
+  int size() const { return n; } ///<\returns The number of stored elements.
 
 	/*! \brief Gets the n-th element.
 			\param[in] _n The position of the element to retrieve.
 			\returns The element in the n-th position or an empty costructor if _n is greater then n or less than 0.
 	*/  
   T get (const int _n) const {
-    return ((_n>=0&&_n<size()) ? elements.at(_n) : T());
+    return ((_n>=0&&_n<size()) ? elements[_n] : T());
   }
   
   int find (T _el){
@@ -579,7 +579,12 @@ public:
 	*/
   void add (const T _new){
   	n++;
-  	elements.push_back(_new);
+    T* app=new T [n];
+    for (int i=0; i<n-1; i++){
+      app[i]=elements[i];
+    }
+    app[n-1]=_new;
+    elements=app;
   }
 
   void addIfNot(T _el){
@@ -596,12 +601,19 @@ public:
   		\param[in] pos The position of the value to be removed.
       \returns 1 if verything went fine, 0 otherwise.
 	*/
-  int remove (const T pos) {
+  template <class T1>
+  int remove (const T1 pos) {
   	int res=0;
-  	if (pos>=0 && pos<n){
+    if (pos>=0 && pos<n){
   		res=1;
-  		elements.erase(elements.begin()+pos);
   		n--;
+      T* app=new T [n-1];
+      for (int i=0; i<pos; i++){
+        app[i]=this->get(i);
+      }
+      for (int i=pos+1; i<n; i++){
+        app[i-1]=this->get(i);
+      }
   	}
   	return res;
   }
@@ -617,7 +629,7 @@ public:
   int set (const int pos, const T _new){
     int res=0;
     if ( pos<n && pos>=0 ) {
-      elements.at(pos)=_new;
+      elements[pos]=_new;
       res=1;
     }
     else if (pos==n){
@@ -634,7 +646,7 @@ public:
     for (auto el : *this){
       newT.add(el);
     }
-    this->add(T());
+    // this->add(T());
     *this=newT;
   }
   
@@ -716,7 +728,7 @@ public:
     if (n == B.size()){
       double rad=0.0;
       for (int i=0; i<n; i++){
-        rad+=pow2(elements.at(i) - B.get(i));
+        rad+=pow2(this->get(i) - B.get(i));
       }
       res=sqrt(rad);
     }
@@ -735,7 +747,7 @@ public:
     if (n == B.size()){
       double sum=0.0;
       for (int i=0; i<n; i++){
-        sum+=fabs(get(i)-B.get(i));
+        sum+=fabs(this->get(i)-B.get(i));
       }
       res=sum;
     }
@@ -775,8 +787,8 @@ public:
   stringstream to_string(string _prefix="") const {
     stringstream out;
     string prefix=_prefix.back()=='/' && _prefix!="" ? _prefix : _prefix+"/";
-    for (int i=0; i<size(); i++){
-      out << _prefix << get(i) << ((i!=size()-1) ? ", " : "");
+    for (int i=0; i<this->size(); i++){
+      out << _prefix << this->get(i) << ((i!=this->size()-1) ? ", " : "");
     }
     return out;
   }
@@ -807,41 +819,35 @@ public:
   //TODO This works only when T1 and T are the same
   template <class T1>
   operator vector<T1> () const {
-    if (is_same<T, T1>::value){
-      return elements;
+    vector<T1> v;
+    for (int i=0; i<size(); i++){
+      v.push_back((T1)(this->get(i)));
     }
-    else {
-      std::vector<T1> v;
-      for (int i=0; i<size(); i++){
-        v.push_back((T1)elements[i]);
-      }
-      return v;
-    }
+    return v;
   }
 
   /*!\brief Overloading [] operator to access elements in array style 
    * \param[in] index Id of value to get.
    * \returns Value at id position.
    */
-  int &operator[](int index) { 
-      if (index >= size()) 
+  T &operator[](int index) { 
+      if (index >= this->size()) 
       { 
-          cerr << "Array index out of bound, exiting"; 
-          exit(0); 
+          throw MyException<int>(EXCEPTION_TYPE::INDEX_OUT_OF_BOUND, index, this->size());
       } 
-      return elements[index]; 
+      return &this->get(index); 
   } 
 
 
-  #define tupleIter typename vector<T>::iterator
-  #define tupleConstIter const typename vector<T>::iterator
+  typedef T* tupleIter;
+  typedef const T* tupleConstIter;
 
   //////FOREACH CODE///////
-  tupleIter begin()           { return elements.begin(); } ///<Iterator.\returns the elements.begin() iterator.
-  tupleConstIter begin() const{ return elements.begin(); } ///<Const iterator.\returns the elements.begin() iterator.
+  tupleIter begin()           { return &elements[0]; } ///<Iterator.\returns the elements.begin() iterator.
+  tupleConstIter begin() const{ return &elements[0]; } ///<Const iterator.\returns the elements.begin() iterator.
 
-  tupleIter end()             { return elements.end(); } ///<Iterator.\returns the elements.end() iterator.
-  tupleConstIter end() const  { return elements.end(); } ///<Const iterator.\returns the elements.begin() iterator.
+  tupleIter end()             { return &elements[n-1]; } ///<Iterator.\returns the elements.end() iterator.
+  tupleConstIter end() const  { return &elements[n-1]; } ///<Const iterator.\returns the elements.begin() iterator.
 };
 
 
