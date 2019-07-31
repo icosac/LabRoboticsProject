@@ -1,7 +1,7 @@
 #ifndef DUBINS_HH
 #define DUBINS_HH
 
-#include <utils.hh>
+// #include <utils.hh>
 #include <maths.hh>
 
 #include <iostream>
@@ -399,8 +399,11 @@ public:
   int shortest_path()
   {
     int pidx=-1; //Return value
+    auto start=Clock::now();
     Tuple<double> scaled = scaleToStandard();
-    
+    auto stop=Clock::now();
+    // cout << CHRONO::getElapsed(start, stop, "scaleToStandard: ") << endl;
+
     Angle  sc_th0     =  Angle(scaled.get(0), Angle::RAD);
     Angle  sc_th1     =  Angle(scaled.get(1), Angle::RAD); 
     double sc_Kmax    =  scaled.get(2);
@@ -410,8 +413,8 @@ public:
     double sc_s1  = 0.0;
     double sc_s2  = 0.0;
     double sc_s3  = 0.0;
-    bool first_go = true;
 
+    start=Clock::now();
     std::vector<Tuple<double> > res;
     res.push_back(LSL(sc_th0, sc_th1, sc_Kmax));
     res.push_back(RSR(sc_th0, sc_th1, sc_Kmax));
@@ -419,13 +422,15 @@ public:
     res.push_back(RSL(sc_th0, sc_th1, sc_Kmax));
     res.push_back(RLR(sc_th0, sc_th1, sc_Kmax));
     res.push_back(LRL(sc_th0, sc_th1, sc_Kmax));
+    stop=Clock::now();
+    // cout << CHRONO::getElapsed(start, stop, "Compute primitives: ") << endl;
 
-    int i=0;
+    int i=0; 
+    start=Clock::now(); 
     for (auto value : res){
       if (value.size()>0){
         double appL=value.get(0)+value.get(1)+value.get(2);
         if (appL<Length){
-          // first_go=false;
           Length = appL;
           sc_s1=value.get(0);
           sc_s2=value.get(1);
@@ -476,6 +481,8 @@ public:
       if (!check_)
         pidx=-1.0;
     }
+    stop=Clock::now();
+    // cout << CHRONO::getElapsed(start, stop, "Choose best ");
     return pidx;
   }
 

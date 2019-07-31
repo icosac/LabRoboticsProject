@@ -20,31 +20,47 @@
 using namespace cv;
 using namespace std;
 
-enum TIME_TYPE {SEC, MSEC, MUSEC, NSEC};
 typedef chrono::high_resolution_clock Clock;
+namespace CHRONO {
+  enum TIME_TYPE {SEC, MSEC, MUSEC, NSEC};
 
-// double getElapsed(TIME_TYPE type=NSEC, 
-//                   Clock::time_point start, 
-//                   Clock::time_point stop){
-//   switch(type){
-//     case SEC:{
-//       return duration_cast<chrono::seconds>(stop - start).count();
-//       break;
-//     }
-//     case MSEC:{
-//       return duration_cast<chrono::milliseconds>(stop - start).count();
-//       break;
-//     }
-//     case MUSEC:{
-//       return duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
-//       break;
-//     }
-//     case NSEC:{
-//       return duration_cast<chrono::nanoseconds>(stop - start).count();
-//       break;
-//     }
-//   }
-// }
+  inline string getType(TIME_TYPE type, string ret=""){
+    switch(type){
+      case SEC: return ret+"s";
+      case MSEC: return ret+"ms";
+      case MUSEC: return ret+"mus";
+      case NSEC: return ret+"ns";
+    }
+    return "";
+  }
+
+  inline double getElapsed(Clock::time_point start, 
+                    Clock::time_point stop,
+                    TIME_TYPE type=MUSEC){
+    switch(type){
+      case SEC:{
+        return chrono::duration_cast<chrono::seconds>(stop - start).count();
+      }
+      case MSEC:{
+        return chrono::duration_cast<chrono::milliseconds>(stop - start).count();
+      }
+      case MUSEC:{
+        return chrono::duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
+      }
+      case NSEC:{
+        return chrono::duration_cast<chrono::nanoseconds>(stop - start).count();
+      }
+    }
+    return 0.0;
+  }
+
+  inline string getElapsed(Clock::time_point start,
+                    Clock::time_point stop,
+                    string ret,
+                    TIME_TYPE type=MUSEC){
+    return ret+to_string(getElapsed(start, stop, type))+getType(type, " ");
+  }
+}
 
 
 #define NAME(x) #x ///<Returns the name of the variable

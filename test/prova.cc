@@ -1,7 +1,7 @@
 #include <iostream>
 #include <maths.hh>
 #include <dubins.hh>
-#include <utils.hh>
+// #include <utils.hh>
 #include <cmath>
 
 #ifndef DEBUG
@@ -21,7 +21,7 @@ const Angle inc(A_PI2.toRad()/M, Angle::RAD);
 #define SCALE 100.0
 
 #define ES 3
-int main(){  
+int main(){ 
   Tuple<Point2<TYPE> > points;
   #if ES==1
   points.add(Point2<TYPE> (0*SCALE,0*SCALE));
@@ -155,8 +155,8 @@ int main(){
       #endif
     }
     count++;
-    auto stop=Clock::now();
-    elapsed+=chrono::duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
+    // auto stop=Clock::now();
+    // elapsed+=chrono::duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
     if (elapsed/1000000.0>5.0){
       elapsed=0.0;
       COUT(count)
