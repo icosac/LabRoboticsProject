@@ -76,8 +76,10 @@ class Mapp{
             vector<Point2<int> > samplePointsEachNCells(const vector<Point2<int> > & points, const int step);
 
         Mat createMapRepresentation();
-            void imageAddSegments(Mat & map, const vector<Point2<int> > & vp, const int thickness=3);
-            void imageAddPoint(Mat & map, const Point2<int> & p, const int radius=7);
+            void imageAddSegments(Mat & image, const vector<Point2<int> > & vp, const int thickness=3);
+            void imageAddSegment(Mat & image, const Point2<int> & p0, const Point2<int> & p1, const int thickness);
+            void imageAddPoints(Mat & image, const vector<Point2<int> > & vp, const int radius=7);
+            void imageAddPoint(Mat & image, const Point2<int> & p, const int radius=7);
 
         void printMap();
         string matrixToString();

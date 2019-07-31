@@ -37,7 +37,7 @@ int main (){
 
 	Mat imageMap = map->createMapRepresentation();
 
-	map->imageAddPoint(imageMap, Point2<int>(100, 150) );
+	map->imageAddPoints(imageMap, pathPoints);
 	map->imageAddSegments(imageMap, pathPoints);
 
 	#ifdef WAIT

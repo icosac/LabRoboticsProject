@@ -548,8 +548,9 @@ Mat Mapp::createMapRepresentation(){
 
 /*! \brief It add to the given image a set of (n-1) segments specified by the n points given.
 
-    \param[in/out] map The where the segments will be added.
+    \param[in/out] map The image where the segments will be added.
     \param[in] vp The vector of points that identify the segments.
+    \param[in] thickness The thickness of the lines to be drawn.
 */
 void Mapp::imageAddSegments(Mat & image, const vector<Point2<int> > & vp, const int thickness){
     for(unsigned int i=0; i<vp.size()-1; i++){
@@ -561,10 +562,38 @@ void Mapp::imageAddSegments(Mat & image, const vector<Point2<int> > & vp, const 
     }
 }
 
+/*! \brief It add to the given image the segment defined from p0 to p1.
+
+    \param[in/out] map The image where the segment will be added.
+    \param[in] p0 The first point of the segment.
+    \param[in] p1 The end point of the segment.
+    \param[in] thickness The thickness of the line to be drawn.
+*/
+void Mapp::imageAddSegment(Mat & image, const Point2<int> & p0, const Point2<int> & p1, const int thickness){
+    line( image, 
+        Point(p0.x(), p0.y()), 
+        Point(p1.x(), p1.y()), 
+        Scalar(0, 255, 255),
+        thickness);
+}
+
+/*! \brief It add to the given image a vector of points.
+
+    \param[in/out] map The image where the point will be added.
+    \param[in] vp The vecotor of points to add.
+    \param[in] radius The radius of the points to be drawn.
+*/
+void Mapp::imageAddPoints(Mat & image, const vector<Point2<int> > & vp, const int radius){
+    for(Point2<int> el : vp){
+        circle(image, Point(el.x(), el.y()), radius, Scalar(0, 255, 255), -1);
+    }
+}
+
 /*! \brief It add to the given image a point.
 
-    \param[in/out] map The where the point will be added.
-    \param[in]p The point to add.
+    \param[in/out] map The image where the points will be added.
+    \param[in] p The point to add.
+    \param[in] radius The radius of the point to be drawn.
 */
 void Mapp::imageAddPoint(Mat & image, const Point2<int> & p, const int radius){
     circle(image, Point(p.x(), p.y()), radius, Scalar(0, 255, 255), -1);
