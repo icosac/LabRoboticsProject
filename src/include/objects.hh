@@ -27,10 +27,10 @@ class Object{
         void computeCenter();
         void computeRadius();
         
-        void offsetting(const int offset);
+        void offsetting(const int offset, const int limitX, const int limitY);
         bool insidePolyApprox(Point2<int> pt);
         bool insidePoly(Point2<int> pt);
-        //bool collision(const Point2<int> & p1, const Point2<int> & p2);
+        //bool collision(const Point2<int> & p1, const Point2<int> & p2); // not useful anymore
 
     protected:
         vector<Point2<int> > points;

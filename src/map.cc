@@ -137,6 +137,7 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
                 // _maximums[i-iMin] = max(_maximums[i-iMin], j);
             }
         }
+        //draw the boder
         for(int k=0; k<vectSize; k++){
             for(int j=minimums[k]+1; j<maximums[k]; j++){
                 if(type==OBST){
@@ -175,7 +176,9 @@ void Mapp::addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYP
 */
 void Mapp::addObjects(const vector<Obstacle> & objs){
     for(auto el : objs){
-        //el.offsetting(offsetValue);
+        //enlarge the obstacle to allow to consider the robot as a point and not a circle.
+        el.offsetting(offsetValue, lengthX-1, lengthY-1);
+
         vObstacles.push_back(el);
         addObject(el.getPoints(), OBST);
     }
@@ -403,7 +406,7 @@ vector<Point2<int> > Mapp::minPathTwoPointsInternal(
     vector<Point2<int> > computedParents;
 
     if(found==0){
-        cerr << "\n\n\t\tDestination of minPath not reached ! ! !\n\n\n";
+        cerr << "\n\n\t\tDestination of minPath not reached ! ! !\nSegment from: " << startP << " to " << endP << "\nNo solution exist ! ! !\n\n";
     } else {
         // computing the vector of parents
         computedParents.push_back(endP);
@@ -431,24 +434,83 @@ void Mapp::resetDistanceMap(double ** distances, const double value){
     }
 }
 
+/*! \brief It extracts from the given vector of vector of points, a subset of points that always contains the first one and the last one of each vector.
+
+    \param[in] n The n number of points to sample.
+    \param[in] points The vector of vector of points to be selected.
+    \returns The vector containing the subset of n points.
+*/
+vector<Point2<int> > Mapp::sampleNPoints(const vector<vector<Point2<int> > > & vvp, const int n){
+    vector<Point2<int> > vp;
+    if(n < (int)vvp.size()+1){
+        cout << "\n\nSampling N points: N is too small (at least vvp.size()+1 is required). . .\n\n";
+    } else{
+        int totalSize = 0;
+        for(auto el : vvp){
+            totalSize += el.size()-1;
+        }
+        float step = (totalSize-1)*1.0/(n-2);
+
+        int tmpSize = 0;
+        for(float i=0, v=0; (int)i<totalSize; i+=step){
+            if((unsigned int)i < vvp[v].size()+tmpSize){
+                vp.push_back(vvp[v][(int)i-tmpSize]);        
+            } else{
+                tmpSize += vvp[v].size();
+                v++;
+                if(v>=vvp.size()){
+                    break;
+                }
+                vp.push_back( vvp[v][0] );
+            }
+        }
+        vp.push_back( vvp.back().back() );
+    }
+    return(vp);
+}
+
 /*! \brief It extracts from the given vector of points, a subset of points that always contains the first one and the last one.
 
-    \param[in] n The number of points to select exept the extremes.
+    \param[in] n The number of points to select exept the extremes, it must be greater or equal than 2.
     \param[in] points The vector of points to be selected.
-    \returns The vector containing the subset of n+2(begin and end) points.
+    \returns The vector containing the subset of n points.
 */
-vector<Point2<int> > Mapp::sampleNPoints(const int n, const vector<Point2<int> > & points){
+vector<Point2<int> > Mapp::sampleNPoints(const vector<Point2<int> > & points, const int n){
     vector<Point2<int> > vp;
-    if(points.size() >= 2){
-        int step = points.size()/(n+1);
-        for(unsigned int i=0; i<points.size()-1; i+=step){
-            vp.push_back(points[i]);
+    if(n >= (int)points.size() || points.size()==2){
+        vp = points;
+    } else if (points.size() > 2){
+        float step = (points.size()-1)*1.0/n;
+        for(int i=0; i<n-1; i++){
+            vp.push_back(points[ (int)i*step ]);
         }
         vp.push_back(points.back());
+    } else{
+        cout << "Invalid value of n and dimension of the vector.\n\n";
     }
     return(vp);    
 }
 
+/*! \brief It extracts from the given vector of points, a subset of points that always contains the first one and the last one.
+
+    \param[in] step The distance (counted as cells) from the previous to the next cell, it must but >=2 to have a reason.
+    \param[in] points The vector of points to be selected.
+    \returns The vector containing the subset of points, each step cells.
+*/
+vector<Point2<int> > Mapp::samplePointsEachNCells(const vector<Point2<int> > & points, const int step){
+    vector<Point2<int> > vp;
+    if(step<=1 || points.size()==2){
+        vp = points;
+    } else if (points.size() > 2){
+        for(unsigned int i=0; i<points.size()-1; i+=step){
+            vp.push_back(points[ i ]);
+        }
+        vp.push_back(points.back());
+    } else{
+        cout << "Invalid value of step and dimension of the vector.\n\n";
+    }
+    return(vp);    
+}
 /*! \brief The function create an image (Mat) with the dimensions of the Mapp and all its objects inside.
     \returns The generated image is returned.
 */

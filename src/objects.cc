@@ -103,8 +103,11 @@ void Object::computeRadius(){
     \details The function automatically update even the center and the radius.
 
     \param[in] offset The size of the offset.
+    \param[in] limitX The the maximum x that the point can have.
+    \param[in] limitY The the maximum y that the point can have.
 */
-void Object::offsetting(const int offset){
+void Object::offsetting(const int offset, const int limitX, const int limitY){
+
     //documentation: http://www.angusj.com/delphi/clipper.php
     ClipperLib::Path srcPoly; //A Path represents a polyline or a polygon
     ClipperLib::Paths solution;
@@ -115,17 +118,20 @@ void Object::offsetting(const int offset){
     ClipperLib::ClipperOffset co;
     //A ClipperOffset object provides the methods to offset a given (open or closed) path
     co.AddPath(srcPoly, ClipperLib::jtSquare, ClipperLib::etClosedPolygon); 
-
     co.Execute(solution, offset);
-    //DrawPolygons(solution, 0x4000FF00, 0xFF009900);
 
     // save back the new polygon
     points.resize(0);
     for(unsigned i=0; i<solution.size(); i++){
         if( Orientation(solution[i]) ){ //returning true for outer polygons and false for hole polygons
             for(unsigned j=0; j<solution[i].size(); j++){
-                points.push_back( Point2<int>(solution[i][j].X, solution[i][j].Y) );
+                // force the point to stay inside the map
+                int x = max( min((int)solution[i][j].X, limitX), 0);
+                int y = max( min((int)solution[i][j].Y, limitY), 0);
+                points.push_back( Point2<int>(x, y) );
             }
+        } else{
+            cout << "Hole polygon found ! ! !\n\n\n";
         }
     }
     computeCenter();
@@ -138,7 +144,6 @@ void Object::offsetting(const int offset){
     \returns True if the point is inside the object, false otherwise.
 */
 bool Object::insidePolyApprox(Point2<int> pt){
-    // cout << "distance: " << pt.distance(center) << endl;
     return((pt.distance(center)<=radius) ? true : false);
 }
 

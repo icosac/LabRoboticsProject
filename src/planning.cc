@@ -8,15 +8,7 @@
 pair< vector<Point2<int> >, Mapp* > planning(){
     Mapp * map = createMapp();
 
-    // TODO test and verify
     vector<Point2<int> > vp;
-    // vp.push_back( Point2<int>(100, 150) );
-    // vp.push_back( Point2<int>(200, 300) );
-    // vp.push_back( Point2<int>(500, 750) );
-    // vp.push_back( Point2<int>(50, 1100) );
-    // vp.push_back( Point2<int>(900, 1450));
-    // vp.push_back( Point2<int>(800, 200) );
-    // vp.push_back( Point2<int>(300, 100) );
 
     vp.push_back( Point2<int>(100, 150) ); //robot initial location
     map->getVictimCenters(vp);
@@ -27,13 +19,9 @@ pair< vector<Point2<int> >, Mapp* > planning(){
         cellsOfPath = map->minPathTwoPoints(vp[0], vp[1]);
     } else {
         vector<vector<Point2<int> > > vvp = map->minPathNPoints(vp);
-        for(unsigned int i=0; i<vvp.size(); i++){
-            for(unsigned int j=0; j<vvp[i].size(); j++){
-                cellsOfPath.push_back(vvp[i][j]);
-            }
-        }
+        cellsOfPath = map->sampleNPoints(vvp);
     }
-    cout << "cellsOfPath size: " << cellsOfPath.size() <<endl;
+    cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
 
     return( make_pair(cellsOfPath, map) );//todo change with points from dubins
 }
@@ -50,7 +38,9 @@ Mapp * createMapp(){
     Mapp * map = new Mapp(dimX, dimY);
 
     // open file
-    cout << "loadFile: " << sett->convexHullFile << endl;
+    #ifdef WAIT
+        cout << "loadFile: " << sett->convexHullFile << endl;
+    #endif
     FileStorage fs(sett->convexHullFile, FileStorage::READ);
     
     // load vectors of vectors of objects
