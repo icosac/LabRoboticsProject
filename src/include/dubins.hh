@@ -29,9 +29,17 @@ extern double elapsedRSL;
 extern double elapsedRLR;
 extern double elapsedLRL;
 
+#ifdef DEBUG
+unsigned int INC=5;
+unsigned int SHIFT=100;
+unsigned int DIMX=200+SHIFT;
+unsigned int DIMY=500+SHIFT;
+#endif
+
 //TODO find which function is faster
 #define MORE_FUNCTIONS
-#define PIECE_LENGTH 2 //cm
+#define PIECE_LENGTH 2 //mm
+#define PREC 100000
 
 using namespace std;
 
@@ -768,6 +776,7 @@ void disp(Tuple<Tuple<Angle> >& t,
     M-=(z.size()-endPos-1);
   }
   unsigned long iter_n=pow(N, M);
+  COUT(inc)
   COUT(N)
   COUT(M)
   COUT(iter_n)
@@ -799,7 +808,7 @@ class DubinsSet {
 private: 
   Tuple<Dubins<T> > dubinses;
   double Kmax, L;
-
+public:
   DubinsSet(Tuple<Dubins<T> > _dubinses,
             double _kmax=KMAX){
     this->dubinses=_dubinses;
@@ -823,91 +832,113 @@ private:
             Configuration2<T> end,
             Tuple<Point2<T> > _points,
             double _kmax=KMAX){
+    Tuple<Angle> angles;
+
+    angles.add(start.angle());
+    for (int i=0; i<_points.size()-1; i++){
+      angles.add(_points.get(i).th(_points.get(i+1)));
+    }
+    angles.add(_points.get(_points.size()-1).th(end.point()));
+
+    angles.add(end.angle());
+    _points.ahead(start.point());
+    _points.add(end.point());
+
+    Angle area=A_2PI;
+    
+    int i=0;
+    while((int)(area.toRad()*PREC)%PREC>1){
+      COUT(angles)
+      find_best(_points, angles, area, 2.0, _kmax);
+      area=area/2.0;
+      i++;
+    }
+
+    #ifdef DEBUG 
+      Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+      for (auto point : _points){
+        rectangle(best_img, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+      }
+      for (auto dub : this->dubinses){
+        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, SHIFT);
+      }
+      my_imshow("best", best_img, true);
+      mywaitkey();
+      cout << *this << endl;
+    #endif
   }
 
   DubinsSet(Tuple<Point2<T> > _points,
             Angle area,
             int tries,
             double _kmax=KMAX){
-    find_best(_points, area, tries, _kmax);
+    find_best(_points, Tuple<Angle>(), area, tries, _kmax);
   }
 
-  void find_best(Tuple<Point2<T> > _points,
-                Angle area,
-                int tries,
-                double _kmax=KMAX){
+  void find_best( Tuple<Point2<T> > _points,
+                          Tuple<Angle>& _angles,
+                          Angle area=A_2PI,
+                          double tries=2.0,
+                          double _kmax=KMAX){
+ 
     #ifdef DEBUG
       cout << "Considered points: " << endl;
       cout << _points << endl;
       cout << endl;
     #endif
-    int size=_points.size();
 
     //Compute all initial angles, that is the coeficient for the line that connects two points
     //Even though this is not a precise guess, still is efficient to first consider this angles instead of 0pi.
-    Tuple<Angle> init_angl;
-    for (int i=0; i<size; i++){
-      Angle toNext=_points.get(i).th(_points.get(i+1));
-      init_angl.add(toNext-Angle(area.toRad()/2, Angle::RAD));
-    }
-
+    
     #ifdef DEBUG
       cout << "Starting angles: " << endl;
-      for (auto el : init_angl){
+      for (auto el : _angles){
         cout << el.to_string(Angle::DEG).str() << "  ";
       } cout << endl << endl;
     #endif
     
     //Compute inc:
-    Angle inc=(area.toRad()/tries, Angle::RAD);
+    Angle inc=area/tries;
+    COUT(inc)
     Tuple<Tuple<Angle> > angles;
 
     //Create all angles to check
-    disp(angles, init_angl, tries, inc); //startPos=0 since I've to look for all angles
+    disp(angles, _angles, tries, inc, 1, _points.size()-2); //startPos=1 and endPos=size()-2 since I have to check for all angles except the first and the last.
 
     #ifdef DEBUG
       cout << "Considered angles: " << endl;
-      for (auto tupla : angles){
-        cout << "<";
-        for (int i=0; i<tupla.size(); i++){
-          cout << tupla.get(i).to_string(Angle::DEG).str() << (i==tupla.size()-1 ? "" : ", ");
-        }
-        cout << ">" << endl;
-      }
-      cout << "expected: " << pow(tries+1, size) << ",  got: " << angles.size() << endl;
-      cout << endl;
+      // for (auto tupla : angles){
+      //   cout << "<";
+      //   for (int i=0; i<tupla.size(); i++){
+      //     cout << tupla.get(i).to_string(Angle::DEG).str() << (i==tupla.size()-1 ? "" : ", ");
+      //   }
+      //   cout << ">" << endl;
+      // }
+      // cout << endl;
 
-      #define DIMX 1000
-      #define DIMY 650
-      #define INC 35
-      Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+      // Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
 
-      for (auto point : _points){
-        rectangle(image, Point(point.x(), point.y()), Point(point.x()+INC, point.y()+INC), Scalar(0,0,0) , -1);
-      }
+      // for (auto point : _points){
+      //     rectangle(image, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+      // }
 
-      my_imshow("dubin", image, true);
-      mywaitkey();
+      // my_imshow("dubin", image, true);
+      // mywaitkey();
     #endif
 
     //Compute Dubins
-    Tuple<Tuple<Dubins<T> > > allDubins;
+    // Tuple<Tuple<Dubins<T> > > allDubins;
     this->L=DInf;
-    for (auto angleT : angles){
-      
-      #ifdef DEBUG
-        Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
-        for (auto point : _points){
-            rectangle(image, Point(point.x()-INC/2, point.y()-INC/2), Point(point.x()+INC/2, point.y()+INC/2), Scalar(0,0,0) , -1);
-        }
-      #endif
-
+    int id=0;
+    for (int i=0; i<angles.size(); i++){
       Tuple<Dubins<T> > app;
       double l=0.0;
+      Tuple<Angle> angleT=angles.get(i);
       for (int i=0; i<angleT.size()-1; i++){
-        Dubins<T> d=Dubins<T>(_points.get(i), _points.get(i+1), angleT.get(i), angleT.get(i+1), 0.01);
+        Dubins<T> d=Dubins<T>(_points.get(i), _points.get(i+1), angleT.get(i), angleT.get(i+1), _kmax);
         if (d.getId()<0){
           app=Tuple<Dubins<T> > ();
+          l=DInf;
           break;
         }
         app.add(d);
@@ -917,22 +948,26 @@ private:
       if ((this->L)>l) {
         this->dubinses=app; 
         this->L=l;
+        id=i;
       }
 
-      allDubins.add(app);
+      // allDubins.add(app);
     }
 
     #ifdef DEBUG 
       Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
       for (auto point : _points){
-        rectangle(best_img, Point(point.x()-INC/2, point.y()-INC/2), Point(point.x()+INC/2, point.y()+INC/2), Scalar(0,0,0) , -1);
+        rectangle(best_img, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
       }
       for (auto dub : this->dubinses){
-        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img);
+        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, SHIFT);
       }
-      my_imshow("best", best_img, true);
-      mywaitkey();
+      // my_imshow("best", best_img, true);
+      // mywaitkey();
+      cout << *this << endl;
     #endif
+
+    _angles=angles.get(id);
   }
 
   double getLength()              { return this->L; }  
@@ -947,15 +982,16 @@ private:
     return Dubins<T>();
   }
 
-  stringstream to_string() const {
+  stringstream to_string() {
     stringstream out;
-    for (auto dub : this->dubinses){
+    out << "Total length: " << L << "\n";
+    for (auto dub : dubinses){
       out << dub << endl;
     }
     return out;
   }
 
-  friend ostream& operator<<(ostream &out, const DubinsSet& data) {
+  friend ostream& operator<<(ostream &out, DubinsSet& data) {
     out << data.to_string().str();
     return out;
   }
