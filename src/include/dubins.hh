@@ -278,7 +278,7 @@ public:
   DubinsArc<T> getA3() const { return A3; }
 
 #ifndef OPENCL_COMPILE
-  double LSL (double th0, double th1, double _kmax)
+  double* LSL (double th0, double th1, double _kmax)
   {
     auto start=Clock::now();
     double C=cos(th1)-cos(th0);
@@ -370,7 +370,7 @@ public:
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
-  Tuple<double> RSL (double th0, double th1, double _kmax)
+  double* RSL (double th0, double th1, double _kmax)
   {
     auto start=Clock::now();
     double C = cos(th0)+cos(th1);
@@ -400,7 +400,7 @@ public:
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
-  Tuple<double> RLR (double th0, double th1, double _kmax)
+  double* RLR (double th0, double th1, double _kmax)
   {
     auto start=Clock::now();
     double C=cos(th0)-cos(th1);
@@ -434,7 +434,7 @@ public:
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
-  Tuple<double> LRL (double th0, double th1, double _kmax)
+  double* LRL (double th0, double th1, double _kmax)
   {
     auto start=Clock::now();
     double C=cos(th1)-cos(th0);
@@ -769,6 +769,7 @@ void disp(Tuple<Tuple<Angle> >& t,
   }
   unsigned long iter_n=pow(N, M);
   COUT(N)
+  COUT(M)
   COUT(iter_n)
   COUT(z.size())
   COUT(startPos)
@@ -843,6 +844,7 @@ private:
     int size=_points.size();
 
     //Compute all initial angles, that is the coeficient for the line that connects two points
+    //Even though this is not a precise guess, still is efficient to first consider this angles instead of 0pi.
     Tuple<Angle> init_angl;
     for (int i=0; i<size; i++){
       Angle toNext=_points.get(i).th(_points.get(i+1));

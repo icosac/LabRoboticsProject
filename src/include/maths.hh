@@ -923,7 +923,6 @@ public:
       x(p.get(0)+x());
       y(p.get(1)+y());
     }
-    return res;
   }
   
   /*! \brief This function compute an offset for the abscissa.

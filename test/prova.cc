@@ -12,7 +12,7 @@ using namespace std;
 
 typedef double TYPE;
 
-#define M 16.0
+#define M 2.0
 #define startPos 1
 
 const Angle inc(A_2PI.toRad()/M, Angle::RAD);
@@ -20,7 +20,7 @@ const Angle inc(A_2PI.toRad()/M, Angle::RAD);
 #define N 6
 #define SCALE 100.0
 
-#define ES 2
+#define ES 3
 
 double elapsedScale=0.0;
 double elapsedPrimitives=0.0;
@@ -121,17 +121,17 @@ int main(){
   COUT(t.size())
   // disp(z, size-1, M, inc, startPos);
 
-  #ifdef DEBUG
-    cout << "Considered angles: " << endl;
-    for (auto tupla : t){
-      cout << "<";
-      for (int i=0; i<tupla.size(); i++){
-        cout << tupla.get(i).to_string(Angle::DEG).str() << (i==tupla.size()-1 ? "" : ", ");
-      }
-      cout << ">" << endl;
-    }
-    cout << endl;
-  #endif 
+  // #ifdef DEBUG
+  //   cout << "Considered angles: " << endl;
+  //   for (auto tupla : t){
+  //     cout << "<";
+  //     for (int i=0; i<tupla.size(); i++){
+  //       cout << tupla.get(i).to_string(Angle::DEG).str() << (i==tupla.size()-1 ? "" : ", ");
+  //     }
+  //     cout << ">" << endl;
+  //   }
+  //   cout << endl;
+  // #endif 
 
   #define DIMX 200
   #define DIMY 200
@@ -152,6 +152,7 @@ int main(){
   double best_l=DInf;
   int count=0;
   double elapsed=0;
+  double total=0.0;
   for (auto angleT : t){
     auto start=Clock::now();
     // Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
@@ -174,9 +175,10 @@ int main(){
         // d.draw(1500, 1000, 1, Scalar(255, 0, 0), image);
       #endif      
     }
-    // auto stop=Clock::now();
-    // elapsed+=chrono::duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
+    auto stop=Clock::now();
+    elapsed+=CHRONO::getElapsed(start, stop, CHRONO::MUSEC);
     if (elapsed/1000000.0>5.0){
+      total+=elapsed;
       elapsed=0.0;
       COUT(count)
     }
@@ -192,6 +194,7 @@ int main(){
 
     allDubins.add(app);
   }
+  COUT(total/1000)
   COUT(t.size())
   cout << "All: " << count << endl;
   cout << "Scale: " << elapsedScale << " mus" << endl;
