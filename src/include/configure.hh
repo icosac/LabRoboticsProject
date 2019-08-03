@@ -15,6 +15,13 @@
 using namespace std;
 using namespace cv;
 
+/*! \brief It acqire a frame from the default camera of the pc.
+
+    \param[in] save If save, or not, the acquired image to a file.
+    \return The Mat of the acquired frame.
+*/
+Mat acquireImage(const bool save=true);
+
 /*! \brief If deploy is true then takes a photo from the camera, shows tha various filters and asks if they are
  *  visually correct. If not then it allows to set the various filters through trackbars.
  *  If deploy is false then it takes the imd_id-th maps from the folder set in Settings and ask for visual confirmation.

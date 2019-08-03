@@ -29,15 +29,20 @@ int detection(){
         //detection over the three values of the array (maybe it is also possible to directly refer to RED as i=1, but I prefer this method...)
         COLOR_TYPE tmpVectColors[] = {RED, GREEN, BLUE};
         for(int i=0; i<3; i++){
-            shape_detection(hsv_img, tmpVectColors[i], un_img);
+            shape_detection(hsv_img, tmpVectColors[i]);
             #ifdef WAIT
                 if(i!=2){
                     mywaitkey();
                     destroyAllWindows();
-                    my_imshow("unwrapped image", un_img, true);
                 }
             #endif
         }
+
+        #ifdef WAIT
+            mywaitkey();
+        #endif
+
+        localize(hsv_img);
 
         #ifdef WAIT
             mywaitkey();
@@ -79,6 +84,11 @@ void computeConversionParameters(Mat & transf){
 }
 
 Point2<int> localize(){
+    //acquire the img and call the other localize function
+    return( localize( acquireImage(false) ) );
+}
+
+Point2<int> localize(const Mat & img){
     static Mat transf;
 
     static bool firstRun = true;
@@ -90,10 +100,11 @@ Point2<int> localize(){
     }
 
     //find robot
+    shape_detection(img, CYAN);
     
 
 
-
+    
     //compute barycenter of the robot
     //apply conversion to the right reference system
 
@@ -139,10 +150,9 @@ void load_number_template(){ //load the template for number recognition
 /*! \brief Detect shapes inside the image according to the variable 'color'.
 
     \param[in] img Image on which the research will done.
-    \param[in] color It is the type of reference color.
-    These color identify the possible spectrum that the function search on the image.
+    \param[in] color It is the type of reference color. These color identify the possible spectrum that the function search on the image.
 */
-void shape_detection(const Mat & img, const COLOR_TYPE color, const Mat& un_img){
+void shape_detection(const Mat & img, const COLOR_TYPE color/*, vector<Point > & robotShape*/){
     // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
     Filter mask;
     switch(color){
@@ -161,6 +171,11 @@ void shape_detection(const Mat & img, const COLOR_TYPE color, const Mat& un_img)
             mask = sett->blueMask;   
             break;
         }
+        case CYAN: {
+            cout << "\tRobot localization\n";    
+            mask = sett->robotMask;   
+            break;
+        }
         default:
             break;
     }
@@ -172,7 +187,7 @@ void shape_detection(const Mat & img, const COLOR_TYPE color, const Mat& un_img)
         my_imshow("Color_filter", color_mask);
     #endif
 
-    find_contours(color_mask, img, color);
+    find_contours(color_mask, img, color/*, robotShape*/);
 }
 
 /*! \brief It apply some filtering function for isolate the subject and remove the noise.
@@ -182,6 +197,7 @@ void shape_detection(const Mat & img, const COLOR_TYPE color, const Mat& un_img)
     \param[in] color It is the type of reference color. According to the color the filtering functions apply can change in the type and in the order.
 */
 void erode_dilation(Mat & img, const COLOR_TYPE color){
+    // It is now called only for color=BLACK...
     const int erode_side = sett->kernelSide; //odd number
     const int center = erode_side/2+1;
     Mat kernel = getStructuringElement(MORPH_RECT, Size(erode_side, erode_side), Point(center, center) );
@@ -217,27 +233,28 @@ bool _compare (  const pair<int, int > & a,
 
 /*! \brief Given an image, in black/white format, identify all the borders that delimit the shapes.
 
-    \param[in] img Is an image in HSV format at the base of the elaboration process.
+    \param[in] img It is an image in HSV format at the base of the elaboration process.
     \param[out] original It is the original source of 'img', it is used for showing the detected contours.
     \param[in] color It is the type of reference color.
 */
-#define EPS_CURVE 3
+#define EPS_CURVE 5
 void find_contours( const Mat & img,
-                    Mat original, 
-                    const COLOR_TYPE color)
+                    const Mat & original, 
+                    const COLOR_TYPE color/*,
+                    vector<Point > & robotShape*/)
 {
     #define MIN_AREA_SIZE 1000 //defined as pixels^2 (in our scenaria it means mm^2)
     vector<vector<Point>> contours, contours_approx;
     vector<Point> approx_curve;
     vector<int> victimNum;
     
+    // The fuinction erode_dilation is not called (but eventually this is the right place)...
     findContours(img, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE); // find external contours of each blob
-    drawContours(original, contours, -1, Scalar(40,190,40), 1, LINE_AA);
 
     if(color==GREEN){cout << "\tNumber detection\n";}
-    for (unsigned i=0; i<contours.size(); ++i){
-        if (contourArea(contours[i]) > MIN_AREA_SIZE){ // filter too small contours to remove false positives
-            approxPolyDP(contours[i], approx_curve, EPS_CURVE, true); // fit a closed polygon (with less vertices) to the given contour, with an approximation accuracy (i.e. maximum distance between the original and the approximated curve) of 3
+    for (vector<Point> contour : contours){
+        if (contourArea(contour) > MIN_AREA_SIZE){ // filter too small contours to remove false positives
+            approxPolyDP(contour, approx_curve, EPS_CURVE, true); // fit a closed polygon (with less vertices) to the given contour, with an approximation accuracy (i.e. maximum distance between the original and the approximated curve) of EPS_CURVE (=5)
             
             if(color==GREEN){
                 Rect blob = boundingRect(Mat(approx_curve)); // find bounding box for each green blob
@@ -251,11 +268,24 @@ void find_contours( const Mat & img,
             }
         }
     }
-    drawContours(original, contours_approx, -1, Scalar(0,170,220), 5, LINE_AA);
-
     #ifdef WAIT
+        Mat tmpOriginal = original;
+        drawContours(original, contours_approx, -1, Scalar(0,170,220), 5, LINE_AA);
         my_imshow("Detected shape", original);
     #endif
+
+    if(color==CYAN){
+        cout << "contours_approx size: " << contours_approx.size() << endl;
+        for(auto vEl : contours_approx){
+            for(auto el : vEl){
+                cout << el << ", ";
+            }
+            cout << endl;
+        }
+        cout << endl << "TODO: return()\n";
+        // robotShape
+        // TODO: return the 3 points.
+    }
 
     // sort the victims' vector of points according to their numbers.
     if(color==GREEN){

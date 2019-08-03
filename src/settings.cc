@@ -553,8 +553,12 @@ void Settings::changeMask(COLOR color, Filter fil){
 			whiteMask=fil;
 			break;
 		}
+		case ROBOT:{
+			robotMask=fil;
+			break;
+		}
 		default:{
-			cerr << "Color is not correct" << endl;
+			cout << "Color is not correct" << endl;
 		}
 	}
 }

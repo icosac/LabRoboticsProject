@@ -4,12 +4,14 @@
 #include <utils.hh>
 #include <settings.hh>
 #include <filter.hh>
+#include <configure.hh>
 
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <cmath>
 #include <algorithm>
+#include <vector>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/core.hpp>
@@ -36,6 +38,7 @@ int detection();
 
 void computeConversionParameters(Mat & transf);
 Point2<int> localize();
+Point2<int> localize(const Mat & img);
 
 /*! \brief Detect shapes inside the image according to the variable 'color'.
 
@@ -43,7 +46,8 @@ Point2<int> localize();
     \param[in] color It is the type of reference color.
     These color identify the possible spectrum that the function search on the image.
 */
-void shape_detection(const Mat & img, const COLOR_TYPE color, const Mat& un_img);
+void shape_detection(   const Mat & img, const COLOR_TYPE color/*, 
+                        vector<Point > & robotShape = vector<Point >()*/);
 
 /*! \brief It apply some filtering function for isolate the subject and remove the noise.
     \details An example of the sub functions called are: GaussianBlur, Erosion, Dilation and Threshold.
@@ -60,8 +64,9 @@ void erode_dilation(Mat & img, const COLOR_TYPE color);
     \param[in] color It is the type of reference color.
 */
 void find_contours( const Mat & img,
-                    Mat original, 
-                    const COLOR_TYPE color);
+                    const Mat & original, 
+                    const COLOR_TYPE color/*, 
+                    vector<Point > & robotShape = vector<Point >() */);
 
 /*! \brief Detect a number on an image inside a region of interest.
 

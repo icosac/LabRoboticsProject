@@ -54,7 +54,10 @@ class Mapp{
         vector<Gate> vGates;            // It is the vector containing all the gates     of the map
 
     public:
-        Mapp(const int _lengthX=1000, const int _lengthY=1500, const int _pixX=cellSize, const int _pixY=cellSize, const int _borderSize=borderSizeDefault, const vector< vector<Point2<int> > > & vvp = vector< vector<Point2<int> > >() );
+        Mapp(   const int _lengthX=1000, const int _lengthY=1500, 
+                const int _pixX=cellSize, const int _pixY=cellSize, 
+                const int _borderSize=borderSizeDefault, 
+                const vector< vector<Point2<int> > > & vvp = vector< vector<Point2<int> > >() );
 
         void addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type);
             void addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYPE type);

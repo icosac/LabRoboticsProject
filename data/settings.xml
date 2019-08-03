@@ -16,11 +16,11 @@
 <blueMask>
   89 178 65 124 239 255</blueMask>
 <whiteMask>
-  89 149 164 179 255 204</whiteMask>
+  74 39 212 95 79 255</whiteMask>
 <victimMask>
   49 0 0 180 255 56</victimMask>
 <robotMask>
-  89 149 164 179 255 204</robotMask>
+  89 149 147 179 255 204</robotMask>
 <kernelSide>9</kernelSide>
 <convexHullFile>data/convexHull.xml</convexHullFile>
 <templatesFolder>data/num_template/</templatesFolder>

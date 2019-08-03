@@ -182,9 +182,6 @@ int unwrapping(){
         // select a region of interest
         Mat imgCrop;
         imgCrop = unwarped_frame(Rect(0, 0, width, height));
-        #ifdef WAIT
-            my_imshow("cropped image", imgCrop);
-        #endif
 
         // Store the cropped image to disk.
         string file = sett->mapsNames.get(f);
