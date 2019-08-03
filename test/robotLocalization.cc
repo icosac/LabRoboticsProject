@@ -6,10 +6,10 @@ using namespace std;
 Settings *sett =new Settings();
 
 int main(){
-    Mat transf;
-    computeConversionParameters(transf);
-
-    cout << "In the end:\n";// << transf << endl << endl;
+    Point2<int> p;
+    for(int i=0; i<5; i++){
+        p = localize();
+    }
 
 return(0);
 }

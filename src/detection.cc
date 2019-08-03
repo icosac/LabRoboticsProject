@@ -26,9 +26,10 @@ int detection(){
         Mat hsv_img;
         cvtColor(un_img, hsv_img, COLOR_BGR2HSV);
 
-        //detection (red-green-blue)
+        //detection over the three values of the array (maybe it is also possible to directly refer to RED as i=1, but I prefer this method...)
+        COLOR_TYPE tmpVectColors[] = {RED, GREEN, BLUE};
         for(int i=0; i<3; i++){
-            shape_detection(hsv_img, i, un_img);
+            shape_detection(hsv_img, tmpVectColors[i], un_img);
             #ifdef WAIT
                 if(i!=2){
                     mywaitkey();
@@ -46,8 +47,7 @@ int detection(){
 }
 
 void computeConversionParameters(Mat & transf){
-    // Tx & Ty: translation over x and y, Sx & Sy scaling on x and y
-    cout << "inside computeConversionParameters\n";
+    cout << "computeConversionParameters\n";
 
     //define the "empiric" measures of the points location and the tape width
     const int tape = 34; // tape width
@@ -72,7 +72,7 @@ void computeConversionParameters(Mat & transf){
     // merge three transformation matrix:
     // https://stackoverflow.com/questions/40306194/combine-two-affine-transformations-matrices-in-opencv
     Mat D  = C * B * A; // the matrix are in the opposite order to respect the transformation priority
-    cout << "D:\n" << D << endl;
+    // cout << "D:\n" << D << endl;
 
     // return
     transf = D;
@@ -85,6 +85,8 @@ Point2<int> localize(){
     if(firstRun){ //executed only at the first iteration of this function
         firstRun = false;
         computeConversionParameters(transf);
+        cout << "transf:\n" << transf << endl;
+
     }
 
     //find robot
@@ -95,7 +97,7 @@ Point2<int> localize(){
     //compute barycenter of the robot
     //apply conversion to the right reference system
 
-
+    return(Point2<int>(3, 4));
 }
 
 
@@ -137,31 +139,30 @@ void load_number_template(){ //load the template for number recognition
 /*! \brief Detect shapes inside the image according to the variable 'color'.
 
     \param[in] img Image on which the research will done.
-    \param[in] color Can has 3 value:\n
-    0 -> Red\n
-    1 -> Green\n
-    2 -> Blue\n
+    \param[in] color It is the type of reference color.
     These color identify the possible spectrum that the function search on the image.
 */
-void shape_detection(const Mat & img, const int color, const Mat& un_img){
+void shape_detection(const Mat & img, const COLOR_TYPE color, const Mat& un_img){
     // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
     Filter mask;
     switch(color){
-        case 0: {
+        case RED: {
             cout << "\tObstacles detection\n";  
             mask = sett->redMask;
             break;
         }
-        case 1: {  
+        case GREEN: {  
             cout << "\tVictim detection\n";   
             mask = sett->greenMask; 
             break;
         }
-        case 2: {
+        case BLUE: {
             cout << "\tGate detection\n";    
             mask = sett->blueMask;   
             break;
         }
+        default:
+            break;
     }
     
     Mat color_mask;
@@ -178,14 +179,9 @@ void shape_detection(const Mat & img, const int color, const Mat& un_img){
     \details An example of the sub functions called are: GaussianBlur, Erosion, Dilation and Threshold.
 
     \param[in, out] img Is the image on which the function apply the filtering.
-    \param[in] color Can has 4 value:\n
-    0 -> Red\n
-    1 -> Green\n
-    2 -> Blue\n
-    3 -> Black\n
-    According to the color the filtering functions apply can change in the type and in the order.
+    \param[in] color It is the type of reference color. According to the color the filtering functions apply can change in the type and in the order.
 */
-void erode_dilation(Mat & img, const int color){
+void erode_dilation(Mat & img, const COLOR_TYPE color){
     const int erode_side = sett->kernelSide; //odd number
     const int center = erode_side/2+1;
     Mat kernel = getStructuringElement(MORPH_RECT, Size(erode_side, erode_side), Point(center, center) );
@@ -195,7 +191,7 @@ void erode_dilation(Mat & img, const int color){
     //smooth -> gaussian blur
     GaussianBlur(img, img, Size(erode_side, erode_side), 1, 1);
 
-    if(color==0 || color==2 || color==3){
+    if(color==RED || color==BLUE || color==BLACK){
         // Apply the erode operation
         erode(img, img, kernel);
     }
@@ -206,7 +202,7 @@ void erode_dilation(Mat & img, const int color){
     //smooth -> gaussian blur
     GaussianBlur(img, img, Size(erode_side, erode_side), 1, 1);
 
-    if(color==1){
+    if(color==GREEN){
         // Apply the erode operation
         erode(img, img, kernel);
     }
@@ -220,19 +216,15 @@ bool _compare (  const pair<int, int > & a,
 }
 
 /*! \brief Given an image, in black/white format, identify all the borders that delimit the shapes.
-    
+
     \param[in] img Is an image in HSV format at the base of the elaboration process.
-    \param[out] original Is the original source of 'img', it is used for showing the detected contours.
-    \param[in] color Can has 3 value:\n
-    0 -> Red\n
-    1 -> Green\n
-    2 -> Blue\n
-    Is used for decid which procedure apply to the image.
+    \param[out] original It is the original source of 'img', it is used for showing the detected contours.
+    \param[in] color It is the type of reference color.
 */
 #define EPS_CURVE 3
-void find_contours( const Mat & img, 
+void find_contours( const Mat & img,
                     Mat original, 
-                    const int color)
+                    const COLOR_TYPE color)
 {
     #define MIN_AREA_SIZE 1000 //defined as pixels^2 (in our scenaria it means mm^2)
     vector<vector<Point>> contours, contours_approx;
@@ -242,12 +234,12 @@ void find_contours( const Mat & img,
     findContours(img, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE); // find external contours of each blob
     drawContours(original, contours, -1, Scalar(40,190,40), 1, LINE_AA);
 
-    if(color==1){cout << "\tNumber detection\n";}
+    if(color==GREEN){cout << "\tNumber detection\n";}
     for (unsigned i=0; i<contours.size(); ++i){
         if (contourArea(contours[i]) > MIN_AREA_SIZE){ // filter too small contours to remove false positives
             approxPolyDP(contours[i], approx_curve, EPS_CURVE, true); // fit a closed polygon (with less vertices) to the given contour, with an approximation accuracy (i.e. maximum distance between the original and the approximated curve) of 3
             
-            if(color==1){ //green
+            if(color==GREEN){
                 Rect blob = boundingRect(Mat(approx_curve)); // find bounding box for each green blob
                 int num_detect = number_recognition(blob, original);
                 if(num_detect!=-1){
@@ -265,7 +257,8 @@ void find_contours( const Mat & img,
         my_imshow("Detected shape", original);
     #endif
 
-    if(color==1){
+    // sort the victims' vector of points according to their numbers.
+    if(color==GREEN){
         vector<pair<int, int > > vicPoints;
         for (uint i=0; i<victimNum.size(); i++){
             vicPoints.push_back(make_pair(victimNum[i], i));
@@ -284,10 +277,10 @@ void find_contours( const Mat & img,
 /*! \brief Given some vector save it in a xml file.
 
     \param[in] contours Is a vector that is saved in a xml file.
-    \param[in] color Is the parameter according to which the function decide if saved ('color==1') or not ('otherwise') the vector 'victims'.
+    \param[in] color It is the type of reference color, according to which the function decide if saved ('color==GREEN') or not ('otherwise') the vector 'victims'.
 */
-void save_convex_hull(  const vector<vector<Point> > & contours, 
-                        const int color)
+void save_convex_hull(  const vector<vector<Point>> & contours,
+                        const COLOR_TYPE color)
 {
     vector<vector<Point>> hull;
     vector<Point> hull_i;
@@ -300,14 +293,15 @@ void save_convex_hull(  const vector<vector<Point> > & contours,
 
     string str;
     switch(color){
-        case 0: {str="obstacles"; break;}
-        case 1: {str="victims"; break;}
-        case 2: {str="gate"; break;}
+        case RED:   {str="obstacles"; break;}
+        case GREEN: {str="victims"; break;}
+        case BLUE:  {str="gate"; break;}
+        default:    break;
     }
 
     fs << str << hull;
     
-    if (color==2){
+    if (color==BLUE){
         fs.release();
     }
 }
@@ -335,7 +329,7 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
         my_imshow("before erode", processROI);
     #endif
 
-    erode_dilation(processROI, 3);
+    erode_dilation(processROI, BLACK);
     #ifdef WAIT
         my_imshow("ROI filtered", processROI);
     #endif
