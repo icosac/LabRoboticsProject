@@ -14,13 +14,9 @@ pair< vector<Point2<int> >, Mapp* > planning(){
     map->getVictimCenters(vp);
     map->getGateCenter(vp);
 
-    vector<Point2<int> > cellsOfPath;
-    if(false){
-        cellsOfPath = map->minPathTwoPoints(vp[0], vp[1]);
-    } else {
-        vector<vector<Point2<int> > > vvp = map->minPathNPoints(vp);
-        cellsOfPath = map->sampleNPoints(vvp);
-    }
+    vector<vector<Point2<int> > > vvp = map->minPathNPoints(vp);
+    vector<Point2<int> > cellsOfPath = map->sampleNPoints(vvp);
+
     cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
 
     return( make_pair(cellsOfPath, map) );//todo change with points from dubins

@@ -1,9 +1,5 @@
 #include"unwrapping.hh"
 
-//debug blocks most things, wait only something
-// #define DEBUG
-// #define WAIT
-
 #define AREA_RATIO 0.7
 #define AREA_MIN 500 //pixel^2
 
@@ -175,22 +171,22 @@ int unwrapping(){
         int xM/*ax*/ = width, yM = height;
         Mat corner_pixels = (Mat_<float>(4,2) << rect[0].x, rect[0].y, rect[1].x, rect[1].y, rect[2].x, rect[2].y, rect[3].x, rect[3].y);
         Mat transf_pixels = (Mat_<float>(4,2) << xm, ym, xM, ym, xM, yM, xm, yM);
+        cout << "corner_pixels:\n" << corner_pixels << endl << endl;
+        cout << "transf_pixels:\n" << transf_pixels << endl << endl;
 
         Mat transf = getPerspectiveTransform(corner_pixels, transf_pixels);
-
+        cout << "transformation matrix:\n" << transf << endl;
         Mat unwarped_frame;
         warpPerspective(fix_img, unwarped_frame, transf, Size(width, height));
 
         // select a region of interest
         Mat imgCrop;
-        // imgCrop = unwarped_frame(Rect(xm, ym, xM-xm, yM-ym));
         imgCrop = unwarped_frame(Rect(0, 0, width, height));
         #ifdef WAIT
             my_imshow("cropped image", imgCrop);
         #endif
 
         // Store the cropped image to disk.
-        // string save_location = (string) fs_xml["mapsUnNames"][f];
         string file = sett->mapsNames.get(f);
         string save_name = file.substr(0, file.find_last_of('.'))+"_UN"+file.substr(file.find_last_of('.'), -1);
         string save_location = (sett->mapsFolder.back()=='/' ? sett->mapsFolder : sett->mapsFolder+"/")+save_name;
@@ -210,7 +206,6 @@ int unwrapping(){
     sett->writeToFile();
 return(0);
 }
-
 
 void find_rect(vector<Point>& _rect, const int& width, const int& height){
     Tuple<Point2<int> > rect;

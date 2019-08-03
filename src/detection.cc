@@ -45,6 +45,83 @@ int detection(){
     return(0);
 }
 
+void computeConversionParameters(Mat & transf){
+    // Tx & Ty: translation over x and y, Sx & Sy scaling on x and y
+    cout << "inside computeConversionParameters\n";
+
+    //define the "empiric" measures of the points location and the tape width
+    const int tape = 34; // tape width
+    const int t = tape/2;
+
+    Mat lowCorners  = (Mat_<float>(4,2) << 365-t, 975+t, 355-t, 125-t, 1575+t, 120-t, 1585+t, 955+t);
+    Mat highCorners = (Mat_<float>(4,2) << 305, 1025,    300, 80,      1620, 75,      1633, 992);
+    Mat rectCorners = (Mat_<float>(4,2) << 0, 0, 1000, 0, 1000, 1500, 0, 1500);
+
+    // create the transformation matrices from a point reference system to an other
+    Mat A = getPerspectiveTransform(rectCorners, lowCorners);
+        // A is the conversion back from the cropped rectangle to the undistorted image
+    Mat B = getPerspectiveTransform(highCorners, lowCorners);
+        // B is the conversion from the upper level to the lower one
+    Mat C = getPerspectiveTransform(lowCorners, rectCorners);
+        // C is the conversion back to the cropped rectangle (C is the opposite of A)
+
+    // cout << "A:\n" << A << endl;
+    // cout << "B:\n" << B << endl;
+    // cout << "C:\n" << C << endl;
+
+    // merge three transformation matrix:
+    // https://stackoverflow.com/questions/40306194/combine-two-affine-transformations-matrices-in-opencv
+    Mat D  = C * B * A; // the matrix are in the opposite order to respect the transformation priority
+    cout << "D:\n" << D << endl;
+
+    // return
+    transf = D;
+}
+
+Point2<int> localize(){
+    static Mat transf;
+
+    static bool firstRun = true;
+    if(firstRun){ //executed only at the first iteration of this function
+        firstRun = false;
+        computeConversionParameters(transf);
+    }
+
+    //find robot
+    
+
+
+
+    //compute barycenter of the robot
+    //apply conversion to the right reference system
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*! \brief Load some templates and save them in the global variable 'templates'.
 */
 void load_number_template(){ //load the template for number recognition
@@ -89,9 +166,7 @@ void shape_detection(const Mat & img, const int color, const Mat& un_img){
     
     Mat color_mask;
     inRange(img, mask.Low(), mask.High(), color_mask);
-    // if(color==0){
-    //     bitwise_not(color_mask, color_mask);
-    // } 
+    
     #ifdef DEBUG
         my_imshow("Color_filter", color_mask);
     #endif

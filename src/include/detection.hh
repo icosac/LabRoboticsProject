@@ -25,6 +25,9 @@ using namespace cv;
 */
 int detection();
 
+void computeConversionParameters(Mat & transf);
+Point2<int> localize();
+
 /*! \brief Detect shapes inside the image according to the variable 'color'.
 
     \param[in] img Image on which the research will done.

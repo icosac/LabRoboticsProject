@@ -11,15 +11,15 @@
 #include<iostream>
 using namespace std;
 
-#define WAIT
-#define DEBUG
-
 Settings *sett =new Settings();
 
 int main (){
 	sett->cleanAndRead();
+	
 	// cout << "calibration" << endl;
 	// calibration(); //BUG????!?!?!?!?!?!??!?!?!
+
+
 	cout << endl <<"Configure" << endl;
 	configure(false);
 
