@@ -42,7 +42,7 @@ SRC=src/utils.cc
 OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
 
 #test files
-TEST_SRC= test/prova1.cc\
+TEST_SRC= test/prova_CUDA.cc\
 					# test/dubins_test.cc\
 # 				test/maths_test.cc
 TEST_EXEC=$(subst test/,bin/test/,$(patsubst %.cc, %.out, $(TEST_SRC)))
@@ -50,7 +50,6 @@ TEST_EXEC=$(subst test/,bin/test/,$(patsubst %.cc, %.out, $(TEST_SRC)))
 #Run files
 RUN=$(wildcard src/run/*.cc)
 RUN_EXEC=$(subst src/run/,bin/,$(patsubst %cc, %out, $(RUN)))
-
 
 clr=clear && clear && clear
 
