@@ -88,6 +88,7 @@ Point2<int> localize(){
     return( localize( acquireImage(false) ) );
 }
 
+vector<Point> robotShape;
 Point2<int> localize(const Mat & img){
     static Mat transf;
 
@@ -95,20 +96,41 @@ Point2<int> localize(const Mat & img){
     if(firstRun){ //executed only at the first iteration of this function
         firstRun = false;
         computeConversionParameters(transf);
-        cout << "transf:\n" << transf << endl;
-
+        cout << "transformation matrix:\n" << transf << endl;
     }
 
     //find robot
     shape_detection(img, CYAN);
     
-
-
-    
     //compute barycenter of the robot
-    //apply conversion to the right reference system
+    //the barycenter is the mean if the points are 3. Otherwise we also compute the mean over x and y.
+    float yAvg=0.0, xAvg=0.0;
+    if(robotShape.size()!=3){
+        cout << "Warning: The robot is not well defined (not 3 points).\n\n";
+    }
+    cout << "From localize:\n";
+    for(Point p : robotShape){
+        cout << p.x << " - " << p.y << endl;
+        xAvg += p.x;
+        yAvg += p.y;
+    }
+    xAvg /= robotShape.size();
+    yAvg /= robotShape.size();
+    cout << "\t\tAvg:   " << xAvg << ", " << yAvg << endl;
+    robotShape.resize(0);
 
-    return(Point2<int>(3, 4));
+    // apply conversion to the right reference system
+    // https://stackoverflow.com/questions/30194211/opencv-applying-affine-transform-to-single-points-rather-than-entire-image
+    vector<Point2f> vpIn;
+    vector<Point2f> vpOut;
+    vpIn.push_back(Point2f(xAvg, yAvg));
+    perspectiveTransform(vpIn, vpOut, transf);  //maybe a simple matrix multiplication will be faster...
+
+    int x = (int) vpOut[0].x;
+    int y = (int) vpOut[0].y;
+    cout << "New transformed point: " << x << " - " << y << endl;
+
+    return(Point2<int>(x, y));
 }
 
 
@@ -152,7 +174,7 @@ void load_number_template(){ //load the template for number recognition
     \param[in] img Image on which the research will done.
     \param[in] color It is the type of reference color. These color identify the possible spectrum that the function search on the image.
 */
-void shape_detection(const Mat & img, const COLOR_TYPE color/*, vector<Point > & robotShape*/){
+void shape_detection(const Mat & img, const COLOR_TYPE color){
     // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
     Filter mask;
     switch(color){
@@ -187,7 +209,7 @@ void shape_detection(const Mat & img, const COLOR_TYPE color/*, vector<Point > &
         my_imshow("Color_filter", color_mask);
     #endif
 
-    find_contours(color_mask, img, color/*, robotShape*/);
+    find_contours(color_mask, img, color);
 }
 
 /*! \brief It apply some filtering function for isolate the subject and remove the noise.
@@ -240,8 +262,7 @@ bool _compare (  const pair<int, int > & a,
 #define EPS_CURVE 5
 void find_contours( const Mat & img,
                     const Mat & original, 
-                    const COLOR_TYPE color/*,
-                    vector<Point > & robotShape*/)
+                    const COLOR_TYPE color)
 {
     #define MIN_AREA_SIZE 1000 //defined as pixels^2 (in our scenaria it means mm^2)
     vector<vector<Point>> contours, contours_approx;
@@ -275,33 +296,39 @@ void find_contours( const Mat & img,
     #endif
 
     if(color==CYAN){
-        cout << "contours_approx size: " << contours_approx.size() << endl;
-        for(auto vEl : contours_approx){
-            for(auto el : vEl){
-                cout << el << ", ";
+        // the points are returned thanks to a global variable.
+        if(contours_approx.size()==1){
+            robotShape = contours_approx[0];
+        } else{
+            cout << "Warning: Not well defined robot filter.\n\tThere are " << contours_approx.size() << " possible blobs.\n\n";
+            double area, minArea = contourArea(contours_approx[0]);
+            int maxIndex = 0;
+            for(unsigned int i=1; i<contours_approx.size(); i++){
+                area = contourArea(contours_approx[i]);
+                if(area>minArea){
+                    minArea = area;
+                    maxIndex = i;
+                }
             }
-            cout << endl;
+            robotShape = contours_approx[maxIndex];
         }
-        cout << endl << "TODO: return()\n";
-        // robotShape
-        // TODO: return the 3 points.
-    }
+    } else{
+        // sort the victims' vector of points according to their numbers.
+        if(color==GREEN){
+            vector<pair<int, int > > vicPoints;
+            for (uint i=0; i<victimNum.size(); i++){
+                vicPoints.push_back(make_pair(victimNum[i], i));
+            }
+            std::sort(vicPoints.begin(), vicPoints.end(), _compare);
+            vector<vector<Point> > tmp;
+            for (auto el : vicPoints){
+                tmp.push_back(contours_approx[el.second]);
+            }
+            contours_approx.swap(tmp);
+        }
 
-    // sort the victims' vector of points according to their numbers.
-    if(color==GREEN){
-        vector<pair<int, int > > vicPoints;
-        for (uint i=0; i<victimNum.size(); i++){
-            vicPoints.push_back(make_pair(victimNum[i], i));
-        }
-        std::sort(vicPoints.begin(), vicPoints.end(), _compare);
-        vector<vector<Point> > tmp;
-        for (auto el : vicPoints){
-            tmp.push_back(contours_approx[el.second]);
-        }
-        contours_approx.swap(tmp);
+        save_convex_hull(contours_approx, color);
     }
-
-    save_convex_hull(contours_approx, color);
 }
 
 /*! \brief Given some vector save it in a xml file.

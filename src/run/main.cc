@@ -47,10 +47,11 @@ int main (){
 	#endif
 
 	// the robot starts to move MAYBE
-	Point2<int> p;
-	for(int i=0; i<100; i++){	// 100*(<50ms) = (<5sec)
-		p = localize();
-	}
+	// Point2<int> p;
+	// for(int i=0; i<100; i++){	// 100*(<50ms) = (<5sec)
+	// 	// execute this line only in the laboratory...
+	// 	p = localize();
+	// }
 
 	cout << "\nend\n\n";
 	return(0);

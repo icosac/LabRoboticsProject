@@ -46,8 +46,7 @@ Point2<int> localize(const Mat & img);
     \param[in] color It is the type of reference color.
     These color identify the possible spectrum that the function search on the image.
 */
-void shape_detection(   const Mat & img, const COLOR_TYPE color/*, 
-                        vector<Point > & robotShape = vector<Point >()*/);
+void shape_detection(const Mat & img, const COLOR_TYPE color);
 
 /*! \brief It apply some filtering function for isolate the subject and remove the noise.
     \details An example of the sub functions called are: GaussianBlur, Erosion, Dilation and Threshold.
@@ -65,8 +64,7 @@ void erode_dilation(Mat & img, const COLOR_TYPE color);
 */
 void find_contours( const Mat & img,
                     const Mat & original, 
-                    const COLOR_TYPE color/*, 
-                    vector<Point > & robotShape = vector<Point >() */);
+                    const COLOR_TYPE color);
 
 /*! \brief Detect a number on an image inside a region of interest.
 

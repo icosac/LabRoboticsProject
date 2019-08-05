@@ -171,11 +171,8 @@ int unwrapping(){
         int xM/*ax*/ = width, yM = height;
         Mat corner_pixels = (Mat_<float>(4,2) << rect[0].x, rect[0].y, rect[1].x, rect[1].y, rect[2].x, rect[2].y, rect[3].x, rect[3].y);
         Mat transf_pixels = (Mat_<float>(4,2) << xm, ym, xM, ym, xM, yM, xm, yM);
-        cout << "corner_pixels:\n" << corner_pixels << endl << endl;
-        cout << "transf_pixels:\n" << transf_pixels << endl << endl;
 
         Mat transf = getPerspectiveTransform(corner_pixels, transf_pixels);
-        cout << "transformation matrix:\n" << transf << endl;
         Mat unwarped_frame;
         warpPerspective(fix_img, unwarped_frame, transf, Size(width, height));
 
