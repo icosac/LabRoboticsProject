@@ -9,10 +9,14 @@ INCLUDE=include
 
 CXX=g++
 
-INC=-I./lib/include 
+INC=-I./lib/include
 LDFLAGS=-Wl,-rpath,/Users/enrico/opencv/lib/
 
 LIBS=-L./lib -lDubins $(INC)
+
+#compiling libs&flags
+LDLIBS=$(LIBS) `pkg-config --libs $(TESS) $(OPENCV)`
+MORE_FLAGS=
 
 #condition for mac and linux
 ifneq (,$(findstring Darwin, $(OS)))
@@ -23,10 +27,6 @@ else
 	CXXFLAGS=`pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -Wall -O3
 	AR=ar rcs
 endif
-
-#compiling libs&flags
-LDLIBS=$(LIBS) `pkg-config --libs $(TESS) $(OPENCV)` 
-MORE_FLAGS=
 
 #general documentation optins
 DOXYGEN=doxygen
@@ -40,6 +40,9 @@ MKDIR=mkdir -p
 SRC=src/utils.cc 
 #object files
 OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
+
+SRC_CUDA=$(wildcard src/cuda/*.cu)
+OBJ_CUDA=$(subst src/,src/obj/,$(patsubst %.cu, %.o, $(SRC_CUDA)))
 
 #test files
 TEST_SRC= test/prova_CUDA.cc\
@@ -57,6 +60,8 @@ PROJ_HOME = $(shell pwd)
 
 ##CREATE FILES TARGETS
 #Create objects file
+src/obj/cuda/%.o: src/cuda/%.cu
+	nvcc -std=c++11 -rdc=false --default-stream per-thread -O3 -L./lib -lDubins $(INC) -c -o $@ $<
 src/obj/%.o: src/%.cc
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 #Create executables for testing
@@ -72,7 +77,12 @@ all: lib bin/ xml main
 
 #Create test case files
 test: lib bin_test/ $(TEST_EXEC)
-	
+
+cuda: cuda_set lib lib_cuda bin/ run_test
+
+cuda_set: obj/
+	@$(eval LIBS+= -D CUDA -I/opt/cuda/include -L/opt/cuda/lib64 -lcuda -lcudart -lDubinsCuda)
+	$(MKDIR) src/obj/cuda
 
 ##Debugging
 ECHO:
@@ -97,6 +107,12 @@ include_local:
 #Static library made of objects file
 lib/libDubins.a: include_local obj/ $(OBJ)
 	$(AR) lib/libDubins.a $(OBJ) 
+
+lib_cuda: lib/libDubinsCuda.a
+
+lib/libDubinsCuda.a: $(OBJ_CUDA)
+	$(MKDIR) lib
+	$(AR) lib/libDubinsCuda.a $(OBJ_CUDA)
 
 
 ##CREATE DIRECTORIES

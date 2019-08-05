@@ -71,8 +71,8 @@ namespace CHRONO {
   #define INFOV(v)\
     for (auto el : v){ cout << el << ", " ; } cout << endl;
 #else
-  #define COUT(x) ///<Print a messag to stderr
-  #define INFO(msg)  ///<Print the name of a variable and its content. Only if DEBUG is defined.
+  #define COUT(x) ///<Print the name of a variable and its content. Only if DEBUG is defined.
+  #define INFO(msg)  ///<Print a messag to stdout only if DEBUG is defined 
 #endif
 
 /*! \brief Function to show images in an order grill.
