@@ -125,11 +125,6 @@ __global__ void RLR (double th0, double th1, double _kmax, double* ret)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-	if (th0==1.2 && th1==1.2){
-		printf("RLR 0: %f\n", ret[0]);
-		printf("RLR 1: %f\n", ret[1]);
-		printf("RLR 2: %f\n", ret[2]);
-	}
 }
 
 __global__ void LRL (double th0, double th1, double _kmax, double* ret)
@@ -151,89 +146,191 @@ __global__ void LRL (double th0, double th1, double _kmax, double* ret)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-
-	if (th0==1.2 && th1==1.2){
-		printf("LRL 0: %f\n", ret[0]);
-		printf("LRL 1: %f\n", ret[1]);
-		printf("LRL 2: %f\n", ret[2]);
-	}
 }
 
-void shortest_cuda(	double sc_th0, double sc_th1, double sc_Kmax, 
-										int& pidx, double* sc_s, double& Length){
-	Length=DInf;
-	double sc_s1=0.0;
-	double sc_s2=0.0;
-	double sc_s3=0.0;
+// void shortest_cuda(	double x0, double y0, double th0, 
+// 										double x1, double y1, double th1, 
+// 										double sc_Kmax, int& pidx, double* sc_s, double& Length){
+// 	Length=DInf;
+// 	double sc_s1=0.0;
+// 	double sc_s2=0.0;
+// 	double sc_s3=0.0;
 	
-	double** ret=(double**) malloc(sizeof(double*)*6);
-	for(int i=0; i<6; i++){
-		ret[i]=(double*) malloc(sizeof(double)*3);
+// #ifdef STREAMS
+// 	double** ret=(double**) malloc(sizeof(double*)*6);
+// 	for(int i=0; i<6; i++){
+// 		ret[i]=(double*) malloc(sizeof(double)*3);
+// 	}
+// 	double* dev_RSR; cudaMalloc((void**)&dev_RSR, 3*sizeof(double));
+// 	double* dev_LSR; cudaMalloc((void**)&dev_LSR, 3*sizeof(double));
+// 	double* dev_RSL; cudaMalloc((void**)&dev_RSL, 3*sizeof(double));
+// 	double* dev_RLR; cudaMalloc((void**)&dev_RLR, 3*sizeof(double));
+// 	double* dev_LRL; cudaMalloc((void**)&dev_LRL, 3*sizeof(double));
+// 	double* dev_LSL; cudaMalloc((void**)&dev_LSL, 3*sizeof(double));
+
+// 	cudaStream_t stream[6];
+// 	cudaStreamCreate(&stream[0]);
+// 	cudaStreamCreate(&stream[1]);
+// 	cudaStreamCreate(&stream[2]);
+// 	cudaStreamCreate(&stream[3]);
+// 	cudaStreamCreate(&stream[4]);
+// 	cudaStreamCreate(&stream[5]);
+
+// 	RSR<<<1, 1, 0, stream[0]>>>(sc_th0, sc_th1, sc_Kmax, dev_RSR);
+// 	cudaMemcpyAsync(ret[0], dev_RSR, sizeof(double)*3, cudaMemcpyDeviceToHost, stream[0]);
+// 	LSR<<<1, 1, 0, stream[1]>>>(sc_th0, sc_th1, sc_Kmax, dev_LSR);
+// 	cudaMemcpyAsync(ret[1], dev_LSR, sizeof(double)*3, cudaMemcpyDeviceToHost, stream[1]);
+// 	RSL<<<1, 1, 0, stream[2]>>>(sc_th0, sc_th1, sc_Kmax, dev_RSL);
+// 	cudaMemcpyAsync(ret[2], dev_RSL, sizeof(double)*3, cudaMemcpyDeviceToHost, stream[2]);
+// 	RLR<<<1, 1, 0, stream[3]>>>(sc_th0, sc_th1, sc_Kmax, dev_RLR);
+// 	cudaMemcpyAsync(ret[3], dev_RLR, sizeof(double)*3, cudaMemcpyDeviceToHost, stream[3]);
+// 	LRL<<<1, 1, 0, stream[4]>>>(sc_th0, sc_th1, sc_Kmax, dev_LRL);
+// 	cudaMemcpyAsync(ret[4], dev_LRL, sizeof(double)*3, cudaMemcpyDeviceToHost, stream[4]);
+// 	LSL<<<1, 1, 0, stream[5]>>>(sc_th0, sc_th1, sc_Kmax, dev_LSL);
+// 	cudaMemcpyAsync(ret[5], dev_LSL, sizeof(double)*3, cudaMemcpyDeviceToHost, stream[5]);
+
+// 	cudaStreamDestroy(stream[0]);
+// 	cudaStreamDestroy(stream[1]);
+// 	cudaStreamDestroy(stream[2]);
+// 	cudaStreamDestroy(stream[3]);
+// 	cudaStreamDestroy(stream[4]);
+// 	cudaStreamDestroy(stream[5]);
+
+//   cudaFree(dev_RSR);
+// 	cudaFree(dev_LSR);
+// 	cudaFree(dev_RSL);
+// 	cudaFree(dev_RLR);
+// 	cudaFree(dev_LRL);
+// 	cudaFree(dev_LSL);
+
+// 	for(int i=0; i<6; i++){
+// 		double* value=ret[i];
+// 		if (value[0]!=-1){
+// 		  double appL=value[0]+value[1]+value[2];
+// 		  if (appL<Length && !equal(appL, 0.0)){
+// 		    Length = appL;
+// 		    sc_s[0]=value[0];
+// 		    sc_s[1]=value[1];
+// 		    sc_s[2]=value[2];
+// 		    pidx=i;
+// 		  }
+// 		}
+//   }
+
+//   for (int i=0; i<6; i++){
+//   	free(ret[i]);
+//   }
+//   free(ret);
+
+// #else
+
+// 	double* ret=(double*) malloc(sizeof(double)*18);
+
+// 	size_t pitch;
+// 	double* dev_ret; cudaMallocPitch(&dev_ret, &pitch, 3*sizeof(double), 6);
+
+// 	RSR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret);
+// 	LSR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+1*pitch/sizeof(double));
+// 	RSL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+2*pitch/sizeof(double));
+// 	RLR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+3*pitch/sizeof(double));
+// 	LRL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+4*pitch/sizeof(double));
+// 	LSL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+5*pitch/sizeof(double));
+
+// 	cudaMemcpy2D(ret, 3*sizeof(double), dev_ret, pitch, 3*sizeof(double), 6, cudaMemcpyDeviceToHost);
+
+// 	cudaFree(dev_ret);
+
+// 	for(int i=0; i<6; i++){
+// 		double* value=ret+i*3;
+// 		if (value[0]!=-1){
+// 		  double appL=value[0]+value[1]+value[2];
+// 		  if (appL<Length && !equal(appL, 0.0)){
+// 		    Length = appL;
+// 		    sc_s[0]=value[0];
+// 		    sc_s[1]=value[1];
+// 		    sc_s[2]=value[2];
+// 		    pidx=i;
+// 		  }
+// 		}
+//   }
+  
+//   free(ret);
+
+// #endif
+// }
+
+//TODO test implementation where x_i=y%base^i
+__device__ void toBase(double* v, const int base, int value){
+	int i=0;
+	while(value>0){
+		v[i]=value%base;
+		value=(int)(val/BASE);
+		i++;
 	}
-
-	double* dev_RSR; cudaMalloc((void**)&dev_RSR, 3*sizeof(double));
-	double* dev_LSR; cudaMalloc((void**)&dev_LSR, 3*sizeof(double));
-	double* dev_RSL; cudaMalloc((void**)&dev_RSL, 3*sizeof(double));
-	double* dev_RLR; cudaMalloc((void**)&dev_RLR, 3*sizeof(double));
-	double* dev_LRL; cudaMalloc((void**)&dev_LRL, 3*sizeof(double));
-	double* dev_LSL; cudaMalloc((void**)&dev_LSL, 3*sizeof(double));
-
-	cudaStream_t stream;
-	cudaStreamCreate(&stream);
-
-	RSR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_RSR);
-	cudaMemcpyAsync(ret[0], dev_RSR, sizeof(double)*3, cudaMemcpyDeviceToHost, 0);
-	LSR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_LSR);
-	cudaMemcpyAsync(ret[1], dev_LSR, sizeof(double)*3, cudaMemcpyDeviceToHost, 0);
-	RSL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_RSL);
-	cudaMemcpyAsync(ret[2], dev_RSL, sizeof(double)*3, cudaMemcpyDeviceToHost, 0);
-	RLR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_RLR);
-	cudaMemcpyAsync(ret[3], dev_RLR, sizeof(double)*3, cudaMemcpyDeviceToHost, 0);
-	LRL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_LRL);
-	cudaMemcpyAsync(ret[4], dev_LRL, sizeof(double)*3, cudaMemcpyDeviceToHost, 0);
-	LSL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_LSL);
-	cudaMemcpyAsync(ret[5], dev_LSL, sizeof(double)*3, cudaMemcpyDeviceToHost, 0);
-
-	cudaStreamDestroy(stream);
-
-	// for(size_t i=0; i<6; ++i){
-	// 	cudaMemcpy(&ret[i*3], &dev_ret[pitch*i], 6*sizeof(double), cudaMemcpyDeviceToHost);
-	// }
-
-	// cudaMemcpy2D(ret, pitch_h, dev_ret, pitch, 3*sizeof(double), 6, cudaMemcpyDeviceToHost);
-
-	for(int i=0; i<6; i++){
-		// double* value=ret+i*3;
-		double* value=ret[i];
-		if (ret[i][0]!=-1){
-		  double appL=value[0]+value[1]+value[2];
-		  // double appL=ret[i][0]+ret[i][1]+ret[i][2];
-		  if (appL<Length && !equal(appL, 0.0)){
-		    Length = appL;
-		    sc_s[0]=value[0];
-		    sc_s[1]=value[1];
-		    sc_s[2]=value[2];
-		    pidx=i;
-		  }
-		}
-  }
-
-  cudaFree(dev_RSR);
-	cudaFree(dev_LSR);
-	cudaFree(dev_RSL);
-	cudaFree(dev_RLR);
-	cudaFree(dev_LRL);
-	cudaFree(dev_LSL);
-
-  for (int i=0; i<6; i++){
-  	free(ret[i]);
-  }
-  free(ret);
 }
 
-// int main (){
-// 	int pidx=-1;
-// 	shortest_cuda(0.0, 0.0, 0.0, pidx);
-// 	cout << pidx << endl;
-// 	return 0;
-// }
+__global__ void dubins()
+
+__global__ void computeDubins (const double* _angle, const double* inc; const double* x, const double* y,
+															double* lengths, uint dev_iter, size_t size, double _kmax){
+	uint pidx=blockDim.x*blockIdx.x+threadIdx.x;
+	double* angles=(double*) malloc(sizeof(double)*size);
+	if (pidx>dev_iter){}
+	else {
+		toBase(angle, base, pidx);
+		double angle=0;
+		dubins<<<GRID, THREADS>>>(x, y, angle, &(lenghts[pidx]), _kmax);
+
+		for (int i=0; i<size-1; i++){
+			angles[i]=angles[i]*(*inc)+_angle[i];
+			angles[i+1]=angles[i+1]*(*inc)+_angle[i+1];
+			dubins(x[i], y[i], angle[i], x[i+1], y[i+1], angle[i+1], _kmax);
+			angle=angle[i];
+		}
+	}
+
+}
+
+void dubinsSetBest(Configuration2<double> start,
+										Configuration2<double> end,
+										Tuple<Point2<double> > _points
+										uint parts){
+	int size=_points.size()+2;
+	unsigned long iter_n=pow(parts, size);
+	COUT(iter_n)
+
+	double* init_angle=(double*) malloc(sizeof(double)*size);
+	double* x=(double*) malloc(size*sizeof(double));
+	double* y=(double*) malloc(size*sizeof(double));
+
+	init_angle[0]=start.angle().toRad();
+	x[0]=start.point().x();
+	y[0]=start.point().y();
+	for (int i=1; i<size-2; i++){
+		init_angle[i]=_points.get(i-1).th(_points.get(i)).toRad();
+		x[0]=_points.get(i-1).x();
+		y[0]=_points.get(i-1).y();
+	}
+	init_angle[size-2]=_points.get(_points.size()-1).th(end.point()).toRad();
+	x[size-2]=_points.get(_points.size()-1).x();
+	y[size-2]=_points.get(_points.size()-1).y();
+	init_angle[size-1]=end.angle();
+	x[size-1]=end.point().x();
+	y[size-1]=end.point().y();
+	
+	for (int i=0; i<size; i++){
+		cout << init_angle[i] << (i!=size-1 ? ", " : "\n");
+	}
+
+	double Lenght=0.0;
+	double* lenghts=(double*) malloc(sizeof(double)iter_n);
+	double* dev_lengths; cudaMalloc((void**)&dev_lengths, sizeof(double)*iter_n); 
+
+	uint* dev_iter; cudaMalloc((void**)&dev_ret, sizeof(uint));
+	cudaMemcpy(dev_iter, &iter_n, sizeof(uint), cudaMemcpyHostToDevice);
+
+	computeDubins<<<GRID, THREADS>>> (init_angle, x, y, dev_lengths, dev_iter);
+
+	cudaMemcpy(void* dst, const void* src, size_t count, cudaMemcpyKind kind)
+
+}

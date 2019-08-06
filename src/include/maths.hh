@@ -656,7 +656,7 @@ public:
 
   Tuple<T> sum(Tuple<T> t){
     if (this->size()!=t.size()){
-      throw MyException<int>(EXCEPTION_TYPE::SIZE, this->size, t.size());
+      throw MyException<int>(EXCEPTION_TYPE::SIZE, this->size(), t.size());
     }
     for (int i=0; i<this->size(); i++){
       this->set(i, (this->get(i)+t.get(i)));
@@ -681,7 +681,7 @@ public:
 
   Tuple<T> mul(Tuple<T> t){
     if (this->size()!=t.size()){
-      throw MyException<int>(EXCEPTION_TYPE::SIZE, this->size, t.size());
+      throw MyException<int>(EXCEPTION_TYPE::SIZE, this->size(), t.size());
     }
     for (int i=0; i<this->size(); i++){
       this->set(i, (this->get(i)*t.get(i)));
@@ -1047,7 +1047,9 @@ public:
   //TODO document
   Angle th (Point2 P1, 
             Angle::ANGLE_TYPE type=Angle::RAD){
-    return Angle(atan((P1.y()-this->y())/(P1.x()-this->x())), Angle::RAD);
+    COUT((P1.y()-this->y())/(P1.x()-this->x()))
+    COUT(atan((P1.y()-this->y())/(P1.x()-this->x())))
+    return Angle(atan((P1.y()-this->y())/(P1.x()-this->x())), type);
   }
 
   // ~Point2(){delete values;}

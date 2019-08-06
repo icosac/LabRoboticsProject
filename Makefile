@@ -24,7 +24,7 @@ ifneq (,$(findstring Darwin, $(OS)))
 	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -Wno-everything -O3
   	AR=libtool -static -o
 else 
-	CXXFLAGS=`pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -Wall -O3
+	CXXFLAGS=`pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -O3
 	AR=ar rcs
 endif
 
@@ -61,7 +61,7 @@ PROJ_HOME = $(shell pwd)
 ##CREATE FILES TARGETS
 #Create objects file
 src/obj/cuda/%.o: src/cuda/%.cu
-	nvcc -std=c++11 -rdc=false --default-stream per-thread -O3 -L./lib -lDubins $(INC) -c -o $@ $<
+	nvcc -rdc=false --default-stream per-thread $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 src/obj/%.o: src/%.cc
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 #Create executables for testing

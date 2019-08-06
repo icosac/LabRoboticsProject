@@ -138,12 +138,6 @@ double* RLR (double th0, double th1, double _kmax)
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
 
-	if (th0==1.2 && th1==1.2){
-		printf("%f\n", ret[0]);
-		printf("%f\n", ret[1]);
-		printf("%f\n", ret[2]);
-	}
-
 	return ret;
 	// return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
 }
@@ -169,12 +163,6 @@ double* LRL (double th0, double th1, double _kmax)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-
-	if (th0==1.2 && th1==1.2){
-		printf("%f\n", ret[0]);
-		printf("%f\n", ret[1]);
-		printf("%f\n", ret[2]);
-	}
 
 	return ret;
 
@@ -226,9 +214,14 @@ int* toBase (int val){
 	return ret;
 }
 
+#define CHOICE 2
+
+#if CHOICE==1
 int main (){
 	cudaFree(0);
 	int i=0;
+	double host_time=0.0;
+	double dev_time=0.0;
 	for (double th0=0.0; th0<2*M_PI; th0+=0.1){
 		for (double th1=0.0; th1<2*M_PI; th1+=0.1){
 			for (double kmax=0.0; kmax<5; kmax+=0.1){
@@ -240,8 +233,16 @@ int main (){
 				double dev_Lenght=-1;
 				double host_Lenght=-1;
 
+				auto start=Clock::now();
 				shortest(th0, th1, kmax, pidx_h, host_sc_s, host_Lenght);
+				auto stop=Clock::now();
+				host_time+=CHRONO::getElapsed(start, stop);
+
+				start=Clock::now();
 				shortest_cuda(th0, th1, kmax, pidx_d, dev_sc_s, dev_Lenght);
+				stop=Clock::now();
+				dev_time+=CHRONO::getElapsed(start, stop);
+				
 				if (pidx_d!=pidx_h){
 					cout << "th0: " << th0 << ", th1: " << th1 << ", kmax: " << kmax << ", pidx_h: " << pidx_h << ", pidx_d: " << pidx_d << endl;
 					cout << "Host  Length: " << host_Lenght << " sc_s1: " << host_sc_s[0] << " sc_s2: " << host_sc_s[1] << " sc_s3: " << host_sc_s[2] << endl;
@@ -253,5 +254,23 @@ int main (){
 			}
 		}
 	}
+	COUT(host_time)
+	COUT(dev_time)
 	return 0;
 }
+
+#elif CHOICE==2
+int main (){
+	Tuple<Point2<double> > points;
+	points.add(Point2<double> (1.0, 0.0));
+	points.add(Point2<double> (1.0, 1.0));
+	points.add(Point2<double> (0.0, 1.0));
+	
+	Configuration2<double> start(0.0, 0.0, Angle(0.0, Angle::RAD));
+	Configuration2<double> stop(0.5, 0.0, Angle(-M_PI/2.0, Angle::RAD));
+
+	dubinsSetBest(start, stop, points);
+
+	return 0;
+}
+#endif
