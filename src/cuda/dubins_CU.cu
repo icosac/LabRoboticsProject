@@ -14,6 +14,7 @@ using namespace std;
 __device__ __host__ bool equal (double x, double y, double epsi=CUDA_Epsi){ return fabs(x-y)<epsi;}
 
 __device__ double mod2pi (double angle){
+	printf("mod2pi\n");
 	while(angle>=2*M_PI){
 		angle-=(M_PI*2);
 	}
@@ -263,7 +264,7 @@ __global__ void LRL (double th0, double th1, double _kmax, double* ret)
 
 
 #define GRID 1
-#define THREADS 1
+#define THREADS 256
 //TODO test implementation where x_i=y%base^i
 __device__ void toBase(double* v, const int base, int value){
 	int i=0;
@@ -291,50 +292,56 @@ __device__ void toBase(double* v, const int base, int value){
 
 // } dubinsArc;
 
-// __global__ void dubins(const double* x, const double* y)
 
-__device__ void dubins(	const double& x0, const double& y0, const double& th0,
-													const double& x1, const double& y1, const double& th1, 
-													double _kmax, double* L, int* id){
-	int pidx=-1;
-	//Scale to standard
-	double sc_th0=mod2pi(th0-atan2((y1-y0), (x1-x0)));
-	double sc_th1=mod2pi(th1-atan2((y1-y0), (x1-x0)));
-	double sc_lambda=sqrt(pow2(y1-y0)+pow2(x1-x0))/2;
-	double sc_kmax=_kmax*sc_lambda;
+// __device__ void dubins(	double* x0, double* y0, double th0,
+// 													double* x1, double* y1, double th1, 
+// 													double _kmax, double* L, int* id){
+// 	int pidx=-1;
+// 	//Scale to standard
+// 	printf("x0: %f\n", *x0);
+// 	printf("atan2: %f\n", atan2(((*y1)-(*y0)), ((*x1)-(*x0))));
+// 	double sc_th0=mod2pi((th0)-atan2(((*y1)-(*y0)), ((*x1)-(*x0))));
+// 	printf("ciao\n");
+// 	double sc_th1=mod2pi((th1)-atan2(((*y1)-(*y0)), ((*x1)-(*x0))));
+// 	double sc_lambda=sqrt(pow2((*y1)-(*y0))+pow2((*x1)-(*x0)))/2;
+// 	double sc_kmax=_kmax*sc_lambda;
 
-	double Length=CUDA_DInf;
-	// double sc_s1=0.0;
-	// double sc_s2=0.0;
-	// double sc_s3=0.0;
+// 	double Length=CUDA_DInf;
+// 	// double sc_s1=0.0;
+// 	// double sc_s2=0.0;
+// 	// double sc_s3=0.0;
 
-	double* ret=new double [18];
+// 	double* ret=new double [18];
 
-	LSL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret);
-	RSR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+3*sizeof(double));
-	LSR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+6*sizeof(double));
-	RSL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+9*sizeof(double));
-	RLR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+12*sizeof(double));
-	LRL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+15*sizeof(double));
+// 	LSL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret);
+// 	RSR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+3*sizeof(double));
+// 	LSR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+6*sizeof(double));
+// 	RSL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+9*sizeof(double));
+// 	RLR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+12*sizeof(double));
+// 	LRL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+15*sizeof(double));
+// 	printf("%f\n", ret[0]);
+// 	printf("%f\n", ret[1]);
+// 	printf("%f\n", ret[2]);
 
-	__syncthreads();
+// 	__syncthreads();
 
-	for (int i=0; i<6; i++){
-		double* value=ret+i*3*sizeof(double);
-		if (value[0]!=-1){
-			double appL=value[0]+value[1]+value[2];
-			if (appL<Length){
-				Length=appL;
-				// sc_s1=value[0];
-				// sc_s1=value[1];
-				// sc_s1=value[2];
-				pidx=i;
-			}
-		}
-	}
-
-	*L=Length;
-	*id=pidx;
+// 	for (int i=0; i<6; i++){
+// 		double* value=ret+i*3*sizeof(double);
+// 		if (value[0]!=-1){
+// 			double appL=value[0]+value[1]+value[2];
+// 			if (appL<Length){
+// 				Length=appL;
+// 				// sc_s1=value[0];
+// 				// sc_s1=value[1];
+// 				// sc_s1=value[2];
+// 				pidx=i;
+// 			}
+// 		}
+// 	}
+// 	printf("ciao:\n");
+// 	printf("%f\n", Length);
+// 	*L=Length;
+// 	*id=pidx;
 
 	// if (pidx>=0){
 	// 	//Scale from standard
@@ -378,23 +385,106 @@ __device__ void dubins(	const double& x0, const double& y0, const double& th0,
 	//    							mod2pi(_kmax*L+A1.th1), 
 	//    							L, ksings[pidx][0]*_kmax); 
 	// }
+// }
+
+#if __CUDA_ARCH__ < 600
+__device__ double MyatomicAdd(double* address, double val)
+{
+    unsigned long long int* address_as_ull =
+                              (unsigned long long int*)address;
+    unsigned long long int old = *address_as_ull, assumed;
+
+    do {
+        assumed = old;
+        old = atomicCAS(address_as_ull, assumed,
+                        __double_as_longlong(val +
+                               __longlong_as_double(assumed)));
+
+    // Note: uses integer comparison to avoid hang in case of NaN (since NaN != NaN)
+    } while (assumed != old);
+
+    return __longlong_as_double(old);
+}
+#endif
+
+__global__ void dubins (const double* x, const double* y, double* th, double* length, double _kmax){
+	uint tidx=threadIdx.x;
+	printf("ciao %u\n", tidx);
+	double x0=x[tidx];
+	double x1=x[tidx+1];
+	double y0=y[tidx];
+	double y1=y[tidx+1];
+	double th0=th[tidx];
+	double th1=th[tidx+1];
+
+	printf("ciao:\n");
+	int pidx=-1;
+	//Scale to standard
+	printf("x0: %f\n", x0);
+	printf("atan2: %f\n", atan2((y1-y0), (x1-x0)));
+	double sc_th0=mod2pi(th0-atan2((y1-y0), (x1-x0)));
+	printf("ciao\n");
+	double sc_th1=mod2pi(th1-atan2((y1-y0), (x1-x0)));
+	double sc_lambda=sqrt(pow2(y1-y0)+pow2(x1-x0))/2;
+	double sc_kmax=_kmax*sc_lambda;
+
+	double Length=CUDA_DInf;
+	// double sc_s1=0.0;
+	// double sc_s2=0.0;
+	// double sc_s3=0.0;
+
+	double* ret=new double [18];
+
+	LSL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret);
+	RSR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+3*sizeof(double));
+	LSR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+6*sizeof(double));
+	RSL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+9*sizeof(double));
+	RLR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+12*sizeof(double));
+	LRL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+15*sizeof(double));
+	printf("%f\n", ret[0]);
+	printf("%f\n", ret[1]);
+	printf("%f\n", ret[2]);
+
+	__syncthreads();
+
+	for (int i=0; i<6; i++){
+		double* value=ret+i*3*sizeof(double);
+		if (value[0]!=-1){
+			double appL=value[0]+value[1]+value[2];
+			if (appL<Length){
+				Length=appL;
+				// sc_s1=value[0];
+				// sc_s1=value[1];
+				// sc_s1=value[2];
+				pidx=i;
+			}
+		}
+	}
+	printf("ciao:\n");
+	printf("%f\n", Length);
+	MyatomicAdd(length, Length);
 
 }
 
 __global__ void computeDubins (const double* _angle, const double* inc, const double* x, const double* y,
-															double* lengths, int* pidxs, uint dev_iter, size_t size, double _kmax){
+															double* lengths, int* pidxs, uint dev_iter, size_t size, size_t base, double _kmax){
 	uint tidx=blockDim.x*blockIdx.x+threadIdx.x;
 	if (tidx>dev_iter){}
 	else {
 		double* angles=(double*) malloc(sizeof(double)*size);
-		toBase(angles, dev_iter, tidx);
+		toBase(angles, base, tidx);
 		// dubins<<<GRID, THREADS>>>(x, y, angle, &(lengths[tidx]), _kmax);
-
-		for (int i=0; i<size-1; i++){
-			dubins(x[i], y[i], angles[i]*(*inc)+_angle[i], 
-						x[i+1], y[i+1], angles[i+1]*(*inc)+_angle[i+1], 
-						_kmax, &lengths[tidx], &pidxs[tidx]);
-		}
+		printf("[%d] inc: %f\n", tidx, (*inc));
+		printf("[%d] angle+inc: %f, %f, %f, %f, %f\n", tidx, (angles[0]*(*inc)), (angles[1]*(*inc)), (angles[2]*(*inc)), (angles[3]*(*inc)), (angles[4]*(*inc)));
+		printf("[%d] init: %f, %f, %f, %f, %f\n", tidx, _angle[0], _angle[1], _angle[2], _angle[3], _angle[4]);
+		printf("[%d] all: %f, %f, %f, %f, %f\n", tidx, (angles[0]*(*inc)+_angle[0]), (angles[1]*(*inc)+_angle[1]), (angles[2]*(*inc)+_angle[2]), (angles[3]*(*inc)+_angle[3]), (angles[4]*(*inc)+_angle[4]));
+		dubins<<<1, size-1>>>(x, y, angles, &lengths[tidx], _kmax);
+		// for (int i=0; i<size-1; i++){
+		// 	dubins(x+i*sizeof(double), y+i*sizeof(double), angles[i]*(*inc)+_angle[i], 
+		// 				x+(i+1)*sizeof(double), y+(i+1)*sizeof(double), angles[i+1]*(*inc)+_angle[i+1], 
+		// 				_kmax, &lengths[tidx], &pidxs[tidx]);
+		// 	printf("[%d] [%d] length: %f\n", tidx, i, lengths[tidx]);
+		// }
 		free(angles);
 	}
 }
@@ -405,6 +495,8 @@ void dubinsSetBest(Configuration2<double> start,
 										uint parts, 
 										double _kmax){
 	size_t size=_points.size()+2;
+	COUT(parts)
+	COUT(size)
 	unsigned long iter_n=pow(parts, size);
 	COUT(iter_n)
 
@@ -434,30 +526,40 @@ void dubinsSetBest(Configuration2<double> start,
 	double Length=0.0;
 	double* lengths=(double*) malloc(sizeof(double)*iter_n);
 	int* pidxs=(int*) malloc(sizeof(int)*iter_n);
+	double inc=2.0*M_PI/parts;
 
+	double* dev_init_angle; cudaMalloc((void**)&dev_init_angle, sizeof(double)*size);
 	double* dev_lengths; cudaMalloc((void**)&dev_lengths, sizeof(double)*iter_n); 
 	uint* dev_iter; cudaMalloc((void**)&dev_iter, sizeof(uint));
 	double* dev_inc; cudaMalloc((void**)&dev_inc, sizeof(double)); 
 	int* dev_pidxs; cudaMalloc((void**)&dev_pidxs, sizeof(int)*iter_n);
 
+	cudaMemcpy(dev_init_angle, init_angle, sizeof(double)*size, cudaMemcpyHostToDevice);
 	cudaMemcpy(dev_iter, &iter_n, sizeof(uint), cudaMemcpyHostToDevice);
-	cudaMemset(dev_inc, 2*M_PI/parts, sizeof(double));
+	cudaMemcpy(dev_inc, &inc, sizeof(double), cudaMemcpyHostToDevice);
 
-	computeDubins<<<GRID, THREADS>>> (init_angle, dev_inc, x, y, 
+	// computeDubins<<<((int)(iter_n/THREADS)+1), (THREADS>iter_n ? iter_n : THREADS)>>> 
+	computeDubins<<<1, 10>>> 
+																		(dev_init_angle, dev_inc, x, y, 
 																		dev_lengths, dev_pidxs, iter_n, 
-																		size, _kmax);
-
+																		size, parts, _kmax);
+	cudaDeviceSynchronize();
 	cudaMemcpy(lengths, dev_lengths, sizeof(double)*iter_n, cudaMemcpyDeviceToHost);
 	cudaMemcpy(pidxs, dev_pidxs, sizeof(double)*iter_n, cudaMemcpyDeviceToHost);
 
 	int pidx;
 
 	for (int i=0; i<iter_n; i++){
+		// COUT(lengths[i])
+		// COUT(pidxs[i])
 		if (lengths[i]<Length){
 			Length=lengths[i];
 			pidx=pidxs[i];
 		}
 	}
+
+	COUT(Length)
+	COUT(pidx)
 
 	free(pidxs);
 	free(lengths);

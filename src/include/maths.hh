@@ -1047,9 +1047,7 @@ public:
   //TODO document
   Angle th (Point2 P1, 
             Angle::ANGLE_TYPE type=Angle::RAD){
-    COUT((P1.y()-this->y())/(P1.x()-this->x()))
-    COUT(atan((P1.y()-this->y())/(P1.x()-this->x())))
-    return Angle(atan((P1.y()-this->y())/(P1.x()-this->x())), type);
+    return Angle(atan2((P1.y()-this->y()), (P1.x()-this->x())), type);
   }
 
   // ~Point2(){delete values;}
