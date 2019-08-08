@@ -269,7 +269,7 @@ int main (){
 	Configuration2<double> start(0.0, 0.0, Angle(0.0, Angle::RAD));
 	Configuration2<double> stop(0.5, 0.0, Angle(-M_PI/2.0, Angle::RAD));
 
-	dubinsSetBest(start, stop, points);
+	dubinsSetBest(start, stop, points, 6);
 
 	return 0;
 }

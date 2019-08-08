@@ -10,7 +10,9 @@ void shortest_cuda(	double sc_th0, double sc_th1, double sc_Kmax,
 
 void dubinsSetBest(	Configuration2<double> start,
 					Configuration2<double> end,
-					Tuple<Point2<double> > _points);
+					Tuple<Point2<double> > _points,
+					uint parts, 
+					double _kmax=1.0);
 
 #endif
 #endif

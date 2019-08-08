@@ -61,7 +61,7 @@ PROJ_HOME = $(shell pwd)
 ##CREATE FILES TARGETS
 #Create objects file
 src/obj/cuda/%.o: src/cuda/%.cu
-	nvcc -rdc=false --default-stream per-thread $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
+	nvcc -arch=sm_35 -rdc=true --default-stream per-thread $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 src/obj/%.o: src/%.cc
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 #Create executables for testing
@@ -81,7 +81,7 @@ test: lib bin_test/ $(TEST_EXEC)
 cuda: cuda_set lib lib_cuda bin/ run_test
 
 cuda_set: obj/
-	@$(eval LIBS+= -D CUDA -I/opt/cuda/include -L/opt/cuda/lib64 -lcuda -lcudart -lDubinsCuda)
+	@$(eval LIBS+= -D CUDA -lDubinsCuda -I/opt/cuda/include -L/opt/cuda/lib64 -lcuda -lcudart -lcudadevrt)
 	$(MKDIR) src/obj/cuda
 
 ##Debugging
@@ -113,7 +113,8 @@ lib_cuda: lib/libDubinsCuda.a
 lib/libDubinsCuda.a: $(OBJ_CUDA)
 	$(MKDIR) lib
 	$(AR) lib/libDubinsCuda.a $(OBJ_CUDA)
-
+# 	nvcc -arch=sm_35 -dlink $(OBJ_CUDA) -o src/obj/cuda/gpuCode.o
+# 	$(AR) lib/libDubinsCuda.a src/obj/cuda/gpuCode.o
 
 ##CREATE DIRECTORIES
 #Create directory bin

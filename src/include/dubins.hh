@@ -104,8 +104,8 @@ Configuration2<double> circline(double _L,
                                 Configuration2<double> _P0,
                                 double _K)
 {
-  double sincc=_L*sinc(_K*_L/2.0);
   double app=_K*_L/2.0;
+  double sincc=_L*sinc(app);
   double phi=_P0.angle().toRad();
   
   double x=_P0.x() + sincc * cos(phi+app);
