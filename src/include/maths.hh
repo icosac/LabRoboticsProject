@@ -132,7 +132,7 @@ public:
   }
   
   static inline bool checkValue (const double th) {
-    return !isnan(th) && isfinite(th);
+    return !std::isnan(th) && std::isfinite(th);
   }
 
   /*!	\brief Normalize the angle, that is to set it in \f$[0, 2\pi)\f$ or \f$[0, 360°)\f$. 
@@ -918,7 +918,6 @@ public:
   		\returns 1 if everything went fine, 0 otherwise.
   */
   void offset (const Tuple<T> p){
-    int res=0;
     if (p.size()==2){
       x(p.get(0)+x());
       y(p.get(1)+y());

@@ -81,7 +81,7 @@ test: lib bin_test/ $(TEST_EXEC)
 cuda: cuda_set lib_cuda lib bin/ run_test
 
 cuda_set: obj/
-	@$(eval LIBS+= -D CUDA -lDubinsCuda -I/opt/cuda/include -L/opt/cuda/lib64 -lcuda -lcudart -lcudadevrt)
+	@$(eval LIBS+= -D CUDA -lDubinsCuda -I/usr/local/cuda/include -L/usr/local/cuda/lib64 -lcuda -lcudart -lcudadevrt)
 	$(MKDIR) src/obj/cuda
 
 ##Debugging
