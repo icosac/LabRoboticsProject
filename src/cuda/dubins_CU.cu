@@ -522,9 +522,9 @@ __global__ void dubins (const double* x, const double* y, double* th, double* le
 	double sc_kmax=_kmax*sc_lambda;
 
 	double Length=CUDA_DInf;
-	// printf("[%u] pow2(y1-y0)=%f pow2(x1-x0)=%f sum=%f sqrt()=%f\nsc_th0: %f sc_th1: %f sc_lambda: %f sc_kmax: %f Length: %f\n", tidx, 
-	// 				(pow2((y1-y0))), (pow2((x1-x0))), (pow2((y1-y0))+pow2((x1-x0))), sqrt(pow2((y1-y0))+pow2((x1-x0))),
-	// 				sc_th0, sc_th1, sc_lambda, sc_kmax, Length);
+	printf("[%u] pow2(y1-y0)=%f pow2(x1-x0)=%f sum=%f sqrt()=%f\nsc_th0: %f sc_th1: %f sc_lambda: %f sc_kmax: %f Length: %f\n", tidx,
+				(pow2((y1-y0))), (pow2((x1-x0))), (pow2((y1-y0))+pow2((x1-x0))), sqrt(pow2((y1-y0))+pow2((x1-x0))),
+ 				sc_th0, sc_th1, sc_lambda, sc_kmax, Length);
 	double sc_s1=0.0;
 	double sc_s2=0.0;
 	double sc_s3=0.0;
@@ -558,11 +558,13 @@ __global__ void dubins (const double* x, const double* y, double* th, double* le
 			// printf("[%u] [%u] %d Nope %f %f %f\n", old, tidx, i, value[0], value[1], value[2]);
 		}
 	}
-	printf("[%u] [%u] Length: %f {%f %f %f}\n", old, tidx, Length, ret[pidx*3], ret[pidx*3+1], ret[pidx*3+2]);
-	// printf("[%u] [%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f length %p\n", old, tidx, x0, y0, th0, x1, y1, th1, Length, length[0], length);
-	cudaDeviceSynchronize();
-	atomicAdd(length, Length);
-	// printf("[%u] [%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f\n", old, tidx, x0, y0, th0, x1, y1, th1, Length, length[0]);
+	if (Length<CUDA_DInf){
+	  printf("[%u] [%u] Length: %f {%f %f %f}\n", old, tidx, Length, ret[pidx*3], ret[pidx*3+1], ret[pidx*3+2]);
+	  // printf("[%u] [%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f length %p\n", old, tidx, x0, y0, th0, x1, y1, th1, Length, length[0], length);
+	  cudaDeviceSynchronize();
+	  atomicAdd(length, Length);
+	  // printf("[%u] [%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f\n", old, tidx, x0, y0, th0, x1, y1, th1, Length, length[0]);
+	}
 	free(ret);
 }
 
@@ -583,6 +585,7 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 	uint tidx=blockDim.x*blockIdx.x+threadIdx.x;
 	if (tidx>=(*dev_iter)){}
 	else {
+		printf("ciao\n");
 		double* angles=(double*) malloc(sizeof(double)*size);
 		toBase(angles, _angle, inc, base, tidx, size, 1, size-2);
 
@@ -601,7 +604,7 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 		cudaDeviceSynchronize();
 		
 		// printf("[%u] angles[0]: %p, angles[1]: %p, angles[2]: %p, angles[3]: %p, angles[4]: %p\n", tidx, &angles[0], &angles[1], &angles[2], &angles[3], &angles[4]);
-		// printf("[%u] angles[0]: %f, angles[1]: %f, angles[2]: %f, angles[3]: %f, angles[4]: %f\n", tidx, angles[0], angles[1], angles[2], angles[3], angles[4]);
+		printf("[%u] angles[0]: %f, angles[1]: %f, angles[2]: %f, angles[3]: %f\n", tidx, angles[0], angles[1], angles[2], angles[3]);
 		// printf("[%u] x[0]: %p, x[1]: %p, x[2]: %p, x[3]: %p, x[4]: %p\n", tidx, &x[0], &x[1], &x[2], &x[3], &x[4]);
 		// printf("[%u] x[0]: %f, x[1]: %f, x[2]: %f, x[3]: %f, x[4]: %f\n", tidx, x[0], x[1], x[2], x[3], x[4]);
 		// printf("[%u] y[0]: %p, y[1]: %p, y[2]: %p, y[3]: %p, y[4]: %p\n", tidx, &y[0], &y[1], &y[2], &y[3], &y[4]);
@@ -648,7 +651,6 @@ void dubinsSetBest(Configuration2<double> start,
 		init_angle[i]=_points.get(i-1).th(_points.get(i)).toRad();
 		x[i]=_points.get(i-1).x();
 		y[i]=_points.get(i-1).y();
-		COUT(_points.get(i));
 	}
 	init_angle[size-2]=_points.get(_points.size()-1).th(end.point()).toRad();
 	x[size-2]=_points.get(_points.size()-1).x();
@@ -705,7 +707,7 @@ void dubinsSetBest(Configuration2<double> start,
 	// cudaMemcpy(pidxs, dev_pidxs, sizeof(double)*iter_n, cudaMemcpyDeviceToHost);
 
 	int pidx=-1;
-	for (int i=1; i<iter_n; i++){
+	for (int i=0; i<iter_n; i++){
 		if (lengths[i]<Length && !equal(lengths[i], 0)){
 			Length=lengths[i];
 			pidx=i;
