@@ -1,3 +1,4 @@
+#pragma once 
 #ifndef DUBINS_HH
 #define DUBINS_HH
 
@@ -420,10 +421,6 @@ public:
       // return Tuple<double> (0);
       return nullptr;
     }
-
-    if (equal(fabs(temp1), 1.0) ){
-      temp1=round(temp1);
-    }
     
     double invK=1/_kmax;
     double sc_s2 = Angle(2*M_PI-acos(temp1), Angle::RAD).get()*invK;
@@ -453,10 +450,6 @@ public:
     if (fabs(temp1)-Epsi>1.0){
       // return Tuple<double> (0);
       return nullptr;
-    }
-
-    if (equal(fabs(temp1), 1.0) ){
-      temp1=round(temp1);
     }
 
     double invK=1/_kmax;
@@ -537,6 +530,13 @@ public:
     // cout << CHRONO::getElapsed(start, stop, "Compute primitives: ") << endl;
     elapsedPrimitives+=CHRONO::getElapsed(start, stop);
 
+    for (auto t : res){
+      if (t!=nullptr)
+        printf("MAH %f %f %f %f %f %f\n", sc_th0, sc_th1, sc_Kmax, t[0], t[1], t[2]);
+      else 
+        printf("MAH %f %f %f nullptr\n", sc_th0, sc_th1, sc_Kmax);
+    }
+
     int i=0; 
     start=Clock::now(); 
     for (auto value : res){
@@ -614,7 +614,7 @@ public:
                           sc_th1  // Curve<T>::end().angle()
                         );
       if (!check_)
-        pidx=-1.0;
+        pidx=-2;
 
       stop=Clock::now();
       elapsedCheck+=CHRONO::getElapsed(start, stop);
@@ -772,7 +772,8 @@ void disp(Tuple<Tuple<Angle> >& t,
           int startPos=0, 
           int endPos=0){
   unsigned long M=z.size()-startPos;
-  if (endPos!=0 && endPos>startPos){
+  COUT(z.size());
+  if (endPos>startPos){
     M-=(z.size()-endPos-1);
   }
   unsigned long iter_n=pow(N, M);
@@ -847,10 +848,10 @@ public:
     Angle area=A_2PI;
     
     int i=0;
-    while((int)(area.toRad()*PREC)%PREC>1){
+    while((int)(area.toRad()*PREC)%PREC>1 && i<1){
       COUT(angles)
-      find_best(_points, angles, area, 2.0, _kmax);
-      area=area/2.0;
+      find_best(_points, angles, area, 6.0, _kmax);
+      area=area/6.0;
       i++;
     }
 
@@ -930,10 +931,10 @@ public:
     // Tuple<Tuple<Dubins<T> > > allDubins;
     this->L=DInf;
     int id=0;
-    for (int i=0; i<angles.size(); i++){
+    for (int j=0; j<angles.size(); j++){
       Tuple<Dubins<T> > app;
       double l=0.0;
-      Tuple<Angle> angleT=angles.get(i);
+      Tuple<Angle> angleT=angles.get(j);
       for (int i=0; i<angleT.size()-1; i++){
         Dubins<T> d=Dubins<T>(_points.get(i), _points.get(i+1), angleT.get(i), angleT.get(i+1), _kmax);
         if (d.getId()<0){
@@ -948,7 +949,7 @@ public:
       if ((this->L)>l) {
         this->dubinses=app; 
         this->L=l;
-        id=i;
+        id=j;
       }
 
       // allDubins.add(app);

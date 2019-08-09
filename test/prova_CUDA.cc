@@ -259,7 +259,27 @@ int main (){
 	return 0;
 }
 
+
 #elif CHOICE==2
+
+double elapsedScale=0;
+double elapsedPrimitives=0;
+double elapsedBest=0;
+double elapsedArcs=0;
+double elapsedCheck=0;
+unsigned long countTries=0;
+double elapsedTupleSet=0.0;
+double elapsedTuple=0.0;
+double elapsedVar=0;
+double elapsedCirc=0;
+double elapsedSet=0;
+double elapsedLSL=0;
+double elapsedRSR=0;
+double elapsedLSR=0;
+double elapsedRSL=0;
+double elapsedRLR=0;
+double elapsedLRL=0;
+
 int main (){
 	Tuple<Point2<double> > points;
 	points.add(Point2<double> (1.0, 0.0));
@@ -269,8 +289,25 @@ int main (){
 	Configuration2<double> start(0.0, 0.0, Angle(0.0, Angle::RAD));
 	Configuration2<double> stop(0.5, 0.0, Angle(-M_PI/2.0, Angle::RAD));
 
-	dubinsSetBest(start, stop, points, 6);
+	dubinsSetBest(start, stop, points, 1, 3, 6);
 
+	// DubinsSet<double> s(start, stop, points, 1.0);
+
+	Dubins<double> d1(start, Configuration2<double>(points.get(0), Angle(M_PI/2.0, Angle::RAD)), 1);
+	Dubins<double> d2(Configuration2<double>(points.get(0), Angle(0.5*M_PI, Angle::RAD)), Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), 1);
+	Dubins<double> d3(Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), Configuration2<double>(points.get(2), Angle(5.17604, Angle::RAD)), 1);
+	Dubins<double> d4(Configuration2<double>(points.get(2), Angle(5.17604, Angle::RAD)), stop, 1);
+
+	cout << d1.getId() << endl;
+	cout << d1 << endl;
+	cout << endl << d2.getId() << endl;
+	cout << d2 << endl;
+	cout << endl << d3.getId() << endl;
+	cout << d3 << endl;
+	cout << endl << d4.getId() << endl;
+	cout << d4 << endl;
+
+	cout << d1.length()+d2.length()+d3.length()+d4.length() << endl;
 	return 0;
 }
 #endif

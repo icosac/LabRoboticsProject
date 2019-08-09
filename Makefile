@@ -61,9 +61,9 @@ PROJ_HOME = $(shell pwd)
 ##CREATE FILES TARGETS
 #Create objects file
 src/obj/cuda/%.o: src/cuda/%.cu
-	nvcc -arch=sm_35 -dc -rdc=true --default-stream per-thread $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
+	nvcc -G -arch=sm_35 -dc -rdc=true --default-stream per-thread $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 src/obj/%.o: src/%.cc
-	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
+	$(CXX) -g $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 #Create executables for testing
 bin/test/%.out: test/%.cc
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o $@ $< $(LDLIBS)
@@ -81,7 +81,7 @@ test: lib bin_test/ $(TEST_EXEC)
 cuda: cuda_set lib_cuda lib bin/ run_test
 
 cuda_set: obj/
-	@$(eval LIBS+= -D CUDA -lDubinsCuda -I/usr/local/cuda/include -L/usr/local/cuda/lib64 -lcuda -lcudart -lcudadevrt)
+	@$(eval LIBS+= -D CUDA -lDubinsCuda -I/opt/cuda/include -L/opt/cuda/lib64 -lcuda -lcudart -lcudadevrt)
 	$(MKDIR) src/obj/cuda
 
 ##Debugging

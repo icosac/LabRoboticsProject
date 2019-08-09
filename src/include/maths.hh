@@ -1,8 +1,8 @@
 #ifndef MATHS_HH
 #define MATHS_HH
 
-//#include <utils.hh>
-#include "utils.hh"
+#include <utils.hh>
+// #include "utils.hh"
 
 #include <iostream>
 #include <cmath>
@@ -11,7 +11,7 @@
 #include <sstream>
 #include <string>
 
-#include <opencv2/opencv.hpp>
+// #include <opencv2/opencv.hpp>
 
 using namespace std;
 
@@ -865,7 +865,7 @@ public:
   /*!\brief Constructor that takes a cv::Point and returns a Point2.
     \param[in] p The cv::Point to be copied.
   */
-  Point2(const cv::Point p) : X(p.x), Y(p.y){}
+  // Point2(const cv::Point p) : X(p.x), Y(p.y){}
   
   T x() const {return X;} ///< \returns The abscissa coordinate
   T y() const {return Y;} ///< \returns The ordinate coordinate
@@ -1031,12 +1031,12 @@ public:
     return !equal(A);
   }
 
-  /*! \brief Cast to cv::Point
-      \returns The value casted to point
-  */
-  operator cv::Point() const { 
-    return cv::Point(this->x(), this->y()); 
-  }
+  // /*! \brief Cast to cv::Point
+  //     \returns The value casted to point
+  // */
+  // operator cv::Point() const { 
+  //   return cv::Point(this->x(), this->y()); 
+  // }
 
   //TODO find better implementation
   bool operator<(const Point2<T>& A){ 
