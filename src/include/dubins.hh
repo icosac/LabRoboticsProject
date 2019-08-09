@@ -313,6 +313,7 @@ public:
     ret[0]=sc_s1;
     ret[1]=sc_s2;
     ret[2]=sc_s3;
+    // printf("in_LSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 
     return ret;
     // return Tuple<double>(3, sc_s1.get(), sc_s2, sc_s3.get());
@@ -344,6 +345,7 @@ public:
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
+  // printf("in_RSR_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
     return ret;
     
     // return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
@@ -375,6 +377,7 @@ public:
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
+  // printf("in_LSR_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
     return ret;
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
@@ -405,6 +408,7 @@ public:
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
+  // printf("in_RSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
     return ret;
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
@@ -435,6 +439,7 @@ public:
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
+  // printf("in_RLR_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
     return ret;
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
@@ -465,6 +470,7 @@ public:
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
+  // printf("in_LRL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
     return ret;
 
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
@@ -530,13 +536,6 @@ public:
     // cout << CHRONO::getElapsed(start, stop, "Compute primitives: ") << endl;
     elapsedPrimitives+=CHRONO::getElapsed(start, stop);
 
-    for (auto t : res){
-      if (t!=nullptr)
-        printf("MAH %f %f %f %f %f %f\n", sc_th0, sc_th1, sc_Kmax, t[0], t[1], t[2]);
-      else 
-        printf("MAH %f %f %f nullptr\n", sc_th0, sc_th1, sc_Kmax);
-    }
-
     int i=0; 
     start=Clock::now(); 
     for (auto value : res){
@@ -550,20 +549,8 @@ public:
           pidx=i;
         }
       }
-
-      // if (value.size()>0){
-      //   double appL=value.get(0)+value.get(1)+value.get(2);
-      //   if (appL<Length){
-      //     Length = appL;
-      //     sc_s1=value.get(0);
-      //     sc_s2=value.get(1);
-      //     sc_s3=value.get(2);
-      //     pidx=i;
-      //   }
-      // }
       i++;
     }
-
     if (pidx>=0){
       countTries++;
       Tuple<double> sc_std = scaleFromStandard(sc_lambda, sc_s1, sc_s2, sc_s3);
@@ -945,7 +932,6 @@ public:
         app.add(d);
         l+=d.length();
       }
-      
       if ((this->L)>l) {
         this->dubinses=app; 
         this->L=l;

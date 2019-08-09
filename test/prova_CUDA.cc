@@ -1,6 +1,7 @@
 #include<iostream>
 #include<cmath>
 #include<maths.hh>
+#include<dubins.hh>
 
 #include <cuda.h>
 #include <cuda_runtime.h>
@@ -291,7 +292,7 @@ int main (){
 
 	dubinsSetBest(start, stop, points, 1, 3, 6);
 
-	// DubinsSet<double> s(start, stop, points, 1.0);
+	DubinsSet<double> s(start, stop, points, 1.0);
 
 	Dubins<double> d1(start, Configuration2<double>(points.get(0), Angle(M_PI/2.0, Angle::RAD)), 1);
 	Dubins<double> d2(Configuration2<double>(points.get(0), Angle(0.5*M_PI, Angle::RAD)), Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), 1);

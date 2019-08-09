@@ -44,7 +44,7 @@ __global__ void LSL (double th0, double th1, double _kmax, double* ret)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-	// printf("LSL: %f %f %f\n", sc_s1, sc_s2, sc_s3);
+	// printf("in_LSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
 
 __global__ void RSR (double th0, double th1, double _kmax, double* ret)
@@ -67,7 +67,7 @@ __global__ void RSR (double th0, double th1, double _kmax, double* ret)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-	// printf("RSR: %f %f %f\n", sc_s1, sc_s2, sc_s3);
+	// printf("in_RSR_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
 
 __global__ void LSR (double th0, double th1, double _kmax, double* ret)
@@ -91,7 +91,7 @@ __global__ void LSR (double th0, double th1, double _kmax, double* ret)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-	// printf("LSR th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f  %f %f %f\n", th0, th1, _kmax, C, S, temp1, sc_s1, sc_s2, sc_s3);
+	// printf("in_LSR_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
 
 __global__ void RSL (double th0, double th1, double _kmax, double* ret)
@@ -114,6 +114,7 @@ __global__ void RSL (double th0, double th1, double _kmax, double* ret)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
+	// printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
 
 __global__ void RLR (double th0, double th1, double _kmax, double* ret)
@@ -136,6 +137,7 @@ __global__ void RLR (double th0, double th1, double _kmax, double* ret)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
+	// printf("in_RLR_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
 
 __global__ void LRL (double th0, double th1, double _kmax, double* ret)
@@ -158,27 +160,27 @@ __global__ void LRL (double th0, double th1, double _kmax, double* ret)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-	printf("LRL: %f %f %f %f %f %f\n", th0, th1, _kmax, ret[0], ret[0], ret[0]);
+	// printf("in_LRL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
 
-static double sinc(double t) {
+static double sincCuda(double t) {
   if (std::abs(t)<0.002)
     return 1 - pow2(t)/6 * (1 - pow2(t)/20);
   else
     return sin(t)/t;
 }
 
-Configuration2<double> circline(double _L,
+Configuration2<double> circlineCuda(double _L,
                                 Configuration2<double> _P0,
                                 double _K)
 {
   double app=_K*_L/2.0;
-  double sincc=_L*sinc(app);
+  double sincc=_L*sincCuda(app);
   double phi=_P0.angle().toRad();
   
   double x=_P0.x() + sincc * cos(phi+app);
   double y=_P0.y() + sincc * sin(phi+app);
-  Angle th=Angle(_K*_L+phi, Angle::RAD);
+  Angle th=Angle(_K*_L+phi, Angle::RAD);	
 
   return Configuration2<double>(x, y, th);
 }
@@ -198,7 +200,7 @@ public:
 		x0=start.point().x();
 		y0=start.point().y();
 		th0=start.angle().toRad();
-		Configuration2<double> end=circline(L, start, kmax);
+		Configuration2<double> end=circlineCuda(L, start, kmax);
 		x1=end.point().x();
 		y1=end.point().y();
 		th1=end.angle().toRad();
@@ -220,15 +222,14 @@ public:
 
 void shortest_cuda(	double x0, double y0, double th0, 
 										double x1, double y1, double th1, 
-										double _kmax, int& pidx, double* sc_s, double& Length){
-	Length=DInf;
-	double sc_s1=0.0;
-	double sc_s2=0.0;
-	double sc_s3=0.0;
+										double _kmax=1){
+	double Length=DInf;
+	int pidx=-1;
+	double sc_s[3];
 	
 	//Scale to standard
 	double phi=mod2pi(atan2((y1-y0), (x1-x0)));
-	double lambda=sqrt(pow2((y1-y0))+pow2((x1-x0)));
+	double lambda=sqrt(pow2((y1-y0))+pow2((x1-x0)))/2.0;
 	double sc_th0=mod2pi(th0-phi);
 	double sc_th1=mod2pi(th1-phi);
 	double sc_Kmax=_kmax*lambda;
@@ -298,24 +299,30 @@ void shortest_cuda(	double x0, double y0, double th0,
   	free(ret[i]);
   }
   free(ret);
-
 #else
-
 	double* ret=(double*) malloc(sizeof(double)*18);
 
 	size_t pitch;
 	double* dev_ret; cudaMallocPitch(&dev_ret, &pitch, 3*sizeof(double), 6);
 
-	RSR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret);
-	LSR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+1*pitch/sizeof(double));
-	RSL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+2*pitch/sizeof(double));
-	RLR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+3*pitch/sizeof(double));
-	LRL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+4*pitch/sizeof(double));
-	LSL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+5*pitch/sizeof(double));
+	LSL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret);
+	RSR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+1*pitch/sizeof(double));
+	LSR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+2*pitch/sizeof(double));
+	RSL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+3*pitch/sizeof(double));
+	RLR<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+4*pitch/sizeof(double));
+	LRL<<<1, 1>>>(sc_th0, sc_th1, sc_Kmax, dev_ret+5*pitch/sizeof(double));
 
 	cudaMemcpy2D(ret, 3*sizeof(double), dev_ret, pitch, 3*sizeof(double), 6, cudaMemcpyDeviceToHost);
 
 	cudaFree(dev_ret);
+
+	int a=0;
+	// printf("RSR %f %f %f\n", ret[a+0], ret[a+1], ret[a+2]); a+=3;
+	// printf("LSR %f %f %f\n", ret[a+0], ret[a+1], ret[a+2]); a+=3;
+	// printf("RSL %f %f %f\n", ret[a+0], ret[a+1], ret[a+2]); a+=3;
+	// printf("RLR %f %f %f\n", ret[a+0], ret[a+1], ret[a+2]); a+=3;
+	// printf("LRL %f %f %f\n", ret[a+0], ret[a+1], ret[a+2]); a+=3;
+	// printf("LSL %f %f %f\n", ret[a+0], ret[a+1], ret[a+2]); 
 
 	for(int i=0; i<6; i++){
 		double* value=ret+i*3;
@@ -330,7 +337,6 @@ void shortest_cuda(	double x0, double y0, double th0,
 		  }
 		}
   }
-
   if (pidx>=0){
   	//Scale back
   	double sc_std0=sc_s[0]*lambda;
@@ -349,10 +355,9 @@ void shortest_cuda(	double x0, double y0, double th0,
     DubinsArcCuda A1 (A0.end(), ksings[pidx][1]*_kmax, sc_std1);
     DubinsArcCuda A2 (A1.end(), ksings[pidx][2]*_kmax, sc_std2);
     
+    COUT(pidx)
     A0.print();
-    cout << endl;
     A1.print();
-    cout << endl;
     A2.print();
     cout << endl;
   }
@@ -366,8 +371,9 @@ void shortest_cuda(	double x0, double y0, double th0,
 #define GRID 1
 #define THREADS 256
 //TODO test implementation where x_i=y%base^i
-__device__ void toBase(	double* v, const double* angles, const double* inc, 
-												const int base, int value, size_t size, int startPos, int endPos){
+__device__ __host__ 
+void toBase(double* v, const double* angles, const double* inc, 
+						const int base, int value, size_t size, int startPos, int endPos){
 	for (int i=0; i<size; i++){
 		if (i<startPos || i>endPos){
 			v[i]=angles[i];
@@ -473,25 +479,27 @@ __device__ void toBase(	double* v, const double* angles, const double* inc,
 	// }
 // }
 
-#if __CUDA_ARCH__ < 600
-__device__ double MyatomicAdd(double* address, double val)
-{
-    unsigned long long int* address_as_ull =
-                              (unsigned long long int*)address;
-    unsigned long long int old = *address_as_ull, assumed;
+// #if __CUDA_ARCH__ < 600
+// __device__ double atomicAdd(double* address, double val)
+// {
+//     unsigned long long int* address_as_ull =
+//                               (unsigned long long int*)address;
+//     unsigned long long int old = *address_as_ull, assumed;
 
-    do {
-        assumed = old;
-        old = atomicCAS(address_as_ull, assumed,
-                        __double_as_longlong(val +
-                               __longlong_as_double(assumed)));
+//     unsigned long long int app=old;
 
-    // Note: uses integer comparison to avoid hang in case of NaN (since NaN != NaN)
-    } while (assumed != old && (int)assumed!=(int)old);
-    // printf("old: %f\n", __longlong_as_double(old));
-    return __longlong_as_double(old);
-}
-#endif
+//     do {
+//         assumed = old;
+//         old = atomicCAS(address_as_ull, assumed,
+//                         __double_as_longlong(val +
+//                                __longlong_as_double(assumed)));
+
+//     // Note: uses integer comparison to avoid hang in case of NaN (since NaN != NaN)
+//     } while (assumed != old && (int)assumed!=(int)old);
+    
+//     return __longlong_as_double(old);
+// }
+// #endif
 
 __global__ void dubins (const double* x, const double* y, double* th, double* length, double* kmax, uint old){
 	double _kmax=*kmax;
@@ -537,9 +545,9 @@ __global__ void dubins (const double* x, const double* y, double* th, double* le
 	for (int i=0; i<6; i++){
 		double* value=&ret[i*3];
 		if (!CUDA_equal(value[0], -1.0)){
-			double appL=value[0]+value[1]+value[2];
+			double appL=(value[0]+value[1]+value[2])*sc_lambda;
 			if (old==0){
-				printf("[%u] [%u] %d values %f %f %f\n", old, tidx, i, value[0], value[1], value[2]);
+				// printf("[%u] [%u] %d values %f %f %f\n", old, tidx, i, value[0], value[1], value[2]);
 			}
 			if (appL<Length){
 				Length=appL;
@@ -547,25 +555,27 @@ __global__ void dubins (const double* x, const double* y, double* th, double* le
 			}
 		}
 		else {
-			printf("[%u] [%u] %d Nope %f %f %f\n", old, tidx, i, value[0], value[1], value[2]);
+			// printf("[%u] [%u] %d Nope %f %f %f\n", old, tidx, i, value[0], value[1], value[2]);
 		}
 	}
-	printf("[%u] [%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f length %p\n", old, tidx, x0, y0, th0, x1, y1, th1, Length, length[0], length);
-	MyatomicAdd(length, Length);
+	printf("[%u] [%u] Length: %f {%f %f %f}\n", old, tidx, Length, ret[pidx*3], ret[pidx*3+1], ret[pidx*3+2]);
+	// printf("[%u] [%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f length %p\n", old, tidx, x0, y0, th0, x1, y1, th1, Length, length[0], length);
+	cudaDeviceSynchronize();
+	atomicAdd(length, Length);
 	// printf("[%u] [%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f\n", old, tidx, x0, y0, th0, x1, y1, th1, Length, length[0]);
 	free(ret);
 }
 
-__global__ void prova(double* x, double* y, double* angles, double* length, double* kmax){
-	uint tidx=blockDim.x*blockIdx.x+threadIdx.x;
-	angles[tidx]=100.0;
-	angles[tidx+1]=100.0;
-	x[tidx]=100.0;
-	x[tidx+1]=100.0;
-	y[tidx]=100.0;
-	y[tidx+1]=100.0;
-	MyatomicAdd(length, *kmax);
-}
+// __global__ void prova(double* x, double* y, double* angles, double* length, double* kmax){
+// 	uint tidx=blockDim.x*blockIdx.x+threadIdx.x;
+// 	angles[tidx]=100.0;
+// 	angles[tidx+1]=100.0;
+// 	x[tidx]=100.0;
+// 	x[tidx+1]=100.0;
+// 	y[tidx]=100.0;
+// 	y[tidx+1]=100.0;
+// 	MyatomicAdd(length, *kmax);
+// }
 
 
 __global__ void computeDubins (double* _angle, double* inc, double* x, double* y,
@@ -681,10 +691,10 @@ void dubinsSetBest(Configuration2<double> start,
 	cudaMemcpy(dev_inc, &inc, sizeof(double), cudaMemcpyHostToDevice);
 	cudaMemcpy(dev_kmax, &_kmax, sizeof(double), cudaMemcpyHostToDevice);
 
-	// computeDubins<<<((int)(iter_n/THREADS)+1), (THREADS>iter_n ? iter_n : THREADS)>>> 
-	// computeDubins<<<1, 1>>> 
-	// 											(dev_init_angle, dev_inc, dev_x, dev_y, 
-	// 											dev_lengths, dev_iter, size, parts, dev_kmax);
+	computeDubins<<<((int)(iter_n/THREADS)+1), (THREADS>iter_n ? iter_n : THREADS)>>> 
+	// computeDubins<<<1, 2>>> 
+												(dev_init_angle, dev_inc, dev_x, dev_y, 
+												dev_lengths, dev_iter, size, parts, dev_kmax);
 	int val=cudaDeviceSynchronize();
 	if (val!=cudaSuccess)
 		printf("After dubins: %d\n", val);
@@ -694,8 +704,8 @@ void dubinsSetBest(Configuration2<double> start,
 	cudaMemcpy(lengths, dev_lengths, sizeof(double)*iter_n, cudaMemcpyDeviceToHost);
 	// cudaMemcpy(pidxs, dev_pidxs, sizeof(double)*iter_n, cudaMemcpyDeviceToHost);
 
-	int pidx;
-	for (int i=0; i<iter_n; i++){
+	int pidx=-1;
+	for (int i=1; i<iter_n; i++){
 		if (lengths[i]<Length && !equal(lengths[i], 0)){
 			Length=lengths[i];
 			pidx=i;
@@ -705,16 +715,19 @@ void dubinsSetBest(Configuration2<double> start,
 	COUT(Length)
 	COUT(pidx)
 
-	Tuple<Angle> angls;
+	double* angls=(double*) malloc(sizeof(double)*size);
+	toBase(angls, init_angle, &inc, parts, pidx, size, 1, size-2);
 	for (int i=0; i<size; i++){
-		angls.add(init_angle[i]);
+		cout << angls[i] << (i!=size-1 ? ", " : "\n");
 	}
-	COUT(angls)
-	angls=toBase(angls, pidx, parts, Angle(inc, Angle::RAD), 1, size-2);
-	COUT(angls)
+
+	for (int i=0; i<size-1; i++){
+		shortest_cuda(x[i], y[i], angls[i], x[i+1], y[i+1], angls[i+1]);
+	}
 
 	free(pidxs);
 	free(lengths);
+	free(angls);
 
 	cudaFree(dev_lengths);
 	cudaFree(dev_iter);
