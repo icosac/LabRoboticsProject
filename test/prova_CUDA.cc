@@ -1,7 +1,10 @@
 #include<iostream>
 #include<cmath>
+#include<fstream>
+
 #include<maths.hh>
 #include<dubins.hh>
+
 
 #include <cuda.h>
 #include <cuda_runtime.h>
@@ -284,6 +287,16 @@ double elapsedLRL=0;
 #define SCALE 100.0
 
 int main (){
+
+	for (int i=0; i<5; i++){
+		for (int j=1; j<5; j++){
+			cout << i << "%" << j << "=" << (i%j) << "   ";
+		}
+		cout << endl;
+	}
+
+	ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
+
 	Tuple<Point2<double> > points;
 	points.add(Point2<double> (-0.1*SCALE, 0.3*SCALE));
 	points.add(Point2<double> (0.2*SCALE, 0.8*SCALE));
@@ -292,26 +305,32 @@ int main (){
 	Configuration2<double> stop(1.0*SCALE, 1.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
 		
 	double kmax=3/SCALE;	
+	
+	// dubinsSetBest(start, stop, points, 1, 2, 3, kmax);
+	// DubinsSet<double> s(start, stop, points, kmax, 3);
 
-	dubinsSetBest(start, stop, points, 1, 2, 90, kmax);
+	out_data << endl << endl;
+	for (double i=1.0; i<=512.0; i*=2.0){
+		if (i==512.0){
+			i=360.0;
+		}
+		out_data << "Parts: " << i << endl;
+		
+		auto start_t=Clock::now();
+		dubinsSetBest(start, stop, points, 1, 2, i, kmax);
+		auto stop_t=Clock::now();
+		double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
+		
+		start_t=Clock::now();
+		DubinsSet<double> s(start, stop, points, kmax, i);
+		stop_t=Clock::now();
+		double elapsedCPP=CHRONO::getElapsed(start_t, stop_t);
 
-	DubinsSet<double> s(start, stop, points, kmax);
+		out_data << "elapsedCuda: " << elapsedCuda << endl;
+		out_data << "elapsedCPP: " << elapsedCPP << endl << endl;
+	}
 
-	Dubins<double> d1(start, Configuration2<double>(points.get(0), Angle(M_PI/2.0, Angle::RAD)), 1);
-	Dubins<double> d2(Configuration2<double>(points.get(0), Angle(0.5*M_PI, Angle::RAD)), Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), 1);
-	Dubins<double> d3(Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), Configuration2<double>(points.get(2), Angle(5.17604, Angle::RAD)), 1);
-	Dubins<double> d4(Configuration2<double>(points.get(2), Angle(5.17604, Angle::RAD)), stop, 1);
-
-	cout << d1.getId() << endl;
-	cout << d1 << endl;
-	cout << endl << d2.getId() << endl;
-	cout << d2 << endl;
-	cout << endl << d3.getId() << endl;
-	cout << d3 << endl;
-	cout << endl << d4.getId() << endl;
-	cout << d4 << endl;
-
-	cout << d1.length()+d2.length()+d3.length()+d4.length() << endl;
+	out_data.close();
 	return 0;
 }
 #endif

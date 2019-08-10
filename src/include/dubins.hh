@@ -360,6 +360,7 @@ public:
     double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)+4*_kmax*(sin(th0)+sin(th1));
     if (temp1<0){
       // return Tuple<double> (0);
+      // printf("in_LSR_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: -1\n", th0, th1, _kmax, C, S, temp1);
       return nullptr;
     }
     
@@ -390,6 +391,7 @@ public:
     
     double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)+sin(th1));
     if (temp1<0){
+      // printf("in_RSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: -1\n", th0, th1, _kmax, C, S, temp1);
       // return Tuple<double> (0);
       return nullptr;
     }
@@ -524,6 +526,11 @@ public:
     double sc_s2  = 0.0;
     double sc_s3  = 0.0;
 
+    // printf("%f %f %f %f %f %f\nsc_th0: %f sc_th1: %f sc_lambda: %f sc_kmax: %f Length: %f\n", 
+    //     Curve<T>::begin().point().x(), Curve<T>::begin().point().y(), Curve<T>::begin().angle().toRad(),
+    //     Curve<T>::end().point().x(), Curve<T>::end().point().y(), Curve<T>::end().angle().toRad(), 
+    //     sc_th0, sc_th1, sc_lambda, sc_Kmax, Length);
+
     start=Clock::now();
     Tuple<double* > res;
     res.add(LSL(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
@@ -551,6 +558,9 @@ public:
       }
       i++;
     }
+    // printf("x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f\n", Curve<T>::begin().point().x(), Curve<T>::begin().point().y(), Curve<T>::begin().angle().toRad(),
+    //     Curve<T>::end().point().x(), Curve<T>::end().point().y(), Curve<T>::end().angle().toRad(), Length);
+
     if (pidx>=0){
       countTries++;
       Tuple<double> sc_std = scaleFromStandard(sc_lambda, sc_s1, sc_s2, sc_s3);
@@ -819,7 +829,8 @@ public:
   DubinsSet(Configuration2<T> start, 
             Configuration2<T> end,
             Tuple<Point2<T> > _points,
-            double _kmax=KMAX){
+            double _kmax=KMAX,
+            double parts=4.0){
     Tuple<Angle> angles;
 
     angles.add(start.angle());
@@ -837,8 +848,8 @@ public:
     int i=0;
     while((int)(area.toRad()*PREC)%PREC>1 && i<1){
       COUT(angles)
-      find_best(_points, angles, area, 6.0, _kmax);
-      area=area/6.0;
+      find_best(_points, angles, area, parts, _kmax);
+      area=area/parts;
       i++;
     }
 
@@ -894,11 +905,11 @@ public:
     disp(angles, _angles, tries, inc, 1, _points.size()-2); //startPos=1 and endPos=size()-2 since I have to check for all angles except the first and the last.
 
     #ifdef DEBUG
-      cout << "Considered angles: " << endl;
+      // cout << "Considered angles: " << endl;
       // for (auto tupla : angles){
       //   cout << "<";
       //   for (int i=0; i<tupla.size(); i++){
-      //     cout << tupla.get(i).to_string(Angle::DEG).str() << (i==tupla.size()-1 ? "" : ", ");
+      //     cout << tupla.get(i).to_string(Angle::RAD).str() << (i==tupla.size()-1 ? "" : ", ");
       //   }
       //   cout << ">" << endl;
       // }
@@ -973,6 +984,7 @@ public:
     stringstream out;
     out << "Total length: " << L << "\n";
     for (auto dub : dubinses){
+      out << dub.getId() << endl;
       out << dub << endl;
     }
     return out;

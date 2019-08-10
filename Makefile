@@ -3,7 +3,8 @@ OS=$(shell uname)
 
 OPENCV=opencv
 TESS= #If defined remember to include -D TESS in compiling flags
-CUDA_PATH=/usr/local/cuda
+CUDA_PATH=/opt/cuda
+CUDA_ARCH=sm_35
 
 LIB_DUBINS=libDubins.a
 INCLUDE=include
@@ -62,7 +63,7 @@ PROJ_HOME = $(shell pwd)
 ##CREATE FILES TARGETS
 #Create objects file
 src/obj/cuda/%.o: src/cuda/%.cu
-	nvcc -G -arch=sm_60 -dc -rdc=true --default-stream per-thread $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
+	nvcc -G -arch=$(CUDA_ARCH) -dc -rdc=true --default-stream per-thread $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 src/obj/%.o: src/%.cc
 	$(CXX) -g $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 #Create executables for testing
@@ -112,7 +113,7 @@ lib/libDubins.a: include_local obj/ $(OBJ)
 lib_cuda: lib/libDubinsCuda.a
 
 lib/libDubinsCuda.a: include_local $(OBJ_CUDA)
-	nvcc -arch=sm_60 -dlink $(OBJ_CUDA) -o src/obj/cuda/gpuCode.o
+	nvcc -arch=$(CUDA_ARCH) -dlink $(OBJ_CUDA) -o src/obj/cuda/gpuCode.o
 	nvcc --lib -o lib/libDubinsCuda.a $(OBJ_CUDA) src/obj/cuda/gpuCode.o
 
 ##CREATE DIRECTORIES
