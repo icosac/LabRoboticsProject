@@ -809,7 +809,7 @@ public:
   DubinsSet(Tuple<Configuration2<T> > _confs,
             double _kmax=KMAX){
     for (int i=0; i<_confs.size()-1; i++){
-      Dubins<T> dub=Dubins<T>(_confs.get(i), _confs.get(i+1));
+      Dubins<T> dub=Dubins<T>(_confs.get(i), _confs.get(i+1), _kmax);
       this->dubinses.add(dub);
       this->L+=dub.length();
     }
@@ -819,6 +819,7 @@ public:
   DubinsSet(Configuration2<T> start, 
             Configuration2<T> end,
             Tuple<Point2<T> > _points,
+            double parts=6.0,
             double _kmax=KMAX){
     Tuple<Angle> angles;
 
@@ -835,10 +836,10 @@ public:
     Angle area=A_2PI;
     
     int i=0;
-    while((int)(area.toRad()*PREC)%PREC>1 && i<1){
+    while((int)(area.toRad()*PREC)%PREC>1){
       COUT(angles)
-      find_best(_points, angles, area, 6.0, _kmax);
-      area=area/6.0;
+      find_best(_points, angles, area, parts, _kmax);
+      area=area/parts;
       i++;
     }
 
@@ -983,7 +984,11 @@ public:
     return out;
   }
 
-
+  void draw(double dimX, double dimY, Mat& image, double SHIFT=0, double inc=1, Scalar scl=Scalar(255,0,0)){
+    for (auto dub : this->dubinses){
+      dub.draw(dimY, dimX, inc, scl, image, SHIFT);
+    }
+  }
 };
 
 #endif

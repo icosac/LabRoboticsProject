@@ -479,27 +479,25 @@ void toBase(double* v, const double* angles, const double* inc,
 	// }
 // }
 
-// #if __CUDA_ARCH__ < 600
-// __device__ double atomicAdd(double* address, double val)
-// {
-//     unsigned long long int* address_as_ull =
-//                               (unsigned long long int*)address;
-//     unsigned long long int old = *address_as_ull, assumed;
+#if __CUDA_ARCH__ < 600
+__device__ double myAtomicAdd(double* address, double val)
+{
+    unsigned long long int* address_as_ull =
+                              (unsigned long long int*)address;
+    unsigned long long int old = *address_as_ull, assumed;
 
-//     unsigned long long int app=old;
+    do {
+        assumed = old;
+        old = atomicCAS(address_as_ull, assumed,
+                        __double_as_longlong(val +
+                               __longlong_as_double(assumed)));
 
-//     do {
-//         assumed = old;
-//         old = atomicCAS(address_as_ull, assumed,
-//                         __double_as_longlong(val +
-//                                __longlong_as_double(assumed)));
-
-//     // Note: uses integer comparison to avoid hang in case of NaN (since NaN != NaN)
-//     } while (assumed != old && (int)assumed!=(int)old);
+    // Note: uses integer comparison to avoid hang in case of NaN (since NaN != NaN)
+    } while (assumed != old);
     
-//     return __longlong_as_double(old);
-// }
-// #endif
+    return __longlong_as_double(old);
+}
+#endif
 
 __global__ void dubins (const double* x, const double* y, double* th, double* length, double* kmax, uint old){
 	double _kmax=*kmax;
@@ -562,7 +560,12 @@ __global__ void dubins (const double* x, const double* y, double* th, double* le
 	  printf("[%u] [%u] Length: %f {%f %f %f}\n", old, tidx, Length, ret[pidx*3], ret[pidx*3+1], ret[pidx*3+2]);
 	  // printf("[%u] [%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f length %p\n", old, tidx, x0, y0, th0, x1, y1, th1, Length, length[0], length);
 	  cudaDeviceSynchronize();
-	  atomicAdd(length, Length);
+	  
+	  #if __CUDA_ARCH__ < 600
+		  myAtomicAdd(length, Length);
+		#else 
+		  atomicAdd(length, Length);
+	  #endif
 	  // printf("[%u] [%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f\n", old, tidx, x0, y0, th0, x1, y1, th1, Length, length[0]);
 	}
 	free(ret);
@@ -621,7 +624,7 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 	}
 }
 
-void dubinsSetBest(Configuration2<double> start,
+double* dubinsSetBest(Configuration2<double> start,
 										Configuration2<double> end,
 										Tuple<Point2<double> > _points,
 										int startPos,
@@ -729,10 +732,10 @@ void dubinsSetBest(Configuration2<double> start,
 
 	free(pidxs);
 	free(lengths);
-	free(angls);
+	// free(angls);
 
 	cudaFree(dev_lengths);
 	cudaFree(dev_iter);
 	cudaFree(dev_inc);
-
+	return angls;
 }
