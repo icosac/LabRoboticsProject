@@ -287,31 +287,54 @@ int main (){
 	Tuple<Point2<double> > points;
 	points.add(Point2<double> (-0.1*SCALE, 0.3*SCALE));
 	points.add(Point2<double> (0.2*SCALE, 0.8*SCALE));
+	points.add(Point2<double> (1.0*SCALE, 1.0*SCALE));
+	points.add(Point2<double> (0.5*SCALE, 0.5*SCALE));
 	
 	Configuration2<double> start(0.0*SCALE, 0.0*SCALE, Angle(-M_PI/3.0, Angle::RAD));
-	Configuration2<double> stop(1.0*SCALE, 1.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
+	Configuration2<double> end(0.5*SCALE, 0.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
 		
 	double kmax=3/SCALE;	
 
-	dubinsSetBest(start, stop, points, 1, 2, 90, kmax);
+	double* angles=(double*) malloc(sizeof(double)*4);
 
-	DubinsSet<double> s(start, stop, points, kmax);
+	angles=dubinsSetBest(start, end, points, 1, 2, 90, kmax);
 
-	Dubins<double> d1(start, Configuration2<double>(points.get(0), Angle(M_PI/2.0, Angle::RAD)), 1);
-	Dubins<double> d2(Configuration2<double>(points.get(0), Angle(0.5*M_PI, Angle::RAD)), Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), 1);
-	Dubins<double> d3(Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), Configuration2<double>(points.get(2), Angle(5.17604, Angle::RAD)), 1);
-	Dubins<double> d4(Configuration2<double>(points.get(2), Angle(5.17604, Angle::RAD)), stop, 1);
+	DubinsSet<double> s(start, end, points, 90, kmax);
 
-	cout << d1.getId() << endl;
-	cout << d1 << endl;
-	cout << endl << d2.getId() << endl;
-	cout << d2 << endl;
-	cout << endl << d3.getId() << endl;
-	cout << d3 << endl;
-	cout << endl << d4.getId() << endl;
-	cout << d4 << endl;
+	Tuple<Configuration2<double> > confs;
+	cout << start.angle().toRad() << " ";
+	confs.add(start);
+	for (int i=1; i<3; i++){
+		cout << angles[i] << " ";
+		confs.add(Configuration2<double> (points.get(i-1), Angle(angles[i], Angle::RAD)));
+	}
+	cout << end.angle().toRad() << endl;
+	confs.add(end);
 
-	cout << d1.length()+d2.length()+d3.length()+d4.length() << endl;
+	DubinsSet<double> s_CUDA (confs, kmax);
+
+	uint DIMY=750;
+	uint DIMX=500;
+	Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+	s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
+	my_imshow("CUDA", map, true);
+	mywaitkey();
+
+	// Dubins<double> d1(start, Configuration2<double>(points.get(0), Angle(M_PI/2.0, Angle::RAD)), 1);
+	// Dubins<double> d2(Configuration2<double>(points.get(0), Angle(0.5*M_PI, Angle::RAD)), Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), 1);
+	// Dubins<double> d3(Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), Configuration2<double>(points.get(2), Angle(5.17604, Angle::RAD)), 1);
+	// Dubins<double> d4(Configuration2<double>(points.get(2), Angle(5.17604, Angle::RAD)), end, 1);
+
+	// cout << d1.getId() << endl;
+	// cout << d1 << endl;
+	// cout << endl << d2.getId() << endl;
+	// cout << d2 << endl;
+	// cout << endl << d3.getId() << endl;
+	// cout << d3 << endl;
+	// cout << endl << d4.getId() << endl;
+	// cout << d4 << endl;
+
+	// cout << d1.length()+d2.length()+d3.length()+d4.length() << endl;
 	return 0;
 }
 #endif
