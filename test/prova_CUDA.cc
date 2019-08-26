@@ -287,6 +287,20 @@ double elapsedLRL=0;
 #define SCALE 100.0
 
 int main (){
+	cudaFree(0);
+	Tuple<Point2<double> > points;
+	points.add(Point2<double> (-0.1*SCALE, 0.3*SCALE));
+	points.add(Point2<double> (0.2*SCALE, 0.8*SCALE));
+	
+	Configuration2<double> start(0.0*SCALE, 0.0*SCALE, Angle(-M_PI/3.0, Angle::RAD));
+	Configuration2<double> stop(1.0*SCALE, 1.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
+	double kmax=3/SCALE;	
+	
+	// dubinsSetBest(start, stop, points, 1, 2, 8, kmax);
+
+	// DubinsSet<double> s(start, stop, points, kmax, 8);
+
+	// return 0;
 
 	for (int i=0; i<5; i++){
 		for (int j=1; j<5; j++){
@@ -295,25 +309,16 @@ int main (){
 		cout << endl;
 	}
 
-	ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
 
-	Tuple<Point2<double> > points;
-	points.add(Point2<double> (-0.1*SCALE, 0.3*SCALE));
-	points.add(Point2<double> (0.2*SCALE, 0.8*SCALE));
-	
-	Configuration2<double> start(0.0*SCALE, 0.0*SCALE, Angle(-M_PI/3.0, Angle::RAD));
-	Configuration2<double> stop(1.0*SCALE, 1.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
-		
-	double kmax=3/SCALE;	
-	
 	// dubinsSetBest(start, stop, points, 1, 2, 3, kmax);
 	// DubinsSet<double> s(start, stop, points, kmax, 3);
 
-	out_data << endl << endl;
 	for (double i=1.0; i<=512.0; i*=2.0){
 		if (i==512.0){
 			i=360.0;
 		}
+		ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
+		out_data << endl << endl;
 		out_data << "Parts: " << i << endl;
 		
 		auto start_t=Clock::now();
@@ -321,16 +326,16 @@ int main (){
 		auto stop_t=Clock::now();
 		double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
 		
-		start_t=Clock::now();
+		auto _start_t=Clock::now();
 		DubinsSet<double> s(start, stop, points, kmax, i);
-		stop_t=Clock::now();
-		double elapsedCPP=CHRONO::getElapsed(start_t, stop_t);
+		auto _stop_t=Clock::now();
+		double elapsedCPP=CHRONO::getElapsed(_start_t, _stop_t);
 
 		out_data << "elapsedCuda: " << elapsedCuda << endl;
 		out_data << "elapsedCPP: " << elapsedCPP << endl << endl;
+		out_data.close();
 	}
 
-	out_data.close();
 	return 0;
 }
 #endif

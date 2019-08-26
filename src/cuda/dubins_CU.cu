@@ -448,16 +448,28 @@ __device__ double myAtomicAdd(double* address, double val)
 // 	*L=Length;
 // }
 
-#define DUBINS_IN_KERNEL
-#define COMPUTE_ANGLES_BF_DUBINS
+// #define DUBINS_IN_KERNEL //Compute dubins using kernel. Doesn't need loop as the pair of points is computed through the id of the thread
+#define DUBINS_IN_DEVICE //Compute dubins using devices. Needs to loop and call the function for each pair of points
+#define COMPUTE_ANGLES_BF_DUBINS //Compute angles before calling the deubins function
+// #define COMPUTE_ANGLES_IN_DUBINS //Compute angles inside the dubins function exploiting some maths. (reallyyyyyyyy slow)
+#if defined DUBINS_IN_DEVICE && defined DUBINS_IN_KERNEL
+#error DUBINS_IN_DEVICE and DUBINS_IN_KERNEL cannot be defined at the same time.
+#endif
+#if defined COMPUTE_ANGLES_IN_DUBINS && defined COMPUTE_ANGLES_BF_DUBINS
+#error COMPUTE_ANGLES_BF_DUBINS and COMPUTE_ANGLES_IN_DUBINS cannot be defined at the same time.
+#endif
+#if defined DUBINS_IN_DEVICE && defined COMPUTE_ANGLES_IN_DUBINS
+#error DUBINS_IN_DEVICE require COMPUTE_ANGLES_BF_DUBINS as the angles cannot be computed during the execution of the device function.
+#endif
+
 
 #ifdef DUBINS_IN_KERNEL
-	#ifdef COMPUTE_ANGLES_IN_DUBINS
+#ifdef COMPUTE_ANGLES_IN_DUBINS
 	__global__ void dubins (const double* x, const double* y, const double* th, double* length, const double* _kmax, 
 													const size_t size, const double* inc, const size_t base, const uint old)
-	#else 
+#else 
 	__global__ void dubins (const double* x, const double* y, const double* th, double* length, const double* _kmax, const uint old)
-	#endif
+#endif
 #endif
 #ifdef DUBINS_IN_DEVICE
 __device__ void dubins(	double* _x0, double* _y0, double _th0,
@@ -552,7 +564,7 @@ __device__ void dubins(	double* _x0, double* _y0, double _th0,
   	#else 
 		  atomicAdd(length, Length);
 	  #endif
-	  // printf("[%u] [%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f\n", old, tidx, x0, y0, th0, x1, y1, th1, Length, length[0]);
+	  // printf("[%u] x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f, length %f\n", old, x0, y0, th0, x1, y1, th1, Length, length[0]);
 	}
 	free(ret);
 }
@@ -570,7 +582,7 @@ __device__ void dubins(	double* _x0, double* _y0, double _th0,
 
 
 __global__ void computeDubins (double* _angle, double* inc, double* x, double* y,
-															double* lengths, uint* dev_iter, size_t size, size_t base, double* _kmax){
+								double* lengths, uint* dev_iter, size_t size, size_t base, double* _kmax){
 	uint tidx=blockDim.x*blockIdx.x+threadIdx.x;
 	if (tidx>=(*dev_iter)){}
 	else {
@@ -593,7 +605,7 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 			// printf("[%u] angles[0]: %f, angles[1]: %f, angles[2]: %f, angles[3]: %f, angles[4]: %f\n", tidx, angles[0], angles[1], angles[2], angles[3], angles[4]);
 
 			// prova<<<1, size-1>>> (x, y, angles, lengths+tidx, _skmax);
-			dubins<<<1, size-1>>>(x, y, _angle, lengths+tidx, _kmax, tidx);
+			dubins<<<1, size-1>>>(x, y, angles, lengths+tidx, _kmax, tidx);
 			cudaDeviceSynchronize();
 			
 			// printf("[%u] angles[0]: %p, angles[1]: %p, angles[2]: %p, angles[3]: %p, angles[4]: %p\n", tidx, &angles[0], &angles[1], &angles[2], &angles[3], &angles[4]);
@@ -619,6 +631,8 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 	}
 }
 
+#include<fstream>
+
 void dubinsSetBest(Configuration2<double> start,
 										Configuration2<double> end,
 										Tuple<Point2<double> > _points,
@@ -627,6 +641,9 @@ void dubinsSetBest(Configuration2<double> start,
 										uint parts, 
 										double _kmax){
 	size_t size=_points.size()+2;
+	
+	ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
+
 	COUT(parts)
 	COUT(size)
 	unsigned long M=size-startPos;
@@ -698,7 +715,9 @@ void dubinsSetBest(Configuration2<double> start,
 	double elapsedCopy=CHRONO::getElapsed(start_t, stop);
 
 	COUT(elapsedMalloc)
+	out_data << "elapsedMalloc: " << elapsedMalloc << endl;
 	COUT(elapsedCopy)
+	out_data << "elapsedCopy: " << elapsedCopy << endl;
 
 	start_t=Clock::now();
 	computeDubins<<<((int)(iter_n/THREADS)+1), (THREADS>iter_n ? iter_n : THREADS)>>> 
@@ -709,6 +728,7 @@ void dubinsSetBest(Configuration2<double> start,
 	stop=Clock::now();
 	double elapsedCompute=CHRONO::getElapsed(start_t, stop);
 	COUT(elapsedCompute)
+	out_data << "elapsedCompute: " << elapsedCompute << endl;
 	if (val!=cudaSuccess)
 		printf("After dubins: %d\n", val);
 
