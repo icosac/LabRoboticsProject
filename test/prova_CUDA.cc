@@ -1,7 +1,10 @@
 #include<iostream>
 #include<cmath>
+#include<fstream>
+
 #include<maths.hh>
 #include<dubins.hh>
+
 
 #include <cuda.h>
 #include <cuda_runtime.h>
@@ -284,57 +287,72 @@ double elapsedLRL=0;
 #define SCALE 100.0
 
 int main (){
+	cudaFree(0);
 	Tuple<Point2<double> > points;
 	points.add(Point2<double> (-0.1*SCALE, 0.3*SCALE));
 	points.add(Point2<double> (0.2*SCALE, 0.8*SCALE));
 	points.add(Point2<double> (1.0*SCALE, 1.0*SCALE));
 	points.add(Point2<double> (0.5*SCALE, 0.5*SCALE));
 	
+	double kmax=3/SCALE;	
+	
 	Configuration2<double> start(0.0*SCALE, 0.0*SCALE, Angle(-M_PI/3.0, Angle::RAD));
 	Configuration2<double> end(0.5*SCALE, 0.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
+
+	// dubinsSetBest(start, end, points, 1, 4, 8, kmax);
+	// DubinsSet<double> s(start, end, points, 8, kmax);
+	// return 0;
+
+	for (double i=1.0; i<=512.0; i*=2.0){
+		if (i==512.0){
+			i=360.0;
+		}
+		ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
+		out_data << endl << endl;
+		out_data << "Parts: " << i << endl;
 		
-	double kmax=3/SCALE;	
+		auto start_t=Clock::now();
+		dubinsSetBest(start, end, points, 1, 4, i, kmax);
+		auto stop_t=Clock::now();
+		double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
+		
+		auto _start_t=Clock::now();
+		DubinsSet<double> s(start, end, points, i, kmax);
+		auto _stop_t=Clock::now();
+		double elapsedCPP=CHRONO::getElapsed(_start_t, _stop_t);
 
-	double* angles=(double*) malloc(sizeof(double)*4);
-
-	angles=dubinsSetBest(start, end, points, 1, 2, 90, kmax);
-
-	DubinsSet<double> s(start, end, points, 90, kmax);
-
-	Tuple<Configuration2<double> > confs;
-	cout << start.angle().toRad() << " ";
-	confs.add(start);
-	for (int i=1; i<3; i++){
-		cout << angles[i] << " ";
-		confs.add(Configuration2<double> (points.get(i-1), Angle(angles[i], Angle::RAD)));
+		out_data << "elapsedCuda: " << elapsedCuda << endl;
+		out_data << "elapsedCPP: " << elapsedCPP << endl << endl;
+		out_data.close();
 	}
-	cout << end.angle().toRad() << endl;
-	confs.add(end);
 
-	DubinsSet<double> s_CUDA (confs, kmax);
-
-	uint DIMY=750;
-	uint DIMX=500;
-	Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
-	s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
-	my_imshow("CUDA", map, true);
-	mywaitkey();
-
-	// Dubins<double> d1(start, Configuration2<double>(points.get(0), Angle(M_PI/2.0, Angle::RAD)), 1);
-	// Dubins<double> d2(Configuration2<double>(points.get(0), Angle(0.5*M_PI, Angle::RAD)), Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), 1);
-	// Dubins<double> d3(Configuration2<double>(points.get(1), Angle(M_PI, Angle::RAD)), Configuration2<double>(points.get(2), Angle(5.17604, Angle::RAD)), 1);
-	// Dubins<double> d4(Configuration2<double>(points.get(2), Angle(5.17604, Angle::RAD)), end, 1);
-
-	// cout << d1.getId() << endl;
-	// cout << d1 << endl;
-	// cout << endl << d2.getId() << endl;
-	// cout << d2 << endl;
-	// cout << endl << d3.getId() << endl;
-	// cout << d3 << endl;
-	// cout << endl << d4.getId() << endl;
-	// cout << d4 << endl;
-
-	// cout << d1.length()+d2.length()+d3.length()+d4.length() << endl;
 	return 0;
 }
 #endif
+
+
+/*
+double* angles=(double*) malloc(sizeof(double)*4);
+angles=dubinsSetBest(start, end, points, 1, 2, 90, kmax);
+
+DubinsSet<double> s(start, end, points, 90, kmax);
+
+Tuple<Configuration2<double> > confs;
+cout << start.angle().toRad() << " ";
+confs.add(start);
+for (int i=1; i<3; i++){
+	cout << angles[i] << " ";
+	confs.add(Configuration2<double> (points.get(i-1), Angle(angles[i], Angle::RAD)));
+}
+cout << end.angle().toRad() << endl;
+confs.add(end);
+
+DubinsSet<double> s_CUDA (confs, kmax);
+
+uint DIMY=750;
+uint DIMX=500;
+Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
+my_imshow("CUDA", map, true);
+mywaitkey();
+*/
