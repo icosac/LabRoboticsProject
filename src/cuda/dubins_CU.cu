@@ -5,6 +5,23 @@
 #define CUDA_DInf 0x7ff0000000000000 
 #define CUDA_FInf 0x7f800000 
 
+#define GRID 1
+#define THREADS 256
+
+// #define DUBINS_IN_KERNEL //Compute dubins using kernel. Doesn't need loop as the pair of points is computed through the id of the thread
+#define DUBINS_IN_DEVICE //Compute dubins using devices. Needs to loop and call the function for each pair of points
+#define COMPUTE_ANGLES_BF_DUBINS //Compute angles before calling the deubins function
+// #define COMPUTE_ANGLES_IN_DUBINS //Compute angles inside the dubins function exploiting some maths. (reallyyyyyyyy slow)
+#if defined DUBINS_IN_DEVICE && defined DUBINS_IN_KERNEL
+#error DUBINS_IN_DEVICE and DUBINS_IN_KERNEL cannot be defined at the same time.
+#endif
+#if defined COMPUTE_ANGLES_IN_DUBINS && defined COMPUTE_ANGLES_BF_DUBINS
+#error COMPUTE_ANGLES_BF_DUBINS and COMPUTE_ANGLES_IN_DUBINS cannot be defined at the same time.
+#endif
+#if defined DUBINS_IN_DEVICE && defined COMPUTE_ANGLES_IN_DUBINS
+#error DUBINS_IN_DEVICE require COMPUTE_ANGLES_BF_DUBINS as the angles cannot be computed during the execution of the device function.
+#endif
+
 #include<limits>
 #include<iostream>
 using namespace std;
@@ -173,6 +190,148 @@ __global__ void LRL (double th0, double th1, double _kmax, double* ret)
 	ret[2]=sc_s3;
 	// printf("in_LRL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
+
+#ifdef DUBINS_IN_DEVICE
+__device__ void __device__LSL (double th0, double th1, double _kmax, double* ret){
+	double C=cos(th1)-cos(th0);
+	double S=2*_kmax+sin(th0)-sin(th1);
+	double tan2=atan2(C, S);
+
+	double temp1=2+4*pow2(_kmax)-2*cos(th0-th1)+4*_kmax*(sin(th0)-sin(th1));
+
+	if (temp1<0){
+	  ret[0]=-1;
+	  return;
+	}
+
+	double invK=1/_kmax;
+	double sc_s1=CUDA_mod2pi(tan2-th0)*invK;
+	double sc_s2=invK*sqrt(temp1);
+	double sc_s3=CUDA_mod2pi(th1-tan2)*invK;
+
+	ret[0]=sc_s1;
+	ret[1]=sc_s2;
+	ret[2]=sc_s3;
+	// printf("in_LSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+}
+
+__device__ void __device__RSR (double th0, double th1, double _kmax, double* ret)
+{
+	double C=cos(th0)-cos(th1);
+	double S=2*_kmax-sin(th0)+sin(th1);
+
+	double temp1=2+4*pow2(_kmax)-2*cos(th0-th1)-4*_kmax*(sin(th0)-sin(th1));
+
+	if (temp1<0){
+	  ret[0]=-1;
+	  return;
+	}
+
+	double invK=1/_kmax;
+	double sc_s1=CUDA_mod2pi(th0-atan2(C,S))*invK;
+	double sc_s2=invK*sqrt(temp1);
+	double sc_s3=CUDA_mod2pi(atan2(C,S)-th1)*invK;
+
+	ret[0]=sc_s1;
+	ret[1]=sc_s2;
+	ret[2]=sc_s3;
+	// printf("in_RSR_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+}
+
+__device__ void __device__LSR (double th0, double th1, double _kmax, double* ret, uint old=2)
+{    
+	double C = cos(th0)+cos(th1);
+	double S=2*_kmax+sin(th0)+sin(th1);
+
+	double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)+4*_kmax*(sin(th0)+sin(th1));
+
+	if (temp1<0){
+	  ret[0]=-1;
+		// printf("[%u] in_LSR_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: %f\n", old, th0, th1, _kmax, C, S, temp1, ret[0]);
+	  return;
+	}
+
+	double invK=1/_kmax;
+
+	double sc_s2=invK*sqrt(temp1);
+	double sc_s1= CUDA_mod2pi(atan2(-C,S)-atan2(-2.0, _kmax*sc_s2)-th0)*invK;
+	double sc_s3= CUDA_mod2pi(atan2(-C,S)-atan2(-2.0, _kmax*sc_s2)-th1)*invK;
+
+	ret[0]=sc_s1;
+	ret[1]=sc_s2;
+	ret[2]=sc_s3;
+	// printf("[%u] in_LSR_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", old, th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+}
+
+__device__ void __device__RSL (double th0, double th1, double _kmax, double* ret)
+{
+	double C = cos(th0)+cos(th1);
+	double S=2*_kmax-sin(th0)-sin(th1);
+
+	double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)+sin(th1));
+	if (temp1<0){
+	  ret[0]=-1;
+	  return;
+	}
+
+	double invK=1/_kmax;
+
+	double sc_s2=invK*sqrt(temp1);
+	double sc_s1= CUDA_mod2pi(th0-atan2(C,S)+atan2(2.0, _kmax*sc_s2))*invK;
+	double sc_s3= CUDA_mod2pi(th1-atan2(C,S)+atan2(2.0, _kmax*sc_s2))*invK;
+
+	ret[0]=sc_s1;
+	ret[1]=sc_s2;
+	ret[2]=sc_s3;
+	// printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+}
+
+__device__ void __device__RLR (double th0, double th1, double _kmax, double* ret)
+{
+	double C=cos(th0)-cos(th1);
+	double S=2*_kmax-sin(th0)+sin(th1);
+
+	double temp1=0.125*(6-4*pow2(_kmax)+2*cos(th0-th1)+4*_kmax*(sin(th0)-sin(th1)));
+
+	if (fabs(temp1)-CUDA_Epsi>1.0){
+	  ret[0]=-1;
+	  return;
+	}
+
+	double invK=1/_kmax;
+	double sc_s2 = CUDA_mod2pi(2*M_PI-acos(temp1))*invK;
+	double sc_s1 = CUDA_mod2pi(th0-atan2(C, S)+0.5*_kmax*sc_s2)*invK;
+	double sc_s3 = CUDA_mod2pi(th0-th1+_kmax*(sc_s2-sc_s1))*invK;
+
+	ret[0]=sc_s1;
+	ret[1]=sc_s2;
+	ret[2]=sc_s3;
+	// printf("in_RLR_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+}
+
+__device__ void __device__LRL (double th0, double th1, double _kmax, double* ret)
+{
+	double C=cos(th1)-cos(th0);
+	double S=2*_kmax+sin(th0)-sin(th1);
+
+	double temp1=0.125*(6-4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)-sin(th1)));
+
+	if (fabs(temp1)-CUDA_Epsi>1.0){
+	  ret[0]=-1;
+	  return;
+	}
+
+	double invK=1/_kmax;
+	double sc_s2 = CUDA_mod2pi(2*M_PI-acos(temp1))*invK;
+	double sc_s1 = CUDA_mod2pi(atan2(C, S)-th0+0.5*_kmax*sc_s2)*invK;
+	double sc_s3 = CUDA_mod2pi(th1-th0+_kmax*(sc_s2-sc_s1))*invK;
+
+	ret[0]=sc_s1;
+	ret[1]=sc_s2;
+	ret[2]=sc_s3;
+	// printf("in_LRL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+}
+#endif
 
 static double sincCuda(double t) {
   if (std::abs(t)<0.002)
@@ -379,9 +538,6 @@ void shortest_cuda(	double x0, double y0, double th0,
 }
 
 
-#define GRID 1
-#define THREADS 256
-
 __device__ __host__ 
 void toBase(double* v, const double* angles, const double* inc, 
 						const int base, int value, size_t size, int startPos, int endPos){
@@ -412,54 +568,6 @@ __device__ double myAtomicAdd(double* address, double val)
     
     return __longlong_as_double(old);
 }
-#endif
-
-// __device__ void dubins(	double* x0, double* y0, double th0,
-// 													double* x1, double* y1, double th1, 
-// 													double _kmax, double* L){
-// 	//Scale to standard
-// 	double sc_th0=CUDA_mod2pi((th0)-atan2(((*y1)-(*y0)), ((*x1)-(*x0))));
-// 	double sc_th1=CUDA_mod2pi((th1)-atan2(((*y1)-(*y0)), ((*x1)-(*x0))));
-// 	double sc_lambda=sqrt(pow2((*y1)-(*y0))+pow2((*x1)-(*x0)))/2;
-// 	double sc_kmax=_kmax*sc_lambda;
-
-// 	double Length=CUDA_DInf;
-
-// 	double* ret=new double [18];
-
-// 	LSL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret);
-// 	RSR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+3*sizeof(double));
-// 	LSR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+6*sizeof(double));
-// 	RSL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+9*sizeof(double));
-// 	RLR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+12*sizeof(double));
-// 	LRL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, ret+15*sizeof(double));
-// 	cudaDeviceSynchronize();
-
-// 	for (int i=0; i<6; i++){
-// 		double* value=ret+i*3*sizeof(double);
-// 		if (value[0]!=-1){
-// 			double appL=value[0]+value[1]+value[2];
-// 			if (appL<Length){
-// 				Length=appL;
-// 			}
-// 		}
-// 	}
-// 	printf("%f\n", Length);
-// 	*L=Length;
-// }
-
-// #define DUBINS_IN_KERNEL //Compute dubins using kernel. Doesn't need loop as the pair of points is computed through the id of the thread
-#define DUBINS_IN_DEVICE //Compute dubins using devices. Needs to loop and call the function for each pair of points
-#define COMPUTE_ANGLES_BF_DUBINS //Compute angles before calling the deubins function
-// #define COMPUTE_ANGLES_IN_DUBINS //Compute angles inside the dubins function exploiting some maths. (reallyyyyyyyy slow)
-#if defined DUBINS_IN_DEVICE && defined DUBINS_IN_KERNEL
-#error DUBINS_IN_DEVICE and DUBINS_IN_KERNEL cannot be defined at the same time.
-#endif
-#if defined COMPUTE_ANGLES_IN_DUBINS && defined COMPUTE_ANGLES_BF_DUBINS
-#error COMPUTE_ANGLES_BF_DUBINS and COMPUTE_ANGLES_IN_DUBINS cannot be defined at the same time.
-#endif
-#if defined DUBINS_IN_DEVICE && defined COMPUTE_ANGLES_IN_DUBINS
-#error DUBINS_IN_DEVICE require COMPUTE_ANGLES_BF_DUBINS as the angles cannot be computed during the execution of the device function.
 #endif
 
 
@@ -529,7 +637,7 @@ __device__ void dubins(	double* _x0, double* _y0, double _th0,
 	// 		 	sc_th0, sc_th1, sc_lambda, sc_kmax, Length);
 
 	double* ret=(double*) malloc(sizeof(double)*18);
-
+	#ifdef DUBINS_IN_KERNEL
 	LSL<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, &(ret[0]));
 	RSR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, &(ret[3]));
 	LSR<<<1, 1>>>(sc_th0, sc_th1, sc_kmax, &(ret[6]), old);
@@ -540,7 +648,14 @@ __device__ void dubins(	double* _x0, double* _y0, double _th0,
 	if (err!=cudaSuccess){
 		printf("Error: %d\n", err);
 	}
-
+	#elif defined DUBINS_IN_DEVICE
+	__device__LSL(sc_th0, sc_th1, sc_kmax, &(ret[0]));
+	__device__RSR(sc_th0, sc_th1, sc_kmax, &(ret[3]));
+	__device__LSR(sc_th0, sc_th1, sc_kmax, &(ret[6]), old);
+	__device__RSL(sc_th0, sc_th1, sc_kmax, &(ret[9]));
+	__device__RLR(sc_th0, sc_th1, sc_kmax, &(ret[12]));
+	__device__LRL(sc_th0, sc_th1, sc_kmax, &(ret[15]));
+	#endif
 	for (int i=0; i<6; i++){
 		double* value=&ret[i*3];
 		if (!CUDA_equal(value[0], -1.0)){

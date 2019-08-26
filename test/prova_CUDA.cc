@@ -303,13 +303,14 @@ int main (){
 	// DubinsSet<double> s(start, end, points, 8, kmax);
 	// return 0;
 
-	for (double i=1.0; i<=512.0; i*=2.0){
+	for (double i=1.0; i<=32.0; i*=2.0){
 		if (i==512.0){
 			i=360.0;
 		}
 		ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
 		out_data << endl << endl;
 		out_data << "Parts: " << i << endl;
+		cout << "Parts: " << i << endl;
 		
 		auto start_t=Clock::now();
 		dubinsSetBest(start, end, points, 1, 4, i, kmax);

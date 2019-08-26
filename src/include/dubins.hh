@@ -787,7 +787,7 @@ void disp(Tuple<Tuple<Angle> >& t,
       t.add(app);
       // COUT(app)
     #else
-      t.add(toBase(z, i, N, inc));
+      t.add(toBase(z, i, N, inc, startPos, endPos));
     #endif
   }
   cout << "Expected: " << iter_n << " got: " << t.size() << endl;

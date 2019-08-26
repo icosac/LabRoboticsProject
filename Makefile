@@ -4,9 +4,10 @@ OS=$(shell uname)
 OPENCV=opencv
 TESS= #If defined remember to include -D TESS in compiling flags
 
-CUDA_PATH=/usr/local/cuda
-#/opt/cuda
-CUDA_ARCH=sm_60
+# CUDA_PATH=/usr/local/cuda
+# CUDA_ARCH=sm_60
+CUDA_PATH=/opt/cuda
+CUDA_ARCH=sm_35
 
 LIB_DUBINS=libDubins.a
 INCLUDE=include
