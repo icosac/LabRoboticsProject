@@ -285,25 +285,64 @@ double elapsedRLR=0;
 double elapsedLRL=0;
 
 #define SCALE 100.0
+#define ES 3
+
+typedef double TYPE;
 
 int main (){
 	cudaFree(0);
-	Tuple<Point2<double> > points;
-	points.add(Point2<double> (-0.1*SCALE, 0.3*SCALE));
-	points.add(Point2<double> (0.2*SCALE, 0.8*SCALE));
-	points.add(Point2<double> (1.0*SCALE, 1.0*SCALE));
-	points.add(Point2<double> (0.5*SCALE, 0.5*SCALE));
-	
-	double kmax=3/SCALE;	
-	
-	Configuration2<double> start(0.0*SCALE, 0.0*SCALE, Angle(-M_PI/3.0, Angle::RAD));
-	Configuration2<double> end(0.5*SCALE, 0.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
+	Tuple<Point2<TYPE> > points;
+	Configuration2<TYPE> start;
+	Configuration2<TYPE> end;
 
+	#if ES==1
+	start=Configuration2<TYPE>(0*SCALE,0*SCALE, Angle(-M_PI/3.0, Angle::RAD));
+	points.add(Configuration2<TYPE>(-0.1*SCALE,0.3*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(0.2*SCALE,0.8*SCALE, Angle()));
+	end=Configuration2<TYPE>(1.0*SCALE,1.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
+	double kmax=3/SCALE;  
+
+	#elif ES==2 
+	start=Configuration2<TYPE>(0*SCALE,0*SCALE, Angle(-M_PI/3.0, Angle::RAD));
+	points.add(Configuration2<TYPE>(-0.1*SCALE,0.3*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(0.2*SCALE,0.8*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.0*SCALE,1.0*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(0.5*SCALE,0.5*SCALE, Angle()));
+	end=Configuration2<TYPE>(0.5*SCALE,0.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
+	double kmax=3/SCALE;
+
+	#elif ES==3
+	start=Configuration2<TYPE>(0.5*SCALE, 1.2*SCALE, Angle(5.0*M_PI/6.0, Angle::RAD));
+	points.add(Configuration2<TYPE>(0.0*SCALE, 0.8*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(0.0*SCALE, 0.4*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(0.1*SCALE, 0.0*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(0.4*SCALE, 0.2*SCALE, Angle()));
+
+	points.add(Configuration2<TYPE>(0.5*SCALE, 0.5*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(0.6*SCALE, 1.0*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.0*SCALE, 0.8*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.0*SCALE, 0.0*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.4*SCALE, 0.2*SCALE, Angle()));
+
+	points.add(Configuration2<TYPE>(1.2*SCALE, 1.0*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.5*SCALE, 1.2*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(2.0*SCALE, 1.5*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.5*SCALE, 0.8*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.5*SCALE, 0.0*SCALE, Angle()));
+
+	points.add(Configuration2<TYPE>(1.7*SCALE, 0.6*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.9*SCALE, 1.0*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(2.0*SCALE, 0.5*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.9*SCALE, 0.0*SCALE, Angle()));
+	end=Configuration2<TYPE>(2.5*SCALE, 0.6*SCALE, Angle());
+	double kmax=3/SCALE;
+
+	#endif
 	// dubinsSetBest(start, end, points, 1, 4, 8, kmax);
 	// DubinsSet<double> s(start, end, points, 8, kmax);
 	// return 0;
 
-	for (double i=1.0; i<=32.0; i*=2.0){
+	for (double i=1.0; i<=16.0; i*=2.0){
 		if (i==512.0){
 			i=360.0;
 		}
@@ -311,20 +350,40 @@ int main (){
 		out_data << endl << endl;
 		out_data << "Parts: " << i << endl;
 		cout << "Parts: " << i << endl;
-		
+		double* angles=(double*) malloc(sizeof(double)*(points.size()+2));
+
 		auto start_t=Clock::now();
-		dubinsSetBest(start, end, points, 1, 4, i, kmax);
+		angles=dubinsSetBest(start, end, points, 1, points.size(), i, kmax);
 		auto stop_t=Clock::now();
 		double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
 		
 		auto _start_t=Clock::now();
-		DubinsSet<double> s(start, end, points, i, kmax);
+		// DubinsSet<double> s(start, end, points, i, kmax);
 		auto _stop_t=Clock::now();
 		double elapsedCPP=CHRONO::getElapsed(_start_t, _stop_t);
 
 		out_data << "elapsedCuda: " << elapsedCuda << endl;
 		out_data << "elapsedCPP: " << elapsedCPP << endl << endl;
 		out_data.close();
+
+		Tuple<Configuration2<double> > confs;
+		cout << start.angle().toRad() << " ";
+		confs.add(start);
+		for (int i=1; i<points.size()+1; i++){
+			cout << angles[i] << " ";
+			confs.add(Configuration2<double> (points.get(i-1), Angle(angles[i], Angle::RAD)));
+		}
+		cout << end.angle().toRad() << endl;
+		confs.add(end);
+
+		DubinsSet<double> s_CUDA (confs, kmax);
+
+		uint DIMY=750;
+		uint DIMX=500;
+		Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+		s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
+		my_imshow("CUDA", map, true);
+		mywaitkey();
 	}
 
 	return 0;
