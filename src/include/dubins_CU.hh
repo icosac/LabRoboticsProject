@@ -1,6 +1,6 @@
 #ifndef DUBINS_CU_HH
 #define DUBINS_CU_HH
-#ifdef CUDA
+// #ifdef CUDA
 
 #include<maths.hh>
 
@@ -26,5 +26,5 @@ double* dubinsSetBest(Configuration2<double> start,
 // 											int endPos=-1,
 // 											uint parts=2 );
 
-#endif
+// #endif
 #endif

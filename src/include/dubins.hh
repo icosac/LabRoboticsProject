@@ -1,10 +1,9 @@
-#pragma once 
 #ifndef DUBINS_HH
 #define DUBINS_HH
 
 // #include <utils.hh>
-#include <maths.hh>
 #include <dubins_CU.hh>
+#include <maths.hh>
 
 #include <iostream>
 #include <sstream>

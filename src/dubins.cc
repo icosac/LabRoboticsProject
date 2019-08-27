@@ -1,4 +1,4 @@
-#include "dubins.hh"
+#include <dubins.hh>
 
 double* dubinsSetCuda(Configuration2<double> start,
                       Configuration2<double> end,

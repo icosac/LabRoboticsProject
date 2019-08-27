@@ -1,12 +1,10 @@
 #include <dubins_CU.hh>
 
-namespace My_CUDA {
 #define pow2(x) x*x
 #define CUDA_Epsi 1e-10
 #define CUDA_DInf 0x7ff0000000000000 
 #define CUDA_FInf 0x7f800000 
 
-#define GRID 1
 #define THREADS 256
 
 // #define DUBINS_IN_KERNEL //Compute dubins using kernel. Doesn't need loop as the pair of points is computed through the id of the thread
@@ -872,4 +870,4 @@ double* dubinsSetBest(Configuration2<double> start,
 	cudaFree(dev_inc);
 	return angls;
 }
-}
+

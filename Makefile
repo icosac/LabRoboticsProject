@@ -204,7 +204,7 @@ doc:
 	$(MKDIR) docs
 	@cp .index.html docs/index.html
 	$(DOXYGEN) $(DOX_CONF_FILE)
-ifneq (,$(shell which pdflatex))
-	@cd docs/latex && make
-endif
+# ifneq (,$(shell which pdflatex))
+# 	@cd docs/latex && make
+# endif
 
