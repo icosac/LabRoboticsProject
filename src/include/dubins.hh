@@ -4,6 +4,7 @@
 
 // #include <utils.hh>
 #include <maths.hh>
+#include <dubins_CU.hh>
 
 #include <iostream>
 #include <sstream>
@@ -700,6 +701,13 @@ public:
   }
 
   void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
+    T start_x=Curve<T>::begin().point().x();
+    T start_y=Curve<T>::begin().point().y();
+    T end_x=Curve<T>::end().point().x();
+    T end_y=Curve<T>::end().point().y();
+    rectangle(image, Point(start_x-SHIFT, start_y-SHIFT), Point(start_x+SHIFT, start_y+SHIFT), Scalar(0,0,0), -1);
+    rectangle(image, Point(end_x-SHIFT, end_y-SHIFT), Point(end_x+SHIFT, end_y+SHIFT), Scalar(0,0,0), -1);
+    
     A1.draw(dimX, dimY, inc, scl, image, SHIFT);
     A2.draw(dimX, dimY, inc, scl, image, SHIFT);
     A3.draw(dimX, dimY, inc, scl, image, SHIFT);
@@ -1002,5 +1010,14 @@ public:
     }
   }
 };
+
+
+double* dubinsSetCuda(Configuration2<double> start,
+                     Configuration2<double> end,
+                     Tuple<Point2<double> > _points,
+                     double _kmax=1,
+                     int startPos=0,
+                     int endPos=-1,
+                     uint parts=2 );
 
 #endif

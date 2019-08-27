@@ -1,5 +1,6 @@
 #include <dubins_CU.hh>
 
+namespace My_CUDA {
 #define pow2(x) x*x
 #define CUDA_Epsi 1e-10
 #define CUDA_DInf 0x7ff0000000000000 
@@ -748,27 +749,20 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 
 #include<fstream>
 
+typedef unsigned long ulong;
+
 double* dubinsSetBest(Configuration2<double> start,
-										Configuration2<double> end,
-										Tuple<Point2<double> > _points,
-										int startPos,
-										int endPos,
-										uint parts, 
-										double _kmax){
+											Configuration2<double> end,
+											Tuple<Point2<double> > _points,
+											int startPos,
+											int endPos,
+											ulong iter_n,
+											double inc,
+											size_t parts, 
+											double _kmax){
 	size_t size=_points.size()+2;
 	
 	ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
-
-	COUT(parts)
-	COUT(size)
-	unsigned long M=size-startPos;
-  if (endPos>startPos){
-    M-=(size-endPos-1);
-  }
-  COUT(M)
-  COUT(parts)
-  unsigned long iter_n=pow(parts, M);
-	COUT(iter_n)
 
 	double* init_angle=(double*) malloc(sizeof(double)*size);
 	double* x=(double*) malloc(size*sizeof(double));
@@ -803,7 +797,6 @@ double* dubinsSetBest(Configuration2<double> start,
 	double Length=DInf;
 	double* lengths=(double*) malloc(sizeof(double)*iter_n);
 	int* pidxs=(int*) malloc(sizeof(int)*iter_n);
-	double inc=2.0*M_PI/parts;
 
 	auto start_t=Clock::now();
 
@@ -878,4 +871,5 @@ double* dubinsSetBest(Configuration2<double> start,
 	cudaFree(dev_iter);
 	cudaFree(dev_inc);
 	return angls;
+}
 }

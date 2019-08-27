@@ -11,7 +11,7 @@
 #include <sstream>
 #include <string>
 
-// #include <opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 
 using namespace std;
 
@@ -890,10 +890,10 @@ public:
 			\returns 1 if everything went fine, 0 otherwise.
   */
   template <class T1>
-  void offset(const T1 _offset, const Angle th){
+  void offset(const T1 _offset, const Angle th=A_PI2/2.0){
     double dx=_offset*th.cos();
     double dy=_offset*th.sin();
-    if (is_same<T, int>::value){ //Since casting truncates the value, adding 0.5 is the best way to round the numbr
+    if (is_same<T, int>::value){ //Since casting truncates the value, adding 0.5 is the best way to round the numbe
       dx+=0.5;
       dy+=0.5;
     }
@@ -1031,12 +1031,12 @@ public:
     return !equal(A);
   }
 
-  // /*! \brief Cast to cv::Point
-  //     \returns The value casted to point
-  // */
-  // operator cv::Point() const { 
-  //   return cv::Point(this->x(), this->y()); 
-  // }
+  /*! \brief Cast to cv::Point
+      \returns The value casted to point
+  */
+  operator cv::Point() const { 
+    return cv::Point(this->x(), this->y()); 
+  }
 
   //TODO find better implementation
   bool operator<(const Point2<T>& A){ 
