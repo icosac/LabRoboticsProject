@@ -129,6 +129,7 @@ __global__ void RSL (double th0, double th1, double _kmax, double* ret)
 	double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)+sin(th1));
 	if (temp1<0){
 	  ret[0]=-1;
+	printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: %f\n", th0, th1, _kmax, C, S, temp1, -1);
 	  return;
 	}
 
@@ -141,7 +142,7 @@ __global__ void RSL (double th0, double th1, double _kmax, double* ret)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-	// printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+	printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
 
 __global__ void RLR (double th0, double th1, double _kmax, double* ret)
@@ -270,6 +271,7 @@ __device__ void __device__RSL (double th0, double th1, double _kmax, double* ret
 	double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)+sin(th1));
 	if (temp1<0){
 	  ret[0]=-1;
+	printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: %f\n", th0, th1, _kmax, C, S, temp1, -1);
 	  return;
 	}
 
@@ -282,7 +284,7 @@ __device__ void __device__RSL (double th0, double th1, double _kmax, double* ret
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-	// printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+	printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
 
 __device__ void __device__RLR (double th0, double th1, double _kmax, double* ret)
@@ -762,6 +764,7 @@ double* dubinsSetBest(Configuration2<double> start,
 	
 	ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
 
+	//Create initial angles and coordinates
 	double* init_angle=(double*) malloc(sizeof(double)*size);
 	double* x=(double*) malloc(size*sizeof(double));
 	double* y=(double*) malloc(size*sizeof(double));
@@ -781,16 +784,10 @@ double* dubinsSetBest(Configuration2<double> start,
 	x[size-1]=end.point().x();
 	y[size-1]=end.point().y();
 	
+	cout << "Initial angles: ";
 	for (int i=0; i<size; i++){
 		cout << init_angle[i] << (i!=size-1 ? ", " : "\n");
 	}
-	// for (int i=0; i<size; i++){
-	// 	cout << x[i] << (i!=size-1 ? ", " : "\n");
-	// }
-	// for (int i=0; i<size; i++){
-	// 	cout << y[i] << (i!=size-1 ? ", " : "\n");
-	// }
-
 
 	double Length=DInf;
 	double* lengths=(double*) malloc(sizeof(double)*iter_n);
@@ -806,9 +803,10 @@ double* dubinsSetBest(Configuration2<double> start,
 	uint* dev_iter; cudaMalloc((void**)&dev_iter, sizeof(uint));
 	double* dev_inc; cudaMalloc((void**)&dev_inc, sizeof(double)); 
 	double* dev_kmax; cudaMalloc((void**)&dev_kmax, sizeof(double)); 
+	
 	auto stop=Clock::now();
 	double elapsedMalloc=CHRONO::getElapsed(start_t, stop);
-	// int* dev_pidxs; cudaMalloc((void**)&dev_pidxs, sizeof(int)*iter_n);
+	
 	start_t=Clock::now();
 	cudaMemcpy(dev_x, x, sizeof(double)*size, cudaMemcpyHostToDevice);
 	cudaMemcpy(dev_y, y, sizeof(double)*size, cudaMemcpyHostToDevice);
@@ -825,36 +823,62 @@ double* dubinsSetBest(Configuration2<double> start,
 	COUT(elapsedCopy)
 	out_data << "elapsedCopy: " << elapsedCopy << endl;
 
-	start_t=Clock::now();
-	computeDubins<<<((int)(iter_n/THREADS)+1), (THREADS>iter_n ? iter_n : THREADS)>>> 
-	// computeDubins<<<1, 2>>> 
-												(dev_init_angle, dev_inc, dev_x, dev_y, 
-												dev_lengths, dev_iter, size, parts, dev_kmax);
-	int val=cudaDeviceSynchronize();
-	stop=Clock::now();
-	double elapsedCompute=CHRONO::getElapsed(start_t, stop);
-	COUT(elapsedCompute)
-	out_data << "elapsedCompute: " << elapsedCompute << endl;
-	if (val!=cudaSuccess)
-		printf("After dubins: %d\n", val);
-
-	cudaMemcpy(lengths, dev_lengths, sizeof(double)*iter_n, cudaMemcpyDeviceToHost);
-
-	int pidx=-1;
-	for (int i=0; i<iter_n; i++){
-		if (lengths[i]<Length && !equal(lengths[i], 0)){
-			Length=lengths[i];
-			pidx=i;
-		}
-	}
-
-	COUT(Length)
-	COUT(pidx)
-
 	double* angls=(double*) malloc(sizeof(double)*size);
-	toBase(angls, init_angle, &inc, parts, pidx, size, 1, size-2);
-	for (int i=0; i<size; i++){
-		cout << angls[i] << (i!=size-1 ? ", " : "\n");
+
+	int b=0;
+	while(inc>0.001){
+		cout << endl;
+		b++;
+		cout << endl;
+		COUT(b)
+		cout << endl;
+		COUT(inc)
+		COUT(parts)
+		COUT(iter_n)
+		cout << "Angles: ";
+		for (int i=0; i<size; i++){
+			cout << init_angle[i] << (i!=size-1 ? ", " : "\n");
+		}
+		start_t=Clock::now();
+		computeDubins<<<((int)(iter_n/THREADS)+1), (THREADS>iter_n ? iter_n : THREADS)>>> 
+													(dev_init_angle, dev_inc, dev_x, dev_y, 
+													dev_lengths, dev_iter, size, parts, dev_kmax);
+		int val=cudaDeviceSynchronize();
+		stop=Clock::now();
+		double elapsedCompute=CHRONO::getElapsed(start_t, stop);
+
+		cudaMemcpy(lengths, dev_lengths, sizeof(double)*iter_n, cudaMemcpyDeviceToHost);
+
+		int pidx=-1;
+		for (int i=0; i<iter_n; i++){
+			if (lengths[i]<Length && !equal(lengths[i], 0)){
+				Length=lengths[i];
+				pidx=i;
+			}
+		}
+		toBase(angls, init_angle, &inc, parts, pidx, size, 1, size-2);
+		cout << "Stored angles: ";
+		for (int i=0; i<size; i++){
+			cout << angls[i] << (i!=size-1 ? ", " : "\n");
+			if (i>startPos && i<endPos){
+				init_angle[i]=angls[i]-(inc/2.0);
+			}
+		}
+
+		inc/=parts;
+		iter_n=pow((parts+1), (endPos-startPos+1));
+		
+		cudaMemcpyAsync(dev_init_angle, init_angle, sizeof(double)*size, cudaMemcpyHostToDevice, 0);
+		cudaMemcpyAsync(dev_inc, &inc, sizeof(double), cudaMemcpyHostToDevice, 0);
+		cudaMemcpyAsync(dev_iter, &iter_n, sizeof(ulong), cudaMemcpyHostToDevice, 0);
+		cudaDeviceSynchronize();
+
+		COUT(Length)
+		COUT(pidx)
+		COUT(elapsedCompute)
+		out_data << "elapsedCompute: " << elapsedCompute << endl;
+		if (val!=cudaSuccess)
+			printf("Error: after dubins: %d\n", val);
 	}
 
 	for (int i=0; i<size-1; i++){
@@ -871,3 +895,72 @@ double* dubinsSetBest(Configuration2<double> start,
 	return angls;
 }
 
+double* dubinsSetCuda(Configuration2<double> start,
+                      Configuration2<double> end,
+                      Tuple<Point2<double> > _points,
+                      double _kmax,//=1
+                      int startPos,//=0
+                      int endPos,//=-1
+                      uint parts){//=2
+  #define ULONG_SIZE sizeof(unsigned long)*8
+  #define ULONG_SIZE2 sizeof(unsigned long)*4
+  if (endPos==-1){
+    endPos=_points.size();
+  }
+
+  if (_points.size()+2<ULONG_SIZE/parts && parts!=2){}
+  else if (_points.size()+2<ULONG_SIZE/4){
+    parts=16;
+  }
+  else if (_points.size()+2<ULONG_SIZE/3){
+    parts=8;
+  }
+  else if (_points.size()+2<ULONG_SIZE/2){
+    parts=4;
+  }
+  else if (_points.size()+2<ULONG_SIZE){
+    parts=2;
+  }
+  
+  else {
+    cerr << "Too many points." << endl;
+    return nullptr; 
+  }
+  
+  //Compute number of iteration. Since I need to check `parts` incrementation for each angle it'll be `parts`^(endPos-startPos)
+  size_t size=_points.size()+2;
+  unsigned long M=size-startPos;
+  if (endPos>startPos){
+    M-=(size-endPos-1);
+  }
+  ulong iter_n=pow(parts, M);
+  { COUT(parts)
+    COUT(size)
+    COUT(M)
+    COUT(iter_n)}
+
+  double inc=(A_2PI/parts).toRad();
+
+  double* angles=(double*) malloc(sizeof(double)*_points.size()+2);
+	return dubinsSetBest(start, end, _points, startPos, endPos, iter_n, inc, parts, _kmax);
+
+    // Tuple<Configuration2<double> > confs;
+    // cout << start.angle().toRad() << " ";
+    // confs.add(start);
+    // for (int i=1; i<_points.size()+1; i++){
+    //   cout << angles[i] << " ";
+    //   confs.add(Configuration2<double> (_points.get(i-1), Angle(angles[i], Angle::RAD)));
+    // }
+    // cout << end.angle().toRad() << endl;
+    // confs.add(end);
+
+    // DubinsSet<double> s_CUDA (confs, _kmax);
+
+    // uint DIMY=750;
+    // uint DIMX=500;
+    // Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+    // s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
+    // my_imshow("CUDA", map, true);
+    // mywaitkey();
+  
+}

@@ -1,6 +1,6 @@
 #ifndef DUBINS_CU_HH
 #define DUBINS_CU_HH
-// #ifdef CUDA
+#ifdef CUDA
 
 #include<maths.hh>
 
@@ -18,13 +18,13 @@ double* dubinsSetBest(Configuration2<double> start,
 											size_t parts, 
 											double _kmax);
 }
-// double* dubinsSetCuda(Configuration2<double> start,
-// 											Configuration2<double> end,
-// 											Tuple<Point2<double> > _points,
-// 											double _kmax=1,
-// 											int startPos=0,
-// 											int endPos=-1,
-// 											uint parts=2 );
+double* dubinsSetCuda(Configuration2<double> start,
+											Configuration2<double> end,
+											Tuple<Point2<double> > _points,
+											double _kmax=1,
+											int startPos=0,
+											int endPos=-1,
+											uint parts=2 );
 
-// #endif
+#endif
 #endif

@@ -199,13 +199,13 @@ public:
     return out;
   }
 
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT){
+  void draw(double& dimX, double& dimY, double inc, Scalar scl, Mat& image, double SHIFT){
     // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
     for (auto point : this->splitIt(1)){
       if (point.x()>dimX || point.y()>dimY){
-        double x=point.x()>dimX ? point.x() : dimX;
-        double y=point.y()>dimY ? point.y() : dimY;
-        Mat newMat(x, y, CV_8UC3, Scalar(255, 255, 255));
+        double x=point.x()>dimX ? point.x() : dimX; dimX=x;
+        double y=point.y()>dimY ? point.y() : dimY; dimY=y;
+        Mat newMat(dimX, dimY, CV_8UC3, Scalar(255, 255, 255));
         for (double _x=0; _x<dimX; _x++){
           for (double _y=0; _y<dimY; _y++){
             rectangle(newMat, Point(_x+SHIFT, _y+SHIFT),Point(_x+inc+SHIFT, _y+inc+SHIFT), scl, -1);
@@ -391,7 +391,7 @@ public:
     
     double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)+sin(th1));
     if (temp1<0){
-      // printf("in_RSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: -1\n", th0, th1, _kmax, C, S, temp1);
+      printf("in_RSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: -1\n", th0, th1, _kmax, C, S, temp1);
       // return Tuple<double> (0);
       return nullptr;
     }
@@ -410,7 +410,7 @@ public:
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
-  // printf("in_RSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+  printf("in_RSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
     return ret;
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
@@ -543,6 +543,16 @@ public:
     // cout << CHRONO::getElapsed(start, stop, "Compute primitives: ") << endl;
     elapsedPrimitives+=CHRONO::getElapsed(start, stop);
 
+    for (auto re : res){
+      if (re!=nullptr){
+        cout << "< " << re[0] << " " << re[1] << " " << re[2] << ">\n";
+      }
+      else {
+        cout << "<nullptr>\n"; 
+      }
+    }
+      cout << endl;
+
     int i=0; 
     start=Clock::now(); 
     for (auto value : res){
@@ -558,6 +568,11 @@ public:
       }
       i++;
     }
+
+    stop=Clock::now();
+    // cout << CHRONO::getElapsed(start, stop, "Choose best ") << endl;
+    elapsedBest+=CHRONO::getElapsed(start, stop);
+
     // printf("x0: %f y0: %f th0: %f x1: %f y1: %f th1: %f Length %f\n", Curve<T>::begin().point().x(), Curve<T>::begin().point().y(), Curve<T>::begin().angle().toRad(),
     //     Curve<T>::end().point().x(), Curve<T>::end().point().y(), Curve<T>::end().angle().toRad(), Length);
 
@@ -572,10 +587,6 @@ public:
         {-1,  1, -1}, // RLR
         { 1, -1,  1}  // LRL
       };
-
-      stop=Clock::now();
-      // cout << CHRONO::getElapsed(start, stop, "Choose best ") << endl;
-      elapsedBest+=CHRONO::getElapsed(start, stop);
 
       start=Clock::now();
 #ifdef MORE_FUNCTIONS
@@ -700,12 +711,12 @@ public:
   }
 
   void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
-    T start_x=Curve<T>::begin().point().x();
-    T start_y=Curve<T>::begin().point().y();
-    T end_x=Curve<T>::end().point().x();
-    T end_y=Curve<T>::end().point().y();
-    rectangle(image, Point(start_x-SHIFT, start_y-SHIFT), Point(start_x+SHIFT, start_y+SHIFT), Scalar(0,0,0), -1);
-    rectangle(image, Point(end_x-SHIFT, end_y-SHIFT), Point(end_x+SHIFT, end_y+SHIFT), Scalar(0,0,0), -1);
+    T start_x=Curve<T>::begin().point().x()+SHIFT;
+    T start_y=Curve<T>::begin().point().y()+SHIFT;
+    T end_x=Curve<T>::end().point().x()+SHIFT;
+    T end_y=Curve<T>::end().point().y()+SHIFT;
+    rectangle(image, Point(start_x-inc, start_y-inc), Point(start_x+inc, start_y+inc), Scalar(0,0,0), -1);
+    rectangle(image, Point(end_x-inc, end_y-inc), Point(end_x+inc, end_y+inc), Scalar(0,0,0), -1);
     
     A1.draw(dimX, dimY, inc, scl, image, SHIFT);
     A2.draw(dimX, dimY, inc, scl, image, SHIFT);
@@ -1009,14 +1020,5 @@ public:
     }
   }
 };
-
-
-double* dubinsSetCuda(Configuration2<double> start,
-                     Configuration2<double> end,
-                     Tuple<Point2<double> > _points,
-                     double _kmax=1,
-                     int startPos=0,
-                     int endPos=-1,
-                     uint parts=2 );
 
 #endif

@@ -31,7 +31,7 @@ double elapsedRLR=0;
 double elapsedLRL=0;
 
 #define SCALE 100.0
-#define ES 3
+#define ES 1
 
 typedef double TYPE;
 
@@ -86,59 +86,81 @@ int main (){
 	#endif
 
 	auto start_t=Clock::now();
-	dubinsSetCuda(start, end, points, kmax, 1, points.size());
+	double* anglss=dubinsSetCuda(start, end, points, kmax, 1, points.size(), 4);
 	auto stop_t=Clock::now();
 	double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
 
 	COUT(elapsedCuda)
 
+	Tuple<Configuration2<double> > confs;
+	cout << start.angle().toRad() << " ";
+	confs.add(start);
+	for (int i=1; i<points.size()+1; i++){
+		cout << anglss[i] << " ";
+		confs.add(Configuration2<double> (points.get(i-1), Angle(anglss[i], Angle::RAD)));
+	}
+	cout << end.angle().toRad() << endl;
+	confs.add(end);
+
+	DubinsSet<double> s_CUDA (confs, kmax);
+	COUT(s_CUDA)
+	COUT(s_CUDA.getLength())
+	COUT(s_CUDA.getKmax())
+
+	uint DIMY=750;
+	uint DIMX=500;
+	Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+	s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
+	my_imshow("CUDA", map, true);
+	mywaitkey();
+
 	// dubinsSetBest(start, end, points, 1, 4, 8, kmax);
 	// DubinsSet<double> s(start, end, points, 8, kmax);
 	return 0;
 
-	for (double i=1.0; i<=16.0; i*=2.0){
-		if (i==512.0){
-			i=360.0;
-		}
-		ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
-		out_data << endl << endl;
-		out_data << "Parts: " << i << endl;
-		cout << "Parts: " << i << endl;
-		double* angles=(double*) malloc(sizeof(double)*(points.size()+2));
+	// for (double i=2.0; i<=16.0; i*=2.0){
+	// 	if (i==512.0){
+	// 		i=360.0;
+	// 	}
+	// 	ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
+	// 	out_data << endl << endl;
+	// 	out_data << "Parts: " << i << endl;
+	// 	cout << "Parts: " << i << endl;
+	// 	double* angles=(double*) malloc(sizeof(double)*(points.size()+2));
 
-		auto start_t=Clock::now();
-		// angles=dubinsSetBest(start, end, points, 1, points.size(), i, kmax);
-		auto stop_t=Clock::now();
-		double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
+	// 	auto start_t=Clock::now();
+	// 	// angles=dubinsSetBest(start, end, points, 1, points.size(), i, kmax);
+	// 	auto stop_t=Clock::now();
+	// 	double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
 		
-		auto _start_t=Clock::now();
-		// DubinsSet<double> s(start, end, points, i, kmax);
-		auto _stop_t=Clock::now();
-		double elapsedCPP=CHRONO::getElapsed(_start_t, _stop_t);
+	// 	auto _start_t=Clock::now();
+	// 	// DubinsSet<double> s(start, end, points, i, kmax);
+	// 	auto _stop_t=Clock::now();
+	// 	double elapsedCPP=CHRONO::getElapsed(_start_t, _stop_t);
 
-		out_data << "elapsedCuda: " << elapsedCuda << endl;
-		out_data << "elapsedCPP: " << elapsedCPP << endl << endl;
-		out_data.close();
+	// 	out_data << "elapsedCuda: " << elapsedCuda << endl;
+	// 	out_data << "elapsedCPP: " << elapsedCPP << endl << endl;
+	// 	out_data.close();
 
-		Tuple<Configuration2<double> > confs;
-		cout << start.angle().toRad() << " ";
-		confs.add(start);
-		for (int i=1; i<points.size()+1; i++){
-			cout << angles[i] << " ";
-			confs.add(Configuration2<double> (points.get(i-1), Angle(angles[i], Angle::RAD)));
-		}
-		cout << end.angle().toRad() << endl;
-		confs.add(end);
+	// 	Tuple<Configuration2<double> > confs;
+	// 	cout << start.angle().toRad() << " ";
+	// 	confs.add(start);
+	// 	for (int i=1; i<points.size()+1; i++){
+	// 		cout << angles[i] << " ";
+	// 		confs.add(Configuration2<double> (points.get(i-1), Angle(angles[i], Angle::RAD)));
+	// 	}
+	// 	cout << end.angle().toRad() << endl;
+	// 	confs.add(end);
 
-		DubinsSet<double> s_CUDA (confs, kmax);
+	// 	DubinsSet<double> s_CUDA (confs, kmax);
 
-		uint DIMY=750;
-		uint DIMX=500;
-		Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
-		s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
-		my_imshow("CUDA", map, true);
-		mywaitkey();
-	}
+	// 	uint DIMY=750;
+	// 	uint DIMX=500;
+	// 	Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+	// 	s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
+	// 	my_imshow("CUDA", map, true);
+	// 	mywaitkey();
+	// }
 
 	return 0;
 }
