@@ -5,7 +5,6 @@
 #define CUDA_DInf 0x7ff0000000000000 
 #define CUDA_FInf 0x7f800000 
 
-#define GRID 1
 #define THREADS 256
 
 // #define DUBINS_IN_KERNEL //Compute dubins using kernel. Doesn't need loop as the pair of points is computed through the id of the thread
@@ -152,7 +151,7 @@ __global__ void RLR (double th0, double th1, double _kmax, double* ret)
 
 	double temp1=0.125*(6-4*pow2(_kmax)+2*cos(th0-th1)+4*_kmax*(sin(th0)-sin(th1)));
 
-	if (fabs(temp1)-CUDA_Epsi>1.0){
+	if ((fabs(temp1)-CUDA_Epsi)>1.0){
 	  ret[0]=-1;
 	  return;
 	}
@@ -175,7 +174,7 @@ __global__ void LRL (double th0, double th1, double _kmax, double* ret)
 
 	double temp1=0.125*(6-4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)-sin(th1)));
 
-	if (fabs(temp1)-CUDA_Epsi>1.0){
+	if ((fabs(temp1)-CUDA_Epsi)>1.0){
 	  ret[0]=-1;
 	  return;
 	}
@@ -538,6 +537,20 @@ void shortest_cuda(	double x0, double y0, double th0,
 }
 
 
+// __device__ __host__ 
+// void toBase(double* v, const double* angles, const double* inc, 
+// 						const int base, int value, size_t size, int startPos, int endPos){
+// 	for (int i=0; i<size; i++){
+// 		if (i<startPos || i>endPos){
+// 			v[i]=angles[i];
+// 		}
+// 		else{
+// 			v[i]=(value%base)*(*inc)+angles[i];
+// 			value=(int)(value/base);
+// 		}
+// 	}
+// }
+
 __device__ __host__ 
 void toBase(double* v, const double* angles, const double* inc, 
 						const int base, int value, size_t size, int startPos, int endPos){
@@ -546,11 +559,23 @@ void toBase(double* v, const double* angles, const double* inc,
 			v[i]=angles[i];
 		}
 		else{
-			v[i]=(value%base)*(*inc)+angles[i];
+			int rest=value%base;
 			value=(int)(value/base);
+			if (rest!=base-1){
+				v[i]=(rest)*(*inc)+angles[i];			
+			}
+			else { //If special value then consider the two points on the same line.
+				v[i]=angles[i-1];
+			}
+			#ifdef __CUDA_ARCH__
+				v[i]=CUDA_mod2pi(v[i]);
+			#else 
+				v[i]=mod2pi(v[i]);
+			#endif
 		}
 	}
 }
+
 
 #if __CUDA_ARCH__ < 600
 __device__ double myAtomicAdd(double* address, double val)
@@ -697,10 +722,12 @@ __device__ void dubins(	double* _x0, double* _y0, double _th0,
 
 
 __global__ void computeDubins (double* _angle, double* inc, double* x, double* y,
-								double* lengths, uint* dev_iter, size_t size, size_t base, double* _kmax){
-	uint tidx=blockDim.x*blockIdx.x+threadIdx.x;
+								double* lengths, ulong* dev_iter, size_t size, size_t base, double* _kmax, ulong* start){
+	ulong tidx=blockDim.x*blockIdx.x+threadIdx.x;
 	if (tidx>=(*dev_iter)){}
 	else {
+		ulong id=tidx;
+		tidx+=(*start);
 		#ifdef COMPUTE_ANGLES_IN_DUBINS
 			dubins<<<1, size-1>>>(x, y, _angle, lengths+tidx, _kmax, size, inc, base, tidx);
 		#endif
@@ -732,13 +759,16 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 			// printf("[%u] length: %f %p\n", tidx, lengths[tidx], &lengths[tidx]);
 		#endif
 		#ifdef DUBINS_IN_DEVICE			
-			for (uint i=0; i<size-1; i++){
+			// printf("[%u] angles[0]: %f, angles[1]: %f, angles[2]: %f, angles[3]: %f\n", tidx, angles[0], angles[1], angles[2], angles[3]);
+			for (ulong i=0; i<size-1; i++){
 				// printf("[%u] x: %f %f %f %f {%f %f}\n", tidx, x[0], x[1], x[2], x[3], (x+i)[0], (x+1+i)[0]);
 				// printf("[%u] y: %f %f %f %f {%f %f}\n", tidx, y[0], y[1], y[2], y[3], (y+i)[0], (y+1+i)[0]);
-				dubins(x+i, y+i, angles[i], x+(i+1), y+(i+1), angles[i+1], _kmax, lengths+tidx, tidx);
+				// dubins(x+i, y+i, angles[i], x+(i+1), y+(i+1), angles[i+1], _kmax, lengths+tidx, tidx); //When not splitting lenghts 
+				dubins(x+i, y+i, angles[i], x+(i+1), y+(i+1), angles[i+1], _kmax, lengths+id, tidx);
 				// printf("[%d] [%d] length: %f\n", tidx, i, lengths[tidx]);
 			}
-			// printf("prova %f\n", lengths[0]);
+
+			// printf("[%u] %f\n", tidx, lengths[0]);
 		#endif
 			free(angles);
 		#endif
@@ -747,6 +777,9 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 }
 
 #include<fstream>
+#include <helper_cuda.h>
+
+#define ITER_SIZE 1000000
 
 double* dubinsSetBest(Configuration2<double> start,
 										Configuration2<double> end,
@@ -759,16 +792,17 @@ double* dubinsSetBest(Configuration2<double> start,
 	
 	ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
 
-	COUT(parts)
-	COUT(size)
 	unsigned long M=size-startPos;
   if (endPos>startPos){
     M-=(size-endPos-1);
   }
+  parts++; //To consider points on the same line
+  unsigned long iter_n=pow(parts, M);
   COUT(M)
   COUT(parts)
-  unsigned long iter_n=pow(parts, M);
-	COUT(iter_n)
+	COUT(size)
+	cout << "Combinazioni: " << iter_n << endl;
+	cout << "Iterazioni: " << iter_n << " " << ITER_SIZE << " " << (int)(iter_n/ITER_SIZE)+1 << endl;
 
 	double* init_angle=(double*) malloc(sizeof(double)*size);
 	double* x=(double*) malloc(size*sizeof(double));
@@ -792,17 +826,9 @@ double* dubinsSetBest(Configuration2<double> start,
 	for (int i=0; i<size; i++){
 		cout << init_angle[i] << (i!=size-1 ? ", " : "\n");
 	}
-	// for (int i=0; i<size; i++){
-	// 	cout << x[i] << (i!=size-1 ? ", " : "\n");
-	// }
-	// for (int i=0; i<size; i++){
-	// 	cout << y[i] << (i!=size-1 ? ", " : "\n");
-	// }
-
 
 	double Length=DInf;
-	double* lengths=(double*) malloc(sizeof(double)*iter_n);
-	int* pidxs=(int*) malloc(sizeof(int)*iter_n);
+	double* lengths=(double*) malloc(sizeof(double)*(iter_n>ITER_SIZE ? ITER_SIZE : iter_n));
 	double inc=2.0*M_PI/parts;
 
 	auto start_t=Clock::now();
@@ -811,8 +837,9 @@ double* dubinsSetBest(Configuration2<double> start,
 	double* dev_y; cudaMalloc((void**)&dev_y, sizeof(double)*size);
 	double* dev_init_angle; cudaMalloc((void**)&dev_init_angle, sizeof(double)*size);
 
-	double* dev_lengths; cudaMalloc((void**)&dev_lengths, sizeof(double)*iter_n); 
-	uint* dev_iter; cudaMalloc((void**)&dev_iter, sizeof(uint));
+	double* dev_lengths; cudaMalloc((void**)&dev_lengths, sizeof(double)*(iter_n>ITER_SIZE ? ITER_SIZE : iter_n));// 
+	// double* dev_lengths; cudaMalloc((void**)&dev_lengths, sizeof(double)*iter_n);
+	// ulong* dev_iter; cudaMalloc((void**)&dev_iter, sizeof(ulong));
 	double* dev_inc; cudaMalloc((void**)&dev_inc, sizeof(double)); 
 	double* dev_kmax; cudaMalloc((void**)&dev_kmax, sizeof(double)); 
 	auto stop=Clock::now();
@@ -823,7 +850,6 @@ double* dubinsSetBest(Configuration2<double> start,
 	cudaMemcpy(dev_y, y, sizeof(double)*size, cudaMemcpyHostToDevice);
 	cudaMemcpy(dev_init_angle, init_angle, sizeof(double)*size, cudaMemcpyHostToDevice);
 	
-	cudaMemcpy(dev_iter, &iter_n, sizeof(uint), cudaMemcpyHostToDevice);
 	cudaMemcpy(dev_inc, &inc, sizeof(double), cudaMemcpyHostToDevice);
 	cudaMemcpy(dev_kmax, &_kmax, sizeof(double), cudaMemcpyHostToDevice);
 	stop=Clock::now();
@@ -835,10 +861,37 @@ double* dubinsSetBest(Configuration2<double> start,
 	out_data << "elapsedCopy: " << elapsedCopy << endl;
 
 	start_t=Clock::now();
-	computeDubins<<<((int)(iter_n/THREADS)+1), (THREADS>iter_n ? iter_n : THREADS)>>> 
-	// computeDubins<<<1, 2>>> 
+	long long pidx=-1;
+	int i, b;
+	for (i=(int)(iter_n/ITER_SIZE); i>=0; i--) {
+		printf("b: %u\n", b);
+		ulong start=b*ITER_SIZE; b++;
+		ulong n_iter = (i!=0) ? ITER_SIZE : (iter_n-start); 
+		ulong* dev_iter; cudaMalloc(&dev_iter, sizeof(ulong));
+		ulong* dev_start;cudaMalloc(&dev_start, sizeof(ulong));
+		checkCudaErrors(cudaMemcpy(dev_iter, &n_iter, sizeof(ulong), cudaMemcpyHostToDevice));
+		checkCudaErrors(cudaMemcpy(dev_start, &start, sizeof(ulong), cudaMemcpyHostToDevice));
+
+		computeDubins<<<((int)(n_iter/THREADS)+1), (THREADS>n_iter ? n_iter : THREADS)>>> 
 												(dev_init_angle, dev_inc, dev_x, dev_y, 
-												dev_lengths, dev_iter, size, parts, dev_kmax);
+												dev_lengths, dev_iter, size, parts, dev_kmax, dev_start);
+		
+		checkCudaErrors(cudaMemcpy(lengths, dev_lengths, sizeof(double)*n_iter, cudaMemcpyDeviceToHost));
+
+		for (int a=0; a<n_iter; a++){
+			if (lengths[a]<Length && !equal(lengths[a], 0)){
+				Length=lengths[a];
+				pidx=a+start;
+			}
+		}
+		checkCudaErrors(cudaFree(dev_lengths));
+		checkCudaErrors(cudaMalloc(&dev_lengths, sizeof(double)*n_iter));
+
+		checkCudaErrors(cudaFree(dev_iter));
+		checkCudaErrors(cudaFree(dev_start));
+	} 
+	cout << "b: " << b << endl;
+
 	int val=cudaDeviceSynchronize();
 	stop=Clock::now();
 	double elapsedCompute=CHRONO::getElapsed(start_t, stop);
@@ -849,13 +902,13 @@ double* dubinsSetBest(Configuration2<double> start,
 
 	cudaMemcpy(lengths, dev_lengths, sizeof(double)*iter_n, cudaMemcpyDeviceToHost);
 
-	int pidx=-1;
-	for (int i=0; i<iter_n; i++){
-		if (lengths[i]<Length && !equal(lengths[i], 0)){
-			Length=lengths[i];
-			pidx=i;
-		}
-	}
+	// for (long long i=0; i<iter_n; i++){
+	// 	// printf("lengths[%d] %f\n", i, lengths[i]); 
+	// 	if (lengths[i]<Length && !equal(lengths[i], 0)){
+	// 		Length=lengths[i];
+	// 		pidx=i;
+	// 	}
+	// }
 
 	COUT(Length)
 	COUT(pidx)
@@ -867,15 +920,13 @@ double* dubinsSetBest(Configuration2<double> start,
 	}
 
 	for (int i=0; i<size-1; i++){
-		shortest_cuda(x[i], y[i], angls[i], x[i+1], y[i+1], angls[i+1]);
+		shortest_cuda(x[i], y[i], angls[i], x[i+1], y[i+1], angls[i+1], _kmax);
 	}
 
-	free(pidxs);
 	free(lengths);
-	// free(angls);
 
 	cudaFree(dev_lengths);
-	cudaFree(dev_iter);
+	// cudaFree(dev_iter);
 	cudaFree(dev_inc);
 	return angls;
 }

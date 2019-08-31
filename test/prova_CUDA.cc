@@ -14,258 +14,6 @@
 
 using namespace std;
 
-double* LSL (double th0, double th1, double _kmax)
-{
-	double C=cos(th1)-cos(th0);
-	double S=2*_kmax+sin(th0)-sin(th1);
-	double tan2=atan2(C, S);
-
-	double temp1=2+4*pow2(_kmax)-2*cos(th0-th1)+4*_kmax*(sin(th0)-sin(th1));
-
-	if (temp1<0){
-	  // return Tuple<double> (0);
-	  return nullptr;
-	}
-
-	double invK=1/_kmax;
-	double sc_s1=Angle(tan2-th0, Angle::RAD).get()*invK;
-	double sc_s2=invK*sqrt(temp1);
-	double sc_s3=Angle(th1-tan2, Angle::RAD).get()*invK;
-
-	double* ret=new double[3];
-	ret[0]=sc_s1;
-	ret[1]=sc_s2;
-	ret[2]=sc_s3;
-
-	return ret;
-	// return Tuple<double>(3, sc_s1.get(), sc_s2, sc_s3.get());
-}
-
-double* RSR (double th0, double th1, double _kmax)
-{
-	double C=cos(th0)-cos(th1);
-	double S=2*_kmax-sin(th0)+sin(th1);
-	
-	double temp1=2+4*pow2(_kmax)-2*cos(th0-th1)-4*_kmax*(sin(th0)-sin(th1));
-
-	if (temp1<0){
-	  // return Tuple<double> (0);
-	  return nullptr;
-	}
-
-	double invK=1/_kmax;
-	double sc_s1=Angle(th0-atan2(C,S), Angle::RAD).get()*invK;
-	double sc_s2=invK*sqrt(temp1);
-	double sc_s3=Angle(atan2(C,S)-th1, Angle::RAD).get()*invK;
-
-	double* ret=new double[3];
-	ret[0]=sc_s1;
-	ret[1]=sc_s2;
-	ret[2]=sc_s3;
-
-	return ret;
-
-	// return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
-}
-
-double* LSR (double th0, double th1, double _kmax)
-{    
-	double C = cos(th0)+cos(th1);
-	double S=2*_kmax+sin(th0)+sin(th1);
-
-	double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)+4*_kmax*(sin(th0)+sin(th1));
-	if (temp1<0){
-	  // return Tuple<double> (0);
-	  return nullptr;
-	}
-
-	double invK=1/_kmax;
-
-	double sc_s2=invK*sqrt(temp1);
-	double sc_s1= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th0, Angle::RAD).get()*invK;
-	double sc_s3= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th1, Angle::RAD).get()*invK;
-
-	double* ret=new double[3];
-	ret[0]=sc_s1;
-	ret[1]=sc_s2;
-	ret[2]=sc_s3;
-
-	return ret;
-	// return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
-}
-
-double* RSL (double th0, double th1, double _kmax)
-{
-	double C = cos(th0)+cos(th1);
-	double S=2*_kmax-sin(th0)-sin(th1);
-
-	double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)+sin(th1));
-	if (temp1<0){
-	  // return Tuple<double> (0);
-	  return nullptr;
-	}
-
-	double invK=1/_kmax;
-
-	double sc_s2=invK*sqrt(temp1);
-	double sc_s1= Angle(th0-atan2(C,S)+atan2(2, _kmax*sc_s2), Angle::RAD).get()*invK;
-	double sc_s3= Angle(th1-atan2(C,S)+atan2(2, _kmax*sc_s2), Angle::RAD).get()*invK;
-
-	double* ret=new double[3];
-	ret[0]=sc_s1;
-	ret[1]=sc_s2;
-	ret[2]=sc_s3;
-
-	return ret;
-	// return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
-}
-
-double* RLR (double th0, double th1, double _kmax)
-{
-	double C=cos(th0)-cos(th1);
-	double S=2*_kmax-sin(th0)+sin(th1);
-
-	double temp1=0.125*(6-4*pow2(_kmax)+2*cos(th0-th1)+4*_kmax*(sin(th0)-sin(th1)));
-
-	if (fabs(temp1)-Epsi>1.0){
-	  // return Tuple<double> (0);
-	  return nullptr;
-	}
-
-	double invK=1/_kmax;
-	double sc_s2 = Angle(2*M_PI-acos(temp1), Angle::RAD).get()*invK;
-	double sc_s1 = Angle(th0-atan2(C, S)+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
-	double sc_s3 = Angle(th0-th1+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
-
-	double* ret=new double[3];
-	ret[0]=sc_s1;
-	ret[1]=sc_s2;
-	ret[2]=sc_s3;
-
-	return ret;
-	// return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
-}
-
-double* LRL (double th0, double th1, double _kmax)
-{
-	double C=cos(th1)-cos(th0);
-	double S=2*_kmax+sin(th0)-sin(th1);
-
-	double temp1=0.125*(6-4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)-sin(th1)));
-
-	if (fabs(temp1)-Epsi>1.0){
-	  // return Tuple<double> (0);
-	  return nullptr;
-	}
-
-	double invK=1/_kmax;
-	double sc_s2 = Angle(2*M_PI-acos(temp1), Angle::RAD).get()*invK;
-	double sc_s1 = Angle(atan2(C, S)-th0+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
-	double sc_s3 = Angle(th1-th0+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
-
-	double* ret=new double[3];
-	ret[0]=sc_s1;
-	ret[1]=sc_s2;
-	ret[2]=sc_s3;
-
-	return ret;
-
-// return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
-}
-
-void shortest(double sc_th0, double sc_th1, double sc_Kmax, int& pidx, double* sc_s, double& Length){
-	Length=DInf;
-	
-	vector<double* > res;
-	res.push_back(RSR(sc_th0, sc_th1, sc_Kmax));
-	res.push_back(LSR(sc_th0, sc_th1, sc_Kmax));
-	res.push_back(RSL(sc_th0, sc_th1, sc_Kmax));
-	res.push_back(RLR(sc_th0, sc_th1, sc_Kmax));
-	res.push_back(LRL(sc_th0, sc_th1, sc_Kmax));
-	res.push_back(LSL(sc_th0, sc_th1, sc_Kmax));
-	
-	int i=0; 
-    for (auto value : res){
-      if (value!=nullptr){
-        double appL=value[0]+value[1]+value[2];
-	    // cout << "appL: " << appL << endl;
-        if (appL<Length){
-          Length = appL;
-          sc_s[0]=value[0];
-          sc_s[1]=value[1];
-          sc_s[2]=value[2];
-          pidx=i;
-        }
-      }
-      i++;
-    }
-    // COUT(Length)
-}
-
-#define SIZE 10000000000
-#define THREAD 256
-#define BASE 18
-#define DIM (int)(log(SIZE)/log(BASE)+1)
-
-int* toBase (int val){
-	int* ret=(int*) malloc(sizeof(int)*DIM);
-	int i=0;
-	while(val>0){
-		ret[i]=val%BASE;
-		val=(int)(val/BASE);
-		i++;
-	}
-	return ret;
-}
-
-#define CHOICE 2
-
-#if CHOICE==1
-int main (){
-	cudaFree(0);
-	int i=0;
-	double host_time=0.0;
-	double dev_time=0.0;
-	for (double th0=0.0; th0<2*M_PI; th0+=0.1){
-		for (double th1=0.0; th1<2*M_PI; th1+=0.1){
-			for (double kmax=0.0; kmax<5; kmax+=0.1){
-				// COUT(i)
-				int pidx_h=-1, pidx_d=-1;
-				double* dev_sc_s=(double*)malloc(sizeof(double)*3);
-				double* host_sc_s=(double*)malloc(sizeof(double)*3);
-
-				double dev_Lenght=-1;
-				double host_Lenght=-1;
-
-				auto start=Clock::now();
-				shortest(th0, th1, kmax, pidx_h, host_sc_s, host_Lenght);
-				auto stop=Clock::now();
-				host_time+=CHRONO::getElapsed(start, stop);
-
-				start=Clock::now();
-				shortest_cuda(th0, th1, kmax, pidx_d, dev_sc_s, dev_Lenght);
-				stop=Clock::now();
-				dev_time+=CHRONO::getElapsed(start, stop);
-				
-				if (pidx_d!=pidx_h){
-					cout << "th0: " << th0 << ", th1: " << th1 << ", kmax: " << kmax << ", pidx_h: " << pidx_h << ", pidx_d: " << pidx_d << endl;
-					cout << "Host  Length: " << host_Lenght << " sc_s1: " << host_sc_s[0] << " sc_s2: " << host_sc_s[1] << " sc_s3: " << host_sc_s[2] << endl;
-					cout << "Dev  Length: " << dev_Lenght << " sc_s1: " << dev_sc_s[0] << " sc_s2: " << dev_sc_s[1] << " sc_s3: " << dev_sc_s[2] << endl << endl;
-				}	
-				#define DEL 
-				// if (i==DEL) return 0;
-				i++;	
-			}
-		}
-	}
-	COUT(host_time)
-	COUT(dev_time)
-	return 0;
-}
-
-
-#elif CHOICE==2
-
 double elapsedScale=0;
 double elapsedPrimitives=0;
 double elapsedBest=0;
@@ -284,8 +32,8 @@ double elapsedRSL=0;
 double elapsedRLR=0;
 double elapsedLRL=0;
 
-#define SCALE 100.0
-#define ES 3
+#define SCALE 1
+#define ES 2
 
 typedef double TYPE;
 
@@ -301,6 +49,7 @@ int main (){
 	points.add(Configuration2<TYPE>(0.2*SCALE,0.8*SCALE, Angle()));
 	end=Configuration2<TYPE>(1.0*SCALE,1.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
 	double kmax=3/SCALE;  
+	#define ESRES 3.415578858075
 
 	#elif ES==2 
 	start=Configuration2<TYPE>(0*SCALE,0*SCALE, Angle(-M_PI/3.0, Angle::RAD));
@@ -310,6 +59,7 @@ int main (){
 	points.add(Configuration2<TYPE>(0.5*SCALE,0.5*SCALE, Angle()));
 	end=Configuration2<TYPE>(0.5*SCALE,0.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
 	double kmax=3/SCALE;
+	#define ESRES 6.278034550309
 
 	#elif ES==3
 	start=Configuration2<TYPE>(0.5*SCALE, 1.2*SCALE, Angle(5.0*M_PI/6.0, Angle::RAD));
@@ -336,16 +86,32 @@ int main (){
 	points.add(Configuration2<TYPE>(1.9*SCALE, 0.0*SCALE, Angle()));
 	end=Configuration2<TYPE>(2.5*SCALE, 0.6*SCALE, Angle());
 	double kmax=3/SCALE;
+	#define ESRES 11.916212654286
 
 	#endif
-	// dubinsSetBest(start, end, points, 1, 4, 8, kmax);
-	// DubinsSet<double> s(start, end, points, 8, kmax);
-	// return 0;
+	
+// 	auto start_t=Clock::now();
+// 	dubinsSetBest(start, end, points, 1, points.size(), 16, kmax);
+// // 	Tuple<Configuration2<double > > app_confs;
+// // 	app_confs.add(start);
+// // 	app_confs.add(Configuration2<double> (-0.1, 0.3, Angle(1.03038, Angle::RAD))); 
+// // 	app_confs.add(Configuration2<double> (0.2, 0.8, Angle(1.03038, Angle::RAD)));
+// // 	app_confs.add(end);
+// // #define ES1RES 3.415578858075
 
-	for (double i=1.0; i<=16.0; i*=2.0){
-		if (i==512.0){
-			i=360.0;
-		}
+// // 	DubinsSet<double> appSet(app_confs, 3.0);
+// // 	COUT(appSet)
+// // 	COUT(appSet.getLength()-ES1RES)
+// 	auto stop_t=Clock::now();
+// 	double elapsedCuda=CHRONO::getElapsed(start_t, stop_t, CHRONO::MSEC);
+// 	cout << "elapsed: " << elapsedCuda << endl;
+	// DubinsSet<double> s(start, end, points, 16, kmax);
+
+
+	// return 0;
+	// vector<double> v={4, 16, 90};
+	vector<double> v={360};
+	for (auto i : v){
 		ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
 		out_data << endl << endl;
 		out_data << "Parts: " << i << endl;
@@ -356,15 +122,14 @@ int main (){
 		angles=dubinsSetBest(start, end, points, 1, points.size(), i, kmax);
 		auto stop_t=Clock::now();
 		double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
+		out_data << "elapsedCuda: " << CHRONO::getElapsed(start_t, stop_t, "", CHRONO::MSEC) << endl;
 		
-		auto _start_t=Clock::now();
+		// auto _start_t=Clock::now();
 		// DubinsSet<double> s(start, end, points, i, kmax);
-		auto _stop_t=Clock::now();
-		double elapsedCPP=CHRONO::getElapsed(_start_t, _stop_t);
-
-		out_data << "elapsedCuda: " << elapsedCuda << endl;
-		out_data << "elapsedCPP: " << elapsedCPP << endl << endl;
-		out_data.close();
+		// auto _stop_t=Clock::now();
+		// double elapsedCPP=CHRONO::getElapsed(_start_t, _stop_t);
+		// out_data << "elapsedCPP: " << CHRONO::getElapsed(_start_t, _stop_t, "", CHRONO::MSEC) << endl << endl;
+		// out_data.close();
 
 		Tuple<Configuration2<double> > confs;
 		cout << start.angle().toRad() << " ";
@@ -375,20 +140,23 @@ int main (){
 		}
 		cout << end.angle().toRad() << endl;
 		confs.add(end);
+		cout << confs << endl;
 
-		DubinsSet<double> s_CUDA (confs, kmax);
+		DubinsSet<double>* s_CUDA=new DubinsSet<double> (confs, kmax);
+		cout << "Length: " << s_CUDA->getLength() << " Error: " << s_CUDA->getLength()-ESRES << endl;
+		cout << *s_CUDA << endl;
 
 		uint DIMY=750;
 		uint DIMX=500;
 		Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
-		s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
+		s_CUDA->draw(DIMX, DIMY, map, 250, 2.5);
 		my_imshow("CUDA", map, true);
 		mywaitkey();
+		delete s_CUDA;
 	}
 
 	return 0;
 }
-#endif
 
 
 /*
@@ -412,7 +180,7 @@ DubinsSet<double> s_CUDA (confs, kmax);
 uint DIMY=750;
 uint DIMX=500;
 Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
-s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
+s_CUDAdraw(DIMX, DIMY, map, 250, 2.5);
 my_imshow("CUDA", map, true);
 mywaitkey();
 */

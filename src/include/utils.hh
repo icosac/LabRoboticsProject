@@ -37,18 +37,22 @@ namespace CHRONO {
   inline double getElapsed(Clock::time_point start, 
                     Clock::time_point stop,
                     TIME_TYPE type=MUSEC){
+    double dur=chrono::duration_cast<chrono::nanoseconds>(stop - start).count();
     switch(type){
       case SEC:{
-        return chrono::duration_cast<chrono::seconds>(stop - start).count();
+        // return chrono::duration_cast<chrono::seconds>(stop - start).count();
+        return dur/1000000000.0;
       }
       case MSEC:{
-        return chrono::duration_cast<chrono::milliseconds>(stop - start).count();
+        // return chrono::duration_cast<chrono::milliseconds>(stop - start).count();
+        return dur/1000000.0;
       }
       case MUSEC:{
-        return chrono::duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
+        // return chrono::duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
+        return dur/1000.0;
       }
       case NSEC:{
-        return chrono::duration_cast<chrono::nanoseconds>(stop - start).count();
+        return dur;
       }
     }
     return 0.0;
