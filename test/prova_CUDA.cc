@@ -30,8 +30,8 @@ double elapsedRSL=0;
 double elapsedRLR=0;
 double elapsedLRL=0;
 
-#define SCALE 100.0
-#define ES 1
+#define SCALE 1.0
+#define ES 2
 
 typedef double TYPE;
 
@@ -47,6 +47,7 @@ int main (){
 	points.add(Configuration2<TYPE>(0.2*SCALE,0.8*SCALE, Angle()));
 	end=Configuration2<TYPE>(1.0*SCALE,1.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
 	double kmax=3/SCALE;  
+	#define ESRES 3.415578858075
 
 	#elif ES==2 
 	start=Configuration2<TYPE>(0*SCALE,0*SCALE, Angle(-M_PI/3.0, Angle::RAD));
@@ -56,6 +57,7 @@ int main (){
 	points.add(Configuration2<TYPE>(0.5*SCALE,0.5*SCALE, Angle()));
 	end=Configuration2<TYPE>(0.5*SCALE,0.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
 	double kmax=3/SCALE;
+	#define ESRES 6.278034550309
 
 	#elif ES==3
 	start=Configuration2<TYPE>(0.5*SCALE, 1.2*SCALE, Angle(5.0*M_PI/6.0, Angle::RAD));
@@ -82,6 +84,7 @@ int main (){
 	points.add(Configuration2<TYPE>(1.9*SCALE, 0.0*SCALE, Angle()));
 	end=Configuration2<TYPE>(2.5*SCALE, 0.6*SCALE, Angle());
 	double kmax=3/SCALE;
+	#define ESRES 11.916212654286
 
 	#endif
 
@@ -104,7 +107,7 @@ int main (){
 
 	DubinsSet<double> s_CUDA (confs, kmax);
 	COUT(s_CUDA)
-	COUT(s_CUDA.getLength())
+	COUT(s_CUDA.getLength()-ESRES)
 	COUT(s_CUDA.getKmax())
 
 	uint DIMY=750;

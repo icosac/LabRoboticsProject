@@ -129,7 +129,7 @@ __global__ void RSL (double th0, double th1, double _kmax, double* ret)
 	double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)+sin(th1));
 	if (temp1<0){
 	  ret[0]=-1;
-	printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: %f\n", th0, th1, _kmax, C, S, temp1, -1);
+	// printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: %f\n", th0, th1, _kmax, C, S, temp1, -1);
 	  return;
 	}
 
@@ -142,7 +142,7 @@ __global__ void RSL (double th0, double th1, double _kmax, double* ret)
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-	printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+	// printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
 
 __global__ void RLR (double th0, double th1, double _kmax, double* ret)
@@ -271,7 +271,7 @@ __device__ void __device__RSL (double th0, double th1, double _kmax, double* ret
 	double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)+sin(th1));
 	if (temp1<0){
 	  ret[0]=-1;
-	printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: %f\n", th0, th1, _kmax, C, S, temp1, -1);
+	// printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: %f\n", th0, th1, _kmax, C, S, temp1, -1);
 	  return;
 	}
 
@@ -284,7 +284,7 @@ __device__ void __device__RSL (double th0, double th1, double _kmax, double* ret
 	ret[0]=sc_s1;
 	ret[1]=sc_s2;
 	ret[2]=sc_s3;
-	printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+	// printf("in_RSL_dev th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
 }
 
 __device__ void __device__RLR (double th0, double th1, double _kmax, double* ret)
@@ -547,8 +547,19 @@ void toBase(double* v, const double* angles, const double* inc,
 			v[i]=angles[i];
 		}
 		else{
-			v[i]=(value%base)*(*inc)+angles[i];
+			int rest=value%base;
 			value=(int)(value/base);
+			if (rest!=base-1){
+				v[i]=(rest)*(*inc)+angles[i];			
+			}
+			else { //If special value then consider the two points on the same line.
+				v[i]=angles[i-1];
+			}
+			#ifdef __CUDA_ARCH__
+				v[i]=CUDA_mod2pi(v[i]);
+			#else 
+				v[i]=mod2pi(v[i]);
+			#endif
 		}
 	}
 }
@@ -791,7 +802,6 @@ double* dubinsSetBest(Configuration2<double> start,
 
 	double Length=DInf;
 	double* lengths=(double*) malloc(sizeof(double)*iter_n);
-	int* pidxs=(int*) malloc(sizeof(int)*iter_n);
 
 	auto start_t=Clock::now();
 
@@ -825,13 +835,11 @@ double* dubinsSetBest(Configuration2<double> start,
 
 	double* angls=(double*) malloc(sizeof(double)*size);
 
-	int b=0;
-	while(inc>0.001){
+	for (int m=1; m<=16; m++){
+		if (m!=1) inc=2*M_PI*(pow(3, m)/pow(2*(parts-1), m));
 		cout << endl;
-		b++;
 		cout << endl;
-		COUT(b)
-		cout << endl;
+		COUT(m)
 		COUT(inc)
 		COUT(parts)
 		COUT(iter_n)
@@ -858,14 +866,14 @@ double* dubinsSetBest(Configuration2<double> start,
 		}
 		toBase(angls, init_angle, &inc, parts, pidx, size, 1, size-2);
 		cout << "Stored angles: ";
+		double temp=(pow(3/(2*(parts-1)), m))*3*M_PI;
 		for (int i=0; i<size; i++){
 			cout << angls[i] << (i!=size-1 ? ", " : "\n");
 			if (i>startPos && i<endPos){
-				init_angle[i]=angls[i]-(inc/2.0);
+				init_angle[i]=angls[i]-temp;
 			}
 		}
 
-		inc/=parts;
 		iter_n=pow((parts+1), (endPos-startPos+1));
 		
 		cudaMemcpyAsync(dev_init_angle, init_angle, sizeof(double)*size, cudaMemcpyHostToDevice, 0);
@@ -881,11 +889,10 @@ double* dubinsSetBest(Configuration2<double> start,
 			printf("Error: after dubins: %d\n", val);
 	}
 
-	for (int i=0; i<size-1; i++){
-		shortest_cuda(x[i], y[i], angls[i], x[i+1], y[i+1], angls[i+1]);
-	}
+	// for (int i=0; i<size-1; i++){
+	// 	shortest_cuda(x[i], y[i], angls[i], x[i+1], y[i+1], angls[i+1], _kmax);
+	// }
 
-	free(pidxs);
 	free(lengths);
 	// free(angls);
 
@@ -933,15 +940,16 @@ double* dubinsSetCuda(Configuration2<double> start,
   if (endPos>startPos){
     M-=(size-endPos-1);
   }
+  double inc=(A_2PI/parts).toRad();
+  
+  parts++; //To consider special angles
   ulong iter_n=pow(parts, M);
   { COUT(parts)
     COUT(size)
     COUT(M)
     COUT(iter_n)}
 
-  double inc=(A_2PI/parts).toRad();
-
-  double* angles=(double*) malloc(sizeof(double)*_points.size()+2);
+  // double* angles=(double*) malloc(sizeof(double)*_points.size()+2);
 	return dubinsSetBest(start, end, _points, startPos, endPos, iter_n, inc, parts, _kmax);
 
     // Tuple<Configuration2<double> > confs;

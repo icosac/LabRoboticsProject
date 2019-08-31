@@ -391,7 +391,7 @@ public:
     
     double temp1=-2+4*pow2(_kmax)+2*cos(th0-th1)-4*_kmax*(sin(th0)+sin(th1));
     if (temp1<0){
-      printf("in_RSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: -1\n", th0, th1, _kmax, C, S, temp1);
+      // printf("in_RSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f ret: -1\n", th0, th1, _kmax, C, S, temp1);
       // return Tuple<double> (0);
       return nullptr;
     }
@@ -410,7 +410,7 @@ public:
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
-  printf("in_RSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
+  // printf("in_RSL_host th0: %f, th1: %f kmax: %f C: %f S: %f temp1: %f invk: %f ret: %f %f %f\n", th0, th1, _kmax, C, S, temp1, invK, ret[0], ret[1], ret[2]);
     return ret;
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
