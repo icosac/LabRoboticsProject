@@ -9,17 +9,17 @@
 
 // #define DUBINS_IN_KERNEL //Compute dubins using kernel. Doesn't need loop as the pair of points is computed through the id of the thread
 #define DUBINS_IN_DEVICE //Compute dubins using devices. Needs to loop and call the function for each pair of points
-#define COMPUTE_ANGLES_BF_DUBINS //Compute angles before calling the deubins function
-// #define COMPUTE_ANGLES_IN_DUBINS //Compute angles inside the dubins function exploiting some maths. (reallyyyyyyyy slow)
+// #define COMPUTE_ANGLES_BF_DUBINS //Compute angles before calling the deubins function
+#define COMPUTE_ANGLES_IN_DUBINS //Compute angles inside the dubins function exploiting some maths. (reallyyyyyyyy slow)
 #if defined DUBINS_IN_DEVICE && defined DUBINS_IN_KERNEL
 #error DUBINS_IN_DEVICE and DUBINS_IN_KERNEL cannot be defined at the same time.
 #endif
 #if defined COMPUTE_ANGLES_IN_DUBINS && defined COMPUTE_ANGLES_BF_DUBINS
 #error COMPUTE_ANGLES_BF_DUBINS and COMPUTE_ANGLES_IN_DUBINS cannot be defined at the same time.
 #endif
-#if defined DUBINS_IN_DEVICE && defined COMPUTE_ANGLES_IN_DUBINS
-#error DUBINS_IN_DEVICE require COMPUTE_ANGLES_BF_DUBINS as the angles cannot be computed during the execution of the device function.
-#endif
+// #if defined DUBINS_IN_DEVICE && defined COMPUTE_ANGLES_IN_DUBINS
+// #error DUBINS_IN_DEVICE require COMPUTE_ANGLES_BF_DUBINS as the angles cannot be computed during the execution of the device function.
+// #endif
 
 #include<limits>
 #include<iostream>
@@ -605,14 +605,21 @@ __device__ double myAtomicAdd(double* address, double val)
 #endif
 #endif
 #ifdef DUBINS_IN_DEVICE
-__device__ void dubins(	double* _x0, double* _y0, double _th0,
-												double* _x1, double* _y1, double _th1, 
-												double* _kmax, double* length, size_t old)
+#ifdef CUMPUTE_ANGLES_BF_DUBINS
+	__device__ void dubins(	double* _x0, double* _y0, double _th0,
+													double* _x1, double* _y1, double _th1, 
+													double* _kmax, double* length, size_t old)
+#else 
+	__device__ void dubins(	double* _x0, double* _y0, double* _x1, double* _y1, 
+													double* _th0, double* _th1, uint id, size_t base, double* inc, 
+													size_t size, double* _kmax, double* length, size_t old)
+#endif
 #endif
 
 {
 	double kmax=*_kmax;
 
+printf("[%u] [%u] %f %f\n", old, id, _th0[0], _th1[0]);
 #ifdef DUBINS_IN_KERNEL
 	uint tidx=threadIdx.x;
 	
@@ -628,26 +635,39 @@ __device__ void dubins(	double* _x0, double* _y0, double _th0,
 	double x1=_x1[0];
 	double y0=_y0[0];
 	double y1=_y1[0];
+#ifdef COMPUTE_ANGLES_IN_DUBINS
+	int tidx=id;
+	double th0=_th0[0];
+	double th1=_th1[0];
+#else
 	double th0=_th0;
 	double th1=_th1;
 #endif
+#endif
+
+printf("[%u] [%u], th0=%f, th1=%f, _th0=%f, _th1=%f\n", old, tidx, th0, th1, tidx, _th0[0], _th1[0]);
 
 #ifdef COMPUTE_ANGLES_IN_DUBINS
-	int _pow=(int)(powf((double)base, (double)(tidx)));
-	printf("[%u] [%u] %d\n", old, tidx, _pow);
-	if (tidx==0){
-		th1+=(*inc)*(((int)(old/_pow))%base); //_pow*base=_pow(base, tidx+1)
-	}
-	else if (tidx==(size-2)){
-		th0+=(*inc)*(((int)((old*base)/_pow))%base); 
-	}
-	else if (old>=tidx){
-		th0+=(*inc)*(((int)((old*base)/_pow))%base); 
-		if (tidx<old){
+	if (tidx!=(base-1)){
+		int _pow=(int)(powf((double)base, (double)(tidx)));
+		printf("[%u] [%u] %d\n", old, tidx, _pow);
+		if (tidx==0){
 			th1+=(*inc)*(((int)(old/_pow))%base); //_pow*base=_pow(base, tidx+1)
 		}
+		else if (tidx==(size-2)){
+			th0+=(*inc)*(((int)((old*base)/_pow))%base); 
+		}
+		else if (old>=tidx){
+			th0+=(*inc)*(((int)((old*base)/_pow))%base); 
+			if (tidx<old){
+				th1+=(*inc)*(((int)(old/_pow))%base); //_pow*base=_pow(base, tidx+1)
+			}
+		}
 	}
-	printf("[%u] [%u], th0= %f, th1=%f, th[%u]=%f, th[%u]=%f\n", old, tidx, th0, th1, tidx, th[tidx], tidx+1, th[tidx+1]);
+	else { //Special case in which i check linearity
+		th1=th0;
+	}
+	// printf("[%u] [%u], th0= %f, th1=%f, th[%u]=%f, th[%u]=%f\n", old, tidx, th0, th1, tidx, th[tidx], tidx+1, th[tidx+1]);
 #endif
 
 	//Scale to standard
@@ -728,14 +748,12 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 	else {
 		ulong id=tidx;
 		tidx+=(*start);
+		#ifdef DUBINS_IN_KERNEL
 		#ifdef COMPUTE_ANGLES_IN_DUBINS
 			dubins<<<1, size-1>>>(x, y, _angle, lengths+tidx, _kmax, size, inc, base, tidx);
-		#endif
-		#ifdef COMPUTE_ANGLES_BF_DUBINS
+		#else //COMPUTE_ANGLES_BF_DUBINS
 			double* angles=(double*) malloc(sizeof(double)*size);
 			toBase(angles, _angle, inc, base, tidx, size, 1, size-2);
-
-		#ifdef DUBINS_IN_KERNEL
 			// printf("[%d] inc: %f size %u\n", tidx, (*inc), size);
 			// printf("[%d] angle+inc: %f, %f, %f, %f, %f\n", tidx, (angles[0]*(*inc)), (angles[1]*(*inc)), (angles[2]*(*inc)), (angles[3]*(*inc)), (angles[4]*(*inc)));
 			// printf("[%d] angle: %f, %f, %f, %f, %f\n", tidx, (angles[0]), (angles[1]), (angles[2]), (angles[3]), (angles[4]));
@@ -757,8 +775,13 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 			// printf("[%u] y[0]: %p, y[1]: %p, y[2]: %p, y[3]: %p, y[4]: %p\n", tidx, &y[0], &y[1], &y[2], &y[3], &y[4]);
 			// printf("[%u] y[0]: %f, y[1]: %f, y[2]: %f, y[3]: %f, y[4]: %f\n", tidx, y[0], y[1], y[2], y[3], y[4]);
 			// printf("[%u] length: %f %p\n", tidx, lengths[tidx], &lengths[tidx]);
+			free(angles);
+		#endif
 		#endif
 		#ifdef DUBINS_IN_DEVICE			
+		#ifdef COMPUTE_ANGLES_BF_DUBINS			
+			double* angles=(double*) malloc(sizeof(double)*size);
+			toBase(angles, _angle, inc, base, tidx, size, 1, size-2);
 			// printf("[%u] angles[0]: %f, angles[1]: %f, angles[2]: %f, angles[3]: %f\n", tidx, angles[0], angles[1], angles[2], angles[3]);
 			for (ulong i=0; i<size-1; i++){
 				// printf("[%u] x: %f %f %f %f {%f %f}\n", tidx, x[0], x[1], x[2], x[3], (x+i)[0], (x+1+i)[0]);
@@ -767,12 +790,20 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 				dubins(x+i, y+i, angles[i], x+(i+1), y+(i+1), angles[i+1], _kmax, lengths+id, tidx);
 				// printf("[%d] [%d] length: %f\n", tidx, i, lengths[tidx]);
 			}
-
 			// printf("[%u] %f\n", tidx, lengths[0]);
-		#endif
 			free(angles);
+		#else //COMPUTE_ANGLES_IN_DUBINS 
+			printf("[%u] angles[0]: %f, angles[1]: %f, angles[2]: %f, angles[3]: %f\n", tidx, _angle[0], _angle[1], _angle[2], _angle[3]);
+			for (uint i=0; i<size-1; i++){
+				// printf("[%u] x: %f %f %f %f {%f %f}\n", tidx, x[0], x[1], x[2], x[3], (x+i)[0], (x+1+i)[0]);
+				// printf("[%u] y: %f %f %f %f {%f %f}\n", tidx, y[0], y[1], y[2], y[3], (y+i)[0], (y+1+i)[0]);
+				// dubins(x+i, y+i, angles[i], x+(i+1), y+(i+1), angles[i+1], _kmax, lengths+tidx, tidx); //When not splitting lenghts 
+				printf("i: %u %f %f %f %f %f %f\n", i, *(x+i), *(y+i), *(x+(i+1)), *(y+(i+1)), *(_angle+i), *(_angle+(i+1)));
+				dubins(x+i, y+i, x+(i+1), y+(i+1), _angle+i, _angle+(i+1), i, base, inc, size, _kmax, lengths+id, tidx);
+				// printf("[%d] [%d] length: %f\n", tidx, i, lengths[tidx]);
+			}
 		#endif
-
+		#endif
 	}
 }
 

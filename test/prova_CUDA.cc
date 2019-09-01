@@ -33,7 +33,7 @@ double elapsedRLR=0;
 double elapsedLRL=0;
 
 #define SCALE 1
-#define ES 2
+#define ES 1
 
 typedef double TYPE;
 
@@ -110,7 +110,7 @@ int main (){
 
 	// return 0;
 	// vector<double> v={4, 16, 90};
-	vector<double> v={360};
+	vector<double> v={4};
 	for (auto i : v){
 		ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
 		out_data << endl << endl;
