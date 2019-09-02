@@ -31,7 +31,7 @@ double elapsedRLR=0;
 double elapsedLRL=0;
 
 #define SCALE 1.0
-#define ES 2
+#define ES 1
 
 typedef double TYPE;
 

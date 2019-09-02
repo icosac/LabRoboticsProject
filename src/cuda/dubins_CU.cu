@@ -538,7 +538,12 @@ void shortest_cuda(	double x0, double y0, double th0,
 #endif
 }
 
-
+//globals
+__device__ double dev_x[30]; 
+__device__ double dev_y[30];
+double* global_x; 
+double* global_y; 
+	
 __device__ __host__ 
 void toBase(double* v, const double* angles, const double* inc, 
 						const int base, int value, size_t size, int startPos, int endPos){
@@ -553,7 +558,13 @@ void toBase(double* v, const double* angles, const double* inc,
 				v[i]=(rest)*(*inc)+angles[i];			
 			}
 			else { //If special value then consider the two points on the same line.
-				v[i]=angles[i-1];
+				// v[i]=angles[i-1];
+				#ifdef __CUDA_ARCH__
+				printf("x1: %f, y1: %f, x0: %f, y0: %f, atan2: %f\n", dev_x[i], dev_y[i], dev_x[i-1], dev_y[i-1], atan2((dev_y[i]-dev_y[i-1]), (dev_x[i]-dev_x[i-1])));
+				v[i]=atan2((dev_y[i]-dev_y[i-1]), (dev_x[i]-dev_x[i-1]));
+				#else
+				v[i]=atan2((global_y[i-1]-global_y[i]), (global_x[i-1]-global_x[i]));
+				#endif
 			}
 			#ifdef __CUDA_ARCH__
 				v[i]=CUDA_mod2pi(v[i]);
@@ -585,16 +596,14 @@ __device__ double myAtomicAdd(double* address, double val)
 
 #ifdef DUBINS_IN_KERNEL
 #ifdef COMPUTE_ANGLES_IN_DUBINS
-	__global__ void dubins (const double* x, const double* y, const double* th, double* length, const double* _kmax, 
+	__global__ void dubins (const double* th, double* length, const double* _kmax, 
 													const size_t size, const double* inc, const size_t base, const uint old)
 #else 
-	__global__ void dubins (const double* x, const double* y, const double* th, double* length, const double* _kmax, const uint old)
+	__global__ void dubins (const double* th, double* length, const double* _kmax, const uint old)
 #endif
 #endif
 #ifdef DUBINS_IN_DEVICE
-__device__ void dubins(	double* _x0, double* _y0, double _th0,
-												double* _x1, double* _y1, double _th1, 
-												double* _kmax, double* length, size_t old)
+__device__ void dubins(double _th0, double _th1, double* _kmax, double* length, int tidx, size_t old)
 #endif
 
 {
@@ -603,21 +612,22 @@ __device__ void dubins(	double* _x0, double* _y0, double _th0,
 #ifdef DUBINS_IN_KERNEL
 	uint tidx=threadIdx.x;
 	
-	double x0=x[tidx];
-	double x1=x[tidx+1];
-	double y0=y[tidx];
-	double y1=y[tidx+1];
+	double x0=dev_x[tidx];
+	double x1=dev_x[tidx+1];
+	double y0=dev_y[tidx];
+	double y1=dev_y[tidx+1];
 	double th0=th[tidx];
 	double th1=th[tidx+1];
 #endif
-#ifdef DUBINS_IN_DEVICE
-	double x0=_x0[0];
-	double x1=_x1[0];
-	double y0=_y0[0];
-	double y1=_y1[0];
+#ifdef DUBINS_IN_DEVICE	
+	double x0=dev_x[tidx];
+	double x1=dev_x[tidx+1];
+	double y0=dev_y[tidx];
+	double y1=dev_y[tidx+1];
 	double th0=_th0;
 	double th1=_th1;
 #endif
+	// printf("[%d] x0: %f, y0: %f, th0: %f, x1: %f, y1: %f, th1: %f\n", tidx, x0, y0, th0, x1, y1, th1);
 
 #ifdef COMPUTE_ANGLES_IN_DUBINS
 	int _pow=(int)(powf((double)base, (double)(tidx)));
@@ -634,7 +644,7 @@ __device__ void dubins(	double* _x0, double* _y0, double _th0,
 			th1+=(*inc)*(((int)(old/_pow))%base); //_pow*base=_pow(base, tidx+1)
 		}
 	}
-	printf("[%u] [%u], th0= %f, th1=%f, th[%u]=%f, th[%u]=%f\n", old, tidx, th0, th1, tidx, th[tidx], tidx+1, th[tidx+1]);
+	// printf("[%u] [%u], th0= %f, th1=%f, th[%u]=%f, th[%u]=%f\n", old, tidx, th0, th1, tidx, th[tidx], tidx+1, th[tidx+1]);
 #endif
 
 	//Scale to standard
@@ -708,13 +718,14 @@ __device__ void dubins(	double* _x0, double* _y0, double _th0,
 // }
 
 
-__global__ void computeDubins (double* _angle, double* inc, double* x, double* y,
-								double* lengths, uint* dev_iter, size_t size, size_t base, double* _kmax){
+__global__ void computeDubins (	double* _angle, double* inc, double* lengths, 
+																uint* dev_iter, size_t size, size_t base, double* _kmax){
 	uint tidx=blockDim.x*blockIdx.x+threadIdx.x;
 	if (tidx>=(*dev_iter)){}
 	else {
+		lengths[tidx]=0.0;
 		#ifdef COMPUTE_ANGLES_IN_DUBINS
-			dubins<<<1, size-1>>>(x, y, _angle, lengths+tidx, _kmax, size, inc, base, tidx);
+			dubins<<<1, size-1>>>(_angle, lengths+tidx, _kmax, size, inc, base, tidx);
 		#endif
 		#ifdef COMPUTE_ANGLES_BF_DUBINS
 			double* angles=(double*) malloc(sizeof(double)*size);
@@ -732,7 +743,7 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 			// printf("[%u] angles[0]: %f, angles[1]: %f, angles[2]: %f, angles[3]: %f, angles[4]: %f\n", tidx, angles[0], angles[1], angles[2], angles[3], angles[4]);
 
 			// prova<<<1, size-1>>> (x, y, angles, lengths+tidx, _skmax);
-			dubins<<<1, size-1>>>(x, y, angles, lengths+tidx, _kmax, tidx);
+			dubins<<<1, size-1>>>(angles, lengths+tidx, _kmax, tidx);
 			cudaDeviceSynchronize();
 			
 			// printf("[%u] angles[0]: %p, angles[1]: %p, angles[2]: %p, angles[3]: %p, angles[4]: %p\n", tidx, &angles[0], &angles[1], &angles[2], &angles[3], &angles[4]);
@@ -745,9 +756,10 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 		#endif
 		#ifdef DUBINS_IN_DEVICE			
 			for (uint i=0; i<size-1; i++){
+				// printf("[%u] angles[0]: %f, angles[1]: %f, angles[2]: %f, angles[3]: %f, angles[4]: %f\n", tidx, angles[0], angles[1], angles[2], angles[3], angles[4]);
 				// printf("[%u] x: %f %f %f %f {%f %f}\n", tidx, x[0], x[1], x[2], x[3], (x+i)[0], (x+1+i)[0]);
 				// printf("[%u] y: %f %f %f %f {%f %f}\n", tidx, y[0], y[1], y[2], y[3], (y+i)[0], (y+1+i)[0]);
-				dubins(x+i, y+i, angles[i], x+(i+1), y+(i+1), angles[i+1], _kmax, lengths+tidx, tidx);
+				dubins(angles[i], angles[i+1], _kmax, lengths+tidx, i, tidx);
 				// printf("[%d] [%d] length: %f\n", tidx, i, lengths[tidx]);
 			}
 			// printf("prova %f\n", lengths[0]);
@@ -759,7 +771,7 @@ __global__ void computeDubins (double* _angle, double* inc, double* x, double* y
 }
 
 #include<fstream>
-
+// #include<helper_cuda.h>
 typedef unsigned long ulong;
 
 double* dubinsSetBest(Configuration2<double> start,
@@ -777,23 +789,25 @@ double* dubinsSetBest(Configuration2<double> start,
 
 	//Create initial angles and coordinates
 	double* init_angle=(double*) malloc(sizeof(double)*size);
-	double* x=(double*) malloc(size*sizeof(double));
-	double* y=(double*) malloc(size*sizeof(double));
+	global_x=(double*) malloc(sizeof(double)*size);
+	global_y=(double*) malloc(sizeof(double)*size);
 
 	init_angle[0]=start.angle().toRad();
-	x[0]=start.point().x();
-	y[0]=start.point().y();
-	for (int i=1; i<size-2; i++){
-		init_angle[i]=_points.get(i-1).th(_points.get(i)).toRad();
-		x[i]=_points.get(i-1).x();
-		y[i]=_points.get(i-1).y();
+	global_x[0]=start.point().x();
+	global_y[0]=start.point().y();
+	for (int i=startPos; i<endPos; i++){
+		// init_angle[i]=_points.get(i-1).th(_points.get(i)).toRad();
+		init_angle[i]=0.0;
+		global_x[i]=_points.get(i-1).x();
+		global_y[i]=_points.get(i-1).y();
 	}
-	init_angle[size-2]=_points.get(_points.size()-1).th(end.point()).toRad();
-	x[size-2]=_points.get(_points.size()-1).x();
-	y[size-2]=_points.get(_points.size()-1).y();
+	// init_angle[size-2]=_points.get(_points.size()-1).th(end.point()).toRad();
+	init_angle[size-2]=0.0;
+	global_x[size-2]=_points.get(_points.size()-1).x();
+	global_y[size-2]=_points.get(_points.size()-1).y();
 	init_angle[size-1]=end.angle();
-	x[size-1]=end.point().x();
-	y[size-1]=end.point().y();
+	global_x[size-1]=end.point().x();
+	global_y[size-1]=end.point().y();
 	
 	cout << "Initial angles: ";
 	for (int i=0; i<size; i++){
@@ -805,8 +819,8 @@ double* dubinsSetBest(Configuration2<double> start,
 
 	auto start_t=Clock::now();
 
-	double* dev_x; cudaMalloc((void**)&dev_x, sizeof(double)*size);
-	double* dev_y; cudaMalloc((void**)&dev_y, sizeof(double)*size);
+	// double* dev_x; cudaMalloc((void**)&dev_x, sizeof(double)*size);
+	// double* dev_y; cudaMalloc((void**)&dev_y, sizeof(double)*size);
 	double* dev_init_angle; cudaMalloc((void**)&dev_init_angle, sizeof(double)*size);
 
 	double* dev_lengths; cudaMalloc((void**)&dev_lengths, sizeof(double)*iter_n); 
@@ -818,10 +832,12 @@ double* dubinsSetBest(Configuration2<double> start,
 	double elapsedMalloc=CHRONO::getElapsed(start_t, stop);
 	
 	start_t=Clock::now();
-	cudaMemcpy(dev_x, x, sizeof(double)*size, cudaMemcpyHostToDevice);
-	cudaMemcpy(dev_y, y, sizeof(double)*size, cudaMemcpyHostToDevice);
+	// cudaMemcpy(dev_x, x, sizeof(double)*size, cudaMemcpyHostToDevice);
+	// cudaMemcpy(dev_y, y, sizeof(double)*size, cudaMemcpyHostToDevice);
+	cudaMemcpyToSymbol(dev_x, global_x, sizeof(double)*size, 0, cudaMemcpyHostToDevice);
+	cudaMemcpyToSymbol(dev_y, global_y, sizeof(double)*size, 0, cudaMemcpyHostToDevice);
 	cudaMemcpy(dev_init_angle, init_angle, sizeof(double)*size, cudaMemcpyHostToDevice);
-	
+
 	cudaMemcpy(dev_iter, &iter_n, sizeof(uint), cudaMemcpyHostToDevice);
 	cudaMemcpy(dev_inc, &inc, sizeof(double), cudaMemcpyHostToDevice);
 	cudaMemcpy(dev_kmax, &_kmax, sizeof(double), cudaMemcpyHostToDevice);
@@ -836,21 +852,20 @@ double* dubinsSetBest(Configuration2<double> start,
 	double* angls=(double*) malloc(sizeof(double)*size);
 
 	for (int m=1; m<=16; m++){
-		if (m!=1) inc=2*M_PI*(pow(3, m)/pow(2*(parts-1), m));
+		// if (m!=1) 
 		cout << endl;
 		cout << endl;
 		COUT(m)
 		COUT(inc)
 		COUT(parts)
 		COUT(iter_n)
-		cout << "Angles: ";
+		cout << "Starting angles: ";
 		for (int i=0; i<size; i++){
 			cout << init_angle[i] << (i!=size-1 ? ", " : "\n");
 		}
 		start_t=Clock::now();
 		computeDubins<<<((int)(iter_n/THREADS)+1), (THREADS>iter_n ? iter_n : THREADS)>>> 
-													(dev_init_angle, dev_inc, dev_x, dev_y, 
-													dev_lengths, dev_iter, size, parts, dev_kmax);
+													(dev_init_angle, dev_inc, dev_lengths, dev_iter, size, parts, dev_kmax);
 		int val=cudaDeviceSynchronize();
 		stop=Clock::now();
 		double elapsedCompute=CHRONO::getElapsed(start_t, stop);
@@ -863,19 +878,27 @@ double* dubinsSetBest(Configuration2<double> start,
 				Length=lengths[i];
 				pidx=i;
 			}
-		}
-		toBase(angls, init_angle, &inc, parts, pidx, size, 1, size-2);
-		cout << "Stored angles: ";
-		double temp=(pow(3/(2*(parts-1)), m))*3*M_PI;
-		for (int i=0; i<size; i++){
-			cout << angls[i] << (i!=size-1 ? ", " : "\n");
-			if (i>startPos && i<endPos){
-				init_angle[i]=angls[i]-temp;
+			toBase(angls, init_angle, &inc, parts, i, size, startPos, endPos);
+			cout << "Length: " << lengths[i] << " ";
+			for (int j=0; j<size; j++){
+				cout << angls[j] << (j!=size-1 ? ", " : "\n");
 			}
 		}
-
-		iter_n=pow((parts+1), (endPos-startPos+1));
 		
+		if (pidx!=-1){
+			toBase(angls, init_angle, &inc, parts, pidx, size, startPos, endPos);
+		}
+
+		double temp=3.0/2.0*inc;
+		COUT(temp)
+		cout << "Stored angles: ";
+		for (int i=0; i<size; i++){
+			cout << angls[i] << (i!=size-1 ? ", " : "\n");
+			if (i>=startPos && i<=endPos){
+				init_angle[i]=mod2pi(angls[i]-temp);
+			}
+		}
+		inc/=(parts-1);
 		cudaMemcpyAsync(dev_init_angle, init_angle, sizeof(double)*size, cudaMemcpyHostToDevice, 0);
 		cudaMemcpyAsync(dev_inc, &inc, sizeof(double), cudaMemcpyHostToDevice, 0);
 		cudaMemcpyAsync(dev_iter, &iter_n, sizeof(ulong), cudaMemcpyHostToDevice, 0);
@@ -890,10 +913,12 @@ double* dubinsSetBest(Configuration2<double> start,
 	}
 
 	// for (int i=0; i<size-1; i++){
-	// 	shortest_cuda(x[i], y[i], angls[i], x[i+1], y[i+1], angls[i+1], _kmax);
+	// 	shortest_cuda(global_x[i], global_y[i], angls[i], global_x[i+1], global_y[i+1], angls[i+1], _kmax);
 	// }
 
 	free(lengths);
+	free(global_x);
+	free(global_y);
 	// free(angls);
 
 	cudaFree(dev_lengths);
@@ -908,14 +933,13 @@ double* dubinsSetCuda(Configuration2<double> start,
                       double _kmax,//=1
                       int startPos,//=0
                       int endPos,//=-1
-                      uint parts){//=2
+                      uint parts){//=0
   #define ULONG_SIZE sizeof(unsigned long)*8
-  #define ULONG_SIZE2 sizeof(unsigned long)*4
   if (endPos==-1){
     endPos=_points.size();
   }
 
-  if (_points.size()+2<ULONG_SIZE/parts && parts!=2){}
+  if (_points.size()+2<ULONG_SIZE/parts && parts!=0){}
   else if (_points.size()+2<ULONG_SIZE/4){
     parts=16;
   }

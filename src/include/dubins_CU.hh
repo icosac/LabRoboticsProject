@@ -3,6 +3,7 @@
 #ifdef CUDA
 
 #include<maths.hh>
+#include<cstdlib>
 
 namespace My_CUDA{
 void shortest_cuda(	double sc_th0, double sc_th1, double sc_Kmax, 
@@ -24,7 +25,7 @@ double* dubinsSetCuda(Configuration2<double> start,
 											double _kmax=1,
 											int startPos=0,
 											int endPos=-1,
-											uint parts=2 );
+											uint parts=0 );
 
 #endif
 #endif
