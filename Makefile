@@ -66,9 +66,9 @@ PROJ_HOME = $(shell pwd)
 ##CREATE FILES TARGETS
 #Create objects file
 src/obj/cuda/%.o: src/cuda/%.cu
-	nvcc -G -arch=$(CUDA_ARCH) -dc -rdc=true --default-stream per-thread $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
+	nvcc -arch=$(CUDA_ARCH) -dc -rdc=true --default-stream per-thread $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 src/obj/%.o: src/%.cc
-	$(CXX) -g $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -c -o $@ $< $(LDLIBS)
 #Create executables for testing
 bin/test/%.out: test/%.cc
 	$(CXX) $(CXXFLAGS) $(MORE_FLAGS) -o $@ $< $(LDLIBS)

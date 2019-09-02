@@ -543,15 +543,15 @@ public:
     // cout << CHRONO::getElapsed(start, stop, "Compute primitives: ") << endl;
     elapsedPrimitives+=CHRONO::getElapsed(start, stop);
 
-    for (auto re : res){
-      if (re!=nullptr){
-        cout << "< " << re[0] << " " << re[1] << " " << re[2] << ">\n";
-      }
-      else {
-        cout << "<nullptr>\n"; 
-      }
-    }
-      cout << endl;
+    // for (auto re : res){
+    //   if (re!=nullptr){
+    //     cout << "< " << re[0] << " " << re[1] << " " << re[2] << ">\n";
+    //   }
+    //   else {
+    //     cout << "<nullptr>\n"; 
+    //   }
+    // }
+    //   cout << endl;
 
     int i=0; 
     start=Clock::now(); 
@@ -839,7 +839,9 @@ public:
     for (int i=0; i<_confs.size()-1; i++){
       Dubins<T> dub=Dubins<T>(_confs.get(i), _confs.get(i+1), _kmax);
       this->dubinses.add(dub);
+      cout << this->L << " ";
       this->L+=dub.length();
+      cout << this->L << endl;
     }
     this->Kmax=_kmax;
   }

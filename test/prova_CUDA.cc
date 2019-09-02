@@ -31,7 +31,7 @@ double elapsedRLR=0;
 double elapsedLRL=0;
 
 #define SCALE 1.0
-#define ES 1
+#define ES 2
 
 typedef double TYPE;
 
@@ -86,14 +86,30 @@ int main (){
 	double kmax=3/SCALE;
 	#define ESRES 11.916212654286
 
+	#elif ES==4
+	start=Configuration2<TYPE>(0.5*SCALE, 1.2*SCALE, Angle(5.0*M_PI/6.0, Angle::RAD));
+	points.add(Configuration2<TYPE>(0.0*SCALE, 0.5*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(0.5*SCALE, 0.5*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.0*SCALE, 0.5*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.5*SCALE, 0.5*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(2.0*SCALE, 0.5*SCALE, Angle()));
+	
+	points.add(Configuration2<TYPE>(2.0*SCALE, 0.0*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.5*SCALE, 0.0*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.0*SCALE, 0.0*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(1.0*SCALE, 0.0*SCALE, Angle()));
+	points.add(Configuration2<TYPE>(0.0*SCALE, 0.0*SCALE, Angle()));
+	end=Configuration2<TYPE>(0.0*SCALE, 0.5*SCALE, Angle());
+	double kmax=3/SCALE;
+	#define ESRES 7.467562181965
 	#endif
 
 	auto start_t=Clock::now();
-	double* anglss=dubinsSetCuda(start, end, points, kmax, 1, points.size(), 4);
+	double* anglss=dubinsSetCuda(start, end, points, kmax, 1, points.size(), 360);
 	auto stop_t=Clock::now();
 	double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
 
-	COUT(elapsedCuda)
+	cout << "elapsedCuda: " << elapsedCuda << endl; 
 
 	Tuple<Configuration2<double> > confs;
 	cout << start.angle().toRad() << " ";
@@ -107,7 +123,8 @@ int main (){
 
 	DubinsSet<double> s_CUDA (confs, kmax);
 	COUT(s_CUDA)
-	COUT(s_CUDA.getLength()-ESRES)
+	cout << "Length: " << s_CUDA.getLength() << endl; 
+	cout << "Error: " << s_CUDA.getLength()-ESRES << endl;
 	COUT(s_CUDA.getKmax())
 
 	uint DIMY=750;

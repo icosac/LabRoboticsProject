@@ -15,7 +15,6 @@ double* dubinsSetBest(Configuration2<double> start,
 											int startPos,
 											int endPos,
 											ulong iter_n,
-											double inc,
 											size_t parts, 
 											double _kmax);
 }
