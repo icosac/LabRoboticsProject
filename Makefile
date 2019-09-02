@@ -41,8 +41,7 @@ SRC=$(wildcard src/*.cc)
 OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
 
 #test files
-TEST_SRC= 	test/robotLocalization.cc
-# test/maths_test.cc
+TEST_SRC= 	test/officialMain.cc
 TEST_EXEC=$(subst test/,bin/test/,$(patsubst %.cc, %.out, $(TEST_SRC)))
 
 #Run files
@@ -132,7 +131,7 @@ run: main
 	./bin/main.out
 #Run tests
 run_test: test
-	./bin/test/prova.out
+	./bin/test/officialMain.out
 #Run calibration
 run_calibration: calibration
 	./bin/calibration_run.out
