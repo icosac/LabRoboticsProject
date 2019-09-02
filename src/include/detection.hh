@@ -5,6 +5,7 @@
 #include <settings.hh>
 #include <filter.hh>
 #include <configure.hh>
+#include <unwrapping.hh>
 
 #include <iostream>
 #include <fstream>
@@ -36,8 +37,25 @@ enum COLOR_TYPE {RED, GREEN, BLUE, BLACK, CYAN};
 */
 int detection();
 
-void computeConversionParameters(Mat & transf);
+/*! \brief The function simply store the value of the given matrix and allow the access to it from different function location. 
+    \details The transformation matrix are computed in the unwrapping phase and taken from the localization.
+
+    \param[in] transf It is the matrix that can be stored but also retrieved.
+    \param[in] get It is the flag that says if the given matrix need to be stored or retrieved.
+*/
+void getConversionParameters(Mat & transf, const bool get=true);
+
+/*! \brief Identify the loation of the robot by acquiring the image from the default camera of the environment.
+
+    \returns The coordinates of the robot in this exactly moment.
+*/
 Point2<int> localize();
+
+/*! \brief Identify the location of the robot respect to the given image.
+
+    \param[in] img It is the image where the robot need to be located.
+    \returns The coordinates of the robot in this exactly moment, according to the image.
+*/
 Point2<int> localize(const Mat & img);
 
 /*! \brief Detect shapes inside the image according to the variable 'color'.

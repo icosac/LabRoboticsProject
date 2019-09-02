@@ -21,8 +21,8 @@ using namespace cv;
 using namespace std;
 
 //debug blocks most things, wait only something
-#define WAIT
-#define DEBUG
+// #define WAIT
+// #define DEBUG
 
 #define NAME(x) #x ///<Returns the name of the variable
 

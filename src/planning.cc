@@ -10,15 +10,16 @@ pair< vector<Point2<int> >, Mapp* > planning(){
 
     vector<Point2<int> > vp;
 
-    // TODO use this version when run from the laboratory...
-    //vp.push_back( localize() ); //robot initial location
-    vp.push_back( Point2<int>(100, 150) );
+    // use this version when run from the laboratory... 
+    vp.push_back( localize() ); //robot initial location
+    /*/ 
+    vp.push_back( Point2<int>(100, 150) );//*/
     
     map->getVictimCenters(vp);
     map->getGateCenter(vp);
 
     vector<vector<Point2<int> > > vvp = map->minPathNPoints(vp);
-    vector<Point2<int> > cellsOfPath = map->sampleNPoints(vvp);
+    vector<Point2<int> > cellsOfPath = map->sampleNPoints(vvp, 50);
 
     cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
 

@@ -3,7 +3,7 @@
 #define AREA_RATIO 0.7
 #define AREA_MIN 500 //pixel^2
 
-static float distance(Point c1, Point c2);
+static double distance(Point c1, Point c2);
 
 /*! \brief Take some images according to a xml and unwrap the black rectangle inside the image after appling undistortion trasformation.
     \details Load from the xml file 'data/settings.xml' the name of some images, load the images from the file,\n
@@ -35,7 +35,6 @@ int unwrapping(){
         loadCoefficients(calib_file, camera_matrix, dist_coeffs);
 
         Mat fix_img;
-        // if (f!=3)
         undistort(or_img, fix_img, camera_matrix, dist_coeffs);
 
         // Display fixed image
@@ -163,14 +162,22 @@ int unwrapping(){
             rect[3] = tmp;
         }
 
+        //create the high corners
+        vector<Point> rectHigh;
+        createPointsHigh(rect, rectHigh);
+
         // wrap the perspective
         static const int width = 1000;
         static const int height = (int)(width*1.5);
 
         int xm/*in*/ = 0, ym = 0;
         int xM/*ax*/ = width, yM = height;
-        Mat corner_pixels = (Mat_<float>(4,2) << rect[0].x, rect[0].y, rect[1].x, rect[1].y, rect[2].x, rect[2].y, rect[3].x, rect[3].y);
-        Mat transf_pixels = (Mat_<float>(4,2) << xm, ym, xM, ym, xM, yM, xm, yM);
+        Mat corner_pixels =      (Mat_<float>(4,2) << rect[0].x, rect[0].y, rect[1].x, rect[1].y, rect[2].x, rect[2].y, rect[3].x, rect[3].y);
+        Mat corner_high_pixels = (Mat_<float>(4,2) << rectHigh[0].x, rectHigh[0].y, rectHigh[1].x, rectHigh[1].y, rectHigh[2].x, rectHigh[2].y, rectHigh[3].x, rectHigh[3].y);
+        Mat transf_pixels =      (Mat_<float>(4,2) << xm, ym, xM, ym, xM, yM, xm, yM);
+
+        Mat transformationFromHigh = getPerspectiveTransform(corner_high_pixels, transf_pixels);
+        getConversionParameters(transformationFromHigh, false);
 
         Mat transf = getPerspectiveTransform(corner_pixels, transf_pixels);
         Mat unwarped_frame;
@@ -199,6 +206,25 @@ int unwrapping(){
     // cout << "Before saving: " << *sett << endl;
     sett->writeToFile();
 return(0);
+}
+
+void createPointsHigh(const vector<Point> & rectLow, vector<Point> & rectHigh){
+    rectHigh.resize(0);
+
+    rectHigh.push_back(Point(305, 1025));
+    rectHigh.push_back(Point(300, 80));
+    rectHigh.push_back(Point(1620, 75));
+    rectHigh.push_back(Point(1633, 992));
+
+    double dist1 = 0, dist2 = 0;
+    for(int i=0; i<4; i++){
+        dist1 += distance(rectLow[i], rectHigh[i]);
+        dist2 += distance(rectLow[i], rectHigh[(i+2)%4]);
+    }
+    if(dist2<dist1){
+        swap( rectHigh[0], rectHigh[2] );
+        swap( rectHigh[1], rectHigh[3] );
+    } // else nothing
 }
 
 void find_rect(vector<Point>& _rect, const int& width, const int& height){
@@ -257,7 +283,8 @@ void find_rect(vector<Point>& _rect, const int& width, const int& height){
 */
 void loadCoefficients(  const string filename, 
                         Mat & camera_matrix, 
-                        Mat & dist_coeffs){
+                        Mat & dist_coeffs)
+{
   FileStorage fs(filename, FileStorage::READ );
   if (!fs.isOpened()){
     throw runtime_error("Could not open file " + filename);
@@ -275,7 +302,7 @@ void loadCoefficients(  const string filename,
 
     \returns The euclidean distance.
 */
-static float distance(Point c1, Point c2){
-    float res = sqrt( pow( c2.x-c1.x ,2) + pow( c2.y-c1.y ,2) );
+static double distance(Point c1, Point c2){
+    double res = sqrt( pow( c2.x-c1.x ,2) + pow( c2.y-c1.y ,2) );
     return(res);
 }

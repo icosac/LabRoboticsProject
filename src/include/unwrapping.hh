@@ -3,6 +3,7 @@
 
 #include <utils.hh>
 #include <settings.hh>
+#include <detection.hh>
 
 #include <iostream>
 #include <fstream>
@@ -27,6 +28,12 @@ using namespace std;
     \returns A 0 is return if the function reach the end.
 */
 int unwrapping();
+
+/*! \brief Store in the given vector the white corners in the same order as the given black ones.
+    \param[in] rectLow A vector where the low corners of the rectangle (black markers position) are stored.
+    \param[out] rectHigh A vector where the high corners of the rectangle (white markers position) will be stored.
+*/
+void createPointsHigh(const vector<Point> & rectLow, vector<Point> & rectHigh);
 
 /*! \brief Load coefficients from a file.
     \details Load two matrix 'camera_matrix' and 'distortion_coefficients' from the xml file passed.

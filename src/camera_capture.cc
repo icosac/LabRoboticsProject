@@ -69,7 +69,6 @@ bool CameraCapture::grab(cv::Mat & img, double & timestamp)
 }
 
 CameraCapture::~CameraCapture() {
-
     /* Verify if the device is active */
     if (!isOpened())
         return;  // camera is already close

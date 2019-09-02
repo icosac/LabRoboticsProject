@@ -252,8 +252,8 @@ public:
 		out << NAME(greenMask) << ": " << greenMask << endl;
 		out << NAME(blueMask) << ": " << blueMask << endl;
 		out << NAME(whiteMask) << ": " << whiteMask << endl;
-    out << NAME(victimMask) << ": " << victimMask << endl;
-    out << NAME(robotMask) << ": " << robotMask << endl;
+	    out << NAME(victimMask) << ": " << victimMask << endl;
+	    out << NAME(robotMask) << ": " << robotMask << endl;
 		out << NAME(kernelSide) << ": " << kernelSide << endl;
 		out << NAME(templatesFolder) << ": " << templatesFolder << endl;
 		out << NAME(convexHullFile) << ": " << convexHullFile << endl;

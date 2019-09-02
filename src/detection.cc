@@ -27,11 +27,11 @@ int detection(){
         cvtColor(un_img, hsv_img, COLOR_BGR2HSV);
 
         //detection over the three values of the array (maybe it is also possible to directly refer to RED as i=1, but I prefer this method...)
-        COLOR_TYPE tmpVectColors[] = {RED, GREEN, BLUE};
-        for(int i=0; i<3; i++){
+        COLOR_TYPE tmpVectColors[] = {RED, GREEN, BLUE, CYAN};
+        for(int i=0; i<4; i++){
             shape_detection(hsv_img, tmpVectColors[i]);
             #ifdef WAIT
-                if(i!=2){
+                if(i!=3){
                     mywaitkey();
                     destroyAllWindows();
                 }
@@ -41,62 +41,54 @@ int detection(){
         #ifdef WAIT
             mywaitkey();
         #endif
-
-        localize(hsv_img);
-
-        #ifdef WAIT
-            mywaitkey();
-        #endif
     }
     return(0);
 }
 
-void computeConversionParameters(Mat & transf){
+void getConversionParameters(Mat & transf, const bool get){
     cout << "computeConversionParameters\n";
-
-    //define the "empiric" measures of the points location and the tape width
-    const int tape = 34; // tape width
-    const int t = tape/2;
-
-    Mat lowCorners  = (Mat_<float>(4,2) << 365-t, 975+t, 355-t, 125-t, 1575+t, 120-t, 1585+t, 955+t);
-    Mat highCorners = (Mat_<float>(4,2) << 305, 1025,    300, 80,      1620, 75,      1633, 992);
-    Mat rectCorners = (Mat_<float>(4,2) << 0, 0, 1000, 0, 1000, 1500, 0, 1500);
-
-    // create the transformation matrices from a point reference system to an other
-    Mat A = getPerspectiveTransform(rectCorners, lowCorners);
-        // A is the conversion back from the cropped rectangle to the undistorted image
-    Mat B = getPerspectiveTransform(highCorners, lowCorners);
-        // B is the conversion from the upper level to the lower one
-    Mat C = getPerspectiveTransform(lowCorners, rectCorners);
-        // C is the conversion back to the cropped rectangle (C is the opposite of A)
-
-    // cout << "A:\n" << A << endl;
-    // cout << "B:\n" << B << endl;
-    // cout << "C:\n" << C << endl;
-
-    // merge three transformation matrix:
-    // https://stackoverflow.com/questions/40306194/combine-two-affine-transformations-matrices-in-opencv
-    Mat D  = C * B * A; // the matrix are in the opposite order to respect the transformation priority
-    // cout << "D:\n" << D << endl;
-
-    // return
-    transf = D;
+    static Mat tr;
+    if(get){
+        transf = tr;
+    } else{
+        tr = transf;
+        cout << "transformation matrix:\n" << tr << endl;
+    }
 }
 
 Point2<int> localize(){
+    static Mat camera_matrix, dist_coeffs;
+    static bool firstRun = true;
+    if(firstRun){ //executed only at the first iteration of this function
+        firstRun = false;
+        const string calib_file = sett->intrinsicCalibrationFile;
+        loadCoefficients(calib_file, camera_matrix, dist_coeffs);
+    }
+
     //acquire the img and call the other localize function
-    return( localize( acquireImage(false) ) );
+    Mat or_img = acquireImage(false);
+
+    Mat fix_img;
+    undistort(or_img, fix_img, camera_matrix, dist_coeffs);
+
+    //Convert from RGB to HSV= Hue-Saturation-Value
+    Mat hsv_img;
+    cvtColor(fix_img, hsv_img, COLOR_BGR2HSV);
+    #ifdef WAIT
+        my_imshow("Img for localize", hsv_img);
+    #endif
+
+    return( localize( hsv_img ) );
 }
 
 vector<Point> robotShape;
 Point2<int> localize(const Mat & img){
     static Mat transf;
-
     static bool firstRun = true;
     if(firstRun){ //executed only at the first iteration of this function
         firstRun = false;
-        computeConversionParameters(transf);
-        cout << "transformation matrix:\n" << transf << endl;
+        Mat camera_matrix, dist_coeffs; //useless
+        getConversionParameters(transf, true);
     }
 
     //find robot
@@ -108,15 +100,16 @@ Point2<int> localize(const Mat & img){
     if(robotShape.size()!=3){
         cout << "Warning: The robot is not well defined (not 3 points).\n\n";
     }
-    cout << "From localize:\n";
+    // cout << "From localize:\n";
     for(Point p : robotShape){
-        cout << p.x << " - " << p.y << endl;
+        // cout << p.x << " - " << p.y << endl;
         xAvg += p.x;
         yAvg += p.y;
     }
     xAvg /= robotShape.size();
     yAvg /= robotShape.size();
-    cout << "\t\tAvg:   " << xAvg << ", " << yAvg << endl;
+    // cout << "Barycenter (AKA centroid): " << xAvg << ", " << yAvg << endl;
+
     robotShape.resize(0);
 
     // apply conversion to the right reference system
@@ -128,32 +121,10 @@ Point2<int> localize(const Mat & img){
 
     int x = (int) vpOut[0].x;
     int y = (int) vpOut[0].y;
-    cout << "New transformed point: " << x << " - " << y << endl;
+    cout << "New robot position:     " << x << " - " << y << endl;
 
     return(Point2<int>(x, y));
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

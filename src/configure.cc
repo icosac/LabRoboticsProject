@@ -63,19 +63,22 @@ Mat acquireImage(const bool save){
   //Create camera object
   CameraCapture::input_options_t options(1080, 1920, 30, 0);
   CameraCapture *camera = new CameraCapture(options);
-
+  
   double time;
   if (camera->grab(frame, time)) {
-    cout << "Success" << endl;
+    #ifdef DEBUG
+      cout << "Frame grabbed successfully" << endl;
+    #endif
   } else {
     cout << "\n\nFail getting camera photo.\n\n" << endl;
     return(frame);
   }
+  
   if(save){
     imwrite("data/map/01.jpg", frame);
   }
-  free(camera);
-
+  
+  delete camera;
   return(frame);
 }
 
@@ -159,17 +162,17 @@ void configure (bool deploy, int img_id){
       imshow("Filtered Image",frame_threshold);
     }
     sett->changeMask(Settings::BLUE, filter);
-    cout << "Victims blue done: " << filter << endl;
+    cout << "Gate blue done: " << filter << endl;
 
     //WHITE FILTER
-    filter=sett->whiteMask; update_trackers();
-    cout << "White filter. " << endl;
-    while ((char)waitKey(1)!='c'){
-      inRange(frame, filter.Low(), filter.High(), frame_threshold);
-      imshow("Filtered Image",frame_threshold);
-    }
-    sett->changeMask(Settings::WHITE, filter);
-    cout << "White filter done: " << filter << endl;
+    // filter=sett->whiteMask; update_trackers();
+    // cout << "White filter. " << endl;
+    // while ((char)waitKey(1)!='c'){
+    //   inRange(frame, filter.Low(), filter.High(), frame_threshold);
+    //   imshow("Filtered Image",frame_threshold);
+    // }
+    // sett->changeMask(Settings::WHITE, filter);
+    // cout << "White filter done: " << filter << endl;
 
     //ROBOT FILTER
     filter=sett->robotMask; update_trackers();
@@ -203,7 +206,7 @@ bool show_all_conditions(const Mat& frame){
   inRange(frame, sett->greenMask.Low(), sett->greenMask.High(), green);
   inRange(frame, sett->victimMask.Low(), sett->victimMask.High(), victim);
   inRange(frame, sett->blueMask.Low(), sett->blueMask.High(), blue);
-  inRange(frame, sett->whiteMask.Low(), sett->whiteMask.High(), white);
+  // inRange(frame, sett->whiteMask.Low(), sett->whiteMask.High(), white);
   inRange(frame, sett->robotMask.Low(), sett->robotMask.High(), robot);
 
   my_imshow(NAME(frame), frame, true);
@@ -212,7 +215,7 @@ bool show_all_conditions(const Mat& frame){
   my_imshow(NAME(green), green);
   my_imshow(NAME(victim), victim);
   my_imshow(NAME(blue), blue);
-  my_imshow(NAME(white), white);
+  // my_imshow(NAME(white), white);
   my_imshow(NAME(robot), robot);
 
   char c='q';

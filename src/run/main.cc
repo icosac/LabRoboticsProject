@@ -21,7 +21,7 @@ int main (){
 
 
 	cout << endl <<"Configure" << endl;
-	configure(false);
+	configure(true);
 
 	cout << endl << "unwrapping" << endl;
 	unwrapping();
@@ -46,7 +46,7 @@ int main (){
 		mywaitkey();
 	#endif
 
-	// the robot starts to move MAYBE
+	// the robot starts to move MAYBE 1242 524
 	// Point2<int> p;
 	// for(int i=0; i<100; i++){	// 100*(<50ms) = (<5sec)
 	// 	// execute this line only in the laboratory...
@@ -54,5 +54,8 @@ int main (){
 	// }
 
 	cout << "\nend\n\n";
+	#ifdef WAIT
+		mywaitkey();
+	#endif
 	return(0);
 }
