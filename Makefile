@@ -17,7 +17,7 @@ LIBS=-L./lib -lDubins $(INC)
 #condition for mac and linux
 ifneq (,$(findstring Darwin, $(OS)))
 	OPENCV=opencv3
-	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -Wno-everything -O3
+	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11  -O3
   	AR=libtool -static -o
 else 
 	CXXFLAGS=`pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -Wall -O3

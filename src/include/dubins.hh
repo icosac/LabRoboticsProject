@@ -36,70 +36,123 @@ unsigned int DIMX=200+SHIFT;
 unsigned int DIMY=500+SHIFT;
 #endif
 
-//TODO find which function is faster
-#define MORE_FUNCTIONS
 #define PIECE_LENGTH 2 //mm
 #define PREC 100000
 
 using namespace std;
 
+/*!
+ * Class that defines a general curve. It just containes a start `Configuration2` and an end `Configuration2`.
+ * @tparam T The type of the `Configuration2`s
+ */
 template <class T>
 class Curve {
 protected:
-  Configuration2<T> P0;
-  Configuration2<T> P1;
+  Configuration2<T> P0; ///< Start `Configuration2`.
+  Configuration2<T> P1; ///< End `Configuration2`.
 
 public:
-  Curve () : P0(), P1() {}
+  Curve () : P0(), P1() {} ///<Default plain constructor which creates two plain `Configuration2`s
+
+  /*!
+   * Constructor that takes two `Configuration2`s and stores them.
+   * @param _P0 Start `Configuration2`.
+   * @param _P1 End `Configuration2`.
+   */
   Curve (const Configuration2<T> _P0,
          const Configuration2<T> _P1) :
   P0(_P0), P1(_P1) {}
 
+  /*!
+   * Constructor that takes two `Point2`s and two `Angle`s and stores them as `Configuration2`s.
+   * @param _P0 Start `Point2`.
+   * @param _P1 End `Point2`.
+   * @param _th0 Starting `Angle`
+   * @param _th1 Ending `Angle`
+   */
   Curve (const Point2<T> _P0,
          const Point2<T> _P1,
          const Angle _th0,
          const Angle _th1) :
   P0(_P0, _th0), P1(_P1, _th1) {}
 
+  /*!
+   * Constructor that takes the bare coordinates of two points and their `Angle`s and stores them as `Configuration2`s.
+   * @param x0 Start abscissa coordinate.
+   * @param y0 Start ordinate coordinate.
+   * @param _th0 Start `Angle`.
+   * @param x1 End abscissa coordinate.
+   * @param y1 End ordinate coordinate.
+   * @param _th1 End `Angle`.
+   */
   Curve (const T x0, const T y0,
          const Angle _th0,
          const T x1, const T y1,
          const Angle _th1) :
   P0(x0, y0, _th0), P1(x1, y1, _th1) {}
 
-  Configuration2<T> begin()  const { return P0; }
-  Configuration2<T> end()    const { return P1; }
-  
-#ifdef MORE_FUNCTIONS
+  Configuration2<T> begin()  const { return P0; } ///< Returns the starting `Configuration2` of the `Curve`.
+  Configuration2<T> end()    const { return P1; } ///< Returns the ending `Configuration2` of the `Curve`.
+
+  /*!
+   * Function that stores the starting `Configuration2`.
+   * @param _P0 Starting `Configuration2`.
+   */
   void begin(Configuration2<T> _P0){
     P0=_P0;
   }
+  /*!
+   * Function that stores the ending `Configuration2`.
+   * @param _P0 Ending `Configuration2`.
+   */
   void end (Configuration2<T> _P1){
     P1=_P1;
   }
-#endif
-  
-  friend ostream& operator<<(ostream &out, const Curve& data) {
-    out << data.to_string().str();
-    return out;
-  }
-  
+
+  /*! This function create a strinstream object containing infos about the `Curve`.
+      \returns A string stream.
+  */
   stringstream to_string() const{
     stringstream out;
     out << "begin: " << begin();
     out << ", end: " << end();
     return out;
   }
+
+  /*!
+   * This function overload the << operator so to print with `std::cout` the values of the `Curve`.
+   * \param[in] out The out stream.
+   * \param[in] data The `Curve` to print.
+   * \returns An output stream to be printed.
+  */
+  friend ostream& operator<<(ostream &out, const Curve& data) {
+    out << data.to_string().str();
+    return out;
+  }
 };
 
+/*!
+ * Compute the sinc of the function defined as: \f[
+ * sinc(t)=\frac{sin(t)}{t}\quad t\neq 0
+ * 1\quad t=0
+ * \f]
+ * @param t The value of the angle to be used.
+ * @return The result of the previous formula.
+ */
 static double sinc(double t) {
-  if (std::abs(t)<0.002)
+  if (equal(t, 0.0))
     return 1 - pow2(t)/6 * (1 - pow2(t)/20);
   else
     return sin(t)/t;
 }
 
-//Computes an arrival point from an initial configuration through an arc of length _L and curvature _K.
+/*!
+ * Computes an arrival point from an initial configuration through an arc of length _L and curvature _K.
+ * @param _L The length of the arch.
+ * @param _P0 The starting `Configuration2` of the arc.
+ * @param _K The curvature of the arc.
+ * @return The ending `Configuration2` of the arc.
+ */
 Configuration2<double> circline(double _L,
                                 Configuration2<double> _P0,
                                 double _K)
@@ -115,21 +168,36 @@ Configuration2<double> circline(double _L,
   return Configuration2<double>(x, y, th.get());
 }
 
+/*!
+ * \brief Class to store a maneuver of Dubins. It inherits from `Curve`.
+ * Since each Dubins is formed of atmost 3 maneuvers, this class is meant to store one of this maneuver, which can be L, R or S respectively Left, Right, Straight.
+ * @tparam T1 The type of Length and Curvature.
+ * @tparam T2 The type of the class `Curve`.
+ */
 template <class T1=double, class T2=double>
 class DubinsArc : public Curve<T2>
 {
 private:
-  T1 L, K;
+  T1 L; ///< Length of the arc.
+  T1 K; ///< Curvature of the arc.
 
   using Curve<T2>::Curve;
 public:
 
+  /*!
+   * Plain constructor of `DubinsArc` that sets L and K to 0 and creates a plain `Curve`.
+   */
   DubinsArc () : L(0), K(0), Curve<T2>() {}
 
-#ifdef MORE_FUNCTIONS
-  DubinsArc( const Configuration2<T2> _P0,
-                  const T1 _k,
-                  const T1 _l) : Curve<T2>() {
+  /*!
+   * Creates a new `DubinsArc` given a start `Configuration2`, the curvature and the length of the arc calling `circline()`.
+   * @param _P0 The starting `Configuration2`.
+   * @param _k The curvature of the `DubinsArc`.
+   * @param _l The length of the `DubinsArc`.
+   */
+  DubinsArc(const Configuration2<T2> _P0,
+            const T1 _k,
+            const T1 _l) : Curve<T2>() {
     auto start=Clock::now();
     K=_k;
     L=_l;
@@ -146,25 +214,17 @@ public:
     stop=Clock::now();
     elapsedSet+=CHRONO::getElapsed(start, stop);
   }
-#else
-  DubinsArc(const Configuration2<T2> _P0,
-            const Configuration2<T2> _P1,
-            const T1 _k,
-            const T1 _l) : Curve<T2>(_P0, _P1) {
-    K=_k;
-    L=_l;
-    cout << "_P0: " << _P0 << endl;
-    cout << "begin: " << Curve<T2>::begin() << endl;
-    cout << "_P1: " << _P1 << endl;
-    cout << "end: " << Curve<T2>::end() << endl;
-  }
-#endif
 
-  T1 getK   () const { return K; }
-  T1 length () const { return L; }
+  T1 getK   () const { return K; } ///< Returns the curvature of the arc.
+  T1 length () const { return L; } ///< Returns the length of the arc.
 
-  //Splits arc in pieces of _L length
   //TODO Add last point of curve
+  /*!
+   * \brief Splits the `DubinsArc` in pieces of _L length.
+   * This function starts from the begining of the arc and computes n new arcs through the `circline()` function using the curvature of the `DubinsArc` and _L as the length.
+   * @param _L The length that each points should have.
+   * @return A `Tuple` of `Configuration2`s representing the points along the arc.
+   */
   Tuple<Point2<T2> > splitIt (double _L=PIECE_LENGTH){
     Tuple<Point2<T2> > ret;
     Configuration2<T2> _old=Curve<T2>::begin();
@@ -178,12 +238,12 @@ public:
       _old=_new; //Maybeeeee using pointers can improve performance?
       sum+=_L;
     }
-
-    // INFOV(ret)
-
     return ret;
   }
 
+  /*! This function create a strinstream object containing infos about the `DubinsArc`.
+      \returns A string stream.
+  */
   stringstream to_string() const {
     stringstream out;
     out << "begin: " << Curve<T2>::begin();
@@ -192,12 +252,27 @@ public:
     out << ", l: " << length();
     return out;
   }
-  
+
+  /*!
+   * This function overload the << operator so to print with `std::cout` the values of the `DubinsArc`, that is `Curve` values more the length and the curvature.
+   * \param[in] out The out stream.
+   * \param[in] data The `DubinsArc` to print.
+   * \returns An output stream to be printed.
+  */
   friend ostream& operator<<(ostream &out, const DubinsArc& data) {
     out << data.to_string().str();
     return out;
   }
 
+  /*!
+   * This function draws the `DubinsArc`.
+   * @param dimX The dimension X of the Mat.
+   * @param dimY The dimension Y of the Mat.
+   * @param inc The value to scale each point.
+   * @param scl The Scalar that defines the color to use.
+   * @param image The Mat where to draw the points.
+   * @param SHIFT The value to use to shift the points to make them stay inside the matrix.
+   */
   void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT){
     // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
     for (auto point : this->splitIt(1)){
@@ -220,23 +295,37 @@ public:
 
 
 #define KMAX 0.5
+/*!
+ * \brief Class to store a Dubins curve.
+ * This class inherits from `Curve` and is composed of three `DubinsArc`.
+ * @tparam T The type of the classes `Curve` and `DubinsArc`.
+ */
 template<class T>
 class Dubins : protected Curve<T>
 {
 private:
-  double Kmax, L;
-  int pid;
-  DubinsArc<T> A1, A2, A3;
+  double Kmax;             ///< The curvature of the Dubins.
+  double L;                ///< The length of the curve.
+  int pid;                 ///< An ID that indicates which set of maneuver composes the Dubins.
+  DubinsArc<T> A1, A2, A3; ///< The 3 arcs that compose the Dubins.
 
   using Curve<T>::Curve;
-  // using DubinsArc<T>::DubinsArc;
 public:
+  /*!
+   * Plain constructor for Dubins that calls the plain constructor of `Curve` and `DubinsArc`.
+   */
   Dubins () : Kmax(KMAX), Curve<T>() {
     A1=DubinsArc<T>();
     A2=DubinsArc<T>();
     A3=DubinsArc<T>();
   }
 
+  /*!
+   * Constructor that takes an initial and a final `Configuration2`, a curvature and compute the Dubins that connect the two configurations.
+   * @param _P0 Initial `Configuration2`.
+   * @param _P1 Final `Configuration2`.
+   * @param _K Curvature.
+   */
   Dubins (const Configuration2<T> _P0,
           const Configuration2<T> _P1,
           const double _K=KMAX) :
@@ -249,6 +338,14 @@ public:
     }
   }
 
+  /*!
+   * Constructor that takes an initial and a final `Point2`, the two respectively `Angle`s and the curvature and computes the Dubins.
+   * @param _P0 Initial `Point2`.
+   * @param _P1 Final `Point2`.
+   * @param _th0 Initial `Angle`
+   * @param _th1 Final `Angle`
+   * @param _K Curvature.
+   */
   Dubins (const Point2<T> _P0,
           const Point2<T> _P1,
           const Angle _th0,
@@ -263,6 +360,16 @@ public:
     }
   }
 
+  /*!
+   * Constructor that takes the initial and final coordinates, the respective `Angle`s and the curvature and compute a Dubins.
+   * @param x0 Initial abscissa coordinate.
+   * @param y0 Initial ordinate coordinate.
+   * @param _th0 Initial `Angle`.
+   * @param x1 Final abscissa coordinate.
+   * @param y1 Final ordinate coordinate.
+   * @param _th1 Final `Angle`.
+   * @param _K Curvature of the curve.
+   */
   Dubins (const T x0, const T y0,
           const Angle _th0,
           const T x1, const T y1,
@@ -277,15 +384,21 @@ public:
     }
   }
 
-  double getKMax  () const { return Kmax; }
-  double length   () const { return L; }
-  double getId    ()  { return pid; }
+  double getKMax  () const { return Kmax; } ///< Returns the maximum curvature of the Dubins.
+  double length   () const { return L; }    ///< Returns the length of the Dubins.
+  double getId    ()  { return pid; }       ///< Returns the id of the Dubins, that is the set of three maneuvers that creates the curve.
 
-  DubinsArc<T> getA1() const { return A1; }
-  DubinsArc<T> getA2() const { return A2; }
-  DubinsArc<T> getA3() const { return A3; }
+  DubinsArc<T> getA1() const { return A1; } ///< Returns the first `DubinsArc`.
+  DubinsArc<T> getA2() const { return A2; } ///< Returns the second `DubinsArc`.
+  DubinsArc<T> getA3() const { return A3; } ///< Returns the third `DubinsArc`.
 
-#ifndef OPENCL_COMPILE
+  /*!
+   * Function to compute the set of maneuvers Left Straight Left.
+   * @param th0 The initial angle standardized.
+   * @param th1 The final angle standardized.
+   * @param _kmax The maximum curvature.
+   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   */
   double* LSL (double th0, double th1, double _kmax)
   {
     auto start=Clock::now();
@@ -317,6 +430,13 @@ public:
     // return Tuple<double>(3, sc_s1.get(), sc_s2, sc_s3.get());
   }
 
+  /*!
+   * Function to compute the set of maneuvers Right Straight Right.
+   * @param th0 The initial angle standardized.
+   * @param th1 The final angle standardized.
+   * @param _kmax The maximum curvature.
+   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   */
   double* RSR (double th0, double th1, double _kmax)
   {
     auto start=Clock::now();
@@ -348,6 +468,13 @@ public:
     // return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
+  /*!
+   * Function to compute the set of maneuvers Left Straight Right.
+   * @param th0 The initial angle standardized.
+   * @param th1 The final angle standardized.
+   * @param _kmax The maximum curvature.
+   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   */
   double* LSR (double th0, double th1, double _kmax)
   {    
     auto start=Clock::now();
@@ -378,6 +505,13 @@ public:
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
+  /*!
+   * Function to compute the set of maneuvers Right Straight Left.
+   * @param th0 The initial angle standardized.
+   * @param th1 The final angle standardized.
+   * @param _kmax The maximum curvature.
+   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   */
   double* RSL (double th0, double th1, double _kmax)
   {
     auto start=Clock::now();
@@ -408,6 +542,13 @@ public:
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
+  /*!
+   * Function to compute the set of maneuvers Right Left Right.
+   * @param th0 The initial angle standardized.
+   * @param th1 The final angle standardized.
+   * @param _kmax The maximum curvature.
+   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   */
   double* RLR (double th0, double th1, double _kmax)
   {
     auto start=Clock::now();
@@ -442,6 +583,13 @@ public:
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
+  /*!
+   * Function to compute the set of maneuvers Left Right Left.
+   * @param th0 The initial angle standardized.
+   * @param th1 The final angle standardized.
+   * @param _kmax The maximum curvature.
+   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   */
   double* LRL (double th0, double th1, double _kmax)
   {
     auto start=Clock::now();
@@ -476,8 +624,12 @@ public:
 
     // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
-#endif
 
+  /*!
+   * \brief Function to compute standardize the parameters.
+   * This function computes the initial and final angles as if the reference system is P0(-1,0), P1(0,1). This allows to simplify the calculations to find the best set of maneuvers.
+   * @return A `Tuple` of `duoble` containing the standardised initial and final angle, the new curvature and the parameter lambda that allows to compute the real dimension lengths.
+   */
   Tuple<double> scaleToStandard ()
   {
     double dx=Curve<T>::end().x() - Curve<T>::begin().x();
@@ -506,6 +658,11 @@ public:
                               (sc_s3 * lambda));
   }
 
+  /*!
+   * \brief This function computes the shortest path for the Dubins constructed.
+   * First the values are scaled. Then the six sets of maneuvers are computed and their lengths are stored. Once the set that gives the Dubins with the minimum length is found, the lengths are rescaled and the `DubinsArc` are created. In the process length is also computed.
+   * @return The id of the set of maneuvers.
+   */
   int shortest_path()
   {
     int pidx=-1; //Return value
@@ -581,25 +738,9 @@ public:
       elapsedBest+=CHRONO::getElapsed(start, stop);
 
       start=Clock::now();
-#ifdef MORE_FUNCTIONS
       A1=DubinsArc<T>(Curve<T>::begin(), ksigns[pidx][0]*Kmax, sc_std.get(0));
       A2=DubinsArc<T>(A1.end(), ksigns[pidx][1]*Kmax, sc_std.get(1));
       A3=DubinsArc<T>(A2.end(), ksigns[pidx][2]*Kmax, sc_std.get(2));
-#else
-      double L = sc_std.get(0);
-      double K = ksigns[pidx][0]*Kmax;
-      Configuration2<double> _P1 = circline(L, Curve<T>::begin(), K);
-      COUT(_P1)  
-      A1=DubinsArc<T>(Curve<T>::begin(), _P1, K, L);
-      
-      L = sc_std.get(1); K = ksigns[pidx][1]*Kmax;
-      _P1 = circline(L, A1.end(), K);
-      A2=DubinsArc<T>(A1.end(), _P1, K, L);
-      
-      L = sc_std.get(2); K = ksigns[pidx][2]*Kmax;
-      _P1 = circline(L, A2.end(), K);
-      A3=DubinsArc<T>(A2.end(), _P1, K, L);
-#endif
       stop=Clock::now();
       // cout << CHRONO::getElapsed(start, stop, "Create arcs ") << endl;
       elapsedArcs+=CHRONO::getElapsed(start, stop);
@@ -625,6 +766,18 @@ public:
     return pidx;
   }
 
+  /*!
+   * Function that checks that the values got in `shortest_path()` are right.
+   * @param s1 Length for the first `DubinsArc`.
+   * @param k0 Curvature for the first `DubinsArc`.
+   * @param s2 Length for the second `DubinsArc`.
+   * @param k1 Curvature for the second `DubinsArc`.
+   * @param s3 Length for the third `DubinsArc`.
+   * @param k2 Curvature for the third `DubinsArc`.
+   * @param th0 Initial angles (standardised).
+   * @param th1 Final angles (standardised).
+   * @return `true` if the values where correct, `false` otherwise.
+   */
   bool check (double s1,
               double k0,
               double s2,
@@ -651,7 +804,11 @@ public:
             (s1>0 || s2>0 || s3>0));
   }
 
-  //Normalize an angular difference \f$(-\pi, \pi]\f$
+  /*!
+   * Normalize an angular difference \f$(-\pi, \pi]\f$.
+   * @param ang The value of the angle to be normalized.
+   * @return The normalized angle.
+  */
   static double rangeSymm (double ang){
     double out = ang;
     while (out <= -M_PI){
@@ -663,8 +820,14 @@ public:
     return out;
   }
 
-  //TODO there are two points that are useless. 
-  Tuple<Tuple<Point2<double> > > splitIt (int _arch=0, 
+  //TODO there are two points that are useless.
+  /*!
+   * Function to split a Dubins in points.
+   * @param _arch If defined returns only the points for a single `DubinsArc`.
+   * @param _L The distance from one point to another.
+   * @return A `Tuple` containing three `Tuple` of `Point2` (one for each arc) containing the computed points.
+   */
+  Tuple<Tuple<Point2<double> > > splitIt (int _arch=0,
                                           double _L=PIECE_LENGTH){
     Tuple<Tuple<Point2<double> > > v;
     switch(_arch){
@@ -688,7 +851,9 @@ public:
       return v;
     }
   }
-
+  /*! This function create a strinstream object containing infos about the `Dubins`.
+    \returns A string stream.
+  */
   stringstream to_string() const {
     stringstream out;
     out << "A1: " << getA1() << endl;
@@ -697,11 +862,26 @@ public:
     return out;
   }
 
+  /*!
+   * This function overload the << operator so to print with `std::cout` the values of the `Dubins`, that is printing the 3 `DubinsArcs`.
+   * \param[in] out The out stream.
+   * \param[in] data The `Dubins` to print.
+   * \returns An output stream to be printed.
+  */
   friend ostream& operator<<(ostream &out, const Dubins& data) {
     out << data.to_string().str();
     return out;
   }
 
+  /*!
+   * Function to draw the `Dubins`.
+   * @param dimX The dimension X of the Mat.
+   * @param dimY The dimension Y of the Mat.
+   * @param inc The value to scale each point.
+   * @param scl The Scalar that defines the color to use.
+   * @param image The Mat where to draw the points.
+   * @param SHIFT The value to use to shift the points to make them stay inside the matrix.
+   */
   void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
     A1.draw(dimX, dimY, inc, scl, image, SHIFT);
     A2.draw(dimX, dimY, inc, scl, image, SHIFT);
@@ -712,8 +892,8 @@ public:
 
 // #define EXP
 #ifdef EXP
-//TODO find non recursive approach
-/*! \brief Compute the arrangements.
+/*!
+ * \brief Compute the arrangements.
  */
 void disp ( Tuple<Tuple<Angle> >& t,
             Tuple<Angle>& z,    ///<Vector to use
@@ -749,6 +929,17 @@ void disp ( Tuple<Tuple<Angle> >& t,
 }
 #else
 
+/*!
+ * \brief Convert a value in base 10 to base `base` in a `Tuple`.
+ * To each value an inc is muiltiplied and the initial `Angle` is added.
+ * @param z A `Tuple` containing all the initial `Angle`s.
+ * @param n The value to be converted.
+ * @param base The base.
+ * @param inc The increment.
+ * @param startPos The starting position of the `Tuple` of `Angle`s.
+ * @param endPos The ending position of the `Tuple` of `Angle`s.
+ * @return
+ */
 Tuple<Angle> toBase(Tuple<Angle> z, int n, int base, const Angle& inc, int startPos, int endPos){
   int i=z.size()-1;
   do {
@@ -763,7 +954,15 @@ Tuple<Angle> toBase(Tuple<Angle> z, int n, int base, const Angle& inc, int start
   return z;
 }
 
-/*! \brief Compute the arrangements.
+/*!
+ * \brief Compute the arrangements.
+ * Since each arrangement can be computed as \f$n_{parts}\f$, where each values is then multiplied for the increment and is added to the initial values.
+ * @param t A `Tuple` containing all the `Tuple`s containing the `Angle`s.
+ * @param z A `Tuple` containing all the initial `Angle`s.
+ * @param N The number of iterations. Each iteration is going to be converted in base parts.
+ * @param inc The increment to give each initial `Angle`.
+ * @param startPos The initial position to consider in `Tuple`.
+ * @param endPos The final position to consider in `Tuple`.
  */
 void disp(Tuple<Tuple<Angle> >& t,
           Tuple<Angle>& z,    ///<Vector to use
@@ -789,7 +988,7 @@ void disp(Tuple<Tuple<Angle> >& t,
       t.add(app);
       // COUT(app)
     #else
-      t.add(toBase(z, i, N, inc));
+      t.add(toBase(z, i, N, inc, startPos, endPos));
     #endif
   }
   cout << "Expected: " << iter_n << " got: " << t.size() << endl;
@@ -800,15 +999,45 @@ void disp(Tuple<Tuple<Angle> >& t,
 }
 #endif
 
-/*!\brief Given a set of point, compute the shortest set of Dubins that allows to go from start to end through all points.
- *
+#define DELTA M_PI/180.0 
+template <class T>
+vector<Point2<T> > reduce_points(Tuple<Point2<T> > init_points){
+  double delta=DELTA;
+  vector<Point2<T> > ret={};
+  for (int i=0; i<init_points.size(); i++){
+    Point2<T> app=init_points.get(i);
+    if (i==0 || i==init_points.size()-1){
+      ret.push_back(app);
+    }
+    else {
+      if (ret.back().th(app).toRad()<delta){
+        delta+=DELTA;
+      }
+      else {
+        ret.push_back(app);
+        delta=DELTA;
+      }
+    }
+  }
+  return ret;
+}
+
+/*!
+ * \brief Given a set of point, compute the shortest set of Dubins that allows to go from start to end through all points.
+ * @tparam T Type for class `Dubins`.
  */
 template <class T>
 class DubinsSet {
 private: 
-  Tuple<Dubins<T> > dubinses;
-  double Kmax, L;
+  Tuple<Dubins<T> > dubinses; ///< `Tuple` of `Dubins` containing all the computed `Dubins`.
+  double Kmax;                ///< Maximum value for curvature.
+  double L;                   ///< Length of all `DubinsSet`.
 public:
+  /*!
+   * Constructor that given a `Tuple` of `Dubins` computes stores all of them.
+   * @param _dubinses The `Tuple` of `Dubins`.
+   * @param _kmax The maximum curvature.
+   */
   DubinsSet(Tuple<Dubins<T> > _dubinses,
             double _kmax=KMAX){
     this->dubinses=_dubinses;
@@ -818,6 +1047,11 @@ public:
     } 
   }
 
+  /*!
+   * Constructor that takes a `Tuple` of `Configuration2`s and computes the `Dubins` between them.
+   * @param _confs The `Tuple` of `Configuration2`s.
+   * @param _kmax The maximum curvature to be used.
+   */
   DubinsSet(Tuple<Configuration2<T> > _confs,
             double _kmax=KMAX){
     for (int i=0; i<_confs.size()-1; i++){
@@ -828,11 +1062,38 @@ public:
     this->Kmax=_kmax;
   }
 
+  /*!
+   * \brief Constructor that given a start `Configuration2`, an end `Configuration2` and a `Tuple` of `Point2`, computes the best path from start to end through all points by brute forcing all possible angles.
+   * Since this approach is based on a brute force algorithm, it's best not to use this on too many points.
+   * @param start `Configuration2` of start.
+   * @param end `Configuration2` of end.
+   * @param _points `Tuple` of `Point2` containing all the intermediate points.
+   * @param _kmax The maximum curvature of the system.
+   */
   DubinsSet(Configuration2<T> start, 
             Configuration2<T> end,
             Tuple<Point2<T> > _points,
-            double _kmax=KMAX){
+            double _kmax=KMAX) {
+    this->Kmax=_kmax;
     Tuple<Angle> angles;
+
+    #ifdef DEBUG
+      cout << "Considered points: " << endl;
+      cout << _points << endl;
+      cout << endl;
+    #endif
+
+    vector<Point2<T> >new_points=reduce_points(_points);
+    _points.eraseAll();
+    for (auto p : new_points){
+      _points.add(p);
+    }
+
+    #ifdef DEBUG
+      cout << "Considered points: " << endl;
+      cout << _points << endl;
+      cout << endl;
+    #endif
 
     angles.add(start.angle());
     for (int i=0; i<_points.size()-1; i++){
@@ -849,8 +1110,8 @@ public:
     int i=0;
     while((int)(area.toRad()*PREC)%PREC>1){
       COUT(angles)
-      find_best(_points, angles, area, 2.0, _kmax);
-      area=area/2.0;
+      find_best(_points, angles, area, 8.0, _kmax);
+      area=area/8.0;
       i++;
     }
 
@@ -868,18 +1129,30 @@ public:
     #endif
   }
 
+  /*!
+   * \brief Constructor that computes a series of `Dubins` given only `Point2` points via brute force.
+   * Since this approach is based on a brute force algorithm, it's best not to use this on too many points.
+   * @param _points A `Tuple` containing all points.
+   * @param _kmax The maximum curvature to be used for all `Dubins`.
+   */
   DubinsSet(Tuple<Point2<T> > _points,
-            Angle area,
-            int tries,
             double _kmax=KMAX){
-    find_best(_points, Tuple<Angle>(), area, tries, _kmax);
+    find_best(_points, Tuple<Angle>(), 2*M_PI, 4, _kmax);
   }
 
+  /*!
+   * Function to compute the best path. This function calls `disp()` in order to calculate all possible angles, and then creates a `Dubins` for each possibility choosing the one with the minimum length.
+   * @param _points A `Tuple` of `Point2` through which the path should flow.
+   * @param _angles A `Tuple` of `Angle` containing all base `Angle`.
+   * @param area This is the angle around each angle to be "scanned".
+   * @param tries The number of discretizations that should be made.
+   * @param _kmax The maximum curvature to be used.
+   */
   void find_best( Tuple<Point2<T> > _points,
-                          Tuple<Angle>& _angles,
-                          Angle area=A_2PI,
-                          double tries=2.0,
-                          double _kmax=KMAX){
+                  Tuple<Angle>& _angles,
+                  Angle area=A_2PI,
+                  double tries=4.0,
+                  double _kmax=KMAX){
  
     #ifdef DEBUG
       cout << "Considered points: " << endl;
@@ -899,10 +1172,10 @@ public:
     
     //Compute inc:
     Angle inc=area/tries;
-    COUT(inc)
     Tuple<Tuple<Angle> > angles;
 
     //Create all angles to check
+    COUT(_points.size())
     disp(angles, _angles, tries, inc, 1, _points.size()-2); //startPos=1 and endPos=size()-2 since I have to check for all angles except the first and the last.
 
     #ifdef DEBUG
@@ -970,18 +1243,26 @@ public:
     _angles=angles.get(id);
   }
 
-  double getLength()              { return this->L; }  
-  double getKmax()                { return this->Kmax; } 
-  double getSize()                { return this->dubinses.size(); }
-  Tuple<Dubins<T> > getDubinses() { return this->dubinses; }
-  
+  double getLength()              { return this->L; }               ///< Returns the Length of the set of `Dubins`.
+  double getKmax()                { return this->Kmax; }            ///< Returns the maximum curvature.
+  double getSize()                { return this->dubinses.size(); } ///< Returns the number of `Dubins` stored.
+  Tuple<Dubins<T> > getDubinses() { return this->dubinses; }        ///< Returns a `Tuple` containing all the `Dubins`.
+
+  /*!
+   * Thid functions returns a specific `Dubins` from the set.
+   * @param id The position of the `Dubins` in the set.
+   * @return The id-th `Dubins`.
+   */
   Dubins<T> getDubins(int id){
-    if (id<this->size()){
+    if (id<(this->size()) && id>=0){
       return dubinses.get(id);
     }
     return Dubins<T>();
   }
 
+  /*! This function create a strinstream object containing infos about the `DubinsSet`.
+    \returns A string stream.
+  */
   stringstream to_string() {
     stringstream out;
     out << "Total length: " << L << "\n";
@@ -991,6 +1272,12 @@ public:
     return out;
   }
 
+  /*!
+   * This function overload the << operator so to print with `std::cout` the values of the `DubinsSet`, that is printing all the `Dubins` stored.
+   * \param[in] out The out stream.
+   * \param[in] data The `DubinsSet` to print.
+   * \returns An output stream to be printed.
+  */
   friend ostream& operator<<(ostream &out, DubinsSet& data) {
     out << data.to_string().str();
     return out;

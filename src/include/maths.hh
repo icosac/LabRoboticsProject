@@ -606,6 +606,13 @@ public:
   	return res;
   }
 
+  /*! \brief Removes all values from the `Tuple`.
+  */
+  void eraseAll (){
+    elements.clear();
+    n=0;
+  }
+
   /*! \brief Set a value in a certain position, or adds the element if the 
   		position equals the number of elements.
   		\param[in] pos Must be in \f$[0, n-1] \f$. If pos\f$=n\f$ then the 

@@ -14,7 +14,7 @@ typedef double TYPE;
 
 #define SCALE 100.0
 
-#define ES 3
+#define ES 2
 
 double elapsedScale=0.0;
 double elapsedPrimitives=0.0;
@@ -44,6 +44,7 @@ int main(){
   points.add(Configuration2<TYPE>(-0.1*SCALE,0.3*SCALE, Angle()));
   points.add(Configuration2<TYPE>(0.2*SCALE,0.8*SCALE, Angle()));
   stop=Configuration2<TYPE>(1.0*SCALE,1.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
+  #define ESRES 3.415578858075*SCALE
   #define _KMAX 3/SCALE  
 
   #elif ES==2 
@@ -54,6 +55,7 @@ int main(){
   points.add(Configuration2<TYPE>(0.5*SCALE,0.5*SCALE, Angle()));
   stop=Configuration2<TYPE>(0.5*SCALE,0.0*SCALE, Angle(-M_PI/6.0, Angle::RAD));
   #define _KMAX 3/SCALE
+  #define ESRES 6.278034550309*SCALE
 
   #elif ES==3
   start=Configuration2<TYPE>(0.5*SCALE, 1.2*SCALE, Angle(5.0*M_PI/6.0, Angle::RAD));
@@ -84,6 +86,9 @@ int main(){
   #endif
 
   DubinsSet<TYPE> ds(start, stop, points, _KMAX);
+  COUT(ds)
+  COUT(ds.getLength())
+  COUT((ds.getLength()-ESRES)/SCALE)
 
   return 0;
 }
