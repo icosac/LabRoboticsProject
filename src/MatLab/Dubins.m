@@ -19,6 +19,23 @@ global POINTS ;
 POINTS=5;
 global LENGTH ;
 
+pidx = -1;
+L = inf;
+primitives = {@LSL, @RSR, @LSR, @RSL, @RLR, @LRL};
+for i = 1:numel(primitives)
+  [ok, sc_s1_c, sc_s2_c, sc_s3_c] = primitives{i}(0, 0,0);
+  Lcur = sc_s1_c + sc_s2_c + sc_s3_c;
+  if (ok && Lcur<L)
+    L = Lcur;
+    sc_s1 = sc_s1_c;
+    sc_s2 = sc_s2_c;
+    sc_s3 = sc_s3_c;
+    pidx = i;
+  end
+end
+L 
+pidx
+
 [pidx, curve]=dubins_shortest_path(100, 100, 5.4977871438, 300, 300, 4.3906, Kmax);
 figure; axis equal;
 hold on
