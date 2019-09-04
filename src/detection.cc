@@ -135,7 +135,6 @@ Configuration2<double> localize(const Mat & img, const bool raw){
     // 
     vector<Point2f> convert(1);
     for(Point p : robotShape){
-        cout << "convert size: " << convert.size() << endl;
         convert[0] = p;
         perspectiveTransform(convert, convert, transf);  //maybe a simple matrix multiplication will be faster...    }
         cout << "Trasforming: " << p << " to: " << convert[0] << endl;
@@ -290,12 +289,12 @@ void find_contours( const Mat & img,
                     const Mat & original, 
                     const COLOR_TYPE color)
 {
-    #define MIN_AREA_SIZE 1000 //defined as pixels^2 (in our scenaria it means mm^2)
+    #define MIN_AREA_SIZE 2000 //defined as pixels^2 (in our scenaria it means mm^2)
     vector<vector<Point>> contours, contours_approx;
     vector<Point> approx_curve;
     vector<int> victimNum;
     
-    // The fuinction erode_dilation is not called (but eventually this is the right place)...
+    // The function erode_dilation is not called (but eventually this is the right place)...
     findContours(img, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE); // find external contours of each blob
 
     if(color==GREEN){cout << "\tNumber detection\n";}
@@ -316,8 +315,16 @@ void find_contours( const Mat & img,
         }
     }
     #ifdef WAIT
-        Mat tmpOriginal = original;
-        drawContours(original, contours_approx, -1, Scalar(0,170,220), 5, LINE_AA);
+        Scalar s;
+        switch(color){
+            case RED:   s = Scalar(0,0,255);    break;
+            case BLUE:  s = Scalar(255,0,0);    break;
+            case BLACK: s = Scalar(5,5,5);      break;
+            case GREEN: s = Scalar(0,255,0);    break;
+            case CYAN:  s = Scalar(255,255,0);  break;
+            default:    s = Scalar(0,170,220);  break;
+        }
+        drawContours(original, contours_approx, -1, s, 5, LINE_AA);
         my_imshow("Detected shape", original);
     #endif
 

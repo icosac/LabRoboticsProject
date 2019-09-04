@@ -21,9 +21,10 @@ int main(){
     }
     cout << "path size: " << path.size() << endl;
 
+    // Mat imgNew = acquireImage(false);
     Mat imgNew = imread(sett->maps(0).get(0).c_str());
     vector<double> state; //x, y, th
-    for(int i=0; i<10; i++){
+    for(int i=0; i<3; i++){
         cout << i+1 << "° ";
         
         if(!rp.localize(imgNew,  state)){
