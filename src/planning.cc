@@ -66,6 +66,9 @@ Mapp * createMapp(){
             obstacles.push_back( Obstacle(vvpObstacles[i]) );
         }
         map->addObjects(obstacles);
+        if(obstacles.size()==0){
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no obstacles for the creating of the map.", __LINE__, __FILE__);
+        }
     cout << "create3\n" << flush;
 
         // Victims
@@ -76,7 +79,10 @@ Mapp * createMapp(){
             victims.push_back( Victim(vvpVictims[i], i+1) );    // the victims are already sorted
         }
         map->addObjects(victims);
-    cout << "create4\n" << flush;
+        if(victims.size()==0){
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no victims for the creating of the map.", __LINE__, __FILE__);
+        }
+        cout << "create4\n" << flush;
 
         // Gate
         vector< vector<Point2<int> > > vvpGates;
@@ -86,6 +92,9 @@ Mapp * createMapp(){
             gates.push_back( Gate(vvpGates[i]) );
         }
         map->addObjects(gates);
+        if(gates.size()==0){
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no gate for the creating of the map.", __LINE__, __FILE__);
+        }
     cout << "create5\n" << flush;
 
     return(map);

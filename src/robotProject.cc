@@ -51,7 +51,13 @@ bool RobotProject::planPath(const Mat & img, ClipperLib::Path & path){
 
 bool RobotProject::localize(const Mat & img, vector<double> & state){
 	cout << "-> -> -> localize\n";
-	Point2<int> p = ::localize(img, true);
-	mywaitkey('q');
+	Configuration2<double> c = ::localize(img, true);
+	
+	state.resize(3);
+	state[0] = c.x();
+	state[1] = c.y();
+	state[2] = c.angle().toRad();
+
+	mywaitkey();
 	return(true);
 }

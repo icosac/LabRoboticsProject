@@ -105,7 +105,7 @@ set<pair<int, int> > Mapp::cellsFromSegment(const Point2<int> & p0, const Point2
 void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
     // consistency check
     if(vp.size()<3){
-        cout << "Invalid object less than 3 sides!\n";
+        throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Impossible to create the object, less than 3 sides.", __LINE__, __FILE__);
     } else{
         //min, max of y computed (need for min&max for each line)
         int yMin=lengthY, yMax=0;
@@ -121,12 +121,10 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
         int vectSize = iMax-iMin+1;
         int * minimums = new int[vectSize];
         int * maximums = new int[vectSize];
-        // vector<int> _maximums(vectSize); // fantastic example of a bug of std::vector
 
         for(int a=0; a<vectSize; a++){
             minimums[a] = dimX;
             maximums[a] = 0;
-            // _maximums[a]=0;
         }
 
         // for each side of the object
@@ -141,7 +139,6 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
 
                 minimums[i-iMin] = min(minimums[i-iMin], j);
                 maximums[i-iMin] = max(maximums[i-iMin], j);
-                // _maximums[i-iMin] = max(_maximums[i-iMin], j);
             }
         }
         //draw the boder
@@ -241,7 +238,6 @@ void Mapp::getGateCenter(vector<Point2<int> > & vp){
 OBJ_TYPE Mapp::getPointType(const Point2<int> & p){
     int j = p.x()/pixX;
     int i = p.y()/pixY;
-
     return(map[i][j]);
 }
 
@@ -333,7 +329,7 @@ vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> & p0, const Point2
 
     // function
     resetDistanceMap(distances);
-    vector<Point2<int> > tmp = minPathTwoPointsInternal(p0, p1, distances, parents);
+    vector<Point2<int> > vp = minPathTwoPointsInternal(p0, p1, distances, parents);
 
     //delete
     for(int i=0; i<dimY; i++){
@@ -343,7 +339,7 @@ vector<Point2<int> > Mapp::minPathTwoPoints(const Point2<int> & p0, const Point2
     delete[] distances;
     delete[] parents;
 
-    return( tmp );
+    return(vp);
 }
 
 /*! \brief Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
@@ -379,9 +375,7 @@ vector<Point2<int> > Mapp::minPathTwoPointsInternal(
     }
 
     // start iteration of the BFS
-    while   (  !toProcess.empty()
-              && found<=foundLimit
-            ){
+    while( !toProcess.empty() && found<=foundLimit ){
         // for each cell from the queue
         Point2<int> cell = toProcess.front();
         toProcess.pop();
@@ -419,7 +413,8 @@ vector<Point2<int> > Mapp::minPathTwoPointsInternal(
     vector<Point2<int> > computedParents;
 
     if(found==0){
-        cerr << "\n\n\t\tDestination of minPath not reached ! ! !\nSegment from: " << startP << " to " << endP << "\nNo solution exist ! ! !\n\n";
+        cout << "\n\n\t\tDestination of minPath not reached ! ! !\nSegment from: " << startP << " to " << endP << "\nNo solution exist ! ! !\n\n";
+        throw MyException<string>(EXCEPTION_TYPE::GENERAL, "MinPath can't reach the destination.", __LINE__, __FILE__);
     } else {
         // computing the vector of parents
         computedParents.push_back(endP);
@@ -525,7 +520,7 @@ vector<Point2<int> > Mapp::samplePointsEachNCells(const vector<Point2<int> > & p
         }
         vp.push_back(points.back());
     } else{
-        cout << "Invalid value of step and dimension of the vector.\n\n";
+        throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Invalid value of step and dimension of the vector.", __LINE__, __FILE__);
     }
     return(vp);    
 }
@@ -554,7 +549,8 @@ Mat Mapp::createMapRepresentation(){
                         color = Scalar(255, 0, 0); //BGR format
                         break;
                     default:
-                        break;
+                        throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Wrong type of the map, it is impossible to create the representation.", __LINE__, __FILE__);
+                    break;
                 }
                 // color the relative rectangle
                 rectangle(imageMap, Point(j*pixX, i*pixY), Point((j+1)*pixX, (i+1)*pixY), color, -1);

@@ -968,8 +968,8 @@ public:
   template<class T1>
   double distance (Point2<T1> B, DISTANCE_TYPE dist=EUCLIDEAN){
     switch(dist){
-      case EUCLIDEAN: return EuDistance(B);
-      case MANHATTAN: return MaDistance(B);
+      case EUCLIDEAN: return EuDistance(B); break;
+      case MANHATTAN: return MaDistance(B); break;
     }
   }
 
@@ -1060,11 +1060,13 @@ public:
     return true;
   }
 
+  //TODO Document
   template<class T1>
   Angle th (Point2<T1> P1, 
             Angle::ANGLE_TYPE type=Angle::RAD){
     return Angle(atan2((P1.y()-this->y()), (P1.x()-this->x())), type);
   }
+
 };
 
 

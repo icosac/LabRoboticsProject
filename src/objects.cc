@@ -80,6 +80,8 @@ void Object::computeCenter(){
         }
         center.x( (int)round((minX+maxX)/2.0) );
         center.y( (int)round((minY+maxY)/2.0) );
+    } else{
+        throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Not enough points for computing the centre.", __LINE__, __FILE__);
     }
 }
 
@@ -96,6 +98,8 @@ void Object::computeRadius(){
             }
         }
         this->radius = maxRadius;
+    } else{
+        throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Not enough points for computing the radius.", __LINE__, __FILE__);
     }
 }
 
@@ -120,7 +124,7 @@ void Object::offsetting(const int offset, const int limitX, const int limitY){
     co.AddPath(srcPoly, ClipperLib::jtSquare, ClipperLib::etClosedPolygon); 
     co.Execute(solution, offset);
 
-    // save back the new polygon
+    // save back the new polygon (convex)
     points.resize(0);
     for(unsigned i=0; i<solution.size(); i++){
         if( Orientation(solution[i]) ){ //returning true for outer polygons and false for hole polygons
@@ -131,7 +135,7 @@ void Object::offsetting(const int offset, const int limitX, const int limitY){
                 points.push_back( Point2<int>(x, y) );
             }
         } else{
-            cout << "Hole polygon found ! ! !\n\n\n";
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Hole polygon found, it must be convex.", __LINE__, __FILE__);
         }
     }
     computeCenter();

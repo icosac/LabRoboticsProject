@@ -97,13 +97,14 @@ void mywaitkey(const char c='q');
 void mywaitkey(string windowName);
 
 
-enum EXCEPTION_TYPE {EXISTS, SIZE};
+enum EXCEPTION_TYPE {GENERAL, EXISTS, SIZE};
 
 //TODO document
 template<class T>
 class MyException : public exception {
 private:
-  stringstream exceptString(T value) const {
+  template<class T1>
+  stringstream exceptString(T1 value) const {
     stringstream out;
     out << value;
     return out;
@@ -113,11 +114,16 @@ public:
   EXCEPTION_TYPE type;
   T a;
   int b;
-  MyException(EXCEPTION_TYPE _type, T _a, int _b) : type(_type), a(_a), b(_b) {}
+  string s;
+  MyException(EXCEPTION_TYPE _type, T _a, int _b, string _s = "???") : type(_type), a(_a), b(_b), s(_s){}
   
   const char * what() const throw (){
     string ret;
     switch(type){
+      case GENERAL: {
+        ret=NAME(type)+string("_Exception: ")+exceptString(a).str()+" at line: "+exceptString(b).str()+" in file: "+exceptString(s).str();
+        break;
+      }
       case EXISTS:{
         ret=NAME(type)+string("_Exception: element already exists: ")+exceptString(a).str()+" at pos: "+exceptString(b).str();
         break;
@@ -126,7 +132,8 @@ public:
         ret=NAME(tyoe)+string("_Exception: sizes are different: ")+exceptString(a).str()+"!="+exceptString(b).str();
       }
     }
-    return ret.c_str();
+    cout << ret.c_str() << endl;
+    return "";
   }
 };
 
