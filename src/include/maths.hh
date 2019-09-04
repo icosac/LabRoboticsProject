@@ -504,8 +504,8 @@ public:
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 
-extern double elapsedTuple;
-extern double elapsedTupleSet;
+// extern double elapsedTuple;
+// extern double elapsedTupleSet;
 /*! \bried This class allows the definition and storage of tuples of different dimensions. 
 		Functions to compute distance between tuples are also available.
 		\tparam T The type of elements to be stored.
@@ -535,7 +535,7 @@ public:
     auto start=Clock::now();
     elements.reserve(n);
     auto stop=Clock::now();
-    elapsedTupleSet+=CHRONO::getElapsed(start, stop);
+    // elapsedTupleSet+=CHRONO::getElapsed(start, stop);
     va_list ap;
     va_start(ap, _n);
     start=Clock::now();
@@ -550,7 +550,7 @@ public:
       elements.push_back(temp);
     }
     stop=Clock::now();
-    elapsedTuple+=CHRONO::getElapsed(start, stop);
+    // elapsedTuple+=CHRONO::getElapsed(start, stop);
   }
   
   // ~Tuple () {elements.clear();}

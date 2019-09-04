@@ -17,7 +17,7 @@ LIBS=-L./lib -lDubins $(INC)
 #condition for mac and linux
 ifneq (,$(findstring Darwin, $(OS)))
 	OPENCV=opencv3
-	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11  -O3
+	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags $(TESS) $(OPENCV)` -w -std=c++11  -O3
   	AR=libtool -static -o
 else 
 	CXXFLAGS=`pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -Wall -O3
@@ -36,8 +36,8 @@ MKDIR=mkdir -p
 
 #files that contain code
 #dubins and maths are only libraries
-# SRC=$(wildcard src/*.cc)
-SRC=src/utils.cc 
+SRC=$(wildcard src/*.cc)
+# SRC=src/utils.cc 
 #object files
 OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
 
