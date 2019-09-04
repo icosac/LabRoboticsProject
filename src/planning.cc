@@ -14,7 +14,7 @@ pair< vector<Point2<int> >, Mapp* > planning(const Mat & img){
     vector<Point2<int> > vp;
     cout << "plan2\n" << flush;
 
-    /*/ use this version when run from the laboratory... 
+    // use this version when run from the laboratory... 
     Configuration2<double> conf = localize(img, true);
     vp.push_back( Point2<int>( (int)conf.x(), (int)conf.y()) ); //robot initial location
     /*/ 
@@ -25,16 +25,16 @@ pair< vector<Point2<int> >, Mapp* > planning(const Mat & img){
     map->getGateCenter(vp);
     cout << "plan4\n" << flush;
 
-    // vector<vector<Point2<int> > > vvp = map->minPathNPoints(vp);
-    // cout << "plan5\n" << flush;
-    // vector<Point2<int> > cellsOfPath = map->sampleNPoints(vvp, 50);
-    // cout << "plan6\n" << flush;
+    vector<vector<Point2<int> > > vvp = map->minPathNPoints(vp);
+    cout << "plan5\n" << flush;
+    vector<Point2<int> > cellsOfPath = map->sampleNPoints(vvp, 50);
+    cout << "plan6\n" << flush;
 
-    // cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
-    // cout << "plan7\n" << flush;
+    cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
+    cout << "plan7\n" << flush;
 
-    // return( make_pair(cellsOfPath, map) );
-    return( make_pair( vector<Point2<int> >(), map) );
+    return( make_pair(cellsOfPath, map) );
+    // return( make_pair( vector<Point2<int> >(), map) );
 }
 
 /*! \brief The goal is to load, all the neccessary data, from files and create a Mapp that store everything.

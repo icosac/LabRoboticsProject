@@ -48,6 +48,12 @@ int detection(const bool _imgRead, const Mat * img){
     return(0);
 }
 
+/*! \brief The function simply store the value of the given matrix and allow the access to it from different function location. 
+    \details The transformation matrix are computed in the unwrapping phase and taken from the localization.
+
+    \param[in] transf It is the matrix that can be stored but also retrieved.
+    \param[in] get It is the flag that says if the given matrix need to be stored or retrieved.
+*/
 void getConversionParameters(Mat & transf, const bool get){
     cout << "getConversionParameters\n";
     static Mat tr;
@@ -59,6 +65,10 @@ void getConversionParameters(Mat & transf, const bool get){
     }
 }
 
+/*! \brief Identify the loation of the robot by acquiring the image from the default camera of the environment.
+
+    \returns The configuration of the robot in this exactly moment.
+*/
 Configuration2<double> localize(){
     //acquire the img and call the other localize function
     Mat img = acquireImage(false);
@@ -67,8 +77,14 @@ Configuration2<double> localize(){
 }
 
 vector<Point> robotShape;
+/*! \brief Identify the location of the robot respect to the given image.
+
+    \param[in] img It is the image where the robot need to be located.
+    \param[in] raw It is a boolean flag that says if the img is raw and need filters or not.
+    \returns The configuration of the robot in this exactly moment, according to the image.
+*/
 Configuration2<double> localize(const Mat & img, const bool raw){
-    cout << "0\n";
+    cout << "localize0\n" << flush;
 
     static bool firstRun = true;
     static Mat transf, camera_matrix, dist_coeffs;
@@ -79,7 +95,7 @@ Configuration2<double> localize(const Mat & img, const bool raw){
 
         getConversionParameters(transf, true);
     }
-    cout << "1\n";
+    cout << "localize1\n" << flush;
 
     if(raw){
         cout << "RAW RAW RAW RAW RAW RAW RAW RAW RAW RAW RAW RAW \n";
@@ -90,8 +106,8 @@ Configuration2<double> localize(const Mat & img, const bool raw){
         Mat hsv_img;
         cvtColor(fix_img, hsv_img, COLOR_BGR2HSV);
         #ifdef WAIT
-            my_imshow("Img for localize", hsv_img, true);
-            mywaitkey('w');
+            my_imshow("Img for localize", hsv_img, false);
+            mywaitkey('q');
         #endif
         
         shape_detection(hsv_img, CYAN);//find robot
@@ -99,7 +115,7 @@ Configuration2<double> localize(const Mat & img, const bool raw){
         cout << "CLEAN CLEAN CLEAN CLEAN CLEAN CLEAN CLEAN CLEAN \n";
         shape_detection(img, CYAN);//find robot
     }
-    cout << "2\n";
+    cout << "localize2\n" << flush;
 
     
     //compute barycenter of the robot
@@ -113,34 +129,41 @@ Configuration2<double> localize(const Mat & img, const bool raw){
     for(Point p : robotShape){
         cout << p.x << " - " << p.y << endl;  
     }
-    cout << "a\n";
+    cout << "localize A\n" << flush;
     // apply conversion to the right reference system
     // https://stackoverflow.com/questions/30194211/opencv-applying-affine-transform-to-single-points-rather-than-entire-image
-    /*/ 
-    perspectiveTransform(robotShape, vpOut, transf);  //maybe a simple matrix multiplication will be faster...
+    // 
+    vector<Point2f> convert(1);
+    for(Point p : robotShape){
+        cout << "convert size: " << convert.size() << endl;
+        convert[0] = p;
+        perspectiveTransform(convert, convert, transf);  //maybe a simple matrix multiplication will be faster...    }
+        cout << "Trasforming: " << p << " to: " << convert[0] << endl;
+        vpOut.push_back(convert[0]);
+    }
+    cout << "vpOut size: " << vpOut.size() << endl;
     /*/
     for(Point p : robotShape) 
         vpOut.push_back(Point2f((float)p.x, (float)p.y));
     //*/
-    cout << "b\n";
+    cout << "localize B\n" << flush;
     double xAvg=0, yAvg=0;
     for(Point p : vpOut){
         xAvg += p.x;
         yAvg += p.y;
     }
-    xAvg /= robotShape.size()*1.0;
-    yAvg /= robotShape.size()*1.0;
+    xAvg /= vpOut.size()*1.0;
+    yAvg /= vpOut.size()*1.0;
 
-    cout << "c\n";
+    cout << "localize C\n" << flush;
     Point2<double> confPoint(xAvg, yAvg);
     cout << "Barycenter (AKA centroid): " << confPoint << endl;
 
-    cout << "d\n";
+    cout << "localize D\n" << flush;
     double Dist=0;
     Point2<int> tail;
     for (Point p : vpOut){
         Point2<int> app = Point2<int>(p);
-        cout << "> " << app << endl;
         double dist=app.distance(confPoint);
         if (dist>Dist){
             tail=app;
@@ -148,13 +171,13 @@ Configuration2<double> localize(const Mat & img, const bool raw){
         }
     }
 
-    cout << "e\n";
+    cout << "localize E\n" << flush;
     Configuration2<double> conf(confPoint, tail.th(confPoint));
     cout << "tail of the robot: " << tail << endl;
     cout << "New robot position:     " << conf.point() << ", " << conf.angle().toDeg() << "° " << conf.angle().toRad()/3.14 << "pi" << endl;
-    cout << "f\n";
-    mywaitkey('w');
-    cout << "g\n";
+    cout << "localize F\n" << flush;
+    mywaitkey('q');
+    cout << "localize G\n" << flush;
     return(conf);
 }
 

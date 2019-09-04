@@ -9,7 +9,7 @@ RobotProject::RobotProject(){
 	// calibration(); //BUG????!?!?!?!?!?!??!?!?!
 
 	cout << endl <<"Configure" << endl;
-	configure(true);
+	configure(false);
 }
 
 bool RobotProject::preprocessMap(const Mat & img){
@@ -17,10 +17,10 @@ bool RobotProject::preprocessMap(const Mat & img){
 
 	Mat internalImg = img;
 	cout << endl << "unwrapping" << endl << flush;
-	unwrapping(false, &internalImg);
+	unwrapping(true, &internalImg);
 
 	cout << endl << "detection" << endl << flush;
-	detection(false, &internalImg);
+	detection(true, &internalImg);
 
 	return(true);
 }
@@ -33,19 +33,19 @@ bool RobotProject::planPath(const Mat & img, ClipperLib::Path & path){
 	vector<Point2<int> > pathPoints = tmpPair.first;
 	Mapp * map = tmpPair.second;
 
-	// Mat imageMap = map->createMapRepresentation();
+	Mat imageMap = map->createMapRepresentation();
 
-	// map->imageAddPoints(imageMap, pathPoints);
-	// map->imageAddSegments(imageMap, pathPoints);
+	map->imageAddPoints(imageMap, pathPoints);
+	map->imageAddSegments(imageMap, pathPoints);
 	delete map;
 
- //    fromVpToPath(pathPoints, path); //return
+    fromVpToPath(pathPoints, path); //return
 
-	// #ifdef WAIT
-	// 	namedWindow("Map", WINDOW_NORMAL);
-	// 	imshow("Map", imageMap);
-	// 	mywaitkey();
-	// #endif
+	#ifdef WAIT
+		namedWindow("Map", WINDOW_NORMAL);
+		imshow("Map", imageMap);
+		mywaitkey();
+	#endif
 	cout << "fine\n";
 	return(true);
 }
@@ -53,7 +53,7 @@ bool RobotProject::planPath(const Mat & img, ClipperLib::Path & path){
 
 bool RobotProject::localize(const Mat & img, vector<double> & state){
 	cout << "-> -> -> localize\n";
-
-	// Point2<int> p = ::localize(img, true);
+	Point2<int> p = ::localize(img, true);
+	mywaitkey('q');
 	return(true);
 }
