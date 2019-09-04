@@ -24,7 +24,7 @@ void my_imshow( const char* win_name,
 
     //const string s = win_name;
     #if CV_MAJOR_VERSION<4
-      namedWindow(win_name, CV_WINDOW_AUTOSIZE);
+      namedWindow(win_name, CV_WINDOW_NORMAL);
     #else 
       namedWindow(win_name, WINDOW_NORMAL);
     #endif

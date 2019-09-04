@@ -70,14 +70,12 @@ Mat acquireImage(const bool save){
       cout << "Frame grabbed successfully" << endl;
     #endif
   } else {
-    cout << "\n\nFail getting camera photo.\n\n" << endl;
-    return(frame);
+    throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Fail getting camera photo.", __LINE__, __FILE__);    
   }
   
   if(save){
     imwrite("data/map/01.jpg", frame);
   }
-  
   delete camera;
   return(frame);
 }

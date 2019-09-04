@@ -959,8 +959,8 @@ public:
   template<class T1>
   double distance (Point2<T1> B, DISTANCE_TYPE dist=EUCLIDEAN){
     switch(dist){
-      case EUCLIDEAN: return EuDistance(B);
-      case MANHATTAN: return MaDistance(B);
+      case EUCLIDEAN: return EuDistance(B); break;
+      case MANHATTAN: return MaDistance(B); break;
     }
   }
 

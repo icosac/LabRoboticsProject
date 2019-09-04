@@ -28,12 +28,7 @@ int unwrapping(const bool _imgRead, Mat * img){
         } else{
             or_img = *img;
         }
-        // Display original image
         
-        // #ifdef WAIT
-        //     my_imshow("Original", or_img, true);
-        //     mywaitkey();
-        // #endif
         // fix calibration with matrix
         Mat camera_matrix, dist_coeffs;
         loadCoefficients(calib_file, camera_matrix, dist_coeffs);
@@ -102,7 +97,6 @@ int unwrapping(const bool _imgRead, Mat * img){
                 rect2 = approx_polygon;
             }
           }
-
         }
 
         // I take the largest rectangle if the second one is very small, otherwise the second one
@@ -170,7 +164,7 @@ int unwrapping(const bool _imgRead, Mat * img){
         vector<Point> rectHigh;
         createPointsHigh(rect, rectHigh);
 
-        // wrap the perspective
+        //wrap the perspective
         static const int width = 1000;
         static const int height = (int)(width*1.5);
 
@@ -180,6 +174,7 @@ int unwrapping(const bool _imgRead, Mat * img){
         Mat corner_high_pixels = (Mat_<float>(4,2) << rectHigh[0].x, rectHigh[0].y, rectHigh[1].x, rectHigh[1].y, rectHigh[2].x, rectHigh[2].y, rectHigh[3].x, rectHigh[3].y);
         Mat transf_pixels =      (Mat_<float>(4,2) << xm, ym, xM, ym, xM, yM, xm, yM);
 
+        //create the transformation matrices
         Mat transformationFromHigh = getPerspectiveTransform(corner_high_pixels, transf_pixels);
         getConversionParameters(transformationFromHigh, false);
 
@@ -207,7 +202,6 @@ int unwrapping(const bool _imgRead, Mat * img){
         }
         
     }
-    // cout << "Before saving: " << *sett << endl;
     sett->writeToFile();
 return(0);
 }

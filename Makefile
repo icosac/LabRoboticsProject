@@ -20,7 +20,7 @@ ifneq (,$(findstring Darwin, $(OS)))
 	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags $(TESS) $(OPENCV)` -w -std=c++11  -O3
   	AR=libtool -static -o
 else 
-	CXXFLAGS=`pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -Wall -O3
+	CXXFLAGS=`pkg-config --cflags $(TESS) $(OPENCV)` -std=c++14 -Wall -O3
 	AR=ar rcs
 endif
 

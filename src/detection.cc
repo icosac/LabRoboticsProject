@@ -20,7 +20,7 @@ int detection(const bool _imgRead, const Mat * img){
             // Load unwrapped image from file
             un_img = imread(filename.c_str());
             if(un_img.empty()) {
-                throw runtime_error("Failed to open the image " + filename);
+                throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Failed to open the image " + filename, __LINE__, __FILE__);
             }
         } else{
             un_img = *img;
@@ -33,7 +33,7 @@ int detection(const bool _imgRead, const Mat * img){
         Mat hsv_img;
         cvtColor(un_img, hsv_img, COLOR_BGR2HSV);
 
-        //detection over the three values of the array
+        //detection over the four values of the array
         COLOR_TYPE tmpVectColors[] = {RED, GREEN, BLUE, CYAN};
         for(int i=0; i<4; i++){
             shape_detection(hsv_img, tmpVectColors[i]);
@@ -72,7 +72,6 @@ void getConversionParameters(Mat & transf, const bool get){
 Configuration2<double> localize(){
     //acquire the img and call the other localize function
     Mat img = acquireImage(false);
-
     return( localize(img, true) );
 }
 
@@ -97,31 +96,30 @@ Configuration2<double> localize(const Mat & img, const bool raw){
     }
     cout << "localize1\n" << flush;
 
+    Mat hsv_img;
     if(raw){
-        cout << "RAW RAW RAW RAW RAW RAW RAW RAW RAW RAW RAW RAW \n";
         Mat fix_img;
         undistort(img, fix_img, camera_matrix, dist_coeffs);
 
         //Convert from RGB to HSV= Hue-Saturation-Value
-        Mat hsv_img;
         cvtColor(fix_img, hsv_img, COLOR_BGR2HSV);
         #ifdef WAIT
             my_imshow("Img for localize", hsv_img, false);
             mywaitkey('q');
         #endif
-        
-        shape_detection(hsv_img, CYAN);//find robot
     } else{
-        cout << "CLEAN CLEAN CLEAN CLEAN CLEAN CLEAN CLEAN CLEAN \n";
-        shape_detection(img, CYAN);//find robot
+        hsv_img = img;
     }
+    shape_detection(hsv_img, CYAN);//find robot
     cout << "localize2\n" << flush;
-
     
     //compute barycenter of the robot
     //the barycenter is the mean if the points are 3. Otherwise we also compute the mean over x and y.
     if(robotShape.size()!=3){
-        cout << "Warning: The robot is not well defined (not 3 points found but " << robotShape.size() << ").\n\n";
+        cout << "Warning: The robot is not well defined (not 3 points found but " << robotShape.size() << ").\nThe baricenter is still computed as the average of all the points.\n\n";
+    } else if(robotShape.size()==0){
+        throw MyException<string>(EXCEPTION_TYPE::GENERAL, "The robot has no point that define it.", __LINE__, __FILE__);
+
     }
     cout << "robotShape size " << robotShape.size() << endl;
     cout << "From localize:\n";
@@ -131,20 +129,18 @@ Configuration2<double> localize(const Mat & img, const bool raw){
     }
     cout << "localize A\n" << flush;
     // apply conversion to the right reference system
-    // https://stackoverflow.com/questions/30194211/opencv-applying-affine-transform-to-single-points-rather-than-entire-image
-    // 
-    vector<Point2f> convert(1);
-    for(Point p : robotShape){
-        convert[0] = p;
-        perspectiveTransform(convert, convert, transf);  //maybe a simple matrix multiplication will be faster...    }
-        cout << "Trasforming: " << p << " to: " << convert[0] << endl;
-        vpOut.push_back(convert[0]);
+    // https://stackoverflow.com/questions/30194211/opencv-applying-affine-transform-to-single-points-rather-than-entire-image 
+    {
+        vector<Point2f> convert(1);
+        for(Point p : robotShape){
+            convert[0] = p;
+            perspectiveTransform(convert, convert, transf);  //maybe a simple matrix multiplication will be faster...    }
+            cout << "Trasforming: " << p << " to: " << convert[0] << endl;
+            vpOut.push_back(convert[0]);
+        }
     }
     cout << "vpOut size: " << vpOut.size() << endl;
-    /*/
-    for(Point p : robotShape) 
-        vpOut.push_back(Point2f((float)p.x, (float)p.y));
-    //*/
+
     cout << "localize B\n" << flush;
     double xAvg=0, yAvg=0;
     for(Point p : vpOut){
@@ -224,7 +220,8 @@ void shape_detection(const Mat & img, const COLOR_TYPE color){
             break;
         }
         default:
-            break;
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Wrong color type, ", __LINE__, __FILE__);
+        break;
     }
     
     Mat color_mask;
@@ -291,15 +288,17 @@ void find_contours( const Mat & img,
 {
     #define MIN_AREA_SIZE 2000 //defined as pixels^2 (in our scenaria it means mm^2)
     vector<vector<Point>> contours, contours_approx;
-    vector<Point> approx_curve;
+    vector<Point> approx_curve, approx_curveMax;
     vector<int> victimNum;
     
     // The function erode_dilation is not called (but eventually this is the right place)...
     findContours(img, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE); // find external contours of each blob
 
     if(color==GREEN){cout << "\tNumber detection\n";}
+    int areaMax = 0;
     for (vector<Point> contour : contours){
-        if (contourArea(contour) > MIN_AREA_SIZE){ // filter too small contours to remove false positives
+        int area = contourArea(contour);
+        if (area > MIN_AREA_SIZE){ // filter too small contours to remove false positives
             approxPolyDP(contour, approx_curve, EPS_CURVE, true); // fit a closed polygon (with less vertices) to the given contour, with an approximation accuracy (i.e. maximum distance between the original and the approximated curve) of EPS_CURVE (=5)
             
             if(color==GREEN){
@@ -309,10 +308,17 @@ void find_contours( const Mat & img,
                     contours_approx.push_back(approx_curve);
                     victimNum.push_back(num_detect);
                 }
-            } else{
+            } else if(color!=BLUE){
                 contours_approx.push_back(approx_curve);
             }
+            if(area>areaMax){
+                areaMax = area;
+                approx_curveMax = approx_curve;
+            }
         }
+    }
+    if(color==BLUE && areaMax!=0){
+        contours_approx.push_back(approx_curveMax);
     }
     #ifdef WAIT
         Scalar s;
@@ -334,19 +340,24 @@ void find_contours( const Mat & img,
             robotShape = contours_approx[0];
         } else{
             cout << "Warning: Not well defined robot filter.\n\tThere are " << contours_approx.size() << " possible blobs.\n" << flush;
-            cout << "The one with the biggest area will be choosen\n\n" << flush;
-            double area, minArea = contourArea(contours_approx[0]);
-            int maxIndex = 0;
-            for(unsigned int i=1; i<contours_approx.size(); i++){
-                area = contourArea(contours_approx[i]);
-                if(area>minArea){
-                    minArea = area;
-                    maxIndex = i;
+            if(contours_approx.size()>1){
+                cout << "The one with the biggest area will be choosen\n\n" << flush;
+                double area, minArea = contourArea(contours_approx[0]);
+                int maxIndex = 0;
+                for(unsigned int i=1; i<contours_approx.size(); i++){
+                    area = contourArea(contours_approx[i]);
+                    if(area>minArea){
+                        minArea = area;
+                        maxIndex = i;
+                    }
                 }
+                robotShape = contours_approx[maxIndex];
+            } else{
+                throw MyException<string>(EXCEPTION_TYPE::GENERAL, "No blob found for the robot, wrong filters", __LINE__, __FILE__);
             }
-            robotShape = contours_approx[maxIndex];
         }
-    } else{
+    }
+    if(color==GREEN){
         // sort the victims' vector of points according to their numbers.
         if(color==GREEN){
             vector<pair<int, int > > vicPoints;
@@ -360,7 +371,6 @@ void find_contours( const Mat & img,
             }
             contours_approx.swap(tmp);
         }
-
         save_convex_hull(contours_approx, color);
     }
 }
@@ -387,7 +397,9 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
         case RED:   {str="obstacles"; break;}
         case GREEN: {str="victims"; break;}
         case BLUE:  {str="gate"; break;}
-        default:    break;
+        default:    
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Wrong color type for saving on the file", __LINE__, __FILE__);
+        break;
     }
 
     fs << str << hull;
@@ -475,6 +487,7 @@ void crop_number_section(Mat & ROI){
             }
         }
         if(tmpContour.size()==0){
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "No points in tmpContour wrong setting of the filters.", __LINE__, __FILE__);
             return; // extreme rare case that can occours if the filters are not well setted (it cause core dumped)
         }
         convexHull(tmpContour, contour, true);//return points in clockwise order
