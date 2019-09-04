@@ -21,7 +21,7 @@ vector<string> getFiles(const string& path){
 	  }
 	  closedir (dir);
 	} else {
-	  cerr << "Could not open dir: " << path << ".";
+	  throw MyException<string>(GENERAL, ("Could not open dir: "+path), __LINE__, __FILE__);
 	}
 	return files;
 }
@@ -72,8 +72,8 @@ Settings::Settings(
  * @param _templatesFolder A String containing the path of the folder containing the number templates.
  * @param _mapsNames A Tuple containing the names of the maps. These are not paths but just names.
  * @param _mapsUnNames A Tuple containing the names of the undistorted maps. These are not paths but just names.
- * @param _calibrationFile A string containing the path to the file containing the data for the calibration.
  * @param _intrinsicCalibrationFile A string containing the path to the file containing the values of the matrix for the calibration.
+ * @param _calibrationFile A string containing the path to the file containing the data for the calibration.
  * @param _blackMask Filter for black.
  * @param _redMask Filter for red.
  * @param _greenMask Filter for green.
@@ -96,12 +96,11 @@ void Settings::save (
 			Filter _greenMask,
 			Filter _victimMask,
 			Filter _blueMask,
-      Filter _robotMask,
+			Filter _robotMask,
 			int _kernelSide,
 			string _convexHullFile,
 			vector<string> _templates)
 {
-	cout << "enter" << endl;
 	//Get Maps
 	this->mapsFolder=_mapsFolder;
 	for (auto el : _mapsNames){
@@ -119,8 +118,6 @@ void Settings::save (
 		}
 	}
 
-	cout << "fine mappe" << endl;
-
 	//Set all other values
 	this->intrinsicCalibrationFile=_intrinsicCalibrationFile;
 	this->calibrationFile=_calibrationFile;
@@ -129,11 +126,9 @@ void Settings::save (
 	this->greenMask=_greenMask;
 	this->victimMask=_victimMask;
 	this->blueMask=_blueMask;
-  this->robotMask=_robotMask,
+	this->robotMask=_robotMask,
 	this->kernelSide=_kernelSide;
 	this->convexHullFile=_convexHullFile;
-
-	cout << "variabili" << endl; 
 
 	//Get templates
 	this->templatesFolder=_templatesFolder;
@@ -162,11 +157,8 @@ inline void vecToFile (FileStorage& fs, vector<int> x){
  * @param _path The path of the file to write to.
  */
 void Settings::writeToFile(string _path){
-	cout << "writeToFile()" << endl;
-	COUT(_path)
 	FileStorage fs(_path, FileStorage::WRITE);
 	if (fs.isOpened()){
-		cout << "File is open" << endl;
 		fs << NAME(mapsFolder) << mapsFolder;
 
 		fs << NAME(mapsNames) << "[";
@@ -185,17 +177,11 @@ void Settings::writeToFile(string _path){
 		fs << NAME(calibrationFile) << calibrationFile;
 
 		fs << NAME(blackMask) << "["; vecToFile(fs, (vector<int>)blackMask); fs <<"]";
-		COUT(blackMask) 
 		fs << NAME(redMask) << "["; vecToFile(fs, (vector<int>)redMask); fs <<"]";
-		COUT(redMask) 
 		fs << NAME(greenMask) << "["; vecToFile(fs, (vector<int>)greenMask); fs <<"]";
-		COUT(greenMask) 
 		fs << NAME(blueMask) << "["; vecToFile(fs, (vector<int>)blueMask); fs <<"]";
-		COUT(blueMask) 
-	  fs << NAME(victimMask) << "["; vecToFile(fs, (vector<int>)victimMask); fs <<"]";
-	  COUT(victimMask) 
-	  fs << NAME(robotMask) << "["; vecToFile(fs, (vector<int>)robotMask); fs <<"]";
-	  COUT(robotMask) 
+		fs << NAME(victimMask) << "["; vecToFile(fs, (vector<int>)victimMask); fs <<"]";
+		fs << NAME(robotMask) << "["; vecToFile(fs, (vector<int>)robotMask); fs <<"]";
 
 		fs << NAME(kernelSide) << kernelSide;
 		fs << NAME(convexHullFile) << convexHullFile;
@@ -207,11 +193,10 @@ void Settings::writeToFile(string _path){
 			fs << templates.get(i);
 		}
 		fs << "]";
-		fs << "ciao";
 		fs.release();
 	}
 	else {
-		cout << "File non aperto" << endl;
+		throw MyException<string>(GENERAL, "Settings file could not be opened for writing.", __LINE__, __FILE__);
 	}
 }
 
@@ -562,7 +547,7 @@ void Settings::changeMask(COLOR color, Filter fil){
 			break;
 		}
 		default:{
-			cout << "Color is not correct" << endl;
+			throw MyException<string>(GENERAL, "Color is not correct", __LINE__, __FILE__);
 		}
 	}
 }

@@ -59,7 +59,6 @@ void update_trackers(){
     \return The Mat of the acquired frame.
 */
 Mat acquireImage(const bool save){
-  cout << "I get in" << endl;
   Mat frame;
   //Create camera object
   CameraCapture::input_options_t options(1080, 1920, 30, 0);
@@ -135,7 +134,7 @@ void configure (bool deploy, int img_id){
 
     //GREEN FILTER
     filter=sett->greenMask; update_trackers();
-    cout << "Green filter. " << endl;
+    cout << "Green filter. " << filter << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
@@ -145,7 +144,7 @@ void configure (bool deploy, int img_id){
 
     //VICTIMS FILTER
     filter=sett->victimMask; update_trackers();
-    cout << "Victim filter. " << endl;
+    cout << "Victim filter. " << filter << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
@@ -155,7 +154,7 @@ void configure (bool deploy, int img_id){
 
     //BLUE FILTER
     filter=sett->blueMask; update_trackers();
-    cout << "Blue filter. " << endl;
+    cout << "Blue filter. " << filter << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
@@ -175,7 +174,7 @@ void configure (bool deploy, int img_id){
 
     //ROBOT FILTER
     filter=sett->robotMask; update_trackers();
-    cout << "Robot filter. " << endl;
+    cout << "Robot filter. " << filter << endl;
     while ((char)waitKey(1)!='c'){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
@@ -183,8 +182,6 @@ void configure (bool deploy, int img_id){
     sett->changeMask(Settings::ROBOT, filter);
     cout << "Robot filter done: " << filter << endl;
   }
-
-  sett->save();
   sett->writeToFile();
 
   cout << *sett << endl;

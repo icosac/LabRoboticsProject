@@ -27,15 +27,23 @@ int unwrapping(const bool _imgRead, Mat * img){
             or_img = imread(filename.c_str());
         } else{
             or_img = *img;
-            cout << "prendo l'immagine" << endl;
         }
         
+        COUT(calib_file)
+        cout << "loadCoefficients" << endl;
         // fix calibration with matrix
         Mat camera_matrix, dist_coeffs;
         loadCoefficients(calib_file, camera_matrix, dist_coeffs);
 
+        cout << "loadCoefficients done" << endl;
+
         Mat fix_img;
+
+        COUT(camera_matrix)
+        COUT(dist_coeffs)
         undistort(or_img, fix_img, camera_matrix, dist_coeffs);
+
+        cout << "undistort" << endl;
 
         // Display fixed image
         #ifdef DEBUG
@@ -46,7 +54,7 @@ int unwrapping(const bool _imgRead, Mat * img){
         //Convert from RGB to HSV= Hue-Saturation-Value
         Mat hsv_img;
         cvtColor(fix_img, hsv_img, COLOR_BGR2HSV);
-
+        cout << "Conversion done" << endl;
         // Display HSV image
         #ifdef DEBUG
             my_imshow("HSVimage", hsv_img);
@@ -55,9 +63,11 @@ int unwrapping(const bool _imgRead, Mat * img){
         // Find black regions (filter on saturation and value)
         // HSV range opencv: Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]
         Mat black_mask;
+        COUT(sett->blackMask)
         inRange(hsv_img, sett->blackMask.Low(), sett->blackMask.High(), black_mask);
         #ifdef DEBUG
             my_imshow("BLACK_filter", black_mask);
+            mywaitkey();
         #endif
 
         // Find contours

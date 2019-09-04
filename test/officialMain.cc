@@ -1,18 +1,20 @@
 #include <robotProject.hh>
 #include <iostream>
 #include <unistd.h>
+#include <iostream>
+
 using namespace std;
 
 Settings *sett = new Settings();
 
 int main(){ 
     sett->cleanAndRead();
-    cout << "Initial Settings: " << endl << *sett << endl;
     cout << "Official Main:\n";
     RobotProject rp=RobotProject();
 
     Mat img = acquireImage(true);
     // Mat img = imread(sett->maps(0).get(0).c_str());
+    COUT(*sett)
     if(!rp.preprocessMap(img)){
         cout << "Error1\n";
     }

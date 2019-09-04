@@ -565,6 +565,7 @@ public:
     return ((_n>=0&&_n<size()) ? elements.at(_n) : T());
   }
   
+  //TODO document
   int find (T _el){
     for (int i=0; i<this->size(); i++){
       if (this->get(i)==_el){
@@ -582,15 +583,7 @@ public:
   	elements.push_back(_new);
   }
   
-  int find (T _el){
-    for (int i=0; i<this->size(); i++){
-      if (this->get(i)==_el){
-        return i;
-      }
-    }
-    return -1;
-  }
-
+  //TODO document
   void addIfNot(T _el, bool _throw=false){
     int id=find(_el); 
     if (id<0){
@@ -963,7 +956,7 @@ public:
   		\tparan T1 The type of the elements in the second `Point2`.
   		\param[in] B The second `Point2` to use for computing the distance.
   		\param[in] dist The type of distance to be computed.
-  		\returns The distance between the two points.
+  		\returns The distance between the two points. If something went wrong the return is -1.0.
   */
   template<class T1>
   double distance (Point2<T1> B, DISTANCE_TYPE dist=EUCLIDEAN){
@@ -971,6 +964,7 @@ public:
       case EUCLIDEAN: return EuDistance(B); break;
       case MANHATTAN: return MaDistance(B); break;
     }
+    return -1.0;
   }
 
   /*! \brief Function that compute the Manhattan Distance between two points. 

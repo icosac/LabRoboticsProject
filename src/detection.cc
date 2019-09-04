@@ -227,9 +227,7 @@ void shape_detection(const Mat & img, const COLOR_TYPE color){
             throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Wrong color type, ", __LINE__, __FILE__);
         break;
     }
-    COUT(mask)
-    COUT(mask.Low())
-    COUT(mask.High())
+    cout << "Maschera in detection: " << mask << endl;
     Mat color_mask;
     inRange(img, mask.Low(), mask.High(), color_mask);
     
@@ -255,7 +253,9 @@ void erode_dilation(Mat & img, const COLOR_TYPE color){
     // 1green && 3black -> smooth - dilation - smooth - erode - treshold
 
     //smooth -> gaussian blur
-    GaussianBlur(img, img, Size(erode_side, erode_side), 1, 1);
+    // if (color!=BLACK) {
+        GaussianBlur(img, img, Size(erode_side, erode_side), 1, 1);
+    // }
 
     if(color==RED || color==BLUE || color==BLACK){
         // Apply the erode operation
@@ -276,7 +276,7 @@ void erode_dilation(Mat & img, const COLOR_TYPE color){
     threshold(img, img, 254, 255, 0 ); // threshold and binarize the image, to suppress some noise
 }
 
-bool _compare (  const pair<int, int > & a, 
+bool _compare ( const pair<int, int > & a, 
                 const pair<int, int > & b ){ 
     return (a.first<b.first); 
 }
@@ -396,21 +396,22 @@ void save_convex_hull(  const vector<vector<Point>> & contours,
         hull.push_back(hull_i);
     }
     string save_file = sett->convexHullFile;
+    COUT(save_file)
     static FileStorage fs(save_file, FileStorage::WRITE);
 
     string str;
     switch(color){
-        case RED:   {str="obstacles"; break;}
-        case GREEN: {str="victims"; break;}
-        case BLUE:  {str="gate"; break;}
+        case RED:   {str="obstacles"; cout << "Writing: " << str << endl; break;}
+        case GREEN: {str="victims"; cout << "Writing: " << str << endl; break;}
+        case BLUE:  {str="gate"; cout << "Writing: " << str << endl; break;}
         default:    
             throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Wrong color type for saving on the file", __LINE__, __FILE__);
-        break;
     }
 
     fs << str << hull;
     
     if (color==BLUE){
+        cout << "Release" << endl;
         fs.release();
     }
 }
@@ -433,6 +434,7 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
         my_imshow("before black filter", processROI, true);
     #endif
     Filter mask = sett->victimMask;
+    COUT(mask)
     inRange(processROI, mask.Low(), mask.High(), processROI);
     #ifdef WAIT
         my_imshow("before erode", processROI);
