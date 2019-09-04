@@ -1,0 +1,252 @@
+\hypertarget{detection_8cc}{}\section{src/detection.cc File Reference}
+\label{detection_8cc}\index{src/detection.cc@{src/detection.cc}}
+{\ttfamily \#include \char`\"{}detection.\+hh\char`\"{}}\newline
+Include dependency graph for detection.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{detection_8cc__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{detection_8cc_a0cfe53ea953c48d0949ffb63574ccd3b}{E\+P\+S\+\_\+\+C\+U\+R\+VE}}~5
+\begin{DoxyCompactList}\small\item\em Given an image, in black/white format, identify all the borders that delimit the shapes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{detection_8cc_aee3415ba4422db269c18fb6819a8d7a8}{M\+I\+N\+\_\+\+A\+R\+E\+A\+\_\+\+S\+I\+ZE}}~1000
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{detection_8cc_a17e13c447692201697b084a1906cf6fb}{detection}} ()
+\begin{DoxyCompactList}\small\item\em Loads some images and detects shapes according to different colors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{detection_8cc_a6dd0ff536f981bf8130318bce3c86e33}{compute\+Conversion\+Parameters}} (Mat \&transf)
+\item 
+\mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \mbox{\hyperlink{detection_8cc_a94b68d9d23169964a60add8408f19235}{localize}} ()
+\item 
+\mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \mbox{\hyperlink{detection_8cc_a51f1fe2f187aa38e68edb89e945d01c0}{localize}} (const Mat \&img)
+\item 
+void \mbox{\hyperlink{detection_8cc_a50993b0aa4f01d89a4e5d0aef4e1e5f4}{load\+\_\+number\+\_\+template}} ()
+\begin{DoxyCompactList}\small\item\em Load some templates and save them in the global variable \textquotesingle{}templates\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{detection_8cc_a51c055450044eff527349c24c2747cac}{shape\+\_\+detection}} (const Mat \&img, const \mbox{\hyperlink{detection_8hh_aef17e8300db831cb13df4975928a52cb}{C\+O\+L\+O\+R\+\_\+\+T\+Y\+PE}} color)
+\begin{DoxyCompactList}\small\item\em Detect shapes inside the image according to the variable \textquotesingle{}color\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{detection_8cc_a29a46cee302e076e220603d6bb55f8b5}{erode\+\_\+dilation}} (Mat \&img, const \mbox{\hyperlink{detection_8hh_aef17e8300db831cb13df4975928a52cb}{C\+O\+L\+O\+R\+\_\+\+T\+Y\+PE}} color)
+\begin{DoxyCompactList}\small\item\em It apply some filtering function for isolate the subject and remove the noise. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{detection_8cc_a2d5323bc3c92d79aa9ea3e74337d3296}{\+\_\+compare}} (const pair$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&a, const pair$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&b)
+\item 
+void \mbox{\hyperlink{detection_8cc_a26fa1540618b22726a42c239030662b4}{find\+\_\+contours}} (const Mat \&img, const Mat \&original, const \mbox{\hyperlink{detection_8hh_aef17e8300db831cb13df4975928a52cb}{C\+O\+L\+O\+R\+\_\+\+T\+Y\+PE}} color)
+\begin{DoxyCompactList}\small\item\em Given an image, in black/white format, identify all the borders that delimit the shapes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{detection_8cc_a79a1c18ddf68e72685d61376ff24948b}{save\+\_\+convex\+\_\+hull}} (const vector$<$ vector$<$ Point $>$$>$ \&contours, const \mbox{\hyperlink{detection_8hh_aef17e8300db831cb13df4975928a52cb}{C\+O\+L\+O\+R\+\_\+\+T\+Y\+PE}} color)
+\begin{DoxyCompactList}\small\item\em Given some vector save it in a xml file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{detection_8cc_a785fcf35ca81d113a1ea3d831fbdbc22}{number\+\_\+recognition}} (Rect blob, const Mat \&base)
+\begin{DoxyCompactList}\small\item\em Detect a number on an image inside a region of interest. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{detection_8cc_a2a7fdd973151b59a6b324eaf4f70fdfe}{crop\+\_\+number\+\_\+section}} (Mat \&R\+OI)
+\begin{DoxyCompactList}\small\item\em Given an image identify the region of interest(\+R\+O\+I) and crop it out. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ Mat $>$ \mbox{\hyperlink{detection_8cc_ad6ec2d6b7fce088fa5e9f335f9a6ed38}{templates}}
+\item 
+vector$<$ Point $>$ \mbox{\hyperlink{detection_8cc_acc76a3a441cb348e90dad93b420dc006}{robot\+Shape}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{detection_8cc_a0cfe53ea953c48d0949ffb63574ccd3b}\label{detection_8cc_a0cfe53ea953c48d0949ffb63574ccd3b}} 
+\index{detection.cc@{detection.cc}!EPS\_CURVE@{EPS\_CURVE}}
+\index{EPS\_CURVE@{EPS\_CURVE}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{EPS\_CURVE}{EPS\_CURVE}}
+{\footnotesize\ttfamily \#define E\+P\+S\+\_\+\+C\+U\+R\+VE~5}
+
+
+
+Given an image, in black/white format, identify all the borders that delimit the shapes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & It is an image in H\+SV format at the base of the elaboration process. \\
+\hline
+\mbox{\texttt{ out}}  & {\em original} & It is the original source of \textquotesingle{}img\textquotesingle{}, it is used for showing the detected contours. \\
+\hline
+\mbox{\texttt{ in}}  & {\em color} & It is the type of reference color. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{detection_8cc_aee3415ba4422db269c18fb6819a8d7a8}\label{detection_8cc_aee3415ba4422db269c18fb6819a8d7a8}} 
+\index{detection.cc@{detection.cc}!MIN\_AREA\_SIZE@{MIN\_AREA\_SIZE}}
+\index{MIN\_AREA\_SIZE@{MIN\_AREA\_SIZE}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{MIN\_AREA\_SIZE}{MIN\_AREA\_SIZE}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+A\+R\+E\+A\+\_\+\+S\+I\+ZE~1000}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{detection_8cc_a2d5323bc3c92d79aa9ea3e74337d3296}\label{detection_8cc_a2d5323bc3c92d79aa9ea3e74337d3296}} 
+\index{detection.cc@{detection.cc}!\_compare@{\_compare}}
+\index{\_compare@{\_compare}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{\_compare()}{\_compare()}}
+{\footnotesize\ttfamily bool \+\_\+compare (\begin{DoxyParamCaption}\item[{const pair$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{a,  }\item[{const pair$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{detection_8cc_a6dd0ff536f981bf8130318bce3c86e33}\label{detection_8cc_a6dd0ff536f981bf8130318bce3c86e33}} 
+\index{detection.cc@{detection.cc}!computeConversionParameters@{computeConversionParameters}}
+\index{computeConversionParameters@{computeConversionParameters}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{computeConversionParameters()}{computeConversionParameters()}}
+{\footnotesize\ttfamily void compute\+Conversion\+Parameters (\begin{DoxyParamCaption}\item[{Mat \&}]{transf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{detection_8cc_a2a7fdd973151b59a6b324eaf4f70fdfe}\label{detection_8cc_a2a7fdd973151b59a6b324eaf4f70fdfe}} 
+\index{detection.cc@{detection.cc}!crop\_number\_section@{crop\_number\_section}}
+\index{crop\_number\_section@{crop\_number\_section}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{crop\_number\_section()}{crop\_number\_section()}}
+{\footnotesize\ttfamily void crop\+\_\+number\+\_\+section (\begin{DoxyParamCaption}\item[{Mat \&}]{R\+OI }\end{DoxyParamCaption})}
+
+
+
+Given an image identify the region of interest(\+R\+O\+I) and crop it out. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em R\+OI} & Is the image that the function will going to elaborate. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{detection_8cc_a17e13c447692201697b084a1906cf6fb}\label{detection_8cc_a17e13c447692201697b084a1906cf6fb}} 
+\index{detection.cc@{detection.cc}!detection@{detection}}
+\index{detection@{detection}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{detection()}{detection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} detection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Loads some images and detects shapes according to different colors. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 if the function reach the end. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{detection_8cc_a29a46cee302e076e220603d6bb55f8b5}\label{detection_8cc_a29a46cee302e076e220603d6bb55f8b5}} 
+\index{detection.cc@{detection.cc}!erode\_dilation@{erode\_dilation}}
+\index{erode\_dilation@{erode\_dilation}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{erode\_dilation()}{erode\_dilation()}}
+{\footnotesize\ttfamily void erode\+\_\+dilation (\begin{DoxyParamCaption}\item[{Mat \&}]{img,  }\item[{const \mbox{\hyperlink{detection_8hh_aef17e8300db831cb13df4975928a52cb}{C\+O\+L\+O\+R\+\_\+\+T\+Y\+PE}}}]{color }\end{DoxyParamCaption})}
+
+
+
+It apply some filtering function for isolate the subject and remove the noise. 
+
+An example of the sub functions called are\+: Gaussian\+Blur, Erosion, Dilation and Threshold.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em img} & Is the image on which the function apply the filtering. \\
+\hline
+\mbox{\texttt{ in}}  & {\em color} & It is the type of reference color. According to the color the filtering functions apply can change in the type and in the order. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{detection_8cc_a26fa1540618b22726a42c239030662b4}\label{detection_8cc_a26fa1540618b22726a42c239030662b4}} 
+\index{detection.cc@{detection.cc}!find\_contours@{find\_contours}}
+\index{find\_contours@{find\_contours}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{find\_contours()}{find\_contours()}}
+{\footnotesize\ttfamily void find\+\_\+contours (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{const Mat \&}]{original,  }\item[{const \mbox{\hyperlink{detection_8hh_aef17e8300db831cb13df4975928a52cb}{C\+O\+L\+O\+R\+\_\+\+T\+Y\+PE}}}]{color }\end{DoxyParamCaption})}
+
+
+
+Given an image, in black/white format, identify all the borders that delimit the shapes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & Is an image in H\+SV format at the base of the elaboration process. \\
+\hline
+\mbox{\texttt{ out}}  & {\em original} & It is the original source of \textquotesingle{}img\textquotesingle{}, it is used for showing the detected contours. \\
+\hline
+\mbox{\texttt{ in}}  & {\em color} & It is the type of reference color. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{detection_8cc_a50993b0aa4f01d89a4e5d0aef4e1e5f4}\label{detection_8cc_a50993b0aa4f01d89a4e5d0aef4e1e5f4}} 
+\index{detection.cc@{detection.cc}!load\_number\_template@{load\_number\_template}}
+\index{load\_number\_template@{load\_number\_template}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{load\_number\_template()}{load\_number\_template()}}
+{\footnotesize\ttfamily void load\+\_\+number\+\_\+template (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Load some templates and save them in the global variable \textquotesingle{}templates\textquotesingle{}. 
+
+\mbox{\Hypertarget{detection_8cc_a94b68d9d23169964a60add8408f19235}\label{detection_8cc_a94b68d9d23169964a60add8408f19235}} 
+\index{detection.cc@{detection.cc}!localize@{localize}}
+\index{localize@{localize}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{localize()}{localize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_point2}{Point2}}$<$\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}$>$ localize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{detection_8cc_a51f1fe2f187aa38e68edb89e945d01c0}\label{detection_8cc_a51f1fe2f187aa38e68edb89e945d01c0}} 
+\index{detection.cc@{detection.cc}!localize@{localize}}
+\index{localize@{localize}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{localize()}{localize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_point2}{Point2}}$<$\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}$>$ localize (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{detection_8cc_a785fcf35ca81d113a1ea3d831fbdbc22}\label{detection_8cc_a785fcf35ca81d113a1ea3d831fbdbc22}} 
+\index{detection.cc@{detection.cc}!number\_recognition@{number\_recognition}}
+\index{number\_recognition@{number\_recognition}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{number\_recognition()}{number\_recognition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} number\+\_\+recognition (\begin{DoxyParamCaption}\item[{Rect}]{blob,  }\item[{const Mat \&}]{base }\end{DoxyParamCaption})}
+
+
+
+Detect a number on an image inside a region of interest. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em blob} & Identify the region of interest inside the image \textquotesingle{}base\textquotesingle{}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em base} & Is the image where the function will going to search the number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number recognise, \textquotesingle{}-\/1\textquotesingle{} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{detection_8cc_a79a1c18ddf68e72685d61376ff24948b}\label{detection_8cc_a79a1c18ddf68e72685d61376ff24948b}} 
+\index{detection.cc@{detection.cc}!save\_convex\_hull@{save\_convex\_hull}}
+\index{save\_convex\_hull@{save\_convex\_hull}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{save\_convex\_hull()}{save\_convex\_hull()}}
+{\footnotesize\ttfamily void save\+\_\+convex\+\_\+hull (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ Point $>$$>$ \&}]{contours,  }\item[{const \mbox{\hyperlink{detection_8hh_aef17e8300db831cb13df4975928a52cb}{C\+O\+L\+O\+R\+\_\+\+T\+Y\+PE}}}]{color }\end{DoxyParamCaption})}
+
+
+
+Given some vector save it in a xml file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em contours} & Is a vector that is saved in a xml file. \\
+\hline
+\mbox{\texttt{ in}}  & {\em color} & It is the type of reference color, according to which the function decide if saved (\textquotesingle{}color==G\+R\+E\+EN\textquotesingle{}) or not (\textquotesingle{}otherwise\textquotesingle{}) the vector \textquotesingle{}victims\textquotesingle{}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{detection_8cc_a51c055450044eff527349c24c2747cac}\label{detection_8cc_a51c055450044eff527349c24c2747cac}} 
+\index{detection.cc@{detection.cc}!shape\_detection@{shape\_detection}}
+\index{shape\_detection@{shape\_detection}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{shape\_detection()}{shape\_detection()}}
+{\footnotesize\ttfamily void shape\+\_\+detection (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{const \mbox{\hyperlink{detection_8hh_aef17e8300db831cb13df4975928a52cb}{C\+O\+L\+O\+R\+\_\+\+T\+Y\+PE}}}]{color }\end{DoxyParamCaption})}
+
+
+
+Detect shapes inside the image according to the variable \textquotesingle{}color\textquotesingle{}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & Image on which the research will done. \\
+\hline
+\mbox{\texttt{ in}}  & {\em color} & It is the type of reference color. These color identify the possible spectrum that the function search on the image. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{detection_8cc_acc76a3a441cb348e90dad93b420dc006}\label{detection_8cc_acc76a3a441cb348e90dad93b420dc006}} 
+\index{detection.cc@{detection.cc}!robotShape@{robotShape}}
+\index{robotShape@{robotShape}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{robotShape}{robotShape}}
+{\footnotesize\ttfamily vector$<$Point$>$ robot\+Shape}
+
+\mbox{\Hypertarget{detection_8cc_ad6ec2d6b7fce088fa5e9f335f9a6ed38}\label{detection_8cc_ad6ec2d6b7fce088fa5e9f335f9a6ed38}} 
+\index{detection.cc@{detection.cc}!templates@{templates}}
+\index{templates@{templates}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{templates}{templates}}
+{\footnotesize\ttfamily vector$<$Mat$>$ templates}
+

@@ -1,0 +1,726 @@
+\hypertarget{class_mapp}{}\section{Mapp Class Reference}
+\label{class_mapp}\index{Mapp@{Mapp}}
+
+
+{\ttfamily \#include $<$map.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_mapp_a748ffcb20519591210f19458c90f482a}{Mapp}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+lengthX=1000, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+lengthY=1500, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+pixX=\mbox{\hyperlink{class_mapp_a8216044ff8e95ba054985e26ae1c75f8}{cell\+Size}}, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+pixY=\mbox{\hyperlink{class_mapp_a8216044ff8e95ba054985e26ae1c75f8}{cell\+Size}}, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+border\+Size=\mbox{\hyperlink{class_mapp_aef8bde83114714a4ce4ad9d13766e761}{border\+Size\+Default}}, const vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&vvp=vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$())
+\begin{DoxyCompactList}\small\item\em Constructor of the class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_ad480beefb37fe0e3cab870fea0a4a1f7}{add\+Object}} (const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp, const \mbox{\hyperlink{map_8hh_a714b9c2c276fbae637fee36453d9121e}{O\+B\+J\+\_\+\+T\+Y\+PE}} type)
+\begin{DoxyCompactList}\small\item\em Given an obstacle it is added to the map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_ab235ba9946b7c5e44a4914ca26f6d5fc}{add\+Objects}} (const vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&vvp, const \mbox{\hyperlink{map_8hh_a714b9c2c276fbae637fee36453d9121e}{O\+B\+J\+\_\+\+T\+Y\+PE}} type)
+\begin{DoxyCompactList}\small\item\em Given a vector objects it is added them to the map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_a346993a223bdfec975bb6365ef640c2c}{add\+Objects}} (const vector$<$ \mbox{\hyperlink{class_obstacle}{Obstacle}} $>$ \&objs)
+\begin{DoxyCompactList}\small\item\em Given a vector of obstacles adds them to the map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_a46385479c68f30deb76adbf9a5cff9c3}{add\+Objects}} (const vector$<$ \mbox{\hyperlink{class_victim}{Victim}} $>$ \&objs)
+\begin{DoxyCompactList}\small\item\em Given a vector of victims adds them to the map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_a99b3e0e922c4cd5416343ad7e08d8e72}{add\+Objects}} (const vector$<$ \mbox{\hyperlink{class_gate}{Gate}} $>$ \&objs)
+\begin{DoxyCompactList}\small\item\em Given a vector of gates (tipically this vector contain only one element) adds it to the map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_a3b3ad207536bfb80c9ea2fd254bfdd80}{get\+Victim\+Centers}} (vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp)
+\begin{DoxyCompactList}\small\item\em Add to the given vector the set of centers of the victims of the map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_a7b17d1a5e8567021465397088e1dea8d}{get\+Gate\+Center}} (vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp)
+\begin{DoxyCompactList}\small\item\em Add to the given vector the center of the gate of the map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{map_8hh_a714b9c2c276fbae637fee36453d9121e}{O\+B\+J\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{class_mapp_ac6341641bd67502eef7c025cb4cd1c71}{get\+Point\+Type}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p)
+\begin{DoxyCompactList}\small\item\em Given a point return the type (status) of the cell in the map that contain it. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_mapp_ade6135be96d93778352a7a313793adf3}{check\+Segment}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p0, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p1)
+\begin{DoxyCompactList}\small\item\em Given a segment, the function answer if that segment cross a cell with obstacles. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_mapp_a8c48e05ec516f82efa0b1b7febe41292}{check\+Segment\+Collision\+With\+Type}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p0, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p1, const \mbox{\hyperlink{map_8hh_a714b9c2c276fbae637fee36453d9121e}{O\+B\+J\+\_\+\+T\+Y\+PE}} type)
+\begin{DoxyCompactList}\small\item\em Given a segment and a type, the function answer if that segment cross a cell with the given type. \end{DoxyCompactList}\item 
+vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \mbox{\hyperlink{class_mapp_a35ab624c5ab00d577580f132238147d8}{min\+Path\+N\+Points}} (const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp)
+\begin{DoxyCompactList}\small\item\em Given a couple of points the function compute the minimum path that connect them avoiding the intersection of O\+B\+ST and B\+O\+DA. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{class_mapp_a5b6a630049118dbfa22604f513db11f1}{min\+Path\+Two\+Points}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p0, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p1)
+\begin{DoxyCompactList}\small\item\em Given a couple of points the function compute the minimum path that connect them avoiding the intersection of O\+B\+ST and B\+O\+DA. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{class_mapp_a34bd022816ce083d4bb125119f47f470}{sample\+N\+Points}} (const vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&vvp, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} n=\mbox{\hyperlink{class_mapp_addd9fcc5e7db2c40038ab32ecf29171c}{n\+Points}})
+\begin{DoxyCompactList}\small\item\em It extracts from the given vector of vector of points, a subset of points that always contains the first one and the last one of each vector. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{class_mapp_aaa8b4ed2cacdfdeb89d2b30b3684a535}{sample\+N\+Points}} (const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&points, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} n)
+\begin{DoxyCompactList}\small\item\em It extracts from the given vector of points, a subset of points that always contains the first one and the last one. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{class_mapp_a487a24310b4ee3babffc06a60c5893f3}{sample\+Points\+Each\+N\+Cells}} (const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&points, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} step)
+\begin{DoxyCompactList}\small\item\em It extracts from the given vector of points, a subset of points that always contains the first one and the last one. \end{DoxyCompactList}\item 
+Mat \mbox{\hyperlink{class_mapp_ab68b0efc22947a8f78b3436bbfe3330c}{create\+Map\+Representation}} ()
+\begin{DoxyCompactList}\small\item\em The function create an image (Mat) with the dimensions of the \mbox{\hyperlink{class_mapp}{Mapp}} and all its objects inside. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_a4c1148c6feadeb789a6bf7c4ac6569e9}{image\+Add\+Segments}} (Mat \&image, const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} thickness=3)
+\begin{DoxyCompactList}\small\item\em It add to the given image a set of (n-\/1) segments specified by the n points given. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_ac82b6ba32304e9985365fbabe9a6d046}{image\+Add\+Segment}} (Mat \&image, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p0, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p1, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} thickness)
+\begin{DoxyCompactList}\small\item\em It add to the given image the segment defined from p0 to p1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_a1029eed72b4607bb9be933c124a82ab6}{image\+Add\+Points}} (Mat \&image, const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} radius=7)
+\begin{DoxyCompactList}\small\item\em It add to the given image a vector of points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_a198e313f3473420c99e6206645f94693}{image\+Add\+Point}} (Mat \&image, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} radius=7)
+\begin{DoxyCompactList}\small\item\em It add to the given image a point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_ab795b79c5d655f6a62303c4a415ee73c}{print\+Map}} ()
+\begin{DoxyCompactList}\small\item\em Print to the terminal the main informations of the Map, and its grid representation. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_mapp_ad38f31eac2ad66836325c152db1f88c3}{matrix\+To\+String}} ()
+\begin{DoxyCompactList}\small\item\em Generate a string (a grid of pixels) that represent the matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_a0405773fd644d183c603b569e9957248}{print\+Dimensions}} ()
+\begin{DoxyCompactList}\small\item\em Print to the terminal the main informations of the Map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+set$<$ pair$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{class_mapp_a934e0d553769c2735e6193d1b43ddf87}{cells\+From\+Segment}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p0, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p1)
+\begin{DoxyCompactList}\small\item\em Given a segment (from p0 to p1) it return a set of all the cells that are partly cover from that segment. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{class_mapp_ae763f86dcfa9c33bda3c58d49419d3e2}{min\+Path\+Two\+Points\+Internal}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&startP, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&endP, double $\ast$$\ast$distances, \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $\ast$$\ast$parents)
+\begin{DoxyCompactList}\small\item\em Given a couple of points the function compute the minimum path that connect them avoiding the intersection of O\+B\+ST and B\+O\+DA. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mapp_a6dac7b6cd03ed61e93aaa343c51862ea}{reset\+Distance\+Map}} (double $\ast$$\ast$distances, const double value=\mbox{\hyperlink{class_mapp_ae6b2f015604d9f3e34c7702aea081e08}{base\+Distance}})
+\begin{DoxyCompactList}\small\item\em It reset, to the given value, the matrix of distances, to compute again the min\+Path search. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{map_8hh_a714b9c2c276fbae637fee36453d9121e}{O\+B\+J\+\_\+\+T\+Y\+PE}} $\ast$$\ast$ \mbox{\hyperlink{class_mapp_a91181e95875bc82d03e832b9d901cb59}{map}}
+\item 
+const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_a849c2e12fc303e4f35e39602a86bbca7}{range}} = 3
+\item 
+const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_acbe12d109f5393640f23956295bf1bdc}{found\+Limit}} = 5
+\item 
+const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_a7a9008b7100b25833c4aff1753dc8eec}{offset\+Value}} = 50
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_add62ddc7c9bf47dcf3dc8916dc58d41c}{lengthX}}
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_ad108cf6f9d0fa2f7b24405938dd7f74c}{lengthY}}
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_aeb3ba1ee2b2ac64b01a459b85610f524}{dimX}}
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_a7d830edb47e7a9b8d2574e53150a906c}{dimY}}
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_a0d751ee7f6aacc352c1ffb1bf95c21af}{pixX}}
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_a756d60b3d694342b7c75621c8559c00e}{pixY}}
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_a396e22007b8acd6231f9bd91d263f84f}{border\+Size}}
+\item 
+vector$<$ \mbox{\hyperlink{class_obstacle}{Obstacle}} $>$ \mbox{\hyperlink{class_mapp_adfc09e7e4750c47c7a3d2fe2f30241f8}{v\+Obstacles}}
+\item 
+vector$<$ \mbox{\hyperlink{class_victim}{Victim}} $>$ \mbox{\hyperlink{class_mapp_a3cd9951fd2f55c83de0c9441249b79db}{v\+Victims}}
+\item 
+vector$<$ \mbox{\hyperlink{class_gate}{Gate}} $>$ \mbox{\hyperlink{class_mapp_ad33044227affb6fc91f1a795ca3fab4a}{v\+Gates}}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr double \mbox{\hyperlink{class_mapp_ae6b2f015604d9f3e34c7702aea081e08}{base\+Distance}} = -\/1.\+0
+\item 
+static const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_aef8bde83114714a4ce4ad9d13766e761}{border\+Size\+Default}} = 4
+\item 
+static const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_a8216044ff8e95ba054985e26ae1c75f8}{cell\+Size}} = 5
+\item 
+static const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_mapp_addd9fcc5e7db2c40038ab32ecf29171c}{n\+Points}} = 20
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mapp_a748ffcb20519591210f19458c90f482a}\label{class_mapp_a748ffcb20519591210f19458c90f482a}} 
+\index{Mapp@{Mapp}!Mapp@{Mapp}}
+\index{Mapp@{Mapp}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{Mapp()}{Mapp()}}
+{\footnotesize\ttfamily Mapp\+::\+Mapp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+lengthX = {\ttfamily 1000},  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+lengthY = {\ttfamily 1500},  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+pixX = {\ttfamily \mbox{\hyperlink{class_mapp_a8216044ff8e95ba054985e26ae1c75f8}{cell\+Size}}},  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+pixY = {\ttfamily \mbox{\hyperlink{class_mapp_a8216044ff8e95ba054985e26ae1c75f8}{cell\+Size}}},  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+border\+Size = {\ttfamily \mbox{\hyperlink{class_mapp_aef8bde83114714a4ce4ad9d13766e761}{border\+Size\+Default}}},  }\item[{const vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&}]{vvp = {\ttfamily vector$<$~vector$<$\mbox{\hyperlink{class_point2}{Point2}}$<$\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}$>$~$>$~$>$()} }\end{DoxyParamCaption})}
+
+
+
+Constructor of the class. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+lengthX} & It is the size in pixel of the horizontal dimension. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+lengthY} & It is the size in pixel of the vertical dimension. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+pixX} & It is the horizontal granularity of a cell (how many pixels for each cell). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+pixY} & It is the vertical granularity of a cell (how many pixels for each cell). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+border\+Size} & It is the dimension (defined based on cells of the map) of the border of each obstascles. \\
+\hline
+\mbox{\texttt{ in}}  & {\em vvp} & It is a vector, of vector, of point that delimit, as a convex hull, a set of obstacles in the map. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mapp_ad480beefb37fe0e3cab870fea0a4a1f7}\label{class_mapp_ad480beefb37fe0e3cab870fea0a4a1f7}} 
+\index{Mapp@{Mapp}!addObject@{addObject}}
+\index{addObject@{addObject}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{addObject()}{addObject()}}
+{\footnotesize\ttfamily void Mapp\+::add\+Object (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{vp,  }\item[{const \mbox{\hyperlink{map_8hh_a714b9c2c276fbae637fee36453d9121e}{O\+B\+J\+\_\+\+T\+Y\+PE}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Given an obstacle it is added to the map. 
+
+This means that all the cells of the map that are partly cover from this obstacle will be set to its type.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vp} & It is the vector of points (convex hull) that delimit the object of interest. \\
+\hline
+\mbox{\texttt{ in}}  & {\em type} & It is the type of the given object. Defined as a O\+B\+J\+\_\+\+T\+Y\+PE. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_ab235ba9946b7c5e44a4914ca26f6d5fc}\label{class_mapp_ab235ba9946b7c5e44a4914ca26f6d5fc}} 
+\index{Mapp@{Mapp}!addObjects@{addObjects}}
+\index{addObjects@{addObjects}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{addObjects()}{addObjects()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void Mapp\+::add\+Objects (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&}]{vvp,  }\item[{const \mbox{\hyperlink{map_8hh_a714b9c2c276fbae637fee36453d9121e}{O\+B\+J\+\_\+\+T\+Y\+PE}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Given a vector objects it is added them to the map. 
+
+This means that all the cells of the map that are partly cover from these obstacles will be set to its type. It is a wrapper function of add\+Object.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vvp} & It is the vector of vector of points (set of convex hull) that delimit the objects of interest. \\
+\hline
+\mbox{\texttt{ in}}  & {\em type} & It is the type of the given object. Defined as a O\+B\+J\+\_\+\+T\+Y\+PE. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_a346993a223bdfec975bb6365ef640c2c}\label{class_mapp_a346993a223bdfec975bb6365ef640c2c}} 
+\index{Mapp@{Mapp}!addObjects@{addObjects}}
+\index{addObjects@{addObjects}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{addObjects()}{addObjects()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void Mapp\+::add\+Objects (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_obstacle}{Obstacle}} $>$ \&}]{objs }\end{DoxyParamCaption})}
+
+
+
+Given a vector of obstacles adds them to the map. 
+
+This means that all the cells of the map that are partly cover from these obstacles will be set to its type. It is a wrapper function of add\+Object.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em objs} & It is the vector of obstacles to be loaded in the map structure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_a46385479c68f30deb76adbf9a5cff9c3}\label{class_mapp_a46385479c68f30deb76adbf9a5cff9c3}} 
+\index{Mapp@{Mapp}!addObjects@{addObjects}}
+\index{addObjects@{addObjects}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{addObjects()}{addObjects()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void Mapp\+::add\+Objects (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_victim}{Victim}} $>$ \&}]{objs }\end{DoxyParamCaption})}
+
+
+
+Given a vector of victims adds them to the map. 
+
+This means that all the cells of the map that are partly cover from these victims will be set to its type. It is a wrapper function of add\+Object.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em objs} & It is the vector of victims to be loaded in the map structure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_a99b3e0e922c4cd5416343ad7e08d8e72}\label{class_mapp_a99b3e0e922c4cd5416343ad7e08d8e72}} 
+\index{Mapp@{Mapp}!addObjects@{addObjects}}
+\index{addObjects@{addObjects}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{addObjects()}{addObjects()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void Mapp\+::add\+Objects (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_gate}{Gate}} $>$ \&}]{objs }\end{DoxyParamCaption})}
+
+
+
+Given a vector of gates (tipically this vector contain only one element) adds it to the map. 
+
+This means that all the cells of the map that are partly cover from this gate will be set to its type. It is a wrapper function of add\+Object.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em objs} & It is the vector of gates to be loaded in the map structure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_a934e0d553769c2735e6193d1b43ddf87}\label{class_mapp_a934e0d553769c2735e6193d1b43ddf87}} 
+\index{Mapp@{Mapp}!cellsFromSegment@{cellsFromSegment}}
+\index{cellsFromSegment@{cellsFromSegment}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{cellsFromSegment()}{cellsFromSegment()}}
+{\footnotesize\ttfamily set$<$ pair$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ Mapp\+::cells\+From\+Segment (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p0,  }\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Given a segment (from p0 to p1) it return a set of all the cells that are partly cover from that segment. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p0} & First point of the segment. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p1} & Second point of the segment. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A set containing all the cells, identified by their row(i or y) and column(j or x). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_ade6135be96d93778352a7a313793adf3}\label{class_mapp_ade6135be96d93778352a7a313793adf3}} 
+\index{Mapp@{Mapp}!checkSegment@{checkSegment}}
+\index{checkSegment@{checkSegment}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{checkSegment()}{checkSegment()}}
+{\footnotesize\ttfamily bool Mapp\+::check\+Segment (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p0,  }\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p1 }\end{DoxyParamCaption})}
+
+
+
+Given a segment, the function answer if that segment cross a cell with obstacles. 
+
+It is a wrapper for the function \textquotesingle{}check\+Segment\+Collision\+With\+Type\textquotesingle{}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p0} & First point of the segment. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p1} & Second point of the segment. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the obstacles were crossed, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_a8c48e05ec516f82efa0b1b7febe41292}\label{class_mapp_a8c48e05ec516f82efa0b1b7febe41292}} 
+\index{Mapp@{Mapp}!checkSegmentCollisionWithType@{checkSegmentCollisionWithType}}
+\index{checkSegmentCollisionWithType@{checkSegmentCollisionWithType}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{checkSegmentCollisionWithType()}{checkSegmentCollisionWithType()}}
+{\footnotesize\ttfamily bool Mapp\+::check\+Segment\+Collision\+With\+Type (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p0,  }\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p1,  }\item[{const \mbox{\hyperlink{map_8hh_a714b9c2c276fbae637fee36453d9121e}{O\+B\+J\+\_\+\+T\+Y\+PE}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Given a segment and a type, the function answer if that segment cross a cell with the given type. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p0} & First point of the segment. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p1} & Second point of the segment. \\
+\hline
+\mbox{\texttt{ in}}  & {\em type} & The type to be detected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the type was found, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_ab68b0efc22947a8f78b3436bbfe3330c}\label{class_mapp_ab68b0efc22947a8f78b3436bbfe3330c}} 
+\index{Mapp@{Mapp}!createMapRepresentation@{createMapRepresentation}}
+\index{createMapRepresentation@{createMapRepresentation}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{createMapRepresentation()}{createMapRepresentation()}}
+{\footnotesize\ttfamily Mat Mapp\+::create\+Map\+Representation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The function create an image (Mat) with the dimensions of the \mbox{\hyperlink{class_mapp}{Mapp}} and all its objects inside. 
+
+\begin{DoxyReturn}{Returns}
+The generated image is returned. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_a7b17d1a5e8567021465397088e1dea8d}\label{class_mapp_a7b17d1a5e8567021465397088e1dea8d}} 
+\index{Mapp@{Mapp}!getGateCenter@{getGateCenter}}
+\index{getGateCenter@{getGateCenter}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{getGateCenter()}{getGateCenter()}}
+{\footnotesize\ttfamily void Mapp\+::get\+Gate\+Center (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{vp }\end{DoxyParamCaption})}
+
+
+
+Add to the given vector the center of the gate of the map. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em vp} & A vector where the requested center will be added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_ac6341641bd67502eef7c025cb4cd1c71}\label{class_mapp_ac6341641bd67502eef7c025cb4cd1c71}} 
+\index{Mapp@{Mapp}!getPointType@{getPointType}}
+\index{getPointType@{getPointType}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{getPointType()}{getPointType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{map_8hh_a714b9c2c276fbae637fee36453d9121e}{O\+B\+J\+\_\+\+T\+Y\+PE}} Mapp\+::get\+Point\+Type (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p }\end{DoxyParamCaption})}
+
+
+
+Given a point return the type (status) of the cell in the map that contain it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p} & The point of which we want to know the informations. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The type (O\+B\+J\+\_\+\+T\+Y\+PE) of the cell. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_a3b3ad207536bfb80c9ea2fd254bfdd80}\label{class_mapp_a3b3ad207536bfb80c9ea2fd254bfdd80}} 
+\index{Mapp@{Mapp}!getVictimCenters@{getVictimCenters}}
+\index{getVictimCenters@{getVictimCenters}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{getVictimCenters()}{getVictimCenters()}}
+{\footnotesize\ttfamily void Mapp\+::get\+Victim\+Centers (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{vp }\end{DoxyParamCaption})}
+
+
+
+Add to the given vector the set of centers of the victims of the map. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em vp} & A vector where the requested centers will be added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_a198e313f3473420c99e6206645f94693}\label{class_mapp_a198e313f3473420c99e6206645f94693}} 
+\index{Mapp@{Mapp}!imageAddPoint@{imageAddPoint}}
+\index{imageAddPoint@{imageAddPoint}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{imageAddPoint()}{imageAddPoint()}}
+{\footnotesize\ttfamily void Mapp\+::image\+Add\+Point (\begin{DoxyParamCaption}\item[{Mat \&}]{image,  }\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{radius = {\ttfamily 7} }\end{DoxyParamCaption})}
+
+
+
+It add to the given image a point. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em \mbox{[}in/out\mbox{]}} & map The image where the points will be added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p} & The point to add. \\
+\hline
+\mbox{\texttt{ in}}  & {\em radius} & The radius of the point to be drawn. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_a1029eed72b4607bb9be933c124a82ab6}\label{class_mapp_a1029eed72b4607bb9be933c124a82ab6}} 
+\index{Mapp@{Mapp}!imageAddPoints@{imageAddPoints}}
+\index{imageAddPoints@{imageAddPoints}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{imageAddPoints()}{imageAddPoints()}}
+{\footnotesize\ttfamily void Mapp\+::image\+Add\+Points (\begin{DoxyParamCaption}\item[{Mat \&}]{image,  }\item[{const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{vp,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{radius = {\ttfamily 7} }\end{DoxyParamCaption})}
+
+
+
+It add to the given image a vector of points. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em \mbox{[}in/out\mbox{]}} & map The image where the point will be added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em vp} & The vecotor of points to add. \\
+\hline
+\mbox{\texttt{ in}}  & {\em radius} & The radius of the points to be drawn. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_ac82b6ba32304e9985365fbabe9a6d046}\label{class_mapp_ac82b6ba32304e9985365fbabe9a6d046}} 
+\index{Mapp@{Mapp}!imageAddSegment@{imageAddSegment}}
+\index{imageAddSegment@{imageAddSegment}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{imageAddSegment()}{imageAddSegment()}}
+{\footnotesize\ttfamily void Mapp\+::image\+Add\+Segment (\begin{DoxyParamCaption}\item[{Mat \&}]{image,  }\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p0,  }\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p1,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{thickness }\end{DoxyParamCaption})}
+
+
+
+It add to the given image the segment defined from p0 to p1. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em \mbox{[}in/out\mbox{]}} & map The image where the segment will be added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p0} & The first point of the segment. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p1} & The end point of the segment. \\
+\hline
+\mbox{\texttt{ in}}  & {\em thickness} & The thickness of the line to be drawn. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_a4c1148c6feadeb789a6bf7c4ac6569e9}\label{class_mapp_a4c1148c6feadeb789a6bf7c4ac6569e9}} 
+\index{Mapp@{Mapp}!imageAddSegments@{imageAddSegments}}
+\index{imageAddSegments@{imageAddSegments}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{imageAddSegments()}{imageAddSegments()}}
+{\footnotesize\ttfamily void Mapp\+::image\+Add\+Segments (\begin{DoxyParamCaption}\item[{Mat \&}]{image,  }\item[{const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{vp,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{thickness = {\ttfamily 3} }\end{DoxyParamCaption})}
+
+
+
+It add to the given image a set of (n-\/1) segments specified by the n points given. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em \mbox{[}in/out\mbox{]}} & map The image where the segments will be added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em vp} & The vector of points that identify the segments. \\
+\hline
+\mbox{\texttt{ in}}  & {\em thickness} & The thickness of the lines to be drawn. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_ad38f31eac2ad66836325c152db1f88c3}\label{class_mapp_ad38f31eac2ad66836325c152db1f88c3}} 
+\index{Mapp@{Mapp}!matrixToString@{matrixToString}}
+\index{matrixToString@{matrixToString}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{matrixToString()}{matrixToString()}}
+{\footnotesize\ttfamily string Mapp\+::matrix\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generate a string (a grid of pixels) that represent the matrix. 
+
+\begin{DoxyReturn}{Returns}
+The generated string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_a35ab624c5ab00d577580f132238147d8}\label{class_mapp_a35ab624c5ab00d577580f132238147d8}} 
+\index{Mapp@{Mapp}!minPathNPoints@{minPathNPoints}}
+\index{minPathNPoints@{minPathNPoints}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{minPathNPoints()}{minPathNPoints()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ Mapp\+::min\+Path\+N\+Points (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{vp }\end{DoxyParamCaption})}
+
+
+
+Given a couple of points the function compute the minimum path that connect them avoiding the intersection of O\+B\+ST and B\+O\+DA. 
+
+The function is based on a Breadth-\/first search (B\+FS).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p0} & The source point. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p1} & The destination point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-\/1 connecctions. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_a5b6a630049118dbfa22604f513db11f1}\label{class_mapp_a5b6a630049118dbfa22604f513db11f1}} 
+\index{Mapp@{Mapp}!minPathTwoPoints@{minPathTwoPoints}}
+\index{minPathTwoPoints@{minPathTwoPoints}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{minPathTwoPoints()}{minPathTwoPoints()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ Mapp\+::min\+Path\+Two\+Points (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p0,  }\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{p1 }\end{DoxyParamCaption})}
+
+
+
+Given a couple of points the function compute the minimum path that connect them avoiding the intersection of O\+B\+ST and B\+O\+DA. 
+
+The function is based on a Breadth-\/first search (B\+FS).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p0} & The source point. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p1} & The destination point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of points along the path (one for each cell of the grid of the map). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_ae763f86dcfa9c33bda3c58d49419d3e2}\label{class_mapp_ae763f86dcfa9c33bda3c58d49419d3e2}} 
+\index{Mapp@{Mapp}!minPathTwoPointsInternal@{minPathTwoPointsInternal}}
+\index{minPathTwoPointsInternal@{minPathTwoPointsInternal}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{minPathTwoPointsInternal()}{minPathTwoPointsInternal()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ Mapp\+::min\+Path\+Two\+Points\+Internal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{startP,  }\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{endP,  }\item[{double $\ast$$\ast$}]{distances,  }\item[{\mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $\ast$$\ast$}]{parents }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Given a couple of points the function compute the minimum path that connect them avoiding the intersection of O\+B\+ST and B\+O\+DA. 
+
+The function is based on a Breadth-\/first search (B\+FS).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em startP} & The source point. \\
+\hline
+\mbox{\texttt{ in}}  & {\em endP} & The destination point. \\
+\hline
+\mbox{\texttt{ in}}  & {\em distances} & A matrix that is needed to store the distances of the visited cells. \\
+\hline
+\mbox{\texttt{ in}}  & {\em parents} & A matrix that is needed to store the parent of each cell (A\+KA the one that have discovered that cell with the minimum distance). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of points along the path (one for each cell of the grid of the map). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_a0405773fd644d183c603b569e9957248}\label{class_mapp_a0405773fd644d183c603b569e9957248}} 
+\index{Mapp@{Mapp}!printDimensions@{printDimensions}}
+\index{printDimensions@{printDimensions}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{printDimensions()}{printDimensions()}}
+{\footnotesize\ttfamily void Mapp\+::print\+Dimensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print to the terminal the main informations of the Map. 
+
+\mbox{\Hypertarget{class_mapp_ab795b79c5d655f6a62303c4a415ee73c}\label{class_mapp_ab795b79c5d655f6a62303c4a415ee73c}} 
+\index{Mapp@{Mapp}!printMap@{printMap}}
+\index{printMap@{printMap}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{printMap()}{printMap()}}
+{\footnotesize\ttfamily void Mapp\+::print\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print to the terminal the main informations of the Map, and its grid representation. 
+
+\mbox{\Hypertarget{class_mapp_a6dac7b6cd03ed61e93aaa343c51862ea}\label{class_mapp_a6dac7b6cd03ed61e93aaa343c51862ea}} 
+\index{Mapp@{Mapp}!resetDistanceMap@{resetDistanceMap}}
+\index{resetDistanceMap@{resetDistanceMap}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{resetDistanceMap()}{resetDistanceMap()}}
+{\footnotesize\ttfamily void Mapp\+::reset\+Distance\+Map (\begin{DoxyParamCaption}\item[{double $\ast$$\ast$}]{distances,  }\item[{const double}]{value = {\ttfamily \mbox{\hyperlink{class_mapp_ae6b2f015604d9f3e34c7702aea081e08}{base\+Distance}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+It reset, to the given value, the matrix of distances, to compute again the min\+Path search. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value} & The value to be set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapp_a34bd022816ce083d4bb125119f47f470}\label{class_mapp_a34bd022816ce083d4bb125119f47f470}} 
+\index{Mapp@{Mapp}!sampleNPoints@{sampleNPoints}}
+\index{sampleNPoints@{sampleNPoints}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{sampleNPoints()}{sampleNPoints()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ Mapp\+::sample\+N\+Points (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&}]{vvp,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{n = {\ttfamily \mbox{\hyperlink{class_mapp_addd9fcc5e7db2c40038ab32ecf29171c}{n\+Points}}} }\end{DoxyParamCaption})}
+
+
+
+It extracts from the given vector of vector of points, a subset of points that always contains the first one and the last one of each vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em n} & The n number of points to sample. \\
+\hline
+\mbox{\texttt{ in}}  & {\em points} & The vector of vector of points to be selected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector containing the subset of n points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_aaa8b4ed2cacdfdeb89d2b30b3684a535}\label{class_mapp_aaa8b4ed2cacdfdeb89d2b30b3684a535}} 
+\index{Mapp@{Mapp}!sampleNPoints@{sampleNPoints}}
+\index{sampleNPoints@{sampleNPoints}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{sampleNPoints()}{sampleNPoints()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ Mapp\+::sample\+N\+Points (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{points,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{n }\end{DoxyParamCaption})}
+
+
+
+It extracts from the given vector of points, a subset of points that always contains the first one and the last one. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em n} & The number of points to select exept the extremes, it must be greater or equal than 2. \\
+\hline
+\mbox{\texttt{ in}}  & {\em points} & The vector of points to be selected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector containing the subset of n points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapp_a487a24310b4ee3babffc06a60c5893f3}\label{class_mapp_a487a24310b4ee3babffc06a60c5893f3}} 
+\index{Mapp@{Mapp}!samplePointsEachNCells@{samplePointsEachNCells}}
+\index{samplePointsEachNCells@{samplePointsEachNCells}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{samplePointsEachNCells()}{samplePointsEachNCells()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ Mapp\+::sample\+Points\+Each\+N\+Cells (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{points,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{step }\end{DoxyParamCaption})}
+
+
+
+It extracts from the given vector of points, a subset of points that always contains the first one and the last one. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em step} & The distance (counted as cells) from the previous to the next cell, it must but $>$=2 to have a reason. \\
+\hline
+\mbox{\texttt{ in}}  & {\em points} & The vector of points to be selected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector containing the subset of points, each step cells. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_mapp_ae6b2f015604d9f3e34c7702aea081e08}\label{class_mapp_ae6b2f015604d9f3e34c7702aea081e08}} 
+\index{Mapp@{Mapp}!baseDistance@{baseDistance}}
+\index{baseDistance@{baseDistance}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{baseDistance}{baseDistance}}
+{\footnotesize\ttfamily constexpr double Mapp\+::base\+Distance = -\/1.\+0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_a396e22007b8acd6231f9bd91d263f84f}\label{class_mapp_a396e22007b8acd6231f9bd91d263f84f}} 
+\index{Mapp@{Mapp}!borderSize@{borderSize}}
+\index{borderSize@{borderSize}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{borderSize}{borderSize}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::border\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_aef8bde83114714a4ce4ad9d13766e761}\label{class_mapp_aef8bde83114714a4ce4ad9d13766e761}} 
+\index{Mapp@{Mapp}!borderSizeDefault@{borderSizeDefault}}
+\index{borderSizeDefault@{borderSizeDefault}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{borderSizeDefault}{borderSizeDefault}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::border\+Size\+Default = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_a8216044ff8e95ba054985e26ae1c75f8}\label{class_mapp_a8216044ff8e95ba054985e26ae1c75f8}} 
+\index{Mapp@{Mapp}!cellSize@{cellSize}}
+\index{cellSize@{cellSize}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{cellSize}{cellSize}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::cell\+Size = 5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_aeb3ba1ee2b2ac64b01a459b85610f524}\label{class_mapp_aeb3ba1ee2b2ac64b01a459b85610f524}} 
+\index{Mapp@{Mapp}!dimX@{dimX}}
+\index{dimX@{dimX}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{dimX}{dimX}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::dimX\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_a7d830edb47e7a9b8d2574e53150a906c}\label{class_mapp_a7d830edb47e7a9b8d2574e53150a906c}} 
+\index{Mapp@{Mapp}!dimY@{dimY}}
+\index{dimY@{dimY}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{dimY}{dimY}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::dimY\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_acbe12d109f5393640f23956295bf1bdc}\label{class_mapp_acbe12d109f5393640f23956295bf1bdc}} 
+\index{Mapp@{Mapp}!foundLimit@{foundLimit}}
+\index{foundLimit@{foundLimit}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{foundLimit}{foundLimit}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::found\+Limit = 5\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_add62ddc7c9bf47dcf3dc8916dc58d41c}\label{class_mapp_add62ddc7c9bf47dcf3dc8916dc58d41c}} 
+\index{Mapp@{Mapp}!lengthX@{lengthX}}
+\index{lengthX@{lengthX}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{lengthX}{lengthX}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::lengthX\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_ad108cf6f9d0fa2f7b24405938dd7f74c}\label{class_mapp_ad108cf6f9d0fa2f7b24405938dd7f74c}} 
+\index{Mapp@{Mapp}!lengthY@{lengthY}}
+\index{lengthY@{lengthY}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{lengthY}{lengthY}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::lengthY\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_a91181e95875bc82d03e832b9d901cb59}\label{class_mapp_a91181e95875bc82d03e832b9d901cb59}} 
+\index{Mapp@{Mapp}!map@{map}}
+\index{map@{map}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily \mbox{\hyperlink{map_8hh_a714b9c2c276fbae637fee36453d9121e}{O\+B\+J\+\_\+\+T\+Y\+PE}}$\ast$$\ast$ Mapp\+::map\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_addd9fcc5e7db2c40038ab32ecf29171c}\label{class_mapp_addd9fcc5e7db2c40038ab32ecf29171c}} 
+\index{Mapp@{Mapp}!nPoints@{nPoints}}
+\index{nPoints@{nPoints}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{nPoints}{nPoints}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::n\+Points = 20\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_a7a9008b7100b25833c4aff1753dc8eec}\label{class_mapp_a7a9008b7100b25833c4aff1753dc8eec}} 
+\index{Mapp@{Mapp}!offsetValue@{offsetValue}}
+\index{offsetValue@{offsetValue}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{offsetValue}{offsetValue}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::offset\+Value = 50\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_a0d751ee7f6aacc352c1ffb1bf95c21af}\label{class_mapp_a0d751ee7f6aacc352c1ffb1bf95c21af}} 
+\index{Mapp@{Mapp}!pixX@{pixX}}
+\index{pixX@{pixX}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{pixX}{pixX}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::pixX\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_a756d60b3d694342b7c75621c8559c00e}\label{class_mapp_a756d60b3d694342b7c75621c8559c00e}} 
+\index{Mapp@{Mapp}!pixY@{pixY}}
+\index{pixY@{pixY}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{pixY}{pixY}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::pixY\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_a849c2e12fc303e4f35e39602a86bbca7}\label{class_mapp_a849c2e12fc303e4f35e39602a86bbca7}} 
+\index{Mapp@{Mapp}!range@{range}}
+\index{range@{range}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{range}{range}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Mapp\+::range = 3\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_ad33044227affb6fc91f1a795ca3fab4a}\label{class_mapp_ad33044227affb6fc91f1a795ca3fab4a}} 
+\index{Mapp@{Mapp}!vGates@{vGates}}
+\index{vGates@{vGates}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{vGates}{vGates}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_gate}{Gate}}$>$ Mapp\+::v\+Gates\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_adfc09e7e4750c47c7a3d2fe2f30241f8}\label{class_mapp_adfc09e7e4750c47c7a3d2fe2f30241f8}} 
+\index{Mapp@{Mapp}!vObstacles@{vObstacles}}
+\index{vObstacles@{vObstacles}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{vObstacles}{vObstacles}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_obstacle}{Obstacle}}$>$ Mapp\+::v\+Obstacles\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_mapp_a3cd9951fd2f55c83de0c9441249b79db}\label{class_mapp_a3cd9951fd2f55c83de0c9441249b79db}} 
+\index{Mapp@{Mapp}!vVictims@{vVictims}}
+\index{vVictims@{vVictims}!Mapp@{Mapp}}
+\subsubsection{\texorpdfstring{vVictims}{vVictims}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_victim}{Victim}}$>$ Mapp\+::v\+Victims\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{map_8hh}{map.\+hh}}\item 
+src/\mbox{\hyperlink{map_8cc}{map.\+cc}}\end{DoxyCompactItemize}

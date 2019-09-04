@@ -1,0 +1,13 @@
+<map id="src/include/camera_capture.hh" name="src/include/camera_capture.hh">
+<area shape="rect" id="node1" title=" " alt="" coords="180,5,313,44"/>
+<area shape="rect" id="node2" href="$camera__capture_8cc.html" title=" " alt="" coords="78,92,234,117"/>
+<area shape="rect" id="node3" href="$configure_8hh.html" title=" " alt="" coords="257,92,419,117"/>
+<area shape="rect" id="node4" href="$configure_8cc.html" title=" " alt="" coords="118,165,233,191"/>
+<area shape="rect" id="node5" href="$detection_8hh.html" title=" " alt="" coords="258,165,419,191"/>
+<area shape="rect" id="node9" href="$main_8cc.html" title=" " alt="" coords="326,312,438,337"/>
+<area shape="rect" id="node6" href="$detection_8cc.html" title=" " alt="" coords="5,239,119,264"/>
+<area shape="rect" id="node7" href="$planning_8hh.html" title=" " alt="" coords="143,239,301,264"/>
+<area shape="rect" id="node11" href="$detection__run_8cc.html" title=" " alt="" coords="375,239,539,264"/>
+<area shape="rect" id="node8" href="$planning_8cc.html" title=" " alt="" coords="9,312,119,337"/>
+<area shape="rect" id="node10" href="$planning__run_8cc.html" title=" " alt="" coords="142,312,302,337"/>
+</map>

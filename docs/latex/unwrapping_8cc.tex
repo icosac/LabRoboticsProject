@@ -1,0 +1,123 @@
+\hypertarget{unwrapping_8cc}{}\section{src/unwrapping.cc File Reference}
+\label{unwrapping_8cc}\index{src/unwrapping.cc@{src/unwrapping.cc}}
+{\ttfamily \#include \char`\"{}unwrapping.\+hh\char`\"{}}\newline
+Include dependency graph for unwrapping.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{unwrapping_8cc__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{unwrapping_8cc_a3c7ffff21a9a31fea3e9777b02d09291}{A\+R\+E\+A\+\_\+\+R\+A\+T\+IO}}~0.\+7
+\item 
+\#define \mbox{\hyperlink{unwrapping_8cc_ac2f75959ffa14bc8fd8d0491e890c122}{A\+R\+E\+A\+\_\+\+M\+IN}}~500
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}{distance}} (Point c1, Point c2)
+\begin{DoxyCompactList}\small\item\em Compute the euclidean distance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{unwrapping_8cc_ae232c3264987d57a223a39226929da29}{unwrapping}} ()
+\begin{DoxyCompactList}\small\item\em Take some images according to a xml and unwrap the black rectangle inside the image after appling undistortion trasformation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{unwrapping_8cc_ac30b4dbae9022e84e10ef97ba156c581}{find\+\_\+rect}} (vector$<$ Point $>$ \&\+\_\+rect, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \&width, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \&height)
+\begin{DoxyCompactList}\small\item\em Since the border of the arena might not always be clean but might have some imperfection, this functions computes the four vertixes taking all the points and computing the four that are the clostest to the corner of the image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{unwrapping_8cc_a3cf7df08897ed4d1a7ddcf055b18cca8}{load\+Coefficients}} (const string filename, Mat \&camera\+\_\+matrix, Mat \&dist\+\_\+coeffs)
+\begin{DoxyCompactList}\small\item\em Load coefficients from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{unwrapping_8cc_ac2f75959ffa14bc8fd8d0491e890c122}\label{unwrapping_8cc_ac2f75959ffa14bc8fd8d0491e890c122}} 
+\index{unwrapping.cc@{unwrapping.cc}!AREA\_MIN@{AREA\_MIN}}
+\index{AREA\_MIN@{AREA\_MIN}!unwrapping.cc@{unwrapping.cc}}
+\subsubsection{\texorpdfstring{AREA\_MIN}{AREA\_MIN}}
+{\footnotesize\ttfamily \#define A\+R\+E\+A\+\_\+\+M\+IN~500}
+
+\mbox{\Hypertarget{unwrapping_8cc_a3c7ffff21a9a31fea3e9777b02d09291}\label{unwrapping_8cc_a3c7ffff21a9a31fea3e9777b02d09291}} 
+\index{unwrapping.cc@{unwrapping.cc}!AREA\_RATIO@{AREA\_RATIO}}
+\index{AREA\_RATIO@{AREA\_RATIO}!unwrapping.cc@{unwrapping.cc}}
+\subsubsection{\texorpdfstring{AREA\_RATIO}{AREA\_RATIO}}
+{\footnotesize\ttfamily \#define A\+R\+E\+A\+\_\+\+R\+A\+T\+IO~0.\+7}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}\label{unwrapping_8cc_ac6bcc6db62057bda0b6195a11578fdfa}} 
+\index{unwrapping.cc@{unwrapping.cc}!distance@{distance}}
+\index{distance@{distance}!unwrapping.cc@{unwrapping.cc}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily static float distance (\begin{DoxyParamCaption}\item[{Point}]{c1,  }\item[{Point}]{c2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compute the euclidean distance. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em c1} & The first point. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em c2} & The second point.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The euclidean distance. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{unwrapping_8cc_ac30b4dbae9022e84e10ef97ba156c581}\label{unwrapping_8cc_ac30b4dbae9022e84e10ef97ba156c581}} 
+\index{unwrapping.cc@{unwrapping.cc}!find\_rect@{find\_rect}}
+\index{find\_rect@{find\_rect}!unwrapping.cc@{unwrapping.cc}}
+\subsubsection{\texorpdfstring{find\_rect()}{find\_rect()}}
+{\footnotesize\ttfamily void find\+\_\+rect (\begin{DoxyParamCaption}\item[{vector$<$ Point $>$ \&}]{\+\_\+rect,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \&}]{width,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \&}]{height }\end{DoxyParamCaption})}
+
+
+
+Since the border of the arena might not always be clean but might have some imperfection, this functions computes the four vertixes taking all the points and computing the four that are the clostest to the corner of the image. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+rect} & The vector of cv\+::\+Point to work on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em width} & The width of the image. \\
+\hline
+\mbox{\texttt{ in}}  & {\em height} & The height of the image. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{unwrapping_8cc_a3cf7df08897ed4d1a7ddcf055b18cca8}\label{unwrapping_8cc_a3cf7df08897ed4d1a7ddcf055b18cca8}} 
+\index{unwrapping.cc@{unwrapping.cc}!loadCoefficients@{loadCoefficients}}
+\index{loadCoefficients@{loadCoefficients}!unwrapping.cc@{unwrapping.cc}}
+\subsubsection{\texorpdfstring{loadCoefficients()}{loadCoefficients()}}
+{\footnotesize\ttfamily void load\+Coefficients (\begin{DoxyParamCaption}\item[{const string}]{filename,  }\item[{Mat \&}]{camera\+\_\+matrix,  }\item[{Mat \&}]{dist\+\_\+coeffs }\end{DoxyParamCaption})}
+
+
+
+Load coefficients from a file. 
+
+Load two matrix \textquotesingle{}camera\+\_\+matrix\textquotesingle{} and \textquotesingle{}distortion\+\_\+coefficients\textquotesingle{} from the xml file passed. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em filename} & The string that identify the location of the xml file. \\
+\hline
+\mbox{\texttt{ out}}  & {\em camera\+\_\+matrix} & Where the \textquotesingle{}camera\+\_\+matrix\textquotesingle{} matrix is saved. \\
+\hline
+\mbox{\texttt{ out}}  & {\em dist\+\_\+coeffs} & Where the \textquotesingle{}distortion\+\_\+coefficients\textquotesingle{} matrix is saved. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{unwrapping_8cc_ae232c3264987d57a223a39226929da29}\label{unwrapping_8cc_ae232c3264987d57a223a39226929da29}} 
+\index{unwrapping.cc@{unwrapping.cc}!unwrapping@{unwrapping}}
+\index{unwrapping@{unwrapping}!unwrapping.cc@{unwrapping.cc}}
+\subsubsection{\texorpdfstring{unwrapping()}{unwrapping()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} unwrapping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Take some images according to a xml and unwrap the black rectangle inside the image after appling undistortion trasformation. 
+
+Load from the xml file \textquotesingle{}data/settings.\+xml\textquotesingle{} the name of some images, load the images from the file,~\newline
+apply the calibration (undistortion trasformation) thanks to the matrices load with the \textquotesingle{}load\+Coefficients\textquotesingle{} function.~\newline
+Then, with the use of a filter for the black the region of interest (a rectangle) is identified and all the perspective is rotated for reach a top view of the rectangle.~\newline
+Finally, the images are saved on some files.
+
+\begin{DoxyReturn}{Returns}
+A 0 is return if the function reach the end. 
+\end{DoxyReturn}

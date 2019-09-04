@@ -1,0 +1,87 @@
+\hypertarget{planning_8cc}{}\section{src/planning.cc File Reference}
+\label{planning_8cc}\index{src/planning.cc@{src/planning.cc}}
+{\ttfamily \#include \char`\"{}planning.\+hh\char`\"{}}\newline
+Include dependency graph for planning.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{planning_8cc__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+pair$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$, \mbox{\hyperlink{class_mapp}{Mapp}} $\ast$ $>$ \mbox{\hyperlink{planning_8cc_ad3e1a145dd1a47f23969c6f6f6d671eb}{planning}} ()
+\begin{DoxyCompactList}\small\item\em The function plan a route from the actual position of the robot up to the final gate through all the victims. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_mapp}{Mapp}} $\ast$ \mbox{\hyperlink{planning_8cc_a7c7b2e381023697547786d663894435d}{create\+Mapp}} ()
+\begin{DoxyCompactList}\small\item\em The goal is to load, all the neccessary data, from files and create a \mbox{\hyperlink{class_mapp}{Mapp}} that store everything. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{planning_8cc_ad6ed6af027c9a35de0c872788d50c733}{load\+V\+VP}} (vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&vvp, File\+Node fn)
+\begin{DoxyCompactList}\small\item\em The function load from the given file\+Node a vector of vectors of \mbox{\hyperlink{class_point2}{Point2$<$int$>$}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{planning_8cc_aa3a220a5ab5f16da550b786caa041f6b}{load\+VP}} (vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp, File\+Node fn)
+\begin{DoxyCompactList}\small\item\em The function load from the given file\+Node a vector of \mbox{\hyperlink{class_point2}{Point2$<$int$>$}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{planning_8cc_a7c7b2e381023697547786d663894435d}\label{planning_8cc_a7c7b2e381023697547786d663894435d}} 
+\index{planning.cc@{planning.cc}!createMapp@{createMapp}}
+\index{createMapp@{createMapp}!planning.cc@{planning.cc}}
+\subsubsection{\texorpdfstring{createMapp()}{createMapp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_mapp}{Mapp}}$\ast$ create\+Mapp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The goal is to load, all the neccessary data, from files and create a \mbox{\hyperlink{class_mapp}{Mapp}} that store everything. 
+
+\begin{DoxyReturn}{Returns}
+The created mapp. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{planning_8cc_aa3a220a5ab5f16da550b786caa041f6b}\label{planning_8cc_aa3a220a5ab5f16da550b786caa041f6b}} 
+\index{planning.cc@{planning.cc}!loadVP@{loadVP}}
+\index{loadVP@{loadVP}!planning.cc@{planning.cc}}
+\subsubsection{\texorpdfstring{loadVP()}{loadVP()}}
+{\footnotesize\ttfamily void load\+VP (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{vp,  }\item[{File\+Node}]{fn }\end{DoxyParamCaption})}
+
+
+
+The function load from the given file\+Node a vector of \mbox{\hyperlink{class_point2}{Point2$<$int$>$}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em vp} & The location where to save the loaded vector. \\
+\hline
+\mbox{\texttt{ in}}  & {\em fn} & The file\+Node from which to load the vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{planning_8cc_ad6ed6af027c9a35de0c872788d50c733}\label{planning_8cc_ad6ed6af027c9a35de0c872788d50c733}} 
+\index{planning.cc@{planning.cc}!loadVVP@{loadVVP}}
+\index{loadVVP@{loadVVP}!planning.cc@{planning.cc}}
+\subsubsection{\texorpdfstring{loadVVP()}{loadVVP()}}
+{\footnotesize\ttfamily void load\+V\+VP (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&}]{vvp,  }\item[{File\+Node}]{fn }\end{DoxyParamCaption})}
+
+
+
+The function load from the given file\+Node a vector of vectors of \mbox{\hyperlink{class_point2}{Point2$<$int$>$}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em vvp} & The location where to save the loaded vector of vectors. \\
+\hline
+\mbox{\texttt{ in}}  & {\em fn} & The file\+Node from which to load the vector of vectors. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{planning_8cc_ad3e1a145dd1a47f23969c6f6f6d671eb}\label{planning_8cc_ad3e1a145dd1a47f23969c6f6f6d671eb}} 
+\index{planning.cc@{planning.cc}!planning@{planning}}
+\index{planning@{planning}!planning.cc@{planning.cc}}
+\subsubsection{\texorpdfstring{planning()}{planning()}}
+{\footnotesize\ttfamily pair$<$ vector$<$\mbox{\hyperlink{class_point2}{Point2}}$<$\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}$>$ $>$, \mbox{\hyperlink{class_mapp}{Mapp}}$\ast$ $>$ planning (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The function plan a route from the actual position of the robot up to the final gate through all the victims. 
+
+All the data about the objects are loaded from the files previously saved. Then a \mbox{\hyperlink{class_mapp}{Mapp}} is created and on that structure, thanks to a min\+Path function and a lot of dubin curves, the best route is computed.
+
+\begin{DoxyReturn}{Returns}
+Two elements are returned\+: a pointer to the \mbox{\hyperlink{class_mapp}{Mapp}} where all data are stored and a vector of points placed on the computed route. 
+\end{DoxyReturn}

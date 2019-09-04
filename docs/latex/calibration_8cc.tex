@@ -1,0 +1,219 @@
+\hypertarget{calibration_8cc}{}\section{src/calibration.cc File Reference}
+\label{calibration_8cc}\index{src/calibration.cc@{src/calibration.cc}}
+{\ttfamily \#include \char`\"{}calibration.\+hh\char`\"{}}\newline
+Include dependency graph for calibration.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{calibration_8cc__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{calibration_8cc_a869b0c5c377f65da8596646d7340d135}{calibration}} (string input\+File)
+\begin{DoxyCompactList}\small\item\em Function to run the complete calibration. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{calibration_8cc_a732d46a8a94e5cc33f89d52dd8395714}{read}} (const File\+Node \&node, \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&x, const \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&default\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Reads \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} from file. If there is none then initiate a new {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}}. \end{DoxyCompactList}\item 
+static double \mbox{\hyperlink{calibration_8cc_a595849a1b81e38ffd3e1f7f70f88085e}{compute\+Reprojection\+Errors}} (const vector$<$ vector$<$ Point3f $>$ $>$ \&object\+Points, const vector$<$ vector$<$ Point2f $>$ $>$ \&image\+Points, const vector$<$ Mat $>$ \&rvecs, const vector$<$ Mat $>$ \&tvecs, const Mat \&camera\+Matrix, const Mat \&dist\+Coeffs, vector$<$ float $>$ \&per\+View\+Errors, bool fisheye)
+\begin{DoxyCompactList}\small\item\em Compute the errors of the projection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{calibration_8cc_a9deaf00ea7081c5e9ce50a64c9946fa9}{calc\+Board\+Corner\+Positions}} (Size board\+Size, float square\+Size, vector$<$ Point3f $>$ \&corners)
+\begin{DoxyCompactList}\small\item\em This function compute the position of the upper corners of every cell. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{calibration_8cc_ad985a15627e02f358b321f4d7d47eca1}{run\+Calibration}} (\mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&s, Size \&image\+Size, Mat \&camera\+Matrix, Mat \&dist\+Coeffs, vector$<$ vector$<$ Point2f $>$ $>$ image\+Points, vector$<$ Mat $>$ \&rvecs, vector$<$ Mat $>$ \&tvecs, vector$<$ float $>$ \&reproj\+Errs, double \&total\+Avg\+Err)
+\begin{DoxyCompactList}\small\item\em This function run the calibration creating the matrixed for the camera and the distorsion coefficients. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{calibration_8cc_a9a94e87ed45e2dd9c2c5a49b7d01e42f}{save\+Camera\+Params}} (const \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&s, const Size \&image\+Size, const Mat \&camera\+Matrix, const Mat \&dist\+Coeffs, const vector$<$ Mat $>$ \&rvecs, const vector$<$ Mat $>$ \&tvecs, const vector$<$ float $>$ \&reproj\+Errs, const vector$<$ vector$<$ Point2f $>$ $>$ \&image\+Points, const double total\+Avg\+Err)
+\begin{DoxyCompactList}\small\item\em Function to save the computed parameters to a file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{calibration_8cc_a4195037da024926ac4f645bd09700052}{run\+Calibration\+And\+Save}} (\mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&s, Size image\+Size, Mat \&camera\+Matrix, Mat \&dist\+Coeffs, vector$<$ vector$<$ Point2f $>$ $>$ image\+Points)
+\begin{DoxyCompactList}\small\item\em Reads \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} from file. If there is none then initiate a new {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{calibration_8cc_a9deaf00ea7081c5e9ce50a64c9946fa9}\label{calibration_8cc_a9deaf00ea7081c5e9ce50a64c9946fa9}} 
+\index{calibration.cc@{calibration.cc}!calcBoardCornerPositions@{calcBoardCornerPositions}}
+\index{calcBoardCornerPositions@{calcBoardCornerPositions}!calibration.cc@{calibration.cc}}
+\subsubsection{\texorpdfstring{calcBoardCornerPositions()}{calcBoardCornerPositions()}}
+{\footnotesize\ttfamily void calc\+Board\+Corner\+Positions (\begin{DoxyParamCaption}\item[{Size}]{board\+Size,  }\item[{float}]{square\+Size,  }\item[{vector$<$ Point3f $>$ \&}]{corners }\end{DoxyParamCaption})}
+
+
+
+This function compute the position of the upper corners of every cell. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em board\+Siz} & The dimension of the chess board. \\
+\hline
+\mbox{\texttt{ in}}  & {\em square\+Size} & The dimension of the edge of a cell. \\
+\hline
+\mbox{\texttt{ out}}  & {\em corners} & A vector of Point3fs which equals to the corners of the cells. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{calibration_8cc_a869b0c5c377f65da8596646d7340d135}\label{calibration_8cc_a869b0c5c377f65da8596646d7340d135}} 
+\index{calibration.cc@{calibration.cc}!calibration@{calibration}}
+\index{calibration@{calibration}!calibration.cc@{calibration.cc}}
+\subsubsection{\texorpdfstring{calibration()}{calibration()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} calibration (\begin{DoxyParamCaption}\item[{string}]{input\+File }\end{DoxyParamCaption})}
+
+
+
+Function to run the complete calibration. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em input\+File} & Name of the setting.\+xml file. It\textquotesingle{}s set to default to default.\+xml\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/2 if the \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} file could be load but the input was not well-\/formed~\newline
+ -\/1 if the \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} file could not be opened.~\newline
+ 0 if everything went fine. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{calibration_8cc_a595849a1b81e38ffd3e1f7f70f88085e}\label{calibration_8cc_a595849a1b81e38ffd3e1f7f70f88085e}} 
+\index{calibration.cc@{calibration.cc}!computeReprojectionErrors@{computeReprojectionErrors}}
+\index{computeReprojectionErrors@{computeReprojectionErrors}!calibration.cc@{calibration.cc}}
+\subsubsection{\texorpdfstring{computeReprojectionErrors()}{computeReprojectionErrors()}}
+{\footnotesize\ttfamily static double compute\+Reprojection\+Errors (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ Point3f $>$ $>$ \&}]{object\+Points,  }\item[{const vector$<$ vector$<$ Point2f $>$ $>$ \&}]{image\+Points,  }\item[{const vector$<$ Mat $>$ \&}]{rvecs,  }\item[{const vector$<$ Mat $>$ \&}]{tvecs,  }\item[{const Mat \&}]{camera\+Matrix,  }\item[{const Mat \&}]{dist\+Coeffs,  }\item[{vector$<$ float $>$ \&}]{per\+View\+Errors,  }\item[{bool}]{fisheye }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compute the errors of the projection. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em object\+Points} & The real image points which will be projected \\
+\hline
+\mbox{\texttt{ in}}  & {\em rvecs} & Input vector of rotation vectors estimated for each pattern view. \\
+\hline
+\mbox{\texttt{ in}}  & {\em tvecs} & Input vector of translation vectors estimated for each pattern view. \\
+\hline
+\mbox{\texttt{ in}}  & {\em camera\+Matrix} & The matrix containing the parameters for the camera \\
+\hline
+\mbox{\texttt{ in}}  & {\em dist\+Coeffs} & The matrix containing the distortion coefficients. \\
+\hline
+\mbox{\texttt{ in}}  & {\em fisheye} & A variable which says if a fish eye correction should be applied or no. \\
+\hline
+\mbox{\texttt{ out}}  & {\em per\+View\+Errors} & A vector containing the error for each image. \\
+\hline
+\mbox{\texttt{ out}}  & {\em image\+Points} & The projected points for each image.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total error. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{calibration_8cc_a732d46a8a94e5cc33f89d52dd8395714}\label{calibration_8cc_a732d46a8a94e5cc33f89d52dd8395714}} 
+\index{calibration.cc@{calibration.cc}!read@{read}}
+\index{read@{read}!calibration.cc@{calibration.cc}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily static void read (\begin{DoxyParamCaption}\item[{const File\+Node \&}]{node,  }\item[{\mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&}]{x,  }\item[{const \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&}]{default\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Reads \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} from file. If there is none then initiate a new {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em node} & node to consider for getting \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}; \\
+\hline
+\mbox{\texttt{ in}}  & {\em x} & {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}} to configure; \\
+\hline
+\mbox{\texttt{ in}}  & {\em default\+\_\+value} & {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}} default value. Setted to {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings()}}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{calibration_8cc_ad985a15627e02f358b321f4d7d47eca1}\label{calibration_8cc_ad985a15627e02f358b321f4d7d47eca1}} 
+\index{calibration.cc@{calibration.cc}!runCalibration@{runCalibration}}
+\index{runCalibration@{runCalibration}!calibration.cc@{calibration.cc}}
+\subsubsection{\texorpdfstring{runCalibration()}{runCalibration()}}
+{\footnotesize\ttfamily static bool run\+Calibration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&}]{s,  }\item[{Size \&}]{image\+Size,  }\item[{Mat \&}]{camera\+Matrix,  }\item[{Mat \&}]{dist\+Coeffs,  }\item[{vector$<$ vector$<$ Point2f $>$ $>$}]{image\+Points,  }\item[{vector$<$ Mat $>$ \&}]{rvecs,  }\item[{vector$<$ Mat $>$ \&}]{tvecs,  }\item[{vector$<$ float $>$ \&}]{reproj\+Errs,  }\item[{double \&}]{total\+Avg\+Err }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This function run the calibration creating the matrixed for the camera and the distorsion coefficients. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s} & The {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}} read from the file and memorized. \\
+\hline
+\mbox{\texttt{ in}}  & {\em image\+Size} & The size of the image used in {\ttfamily calibrate\+Camera()} to initialize the camera matrix. \\
+\hline
+\mbox{\texttt{ in}}  & {\em image\+Points} & The projected points for each image. \\
+\hline
+\mbox{\texttt{ in}}  & {\em reproj\+Errs} & The re-\/projection error, that is a geometric error corresponding to the image distance between a projected point and a measured one. \\
+\hline
+\mbox{\texttt{ out}}  & {\em camera\+Matrix} & The matrix of the camera parameters \\
+\hline
+\mbox{\texttt{ out}}  & {\em dist\+Coeffs} & The matrix of the distorsion coefficients. \\
+\hline
+\mbox{\texttt{ out}}  & {\em rvecs} & Output vector of rotation vectors estimated for each pattern view. \\
+\hline
+\mbox{\texttt{ out}}  & {\em tvecs} & Output vector of translation vectors estimated for each pattern view. \\
+\hline
+\mbox{\texttt{ out}}  & {\em total\+Avg\+Err} & The total avarage error given from distorsion.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily false} if one or more elements in the {\ttfamily camera\+Matrix} and {\ttfamily dist\+Coeffs} are invalid.~\newline
+ {\ttfamily true} if all the elements are valid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{calibration_8cc_a4195037da024926ac4f645bd09700052}\label{calibration_8cc_a4195037da024926ac4f645bd09700052}} 
+\index{calibration.cc@{calibration.cc}!runCalibrationAndSave@{runCalibrationAndSave}}
+\index{runCalibrationAndSave@{runCalibrationAndSave}!calibration.cc@{calibration.cc}}
+\subsubsection{\texorpdfstring{runCalibrationAndSave()}{runCalibrationAndSave()}}
+{\footnotesize\ttfamily bool run\+Calibration\+And\+Save (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&}]{s,  }\item[{Size}]{image\+Size,  }\item[{Mat \&}]{camera\+Matrix,  }\item[{Mat \&}]{dist\+Coeffs,  }\item[{vector$<$ vector$<$ Point2f $>$ $>$}]{image\+Points }\end{DoxyParamCaption})}
+
+
+
+Reads \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} from file. If there is none then initiate a new {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s} & The {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}} being used during the execution. \\
+\hline
+\mbox{\texttt{ in}}  & {\em image\+Size} & The dimensions of the images. \\
+\hline
+\mbox{\texttt{ in}}  & {\em image\+Points} & The projected points for each image. \\
+\hline
+\mbox{\texttt{ out}}  & {\em camera\+Matrix} & The matrix which is used to store the values for the camera parameters. \\
+\hline
+\mbox{\texttt{ out}}  & {\em dist\+Coeffs} & The matrix which is used to store the distortion coefficients.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the calibration succeded.~\newline
+ {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{calibration_8cc_a9a94e87ed45e2dd9c2c5a49b7d01e42f}\label{calibration_8cc_a9a94e87ed45e2dd9c2c5a49b7d01e42f}} 
+\index{calibration.cc@{calibration.cc}!saveCameraParams@{saveCameraParams}}
+\index{saveCameraParams@{saveCameraParams}!calibration.cc@{calibration.cc}}
+\subsubsection{\texorpdfstring{saveCameraParams()}{saveCameraParams()}}
+{\footnotesize\ttfamily static void save\+Camera\+Params (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}} \&}]{s,  }\item[{const Size \&}]{image\+Size,  }\item[{const Mat \&}]{camera\+Matrix,  }\item[{const Mat \&}]{dist\+Coeffs,  }\item[{const vector$<$ Mat $>$ \&}]{rvecs,  }\item[{const vector$<$ Mat $>$ \&}]{tvecs,  }\item[{const vector$<$ float $>$ \&}]{reproj\+Errs,  }\item[{const vector$<$ vector$<$ Point2f $>$ $>$ \&}]{image\+Points,  }\item[{const double}]{total\+Avg\+Err }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Function to save the computed parameters to a file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s} & Use the {\ttfamily \mbox{\hyperlink{class_cal_settings}{Cal\+Settings}}} got at the beginning for information as the output file name, image and board size. \\
+\hline
+\mbox{\texttt{ in}}  & {\em image\+Size} & The size of the imgage. \\
+\hline
+\mbox{\texttt{ in}}  & {\em camera\+Matrix} & The camera matrix. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dist\+Coeffs} & The distorsion coefficient matrix. \\
+\hline
+ & {\em \mbox{[}int\mbox{]}} & rvecs Vector of rotation vectors estimated for each pattern view. \\
+\hline
+\mbox{\texttt{ in}}  & {\em tvecs} & Vector of translation vectors estimated for each pattern view. \\
+\hline
+\mbox{\texttt{ in}}  & {\em reproj\+Errs} & The re-\/projection error, that is a geometric error corresponding to the image distance between a projected point and a measured one. \\
+\hline
+\mbox{\texttt{ in}}  & {\em image\+Points} & The projected points for each image. \\
+\hline
+\mbox{\texttt{ in}}  & {\em total\+Avg\+Err} & The total avarage error given from distorsion. \\
+\hline
+\end{DoxyParams}
+Open file for writing
+
+Stores time of calibration
+
+Store infos about the images 

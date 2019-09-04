@@ -1,0 +1,259 @@
+\hypertarget{maths_8hh}{}\section{src/include/maths.hh File Reference}
+\label{maths_8hh}\index{src/include/maths.hh@{src/include/maths.hh}}
+{\ttfamily \#include \char`\"{}utils.\+hh\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$cstdarg$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$opencv2/opencv.\+hpp$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+Include dependency graph for maths.\+hh\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{maths_8hh__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{maths_8hh__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_angle}{Angle}}
+\begin{DoxyCompactList}\small\item\em This class allows to save and handle angles. It supports D\+EG and R\+AD, operations such as addition and subtraction with operators overloading, conversion from R\+AD to D\+EG and viceversa and normalization of the angle. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_tuple}{Tuple$<$ T $>$}}
+\item 
+class \mbox{\hyperlink{class_point2}{Point2$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Class that stores two value to construct a point in 2D. The value is saved in a \mbox{\hyperlink{class_tuple}{Tuple}}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_configuration2}{Configuration2$<$ T1 $>$}}
+\begin{DoxyCompactList}\small\item\em This class stores a configuration, that is a point and an angle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{maths_8hh_a995779faef78614d4f074b7d444de767}{D\+Inf}}~numeric\+\_\+limits$<$double$>$\+::infinity()
+\item 
+\#define \mbox{\hyperlink{maths_8hh_a78802b279ab85021d7f6bffe51621703}{Epsi}}~numeric\+\_\+limits$<$double$>$\+::epsilon()
+\item 
+\#define \mbox{\hyperlink{maths_8hh_ad7760000c41920a1ae5cf0f6bf0e4c77}{A\+\_\+2\+PI}}~\mbox{\hyperlink{class_angle}{Angle}}(6.\+2831853071-\/\mbox{\hyperlink{maths_8hh_a78802b279ab85021d7f6bffe51621703}{Epsi}}, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}})
+\begin{DoxyCompactList}\small\item\em Default \mbox{\hyperlink{class_angle}{Angle}} for 2pi rad. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{maths_8hh_ae46eba4b5423f51b80f3446e128c6476}{A\+\_\+360}}~\mbox{\hyperlink{class_angle}{Angle}}(360.\+0-\/\mbox{\hyperlink{maths_8hh_a78802b279ab85021d7f6bffe51621703}{Epsi}}, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a65e2aa4bc05730c9c2e8fdaf73612282}{Angle\+::\+D\+EG}})
+\begin{DoxyCompactList}\small\item\em Default \mbox{\hyperlink{class_angle}{Angle}} for 360 degree. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{maths_8hh_ad37649758ce967343cee82772583fd9c}{A\+\_\+\+PI}}~\mbox{\hyperlink{class_angle}{Angle}}(M\+\_\+\+PI, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}})
+\begin{DoxyCompactList}\small\item\em Default \mbox{\hyperlink{class_angle}{Angle}} for pi rad. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{maths_8hh_ac37f3aecadc99641dd1c8b4c81d96f7e}{A\+\_\+180}}~\mbox{\hyperlink{class_angle}{Angle}}(180, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a65e2aa4bc05730c9c2e8fdaf73612282}{Angle\+::\+D\+EG}})
+\begin{DoxyCompactList}\small\item\em Defualt \mbox{\hyperlink{class_angle}{Angle}} for 180 degree. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{maths_8hh_a73d408ce54489e86b860679af5d24059}{A\+\_\+\+P\+I2}}~\mbox{\hyperlink{class_angle}{Angle}}(M\+\_\+\+PI/2.\+0, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}})
+\begin{DoxyCompactList}\small\item\em Default \mbox{\hyperlink{class_angle}{Angle}} for pi/2 rad. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{maths_8hh_ae49ec00d228075202319f793f89e39b5}{A\+\_\+90}}~\mbox{\hyperlink{class_angle}{Angle}}(90, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a65e2aa4bc05730c9c2e8fdaf73612282}{Angle\+::\+D\+EG}})
+\begin{DoxyCompactList}\small\item\em Defualt \mbox{\hyperlink{class_angle}{Angle}} for 90 degree. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{maths_8hh_abc6a1d62385f5e3f01509c97666fbbbb}{A\+\_\+\+D\+E\+G\+\_\+\+N\+U\+LL}}~\mbox{\hyperlink{class_angle}{Angle}}(0, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a65e2aa4bc05730c9c2e8fdaf73612282}{Angle\+::\+D\+EG}})
+\begin{DoxyCompactList}\small\item\em Default \mbox{\hyperlink{class_angle}{Angle}} for 0 rad. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{maths_8hh_a0da7d22251afe9ccf02289e0bceca28f}{A\+\_\+\+R\+A\+D\+\_\+\+N\+U\+LL}}~\mbox{\hyperlink{class_angle}{Angle}}(0, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}})
+\begin{DoxyCompactList}\small\item\em Defualt \mbox{\hyperlink{class_angle}{Angle}} for 0 degree. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{maths_8hh_ad22dcdeefda7d41523cc1604953eb6cc}{tuple\+Iter}}~typename vector$<$T$>$\+::iterator
+\item 
+\#define \mbox{\hyperlink{maths_8hh_a2eba794860251c1b30e532df32ee4d1b}{tuple\+Const\+Iter}}~const typename vector$<$T$>$\+::iterator
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{maths_8hh_ac50d7263b1cae8691420b86282b27f90}{D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{maths_8hh_ac50d7263b1cae8691420b86282b27f90a81bbbc4428c3ff3f1327e94957e2b5f1}{E\+U\+C\+L\+I\+D\+E\+AN}}, 
+\mbox{\hyperlink{maths_8hh_ac50d7263b1cae8691420b86282b27f90a9ae95b5995796e7e5f32fa482a5bff98}{M\+A\+N\+H\+A\+T\+T\+AN}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{maths_8hh_a24e66125d5c9aea6608f537bdf77841e}{equal}} (const double \&A, const double \&B, const double E=\mbox{\hyperlink{maths_8hh_a78802b279ab85021d7f6bffe51621703}{Epsi}})
+\begin{DoxyCompactList}\small\item\em Function to compare two dubles as $\vert A-B\vert < \varepsilon$. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{maths_8hh_a054f7427a96b10baa550060a0376584c}{pow2}} (const T x)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \mbox{\hyperlink{maths_8hh_abe8c019db43eb490b67df53e48a69d28}{D\+E\+G\+T\+O\+R\+AD}} =(M\+\_\+\+PI/180.\+0)
+\item 
+const double \mbox{\hyperlink{maths_8hh_abbe9061bc2ecde6e056b25705a50a829}{R\+A\+D\+T\+O\+D\+EG}} =(180.\+0/M\+\_\+\+PI)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{maths_8hh_ac37f3aecadc99641dd1c8b4c81d96f7e}\label{maths_8hh_ac37f3aecadc99641dd1c8b4c81d96f7e}} 
+\index{maths.hh@{maths.hh}!A\_180@{A\_180}}
+\index{A\_180@{A\_180}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{A\_180}{A\_180}}
+{\footnotesize\ttfamily \#define A\+\_\+180~\mbox{\hyperlink{class_angle}{Angle}}(180, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a65e2aa4bc05730c9c2e8fdaf73612282}{Angle\+::\+D\+EG}})}
+
+
+
+Defualt \mbox{\hyperlink{class_angle}{Angle}} for 180 degree. 
+
+\mbox{\Hypertarget{maths_8hh_ad7760000c41920a1ae5cf0f6bf0e4c77}\label{maths_8hh_ad7760000c41920a1ae5cf0f6bf0e4c77}} 
+\index{maths.hh@{maths.hh}!A\_2PI@{A\_2PI}}
+\index{A\_2PI@{A\_2PI}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{A\_2PI}{A\_2PI}}
+{\footnotesize\ttfamily \#define A\+\_\+2\+PI~\mbox{\hyperlink{class_angle}{Angle}}(6.\+2831853071-\/\mbox{\hyperlink{maths_8hh_a78802b279ab85021d7f6bffe51621703}{Epsi}}, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}})}
+
+
+
+Default \mbox{\hyperlink{class_angle}{Angle}} for 2pi rad. 
+
+\mbox{\Hypertarget{maths_8hh_ae46eba4b5423f51b80f3446e128c6476}\label{maths_8hh_ae46eba4b5423f51b80f3446e128c6476}} 
+\index{maths.hh@{maths.hh}!A\_360@{A\_360}}
+\index{A\_360@{A\_360}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{A\_360}{A\_360}}
+{\footnotesize\ttfamily \#define A\+\_\+360~\mbox{\hyperlink{class_angle}{Angle}}(360.\+0-\/\mbox{\hyperlink{maths_8hh_a78802b279ab85021d7f6bffe51621703}{Epsi}}, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a65e2aa4bc05730c9c2e8fdaf73612282}{Angle\+::\+D\+EG}})}
+
+
+
+Default \mbox{\hyperlink{class_angle}{Angle}} for 360 degree. 
+
+\mbox{\Hypertarget{maths_8hh_ae49ec00d228075202319f793f89e39b5}\label{maths_8hh_ae49ec00d228075202319f793f89e39b5}} 
+\index{maths.hh@{maths.hh}!A\_90@{A\_90}}
+\index{A\_90@{A\_90}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{A\_90}{A\_90}}
+{\footnotesize\ttfamily \#define A\+\_\+90~\mbox{\hyperlink{class_angle}{Angle}}(90, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a65e2aa4bc05730c9c2e8fdaf73612282}{Angle\+::\+D\+EG}})}
+
+
+
+Defualt \mbox{\hyperlink{class_angle}{Angle}} for 90 degree. 
+
+\mbox{\Hypertarget{maths_8hh_abc6a1d62385f5e3f01509c97666fbbbb}\label{maths_8hh_abc6a1d62385f5e3f01509c97666fbbbb}} 
+\index{maths.hh@{maths.hh}!A\_DEG\_NULL@{A\_DEG\_NULL}}
+\index{A\_DEG\_NULL@{A\_DEG\_NULL}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{A\_DEG\_NULL}{A\_DEG\_NULL}}
+{\footnotesize\ttfamily \#define A\+\_\+\+D\+E\+G\+\_\+\+N\+U\+LL~\mbox{\hyperlink{class_angle}{Angle}}(0, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a65e2aa4bc05730c9c2e8fdaf73612282}{Angle\+::\+D\+EG}})}
+
+
+
+Default \mbox{\hyperlink{class_angle}{Angle}} for 0 rad. 
+
+\mbox{\Hypertarget{maths_8hh_ad37649758ce967343cee82772583fd9c}\label{maths_8hh_ad37649758ce967343cee82772583fd9c}} 
+\index{maths.hh@{maths.hh}!A\_PI@{A\_PI}}
+\index{A\_PI@{A\_PI}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{A\_PI}{A\_PI}}
+{\footnotesize\ttfamily \#define A\+\_\+\+PI~\mbox{\hyperlink{class_angle}{Angle}}(M\+\_\+\+PI, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}})}
+
+
+
+Default \mbox{\hyperlink{class_angle}{Angle}} for pi rad. 
+
+\mbox{\Hypertarget{maths_8hh_a73d408ce54489e86b860679af5d24059}\label{maths_8hh_a73d408ce54489e86b860679af5d24059}} 
+\index{maths.hh@{maths.hh}!A\_PI2@{A\_PI2}}
+\index{A\_PI2@{A\_PI2}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{A\_PI2}{A\_PI2}}
+{\footnotesize\ttfamily \#define A\+\_\+\+P\+I2~\mbox{\hyperlink{class_angle}{Angle}}(M\+\_\+\+PI/2.\+0, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}})}
+
+
+
+Default \mbox{\hyperlink{class_angle}{Angle}} for pi/2 rad. 
+
+\mbox{\Hypertarget{maths_8hh_a0da7d22251afe9ccf02289e0bceca28f}\label{maths_8hh_a0da7d22251afe9ccf02289e0bceca28f}} 
+\index{maths.hh@{maths.hh}!A\_RAD\_NULL@{A\_RAD\_NULL}}
+\index{A\_RAD\_NULL@{A\_RAD\_NULL}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{A\_RAD\_NULL}{A\_RAD\_NULL}}
+{\footnotesize\ttfamily \#define A\+\_\+\+R\+A\+D\+\_\+\+N\+U\+LL~\mbox{\hyperlink{class_angle}{Angle}}(0, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}})}
+
+
+
+Defualt \mbox{\hyperlink{class_angle}{Angle}} for 0 degree. 
+
+\mbox{\Hypertarget{maths_8hh_a995779faef78614d4f074b7d444de767}\label{maths_8hh_a995779faef78614d4f074b7d444de767}} 
+\index{maths.hh@{maths.hh}!DInf@{DInf}}
+\index{DInf@{DInf}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{DInf}{DInf}}
+{\footnotesize\ttfamily \#define D\+Inf~numeric\+\_\+limits$<$double$>$\+::infinity()}
+
+\mbox{\Hypertarget{maths_8hh_a78802b279ab85021d7f6bffe51621703}\label{maths_8hh_a78802b279ab85021d7f6bffe51621703}} 
+\index{maths.hh@{maths.hh}!Epsi@{Epsi}}
+\index{Epsi@{Epsi}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{Epsi}{Epsi}}
+{\footnotesize\ttfamily \#define Epsi~numeric\+\_\+limits$<$double$>$\+::epsilon()}
+
+\mbox{\Hypertarget{maths_8hh_a2eba794860251c1b30e532df32ee4d1b}\label{maths_8hh_a2eba794860251c1b30e532df32ee4d1b}} 
+\index{maths.hh@{maths.hh}!tupleConstIter@{tupleConstIter}}
+\index{tupleConstIter@{tupleConstIter}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{tupleConstIter}{tupleConstIter}}
+{\footnotesize\ttfamily \#define tuple\+Const\+Iter~const typename vector$<$T$>$\+::iterator}
+
+\mbox{\Hypertarget{maths_8hh_ad22dcdeefda7d41523cc1604953eb6cc}\label{maths_8hh_ad22dcdeefda7d41523cc1604953eb6cc}} 
+\index{maths.hh@{maths.hh}!tupleIter@{tupleIter}}
+\index{tupleIter@{tupleIter}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{tupleIter}{tupleIter}}
+{\footnotesize\ttfamily \#define tuple\+Iter~typename vector$<$T$>$\+::iterator}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{maths_8hh_ac50d7263b1cae8691420b86282b27f90}\label{maths_8hh_ac50d7263b1cae8691420b86282b27f90}} 
+\index{maths.hh@{maths.hh}!DISTANCE\_TYPE@{DISTANCE\_TYPE}}
+\index{DISTANCE\_TYPE@{DISTANCE\_TYPE}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{DISTANCE\_TYPE}{DISTANCE\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{maths_8hh_ac50d7263b1cae8691420b86282b27f90}{D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+T\+Y\+PE}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EUCLIDEAN@{EUCLIDEAN}!maths.hh@{maths.hh}}\index{maths.hh@{maths.hh}!EUCLIDEAN@{EUCLIDEAN}}}\mbox{\Hypertarget{maths_8hh_ac50d7263b1cae8691420b86282b27f90a81bbbc4428c3ff3f1327e94957e2b5f1}\label{maths_8hh_ac50d7263b1cae8691420b86282b27f90a81bbbc4428c3ff3f1327e94957e2b5f1}} 
+E\+U\+C\+L\+I\+D\+E\+AN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MANHATTAN@{MANHATTAN}!maths.hh@{maths.hh}}\index{maths.hh@{maths.hh}!MANHATTAN@{MANHATTAN}}}\mbox{\Hypertarget{maths_8hh_ac50d7263b1cae8691420b86282b27f90a9ae95b5995796e7e5f32fa482a5bff98}\label{maths_8hh_ac50d7263b1cae8691420b86282b27f90a9ae95b5995796e7e5f32fa482a5bff98}} 
+M\+A\+N\+H\+A\+T\+T\+AN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{maths_8hh_a24e66125d5c9aea6608f537bdf77841e}\label{maths_8hh_a24e66125d5c9aea6608f537bdf77841e}} 
+\index{maths.hh@{maths.hh}!equal@{equal}}
+\index{equal@{equal}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{equal()}{equal()}}
+{\footnotesize\ttfamily bool equal (\begin{DoxyParamCaption}\item[{const double \&}]{A,  }\item[{const double \&}]{B,  }\item[{const double}]{E = {\ttfamily \mbox{\hyperlink{maths_8hh_a78802b279ab85021d7f6bffe51621703}{Epsi}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to compare two dubles as $\vert A-B\vert < \varepsilon$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & First number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em B} & Second number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em E} & $\varepsilon$, set at {\ttfamily std\+::numeric\+\_\+limits$<$double$>$\+::epsilon()} as default. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if $\vert A-B\vert < \varepsilon$, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{maths_8hh_a054f7427a96b10baa550060a0376584c}\label{maths_8hh_a054f7427a96b10baa550060a0376584c}} 
+\index{maths.hh@{maths.hh}!pow2@{pow2}}
+\index{pow2@{pow2}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{pow2()}{pow2()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T pow2 (\begin{DoxyParamCaption}\item[{const T}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{maths_8hh_abe8c019db43eb490b67df53e48a69d28}\label{maths_8hh_abe8c019db43eb490b67df53e48a69d28}} 
+\index{maths.hh@{maths.hh}!DEGTORAD@{DEGTORAD}}
+\index{DEGTORAD@{DEGTORAD}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{DEGTORAD}{DEGTORAD}}
+{\footnotesize\ttfamily const double D\+E\+G\+T\+O\+R\+AD =(M\+\_\+\+PI/180.\+0)}
+
+\mbox{\Hypertarget{maths_8hh_abbe9061bc2ecde6e056b25705a50a829}\label{maths_8hh_abbe9061bc2ecde6e056b25705a50a829}} 
+\index{maths.hh@{maths.hh}!RADTODEG@{RADTODEG}}
+\index{RADTODEG@{RADTODEG}!maths.hh@{maths.hh}}
+\subsubsection{\texorpdfstring{RADTODEG}{RADTODEG}}
+{\footnotesize\ttfamily const double R\+A\+D\+T\+O\+D\+EG =(180.\+0/M\+\_\+\+PI)}
+

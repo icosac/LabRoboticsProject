@@ -1,0 +1,315 @@
+\hypertarget{dubins_8hh}{}\section{src/include/dubins.hh File Reference}
+\label{dubins_8hh}\index{src/include/dubins.hh@{src/include/dubins.hh}}
+{\ttfamily \#include $<$maths.\+hh$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for dubins.\+hh\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dubins_8hh__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{dubins_8hh__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_curve}{Curve$<$ T $>$}}
+\item 
+class \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc$<$ T1, T2 $>$}}
+\begin{DoxyCompactList}\small\item\em Class to store a maneuver of \mbox{\hyperlink{class_dubins}{Dubins}}. It inherits from {\ttfamily \mbox{\hyperlink{class_curve}{Curve}}}. Since each \mbox{\hyperlink{class_dubins}{Dubins}} is formed of atmost 3 maneuvers, this class is meant to store one of this maneuver, which can be L, R or S respectively Left, Right, Straight. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_dubins}{Dubins$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Class to store a \mbox{\hyperlink{class_dubins}{Dubins}} curve. This class inherits from {\ttfamily \mbox{\hyperlink{class_curve}{Curve}}} and is composed of three {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_dubins_set}{Dubins\+Set$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Given a set of point, compute the shortest set of \mbox{\hyperlink{class_dubins}{Dubins}} that allows to go from start to end through all points. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}{P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}}~2
+\item 
+\#define \mbox{\hyperlink{dubins_8hh_a2bda1a81ce3474772a8a1f165e54516e}{P\+R\+EC}}~100000
+\item 
+\#define \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}~0.\+5
+\item 
+\#define \mbox{\hyperlink{dubins_8hh_a3fd2b1bcd7ddcf506237987ad780f495}{D\+E\+L\+TA}}~M\+\_\+\+PI/180.\+0
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{dubins_8hh_a5c88710b236a514392351a4d13d2e767}{sinc}} (double t)
+\item 
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \mbox{\hyperlink{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}{circline}} (double \+\_\+L, \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \+\_\+\+P0, double \+\_\+K)
+\item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \mbox{\hyperlink{dubins_8hh_a24a357b93081a0180dfec16136bc8ff7}{to\+Base}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ z, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} n, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} base, const \mbox{\hyperlink{class_angle}{Angle}} \&inc, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} start\+Pos, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} end\+Pos)
+\begin{DoxyCompactList}\small\item\em Convert a value in base 10 to base {\ttfamily base} in a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. To each value an inc is muiltiplied and the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} is added. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dubins_8hh_a16cf89e561eae9ea10a39e40432af238}{disp}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ $>$ \&t, \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \&z, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} N, const \mbox{\hyperlink{class_angle}{Angle}} \&inc, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} start\+Pos=0, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} end\+Pos=0)
+\begin{DoxyCompactList}\small\item\em Compute the arrangements. Since each arrangement can be computed as $n_{parts}$, where each values is then multiplied for the increment and is added to the initial values. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ \mbox{\hyperlink{dubins_8hh_afa53a085a4bb61c12f09c88a5f583dbd}{reduce\+\_\+points}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ init\+\_\+points)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{dubins_8hh_a5880c4830bf2ab16bad216015448eacb}{elapsed\+Scale}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_aa36733aa8c8ca5849070a465409dbe81}{elapsed\+Primitives}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_a0031b22718178ccc76a4d8178e582b25}{elapsed\+Best}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_a2ea7ce6fc7223d1e06dc71644336d66f}{elapsed\+Arcs}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_a06fc38271c4ca7f7799fa903d94cae5a}{elapsed\+Check}}
+\item 
+unsigned long \mbox{\hyperlink{dubins_8hh_abcfdf634840cd6f14ae6d0762ecd1f95}{count\+Tries}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_addc0762dc6f907d08093d87133317157}{elapsed\+Var}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_ad0abfff7e943d5425fde32277365912b}{elapsed\+Circ}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_abb6d93608c94bd3bd63217dc721ea2bf}{elapsed\+Set}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_af7f52b98e604497e1df6126251edffcf}{elapsed\+L\+SL}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_a5381897b84c903a717eda9680319f40a}{elapsed\+R\+SR}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_ada1c98b34a456476f08c5cafbfe893ad}{elapsed\+L\+SR}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_acb44475744bcbfbdf6609efd02c6c6fb}{elapsed\+R\+SL}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_a3972b672793842e7de439255254d3085}{elapsed\+R\+LR}}
+\item 
+double \mbox{\hyperlink{dubins_8hh_a715f7de2f92786df84a14e5a013b94e9}{elapsed\+L\+RL}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{dubins_8hh_a3fd2b1bcd7ddcf506237987ad780f495}\label{dubins_8hh_a3fd2b1bcd7ddcf506237987ad780f495}} 
+\index{dubins.hh@{dubins.hh}!DELTA@{DELTA}}
+\index{DELTA@{DELTA}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{DELTA}{DELTA}}
+{\footnotesize\ttfamily \#define D\+E\+L\+TA~M\+\_\+\+PI/180.\+0}
+
+\mbox{\Hypertarget{dubins_8hh_a940b85a83458e94519f2685b33ddd276}\label{dubins_8hh_a940b85a83458e94519f2685b33ddd276}} 
+\index{dubins.hh@{dubins.hh}!KMAX@{KMAX}}
+\index{KMAX@{KMAX}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{KMAX}{KMAX}}
+{\footnotesize\ttfamily \#define K\+M\+AX~0.\+5}
+
+\mbox{\Hypertarget{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}\label{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}} 
+\index{dubins.hh@{dubins.hh}!PIECE\_LENGTH@{PIECE\_LENGTH}}
+\index{PIECE\_LENGTH@{PIECE\_LENGTH}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{PIECE\_LENGTH}{PIECE\_LENGTH}}
+{\footnotesize\ttfamily \#define P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH~2}
+
+\mbox{\Hypertarget{dubins_8hh_a2bda1a81ce3474772a8a1f165e54516e}\label{dubins_8hh_a2bda1a81ce3474772a8a1f165e54516e}} 
+\index{dubins.hh@{dubins.hh}!PREC@{PREC}}
+\index{PREC@{PREC}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{PREC}{PREC}}
+{\footnotesize\ttfamily \#define P\+R\+EC~100000}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}\label{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}} 
+\index{dubins.hh@{dubins.hh}!circline@{circline}}
+\index{circline@{circline}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{circline()}{circline()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$double$>$ circline (\begin{DoxyParamCaption}\item[{double}]{\+\_\+L,  }\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$}]{\+\_\+\+P0,  }\item[{double}]{\+\_\+K }\end{DoxyParamCaption})}
+
+Computes an arrival point from an initial configuration through an arc of length \+\_\+L and curvature \+\_\+K. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+L} & The length of the arch. \\
+\hline
+{\em \+\_\+\+P0} & The starting {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the arc. \\
+\hline
+{\em \+\_\+K} & The curvature of the arc. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ending {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the arc. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dubins_8hh_a16cf89e561eae9ea10a39e40432af238}\label{dubins_8hh_a16cf89e561eae9ea10a39e40432af238}} 
+\index{dubins.hh@{dubins.hh}!disp@{disp}}
+\index{disp@{disp}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{disp()}{disp()}}
+{\footnotesize\ttfamily void disp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ $>$ \&}]{t,  }\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \&}]{z,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{N,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{inc,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{start\+Pos = {\ttfamily 0},  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{end\+Pos = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Compute the arrangements. Since each arrangement can be computed as $n_{parts}$, where each values is then multiplied for the increment and is added to the initial values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}s containing the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\hline
+{\em z} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\hline
+{\em N} & The number of iterations. Each iteration is going to be converted in base parts. \\
+\hline
+{\em inc} & The increment to give each initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}. \\
+\hline
+{\em start\+Pos} & The initial position to consider in {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. \\
+\hline
+{\em end\+Pos} & The final position to consider in {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyParams}{Parameters}
+{\em z} & Vector to use \\
+\hline
+{\em N} & Number of time to \char`\"{}iterate\char`\"{} \\
+\hline
+{\em inc} & Incrementation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dubins_8hh_afa53a085a4bb61c12f09c88a5f583dbd}\label{dubins_8hh_afa53a085a4bb61c12f09c88a5f583dbd}} 
+\index{dubins.hh@{dubins.hh}!reduce\_points@{reduce\_points}}
+\index{reduce\_points@{reduce\_points}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{reduce\_points()}{reduce\_points()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+vector$<$\mbox{\hyperlink{class_point2}{Point2}}$<$T$>$ $>$ reduce\+\_\+points (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{init\+\_\+points }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{dubins_8hh_a5c88710b236a514392351a4d13d2e767}\label{dubins_8hh_a5c88710b236a514392351a4d13d2e767}} 
+\index{dubins.hh@{dubins.hh}!sinc@{sinc}}
+\index{sinc@{sinc}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{sinc()}{sinc()}}
+{\footnotesize\ttfamily static double sinc (\begin{DoxyParamCaption}\item[{double}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Compute the sinc of the function defined as\+: \[ sinc(t)=\frac{sin(t)}{t}\quad t\neq 0 1\quad t=0 \] 
+\begin{DoxyParams}{Parameters}
+{\em t} & The value of the angle to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the previous formula. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dubins_8hh_a24a357b93081a0180dfec16136bc8ff7}\label{dubins_8hh_a24a357b93081a0180dfec16136bc8ff7}} 
+\index{dubins.hh@{dubins.hh}!toBase@{toBase}}
+\index{toBase@{toBase}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{toBase()}{toBase()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_angle}{Angle}}$>$ to\+Base (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$}]{z,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{n,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{base,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{inc,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{start\+Pos,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{end\+Pos }\end{DoxyParamCaption})}
+
+
+
+Convert a value in base 10 to base {\ttfamily base} in a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. To each value an inc is muiltiplied and the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} is added. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\hline
+{\em n} & The value to be converted. \\
+\hline
+{\em base} & The base. \\
+\hline
+{\em inc} & The increment. \\
+\hline
+{\em start\+Pos} & The starting position of the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\hline
+{\em end\+Pos} & The ending position of the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{dubins_8hh_abcfdf634840cd6f14ae6d0762ecd1f95}\label{dubins_8hh_abcfdf634840cd6f14ae6d0762ecd1f95}} 
+\index{dubins.hh@{dubins.hh}!countTries@{countTries}}
+\index{countTries@{countTries}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{countTries}{countTries}}
+{\footnotesize\ttfamily unsigned long count\+Tries}
+
+\mbox{\Hypertarget{dubins_8hh_a2ea7ce6fc7223d1e06dc71644336d66f}\label{dubins_8hh_a2ea7ce6fc7223d1e06dc71644336d66f}} 
+\index{dubins.hh@{dubins.hh}!elapsedArcs@{elapsedArcs}}
+\index{elapsedArcs@{elapsedArcs}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedArcs}{elapsedArcs}}
+{\footnotesize\ttfamily double elapsed\+Arcs}
+
+\mbox{\Hypertarget{dubins_8hh_a0031b22718178ccc76a4d8178e582b25}\label{dubins_8hh_a0031b22718178ccc76a4d8178e582b25}} 
+\index{dubins.hh@{dubins.hh}!elapsedBest@{elapsedBest}}
+\index{elapsedBest@{elapsedBest}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedBest}{elapsedBest}}
+{\footnotesize\ttfamily double elapsed\+Best}
+
+\mbox{\Hypertarget{dubins_8hh_a06fc38271c4ca7f7799fa903d94cae5a}\label{dubins_8hh_a06fc38271c4ca7f7799fa903d94cae5a}} 
+\index{dubins.hh@{dubins.hh}!elapsedCheck@{elapsedCheck}}
+\index{elapsedCheck@{elapsedCheck}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedCheck}{elapsedCheck}}
+{\footnotesize\ttfamily double elapsed\+Check}
+
+\mbox{\Hypertarget{dubins_8hh_ad0abfff7e943d5425fde32277365912b}\label{dubins_8hh_ad0abfff7e943d5425fde32277365912b}} 
+\index{dubins.hh@{dubins.hh}!elapsedCirc@{elapsedCirc}}
+\index{elapsedCirc@{elapsedCirc}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedCirc}{elapsedCirc}}
+{\footnotesize\ttfamily double elapsed\+Circ}
+
+\mbox{\Hypertarget{dubins_8hh_a715f7de2f92786df84a14e5a013b94e9}\label{dubins_8hh_a715f7de2f92786df84a14e5a013b94e9}} 
+\index{dubins.hh@{dubins.hh}!elapsedLRL@{elapsedLRL}}
+\index{elapsedLRL@{elapsedLRL}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedLRL}{elapsedLRL}}
+{\footnotesize\ttfamily double elapsed\+L\+RL}
+
+\mbox{\Hypertarget{dubins_8hh_af7f52b98e604497e1df6126251edffcf}\label{dubins_8hh_af7f52b98e604497e1df6126251edffcf}} 
+\index{dubins.hh@{dubins.hh}!elapsedLSL@{elapsedLSL}}
+\index{elapsedLSL@{elapsedLSL}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedLSL}{elapsedLSL}}
+{\footnotesize\ttfamily double elapsed\+L\+SL}
+
+\mbox{\Hypertarget{dubins_8hh_ada1c98b34a456476f08c5cafbfe893ad}\label{dubins_8hh_ada1c98b34a456476f08c5cafbfe893ad}} 
+\index{dubins.hh@{dubins.hh}!elapsedLSR@{elapsedLSR}}
+\index{elapsedLSR@{elapsedLSR}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedLSR}{elapsedLSR}}
+{\footnotesize\ttfamily double elapsed\+L\+SR}
+
+\mbox{\Hypertarget{dubins_8hh_aa36733aa8c8ca5849070a465409dbe81}\label{dubins_8hh_aa36733aa8c8ca5849070a465409dbe81}} 
+\index{dubins.hh@{dubins.hh}!elapsedPrimitives@{elapsedPrimitives}}
+\index{elapsedPrimitives@{elapsedPrimitives}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedPrimitives}{elapsedPrimitives}}
+{\footnotesize\ttfamily double elapsed\+Primitives}
+
+\mbox{\Hypertarget{dubins_8hh_a3972b672793842e7de439255254d3085}\label{dubins_8hh_a3972b672793842e7de439255254d3085}} 
+\index{dubins.hh@{dubins.hh}!elapsedRLR@{elapsedRLR}}
+\index{elapsedRLR@{elapsedRLR}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedRLR}{elapsedRLR}}
+{\footnotesize\ttfamily double elapsed\+R\+LR}
+
+\mbox{\Hypertarget{dubins_8hh_acb44475744bcbfbdf6609efd02c6c6fb}\label{dubins_8hh_acb44475744bcbfbdf6609efd02c6c6fb}} 
+\index{dubins.hh@{dubins.hh}!elapsedRSL@{elapsedRSL}}
+\index{elapsedRSL@{elapsedRSL}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedRSL}{elapsedRSL}}
+{\footnotesize\ttfamily double elapsed\+R\+SL}
+
+\mbox{\Hypertarget{dubins_8hh_a5381897b84c903a717eda9680319f40a}\label{dubins_8hh_a5381897b84c903a717eda9680319f40a}} 
+\index{dubins.hh@{dubins.hh}!elapsedRSR@{elapsedRSR}}
+\index{elapsedRSR@{elapsedRSR}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedRSR}{elapsedRSR}}
+{\footnotesize\ttfamily double elapsed\+R\+SR}
+
+\mbox{\Hypertarget{dubins_8hh_a5880c4830bf2ab16bad216015448eacb}\label{dubins_8hh_a5880c4830bf2ab16bad216015448eacb}} 
+\index{dubins.hh@{dubins.hh}!elapsedScale@{elapsedScale}}
+\index{elapsedScale@{elapsedScale}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedScale}{elapsedScale}}
+{\footnotesize\ttfamily double elapsed\+Scale}
+
+\mbox{\Hypertarget{dubins_8hh_abb6d93608c94bd3bd63217dc721ea2bf}\label{dubins_8hh_abb6d93608c94bd3bd63217dc721ea2bf}} 
+\index{dubins.hh@{dubins.hh}!elapsedSet@{elapsedSet}}
+\index{elapsedSet@{elapsedSet}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedSet}{elapsedSet}}
+{\footnotesize\ttfamily double elapsed\+Set}
+
+\mbox{\Hypertarget{dubins_8hh_addc0762dc6f907d08093d87133317157}\label{dubins_8hh_addc0762dc6f907d08093d87133317157}} 
+\index{dubins.hh@{dubins.hh}!elapsedVar@{elapsedVar}}
+\index{elapsedVar@{elapsedVar}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{elapsedVar}{elapsedVar}}
+{\footnotesize\ttfamily double elapsed\+Var}
+

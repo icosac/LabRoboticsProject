@@ -1,0 +1,37 @@
+<map id="src/include/map.hh" name="src/include/map.hh">
+<area shape="rect" id="node1" title=" " alt="" coords="795,5,928,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="1691,225,1749,251"/>
+<area shape="rect" id="node3" title=" " alt="" coords="2301,225,2340,251"/>
+<area shape="rect" id="node4" title=" " alt="" coords="2364,225,2423,251"/>
+<area shape="rect" id="node5" title=" " alt="" coords="464,79,515,104"/>
+<area shape="rect" id="node6" title=" " alt="" coords="1084,299,1156,324"/>
+<area shape="rect" id="node7" title=" " alt="" coords="590,79,658,104"/>
+<area shape="rect" id="node8" href="$maths_8hh.html" title=" " alt="" coords="1217,152,1293,177"/>
+<area shape="rect" id="node9" href="$utils_8hh.html" title=" " alt="" coords="655,225,719,251"/>
+<area shape="rect" id="node13" title=" " alt="" coords="5,299,150,324"/>
+<area shape="rect" id="node15" title=" " alt="" coords="363,299,491,324"/>
+<area shape="rect" id="node16" title=" " alt="" coords="1531,299,1675,324"/>
+<area shape="rect" id="node17" title=" " alt="" coords="174,299,339,324"/>
+<area shape="rect" id="node24" href="$settings_8hh.html" title=" " alt="" coords="984,79,1070,104"/>
+<area shape="rect" id="node28" href="$objects_8hh.html" title=" " alt="" coords="1214,79,1296,104"/>
+<area shape="rect" id="node10" title=" " alt="" coords="1391,299,1460,324"/>
+<area shape="rect" id="node20" title=" " alt="" coords="1305,225,1362,251"/>
+<area shape="rect" id="node21" title=" " alt="" coords="1140,225,1205,251"/>
+<area shape="rect" id="node22" title=" " alt="" coords="1012,225,1066,251"/>
+<area shape="rect" id="node23" title=" " alt="" coords="1229,225,1281,251"/>
+<area shape="rect" id="node11" title=" " alt="" coords="680,299,758,324"/>
+<area shape="rect" id="node12" title=" " alt="" coords="782,299,845,324"/>
+<area shape="rect" id="node14" title=" " alt="" coords="869,299,1059,324"/>
+<area shape="rect" id="node18" title=" " alt="" coords="514,299,572,324"/>
+<area shape="rect" id="node19" title=" " alt="" coords="596,299,655,324"/>
+<area shape="rect" id="node25" href="$filter_8hh.html" title=" " alt="" coords="1400,152,1464,177"/>
+<area shape="rect" id="node26" title=" " alt="" coords="782,152,939,177"/>
+<area shape="rect" id="node27" title=" " alt="" coords="691,152,757,177"/>
+<area shape="rect" id="node29" href="$clipper_8hh.html" title=" " alt="" coords="1990,152,2069,177"/>
+<area shape="rect" id="node30" title=" " alt="" coords="2052,225,2090,251"/>
+<area shape="rect" id="node31" title=" " alt="" coords="2114,225,2193,251"/>
+<area shape="rect" id="node32" title=" " alt="" coords="2217,225,2277,251"/>
+<area shape="rect" id="node33" title=" " alt="" coords="1773,225,1832,251"/>
+<area shape="rect" id="node34" title=" " alt="" coords="1856,225,1926,251"/>
+<area shape="rect" id="node35" title=" " alt="" coords="1949,225,2027,251"/>
+</map>
