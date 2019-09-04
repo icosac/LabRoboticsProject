@@ -61,7 +61,9 @@ stringstream \mbox{\hyperlink{class_configuration2_ac68ba3be6be597763a5caa4bd7ef
 bool \mbox{\hyperlink{class_configuration2_a1744207d1346e2ec554795255a58c241}{equal}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&A)
 \begin{DoxyCompactList}\small\item\em Equalize two configurations. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_configuration2_a7dda6b86ded2376a78a7f3d9f2811740}{operator==}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&A)
-\begin{DoxyCompactList}\small\item\em Overload of the == operator. Just calls {\ttfamily equal}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Overload of the == operator. Just calls {\ttfamily equal}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T2 $>$ }\\\mbox{\hyperlink{class_configuration2_a3bc8dfea259f6d3f97f6770c09ff6526}{operator Configuration2$<$ T2 $>$}} () const
+\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -378,6 +380,14 @@ Function to add an offset to the ordinate.
 \begin{DoxyReturn}{Returns}
 1 if everything went fine, 0 otherwise. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a3bc8dfea259f6d3f97f6770c09ff6526}\label{class_configuration2_a3bc8dfea259f6d3f97f6770c09ff6526}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator Configuration2$<$ T2 $>$@{operator Configuration2$<$ T2 $>$}}
+\index{operator Configuration2$<$ T2 $>$@{operator Configuration2$<$ T2 $>$}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{operator Configuration2$<$ T2 $>$()}{operator Configuration2< T2 >()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+template$<$class T2 $>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::operator \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_configuration2_a68bfa8b94c1cff3179698e00edb2890e}\label{class_configuration2_a68bfa8b94c1cff3179698e00edb2890e}} 
 \index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator Point2$<$ T2 $>$@{operator Point2$<$ T2 $>$}}
 \index{operator Point2$<$ T2 $>$@{operator Point2$<$ T2 $>$}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}

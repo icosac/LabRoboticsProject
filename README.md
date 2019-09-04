@@ -8,3 +8,6 @@ The project is divided in 3 part:
 
 ## Documentation 
 [Documentation.](https://icosac.github.io/LabRoboticsProject/)
+
+##Submodule
+This project is also a submodule for the repo [exam](https://www.github.com/icosac/examRobotics))

@@ -1,6 +1,9 @@
 <map id="src/include/detection.hh" name="src/include/detection.hh">
-<area shape="rect" id="node1" title=" " alt="" coords="144,5,306,31"/>
-<area shape="rect" id="node2" href="$detection_8cc.html" title=" " alt="" coords="5,79,119,104"/>
-<area shape="rect" id="node3" href="$detection__run_8cc.html" title=" " alt="" coords="143,79,307,104"/>
-<area shape="rect" id="node4" href="$main_8cc.html" title=" " alt="" coords="330,79,442,104"/>
+<area shape="rect" id="node1" title=" " alt="" coords="218,5,380,31"/>
+<area shape="rect" id="node2" href="$detection_8cc.html" title=" " alt="" coords="25,79,139,104"/>
+<area shape="rect" id="node3" href="$planning_8hh.html" title=" " alt="" coords="163,79,321,104"/>
+<area shape="rect" id="node5" href="$main_8cc.html" title=" " alt="" coords="323,152,435,177"/>
+<area shape="rect" id="node7" href="$detection__run_8cc.html" title=" " alt="" coords="395,79,558,104"/>
+<area shape="rect" id="node4" href="$planning_8cc.html" title=" " alt="" coords="5,152,116,177"/>
+<area shape="rect" id="node6" href="$planning__run_8cc.html" title=" " alt="" coords="139,152,299,177"/>
 </map>

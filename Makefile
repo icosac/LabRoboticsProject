@@ -17,7 +17,7 @@ LIBS=-L./lib -lDubins $(INC)
 #condition for mac and linux
 ifneq (,$(findstring Darwin, $(OS)))
 	OPENCV=opencv3
-	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -Wno-everything -O3
+	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags $(TESS) $(OPENCV)` -w -std=c++11  -O3
   	AR=libtool -static -o
 else 
 	CXXFLAGS=`pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -Wall -O3
@@ -37,11 +37,15 @@ MKDIR=mkdir -p
 #files that contain code
 #dubins and maths are only libraries
 SRC=$(wildcard src/*.cc)
+# SRC=src/utils.cc 
 #object files
 OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
 
 #test files
 TEST_SRC= 	test/officialMain.cc
+# 					test/prova1.cc\
+# 					test/dubins_test.cc\
+# 					test/maths_test.cc
 TEST_EXEC=$(subst test/,bin/test/,$(patsubst %.cc, %.out, $(TEST_SRC)))
 
 #Run files
@@ -74,12 +78,12 @@ test: lib bin_test/ $(TEST_EXEC)
 
 ##Debugging
 ECHO:
-	@echo $(SRC)
-	@echo $(OBJ)
-	@echo $(RUN)
-	@echo $(RUN_EXEC)
-	@echo $(TEST_SRC)
-	@echo $(TEST_EXEC)
+	@echo "SRC: " $(SRC)
+	@echo "OBJ: " $(OBJ)
+	@echo "RUN: " $(RUN)
+	@echo "RUN_EXEC: " $(RUN_EXEC)
+	@echo "TEST_SRC: " $(TEST_SRC)
+	@echo "TEST_EXEC: " $(TEST_EXEC)
 
 
 ##LIBRARY TARGETS

@@ -54,8 +54,6 @@ void \mbox{\hyperlink{class_angle_a449fc0638ca2e26b4a57d1cce95788e8}{normalize}}
 \begin{DoxyCompactList}\small\item\em Divide and angle by a costant. In the process a new angle is created so {\ttfamily \mbox{\hyperlink{class_angle_a449fc0638ca2e26b4a57d1cce95788e8}{normalize()}}} is also called. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_angle_ab1c34d25d3235e639313e5d48d98a6f6}{copy}} (const \mbox{\hyperlink{class_angle}{Angle}} phi)
 \begin{DoxyCompactList}\small\item\em Copies an angle to this one. In the process a new angle is created so {\ttfamily \mbox{\hyperlink{class_angle_a449fc0638ca2e26b4a57d1cce95788e8}{normalize()}}} is also called. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_angle_a56b3dfe127d0abc16db14bd22ed4b5b4}{equal}} (const \mbox{\hyperlink{class_angle}{Angle}} \&th0, const \mbox{\hyperlink{class_angle}{Angle}} \&th1)
-\item 
 \mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_angle_aa04bc36c641e1ecfb7aee5019ed8e6ea}{operator+}} (const \mbox{\hyperlink{class_angle}{Angle}} phi)
 \item 
 \mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_angle_a951436019a4c06895ba31a08bf0d6fd2}{operator-\/}} (const \mbox{\hyperlink{class_angle}{Angle}} phi)
@@ -76,9 +74,23 @@ bool \mbox{\hyperlink{class_angle_a56b3dfe127d0abc16db14bd22ed4b5b4}{equal}} (co
 \item 
 {\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{class_angle}{Angle}} \& \mbox{\hyperlink{class_angle_ac0421d376bd1c7396088ff465589c4b9}{operator/=}} (const T A)
 \item 
+bool \mbox{\hyperlink{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}{equal}} (const \mbox{\hyperlink{class_angle}{Angle}} \&phi)
+\item 
+bool \mbox{\hyperlink{class_angle_a4e25c0ed5a92eb8af995a038c70f4e26}{less}} (const \mbox{\hyperlink{class_angle}{Angle}} \&phi)
+\item 
+bool \mbox{\hyperlink{class_angle_a2ead65678819acef29cc4c7f2400f631}{greater}} (const \mbox{\hyperlink{class_angle}{Angle}} \&phi)
+\item 
 bool \mbox{\hyperlink{class_angle_affdc9a2590df21c00fcbe01e5dadaf25}{operator==}} (const \mbox{\hyperlink{class_angle}{Angle}} \&phi)
 \item 
 bool \mbox{\hyperlink{class_angle_a8d22835be41b628a5216243b7f7e50a1}{operator!=}} (const \mbox{\hyperlink{class_angle}{Angle}} \&phi)
+\item 
+bool \mbox{\hyperlink{class_angle_a6771d6e2005dcb8ddb6355349441dc38}{operator$<$}} (const \mbox{\hyperlink{class_angle}{Angle}} \&phi)
+\item 
+bool \mbox{\hyperlink{class_angle_a5c45045b213db3627055a4591b403224}{operator$>$}} (const \mbox{\hyperlink{class_angle}{Angle}} \&phi)
+\item 
+bool \mbox{\hyperlink{class_angle_ad18dd2a58b59f2b8d57431cf122f026c}{operator$<$=}} (const \mbox{\hyperlink{class_angle}{Angle}} \&phi)
+\item 
+bool \mbox{\hyperlink{class_angle_a2cedd44bb72da23b24d2fd57eacf3b79}{operator$>$=}} (const \mbox{\hyperlink{class_angle}{Angle}} \&phi)
 \item 
 double \mbox{\hyperlink{class_angle_aedc259112dacf9197d787645f7e48911}{cos}} () const
 \begin{DoxyCompactList}\small\item\em Compute the cosine of the angle. \textbackslash{}retunrs A {\ttfamily double} that is the cosine of the angle. \end{DoxyCompactList}\item 
@@ -94,7 +106,7 @@ double \mbox{\hyperlink{class_angle_a2b1f249db1c3a2b741c2834b2d04d60a}{tan}} () 
 \begin{DoxyCompactList}\small\item\em Cast to float. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_angle_a497355a5d68f92e7801ee4072e234185}{operator long}} () const
 \begin{DoxyCompactList}\small\item\em Cast to long. \end{DoxyCompactList}\item 
-stringstream \mbox{\hyperlink{class_angle_a30cf6acb380ac16fbf308032a109dcd4}{to\+\_\+string}} () const
+stringstream \mbox{\hyperlink{class_angle_a5022b65b8a46e4050cde8a27cdc8d236}{to\+\_\+string}} (\mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77}{A\+N\+G\+L\+E\+\_\+\+T\+Y\+PE}} \+\_\+type=\mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77aa3c85e092f5da4bb998d0ddc6632dcbf}{I\+N\+V\+A\+L\+ID}}) const
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -254,17 +266,15 @@ Divide and angle by a costant. In the process a new angle is created so {\ttfami
 \begin{DoxyReturn}{Returns}
 The angle divided. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_angle_a56b3dfe127d0abc16db14bd22ed4b5b4}\label{class_angle_a56b3dfe127d0abc16db14bd22ed4b5b4}} 
+\mbox{\Hypertarget{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}\label{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}} 
 \index{Angle@{Angle}!equal@{equal}}
 \index{equal@{equal}!Angle@{Angle}}
 \subsubsection{\texorpdfstring{equal()}{equal()}}
-{\footnotesize\ttfamily bool Angle\+::equal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{th0,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{th1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool Angle\+::equal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-This function takes the value in radiants of two angles, an using the equal function for {\ttfamily double} calculare if they are equal or not. 
+This function takes an angle to copare, an using the {\ttfamily equal} function for {\ttfamily double}s calculates if it is equal or not to {\ttfamily this}. 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em th0} & The first angle. \\
-\hline
-\mbox{\texttt{ in}}  & {\em th1} & The second angle. \\
+\mbox{\texttt{ in}}  & {\em phi} & The angle to compare. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -296,7 +306,35 @@ Returns the type of the angle.
 \subsubsection{\texorpdfstring{getTypeName()}{getTypeName()}}
 {\footnotesize\ttfamily string Angle\+::get\+Type\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-$<$Returns a string that tells the type of angle. \mbox{\Hypertarget{class_angle_aa1c4b848f4ac7ece9d2fa010abc91511}\label{class_angle_aa1c4b848f4ac7ece9d2fa010abc91511}} 
+$<$Returns a string that tells the type of angle. \mbox{\Hypertarget{class_angle_a2ead65678819acef29cc4c7f2400f631}\label{class_angle_a2ead65678819acef29cc4c7f2400f631}} 
+\index{Angle@{Angle}!greater@{greater}}
+\index{greater@{greater}!Angle@{Angle}}
+\subsubsection{\texorpdfstring{greater()}{greater()}}
+{\footnotesize\ttfamily bool Angle\+::greater (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This function takes the value in radiants of an angle and compares it with this. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em phi} & The angle to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this is more than phi, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_angle_a4e25c0ed5a92eb8af995a038c70f4e26}\label{class_angle_a4e25c0ed5a92eb8af995a038c70f4e26}} 
+\index{Angle@{Angle}!less@{less}}
+\index{less@{less}!Angle@{Angle}}
+\subsubsection{\texorpdfstring{less()}{less()}}
+{\footnotesize\ttfamily bool Angle\+::less (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This function takes the value in radiants of an angle and compares it with this. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em phi} & The angle to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this is less than phi, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_angle_aa1c4b848f4ac7ece9d2fa010abc91511}\label{class_angle_aa1c4b848f4ac7ece9d2fa010abc91511}} 
 \index{Angle@{Angle}!mul@{mul}}
 \index{mul@{mul}!Angle@{Angle}}
 \subsubsection{\texorpdfstring{mul()}{mul()}}
@@ -423,7 +461,15 @@ The value in R\+AD of the angle casted to long
 \subsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
 {\footnotesize\ttfamily bool Angle\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-This function overload the operator ==. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a56b3dfe127d0abc16db14bd22ed4b5b4}{equal()}}} function and negates it. 
+This function overload the operator ==. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}{equal()}}} function. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em phi} & The second angle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the two angle are equal, {\ttfamily false} otherwise.
+\end{DoxyReturn}
+This function overload the operator ==. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}{equal()}}} function and negates it. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em phi} & The second angle. \\
 \hline
@@ -522,6 +568,18 @@ This function overload the operator /=. It simply calls the {\ttfamily \mbox{\hy
 \begin{DoxyReturn}{Returns}
 {\ttfamily this}. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_angle_a6771d6e2005dcb8ddb6355349441dc38}\label{class_angle_a6771d6e2005dcb8ddb6355349441dc38}} 
+\index{Angle@{Angle}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Angle@{Angle}}
+\subsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Angle\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_angle_ad18dd2a58b59f2b8d57431cf122f026c}\label{class_angle_ad18dd2a58b59f2b8d57431cf122f026c}} 
+\index{Angle@{Angle}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!Angle@{Angle}}
+\subsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily bool Angle\+::operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_angle_a93da39f08e2e110e278bb94d1c279ac6}\label{class_angle_a93da39f08e2e110e278bb94d1c279ac6}} 
 \index{Angle@{Angle}!operator=@{operator=}}
 \index{operator=@{operator=}!Angle@{Angle}}
@@ -548,7 +606,7 @@ The new angle.
 \subsubsection{\texorpdfstring{operator==()}{operator==()}}
 {\footnotesize\ttfamily bool Angle\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-This function overload the operator ==. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a56b3dfe127d0abc16db14bd22ed4b5b4}{equal()}}} function. 
+This function overload the operator ==. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}{equal()}}} function. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em phi} & The second angle. \\
 \hline
@@ -556,6 +614,18 @@ This function overload the operator ==. It simply calls the {\ttfamily \mbox{\hy
 \begin{DoxyReturn}{Returns}
 {\ttfamily true} if the two angle are equal, {\ttfamily false} otherwise. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_angle_a5c45045b213db3627055a4591b403224}\label{class_angle_a5c45045b213db3627055a4591b403224}} 
+\index{Angle@{Angle}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Angle@{Angle}}
+\subsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily bool Angle\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_angle_a2cedd44bb72da23b24d2fd57eacf3b79}\label{class_angle_a2cedd44bb72da23b24d2fd57eacf3b79}} 
+\index{Angle@{Angle}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Angle@{Angle}}
+\subsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily bool Angle\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_angle_a8d7691e304041c8deafdec82497a781f}\label{class_angle_a8d7691e304041c8deafdec82497a781f}} 
 \index{Angle@{Angle}!radToDeg@{radToDeg}}
 \index{radToDeg@{radToDeg}!Angle@{Angle}}
@@ -643,13 +713,18 @@ The angle subtracted.
 
 Compute the tangent of the angle. \textbackslash{}retunrs A {\ttfamily double} that is the tangent of the angle. 
 
-\mbox{\Hypertarget{class_angle_a30cf6acb380ac16fbf308032a109dcd4}\label{class_angle_a30cf6acb380ac16fbf308032a109dcd4}} 
+\mbox{\Hypertarget{class_angle_a5022b65b8a46e4050cde8a27cdc8d236}\label{class_angle_a5022b65b8a46e4050cde8a27cdc8d236}} 
 \index{Angle@{Angle}!to\_string@{to\_string}}
 \index{to\_string@{to\_string}!Angle@{Angle}}
 \subsubsection{\texorpdfstring{to\_string()}{to\_string()}}
-{\footnotesize\ttfamily stringstream Angle\+::to\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily stringstream Angle\+::to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77}{A\+N\+G\+L\+E\+\_\+\+T\+Y\+PE}}}]{\+\_\+type = {\ttfamily \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77aa3c85e092f5da4bb998d0ddc6632dcbf}{I\+N\+V\+A\+L\+ID}}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-This function create a strinstream object containing the most essential info, that is the dimension and the type of angle. \begin{DoxyReturn}{Returns}
+This function create a strinstream object containing the most essential info, that is the dimension and the type of angle. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em The} & type of values to be printed. Default is set to I\+N\+V\+A\+L\+ID and it\textquotesingle{}ll print the data of the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} as it was saved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
 A string stream. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_angle_a89b1e5b7b71fc1bf9565da0bef8f361f}\label{class_angle_a89b1e5b7b71fc1bf9565da0bef8f361f}} 

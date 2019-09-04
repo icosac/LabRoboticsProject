@@ -74,26 +74,58 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;set&gt;</code><br />
+<code>#include &lt;queue&gt;</code><br />
 <code>#include &lt;tuple&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
 <code>#include &lt;<a class="el" href="maths_8hh_source.html">maths.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="settings_8hh_source.html">settings.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="utils_8hh_source.html">utils.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="objects_8hh_source.html">objects.hh</a>&gt;</code><br />
+<code>#include &lt;opencv2/highgui.hpp&gt;</code><br />
+<code>#include &lt;opencv2/core.hpp&gt;</code><br />
+<code>#include &lt;opencv2/opencv.hpp&gt;</code><br />
+<code>#include &lt;opencv2/imgcodecs.hpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for map.hh:</div>
 <div class="dyncontent">
 <div class="center"><img src="map_8hh__incl.png" border="0" usemap="#src_2include_2map_8hh" alt=""/></div>
 <map name="src_2include_2map_8hh" id="src_2include_2map_8hh">
-<area shape="rect"  title=" " alt="" coords="189,5,322,31"/>
-<area shape="rect"  title=" " alt="" coords="5,152,63,177"/>
-<area shape="rect"  title=" " alt="" coords="317,79,356,104"/>
-<area shape="rect"  title=" " alt="" coords="381,79,431,104"/>
-<area shape="rect"  title=" " alt="" coords="87,152,160,177"/>
-<area shape="rect"  href="maths_8hh.html" title=" " alt="" coords="217,79,294,104"/>
-<area shape="rect"  title=" " alt="" coords="184,152,242,177"/>
-<area shape="rect"  title=" " alt="" coords="266,152,331,177"/>
-<area shape="rect"  title=" " alt="" coords="354,152,423,177"/>
-<area shape="rect"  title=" " alt="" coords="447,152,501,177"/>
-<area shape="rect"  title=" " alt="" coords="525,152,669,177"/>
-<area shape="rect"  title=" " alt="" coords="692,152,744,177"/>
+<area shape="rect"  title=" " alt="" coords="795,5,928,31"/>
+<area shape="rect"  title=" " alt="" coords="1691,225,1749,251"/>
+<area shape="rect"  title=" " alt="" coords="2301,225,2340,251"/>
+<area shape="rect"  title=" " alt="" coords="2364,225,2423,251"/>
+<area shape="rect"  title=" " alt="" coords="464,79,515,104"/>
+<area shape="rect"  title=" " alt="" coords="1084,299,1156,324"/>
+<area shape="rect"  title=" " alt="" coords="590,79,658,104"/>
+<area shape="rect"  href="maths_8hh.html" title=" " alt="" coords="1217,152,1293,177"/>
+<area shape="rect"  href="utils_8hh.html" title=" " alt="" coords="655,225,719,251"/>
+<area shape="rect"  title=" " alt="" coords="5,299,150,324"/>
+<area shape="rect"  title=" " alt="" coords="363,299,491,324"/>
+<area shape="rect"  title=" " alt="" coords="1531,299,1675,324"/>
+<area shape="rect"  title=" " alt="" coords="174,299,339,324"/>
+<area shape="rect"  href="settings_8hh.html" title=" " alt="" coords="984,79,1070,104"/>
+<area shape="rect"  href="objects_8hh.html" title=" " alt="" coords="1214,79,1296,104"/>
+<area shape="rect"  title=" " alt="" coords="1391,299,1460,324"/>
+<area shape="rect"  title=" " alt="" coords="1305,225,1362,251"/>
+<area shape="rect"  title=" " alt="" coords="1140,225,1205,251"/>
+<area shape="rect"  title=" " alt="" coords="1012,225,1066,251"/>
+<area shape="rect"  title=" " alt="" coords="1229,225,1281,251"/>
+<area shape="rect"  title=" " alt="" coords="680,299,758,324"/>
+<area shape="rect"  title=" " alt="" coords="782,299,845,324"/>
+<area shape="rect"  title=" " alt="" coords="869,299,1059,324"/>
+<area shape="rect"  title=" " alt="" coords="514,299,572,324"/>
+<area shape="rect"  title=" " alt="" coords="596,299,655,324"/>
+<area shape="rect"  href="filter_8hh.html" title=" " alt="" coords="1400,152,1464,177"/>
+<area shape="rect"  title=" " alt="" coords="782,152,939,177"/>
+<area shape="rect"  title=" " alt="" coords="691,152,757,177"/>
+<area shape="rect"  href="clipper_8hh.html" title=" " alt="" coords="1990,152,2069,177"/>
+<area shape="rect"  title=" " alt="" coords="2052,225,2090,251"/>
+<area shape="rect"  title=" " alt="" coords="2114,225,2193,251"/>
+<area shape="rect"  title=" " alt="" coords="2217,225,2277,251"/>
+<area shape="rect"  title=" " alt="" coords="1773,225,1832,251"/>
+<area shape="rect"  title=" " alt="" coords="1856,225,1926,251"/>
+<area shape="rect"  title=" " alt="" coords="1949,225,2027,251"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -101,8 +133,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="map_8hh__dep__incl.png" border="0" usemap="#src_2include_2map_8hhdep" alt=""/></div>
 <map name="src_2include_2map_8hhdep" id="src_2include_2map_8hhdep">
-<area shape="rect"  title=" " alt="" coords="5,5,139,31"/>
-<area shape="rect"  href="map_8cc.html" title=" " alt="" coords="29,79,115,104"/>
+<area shape="rect"  title=" " alt="" coords="55,5,188,31"/>
+<area shape="rect"  href="map_8cc.html" title=" " alt="" coords="7,79,93,104"/>
+<area shape="rect"  href="planning_8hh.html" title=" " alt="" coords="116,79,274,104"/>
+<area shape="rect"  href="planning_8cc.html" title=" " alt="" coords="5,152,116,177"/>
+<area shape="rect"  href="main_8cc.html" title=" " alt="" coords="139,152,251,177"/>
+<area shape="rect"  href="planning__run_8cc.html" title=" " alt="" coords="275,152,435,177"/>
 </map>
 </div>
 </div>
@@ -115,10 +151,14 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a714b9c2c276fbae637fee36453d9121e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8hh.html#a714b9c2c276fbae637fee36453d9121e">OBJ_TYPE</a> { <a class="el" href="map_8hh.html#a714b9c2c276fbae637fee36453d9121eacc62d1576546f3245237e1b232d838b6">FREE</a>, 
+<tr class="memitem:a714b9c2c276fbae637fee36453d9121e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8hh.html#a714b9c2c276fbae637fee36453d9121e">OBJ_TYPE</a> { <br />
+&#160;&#160;<a class="el" href="map_8hh.html#a714b9c2c276fbae637fee36453d9121eacc62d1576546f3245237e1b232d838b6">FREE</a>, 
 <a class="el" href="map_8hh.html#a714b9c2c276fbae637fee36453d9121ea71a79ec3ed4c3f42f62a3d9998424be7">VICT</a>, 
 <a class="el" href="map_8hh.html#a714b9c2c276fbae637fee36453d9121ea9bfb772b98998217b3d7caf5a94b9938">OBST</a>, 
-<a class="el" href="map_8hh.html#a714b9c2c276fbae637fee36453d9121eac00a9212e2a45c125c4e3ca32bbfc0f8">GATE</a>
+<a class="el" href="map_8hh.html#a714b9c2c276fbae637fee36453d9121eac00a9212e2a45c125c4e3ca32bbfc0f8">GATE</a>, 
+<br />
+&#160;&#160;<a class="el" href="map_8hh.html#a714b9c2c276fbae637fee36453d9121eae00209173a2bee1d1552d2e3b61b1a36">BODA</a>
+<br />
  }</td></tr>
 <tr class="separator:a714b9c2c276fbae637fee36453d9121e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -139,6 +179,7 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="a714b9c2c276fbae637fee36453d9121ea71a79ec3ed4c3f42f62a3d9998424be7"></a>VICT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a714b9c2c276fbae637fee36453d9121ea9bfb772b98998217b3d7caf5a94b9938"></a>OBST&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a714b9c2c276fbae637fee36453d9121eac00a9212e2a45c125c4e3ca32bbfc0f8"></a>GATE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a714b9c2c276fbae637fee36453d9121eae00209173a2bee1d1552d2e3b61b1a36"></a>BODA&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>

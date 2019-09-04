@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['what',['what',['../class_clipper_lib_1_1clipper_exception.html#a32b7ac5a3176d9040ef0a863fd54657a',1,'ClipperLib::clipperException']]],
-  ['write',['write',['../class_cal_settings.html#a1e7ebff7ec6beb793febbe245ac753bd',1,'CalSettings']]],
-  ['writetofile',['writeToFile',['../class_settings.html#a1afc50e91691fae24114ba5e248dfd87',1,'Settings']]]
+  ['validate',['validate',['../class_cal_settings.html#ae7f2a16c9f1839485cc12f52cf98f67e',1,'CalSettings']]],
+  ['vectofile',['vecToFile',['../settings_8cc.html#a361ee20c732f6fba248a0b92106455eb',1,'settings.cc']]],
+  ['victim',['Victim',['../class_victim.html#ac3a9e66064c972ad6995fda9bf0ef922',1,'Victim']]]
 ];

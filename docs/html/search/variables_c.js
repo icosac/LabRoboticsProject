@@ -5,5 +5,6 @@ var searchData=
   ['nextinael',['NextInAEL',['../struct_clipper_lib_1_1_t_edge.html#a7281f59250f53e96099c1f636350bbd5',1,'ClipperLib::TEdge']]],
   ['nextinlml',['NextInLML',['../struct_clipper_lib_1_1_t_edge.html#a1d0ad253e18e6fc82ed025e3d69b33de',1,'ClipperLib::TEdge']]],
   ['nextinsel',['NextInSEL',['../struct_clipper_lib_1_1_t_edge.html#a167cd4d991d27f344d875ad6fd43b862',1,'ClipperLib::TEdge']]],
+  ['npoints',['nPoints',['../class_mapp.html#addd9fcc5e7db2c40038ab32ecf29171c',1,'Mapp']]],
   ['nrframes',['nrFrames',['../class_cal_settings.html#a952a1f99909768b2af2580b9be94ce9d',1,'CalSettings']]]
 ];

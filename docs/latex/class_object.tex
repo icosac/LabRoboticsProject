@@ -11,7 +11,7 @@ Inheritance diagram for Object\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=196pt]{class_object__inherit__graph}
+\includegraphics[width=252pt]{class_object__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -29,16 +29,22 @@ Collaboration diagram for Object\+:
 \item 
 string \mbox{\hyperlink{class_object_acf6d17366700fe12cafd6269561fad69}{to\+String}} ()
 \begin{DoxyCompactList}\small\item\em Generate a string that describe the object. \end{DoxyCompactList}\item 
-unsigned \mbox{\hyperlink{class_object_aa3744105f4a391f66ffb522df079b3c9}{size}} ()
+unsigned \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_object_a429286aef9c0c1f83e5ff668b6b75e6a}{size}} ()
 \begin{DoxyCompactList}\small\item\em Return the number of points of the object. \end{DoxyCompactList}\item 
-unsigned \mbox{\hyperlink{class_object_ae4bc2b4ca7923f4f894c4b12979ee56f}{n\+Points}} ()
+unsigned \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_object_a27b5515d2b0b695a0a402d8bbda3a4fa}{n\+Points}} ()
 \begin{DoxyCompactList}\small\item\em Return the number of points of the object. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{class_object_a21f5814fc1e2b6765bdefca5091f2e26}{get\+Points}} ()
+\begin{DoxyCompactList}\small\item\em Return the of points of the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \mbox{\hyperlink{class_object_aa624c3f9e2958743a0ae7efc78f5d586}{get\+Center}} ()
+\begin{DoxyCompactList}\small\item\em Retrieve the center of the object. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_object_ac7932a458c6259d0b61bc294b3c5369c}{get\+Radius}} ()
+\begin{DoxyCompactList}\small\item\em Retrieve the radius of the object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_object_afc241f20b0055c8840f849d40d108359}{compute\+Center}} ()
 \begin{DoxyCompactList}\small\item\em Find the representative center of the object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_object_a520dcca66f8a8075559b3a45a7a2d81a}{compute\+Radius}} ()
 \begin{DoxyCompactList}\small\item\em Compute the radius of the object. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_object_a9cee85749dbecb460a9449b8e6bb674d}{offsetting}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} offset)
-\begin{DoxyCompactList}\small\item\em Enlarge the object of the given offset. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a765475eeba221a6c10ba6ed1b36aad47}{offsetting}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} offset, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} limitX, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} limitY)
+\begin{DoxyCompactList}\small\item\em Enlarge the object of the given offset (defined as pixels=mm in our scenario). \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_object_a5dd7d9cd5bd29176b04ab10d7577fc56}{inside\+Poly\+Approx}} (\mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ pt)
 \begin{DoxyCompactList}\small\item\em Check if the given point is inside the approximation shape of the object (a circle). \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_object_a8f54d70eb539d4ea2d05993cfd51fcc9}{inside\+Poly}} (\mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ pt)
@@ -50,7 +56,7 @@ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_a
 \item 
 \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \mbox{\hyperlink{class_object_a73b61b5048f06c8d79d1cbab64d953a0}{center}}
 \item 
-float \mbox{\hyperlink{class_object_ab2985661849d90b81488e4b5e779b798}{radius}}
+double \mbox{\hyperlink{class_object_aacfbf5151daad699c60efc27fb702406}{radius}}
 \end{DoxyCompactItemize}
 
 
@@ -75,7 +81,46 @@ The center is computed as the mean of the minimum and maximum x and y. \mbox{\Hy
 
 Compute the radius of the object. 
 
-This function assume that the center of the object is already computed and consistent. \mbox{\Hypertarget{class_object_a8f54d70eb539d4ea2d05993cfd51fcc9}\label{class_object_a8f54d70eb539d4ea2d05993cfd51fcc9}} 
+This function assume that the center of the object is already computed and consistent. \mbox{\Hypertarget{class_object_aa624c3f9e2958743a0ae7efc78f5d586}\label{class_object_aa624c3f9e2958743a0ae7efc78f5d586}} 
+\index{Object@{Object}!getCenter@{getCenter}}
+\index{getCenter@{getCenter}!Object@{Object}}
+\subsubsection{\texorpdfstring{getCenter()}{getCenter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ Object\+::get\+Center (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieve the center of the object. 
+
+\begin{DoxyReturn}{Returns}
+The center. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_object_a21f5814fc1e2b6765bdefca5091f2e26}\label{class_object_a21f5814fc1e2b6765bdefca5091f2e26}} 
+\index{Object@{Object}!getPoints@{getPoints}}
+\index{getPoints@{getPoints}!Object@{Object}}
+\subsubsection{\texorpdfstring{getPoints()}{getPoints()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ Object\+::get\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return the of points of the object. 
+
+\begin{DoxyReturn}{Returns}
+The vector of points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_object_ac7932a458c6259d0b61bc294b3c5369c}\label{class_object_ac7932a458c6259d0b61bc294b3c5369c}} 
+\index{Object@{Object}!getRadius@{getRadius}}
+\index{getRadius@{getRadius}!Object@{Object}}
+\subsubsection{\texorpdfstring{getRadius()}{getRadius()}}
+{\footnotesize\ttfamily double Object\+::get\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieve the radius of the object. 
+
+\begin{DoxyReturn}{Returns}
+The radius. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_object_a8f54d70eb539d4ea2d05993cfd51fcc9}\label{class_object_a8f54d70eb539d4ea2d05993cfd51fcc9}} 
 \index{Object@{Object}!insidePoly@{insidePoly}}
 \index{insidePoly@{insidePoly}!Object@{Object}}
 \subsubsection{\texorpdfstring{insidePoly()}{insidePoly()}}
@@ -111,28 +156,28 @@ Check if the given point is inside the approximation shape of the object (a circ
 \begin{DoxyReturn}{Returns}
 True if the point is inside the object, false otherwise. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_object_ae4bc2b4ca7923f4f894c4b12979ee56f}\label{class_object_ae4bc2b4ca7923f4f894c4b12979ee56f}} 
+\mbox{\Hypertarget{class_object_a27b5515d2b0b695a0a402d8bbda3a4fa}\label{class_object_a27b5515d2b0b695a0a402d8bbda3a4fa}} 
 \index{Object@{Object}!nPoints@{nPoints}}
 \index{nPoints@{nPoints}!Object@{Object}}
 \subsubsection{\texorpdfstring{nPoints()}{nPoints()}}
-{\footnotesize\ttfamily unsigned Object\+::n\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Object\+::n\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 Return the number of points of the object. 
 
 \begin{DoxyReturn}{Returns}
-Tthe number of points. 
+The number of points. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_object_a9cee85749dbecb460a9449b8e6bb674d}\label{class_object_a9cee85749dbecb460a9449b8e6bb674d}} 
+\mbox{\Hypertarget{class_object_a765475eeba221a6c10ba6ed1b36aad47}\label{class_object_a765475eeba221a6c10ba6ed1b36aad47}} 
 \index{Object@{Object}!offsetting@{offsetting}}
 \index{offsetting@{offsetting}!Object@{Object}}
 \subsubsection{\texorpdfstring{offsetting()}{offsetting()}}
-{\footnotesize\ttfamily void Object\+::offsetting (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{offset }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Object\+::offsetting (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{offset,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{limitX,  }\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{limitY }\end{DoxyParamCaption})}
 
 
 
-Enlarge the object of the given offset. 
+Enlarge the object of the given offset (defined as pixels=mm in our scenario). 
 
 The function automatically update even the center and the radius.
 
@@ -140,12 +185,16 @@ The function automatically update even the center and the radius.
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em offset} & The size of the offset. \\
 \hline
+\mbox{\texttt{ in}}  & {\em limitX} & The the maximum x that the point can have. \\
+\hline
+\mbox{\texttt{ in}}  & {\em limitY} & The the maximum y that the point can have. \\
+\hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_object_aa3744105f4a391f66ffb522df079b3c9}\label{class_object_aa3744105f4a391f66ffb522df079b3c9}} 
+\mbox{\Hypertarget{class_object_a429286aef9c0c1f83e5ff668b6b75e6a}\label{class_object_a429286aef9c0c1f83e5ff668b6b75e6a}} 
 \index{Object@{Object}!size@{size}}
 \index{size@{size}!Object@{Object}}
 \subsubsection{\texorpdfstring{size()}{size()}}
-{\footnotesize\ttfamily unsigned Object\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} Object\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -182,11 +231,11 @@ The generated string.
 \subsubsection{\texorpdfstring{points}{points}}
 {\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_point2}{Point2}}$<$\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}$>$ $>$ Object\+::points\hspace{0.3cm}{\ttfamily [protected]}}
 
-\mbox{\Hypertarget{class_object_ab2985661849d90b81488e4b5e779b798}\label{class_object_ab2985661849d90b81488e4b5e779b798}} 
+\mbox{\Hypertarget{class_object_aacfbf5151daad699c60efc27fb702406}\label{class_object_aacfbf5151daad699c60efc27fb702406}} 
 \index{Object@{Object}!radius@{radius}}
 \index{radius@{radius}!Object@{Object}}
 \subsubsection{\texorpdfstring{radius}{radius}}
-{\footnotesize\ttfamily float Object\+::radius\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily double Object\+::radius\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

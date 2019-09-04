@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['vict',['VICT',['../map_8hh.html#a714b9c2c276fbae637fee36453d9121ea71a79ec3ed4c3f42f62a3d9998424be7',1,'map.hh']]],
-  ['victims',['VICTIMS',['../class_settings.html#a30d85f2e06a54ae9bc8da2d01037658fab4951d8c5bc23e9dab4e9cb53ef3fb26',1,'Settings']]]
+  ['sec',['SEC',['../namespace_c_h_r_o_n_o.html#a246e471488a6e6b17ddb86e3b817c7d9ac09415dca4fa7975506ab664d88b403a',1,'CHRONO']]],
+  ['size',['SIZE',['../utils_8hh.html#af26a5d951fd6ab4b44e6cd8425aa0383a4aa71180778b711338785695df5d7c52',1,'utils.hh']]]
 ];

@@ -1,7 +1,9 @@
 \hypertarget{utils_8hh}{}\section{src/include/utils.hh File Reference}
 \label{utils_8hh}\index{src/include/utils.hh@{src/include/utils.hh}}
-{\ttfamily \#include $<$maths.\+hh$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$exception$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
 {\ttfamily \#include $<$opencv2/highgui.\+hpp$>$}\newline
 {\ttfamily \#include $<$opencv2/highgui/highgui\+\_\+c.\+h$>$}\newline
 {\ttfamily \#include $<$opencv2/core.\+hpp$>$}\newline
@@ -25,8 +27,15 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=350pt]{utils_8hh__dep__incl}
 \end{center}
 \end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_my_exception}{My\+Exception$<$ T $>$}}
+\end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_c_h_r_o_n_o}{C\+H\+R\+O\+NO}}
 \item 
  \mbox{\hyperlink{namespacetimeutils}{timeutils}}
 \end{DoxyCompactItemize}
@@ -39,8 +48,32 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{DoxyCompactList}\small\item\em Print a messag to stderr. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{utils_8hh_a3ae64706314066fdc8b6c8029a915aa7}{I\+N\+FO}}(msg)
 \begin{DoxyCompactList}\small\item\em Print the name of a variable and its content. Only if D\+E\+B\+UG is defined. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef chrono\+::high\+\_\+resolution\+\_\+clock \mbox{\hyperlink{utils_8hh_af5fd44b7ee78ceeb4a0e869179f422f7}{Clock}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespace_c_h_r_o_n_o_a246e471488a6e6b17ddb86e3b817c7d9}{C\+H\+R\+O\+N\+O\+::\+T\+I\+M\+E\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{namespace_c_h_r_o_n_o_a246e471488a6e6b17ddb86e3b817c7d9ac09415dca4fa7975506ab664d88b403a}{C\+H\+R\+O\+N\+O\+::\+S\+EC}}, 
+\mbox{\hyperlink{namespace_c_h_r_o_n_o_a246e471488a6e6b17ddb86e3b817c7d9a2060724ab75592144c0b930e3394d845}{C\+H\+R\+O\+N\+O\+::\+M\+S\+EC}}, 
+\mbox{\hyperlink{namespace_c_h_r_o_n_o_a246e471488a6e6b17ddb86e3b817c7d9aba8c3a9d281e3b934b74d5ff97a3a093}{C\+H\+R\+O\+N\+O\+::\+M\+U\+S\+EC}}, 
+\mbox{\hyperlink{namespace_c_h_r_o_n_o_a246e471488a6e6b17ddb86e3b817c7d9a06ab3311d8f423104c3beae640896013}{C\+H\+R\+O\+N\+O\+::\+N\+S\+EC}}
+ \}
+\item 
+enum \mbox{\hyperlink{utils_8hh_af26a5d951fd6ab4b44e6cd8425aa0383}{E\+X\+C\+E\+P\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{utils_8hh_af26a5d951fd6ab4b44e6cd8425aa0383a3197625a1bb2264943f5a95f236d9973}{E\+X\+I\+S\+TS}}, 
+\mbox{\hyperlink{utils_8hh_af26a5d951fd6ab4b44e6cd8425aa0383a4aa71180778b711338785695df5d7c52}{S\+I\+ZE}}
+ \}
+\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{namespace_c_h_r_o_n_o_ae2a3e41f8bf5f83ba84d3f4d2eed3836}{C\+H\+R\+O\+N\+O\+::get\+Type}} (T\+I\+M\+E\+\_\+\+T\+Y\+PE type, string ret=\char`\"{}\char`\"{})
+\item 
+double \mbox{\hyperlink{namespace_c_h_r_o_n_o_aebe2329c142a6f06b6fede41c3abf1b3}{C\+H\+R\+O\+N\+O\+::get\+Elapsed}} (Clock\+::time\+\_\+point start, Clock\+::time\+\_\+point stop, T\+I\+M\+E\+\_\+\+T\+Y\+PE type=M\+U\+S\+EC)
+\item 
+string \mbox{\hyperlink{namespace_c_h_r_o_n_o_ad8da7180c420d59f4c0077b60579c0ae}{C\+H\+R\+O\+N\+O\+::get\+Elapsed}} (Clock\+::time\+\_\+point start, Clock\+::time\+\_\+point stop, string ret, T\+I\+M\+E\+\_\+\+T\+Y\+PE type=M\+U\+S\+EC)
 \item 
 void \mbox{\hyperlink{utils_8hh_aabfea83501dfccfa4c420b8c19ceefd7}{my\+\_\+imshow}} (const char $\ast$win\+\_\+name, Mat img, bool reset=false)
 \begin{DoxyCompactList}\small\item\em Function to show images in an order grill. \end{DoxyCompactList}\item 
@@ -48,8 +81,6 @@ void \mbox{\hyperlink{utils_8hh_abcbca5e81e43b340e78e92d29108d4e5}{mywaitkey}} (
 \begin{DoxyCompactList}\small\item\em Function to use after \mbox{\hyperlink{utils_8hh_aabfea83501dfccfa4c420b8c19ceefd7}{my\+\_\+imshow()}} for keeping the image opened until a key is pressed. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{utils_8hh_a31ae190fba03c3a422a13a4271e0e424}{mywaitkey}} (string window\+Name)
 \begin{DoxyCompactList}\small\item\em Function to use after \mbox{\hyperlink{utils_8hh_aabfea83501dfccfa4c420b8c19ceefd7}{my\+\_\+imshow()}} for keeping the image opened until a key is pressed. When a key is pressed a specific window is closed. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{utils_8hh_a0807d925012933fcd1df713f65e35d6b}{mywaitkey}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ window\+Names)
-\begin{DoxyCompactList}\small\item\em Function to use after \mbox{\hyperlink{utils_8hh_aabfea83501dfccfa4c420b8c19ceefd7}{my\+\_\+imshow()}} for keeping the image opened until a key is pressed. When a key is pressed some windows are closed. \end{DoxyCompactList}\item 
 int64\+\_\+t \mbox{\hyperlink{namespacetimeutils_a3d9d509a7028cffae8aef9c70f6c2c52}{timeutils\+::timespec\+Diff}} (struct timespec $\ast$time\+A\+\_\+p, struct timespec $\ast$time\+B\+\_\+p)
 \item 
 double \mbox{\hyperlink{namespacetimeutils_aa732b7f41462ff727daef77bd5030b9c}{timeutils\+::get\+TimeS}} ()
@@ -89,6 +120,34 @@ Returns the name of the variable.
 
 
 
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{utils_8hh_af5fd44b7ee78ceeb4a0e869179f422f7}\label{utils_8hh_af5fd44b7ee78ceeb4a0e869179f422f7}} 
+\index{utils.hh@{utils.hh}!Clock@{Clock}}
+\index{Clock@{Clock}!utils.hh@{utils.hh}}
+\subsubsection{\texorpdfstring{Clock}{Clock}}
+{\footnotesize\ttfamily typedef chrono\+::high\+\_\+resolution\+\_\+clock \mbox{\hyperlink{utils_8hh_af5fd44b7ee78ceeb4a0e869179f422f7}{Clock}}}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{utils_8hh_af26a5d951fd6ab4b44e6cd8425aa0383}\label{utils_8hh_af26a5d951fd6ab4b44e6cd8425aa0383}} 
+\index{utils.hh@{utils.hh}!EXCEPTION\_TYPE@{EXCEPTION\_TYPE}}
+\index{EXCEPTION\_TYPE@{EXCEPTION\_TYPE}!utils.hh@{utils.hh}}
+\subsubsection{\texorpdfstring{EXCEPTION\_TYPE}{EXCEPTION\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{utils_8hh_af26a5d951fd6ab4b44e6cd8425aa0383}{E\+X\+C\+E\+P\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXISTS@{EXISTS}!utils.hh@{utils.hh}}\index{utils.hh@{utils.hh}!EXISTS@{EXISTS}}}\mbox{\Hypertarget{utils_8hh_af26a5d951fd6ab4b44e6cd8425aa0383a3197625a1bb2264943f5a95f236d9973}\label{utils_8hh_af26a5d951fd6ab4b44e6cd8425aa0383a3197625a1bb2264943f5a95f236d9973}} 
+E\+X\+I\+S\+TS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SIZE@{SIZE}!utils.hh@{utils.hh}}\index{utils.hh@{utils.hh}!SIZE@{SIZE}}}\mbox{\Hypertarget{utils_8hh_af26a5d951fd6ab4b44e6cd8425aa0383a4aa71180778b711338785695df5d7c52}\label{utils_8hh_af26a5d951fd6ab4b44e6cd8425aa0383a4aa71180778b711338785695df5d7c52}} 
+S\+I\+ZE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
 \subsection{Function Documentation}
 \mbox{\Hypertarget{utils_8hh_aabfea83501dfccfa4c420b8c19ceefd7}\label{utils_8hh_aabfea83501dfccfa4c420b8c19ceefd7}} 
 \index{utils.hh@{utils.hh}!my\_imshow@{my\_imshow}}
@@ -112,7 +171,7 @@ Function to show images in an order grill.
 \mbox{\Hypertarget{utils_8hh_abcbca5e81e43b340e78e92d29108d4e5}\label{utils_8hh_abcbca5e81e43b340e78e92d29108d4e5}} 
 \index{utils.hh@{utils.hh}!mywaitkey@{mywaitkey}}
 \index{mywaitkey@{mywaitkey}!utils.hh@{utils.hh}}
-\subsubsection{\texorpdfstring{mywaitkey()}{mywaitkey()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+\subsubsection{\texorpdfstring{mywaitkey()}{mywaitkey()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily void mywaitkey (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
@@ -122,7 +181,7 @@ Function to use after \mbox{\hyperlink{utils_8hh_aabfea83501dfccfa4c420b8c19ceef
 \mbox{\Hypertarget{utils_8hh_a31ae190fba03c3a422a13a4271e0e424}\label{utils_8hh_a31ae190fba03c3a422a13a4271e0e424}} 
 \index{utils.hh@{utils.hh}!mywaitkey@{mywaitkey}}
 \index{mywaitkey@{mywaitkey}!utils.hh@{utils.hh}}
-\subsubsection{\texorpdfstring{mywaitkey()}{mywaitkey()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+\subsubsection{\texorpdfstring{mywaitkey()}{mywaitkey()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily void mywaitkey (\begin{DoxyParamCaption}\item[{string}]{window\+Name }\end{DoxyParamCaption})}
 
 
@@ -132,20 +191,5 @@ Function to use after \mbox{\hyperlink{utils_8hh_aabfea83501dfccfa4c420b8c19ceef
 
 \begin{DoxyParams}{Parameters}
 {\em window\+Name} & The window to close after pressing a key. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{utils_8hh_a0807d925012933fcd1df713f65e35d6b}\label{utils_8hh_a0807d925012933fcd1df713f65e35d6b}} 
-\index{utils.hh@{utils.hh}!mywaitkey@{mywaitkey}}
-\index{mywaitkey@{mywaitkey}!utils.hh@{utils.hh}}
-\subsubsection{\texorpdfstring{mywaitkey()}{mywaitkey()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily void mywaitkey (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$}]{window\+Names }\end{DoxyParamCaption})}
-
-
-
-Function to use after \mbox{\hyperlink{utils_8hh_aabfea83501dfccfa4c420b8c19ceefd7}{my\+\_\+imshow()}} for keeping the image opened until a key is pressed. When a key is pressed some windows are closed. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em window\+Names} & The names of the windows to close after pressing a key. \\
 \hline
 \end{DoxyParams}
