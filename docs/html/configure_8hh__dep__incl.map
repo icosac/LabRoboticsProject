@@ -1,5 +1,11 @@
 <map id="src/include/configure.hh" name="src/include/configure.hh">
-<area shape="rect" id="node1" title=" " alt="" coords="50,5,212,31"/>
-<area shape="rect" id="node2" href="$configure_8cc.html" title=" " alt="" coords="5,79,120,104"/>
-<area shape="rect" id="node3" href="$main_8cc.html" title=" " alt="" coords="144,79,256,104"/>
+<area shape="rect" id="node1" title=" " alt="" coords="257,5,419,31"/>
+<area shape="rect" id="node2" href="$configure_8cc.html" title=" " alt="" coords="118,79,233,104"/>
+<area shape="rect" id="node3" href="$detection_8hh.html" title=" " alt="" coords="258,79,419,104"/>
+<area shape="rect" id="node7" href="$main_8cc.html" title=" " alt="" coords="326,225,438,251"/>
+<area shape="rect" id="node4" href="$detection_8cc.html" title=" " alt="" coords="5,152,119,177"/>
+<area shape="rect" id="node5" href="$planning_8hh.html" title=" " alt="" coords="143,152,301,177"/>
+<area shape="rect" id="node9" href="$detection__run_8cc.html" title=" " alt="" coords="375,152,539,177"/>
+<area shape="rect" id="node6" href="$planning_8cc.html" title=" " alt="" coords="9,225,119,251"/>
+<area shape="rect" id="node8" href="$planning__run_8cc.html" title=" " alt="" coords="142,225,302,251"/>
 </map>

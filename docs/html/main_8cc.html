@@ -66,49 +66,75 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">main.cc File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="detection_8hh_source.html">detection.hh</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="utils_8hh_source.html">utils.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="detection_8hh_source.html">detection.hh</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="unwrapping_8hh_source.html">unwrapping.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="calibration_8hh_source.html">calibration.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="planning_8hh_source.html">planning.hh</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="configure_8hh_source.html">configure.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="settings_8hh_source.html">settings.hh</a>&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cc:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cc__incl.png" border="0" usemap="#src_2run_2main_8cc" alt=""/></div>
 <map name="src_2run_2main_8cc" id="src_2run_2main_8cc">
-<area shape="rect"  title=" " alt="" coords="1018,5,1129,31"/>
-<area shape="rect"  href="detection_8hh.html" title=" " alt="" coords="797,79,891,104"/>
-<area shape="rect"  title=" " alt="" coords="1847,372,1919,397"/>
-<area shape="rect"  href="unwrapping_8hh.html" title=" " alt="" coords="339,79,448,104"/>
-<area shape="rect"  href="configure_8hh.html" title=" " alt="" coords="1257,79,1352,104"/>
-<area shape="rect"  href="utils_8hh.html" title=" " alt="" coords="1028,225,1092,251"/>
-<area shape="rect"  title=" " alt="" coords="238,372,296,397"/>
-<area shape="rect"  title=" " alt="" coords="585,372,639,397"/>
-<area shape="rect"  title=" " alt="" coords="1069,372,1212,397"/>
-<area shape="rect"  title=" " alt="" coords="797,299,942,324"/>
-<area shape="rect"  title=" " alt="" coords="457,299,584,324"/>
-<area shape="rect"  title=" " alt="" coords="608,299,774,324"/>
-<area shape="rect"  href="settings_8hh.html" title=" " alt="" coords="1261,152,1347,177"/>
-<area shape="rect"  href="filter_8hh.html" title=" " alt="" coords="1147,225,1211,251"/>
-<area shape="rect"  title=" " alt="" coords="507,152,573,177"/>
-<area shape="rect"  href="maths_8hh.html" title=" " alt="" coords="1549,299,1625,324"/>
-<area shape="rect"  title=" " alt="" coords="1182,299,1373,324"/>
-<area shape="rect"  title=" " alt="" coords="1017,299,1074,324"/>
-<area shape="rect"  title=" " alt="" coords="1098,299,1158,324"/>
-<area shape="rect"  title=" " alt="" coords="1473,372,1530,397"/>
-<area shape="rect"  title=" " alt="" coords="1554,372,1619,397"/>
-<area shape="rect"  title=" " alt="" coords="1643,372,1712,397"/>
-<area shape="rect"  title=" " alt="" coords="1397,372,1449,397"/>
-<area shape="rect"  title=" " alt="" coords="1376,225,1533,251"/>
-<area shape="rect"  title=" " alt="" coords="1286,225,1352,251"/>
-<area shape="rect"  title=" " alt="" coords="35,152,179,177"/>
-<area shape="rect"  title=" " alt="" coords="2022,152,2171,177"/>
-<area shape="rect"  title=" " alt="" coords="2194,152,2350,177"/>
-<area shape="rect"  href="camera__capture_8hh.html" title=" " alt="" coords="1709,225,1846,251"/>
+<area shape="rect"  title=" " alt="" coords="1927,5,2039,31"/>
+<area shape="rect"  href="utils_8hh.html" title=" " alt="" coords="1743,445,1806,471"/>
+<area shape="rect"  title=" " alt="" coords="3340,519,3412,544"/>
+<area shape="rect"  href="detection_8hh.html" title=" " alt="" coords="2496,152,2590,177"/>
+<area shape="rect"  href="settings_8hh.html" title=" " alt="" coords="2037,299,2123,324"/>
+<area shape="rect"  href="configure_8hh.html" title=" " alt="" coords="1682,225,1777,251"/>
+<area shape="rect"  href="unwrapping_8hh.html" title=" " alt="" coords="2203,225,2312,251"/>
+<area shape="rect"  href="calibration_8hh.html" title="Library for calibration." alt="" coords="718,225,818,251"/>
+<area shape="rect"  href="planning_8hh.html" title=" " alt="" coords="2918,79,3008,104"/>
+<area shape="rect"  title=" " alt="" coords="2088,519,2157,544"/>
+<area shape="rect"  title=" " alt="" coords="1922,519,2001,544"/>
+<area shape="rect"  title=" " alt="" coords="1456,519,1518,544"/>
+<area shape="rect"  title=" " alt="" coords="493,519,638,544"/>
+<area shape="rect"  title=" " alt="" coords="1542,519,1733,544"/>
+<area shape="rect"  title=" " alt="" coords="2226,519,2353,544"/>
+<area shape="rect"  title=" " alt="" coords="2528,519,2672,544"/>
+<area shape="rect"  title=" " alt="" coords="1267,519,1432,544"/>
+<area shape="rect"  title=" " alt="" coords="1757,519,1814,544"/>
+<area shape="rect"  title=" " alt="" coords="1838,519,1898,544"/>
+<area shape="rect"  href="filter_8hh.html" title=" " alt="" coords="2160,372,2224,397"/>
+<area shape="rect"  title=" " alt="" coords="2509,445,2566,471"/>
+<area shape="rect"  title=" " alt="" coords="3533,445,3590,471"/>
+<area shape="rect"  title=" " alt="" coords="2430,445,2484,471"/>
+<area shape="rect"  title=" " alt="" coords="2502,299,2568,324"/>
+<area shape="rect"  title=" " alt="" coords="2542,225,2618,251"/>
+<area shape="rect"  href="maths_8hh.html" title=" " alt="" coords="2857,372,2933,397"/>
+<area shape="rect"  title=" " alt="" coords="1928,372,2085,397"/>
+<area shape="rect"  title=" " alt="" coords="1838,372,1904,397"/>
+<area shape="rect"  title=" " alt="" coords="2869,445,2934,471"/>
+<area shape="rect"  title=" " alt="" coords="2793,445,2845,471"/>
+<area shape="rect"  title=" " alt="" coords="856,299,1005,324"/>
+<area shape="rect"  title=" " alt="" coords="1401,299,1557,324"/>
+<area shape="rect"  href="camera__capture_8hh.html" title=" " alt="" coords="1525,372,1661,397"/>
+<area shape="rect"  title=" " alt="" coords="1030,299,1173,324"/>
+<area shape="rect"  title=" " alt="" coords="496,299,549,324"/>
+<area shape="rect"  title=" " alt="" coords="573,299,629,324"/>
+<area shape="rect"  title=" " alt="" coords="93,299,254,324"/>
+<area shape="rect"  title=" " alt="" coords="278,299,421,324"/>
+<area shape="rect"  title=" " alt="" coords="3643,299,3693,324"/>
+<area shape="rect"  href="map_8hh.html" title=" " alt="" coords="3039,225,3105,251"/>
+<area shape="rect"  href="objects_8hh.html" title=" " alt="" coords="3259,299,3341,324"/>
+<area shape="rect"  title=" " alt="" coords="3806,445,3845,471"/>
+<area shape="rect"  title=" " alt="" coords="3869,445,3928,471"/>
+<area shape="rect"  title=" " alt="" coords="3110,299,3178,324"/>
+<area shape="rect"  href="clipper_8hh.html" title=" " alt="" coords="3931,372,4010,397"/>
+<area shape="rect"  title=" " alt="" coords="3951,445,3990,471"/>
+<area shape="rect"  title=" " alt="" coords="4014,445,4093,471"/>
+<area shape="rect"  title=" " alt="" coords="4116,445,4177,471"/>
+<area shape="rect"  title=" " alt="" coords="4201,445,4260,471"/>
+<area shape="rect"  title=" " alt="" coords="4284,445,4353,471"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -116,6 +142,12 @@ Include dependency graph for main.cc:</div>
 Functions</h2></td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a4f37177ee03b8ce3859a16bb3d82f189"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_settings.html">Settings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cc.html#a4f37177ee03b8ce3859a16bb3d82f189">sett</a> =new <a class="el" href="class_settings.html">Settings</a>()</td></tr>
+<tr class="memdesc:a4f37177ee03b8ce3859a16bb3d82f189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global variable defined in <a class="el" href="main_8cc.html">main.cc</a>.  <a href="#a4f37177ee03b8ce3859a16bb3d82f189">More...</a><br /></td></tr>
+<tr class="separator:a4f37177ee03b8ce3859a16bb3d82f189"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
@@ -132,6 +164,23 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a4f37177ee03b8ce3859a16bb3d82f189"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f37177ee03b8ce3859a16bb3d82f189">&#9670;&nbsp;</a></span>sett</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_settings.html">Settings</a>* sett =new <a class="el" href="class_settings.html">Settings</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Global variable defined in <a class="el" href="main_8cc.html">main.cc</a>. </p>
 
 </div>
 </div>

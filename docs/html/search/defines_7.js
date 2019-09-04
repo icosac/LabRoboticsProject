@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['more_5ffunctions',['MORE_FUNCTIONS',['../dubins_8hh.html#a76156c41a8252ae92ac829a621c7bd0f',1,'dubins.hh']]]
+  ['min_5farea_5fsize',['MIN_AREA_SIZE',['../detection_8cc.html#aee3415ba4422db269c18fb6819a8d7a8',1,'detection.cc']]]
 ];

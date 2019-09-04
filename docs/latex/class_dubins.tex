@@ -2,6 +2,11 @@
 \label{class_dubins}\index{Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 
 
+Class to store a \mbox{\hyperlink{class_dubins}{Dubins}} curve. This class inherits from {\ttfamily \mbox{\hyperlink{class_curve}{Curve}}} and is composed of three {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}.  
+
+
+
+
 {\ttfamily \#include $<$dubins.\+hh$>$}
 
 
@@ -36,40 +41,42 @@ Collaboration diagram for Dubins$<$ T $>$\+:
 \mbox{\hyperlink{class_dubins_a8f2efa271286dda2c669988b600ac858}{Dubins}} (const T x0, const T y0, const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+th0, const T x1, const T y1, const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+th1, const double \+\_\+K=\mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}})
 \item 
 double \mbox{\hyperlink{class_dubins_a5e9a9f09ceed8f592fd35d078090854e}{get\+K\+Max}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the maximum curvature of the \mbox{\hyperlink{class_dubins}{Dubins}}. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{class_dubins_ae4978fe0667d364224c0a7521903a225}{length}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the length of the \mbox{\hyperlink{class_dubins}{Dubins}}. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{class_dubins_a5781212ce32e684018104d2c0676ceb6}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Returns the id of the \mbox{\hyperlink{class_dubins}{Dubins}}, that is the set of three maneuvers that creates the curve. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T $>$ \mbox{\hyperlink{class_dubins_a8ef23becf55e74907b7b9eaa00431fa7}{get\+A1}} () const
+\begin{DoxyCompactList}\small\item\em Returns the first {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T $>$ \mbox{\hyperlink{class_dubins_a0291f2dc5b8225c0d85013d42749dd4b}{get\+A2}} () const
+\begin{DoxyCompactList}\small\item\em Returns the second {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T $>$ \mbox{\hyperlink{class_dubins_ae128ed13582151a7bd99c772c96d0402}{get\+A3}} () const
+\begin{DoxyCompactList}\small\item\em Returns the third {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \end{DoxyCompactList}\item 
+double $\ast$ \mbox{\hyperlink{class_dubins_a71a41035ec0b555fa0d386c6cbf2042f}{L\+SL}} (double th0, double th1, double \+\_\+kmax)
 \item 
-\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}} \mbox{\hyperlink{class_dubins_af21928e1891ba40fd036af507a67b0bb}{get\+A1}} () const
+double $\ast$ \mbox{\hyperlink{class_dubins_ac7203da82ecbefb962e82efa02b005f7}{R\+SR}} (double th0, double th1, double \+\_\+kmax)
 \item 
-\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}} \mbox{\hyperlink{class_dubins_a5157eff5ac184488b43cf9933cab6479}{get\+A2}} () const
+double $\ast$ \mbox{\hyperlink{class_dubins_a67df5f03a4bec3f6911898dc160d51ae}{L\+SR}} (double th0, double th1, double \+\_\+kmax)
 \item 
-\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}} \mbox{\hyperlink{class_dubins_ad0bddc489338c85901221e8c0c5dd638}{get\+A3}} () const
+double $\ast$ \mbox{\hyperlink{class_dubins_a168bfb98fd707750ebc509cfffd01c93}{R\+SL}} (double th0, double th1, double \+\_\+kmax)
 \item 
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_dubins_a5a153104d874036205068b703f03240a}{L\+SL}} (\mbox{\hyperlink{class_angle}{Angle}} th0, \mbox{\hyperlink{class_angle}{Angle}} th1, double \+\_\+kmax)
+double $\ast$ \mbox{\hyperlink{class_dubins_a3b05d5f9b3a6ca481224996660f3f8d0}{R\+LR}} (double th0, double th1, double \+\_\+kmax)
 \item 
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_dubins_acf4e7982a9faff05db4cff0b09d5ecc7}{R\+SR}} (\mbox{\hyperlink{class_angle}{Angle}} th0, \mbox{\hyperlink{class_angle}{Angle}} th1, double \+\_\+kmax)
-\item 
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_dubins_a5f2d7cc94c731253dee1c5b668ab2029}{L\+SR}} (\mbox{\hyperlink{class_angle}{Angle}} th0, \mbox{\hyperlink{class_angle}{Angle}} th1, double \+\_\+kmax)
-\item 
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_dubins_ab7e43f4565146912615837d5ef758cc2}{R\+SL}} (\mbox{\hyperlink{class_angle}{Angle}} th0, \mbox{\hyperlink{class_angle}{Angle}} th1, double \+\_\+kmax)
-\item 
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_dubins_a09a20074da623512c1a7a0cc68ad0dcb}{R\+LR}} (\mbox{\hyperlink{class_angle}{Angle}} th0, \mbox{\hyperlink{class_angle}{Angle}} th1, double \+\_\+kmax)
-\item 
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_dubins_ac07e1eb3ab336641a275c28423658155}{L\+RL}} (\mbox{\hyperlink{class_angle}{Angle}} th0, \mbox{\hyperlink{class_angle}{Angle}} th1, double \+\_\+kmax)
+double $\ast$ \mbox{\hyperlink{class_dubins_a1e1503925ef99b85b208f96fb27c88f9}{L\+RL}} (double th0, double th1, double \+\_\+kmax)
 \item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_dubins_afecc4ffa89c5f3952b1729edb87ac88c}{scale\+To\+Standard}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Function to compute standardize the parameters. This function computes the initial and final angles as if the reference system is P0(-\/1,0), P1(0,1). This allows to simplify the calculations to find the best set of maneuvers. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ double $>$ \mbox{\hyperlink{class_dubins_a5f4cd38e551fc0e2abdc360459454344}{scale\+From\+Standard}} (double lambda, double sc\+\_\+s1, double sc\+\_\+s2, double sc\+\_\+s3)
 \item 
 \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_dubins_a52681fe06e50899b5296204a312233ce}{shortest\+\_\+path}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em This function computes the shortest path for the \mbox{\hyperlink{class_dubins}{Dubins}} constructed. First the values are scaled. Then the six sets of maneuvers are computed and their lengths are stored. Once the set that gives the \mbox{\hyperlink{class_dubins}{Dubins}} with the minimum length is found, the lengths are rescaled and the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} are created. In the process length is also computed. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_dubins_ae016db7e7b4c450c0281792608205449}{check}} (double s1, double k0, double s2, double k1, double s3, double k2, \mbox{\hyperlink{class_angle}{Angle}} th0, \mbox{\hyperlink{class_angle}{Angle}} th1) const
 \item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ double $>$ $>$ $>$ \mbox{\hyperlink{class_dubins_a68d6703215b12b2933346efd77563575}{split\+It}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+arch=0, double \+\_\+L=\mbox{\hyperlink{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}{P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}})
 \item 
 stringstream \mbox{\hyperlink{class_dubins_a08abdf02352b6d47aafeea1eed9bfbfe}{to\+\_\+string}} () const
+\item 
+void \mbox{\hyperlink{class_dubins_a7de38680172155f68f71714ae13a212e}{draw}} (double dimX, double dimY, double inc, Scalar scl, Mat \&image, double S\+H\+I\+FT=0)
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -84,35 +91,87 @@ ostream \& \mbox{\hyperlink{class_dubins_a0178baccb8eb26af22a5eb717f394c8c}{oper
 \subsection*{Additional Inherited Members}
 
 
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Dubins$<$ T $>$}
+
+Class to store a \mbox{\hyperlink{class_dubins}{Dubins}} curve. This class inherits from {\ttfamily \mbox{\hyperlink{class_curve}{Curve}}} and is composed of three {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the classes {\ttfamily \mbox{\hyperlink{class_curve}{Curve}}} and {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
+\hline
+\end{DoxyTemplParams}
+
+
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_dubins_acc45a9db5f20150b58d4fc36ad1548fa}\label{class_dubins_acc45a9db5f20150b58d4fc36ad1548fa}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!Dubins@{Dubins}}
 \index{Dubins@{Dubins}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{Dubins()}{Dubins()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins}{Dubins}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_dubins_aa967d7d3009612ab99ac0b8e7ec33c83}\label{class_dubins_aa967d7d3009612ab99ac0b8e7ec33c83}} 
+Plain constructor for \mbox{\hyperlink{class_dubins}{Dubins}} that calls the plain constructor of {\ttfamily \mbox{\hyperlink{class_curve}{Curve}}} and {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \mbox{\Hypertarget{class_dubins_aa967d7d3009612ab99ac0b8e7ec33c83}\label{class_dubins_aa967d7d3009612ab99ac0b8e7ec33c83}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!Dubins@{Dubins}}
 \index{Dubins@{Dubins}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{Dubins()}{Dubins()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins}{Dubins}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$}]{\+\_\+\+P0,  }\item[{const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$}]{\+\_\+\+P1,  }\item[{const double}]{\+\_\+K = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+Constructor that takes an initial and a final {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}, a curvature and compute the \mbox{\hyperlink{class_dubins}{Dubins}} that connect the two configurations. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+P0} & Initial {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. \\
+\hline
+{\em \+\_\+\+P1} & Final {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. \\
+\hline
+{\em \+\_\+K} & Curvature. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_dubins_a6120f64c71b7a37bc1051f9f87c02e9e}\label{class_dubins_a6120f64c71b7a37bc1051f9f87c02e9e}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!Dubins@{Dubins}}
 \index{Dubins@{Dubins}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{Dubins()}{Dubins()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins}{Dubins}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$}]{\+\_\+\+P0,  }\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$}]{\+\_\+\+P1,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th0,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th1,  }\item[{const double}]{\+\_\+K = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+Constructor that takes an initial and a final {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}}, the two respectively {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s and the curvature and computes the \mbox{\hyperlink{class_dubins}{Dubins}}. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+P0} & Initial {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}}. \\
+\hline
+{\em \+\_\+\+P1} & Final {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}}. \\
+\hline
+{\em \+\_\+th0} & Initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} \\
+\hline
+{\em \+\_\+th1} & Final {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} \\
+\hline
+{\em \+\_\+K} & Curvature. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_dubins_a8f2efa271286dda2c669988b600ac858}\label{class_dubins_a8f2efa271286dda2c669988b600ac858}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!Dubins@{Dubins}}
 \index{Dubins@{Dubins}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{Dubins()}{Dubins()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins}{Dubins}} (\begin{DoxyParamCaption}\item[{const T}]{x0,  }\item[{const T}]{y0,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th0,  }\item[{const T}]{x1,  }\item[{const T}]{y1,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th1,  }\item[{const double}]{\+\_\+K = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+Constructor that takes the initial and final coordinates, the respective {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s and the curvature and compute a \mbox{\hyperlink{class_dubins}{Dubins}}. 
+\begin{DoxyParams}{Parameters}
+{\em x0} & Initial abscissa coordinate. \\
+\hline
+{\em y0} & Initial ordinate coordinate. \\
+\hline
+{\em \+\_\+th0} & Initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}. \\
+\hline
+{\em x1} & Final abscissa coordinate. \\
+\hline
+{\em y1} & Final ordinate coordinate. \\
+\hline
+{\em \+\_\+th1} & Final {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}. \\
+\hline
+{\em \+\_\+K} & Curvature of the curve. \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
@@ -120,135 +179,310 @@ ostream \& \mbox{\hyperlink{class_dubins_a0178baccb8eb26af22a5eb717f394c8c}{oper
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!check@{check}}
 \index{check@{check}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{check()}{check()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 bool \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::check (\begin{DoxyParamCaption}\item[{double}]{s1,  }\item[{double}]{k0,  }\item[{double}]{s2,  }\item[{double}]{k1,  }\item[{double}]{s3,  }\item[{double}]{k2,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th0,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th1 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_dubins_af21928e1891ba40fd036af507a67b0bb}\label{class_dubins_af21928e1891ba40fd036af507a67b0bb}} 
+Function that checks that the values got in {\ttfamily \mbox{\hyperlink{class_dubins_a52681fe06e50899b5296204a312233ce}{shortest\+\_\+path()}}} are right. 
+\begin{DoxyParams}{Parameters}
+{\em s1} & Length for the first {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
+\hline
+{\em k0} & Curvature for the first {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
+\hline
+{\em s2} & Length for the second {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
+\hline
+{\em k1} & Curvature for the second {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
+\hline
+{\em s3} & Length for the third {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
+\hline
+{\em k2} & Curvature for the third {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
+\hline
+{\em th0} & Initial angles (standardised). \\
+\hline
+{\em th1} & Final angles (standardised). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the values where correct, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_a7de38680172155f68f71714ae13a212e}\label{class_dubins_a7de38680172155f68f71714ae13a212e}} 
+\index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!draw@{draw}}
+\index{draw@{draw}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::draw (\begin{DoxyParamCaption}\item[{double}]{dimX,  }\item[{double}]{dimY,  }\item[{double}]{inc,  }\item[{Scalar}]{scl,  }\item[{Mat \&}]{image,  }\item[{double}]{S\+H\+I\+FT = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Function to draw the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. 
+\begin{DoxyParams}{Parameters}
+{\em dimX} & The dimension X of the Mat. \\
+\hline
+{\em dimY} & The dimension Y of the Mat. \\
+\hline
+{\em inc} & The value to scale each point. \\
+\hline
+{\em scl} & The Scalar that defines the color to use. \\
+\hline
+{\em image} & The Mat where to draw the points. \\
+\hline
+{\em S\+H\+I\+FT} & The value to use to shift the points to make them stay inside the matrix. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_dubins_a8ef23becf55e74907b7b9eaa00431fa7}\label{class_dubins_a8ef23becf55e74907b7b9eaa00431fa7}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!getA1@{getA1}}
 \index{getA1@{getA1}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{getA1()}{getA1()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}} \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::get\+A1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$T$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::get\+A1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_dubins_a5157eff5ac184488b43cf9933cab6479}\label{class_dubins_a5157eff5ac184488b43cf9933cab6479}} 
+
+
+Returns the first {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. 
+
+\mbox{\Hypertarget{class_dubins_a0291f2dc5b8225c0d85013d42749dd4b}\label{class_dubins_a0291f2dc5b8225c0d85013d42749dd4b}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!getA2@{getA2}}
 \index{getA2@{getA2}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{getA2()}{getA2()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}} \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::get\+A2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$T$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::get\+A2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_dubins_ad0bddc489338c85901221e8c0c5dd638}\label{class_dubins_ad0bddc489338c85901221e8c0c5dd638}} 
+
+
+Returns the second {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. 
+
+\mbox{\Hypertarget{class_dubins_ae128ed13582151a7bd99c772c96d0402}\label{class_dubins_ae128ed13582151a7bd99c772c96d0402}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!getA3@{getA3}}
 \index{getA3@{getA3}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{getA3()}{getA3()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}} \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::get\+A3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$T$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::get\+A3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the third {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. 
 
 \mbox{\Hypertarget{class_dubins_a5781212ce32e684018104d2c0676ceb6}\label{class_dubins_a5781212ce32e684018104d2c0676ceb6}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!getId@{getId}}
 \index{getId@{getId}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{getId()}{getId()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 double \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the id of the \mbox{\hyperlink{class_dubins}{Dubins}}, that is the set of three maneuvers that creates the curve. 
 
 \mbox{\Hypertarget{class_dubins_a5e9a9f09ceed8f592fd35d078090854e}\label{class_dubins_a5e9a9f09ceed8f592fd35d078090854e}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!getKMax@{getKMax}}
 \index{getKMax@{getKMax}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{getKMax()}{getKMax()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 double \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::get\+K\+Max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the maximum curvature of the \mbox{\hyperlink{class_dubins}{Dubins}}. 
 
 \mbox{\Hypertarget{class_dubins_ae4978fe0667d364224c0a7521903a225}\label{class_dubins_ae4978fe0667d364224c0a7521903a225}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!length@{length}}
 \index{length@{length}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{length()}{length()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 double \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_dubins_ac07e1eb3ab336641a275c28423658155}\label{class_dubins_ac07e1eb3ab336641a275c28423658155}} 
+
+
+Returns the length of the \mbox{\hyperlink{class_dubins}{Dubins}}. 
+
+\mbox{\Hypertarget{class_dubins_a1e1503925ef99b85b208f96fb27c88f9}\label{class_dubins_a1e1503925ef99b85b208f96fb27c88f9}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!LRL@{LRL}}
 \index{LRL@{LRL}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{LRL()}{LRL()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::L\+RL (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th0,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+double$\ast$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::L\+RL (\begin{DoxyParamCaption}\item[{double}]{th0,  }\item[{double}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_dubins_a5a153104d874036205068b703f03240a}\label{class_dubins_a5a153104d874036205068b703f03240a}} 
+Function to compute the set of maneuvers Left Right Left. 
+\begin{DoxyParams}{Parameters}
+{\em th0} & The initial angle standardized. \\
+\hline
+{\em th1} & The final angle standardized. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of dimension 3 containing the length of the 3 maneuvers. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_a71a41035ec0b555fa0d386c6cbf2042f}\label{class_dubins_a71a41035ec0b555fa0d386c6cbf2042f}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!LSL@{LSL}}
 \index{LSL@{LSL}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{LSL()}{LSL()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::L\+SL (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th0,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+double$\ast$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::L\+SL (\begin{DoxyParamCaption}\item[{double}]{th0,  }\item[{double}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_dubins_a5f2d7cc94c731253dee1c5b668ab2029}\label{class_dubins_a5f2d7cc94c731253dee1c5b668ab2029}} 
+Function to compute the set of maneuvers Left Straight Left. 
+\begin{DoxyParams}{Parameters}
+{\em th0} & The initial angle standardized. \\
+\hline
+{\em th1} & The final angle standardized. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of dimension 3 containing the length of the 3 maneuvers. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_a67df5f03a4bec3f6911898dc160d51ae}\label{class_dubins_a67df5f03a4bec3f6911898dc160d51ae}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!LSR@{LSR}}
 \index{LSR@{LSR}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{LSR()}{LSR()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::L\+SR (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th0,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+double$\ast$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::L\+SR (\begin{DoxyParamCaption}\item[{double}]{th0,  }\item[{double}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+Function to compute the set of maneuvers Left Straight Right. 
+\begin{DoxyParams}{Parameters}
+{\em th0} & The initial angle standardized. \\
+\hline
+{\em th1} & The final angle standardized. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of dimension 3 containing the length of the 3 maneuvers. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_dubins_a1f80a03865231b60841bc8ec7623c04f}\label{class_dubins_a1f80a03865231b60841bc8ec7623c04f}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!rangeSymm@{rangeSymm}}
 \index{rangeSymm@{rangeSymm}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{rangeSymm()}{rangeSymm()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 static double \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::range\+Symm (\begin{DoxyParamCaption}\item[{double}]{ang }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
-\mbox{\Hypertarget{class_dubins_a09a20074da623512c1a7a0cc68ad0dcb}\label{class_dubins_a09a20074da623512c1a7a0cc68ad0dcb}} 
+Normalize an angular difference $(-\pi, \pi]$. 
+\begin{DoxyParams}{Parameters}
+{\em ang} & The value of the angle to be normalized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The normalized angle. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_a3b05d5f9b3a6ca481224996660f3f8d0}\label{class_dubins_a3b05d5f9b3a6ca481224996660f3f8d0}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!RLR@{RLR}}
 \index{RLR@{RLR}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{RLR()}{RLR()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::R\+LR (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th0,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+double$\ast$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::R\+LR (\begin{DoxyParamCaption}\item[{double}]{th0,  }\item[{double}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_dubins_ab7e43f4565146912615837d5ef758cc2}\label{class_dubins_ab7e43f4565146912615837d5ef758cc2}} 
+Function to compute the set of maneuvers Right Left Right. 
+\begin{DoxyParams}{Parameters}
+{\em th0} & The initial angle standardized. \\
+\hline
+{\em th1} & The final angle standardized. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of dimension 3 containing the length of the 3 maneuvers. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_a168bfb98fd707750ebc509cfffd01c93}\label{class_dubins_a168bfb98fd707750ebc509cfffd01c93}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!RSL@{RSL}}
 \index{RSL@{RSL}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{RSL()}{RSL()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::R\+SL (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th0,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+double$\ast$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::R\+SL (\begin{DoxyParamCaption}\item[{double}]{th0,  }\item[{double}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_dubins_acf4e7982a9faff05db4cff0b09d5ecc7}\label{class_dubins_acf4e7982a9faff05db4cff0b09d5ecc7}} 
+Function to compute the set of maneuvers Right Straight Left. 
+\begin{DoxyParams}{Parameters}
+{\em th0} & The initial angle standardized. \\
+\hline
+{\em th1} & The final angle standardized. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of dimension 3 containing the length of the 3 maneuvers. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_ac7203da82ecbefb962e82efa02b005f7}\label{class_dubins_ac7203da82ecbefb962e82efa02b005f7}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!RSR@{RSR}}
 \index{RSR@{RSR}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{RSR()}{RSR()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::R\+SR (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th0,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+double$\ast$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::R\+SR (\begin{DoxyParamCaption}\item[{double}]{th0,  }\item[{double}]{th1,  }\item[{double}]{\+\_\+kmax }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+Function to compute the set of maneuvers Right Straight Right. 
+\begin{DoxyParams}{Parameters}
+{\em th0} & The initial angle standardized. \\
+\hline
+{\em th1} & The final angle standardized. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of dimension 3 containing the length of the 3 maneuvers. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_dubins_a5f4cd38e551fc0e2abdc360459454344}\label{class_dubins_a5f4cd38e551fc0e2abdc360459454344}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!scaleFromStandard@{scaleFromStandard}}
 \index{scaleFromStandard@{scaleFromStandard}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{scaleFromStandard()}{scaleFromStandard()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::scale\+From\+Standard (\begin{DoxyParamCaption}\item[{double}]{lambda,  }\item[{double}]{sc\+\_\+s1,  }\item[{double}]{sc\+\_\+s2,  }\item[{double}]{sc\+\_\+s3 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_dubins_afecc4ffa89c5f3952b1729edb87ac88c}\label{class_dubins_afecc4ffa89c5f3952b1729edb87ac88c}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!scaleToStandard@{scaleToStandard}}
 \index{scaleToStandard@{scaleToStandard}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{scaleToStandard()}{scaleToStandard()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$double$>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::scale\+To\+Standard (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Function to compute standardize the parameters. This function computes the initial and final angles as if the reference system is P0(-\/1,0), P1(0,1). This allows to simplify the calculations to find the best set of maneuvers. 
+
+\begin{DoxyReturn}{Returns}
+A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily duoble} containing the standardised initial and final angle, the new curvature and the parameter lambda that allows to compute the real dimension lengths. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_dubins_a52681fe06e50899b5296204a312233ce}\label{class_dubins_a52681fe06e50899b5296204a312233ce}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!shortest\_path@{shortest\_path}}
 \index{shortest\_path@{shortest\_path}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{shortest\_path()}{shortest\_path()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::shortest\+\_\+path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+This function computes the shortest path for the \mbox{\hyperlink{class_dubins}{Dubins}} constructed. First the values are scaled. Then the six sets of maneuvers are computed and their lengths are stored. Once the set that gives the \mbox{\hyperlink{class_dubins}{Dubins}} with the minimum length is found, the lengths are rescaled and the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} are created. In the process length is also computed. 
+
+\begin{DoxyReturn}{Returns}
+The id of the set of maneuvers. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_dubins_a68d6703215b12b2933346efd77563575}\label{class_dubins_a68d6703215b12b2933346efd77563575}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!splitIt@{splitIt}}
 \index{splitIt@{splitIt}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{splitIt()}{splitIt()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_point2}{Point2}}$<$double$>$ $>$ $>$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::split\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+arch = {\ttfamily 0},  }\item[{double}]{\+\_\+L = {\ttfamily \mbox{\hyperlink{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}{P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+Function to split a \mbox{\hyperlink{class_dubins}{Dubins}} in points. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+arch} & If defined returns only the points for a single {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
+\hline
+{\em \+\_\+L} & The distance from one point to another. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing three {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} (one for each arc) containing the computed points. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_dubins_a08abdf02352b6d47aafeea1eed9bfbfe}\label{class_dubins_a08abdf02352b6d47aafeea1eed9bfbfe}} 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!to\_string@{to\_string}}
 \index{to\_string@{to\_string}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{to\_string()}{to\_string()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 stringstream \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::to\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+This function create a strinstream object containing infos about the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \begin{DoxyReturn}{Returns}
+A string stream. 
+\end{DoxyReturn}
 
 
 \subsection{Friends And Related Function Documentation}
@@ -256,9 +490,19 @@ stringstream \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$\+::to\+\_\+string 
 \index{Dubins$<$ T $>$@{Dubins$<$ T $>$}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!Dubins$<$ T $>$@{Dubins$<$ T $>$}}
 \subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{const \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
+This function overload the $<$$<$ operator so to print with {\ttfamily std\+::cout} the values of the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}, that is printing the 3 {\ttfamily Dubins\+Arcs}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em out} & The out stream. \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & The {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} to print. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An output stream to be printed. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -1,13 +1,15 @@
 #ifndef MATHS_HH
 #define MATHS_HH
 
+//#include <utils.hh>
+#include "utils.hh"
+
 #include <iostream>
 #include <cmath>
 #include <vector>
 #include <cstdarg> //#include <stdarg.h>
 #include <sstream>
 #include <string>
-#include <opencv2/opencv.hpp>
 
 #include <opencv2/opencv.hpp>
 
@@ -36,8 +38,8 @@ inline T pow2 (const T x){
   return x*x;
 }
 
-#define DEGTORAD M_PI/180
-#define RADTODEG 180/M_PI
+const double DEGTORAD=(M_PI/180.0);
+const double RADTODEG=(180.0/M_PI);
 
 
 /*! \brief This class allows to save and handle angles. It supports DEG and RAD, 
@@ -119,14 +121,14 @@ public:
   		\returns The value of the angle
   */  
   inline double toRad () const {
-    return type==DEG ? (double)(th*DEGTORAD) : th;
+    return (type==DEG ? (double)(th*DEGTORAD) : th);
   }
 
   /*!	\brief Converts but does not store the value of the angle from RAD to DEG.
   		\returns The value of the angle
   */
   inline double toDeg () const {
-    return type==RAD ? (double)(th*RADTODEG) : th;
+    return (type==RAD ? (double)(th*RADTODEG) : th);
   }
   
   static inline bool checkValue (const double th) {
@@ -170,9 +172,19 @@ public:
   		\returns The angle summed. 
   */
   Angle add (const Angle phi){
-    double dth = th+phi.get();
-    if (type!=phi.getType()){
-    	dth = th+(type==RAD ? phi.toRad() : phi.toDeg()); 
+    double dth=0.0;
+    switch(type){
+      case RAD:{
+        dth=get()+phi.toRad();
+        break;
+      }
+      case DEG:{
+        dth=get()+phi.toDeg();
+        break;
+      }
+      default:{
+        cerr << "Wrong type" << endl;
+      }
     }
     Angle alpha (dth, type);
     return alpha;
@@ -182,9 +194,19 @@ public:
   		\returns The angle subtracted. 
   */
   Angle sub (const Angle phi){
-  	double dth = th-phi.get();
-    if (type!=phi.getType()){
-    	dth = th-(type==RAD ? phi.toRad() : phi.toDeg()); 
+  	double dth=0.0;
+    switch(type){
+      case RAD:{
+        dth=get()-phi.toRad();
+        break;
+      }
+      case DEG:{
+        dth=get()-phi.toDeg();
+        break;
+      }
+      default:{
+        cerr << "Wrong type" << endl;
+      }
     }
     Angle alpha (dth, type);
     return alpha;
@@ -221,16 +243,7 @@ public:
     type=phi.getType();
     return *this;
   }
-  /*! This function takes the value in radiants of two angles, an using the equal function 
-      for `double` calculare if they are equal or not.
-      \param[in] th0 The first angle.
-      \param[in] th1 The second angle.
-      \returns `true` if the two angle are equal, `false` otherwise. 
-  */
-  bool equal (const Angle& th0, const Angle& th1){
-    return ::equal(th0.toRad(), th1.toRad()) ? true : false; 
-  }
-  
+    
   /*! This function overload the operator +. It simply calls the `add()` function.
   		\param[in] phi The angle to be summed.
   		\returns The angle summed. 
@@ -316,19 +329,69 @@ public:
     (*this)=alpha;
     return (*this);
   }
+
+  /*! This function takes an angle to copare, an using the `equal` function 
+      for `double`s calculates if it is equal or not to `this`.
+      \param[in] phi The angle to compare.
+      \returns `true` if the two angle are equal, `false` otherwise. 
+  */
+  bool equal (const Angle& phi){
+    return ::equal(this->toRad(), phi.toRad(), 0.0000001) ? true : false; 
+  }
+
+  /*! This function takes the value in radiants of an angle and compares it with this.
+      \param[in] phi The angle to compare.
+      \returns `true` if this is less than phi, `false` otherwise. 
+  */
+  bool less (const Angle& phi){
+    return this->toRad()<phi.toRad(); 
+  }
+
+  /*! This function takes the value in radiants of an angle and compares it with this.
+      \param[in] phi The angle to compare.
+      \returns `true` if this is more than phi, `false` otherwise. 
+  */
+  bool greater (const Angle& phi){
+    return this->toRad()>phi.toRad(); 
+  }
+
   /*! This function overload the operator ==. It simply calls the `equal()` function.
       \param[in] phi The second angle.
       \returns `true` if the two angle are equal, `false` otherwise.  
   */
   bool operator== (const Angle& phi){
-    return equal(*this, phi);
+    cout << "this: " << (*this) << "   , phi: " << phi << endl;
+    return this->equal(phi);
   }
+
+  /*! This function overload the operator ==. It simply calls the `equal()` function.
+      \param[in] phi The second angle.
+      \returns `true` if the two angle are equal, `false` otherwise.  
+  */
+
   /*! This function overload the operator ==. It simply calls the `equal()` function and negates it.
       \param[in] phi The second angle.
       \returns `false` if the two angle are equal, `true` otherwise.  
   */
   bool operator!= (const Angle& phi){
-    return !equal(*this, phi);
+    return !(this->equal(phi));
+  }
+
+  //TODO document
+  bool operator< (const Angle& phi){
+    return this->less(phi);
+  }
+
+  bool operator> (const Angle& phi){
+    return this->greater(phi);
+  }
+
+  bool operator<= (const Angle& phi){
+    return (this->less(phi) || this->equal(phi));
+  }
+
+  bool operator>= (const Angle& phi){
+    return (this->greater(phi) || this->equal(phi));
   }
 
   /*! \brief Compute the cosine of the angle.
@@ -395,17 +458,19 @@ public:
   operator long()   const { return (long)   toRad(); }
 
   /*! This function create a strinstream object containing the most essential info, that is the dimension and the type of angle.
+      \param[in] The type of values to be printed. Default is set to INVALID and it'll print the data of the `Angle` as it was saved.
       \returns A string stream.
   */
-  stringstream to_string () const {
+  stringstream to_string (ANGLE_TYPE _type=INVALID) const {
     stringstream out;
-    switch (getType()){
+    ANGLE_TYPE search=_type==INVALID ? this->getType() : _type;
+    switch (search){
       case DEG:{
-        out << get() << "°";
+        out << this->toDeg() << "°";
         break;
       }
       case RAD:{
-        double phi=get()/M_PI;
+        double phi=toRad()/M_PI;
         out << phi << "pi";
         break;
       }
@@ -428,13 +493,19 @@ public:
   }
 };
 
-const Angle A_2PI = Angle(6.283185, Angle::RAD);  ///<Default Angle for 2pi rad
-const Angle A_360 = Angle(360.0-Epsi, Angle::DEG);///<Default Angle for 360 degree
-const Angle A_PI = Angle(M_PI, Angle::RAD);       ///<Default Angle for pi rad
-const Angle A_180 = Angle(180, Angle::DEG);       ///<Defualt Angle for 180 degree
+#define A_2PI Angle(6.2831853071-Epsi, Angle::RAD)  ///<Default Angle for 2pi rad
+#define A_360 Angle(360.0-Epsi, Angle::DEG)         ///<Default Angle for 360 degree
+#define A_PI Angle(M_PI, Angle::RAD)                ///<Default Angle for pi rad
+#define A_180 Angle(180, Angle::DEG)                ///<Defualt Angle for 180 degree
+#define A_PI2 Angle(M_PI/2.0, Angle::RAD)           ///<Default Angle for pi/2 rad
+#define A_90 Angle(90, Angle::DEG)                  ///<Defualt Angle for 90 degree
+#define A_DEG_NULL Angle(0, Angle::DEG)             ///<Default Angle for 0 rad
+#define A_RAD_NULL Angle(0, Angle::RAD)             ///<Defualt Angle for 0 degree
 
 enum DISTANCE_TYPE {EUCLIDEAN, MANHATTAN}; ///<The possible type of distance to be computed.
 
+// extern double elapsedTuple;
+// extern double elapsedTupleSet;
 /*! \bried This class allows the definition and storage of tuples of different dimensions. 
 		Functions to compute distance between tuples are also available.
 		\tparam T The type of elements to be stored.
@@ -451,16 +522,25 @@ public:
   Tuple () : n(0) {elements.clear();}
   /*! \brief Constructors that takes the number of objectes to be stored, 
   		the objects and then stores them. 
+      For compatibility problem we strongly suggest to use this constructor 
+      only with standard types or types that can be promotted to one of the standard ones.
+      For any other type we suggest to use an empty constructor and then use 
+      the `add()` function.
 
   		\param[in] _n Number of obejctes to store.
   		\param[in] ... Objects to store.
 	*/
   Tuple <T> (int _n, ...){
     n=_n;
+    auto start=Clock::now();
+    elements.reserve(n);
+    auto stop=Clock::now();
+    // elapsedTupleSet+=CHRONO::getElapsed(start, stop);
     va_list ap;
     va_start(ap, _n);
+    start=Clock::now();
     for (int i=0; i<n; i++){
-      T temp=T();
+      T temp;
       if (std::is_same<T, float>::value){
         temp=va_arg(ap, double);
       }
@@ -469,6 +549,8 @@ public:
       }
       elements.push_back(temp);
     }
+    stop=Clock::now();
+    // elapsedTuple+=CHRONO::getElapsed(start, stop);
   }
   
   // ~Tuple () {elements.clear();}
@@ -477,18 +559,37 @@ public:
 
 	/*! \brief Gets the n-th element.
 			\param[in] _n The position of the element to retrieve.
-			\returns The element in the n-th position or -1 if _n is greater then n or less than 0.
+			\returns The element in the n-th position or an empty costructor if _n is greater then n or less than 0.
 	*/  
   T get (const int _n) const {
     return ((_n>=0&&_n<size()) ? elements.at(_n) : T());
   }
   
+  int find (T _el){
+    for (int i=0; i<this->size(); i++){
+      if (this->get(i)==_el){
+        return i;
+      }
+    }
+    return -1;
+  }
+
   /*! \brief Adds a value at the end of the list.
   		\param[in] _new The new value to be added.
 	*/
   void add (const T _new){
   	n++;
   	elements.push_back(_new);
+  }
+
+  void addIfNot(T _el){
+    int id=find(_el); 
+    if (id<0){
+      this->add(_el);
+    }
+    else {
+      throw MyException<T>(EXCEPTION_TYPE::EXISTS, _el, id);
+    }
   }
 
   /*! \brief Removes a value from the list.
@@ -503,6 +604,13 @@ public:
   		n--;
   	}
   	return res;
+  }
+
+  /*! \brief Removes all values from the `Tuple`.
+  */
+  void eraseAll (){
+    elements.clear();
+    n=0;
   }
 
   /*! \brief Set a value in a certain position, or adds the element if the 
@@ -525,7 +633,84 @@ public:
     }
     return res;
   }
+
+  //TODO Document and also should test......
+  void ahead (const T _new){
+    Tuple<T> newT;
+    newT.add(_new);
+    for (auto el : *this){
+      newT.add(el);
+    }
+    this->add(T());
+    *this=newT;
+  }
   
+
+  bool equal(Tuple<T> _t){
+    if (this->size()!=_t.size()){ return false; }
+
+    for (int i=0; i<this->size(); i++){
+      if (this->get(i) != _t.get(i)){
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  bool operator== (Tuple<T> _t){
+    return equal(_t);
+  }
+
+  Tuple<T> sum(Tuple<T> t){
+    if (this->size()!=t.size()){
+      throw MyException<int>(EXCEPTION_TYPE::SIZE, this->size, t.size());
+    }
+    for (int i=0; i<this->size(); i++){
+      this->set(i, (this->get(i)+t.get(i)));
+    }
+    return (*this);
+  }
+
+  Tuple<T> sum(T inc){
+    for (int i=0; i<this->size(); i++){
+      this->set(i, (this->get(i)+inc));
+    }
+    return (*this);
+  }
+
+  Tuple<T> operator+ (T inc){
+    return this->sum(inc);
+  }
+
+  Tuple<T>& operator+= (T inc){
+    return this->sum(inc);
+  }
+
+  Tuple<T> mul(Tuple<T> t){
+    if (this->size()!=t.size()){
+      throw MyException<int>(EXCEPTION_TYPE::SIZE, this->size, t.size());
+    }
+    for (int i=0; i<this->size(); i++){
+      this->set(i, (this->get(i)*t.get(i)));
+    }
+    return (*this);
+  }
+
+  Tuple<T> mul(T inc){
+    for (int i=0; i<this->size(); i++){
+      this->set(i, (this->get(i)*inc));
+    }
+    return (*this);
+  }
+
+  Tuple<T> operator* (T inc){
+    return this->mul(inc);
+  }
+
+  Tuple<T>& operator*= (T inc){
+    return this->mul(inc);
+  }
+
   /*! \brief Function that compute the Euclidean Distance between two tuples. 
   		They must have the same number of elements.
   		\tparan T1 The type of the elements in the second Tuple.
@@ -590,6 +775,7 @@ public:
     return ret;
   }
 
+  //TODO check this prefix thing
   /*! This function create a strinstream object containing the values of the Tuple.
     \returns A string stream.
   */
@@ -612,6 +798,14 @@ public:
     out << data.to_string().str();
     out << ">";
     return out;
+  }
+
+  string to_std_string() const {
+    return this->to_string().str();
+  }
+  
+  operator std::string() const {
+    return to_std_string();
   }
 
   /*!\brief Overload of cast to vector.
@@ -665,38 +859,34 @@ template <class T>
 class Point2 //: public Tuple<T>
 {
 private:
-  Tuple<T> values; ///<The values stored.
-  
+  // Tuple<T> values; ///<The values stored.
+  T X, Y;
 public:
-  Point2() {values=Tuple<T>(2, 0, 0);} ///<Default constructor to build an empty Tuple.
+  Point2() : X(0), Y(0) {} ///<Default constructor to build an empty Tuple.
   /*!	\brief Constructor that taked to elements and builds a point.
   		\param[in] _x The abscissa coordinate.
   		\param[in] _y The ordinate coordinate.
   */
-  Point2(const T _x, const T _y) {
-    values=Tuple<T> (2, _x, _y);
-  }
+  Point2(const T _x, const T _y) : X(_x), Y(_y){}
 
   /*!\brief Constructor that takes a cv::Point and returns a Point2.
     \param[in] p The cv::Point to be copied.
   */
-  Point2(const cv::Point p) {
-    values=Tuple<T> (2, p.x, p.y);
-  }
+  Point2(const cv::Point p) : X(p.x), Y(p.y){}
   
-  T x() const {return values.get(0);} ///< \returns The abscissa coordinate
-  T y() const {return values.get(1);} ///< \returns The ordinate coordinate
+  T x() const {return X;} ///< \returns The abscissa coordinate
+  T y() const {return Y;} ///< \returns The ordinate coordinate
   
   /*! \brief Set the abscissa value.
   		\param[in] _x The new abscissa value
   		\returns 1 if it was successful, 0 otherwise.
   */
-  int x(const T _x) {return values.set(0, _x);}
+  void x(const T _x) {X=_x;}
   /*! \brief Set the ordinate value.
   		\param[in] _x The new ordinate value
   		\returns 1 if it was successful, 0 otherwise.
   */
-  int y(const T _y) {return values.set(1, _y);}
+  void y(const T _y) {Y=_y;}
   
   /*! \brief This function compute the offset of the point given a vector, 
   		that is the lenght of the vector and its angle. The angle must be an 
@@ -707,18 +897,16 @@ public:
 			\returns 1 if everything went fine, 0 otherwise.
   */
   template <class T1>
-  int offset(const T1 _offset, const Angle th){
-    double dth = th.getType()==Angle::RAD ? th.get() : th.toRad();
-    double dx=_offset*cos(dth);
-    double dy=_offset*sin(dth);
+  void offset(const T1 _offset, const Angle th){
+    double dx=_offset*th.cos();
+    double dy=_offset*th.sin();
     if (is_same<T, int>::value){ //Since casting truncates the value, adding 0.5 is the best way to round the numbr
       dx+=0.5;
       dy+=0.5;
     }
     T _x=x()+(T)dx;
     T _y=y()+(T)dy;
-    return (values.set(0, _x) &&
-            values.set(1, _y));
+    x(_x); y(_y);
   }
   
   /*! \brief This function compute an offset given another point made 
@@ -726,9 +914,9 @@ public:
   		\param[in] p The point with the offsets.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  int offset (const Point2<T> p){
-    return (values.set(0, p.x()+x()) &&
-            values.set(1, p.y()+y())); 
+  void offset (const Point2<T> p){
+    x(p.x()+x());
+    y(p.y()+y()); 
   }
   
   /*! \brief This function compute an offset given a `Tuple` made 
@@ -736,21 +924,20 @@ public:
   		\param[in] p The `Tuple` with the offsets. Its dimension must be 2.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  int offset (const Tuple<T> p){
+  void offset (const Tuple<T> p){
     int res=0;
     if (p.size()==2){
-      res= (values.set(0, p.get(0)+x())) &&
-      			values.set(1, p.get(1)+y());
+      x(p.get(0)+x());
+      y(p.get(1)+y());
     }
-    return res;
   }
   
   /*! \brief This function compute an offset for the abscissa.
   		\param[in] _offset The offset.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  int offset_x(const T _offset){
-    return values.set(0, _offset+x());
+  void offset_x(const T _offset){
+    x(_offset+x());
     // return values.set(0, _offset+values.get(0));
   }
   
@@ -758,8 +945,8 @@ public:
   		\param[in] _offset The offset.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  int offset_y(const T _offset){
-    return values.set(1, _offset+y());
+  void offset_y(const T _offset){
+    y(_offset+y());
     // return values.set(1, _offset+values.get(1));
   }
   
@@ -771,7 +958,10 @@ public:
   */
   template<class T1>
   double distance (Point2<T1> B, DISTANCE_TYPE dist=EUCLIDEAN){
-    return values.distance(Tuple<T1>(2, B.x(), B.y()), dist);
+    switch(dist){
+      case EUCLIDEAN: return EuDistance(B);
+      case MANHATTAN: return MaDistance(B);
+    }
   }
 
   /*! \brief Function that compute the Manhattan Distance between two points. 
@@ -781,7 +971,7 @@ public:
 	*/
   template<class T1>
   double MaDistance (Point2<T1> B){
-    return values.MaDistance(Tuple<T1>(2, B.x(), B.y()));
+    return (x()-B.x())+(y()-B.y());
   }
   
   /*! \brief Function that compute the Euclidean Distance between two points. 
@@ -791,7 +981,7 @@ public:
 	*/
   template<class T1>
   double EuDistance (Point2<T1> B){
-    return values.EuDistance(Tuple<T1>(2, B.x(), B.y()));
+    return sqrt(pow2(x()-B.x())+pow2(y()-B.y()));
   }
   
   stringstream to_string () const {
@@ -825,8 +1015,7 @@ public:
       \returns this. 
   */
   Point2<T> operator= (const Point2<T>& A){
-    copy(A);
-    return *this;
+    return copy(A);
   }
   /*! \brief Equalize two points.
       \param [in] A point to be compared to.
@@ -858,7 +1047,7 @@ public:
   }
 
   //TODO find better implementation
-  bool operator< (const Point2<T>& A){
+  bool operator<(const Point2<T>& A){ 
     return true;
   }
 
@@ -1100,6 +1289,12 @@ public:
   */
   bool operator== (const Configuration2<T1>& A){
     return equal(A);
+  }
+
+  //TODO document
+  template<class T2>
+  operator Configuration2<T2>() const {
+    return ( Configuration2<T2>((T2)(this->x()), (T2)(this->y()), this->angle()) );
   }
 
   // ~Configuration2(){delete coord;}

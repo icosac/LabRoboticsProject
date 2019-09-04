@@ -1,10 +1,4 @@
 var searchData=
 [
-  ['_7ecameracapture',['~CameraCapture',['../class_camera_capture.html#a9fb9058c34d463b8bf9055b2f129adac',1,'CameraCapture']]],
-  ['_7eclipperbase',['~ClipperBase',['../class_clipper_lib_1_1_clipper_base.html#ae73a6a12fb3e7e62b59d1ff38135b27c',1,'ClipperLib::ClipperBase']]],
-  ['_7eclipperexception',['~clipperException',['../class_clipper_lib_1_1clipper_exception.html#ae64ee27d7b74c6f4f62aaf466bfc9c19',1,'ClipperLib::clipperException']]],
-  ['_7eclipperoffset',['~ClipperOffset',['../class_clipper_lib_1_1_clipper_offset.html#a05b2d8d13e1148db74b681203a6ea76d',1,'ClipperLib::ClipperOffset']]],
-  ['_7epolynode',['~PolyNode',['../class_clipper_lib_1_1_poly_node.html#abca566308c95d19c72dee88217b23064',1,'ClipperLib::PolyNode']]],
-  ['_7epolytree',['~PolyTree',['../class_clipper_lib_1_1_poly_tree.html#a32f033bcc4b5f80b180fc87a6ff4ecd8',1,'ClipperLib::PolyTree']]],
-  ['_7esettings',['~Settings',['../class_settings.html#a4a65be5921dfc9fddc476e5320541d89',1,'Settings']]]
+  ['y',['y',['../class_point2.html#ad7138ca15abc7937b9b1fdb0a84d229c',1,'Point2::y() const'],['../class_point2.html#a967025762c1b4dede5eb822f5c29522e',1,'Point2::y(const T _y)'],['../class_configuration2.html#a6f92f5478bb05304dae587203c8de9c1',1,'Configuration2::y() const'],['../class_configuration2.html#a6cc23545dd1c7d17aa32c96126f1f727',1,'Configuration2::y(const T1 _y)']]]
 ];

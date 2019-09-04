@@ -1,0 +1,242 @@
+\hypertarget{class_dubins_set}{}\section{Dubins\+Set$<$ T $>$ Class Template Reference}
+\label{class_dubins_set}\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+
+
+Given a set of point, compute the shortest set of \mbox{\hyperlink{class_dubins}{Dubins}} that allows to go from start to end through all points.  
+
+
+
+
+{\ttfamily \#include $<$dubins.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_dubins_set_a36295af30ddae6a33bb6a8e35aee7eb1}{Dubins\+Set}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $>$ \+\_\+dubinses, double \+\_\+kmax=\mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}})
+\item 
+\mbox{\hyperlink{class_dubins_set_a60ae5e28b776ad39e965d4019e448d94}{Dubins\+Set}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ $>$ \+\_\+confs, double \+\_\+kmax=\mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}})
+\item 
+\mbox{\hyperlink{class_dubins_set_a209e9ffddb76419c3ac103afb73b2b10}{Dubins\+Set}} (\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ start, \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ end, \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ \+\_\+points, double \+\_\+kmax=\mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}})
+\begin{DoxyCompactList}\small\item\em Constructor that given a start {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}, an end {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} and a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}}, computes the best path from start to end through all points by brute forcing all possible angles. Since this approach is based on a brute force algorithm, it\textquotesingle{}s best not to use this on too many points. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_dubins_set_a4a85ce188aeabebf88509c2f60ceff31}{Dubins\+Set}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ \+\_\+points, double \+\_\+kmax=\mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}})
+\begin{DoxyCompactList}\small\item\em Constructor that computes a series of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} given only {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} points via brute force. Since this approach is based on a brute force algorithm, it\textquotesingle{}s best not to use this on too many points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dubins_set_a12ea86c3250f8fff7a5db2d759cde33d}{find\+\_\+best}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ \+\_\+points, \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \&\+\_\+angles, \mbox{\hyperlink{class_angle}{Angle}} area=\mbox{\hyperlink{maths_8hh_ad7760000c41920a1ae5cf0f6bf0e4c77}{A\+\_\+2\+PI}}, double tries=4.\+0, double \+\_\+kmax=\mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}})
+\item 
+double \mbox{\hyperlink{class_dubins_set_ad491b5f7e71c3db5ffed11643d2d4e4c}{get\+Length}} ()
+\begin{DoxyCompactList}\small\item\em Returns the Length of the set of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_dubins_set_af97fa42a6a9a6325c4d1ed4541758272}{get\+Kmax}} ()
+\begin{DoxyCompactList}\small\item\em Returns the maximum curvature. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_dubins_set_a41f7dbb6b82c8822e427ee1a3059b8ca}{get\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} stored. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $>$ \mbox{\hyperlink{class_dubins_set_a2d0216573331d2ca6bf36ea213c4d434}{get\+Dubinses}} ()
+\begin{DoxyCompactList}\small\item\em Returns a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ \mbox{\hyperlink{class_dubins_set_a421897996d88df8eb7dad214d7feb84b}{get\+Dubins}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} id)
+\item 
+stringstream \mbox{\hyperlink{class_dubins_set_acfedfbe0ef1ff445cbaff93c70205f86}{to\+\_\+string}} ()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \mbox{\hyperlink{class_dubins_set_af51d3dfa97a9eb56e9c5d066ed044f4a}{operator$<$$<$}} (ostream \&out, \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} \&data)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Dubins\+Set$<$ T $>$}
+
+Given a set of point, compute the shortest set of \mbox{\hyperlink{class_dubins}{Dubins}} that allows to go from start to end through all points. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type for class {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_dubins_set_a36295af30ddae6a33bb6a8e35aee7eb1}\label{class_dubins_set_a36295af30ddae6a33bb6a8e35aee7eb1}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!DubinsSet@{DubinsSet}}
+\index{DubinsSet@{DubinsSet}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $>$}]{\+\_\+dubinses,  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor that given a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} computes stores all of them. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+dubinses} & The {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_dubins_set_a60ae5e28b776ad39e965d4019e448d94}\label{class_dubins_set_a60ae5e28b776ad39e965d4019e448d94}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!DubinsSet@{DubinsSet}}
+\index{DubinsSet@{DubinsSet}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ $>$}]{\+\_\+confs,  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor that takes a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}s and computes the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} between them. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+confs} & The {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}s. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature to be used. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_dubins_set_a209e9ffddb76419c3ac103afb73b2b10}\label{class_dubins_set_a209e9ffddb76419c3ac103afb73b2b10}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!DubinsSet@{DubinsSet}}
+\index{DubinsSet@{DubinsSet}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$}]{start,  }\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$}]{end,  }\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{\+\_\+points,  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor that given a start {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}, an end {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} and a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}}, computes the best path from start to end through all points by brute forcing all possible angles. Since this approach is based on a brute force algorithm, it\textquotesingle{}s best not to use this on too many points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of start. \\
+\hline
+{\em end} & {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of end. \\
+\hline
+{\em \+\_\+points} & {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} containing all the intermediate points. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature of the system. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_dubins_set_a4a85ce188aeabebf88509c2f60ceff31}\label{class_dubins_set_a4a85ce188aeabebf88509c2f60ceff31}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!DubinsSet@{DubinsSet}}
+\index{DubinsSet@{DubinsSet}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{\+\_\+points,  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor that computes a series of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} given only {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} points via brute force. Since this approach is based on a brute force algorithm, it\textquotesingle{}s best not to use this on too many points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+points} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all points. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature to be used for all {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_dubins_set_a12ea86c3250f8fff7a5db2d759cde33d}\label{class_dubins_set_a12ea86c3250f8fff7a5db2d759cde33d}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!find\_best@{find\_best}}
+\index{find\_best@{find\_best}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{find\_best()}{find\_best()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::find\+\_\+best (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{\+\_\+points,  }\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \&}]{\+\_\+angles,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{area = {\ttfamily \mbox{\hyperlink{maths_8hh_ad7760000c41920a1ae5cf0f6bf0e4c77}{A\+\_\+2\+PI}}},  }\item[{double}]{tries = {\ttfamily 4.0},  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Function to compute the best path. This function calls {\ttfamily \mbox{\hyperlink{dubins_8hh_a16cf89e561eae9ea10a39e40432af238}{disp()}}} in order to calculate all possible angles, and then creates a {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} for each possibility choosing the one with the minimum length. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+points} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} through which the path should flow. \\
+\hline
+{\em \+\_\+angles} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} containing all base {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}. \\
+\hline
+{\em area} & This is the angle around each angle to be \char`\"{}scanned\char`\"{}. \\
+\hline
+{\em tries} & The number of discretizations that should be made. \\
+\hline
+{\em \+\_\+kmax} & The maximum curvature to be used. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_dubins_set_a421897996d88df8eb7dad214d7feb84b}\label{class_dubins_set_a421897996d88df8eb7dad214d7feb84b}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getDubins@{getDubins}}
+\index{getDubins@{getDubins}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{getDubins()}{getDubins()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{class_dubins}{Dubins}}$<$T$>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Dubins (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Thid functions returns a specific {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} from the set. 
+\begin{DoxyParams}{Parameters}
+{\em id} & The position of the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} in the set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The id-\/th {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_set_a2d0216573331d2ca6bf36ea213c4d434}\label{class_dubins_set_a2d0216573331d2ca6bf36ea213c4d434}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getDubinses@{getDubinses}}
+\index{getDubinses@{getDubinses}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{getDubinses()}{getDubinses()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_dubins}{Dubins}}$<$T$>$ $>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Dubinses (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. 
+
+\mbox{\Hypertarget{class_dubins_set_af97fa42a6a9a6325c4d1ed4541758272}\label{class_dubins_set_af97fa42a6a9a6325c4d1ed4541758272}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getKmax@{getKmax}}
+\index{getKmax@{getKmax}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{getKmax()}{getKmax()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+double \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Kmax (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the maximum curvature. 
+
+\mbox{\Hypertarget{class_dubins_set_ad491b5f7e71c3db5ffed11643d2d4e4c}\label{class_dubins_set_ad491b5f7e71c3db5ffed11643d2d4e4c}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getLength@{getLength}}
+\index{getLength@{getLength}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{getLength()}{getLength()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+double \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the Length of the set of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. 
+
+\mbox{\Hypertarget{class_dubins_set_a41f7dbb6b82c8822e427ee1a3059b8ca}\label{class_dubins_set_a41f7dbb6b82c8822e427ee1a3059b8ca}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getSize@{getSize}}
+\index{getSize@{getSize}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+double \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the number of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} stored. 
+
+\mbox{\Hypertarget{class_dubins_set_acfedfbe0ef1ff445cbaff93c70205f86}\label{class_dubins_set_acfedfbe0ef1ff445cbaff93c70205f86}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+stringstream \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::to\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This function create a strinstream object containing infos about the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}. \begin{DoxyReturn}{Returns}
+A string stream. 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_dubins_set_af51d3dfa97a9eb56e9c5d066ed044f4a}\label{class_dubins_set_af51d3dfa97a9eb56e9c5d066ed044f4a}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+This function overload the $<$$<$ operator so to print with {\ttfamily std\+::cout} the values of the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}, that is printing all the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} stored. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em out} & The out stream. \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & The {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}} to print. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An output stream to be printed. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{dubins_8hh}{dubins.\+hh}}\end{DoxyCompactItemize}

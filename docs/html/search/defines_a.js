@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['radtodeg',['RADTODEG',['../maths_8hh.html#a9fcbc53371e9a60b983c6b338537aa40',1,'maths.hh']]]
+  ['sdebug',['SDEBUG',['../camera__capture_8cc.html#a9d6a1622ccb56286ed8a99978d938d23',1,'camera_capture.cc']]]
 ];

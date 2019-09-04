@@ -6,10 +6,10 @@
 #include <leptonica/allheaders.h>
 #endif
 
-#include <maths.hh>
-
+#include <sstream>
 #include <iostream>
-
+#include <exception>
+#include <chrono>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/highgui/highgui_c.h>
@@ -20,9 +20,51 @@
 using namespace cv;
 using namespace std;
 
+typedef chrono::high_resolution_clock Clock;
+namespace CHRONO {
+  enum TIME_TYPE {SEC, MSEC, MUSEC, NSEC};
+
+  inline string getType(TIME_TYPE type, string ret=""){
+    switch(type){
+      case SEC: return ret+"s";
+      case MSEC: return ret+"ms";
+      case MUSEC: return ret+"mus";
+      case NSEC: return ret+"ns";
+    }
+    return "";
+  }
+
+  inline double getElapsed(Clock::time_point start, 
+                    Clock::time_point stop,
+                    TIME_TYPE type=MUSEC){
+    switch(type){
+      case SEC:{
+        return chrono::duration_cast<chrono::seconds>(stop - start).count();
+      }
+      case MSEC:{
+        return chrono::duration_cast<chrono::milliseconds>(stop - start).count();
+      }
+      case MUSEC:{
+        return chrono::duration_cast<chrono::nanoseconds>(stop - start).count()/1000.0;
+      }
+      case NSEC:{
+        return chrono::duration_cast<chrono::nanoseconds>(stop - start).count();
+      }
+    }
+    return 0.0;
+  }
+
+  inline string getElapsed(Clock::time_point start,
+                    Clock::time_point stop,
+                    string ret,
+                    TIME_TYPE type=MUSEC){
+    return ret+to_string(getElapsed(start, stop, type))+getType(type, " ");
+  }
+}
+
 //debug blocks most things, wait only something
-#define WAIT
-#define DEBUG
+// #define WAIT
+// #define DEBUG
 
 #define NAME(x) #x ///<Returns the name of the variable
 
@@ -43,8 +85,6 @@ using namespace std;
  */
 void my_imshow(const char* win_name, Mat img, bool reset=false);
 
-// Mat pixToMat(Pix* pix);
-
 /*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed.
  *
  */
@@ -56,16 +96,39 @@ void mywaitkey(const char c='q');
  */
 void mywaitkey(string windowName);
 
-/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed some windows are closed.
- *
- * @param windowNames The names of the windows to close after pressing a key.
- */
-void mywaitkey(Tuple<string> windowNames);
 
+enum EXCEPTION_TYPE {EXISTS, SIZE};
 
-
-
-
+//TODO document
+template<class T>
+class MyException : public exception {
+private:
+  stringstream exceptString(T value) const {
+    stringstream out;
+    out << value;
+    return out;
+  }
+  
+public:
+  EXCEPTION_TYPE type;
+  T a;
+  int b;
+  MyException(EXCEPTION_TYPE _type, T _a, int _b) : type(_type), a(_a), b(_b) {}
+  
+  const char * what() const throw (){
+    string ret;
+    switch(type){
+      case EXISTS:{
+        ret=NAME(type)+string("_Exception: element already exists: ")+exceptString(a).str()+" at pos: "+exceptString(b).str();
+        break;
+      }
+      case SIZE:{
+        ret=NAME(tyoe)+string("_Exception: sizes are different: ")+exceptString(a).str()+"!="+exceptString(b).str();
+      }
+    }
+    return ret.c_str();
+  }
+};
 
 //Taken from Paolo Bevilaqua and Valerio Magnago
 #include <time.h>

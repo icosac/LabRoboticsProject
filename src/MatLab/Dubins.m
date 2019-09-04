@@ -9,7 +9,7 @@ global fl;
 fl= fopen("../../data/test/LSL_angle_ML.test", "w");
 
 % value=0;
-Kmax = 1.0;
+Kmax = 0.01;
 
 % Define problem data
 % x0 = 0; y0 = 0; th0 = pi-0.5;
@@ -19,15 +19,32 @@ global POINTS ;
 POINTS=5;
 global LENGTH ;
 
-for th0=0 : 0.1 : 2*pi
-  for th1=0.0 : 0.1 : 2*pi
-    for kmax=0 : 0.1 : 5
-      [ok, s1, s2, s3] = LSL (th0, th1, kmax);
-      fprintf(fl, "%f, %f, %f, %f, %f, %f\n", th0, th1, kmax, s1, s2, s3);
-    end
+pidx = -1;
+L = inf;
+primitives = {@LSL, @RSR, @LSR, @RSL, @RLR, @LRL};
+for i = 1:numel(primitives)
+  [ok, sc_s1_c, sc_s2_c, sc_s3_c] = primitives{i}(0, 0,0);
+  Lcur = sc_s1_c + sc_s2_c + sc_s3_c;
+  if (ok && Lcur<L)
+    L = Lcur;
+    sc_s1 = sc_s1_c;
+    sc_s2 = sc_s2_c;
+    sc_s3 = sc_s3_c;
+    pidx = i;
   end
 end
+L 
+pidx
 
+[pidx, curve]=dubins_shortest_path(100, 100, 5.4977871438, 300, 300, 4.3906, Kmax);
+figure; axis equal;
+hold on
+plotdubins(curve, true, [1 0 0], [0 0 0], [1 0 0]);
+
+pidx
+curve.a1
+curve.a2
+curve.a3
 
 % count=0;
 % for x0=0 : 25 : 150
@@ -232,6 +249,7 @@ function [sc_th0, sc_thf, sc_Kmax, lambda] = scaleToStandard(x0, y0, th0, xf, yf
   sc_th0 = mod2pi(th0 - phi);
   sc_thf = mod2pi(thf - phi);
   sc_Kmax = Kmax * lambda;
+  
 end
 
 % Scale the solution to the standard problem back to the original problem
@@ -293,7 +311,7 @@ function [ok, sc_s1, sc_s2, sc_s3] = LSR(sc_th0, sc_thf, sc_Kmax)
   temp2 = -atan2(-2, sc_s2 * sc_Kmax);
   sc_s1 = invK * mod2pi(temp1 + temp2 - sc_th0);
   sc_s3 = invK * mod2pi(temp1 + temp2 - sc_thf);
-  ok = true;
+  ok = true;  
 end
 
 % RSL
@@ -311,7 +329,7 @@ function [ok, sc_s1, sc_s2, sc_s3] = RSL(sc_th0, sc_thf, sc_Kmax)
   temp2 = atan2(2, sc_s2 * sc_Kmax);
   sc_s1 = invK * mod2pi(sc_th0 - temp1 + temp2);
   sc_s3 = invK * mod2pi(sc_thf - temp1 + temp2);
-  ok = true;
+  ok = true;  
 end
 
 % RLR

@@ -1,4 +1,4 @@
 <map id="Dubins&lt; T &gt;" name="Dubins&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="5,79,99,104"/>
+<area shape="rect" id="node1" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc." alt="" coords="5,79,99,104"/>
 <area shape="rect" id="node2" href="$class_curve.html" title=" " alt="" coords="8,5,96,31"/>
 </map>

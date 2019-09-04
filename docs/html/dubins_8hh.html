@@ -68,13 +68,13 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">dubins.hh File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="maths_8hh_source.html">maths.hh</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="utils_8hh_source.html">utils.hh</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="maths_8hh_source.html">maths.hh</a>&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
@@ -84,23 +84,25 @@ Include dependency graph for dubins.hh:</div>
 <div class="dyncontent">
 <div class="center"><img src="dubins_8hh__incl.png" border="0" usemap="#src_2include_2dubins_8hh" alt=""/></div>
 <map name="src_2include_2dubins_8hh" id="src_2include_2dubins_8hh">
-<area shape="rect"  title=" " alt="" coords="908,5,1055,31"/>
-<area shape="rect"  href="maths_8hh.html" title=" " alt="" coords="207,152,284,177"/>
+<area shape="rect"  title=" " alt="" coords="819,5,966,31"/>
+<area shape="rect"  href="maths_8hh.html" title=" " alt="" coords="681,79,757,104"/>
+<area shape="rect"  title=" " alt="" coords="1349,225,1417,251"/>
 <area shape="rect"  title=" " alt="" coords="5,225,78,251"/>
-<area shape="rect"  title=" " alt="" coords="813,225,870,251"/>
-<area shape="rect"  title=" " alt="" coords="1043,225,1112,251"/>
-<area shape="rect"  title=" " alt="" coords="1211,225,1265,251"/>
-<area shape="rect"  href="utils_8hh.html" title=" " alt="" coords="631,79,695,104"/>
-<area shape="rect"  title=" " alt="" coords="269,225,326,251"/>
-<area shape="rect"  title=" " alt="" coords="350,225,415,251"/>
-<area shape="rect"  title=" " alt="" coords="102,225,245,251"/>
-<area shape="rect"  title=" " alt="" coords="440,225,491,251"/>
-<area shape="rect"  title=" " alt="" coords="308,152,452,177"/>
-<area shape="rect"  title=" " alt="" coords="477,152,667,177"/>
-<area shape="rect"  title=" " alt="" coords="691,152,819,177"/>
-<area shape="rect"  title=" " alt="" coords="843,152,1008,177"/>
-<area shape="rect"  title=" " alt="" coords="1033,152,1090,177"/>
-<area shape="rect"  title=" " alt="" coords="1114,152,1174,177"/>
+<area shape="rect"  title=" " alt="" coords="863,152,921,177"/>
+<area shape="rect"  title=" " alt="" coords="945,152,999,177"/>
+<area shape="rect"  href="utils_8hh.html" title=" " alt="" coords="592,152,656,177"/>
+<area shape="rect"  title=" " alt="" coords="1181,225,1324,251"/>
+<area shape="rect"  title=" " alt="" coords="782,152,840,177"/>
+<area shape="rect"  title=" " alt="" coords="428,152,493,177"/>
+<area shape="rect"  title=" " alt="" coords="517,152,569,177"/>
+<area shape="rect"  title=" " alt="" coords="268,225,346,251"/>
+<area shape="rect"  title=" " alt="" coords="371,225,433,251"/>
+<area shape="rect"  title=" " alt="" coords="456,225,600,251"/>
+<area shape="rect"  title=" " alt="" coords="625,225,815,251"/>
+<area shape="rect"  title=" " alt="" coords="839,225,967,251"/>
+<area shape="rect"  title=" " alt="" coords="991,225,1156,251"/>
+<area shape="rect"  title=" " alt="" coords="102,225,160,251"/>
+<area shape="rect"  title=" " alt="" coords="184,225,243,251"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -120,18 +122,25 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_curve.html">Curve&lt; T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dubins_arc.html">DubinsArc&lt; T1, T2 &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to store a maneuver of <a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a>. It inherits from <code><a class="el" href="class_curve.html">Curve</a></code>. Since each <a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a> is formed of atmost 3 maneuvers, this class is meant to store one of this maneuver, which can be L, R or S respectively Left, Right, Straight.  <a href="class_dubins_arc.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dubins.html">Dubins&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to store a <a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a> curve. This class inherits from <code><a class="el" href="class_curve.html">Curve</a></code> and is composed of three <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>.  <a href="class_dubins.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dubins_set.html">DubinsSet&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a set of point, compute the shortest set of <a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a> that allows to go from start to end through all points.  <a href="class_dubins_set.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a76156c41a8252ae92ac829a621c7bd0f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a76156c41a8252ae92ac829a621c7bd0f">MORE_FUNCTIONS</a></td></tr>
-<tr class="separator:a76156c41a8252ae92ac829a621c7bd0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b2500ca93a5100f73dc442d3cfea7d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a5b2500ca93a5100f73dc442d3cfea7d4">PIECE_LENGTH</a>&#160;&#160;&#160;2</td></tr>
 <tr class="separator:a5b2500ca93a5100f73dc442d3cfea7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a940b85a83458e94519f2685b33ddd276"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a940b85a83458e94519f2685b33ddd276">KMAX</a>&#160;&#160;&#160;1.0</td></tr>
+<tr class="memitem:a2bda1a81ce3474772a8a1f165e54516e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a2bda1a81ce3474772a8a1f165e54516e">PREC</a>&#160;&#160;&#160;100000</td></tr>
+<tr class="separator:a2bda1a81ce3474772a8a1f165e54516e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940b85a83458e94519f2685b33ddd276"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a940b85a83458e94519f2685b33ddd276">KMAX</a>&#160;&#160;&#160;0.5</td></tr>
 <tr class="separator:a940b85a83458e94519f2685b33ddd276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fd2b1bcd7ddcf506237987ad780f495"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a3fd2b1bcd7ddcf506237987ad780f495">DELTA</a>&#160;&#160;&#160;M_PI/180.0</td></tr>
+<tr class="separator:a3fd2b1bcd7ddcf506237987ad780f495"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -139,8 +148,64 @@ Functions</h2></td></tr>
 <tr class="separator:a5c88710b236a514392351a4d13d2e767"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adef8b363044d7fed558e5b47d8d6a3a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#adef8b363044d7fed558e5b47d8d6a3a0">circline</a> (double _L, <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; _P0, double _K)</td></tr>
 <tr class="separator:adef8b363044d7fed558e5b47d8d6a3a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24a357b93081a0180dfec16136bc8ff7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a24a357b93081a0180dfec16136bc8ff7">toBase</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; z, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> n, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> base, const <a class="el" href="class_angle.html">Angle</a> &amp;inc, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> startPos, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> endPos)</td></tr>
+<tr class="memdesc:a24a357b93081a0180dfec16136bc8ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a value in base 10 to base <code>base</code> in a <code><a class="el" href="class_tuple.html">Tuple</a></code>. To each value an inc is muiltiplied and the initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> is added.  <a href="#a24a357b93081a0180dfec16136bc8ff7">More...</a><br /></td></tr>
+<tr class="separator:a24a357b93081a0180dfec16136bc8ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16cf89e561eae9ea10a39e40432af238"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a16cf89e561eae9ea10a39e40432af238">disp</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; &gt; &amp;t, <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; &amp;z, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> N, const <a class="el" href="class_angle.html">Angle</a> &amp;inc, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> startPos=0, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> endPos=0)</td></tr>
+<tr class="memdesc:a16cf89e561eae9ea10a39e40432af238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the arrangements. Since each arrangement can be computed as <img class="formulaInl" alt="$n_{parts}$" src="form_2.png"/>, where each values is then multiplied for the increment and is added to the initial values.  <a href="#a16cf89e561eae9ea10a39e40432af238">More...</a><br /></td></tr>
+<tr class="separator:a16cf89e561eae9ea10a39e40432af238"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa53a085a4bb61c12f09c88a5f583dbd"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:afa53a085a4bb61c12f09c88a5f583dbd"><td class="memTemplItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#afa53a085a4bb61c12f09c88a5f583dbd">reduce_points</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; &gt; init_points)</td></tr>
+<tr class="separator:afa53a085a4bb61c12f09c88a5f583dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a5880c4830bf2ab16bad216015448eacb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a5880c4830bf2ab16bad216015448eacb">elapsedScale</a></td></tr>
+<tr class="separator:a5880c4830bf2ab16bad216015448eacb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa36733aa8c8ca5849070a465409dbe81"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#aa36733aa8c8ca5849070a465409dbe81">elapsedPrimitives</a></td></tr>
+<tr class="separator:aa36733aa8c8ca5849070a465409dbe81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0031b22718178ccc76a4d8178e582b25"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a0031b22718178ccc76a4d8178e582b25">elapsedBest</a></td></tr>
+<tr class="separator:a0031b22718178ccc76a4d8178e582b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ea7ce6fc7223d1e06dc71644336d66f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a2ea7ce6fc7223d1e06dc71644336d66f">elapsedArcs</a></td></tr>
+<tr class="separator:a2ea7ce6fc7223d1e06dc71644336d66f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06fc38271c4ca7f7799fa903d94cae5a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a06fc38271c4ca7f7799fa903d94cae5a">elapsedCheck</a></td></tr>
+<tr class="separator:a06fc38271c4ca7f7799fa903d94cae5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcfdf634840cd6f14ae6d0762ecd1f95"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#abcfdf634840cd6f14ae6d0762ecd1f95">countTries</a></td></tr>
+<tr class="separator:abcfdf634840cd6f14ae6d0762ecd1f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addc0762dc6f907d08093d87133317157"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#addc0762dc6f907d08093d87133317157">elapsedVar</a></td></tr>
+<tr class="separator:addc0762dc6f907d08093d87133317157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0abfff7e943d5425fde32277365912b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#ad0abfff7e943d5425fde32277365912b">elapsedCirc</a></td></tr>
+<tr class="separator:ad0abfff7e943d5425fde32277365912b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb6d93608c94bd3bd63217dc721ea2bf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#abb6d93608c94bd3bd63217dc721ea2bf">elapsedSet</a></td></tr>
+<tr class="separator:abb6d93608c94bd3bd63217dc721ea2bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7f52b98e604497e1df6126251edffcf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#af7f52b98e604497e1df6126251edffcf">elapsedLSL</a></td></tr>
+<tr class="separator:af7f52b98e604497e1df6126251edffcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5381897b84c903a717eda9680319f40a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a5381897b84c903a717eda9680319f40a">elapsedRSR</a></td></tr>
+<tr class="separator:a5381897b84c903a717eda9680319f40a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada1c98b34a456476f08c5cafbfe893ad"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#ada1c98b34a456476f08c5cafbfe893ad">elapsedLSR</a></td></tr>
+<tr class="separator:ada1c98b34a456476f08c5cafbfe893ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb44475744bcbfbdf6609efd02c6c6fb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#acb44475744bcbfbdf6609efd02c6c6fb">elapsedRSL</a></td></tr>
+<tr class="separator:acb44475744bcbfbdf6609efd02c6c6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3972b672793842e7de439255254d3085"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a3972b672793842e7de439255254d3085">elapsedRLR</a></td></tr>
+<tr class="separator:a3972b672793842e7de439255254d3085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a715f7de2f92786df84a14e5a013b94e9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a715f7de2f92786df84a14e5a013b94e9">elapsedLRL</a></td></tr>
+<tr class="separator:a715f7de2f92786df84a14e5a013b94e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a3fd2b1bcd7ddcf506237987ad780f495"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fd2b1bcd7ddcf506237987ad780f495">&#9670;&nbsp;</a></span>DELTA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DELTA&#160;&#160;&#160;M_PI/180.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a940b85a83458e94519f2685b33ddd276"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a940b85a83458e94519f2685b33ddd276">&#9670;&nbsp;</a></span>KMAX</h2>
 
@@ -148,21 +213,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define KMAX&#160;&#160;&#160;1.0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a76156c41a8252ae92ac829a621c7bd0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76156c41a8252ae92ac829a621c7bd0f">&#9670;&nbsp;</a></span>MORE_FUNCTIONS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MORE_FUNCTIONS</td>
+          <td class="memname">#define KMAX&#160;&#160;&#160;0.5</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -177,6 +228,20 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define PIECE_LENGTH&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2bda1a81ce3474772a8a1f165e54516e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bda1a81ce3474772a8a1f165e54516e">&#9670;&nbsp;</a></span>PREC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PREC&#160;&#160;&#160;100000</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -215,6 +280,108 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Computes an arrival point from an initial configuration through an arc of length _L and curvature _K. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_L</td><td>The length of the arch. </td></tr>
+    <tr><td class="paramname">_P0</td><td>The starting <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> of the arc. </td></tr>
+    <tr><td class="paramname">_K</td><td>The curvature of the arc. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ending <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> of the arc. </dd></dl>
+
+</div>
+</div>
+<a id="a16cf89e561eae9ea10a39e40432af238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16cf89e561eae9ea10a39e40432af238">&#9670;&nbsp;</a></span>disp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void disp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
+          <td class="paramname"><em>inc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>startPos</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>endPos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the arrangements. Since each arrangement can be computed as <img class="formulaInl" alt="$n_{parts}$" src="form_2.png"/>, where each values is then multiplied for the increment and is added to the initial values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> containing all the <code><a class="el" href="class_tuple.html">Tuple</a></code>s containing the <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
+    <tr><td class="paramname">z</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> containing all the initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
+    <tr><td class="paramname">N</td><td>The number of iterations. Each iteration is going to be converted in base parts. </td></tr>
+    <tr><td class="paramname">inc</td><td>The increment to give each initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>. </td></tr>
+    <tr><td class="paramname">startPos</td><td>The initial position to consider in <code><a class="el" href="class_tuple.html">Tuple</a></code>. </td></tr>
+    <tr><td class="paramname">endPos</td><td>The final position to consider in <code><a class="el" href="class_tuple.html">Tuple</a></code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">z</td><td>Vector to use </td></tr>
+    <tr><td class="paramname">N</td><td>Number of time to "iterate" </td></tr>
+    <tr><td class="paramname">inc</td><td>Incrementation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afa53a085a4bb61c12f09c88a5f583dbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa53a085a4bb61c12f09c88a5f583dbd">&#9670;&nbsp;</a></span>reduce_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="class_point2.html">Point2</a>&lt;T&gt; &gt; reduce_points </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; &gt;&#160;</td>
+          <td class="paramname"><em>init_points</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -240,6 +407,293 @@ Functions</h2></td></tr>
 <span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+<p>Compute the sinc of the function defined as: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ sinc(t)=\frac{sin(t)}{t}\quad t\neq 0 1\quad t=0 \]" src="form_1.png"/>
+</p>
+ <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>The value of the angle to be used. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the previous formula. </dd></dl>
+
+</div>
+</div>
+<a id="a24a357b93081a0180dfec16136bc8ff7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24a357b93081a0180dfec16136bc8ff7">&#9670;&nbsp;</a></span>toBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt;<a class="el" href="class_angle.html">Angle</a>&gt; toBase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt;&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
+          <td class="paramname"><em>inc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>startPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>endPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a value in base 10 to base <code>base</code> in a <code><a class="el" href="class_tuple.html">Tuple</a></code>. To each value an inc is muiltiplied and the initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> is added. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">z</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> containing all the initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
+    <tr><td class="paramname">n</td><td>The value to be converted. </td></tr>
+    <tr><td class="paramname">base</td><td>The base. </td></tr>
+    <tr><td class="paramname">inc</td><td>The increment. </td></tr>
+    <tr><td class="paramname">startPos</td><td>The starting position of the <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
+    <tr><td class="paramname">endPos</td><td>The ending position of the <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="abcfdf634840cd6f14ae6d0762ecd1f95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcfdf634840cd6f14ae6d0762ecd1f95">&#9670;&nbsp;</a></span>countTries</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long countTries</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ea7ce6fc7223d1e06dc71644336d66f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ea7ce6fc7223d1e06dc71644336d66f">&#9670;&nbsp;</a></span>elapsedArcs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedArcs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0031b22718178ccc76a4d8178e582b25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0031b22718178ccc76a4d8178e582b25">&#9670;&nbsp;</a></span>elapsedBest</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedBest</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06fc38271c4ca7f7799fa903d94cae5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06fc38271c4ca7f7799fa903d94cae5a">&#9670;&nbsp;</a></span>elapsedCheck</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedCheck</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad0abfff7e943d5425fde32277365912b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0abfff7e943d5425fde32277365912b">&#9670;&nbsp;</a></span>elapsedCirc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedCirc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a715f7de2f92786df84a14e5a013b94e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a715f7de2f92786df84a14e5a013b94e9">&#9670;&nbsp;</a></span>elapsedLRL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedLRL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7f52b98e604497e1df6126251edffcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7f52b98e604497e1df6126251edffcf">&#9670;&nbsp;</a></span>elapsedLSL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedLSL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ada1c98b34a456476f08c5cafbfe893ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada1c98b34a456476f08c5cafbfe893ad">&#9670;&nbsp;</a></span>elapsedLSR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedLSR</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa36733aa8c8ca5849070a465409dbe81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa36733aa8c8ca5849070a465409dbe81">&#9670;&nbsp;</a></span>elapsedPrimitives</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedPrimitives</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3972b672793842e7de439255254d3085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3972b672793842e7de439255254d3085">&#9670;&nbsp;</a></span>elapsedRLR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedRLR</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb44475744bcbfbdf6609efd02c6c6fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb44475744bcbfbdf6609efd02c6c6fb">&#9670;&nbsp;</a></span>elapsedRSL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedRSL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5381897b84c903a717eda9680319f40a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5381897b84c903a717eda9680319f40a">&#9670;&nbsp;</a></span>elapsedRSR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedRSR</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5880c4830bf2ab16bad216015448eacb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5880c4830bf2ab16bad216015448eacb">&#9670;&nbsp;</a></span>elapsedScale</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedScale</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb6d93608c94bd3bd63217dc721ea2bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb6d93608c94bd3bd63217dc721ea2bf">&#9670;&nbsp;</a></span>elapsedSet</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedSet</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="addc0762dc6f907d08093d87133317157"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addc0762dc6f907d08093d87133317157">&#9670;&nbsp;</a></span>elapsedVar</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double elapsedVar</td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>

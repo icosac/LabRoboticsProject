@@ -121,7 +121,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a89b1e5b7b71fc1bf9565da0bef8f361f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts but does not store the value of the angle from RAD to DEG.  <a href="#a89b1e5b7b71fc1bf9565da0bef8f361f">More...</a><br /></td></tr>
 <tr class="separator:a89b1e5b7b71fc1bf9565da0bef8f361f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a449fc0638ca2e26b4a57d1cce95788e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a449fc0638ca2e26b4a57d1cce95788e8">normalize</a> ()</td></tr>
-<tr class="memdesc:a449fc0638ca2e26b4a57d1cce95788e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalize the angle, that is to set it in <img class="formulaInl" alt="$[0, 2\pi)$" src="form_3.png"/> or <img class="formulaInl" alt="$[0, 360°)$" src="form_4.png"/>. Moreover it check if the value is infinite or NaN. In this case the <code>type</code> is set to <code>INVALID</code>.  <a href="#a449fc0638ca2e26b4a57d1cce95788e8">More...</a><br /></td></tr>
+<tr class="memdesc:a449fc0638ca2e26b4a57d1cce95788e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalize the angle, that is to set it in <img class="formulaInl" alt="$[0, 2\pi)$" src="form_6.png"/> or <img class="formulaInl" alt="$[0, 360°)$" src="form_7.png"/>. Moreover it check if the value is infinite or NaN. In this case the <code>type</code> is set to <code>INVALID</code>.  <a href="#a449fc0638ca2e26b4a57d1cce95788e8">More...</a><br /></td></tr>
 <tr class="separator:a449fc0638ca2e26b4a57d1cce95788e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7279e3fb4ab12c334153f992ede0f1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#ab7279e3fb4ab12c334153f992ede0f1c">add</a> (const <a class="el" href="class_angle.html">Angle</a> phi)</td></tr>
 <tr class="memdesc:ab7279e3fb4ab12c334153f992ede0f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sums and angle to this one. In the process a new angle is created so <code><a class="el" href="class_angle.html#a449fc0638ca2e26b4a57d1cce95788e8" title="Normalize the angle, that is to set it in  or . Moreover it check if the value is infinite or NaN....">normalize()</a></code> is also called.  <a href="#ab7279e3fb4ab12c334153f992ede0f1c">More...</a><br /></td></tr>
@@ -140,8 +140,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab1c34d25d3235e639313e5d48d98a6f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#ab1c34d25d3235e639313e5d48d98a6f6">copy</a> (const <a class="el" href="class_angle.html">Angle</a> phi)</td></tr>
 <tr class="memdesc:ab1c34d25d3235e639313e5d48d98a6f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies an angle to this one. In the process a new angle is created so <code><a class="el" href="class_angle.html#a449fc0638ca2e26b4a57d1cce95788e8" title="Normalize the angle, that is to set it in  or . Moreover it check if the value is infinite or NaN....">normalize()</a></code> is also called.  <a href="#ab1c34d25d3235e639313e5d48d98a6f6">More...</a><br /></td></tr>
 <tr class="separator:ab1c34d25d3235e639313e5d48d98a6f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56b3dfe127d0abc16db14bd22ed4b5b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a56b3dfe127d0abc16db14bd22ed4b5b4">equal</a> (const <a class="el" href="class_angle.html">Angle</a> &amp;th0, const <a class="el" href="class_angle.html">Angle</a> &amp;th1)</td></tr>
-<tr class="separator:a56b3dfe127d0abc16db14bd22ed4b5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa04bc36c641e1ecfb7aee5019ed8e6ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#aa04bc36c641e1ecfb7aee5019ed8e6ea">operator+</a> (const <a class="el" href="class_angle.html">Angle</a> phi)</td></tr>
 <tr class="separator:aa04bc36c641e1ecfb7aee5019ed8e6ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a951436019a4c06895ba31a08bf0d6fd2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a951436019a4c06895ba31a08bf0d6fd2">operator-</a> (const <a class="el" href="class_angle.html">Angle</a> phi)</td></tr>
@@ -166,10 +164,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac0421d376bd1c7396088ff465589c4b9"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:ac0421d376bd1c7396088ff465589c4b9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_angle.html#ac0421d376bd1c7396088ff465589c4b9">operator/=</a> (const T A)</td></tr>
 <tr class="separator:ac0421d376bd1c7396088ff465589c4b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21d2e7c68957afdd5c7edf3efd3e0bdc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a21d2e7c68957afdd5c7edf3efd3e0bdc">equal</a> (const <a class="el" href="class_angle.html">Angle</a> &amp;phi)</td></tr>
+<tr class="separator:a21d2e7c68957afdd5c7edf3efd3e0bdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e25c0ed5a92eb8af995a038c70f4e26"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a4e25c0ed5a92eb8af995a038c70f4e26">less</a> (const <a class="el" href="class_angle.html">Angle</a> &amp;phi)</td></tr>
+<tr class="separator:a4e25c0ed5a92eb8af995a038c70f4e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ead65678819acef29cc4c7f2400f631"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a2ead65678819acef29cc4c7f2400f631">greater</a> (const <a class="el" href="class_angle.html">Angle</a> &amp;phi)</td></tr>
+<tr class="separator:a2ead65678819acef29cc4c7f2400f631"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affdc9a2590df21c00fcbe01e5dadaf25"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#affdc9a2590df21c00fcbe01e5dadaf25">operator==</a> (const <a class="el" href="class_angle.html">Angle</a> &amp;phi)</td></tr>
 <tr class="separator:affdc9a2590df21c00fcbe01e5dadaf25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d22835be41b628a5216243b7f7e50a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a8d22835be41b628a5216243b7f7e50a1">operator!=</a> (const <a class="el" href="class_angle.html">Angle</a> &amp;phi)</td></tr>
 <tr class="separator:a8d22835be41b628a5216243b7f7e50a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6771d6e2005dcb8ddb6355349441dc38"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a6771d6e2005dcb8ddb6355349441dc38">operator&lt;</a> (const <a class="el" href="class_angle.html">Angle</a> &amp;phi)</td></tr>
+<tr class="separator:a6771d6e2005dcb8ddb6355349441dc38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c45045b213db3627055a4591b403224"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a5c45045b213db3627055a4591b403224">operator&gt;</a> (const <a class="el" href="class_angle.html">Angle</a> &amp;phi)</td></tr>
+<tr class="separator:a5c45045b213db3627055a4591b403224"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad18dd2a58b59f2b8d57431cf122f026c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#ad18dd2a58b59f2b8d57431cf122f026c">operator&lt;=</a> (const <a class="el" href="class_angle.html">Angle</a> &amp;phi)</td></tr>
+<tr class="separator:ad18dd2a58b59f2b8d57431cf122f026c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cedd44bb72da23b24d2fd57eacf3b79"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a2cedd44bb72da23b24d2fd57eacf3b79">operator&gt;=</a> (const <a class="el" href="class_angle.html">Angle</a> &amp;phi)</td></tr>
+<tr class="separator:a2cedd44bb72da23b24d2fd57eacf3b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedc259112dacf9197d787645f7e48911"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#aedc259112dacf9197d787645f7e48911">cos</a> () const</td></tr>
 <tr class="memdesc:aedc259112dacf9197d787645f7e48911"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the cosine of the angle. \retunrs A <code>double</code> that is the cosine of the angle.  <a href="#aedc259112dacf9197d787645f7e48911">More...</a><br /></td></tr>
 <tr class="separator:aedc259112dacf9197d787645f7e48911"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,8 +203,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a497355a5d68f92e7801ee4072e234185"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a497355a5d68f92e7801ee4072e234185">operator long</a> () const</td></tr>
 <tr class="memdesc:a497355a5d68f92e7801ee4072e234185"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast to long.  <a href="#a497355a5d68f92e7801ee4072e234185">More...</a><br /></td></tr>
 <tr class="separator:a497355a5d68f92e7801ee4072e234185"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30cf6acb380ac16fbf308032a109dcd4"><td class="memItemLeft" align="right" valign="top">stringstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a30cf6acb380ac16fbf308032a109dcd4">to_string</a> () const</td></tr>
-<tr class="separator:a30cf6acb380ac16fbf308032a109dcd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5022b65b8a46e4050cde8a27cdc8d236"><td class="memItemLeft" align="right" valign="top">stringstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle.html#a5022b65b8a46e4050cde8a27cdc8d236">to_string</a> (<a class="el" href="class_angle.html#a4f7b9849ce8780bcba95ca3ee45cff77">ANGLE_TYPE</a> _type=<a class="el" href="class_angle.html#a4f7b9849ce8780bcba95ca3ee45cff77aa3c85e092f5da4bb998d0ddc6632dcbf">INVALID</a>) const</td></tr>
+<tr class="separator:a5022b65b8a46e4050cde8a27cdc8d236"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -494,8 +506,8 @@ template&lt;class T1 &gt; </div>
 
 </div>
 </div>
-<a id="a56b3dfe127d0abc16db14bd22ed4b5b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56b3dfe127d0abc16db14bd22ed4b5b4">&#9670;&nbsp;</a></span>equal()</h2>
+<a id="a21d2e7c68957afdd5c7edf3efd3e0bdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21d2e7c68957afdd5c7edf3efd3e0bdc">&#9670;&nbsp;</a></span>equal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -507,18 +519,8 @@ template&lt;class T1 &gt; </div>
           <td class="memname">bool Angle::equal </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
-          <td class="paramname"><em>th0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>phi</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
-          <td class="paramname"><em>th1</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -527,10 +529,9 @@ template&lt;class T1 &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This function takes the value in radiants of two angles, an using the equal function for <code>double</code> calculare if they are equal or not. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This function takes an angle to copare, an using the <code>equal</code> function for <code>double</code>s calculates if it is equal or not to <code>this</code>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">th0</td><td>The first angle. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">th1</td><td>The second angle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">phi</td><td>The angle to compare. </td></tr>
   </table>
   </dd>
 </dl>
@@ -618,6 +619,72 @@ template&lt;class T1 &gt; </div>
 
 </div>
 </div>
+<a id="a2ead65678819acef29cc4c7f2400f631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ead65678819acef29cc4c7f2400f631">&#9670;&nbsp;</a></span>greater()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Angle::greater </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
+          <td class="paramname"><em>phi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function takes the value in radiants of an angle and compares it with this. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">phi</td><td>The angle to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this is more than phi, <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a4e25c0ed5a92eb8af995a038c70f4e26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e25c0ed5a92eb8af995a038c70f4e26">&#9670;&nbsp;</a></span>less()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Angle::less </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
+          <td class="paramname"><em>phi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function takes the value in radiants of an angle and compares it with this. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">phi</td><td>The angle to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this is less than phi, <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
 <a id="aa1c4b848f4ac7ece9d2fa010abc91511"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1c4b848f4ac7ece9d2fa010abc91511">&#9670;&nbsp;</a></span>mul()</h2>
 
@@ -684,7 +751,7 @@ template&lt;class T1 &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Normalize the angle, that is to set it in <img class="formulaInl" alt="$[0, 2\pi)$" src="form_3.png"/> or <img class="formulaInl" alt="$[0, 360°)$" src="form_4.png"/>. Moreover it check if the value is infinite or NaN. In this case the <code>type</code> is set to <code>INVALID</code>. </p>
+<p>Normalize the angle, that is to set it in <img class="formulaInl" alt="$[0, 2\pi)$" src="form_6.png"/> or <img class="formulaInl" alt="$[0, 360°)$" src="form_7.png"/>. Moreover it check if the value is infinite or NaN. In this case the <code>type</code> is set to <code>INVALID</code>. </p>
 
 </div>
 </div>
@@ -899,7 +966,14 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This function overload the operator ==. It simply calls the <code><a class="el" href="class_angle.html#a56b3dfe127d0abc16db14bd22ed4b5b4">equal()</a></code> function and negates it. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This function overload the operator ==. It simply calls the <code><a class="el" href="class_angle.html#a21d2e7c68957afdd5c7edf3efd3e0bdc">equal()</a></code> function. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">phi</td><td>The second angle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the two angle are equal, <code>false</code> otherwise.</dd></dl>
+<p>This function overload the operator ==. It simply calls the <code><a class="el" href="class_angle.html#a21d2e7c68957afdd5c7edf3efd3e0bdc">equal()</a></code> function and negates it. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">phi</td><td>The second angle. </td></tr>
   </table>
@@ -1117,6 +1191,58 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
+<a id="a6771d6e2005dcb8ddb6355349441dc38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6771d6e2005dcb8ddb6355349441dc38">&#9670;&nbsp;</a></span>operator&lt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Angle::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
+          <td class="paramname"><em>phi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad18dd2a58b59f2b8d57431cf122f026c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad18dd2a58b59f2b8d57431cf122f026c">&#9670;&nbsp;</a></span>operator&lt;=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Angle::operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
+          <td class="paramname"><em>phi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a93da39f08e2e110e278bb94d1c279ac6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a93da39f08e2e110e278bb94d1c279ac6">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
@@ -1199,13 +1325,65 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This function overload the operator ==. It simply calls the <code><a class="el" href="class_angle.html#a56b3dfe127d0abc16db14bd22ed4b5b4">equal()</a></code> function. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This function overload the operator ==. It simply calls the <code><a class="el" href="class_angle.html#a21d2e7c68957afdd5c7edf3efd3e0bdc">equal()</a></code> function. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">phi</td><td>The second angle. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if the two angle are equal, <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a5c45045b213db3627055a4591b403224"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c45045b213db3627055a4591b403224">&#9670;&nbsp;</a></span>operator&gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Angle::operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
+          <td class="paramname"><em>phi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2cedd44bb72da23b24d2fd57eacf3b79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cedd44bb72da23b24d2fd57eacf3b79">&#9670;&nbsp;</a></span>operator&gt;=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Angle::operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
+          <td class="paramname"><em>phi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -1402,8 +1580,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a30cf6acb380ac16fbf308032a109dcd4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30cf6acb380ac16fbf308032a109dcd4">&#9670;&nbsp;</a></span>to_string()</h2>
+<a id="a5022b65b8a46e4050cde8a27cdc8d236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5022b65b8a46e4050cde8a27cdc8d236">&#9670;&nbsp;</a></span>to_string()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1414,7 +1592,8 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="memname">stringstream Angle::to_string </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_angle.html#a4f7b9849ce8780bcba95ca3ee45cff77">ANGLE_TYPE</a>&#160;</td>
+          <td class="paramname"><em>_type</em> = <code><a class="el" href="class_angle.html#a4f7b9849ce8780bcba95ca3ee45cff77aa3c85e092f5da4bb998d0ddc6632dcbf">INVALID</a></code></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1424,7 +1603,13 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This function create a strinstream object containing the most essential info, that is the dimension and the type of angle. </p><dl class="section return"><dt>Returns</dt><dd>A string stream. </dd></dl>
+<p>This function create a strinstream object containing the most essential info, that is the dimension and the type of angle. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">The</td><td>type of values to be printed. Default is set to INVALID and it'll print the data of the <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> as it was saved. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A string stream. </dd></dl>
 
 </div>
 </div>

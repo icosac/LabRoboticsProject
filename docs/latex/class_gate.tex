@@ -1,0 +1,89 @@
+\hypertarget{class_gate}{}\section{Gate Class Reference}
+\label{class_gate}\index{Gate@{Gate}}
+
+
+{\ttfamily \#include $<$objects.\+hh$>$}
+
+
+
+Inheritance diagram for Gate\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=125pt]{class_gate__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Gate\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{class_gate__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_gate_aacece347527cf8093fdb3420bc95fb4b}{Gate}} (vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp)
+\begin{DoxyCompactList}\small\item\em Constructor of the gate class and automatically compute center and radius. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_gate_a56194536f033ef34b9dfd23581afff5d}{to\+String}} ()
+\begin{DoxyCompactList}\small\item\em Generate a string that describe the gate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_gate_afdf8579acddb7b4f5be42e861c2c1db2}{print}} ()
+\begin{DoxyCompactList}\small\item\em Print the describing string of the gate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_gate_aacece347527cf8093fdb3420bc95fb4b}\label{class_gate_aacece347527cf8093fdb3420bc95fb4b}} 
+\index{Gate@{Gate}!Gate@{Gate}}
+\index{Gate@{Gate}!Gate@{Gate}}
+\subsubsection{\texorpdfstring{Gate()}{Gate()}}
+{\footnotesize\ttfamily Gate\+::\+Gate (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{vp }\end{DoxyParamCaption})}
+
+
+
+Constructor of the gate class and automatically compute center and radius. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vp} & Vector of points that is the convex hull of the gate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return the created gate. 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_gate_afdf8579acddb7b4f5be42e861c2c1db2}\label{class_gate_afdf8579acddb7b4f5be42e861c2c1db2}} 
+\index{Gate@{Gate}!print@{print}}
+\index{print@{print}!Gate@{Gate}}
+\subsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void Gate\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print the describing string of the gate. 
+
+\mbox{\Hypertarget{class_gate_a56194536f033ef34b9dfd23581afff5d}\label{class_gate_a56194536f033ef34b9dfd23581afff5d}} 
+\index{Gate@{Gate}!toString@{toString}}
+\index{toString@{toString}!Gate@{Gate}}
+\subsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily string Gate\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generate a string that describe the gate. 
+
+\begin{DoxyReturn}{Returns}
+The generated string. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{objects_8hh}{objects.\+hh}}\item 
+src/\mbox{\hyperlink{objects_8cc}{objects.\+cc}}\end{DoxyCompactItemize}

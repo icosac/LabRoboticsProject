@@ -25,6 +25,8 @@
 using namespace cv;
 using namespace std;
 
+extern Settings* sett;
+
 enum { DETECTION = 0, CAPTURING = 1, CALIBRATED = 2 };
 
 class CalSettings{

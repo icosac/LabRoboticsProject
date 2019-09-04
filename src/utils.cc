@@ -24,7 +24,7 @@ void my_imshow( const char* win_name,
 
     //const string s = win_name;
     #if CV_MAJOR_VERSION<4
-      namedWindow(win_name, CV_WINDOW_NORMAL);
+      namedWindow(win_name, CV_WINDOW_AUTOSIZE);
     #else 
       namedWindow(win_name, WINDOW_NORMAL);
     #endif
@@ -57,16 +57,6 @@ void mywaitkey(string windowName) {
   destroyWindow(windowName);
 }
 
-/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed some windows are closed.
- *
- * @param windowNames The names of the windows to close after pressing a key.
- */
-void mywaitkey(Tuple<string> windowNames) {
-  while((char)waitKey(1)!='q'){}
-  for (auto name : windowNames) {
-    destroyWindow(name);
-  }
-}
 
 namespace timeutils {
 

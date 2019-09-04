@@ -20,8 +20,8 @@ pair< vector<Point2<int> >, Mapp* > planning(const Mat & img){
     /*/ 
     vp.push_back( Point2<int>(100, 150) );//*/
     cout << "plan3\n" << flush;
-    
     map->getVictimCenters(vp);
+    cout << "plan3 bis\n" << flush;
     map->getGateCenter(vp);
     cout << "plan4\n" << flush;
 

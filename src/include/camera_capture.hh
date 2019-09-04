@@ -2,8 +2,8 @@
 // Created by valerio on 24/08/17.
 //
 
-#ifndef CAMERACAPTURE_H
-#define CAMERACAPTURE_H
+#ifndef CAMERACAPTURE_HH
+#define CAMERACAPTURE_HH
 
 #include <opencv2/opencv.hpp>
 
