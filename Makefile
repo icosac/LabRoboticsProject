@@ -42,9 +42,10 @@ SRC=$(wildcard src/*.cc)
 OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
 
 #test files
-TEST_SRC= test/prova1.cc\
-					# test/dubins_test.cc\
-# 				test/maths_test.cc
+TEST_SRC= test/robotLocalization.cc \
+# 					test/prova1.cc\
+# 					test/dubins_test.cc\
+# 					test/maths_test.cc
 TEST_EXEC=$(subst test/,bin/test/,$(patsubst %.cc, %.out, $(TEST_SRC)))
 
 #Run files

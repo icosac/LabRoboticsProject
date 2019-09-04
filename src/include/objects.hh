@@ -18,34 +18,45 @@ class Object{
     public:
         string toString();
 
-        unsigned size();
-        unsigned nPoints();
+        unsigned int size();
+        unsigned int nPoints();
+        vector<Point2<int> > getPoints();
+        Point2<int> getCenter();
+        double getRadius();
 
         void computeCenter();
         void computeRadius();
         
-        void offsetting(const int offset);
+        void offsetting(const int offset, const int limitX, const int limitY);
         bool insidePolyApprox(Point2<int> pt);
         bool insidePoly(Point2<int> pt);
-        //bool collision(Point2<int> p1, Point2<int> p2);
+        //bool collision(const Point2<int> & p1, const Point2<int> & p2); // not useful anymore
 
     protected:
         vector<Point2<int> > points;
         Point2<int> center;
-        float radius;
+        double radius;
 };
 
 class Obstacle: public Object{
     public:
-    Obstacle(vector<Point2<int> > vp);
+        Obstacle(vector<Point2<int> > & vp);
 
-    string toString();
-    void print();
+        string toString();
+        void print();
+};
+
+class Gate: public Object{
+    public:
+        Gate(vector<Point2<int> > & vp);
+
+        string toString();
+        void print();
 };
 
 class Victim: public Object{
     public:
-        Victim(vector<Point2<int> > vp, int _value);
+        Victim(vector<Point2<int> > & vp, int _value);
         string toString();
         void print();
 

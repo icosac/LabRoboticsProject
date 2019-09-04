@@ -4,12 +4,14 @@
 #include <utils.hh>
 #include <settings.hh>
 #include <filter.hh>
+#include <configure.hh>
 
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <cmath>
 #include <algorithm>
+#include <vector>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/core.hpp>
@@ -19,49 +21,50 @@
 using namespace std;
 using namespace cv;
 
+
+// 0 -> Red
+// 1 -> Green
+// 2 -> Blue
+// 3 -> Black
+// 4 -> Cyan (robot)
+enum COLOR_TYPE {RED, GREEN, BLUE, BLACK, CYAN};
+
+
 /*! \brief Loads some images and detects shapes according to different colors.
 
     \returns Return 0 if the function reach the end.
 */
 int detection();
 
+void computeConversionParameters(Mat & transf);
+Point2<int> localize();
+Point2<int> localize(const Mat & img);
+
 /*! \brief Detect shapes inside the image according to the variable 'color'.
 
     \param[in] img Image on which the research will done.
-    \param[in] color Can has 3 value:\n
-    0 -> Red\n
-    1 -> Green\n
-    2 -> Blue\n
+    \param[in] color It is the type of reference color.
     These color identify the possible spectrum that the function search on the image.
 */
-void shape_detection(const Mat & img, const int color, const Mat& un_img); //color: 0=red, 1=green, 2=blue, 3=black
+void shape_detection(const Mat & img, const COLOR_TYPE color);
 
 /*! \brief It apply some filtering function for isolate the subject and remove the noise.
     \details An example of the sub functions called are: GaussianBlur, Erosion, Dilation and Threshold.
 
     \param[in, out] img Is the image on which the function apply the filtering.
-    \param[in] color Can has 4 value:\n
-    0 -> Red\n
-    1 -> Green\n
-    2 -> Blue\n
-    3 -> Black\n
-    According to the color the filtering functions apply can change in the type and in the order.
+    \param[in] color It is the type of reference color. According to the color the filtering functions apply can change in the type and in the order.
 */
-void erode_dilation(Mat & img, const int color);
+void erode_dilation(Mat & img, const COLOR_TYPE color);
 
 /*! \brief Given an image, in black/white format, identify all the borders that delimit the shapes.
 
     \param[in] img Is an image in HSV format at the base of the elaboration process.
-    \param[out] original Is the original source of 'img', it is used for showing the detected contours.
-    \param[in] color Can has 3 value:\n
-    0 -> Red\n
-    1 -> Green\n
-    2 -> Blue\n
-    Is used for decid which procedure apply to the image.
+    \param[out] original It is the original source of 'img', it is used for showing the detected contours.
+    \param[in] color It is the type of reference color.
 */
 void find_contours( const Mat & img,
-                    Mat original, 
-                    const int color);
+                    const Mat & original, 
+                    const COLOR_TYPE color);
 
 /*! \brief Detect a number on an image inside a region of interest.
 
@@ -75,10 +78,10 @@ int number_recognition(Rect blob, const Mat & base);
 /*! \brief Given some vector save it in a xml file.
 
     \param[in] contours Is a vector that is saved in a xml file.
-    \param[in] color Is the parameter according to which the function decide if saved ('color==1') or not ('otherwise') the vector 'victims'.
+    \param[in] color It is the type of reference color, according to which the function decide if saved ('color==GREEN') or not ('otherwise') the vector 'victims'.
 */
 void save_convex_hull(  const vector<vector<Point>> & contours,
-                        const int color);
+                        const COLOR_TYPE color);
 
 /*! \brief Load some templates and save them in the global variable 'templates'.
 */

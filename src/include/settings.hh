@@ -31,8 +31,8 @@ public:
 	Filter greenMask;                 ///<Filter for green.
 	Filter victimMask;                ///<Filter for the victims.
 	Filter blueMask;                  ///<Filter for blue.
-  Filter whiteMask;                 ///<Filter for white.
-  Filter robotMask;                 ///<Filter for the triangle above the robot.
+	Filter whiteMask;                 ///<Filter for white.
+	Filter robotMask;                 ///<Filter for the triangle above the robot.
 	int kernelSide;
 	string convexHullFile;            ///<AString containing the path to file containing the points of the elements in the arena.
 	string templatesFolder;           ///<A String containing the path of the folder containing the number templates.
@@ -113,8 +113,8 @@ public:
 			Filter _victimMask=Filter(0, 0, 0, 179, 255, 80),
 			Filter _blueMask=Filter(100, 100, 40, 140, 200, 170),
 			Filter _whiteMask=Filter(100, 100, 40, 140, 200, 170),
-      Filter _roboteMask=Filter(100, 100, 40, 140, 200, 170),
-      int _kernelSide=9,
+			Filter _roboteMask=Filter(100, 100, 40, 140, 200, 170),
+      		int _kernelSide=9,
 			string _convexHullFile="data/convexHull.xml",
 			vector<string> _templates={}
 	);

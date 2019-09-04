@@ -8,12 +8,20 @@
 pair< vector<Point2<int> >, Mapp* > planning(){
     Mapp * map = createMapp();
 
-    // TODO test and verify
-    Point2<int> start(120, 120);
-    Point2<int> end(900, 1400);
-    vector<Point2<int> > cellsOfPath = map->minPathTwoPoints(start, end);
-    cout << "cellsOfPath size: " << cellsOfPath.size() <<endl;
+    vector<Point2<int> > vp;
+
+    // TODO use this version when run from the laboratory...
+    //vp.push_back( localize() ); //robot initial location
+    vp.push_back( Point2<int>(100, 150) );
     
+    map->getVictimCenters(vp);
+    map->getGateCenter(vp);
+
+    vector<vector<Point2<int> > > vvp = map->minPathNPoints(vp);
+    vector<Point2<int> > cellsOfPath = map->sampleNPoints(vvp);
+
+    cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
+
     return( make_pair(cellsOfPath, map) );//todo change with points from dubins
 }
 
@@ -24,28 +32,43 @@ pair< vector<Point2<int> >, Mapp* > planning(){
 Mapp * createMapp(){
     sett->cleanAndRead();
 
+    //create the map
+    int dimX=1000, dimY=1500;
+    Mapp * map = new Mapp(dimX, dimY);
+
     // open file
-    cout << "loadFile: " << sett->convexHullFile << endl;
+    #ifdef WAIT
+        cout << "loadFile: " << sett->convexHullFile << endl;
+    #endif
     FileStorage fs(sett->convexHullFile, FileStorage::READ);
     
     // load vectors of vectors of objects
-    vector< vector<Point2<int> > > obstacles;
-    loadVVP(obstacles, fs["obstacles"]);
+        // Obstacles
+        vector< vector<Point2<int> > > vvpObstacles;
+        loadVVP(vvpObstacles, fs["obstacles"]);
+        vector<Obstacle> obstacles;
+        for(unsigned int i=0; i<vvpObstacles.size(); i++){
+            obstacles.push_back( Obstacle(vvpObstacles[i]) );
+        }
+        map->addObjects(obstacles);
 
-    vector< vector<Point2<int> > > victims;
-    loadVVP(victims, fs["victims"]);
+        // Victims
+        vector< vector<Point2<int> > > vvpVictims;
+        loadVVP(vvpVictims, fs["victims"]);
+        vector<Victim> victims;
+        for(unsigned int i=0; i<vvpVictims.size(); i++){
+            victims.push_back( Victim(vvpVictims[i], i+1) );    // the victims are already sorted
+        }
+        map->addObjects(victims);
 
-    vector< vector<Point2<int> > > gate;
-    loadVVP(gate, fs["gate"]);
-
-    //create the map
-    cout << "MAIN MAP\n";
-    int dimX=1000, dimY=1500;
-    Mapp * map = new Mapp(dimX, dimY, 5, 5);
-    
-    map->addObjects(obstacles, OBST);
-    map->addObjects(victims, VICT);
-    map->addObjects(gate, GATE);
+        // Gate
+        vector< vector<Point2<int> > > vvpGates;
+        loadVVP(vvpGates, fs["gate"]);
+        vector<Gate> gates;
+        for(unsigned int i=0; i<vvpGates.size(); i++){
+            gates.push_back( Gate(vvpGates[i]) );
+        }
+        map->addObjects(gates);
 
     return(map);
 }

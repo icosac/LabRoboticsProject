@@ -53,36 +53,48 @@ void update_trackers(){
   setTrackbarPos("High V","Filtered Image", filter.high_v);
 }
 
+/*! \brief It acqire a frame from the default camera of the pc.
+
+    \param[in] save If save, or not, the acquired image to a file.
+    \return The Mat of the acquired frame.
+*/
+Mat acquireImage(const bool save){
+  Mat frame;
+  //Create camera object
+  CameraCapture::input_options_t options(1080, 1920, 30, 0);
+  CameraCapture *camera = new CameraCapture(options);
+
+  double time;
+  if (camera->grab(frame, time)) {
+    cout << "Success" << endl;
+  } else {
+    cout << "\n\nFail getting camera photo.\n\n" << endl;
+    return(frame);
+  }
+  if(save){
+    imwrite("data/map/01.jpg", frame);
+  }
+  free(camera);
+
+  return(frame);
+}
+
 /*! \brief If DEPLOY is defined then takes a photo from the camera, shows tha various filters and asks if they are
  *  visually correct. If not then it allows to set the various filters through trackbars.
  *  If DEPLOY is not defined then it takes a map from the folder set in Settings and ask for visual confirmation.
  */
 void configure (bool deploy, int img_id){
-  // Settings* sett=new Settings();
-  // sett->cleanAndRead();
 
   Mat frame;
   if (deploy) {
-    //Create camera object
-    CameraCapture::input_options_t options(1080, 1920, 30, 0);
-    CameraCapture *camera = new CameraCapture(options);
-
-    double time;
-    if (camera->grab(frame, time)) {
-      cout << "Success" << endl;
-    } else {
-      cout << "Fail getting camera photo." << endl;
-      return;
-    }
-    imwrite("data/map/01.jpg", frame);
-    free(camera);
+    frame = acquireImage(true);
   }
   else {
     frame = imread(sett->maps(Tuple<int>(1, img_id)).get(0));
   }
 
 #ifdef DEBUG
-  my_imshow("prova", frame);
+  my_imshow("Frame RGB", frame);
   mywaitkey();
 #endif
 
@@ -166,7 +178,7 @@ void configure (bool deploy, int img_id){
       inRange(frame, filter.Low(), filter.High(), frame_threshold);
       imshow("Filtered Image",frame_threshold);
     }
-    sett->changeMask(Settings::WHITE, filter);
+    sett->changeMask(Settings::ROBOT, filter);
     cout << "Robot filter done: " << filter << endl;
   }
 
