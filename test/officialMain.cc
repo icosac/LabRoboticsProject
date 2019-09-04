@@ -6,11 +6,13 @@ using namespace std;
 Settings *sett = new Settings();
 
 int main(){ 
+    sett->cleanAndRead();
+    cout << "Initial Settings: " << endl << *sett << endl;
     cout << "Official Main:\n";
     RobotProject rp=RobotProject();
 
-    //Mat img = acquireImage(false);
-    Mat img = imread(sett->maps(0).get(0).c_str());
+    Mat img = acquireImage(true);
+    // Mat img = imread(sett->maps(0).get(0).c_str());
     if(!rp.preprocessMap(img)){
         cout << "Error1\n";
     }
@@ -21,8 +23,8 @@ int main(){
     }
     cout << "path size: " << path.size() << endl;
 
-    // Mat imgNew = acquireImage(false);
-    Mat imgNew = imread(sett->maps(0).get(0).c_str());
+    Mat imgNew = acquireImage(true);
+    // Mat imgNew = imread(sett->maps(0).get(0).c_str());
     vector<double> state; //x, y, th
     for(int i=0; i<3; i++){
         cout << i+1 << "° ";

@@ -31,7 +31,6 @@ public:
 	Filter greenMask;                 ///<Filter for green.
 	Filter victimMask;                ///<Filter for the victims.
 	Filter blueMask;                  ///<Filter for blue.
-	Filter whiteMask;                 ///<Filter for white.
 	Filter robotMask;                 ///<Filter for the triangle above the robot.
 	int kernelSide;
 	string convexHullFile;            ///<AString containing the path to file containing the points of the elements in the arena.
@@ -51,7 +50,6 @@ public:
 	 * @param _greenMask Filter for green.
 	 * @param _victimMask Filter for the victims.
 	 * @param _blueMask Filter for blue.
-	 * @param _whiteMask Filter for white.
 	 * @param _robotMask Filter for the triangle above the robot.
 	 * @param _kernelSide 
 	 * @param _convexHullFile A String containing the path to file containing the points of the elements in the arena.
@@ -69,7 +67,6 @@ public:
 			Filter _greenMask=Filter(54, 74, 25, 119, 255, 88),
 			Filter _victimMask=Filter(0, 0, 0, 179, 255, 80),
 			Filter _blueMask=Filter(100, 100, 40, 140, 200, 170),
-      Filter _whiteMask=Filter(100, 100, 40, 140, 200, 170),
       Filter _roboteMask=Filter(100, 100, 40, 140, 200, 170),
 			int _kernelSide=9,
 			string _convexHullFile="data/convexHull.xml",
@@ -94,7 +91,6 @@ public:
    * @param _greenMask Filter for green.
    * @param _victimMask Filter for the victims.
    * @param _blueMask Filter for blue.
-   * @param _whiteMask Filter for white.
    * @param _robotMask Filter for the triangle above the robot.
    * @param _kernelSide
    * @param _convexHullFile A String containing the path to file containing the points of the elements in the arena.
@@ -112,7 +108,6 @@ public:
 			Filter _greenMask=Filter(54, 74, 25, 119, 255, 88),
 			Filter _victimMask=Filter(0, 0, 0, 179, 255, 80),
 			Filter _blueMask=Filter(100, 100, 40, 140, 200, 170),
-			Filter _whiteMask=Filter(100, 100, 40, 140, 200, 170),
 			Filter _roboteMask=Filter(100, 100, 40, 140, 200, 170),
       		int _kernelSide=9,
 			string _convexHullFile="data/convexHull.xml",
@@ -220,7 +215,7 @@ public:
    */
 	Tuple<string> getTemplates(Tuple<string> _templates);
 
-	enum COLOR {BLACK, RED, GREEN, VICTIMS, BLUE, WHITE, ROBOT}; ///<Colors refered to the filters.
+	enum COLOR {BLACK, RED, GREEN, VICTIMS, BLUE, ROBOT}; ///<Colors refered to the filters.
 
 	/*!\brief Change the values of Tuple of filters. Mind that no write function is called.
 	 *
@@ -251,7 +246,6 @@ public:
 		out << NAME(redMask) << ": " << redMask << endl;
 		out << NAME(greenMask) << ": " << greenMask << endl;
 		out << NAME(blueMask) << ": " << blueMask << endl;
-		out << NAME(whiteMask) << ": " << whiteMask << endl;
 	    out << NAME(victimMask) << ": " << victimMask << endl;
 	    out << NAME(robotMask) << ": " << robotMask << endl;
 		out << NAME(kernelSide) << ": " << kernelSide << endl;

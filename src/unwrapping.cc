@@ -27,6 +27,7 @@ int unwrapping(const bool _imgRead, Mat * img){
             or_img = imread(filename.c_str());
         } else{
             or_img = *img;
+            cout << "prendo l'immagine" << endl;
         }
         // Display original image
         

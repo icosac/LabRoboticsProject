@@ -2,14 +2,12 @@
 
 RobotProject::RobotProject(){
 	cout << "-> -> -> RobotProject constructor\n";
-
-	sett->cleanAndRead();
 	
 	// cout << "calibration" << endl;
 	// calibration(); //BUG????!?!?!?!?!?!??!?!?!
 
 	cout << endl <<"Configure" << endl;
-	configure(false);
+	configure(true);
 }
 
 bool RobotProject::preprocessMap(const Mat & img){
@@ -17,10 +15,10 @@ bool RobotProject::preprocessMap(const Mat & img){
 
 	Mat internalImg = img;
 	cout << endl << "unwrapping" << endl << flush;
-	unwrapping(true, &internalImg);
+	unwrapping(false, &internalImg);
 
 	cout << endl << "detection" << endl << flush;
-	detection(true, &internalImg);
+	detection(false, &internalImg);
 
 	return(true);
 }

@@ -490,7 +490,22 @@ public:
   	n++;
   	elements.push_back(_new);
   }
+  
+  int find (T _el){
+    for (int i=0; i<this->size(); i++){
+      if (this->get(i)==_el){
+        return i;
+      }
+    }
+    return -1;
+  }
 
+  void addIfNot(T _el, bool _throw=false){
+    int id=find(_el); 
+    if (id<0){
+      this->add(_el);
+    }
+  }
   /*! \brief Removes a value from the list.
   		\param[in] pos The position of the value to be removed.
       \returns 1 if verything went fine, 0 otherwise.

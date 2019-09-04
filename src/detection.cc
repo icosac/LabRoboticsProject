@@ -33,6 +33,10 @@ int detection(const bool _imgRead, const Mat * img){
         Mat hsv_img;
         cvtColor(un_img, hsv_img, COLOR_BGR2HSV);
 
+        #ifdef WAIT
+            my_imshow("hsv_img", hsv_img, true);
+        #endif
+
         //detection over the three values of the array
         COLOR_TYPE tmpVectColors[] = {RED, GREEN, BLUE, CYAN};
         for(int i=0; i<4; i++){
@@ -226,7 +230,9 @@ void shape_detection(const Mat & img, const COLOR_TYPE color){
         default:
             break;
     }
-    
+    COUT(mask)
+    COUT(mask.Low())
+    COUT(mask.High())
     Mat color_mask;
     inRange(img, mask.Low(), mask.High(), color_mask);
     

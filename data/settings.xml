@@ -5,22 +5,20 @@
   "01.jpg"</mapsNames>
 <mapsUnNames>
   "01_UN.jpg"</mapsUnNames>
-<intrinsicCalibrationFile>"./data/intrinsic_calibration.xml"</intrinsicCalibrationFile>
-<calibrationFile>data/calib_config.xml</calibrationFile>
+<intrinsicCalibrationFile>data/calib_config.xml</intrinsicCalibrationFile>
+<calibrationFile>data/intrinsic_calibration.xml</calibrationFile>
 <blackMask>
-  37 0 0 180 255 141</blackMask>
+  0 0 0 179 255 70</blackMask>
 <redMask>
-  0 89 124 9 255 255</redMask>
+  15 100 140 160 255 255</redMask>
 <greenMask>
-  36 0 0 73 237 175</greenMask>
+  54 74 25 119 255 88</greenMask>
 <blueMask>
-  82 128 78 120 205 255</blueMask>
-<whiteMask>
-  72 35 109 107 138 219</whiteMask>
+  100 100 40 140 200 170</blueMask>
 <victimMask>
-  0 0 0 180 156 87</victimMask>
+  0 0 0 179 255 80</victimMask>
 <robotMask>
-  69 102 90 90 228 141</robotMask>
+  100 100 40 140 200 170</robotMask>
 <kernelSide>9</kernelSide>
 <convexHullFile>data/convexHull.xml</convexHullFile>
 <templatesFolder>data/num_template/</templatesFolder>

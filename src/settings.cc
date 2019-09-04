@@ -39,7 +39,6 @@ vector<string> getFiles(const string& path){
  * @param _greenMask Filter for green.
  * @param _victimMask Filter for the victims.
  * @param _blueMask Filter for blue.
- * @param _whiteMask Filter for white.
  * @param _robotMask Filter for the triangle above the robot.
  * @param _kernelSide
  * @param _convexHullFile A String containing the path to file containing the points of the elements in the arena.
@@ -57,7 +56,6 @@ Settings::Settings(
 			Filter _greenMask,
 			Filter _victimMask,
 			Filter _blueMask,
-      Filter _whiteMask,
       Filter _robotMask,
 			int _kernelSide,
 			string _convexHullFile,
@@ -65,7 +63,7 @@ Settings::Settings(
 {
 	save(	_mapsFolder, _templatesFolder, _mapsNames, _mapsUnNames, 
 			_intrinsicCalibrationFile, _calibrationFile, _blackMask, _redMask, _greenMask, 
-			_victimMask, _blueMask, _whiteMask, _robotMask, _kernelSide, _convexHullFile, _templates);
+			_victimMask, _blueMask, _robotMask, _kernelSide, _convexHullFile, _templates);
 }
 
 /*!\brief Function to change values. The value are all set by default. This function does NOT read from or write to file.
@@ -81,7 +79,6 @@ Settings::Settings(
  * @param _greenMask Filter for green.
  * @param _victimMask Filter for the victims.
  * @param _blueMask Filter for blue.
- * @param _whiteMask Filter for white.
  * @param _robotMask Filter for the triangle above the robot.
  * @param _kernelSide
  * @param _convexHullFile A String containing the path to file containing the points of the elements in the arena.
@@ -99,28 +96,30 @@ void Settings::save (
 			Filter _greenMask,
 			Filter _victimMask,
 			Filter _blueMask,
-			Filter _whiteMask,
       Filter _robotMask,
 			int _kernelSide,
 			string _convexHullFile,
 			vector<string> _templates)
 {
+	cout << "enter" << endl;
 	//Get Maps
 	this->mapsFolder=_mapsFolder;
 	for (auto el : _mapsNames){
-		this->mapsNames.add(el);
+		this->mapsNames.addIfNot(el);
 	}
 	for (auto el : _mapsUnNames){
-		this->mapsUnNames.add(el);
+		this->mapsUnNames.addIfNot(el);
 	}
 	for (auto el : getFiles(_mapsFolder)){
 		if (el.find("UN")==NPOS){ 	//Get distorted maps
-			this->mapsNames.add(el);
+			this->mapsNames.addIfNot(el);
 		}
 		else { //Get undistorted maps
-			this->mapsUnNames.add(el);
+			this->mapsUnNames.addIfNot(el);
 		}
 	}
+
+	cout << "fine mappe" << endl;
 
 	//Set all other values
 	this->intrinsicCalibrationFile=_intrinsicCalibrationFile;
@@ -130,19 +129,20 @@ void Settings::save (
 	this->greenMask=_greenMask;
 	this->victimMask=_victimMask;
 	this->blueMask=_blueMask;
-	this->whiteMask=_whiteMask;
   this->robotMask=_robotMask,
 	this->kernelSide=_kernelSide;
 	this->convexHullFile=_convexHullFile;
 
+	cout << "variabili" << endl; 
+
 	//Get templates
 	this->templatesFolder=_templatesFolder;
 	for (auto el : _templates){
-		this->templates.add(el);
+		this->templates.addIfNot(el);
 	}
 
 	for (auto el : getFiles(_templatesFolder)){
-		this->templates.add(el);
+		this->templates.addIfNot(el);
 	}
 }
 
@@ -162,43 +162,57 @@ inline void vecToFile (FileStorage& fs, vector<int> x){
  * @param _path The path of the file to write to.
  */
 void Settings::writeToFile(string _path){
+	cout << "writeToFile()" << endl;
+	COUT(_path)
 	FileStorage fs(_path, FileStorage::WRITE);
-	
-	fs << NAME(mapsFolder) << mapsFolder;
+	if (fs.isOpened()){
+		cout << "File is open" << endl;
+		fs << NAME(mapsFolder) << mapsFolder;
 
-	fs << NAME(mapsNames) << "[";
-	for (int i=0; i<mapsNames.size(); i++){
-		fs << mapsNames.get(i);
-	}
-	fs << "]";
-	
-	fs << NAME(mapsUnNames) << "[";
-	for (int i=0; i<mapsUnNames.size(); i++){
-		fs << mapsUnNames.get(i);
-	}
-	fs << "]";
-	
-	fs << NAME(intrinsicCalibrationFile) << intrinsicCalibrationFile;
-	fs << NAME(calibrationFile) << calibrationFile;
-	fs << NAME(blackMask) << "["; vecToFile(fs, (vector<int>)blackMask); fs <<"]";
-	fs << NAME(redMask) << "["; vecToFile(fs, (vector<int>)redMask); fs <<"]";
-	fs << NAME(greenMask) << "["; vecToFile(fs, (vector<int>)greenMask); fs <<"]";
-	fs << NAME(blueMask) << "["; vecToFile(fs, (vector<int>)blueMask); fs <<"]";
-	fs << NAME(whiteMask) << "["; vecToFile(fs, (vector<int>)whiteMask); fs <<"]";
-  fs << NAME(victimMask) << "["; vecToFile(fs, (vector<int>)victimMask); fs <<"]";
-  fs << NAME(robotMask) << "["; vecToFile(fs, (vector<int>)robotMask); fs <<"]";
+		fs << NAME(mapsNames) << "[";
+		for (int i=0; i<mapsNames.size(); i++){
+			fs << mapsNames.get(i);
+		}
+		fs << "]";
+		
+		fs << NAME(mapsUnNames) << "[";
+		for (int i=0; i<mapsUnNames.size(); i++){
+			fs << mapsUnNames.get(i);
+		}
+		fs << "]";
+		
+		fs << NAME(intrinsicCalibrationFile) << intrinsicCalibrationFile;
+		fs << NAME(calibrationFile) << calibrationFile;
 
-	fs << NAME(kernelSide) << kernelSide;
-	fs << NAME(convexHullFile) << convexHullFile;
-	fs << NAME(templatesFolder) << templatesFolder;
-	
-	fs << NAME(templates) << "["; 
+		fs << NAME(blackMask) << "["; vecToFile(fs, (vector<int>)blackMask); fs <<"]";
+		COUT(blackMask) 
+		fs << NAME(redMask) << "["; vecToFile(fs, (vector<int>)redMask); fs <<"]";
+		COUT(redMask) 
+		fs << NAME(greenMask) << "["; vecToFile(fs, (vector<int>)greenMask); fs <<"]";
+		COUT(greenMask) 
+		fs << NAME(blueMask) << "["; vecToFile(fs, (vector<int>)blueMask); fs <<"]";
+		COUT(blueMask) 
+	  fs << NAME(victimMask) << "["; vecToFile(fs, (vector<int>)victimMask); fs <<"]";
+	  COUT(victimMask) 
+	  fs << NAME(robotMask) << "["; vecToFile(fs, (vector<int>)robotMask); fs <<"]";
+	  COUT(robotMask) 
 
-	for (int i=0; i<templates.size(); i++){
-		fs << templates.get(i);
+		fs << NAME(kernelSide) << kernelSide;
+		fs << NAME(convexHullFile) << convexHullFile;
+		fs << NAME(templatesFolder) << templatesFolder;
+		
+		fs << NAME(templates) << "["; 
+
+		for (int i=0; i<templates.size(); i++){
+			fs << templates.get(i);
+		}
+		fs << "]";
+		fs << "ciao";
+		fs.release();
 	}
-	fs << "]";
-	fs.release();
+	else {
+		cout << "File non aperto" << endl;
+	}
 }
 
 /*! \brief Function to read from file. The data found is going to be added to the settings. Default file is data/settings.xml
@@ -210,10 +224,10 @@ void Settings::readFromFile(string _path){
 
 	mapsFolder=(string)fs["mapsFolder"];
 	for (uint i=0; i<fs["mapsNames"].size(); i++){
-		mapsNames.add((string)fs["mapsNames"][i]);
+		mapsNames.addIfNot((string)fs["mapsNames"][i]);
 	}
 	for (uint i=0; i<fs["mapsUnNames"].size(); i++){
-		mapsUnNames.add((string)fs["mapsUnNames"][i]);
+		mapsUnNames.addIfNot((string)fs["mapsUnNames"][i]);
 	}
 
 	intrinsicCalibrationFile=(string)fs["intrinsicCalibrationFile"];
@@ -241,11 +255,6 @@ void Settings::readFromFile(string _path){
 	}	
 	blueMask=Filter(filter); filter.clear();
 	
-	for (uint i=0; i<fs["whiteMask"].size(); i++){
-		filter.push_back((int)fs["whiteMask"][i]);
-	}	
-	whiteMask=Filter(filter); filter.clear();
-
   for (uint i=0; i<fs["robotMask"].size(); i++){
     filter.push_back((int)fs["robotMask"][i]);
   }
@@ -263,7 +272,7 @@ void Settings::readFromFile(string _path){
 	for (uint i=0; i<fs["templates"].size(); i++){
 		string app=(string)fs["templates"][i];
 		if (app!=""){
-		  templates.add(app);
+		  templates.addIfNot(app);
 		}
 	}
 
@@ -285,7 +294,6 @@ void Settings::clean(){
 	this->greenMask=Filter();
 	this->victimMask=Filter();
 	this->blueMask=Filter();
-  this->whiteMask=Filter();
   this->robotMask=Filter();
 	this->kernelSide=0;
 	this->convexHullFile="";
@@ -547,10 +555,6 @@ void Settings::changeMask(COLOR color, Filter fil){
 		}
 		case BLUE:{
 			blueMask=fil;
-			break;
-		}
-		case WHITE:{
-			whiteMask=fil;
 			break;
 		}
 		case ROBOT:{

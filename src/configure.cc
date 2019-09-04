@@ -59,6 +59,7 @@ void update_trackers(){
     \return The Mat of the acquired frame.
 */
 Mat acquireImage(const bool save){
+  cout << "I get in" << endl;
   Mat frame;
   //Create camera object
   CameraCapture::input_options_t options(1080, 1920, 30, 0);
@@ -185,6 +186,7 @@ void configure (bool deploy, int img_id){
     cout << "Robot filter done: " << filter << endl;
   }
 
+  sett->save();
   sett->writeToFile();
 
   cout << *sett << endl;
