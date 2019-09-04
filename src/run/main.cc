@@ -46,7 +46,7 @@ int main (){
 		mywaitkey();
 	#endif
 
-	// the robot starts to move MAYBE 1242 524
+	// the robot starts to move MAYBE...
 	// Point2<int> p;
 	// for(int i=0; i<100; i++){	// 100*(<50ms) = (<5sec)
 	// 	// execute this line only in the laboratory...

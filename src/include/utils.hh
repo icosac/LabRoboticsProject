@@ -21,8 +21,8 @@ using namespace cv;
 using namespace std;
 
 //debug blocks most things, wait only something
-// #define WAIT
-// #define DEBUG
+#define WAIT
+#define DEBUG
 
 #define NAME(x) #x ///<Returns the name of the variable
 
@@ -48,7 +48,7 @@ void my_imshow(const char* win_name, Mat img, bool reset=false);
 /*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed.
  *
  */
-void mywaitkey();
+void mywaitkey(const char c='q');
 
 /*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed a specific window is closed.
  *

@@ -25,9 +25,11 @@ using namespace std;
     Then, with the use of a filter for the black the region of interest (a rectangle) is identified and all the perspective is rotated for reach a top view of the rectangle.\n
     Finally, the images are saved on some files.
 
+    \param[in] _imgRead Boolean flag that says if load or not the image from file, or as a function parameter. In addition, also the return procedure change if true the image is saved on the disk otherwise is saved on the img function parameter. True=load and store on file.
+    \param[in/out] img The image that eventually is loaded from the function. And the one that will be modified for returning the elaborated frame.
     \returns A 0 is return if the function reach the end.
 */
-int unwrapping();
+int unwrapping(const bool _imgRead=true, Mat * img=nullptr);
 
 /*! \brief Store in the given vector the white corners in the same order as the given black ones.
     \param[in] rectLow A vector where the low corners of the rectangle (black markers position) are stored.

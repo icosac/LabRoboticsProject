@@ -8,19 +8,19 @@
 <intrinsicCalibrationFile>"./data/intrinsic_calibration.xml"</intrinsicCalibrationFile>
 <calibrationFile>data/calib_config.xml</calibrationFile>
 <blackMask>
-  83 0 0 146 189 114</blackMask>
+  0 0 0 180 255 95</blackMask>
 <redMask>
-  136 72 0 180 255 255</redMask>
+  0 157 155 180 245 228</redMask>
 <greenMask>
-  65 131 25 81 238 207</greenMask>
+  27 45 9 78 255 255</greenMask>
 <blueMask>
-  100 172 66 122 226 136</blueMask>
+  105 94 42 123 197 99</blueMask>
 <whiteMask>
   72 35 109 107 138 219</whiteMask>
 <victimMask>
-  16 19 3 151 176 57</victimMask>
+  0 0 0 180 123 83</victimMask>
 <robotMask>
-  87 167 75 98 234 255</robotMask>
+  73 41 80 104 219 197</robotMask>
 <kernelSide>9</kernelSide>
 <convexHullFile>data/convexHull.xml</convexHullFile>
 <templatesFolder>data/num_template/</templatesFolder>

@@ -11,14 +11,17 @@
 #include <settings.hh>
 #include <objects.hh>
 #include <detection.hh>
+#include "clipper.hh"
 
 using namespace std;
 using namespace cv;
 
-pair< vector<Point2<int> >, Mapp* > planning();
+pair< vector<Point2<int> >, Mapp* > planning(const Mat & img);
 Mapp * createMapp();
 
 void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn);
 void loadVP(vector<Point2<int> > & vp, FileNode fn);
+
+void fromVpToPath(const vector<Point2<int> > & vp, ClipperLib::Path & path);
 
 #endif

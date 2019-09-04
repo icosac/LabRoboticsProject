@@ -43,8 +43,8 @@ void my_imshow( const char* win_name,
 /*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed.
  *
  */
-void mywaitkey() {
-    while((char)waitKey(1)!='q'){}
+void mywaitkey(const char c) {
+    while((char)waitKey(1)!=c){}
 }
 
 /*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed a specific window is closed.

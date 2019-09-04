@@ -4,49 +4,52 @@ vector<Mat> templates;
 
 /*! \brief Loads some images and detects shapes according to different colors.
 
+    \param[in] _imgRead Boolean flag that says if load or not the image from file or as a function parameter. True=load from file.
+    \param[in] img The imgage that eventually is loaded from the function.
     \returns Return 0 if the function reach the end.
 */
-int detection(){
+int detection(const bool _imgRead, const Mat * img){
     load_number_template();
 
-    for (string filename : sett->unMaps(-1)){
-        cout << "Elaborating file: " << filename << endl;
-
-        // Load unwrapped image from file
-        Mat un_img = imread(filename.c_str());
-        if(un_img.empty()) {
-            throw runtime_error("Failed to open the image " + filename);
+    for(int f=0; f<(_imgRead ? sett->mapsUnNames.size() : 1); f++){
+        // Load image from file
+        Mat un_img;
+        if(_imgRead){
+            string filename=sett->unMaps(f).get(0);
+            cout << "Elaborating file: " << filename << endl;
+            // Load unwrapped image from file
+            un_img = imread(filename.c_str());
+            if(un_img.empty()) {
+                throw runtime_error("Failed to open the image " + filename);
+            }
+        } else{
+            un_img = *img;
         }
-
         #ifdef WAIT
             my_imshow("unwrapped image", un_img, true);
         #endif
-        
+
         //Convert from RGB to HSV
         Mat hsv_img;
         cvtColor(un_img, hsv_img, COLOR_BGR2HSV);
 
-        //detection over the three values of the array (maybe it is also possible to directly refer to RED as i=1, but I prefer this method...)
+        //detection over the three values of the array
         COLOR_TYPE tmpVectColors[] = {RED, GREEN, BLUE, CYAN};
         for(int i=0; i<4; i++){
             shape_detection(hsv_img, tmpVectColors[i]);
             #ifdef WAIT
-                if(i!=3){
-                    mywaitkey();
-                    destroyAllWindows();
-                }
+                mywaitkey();
+                // if(i!=3){
+                //     destroyAllWindows();
+                // }
             #endif
         }
-
-        #ifdef WAIT
-            mywaitkey();
-        #endif
     }
     return(0);
 }
 
 void getConversionParameters(Mat & transf, const bool get){
-    cout << "computeConversionParameters\n";
+    cout << "getConversionParameters\n";
     static Mat tr;
     if(get){
         transf = tr;
@@ -56,74 +59,103 @@ void getConversionParameters(Mat & transf, const bool get){
     }
 }
 
-Point2<int> localize(){
-    static Mat camera_matrix, dist_coeffs;
+Configuration2<double> localize(){
+    //acquire the img and call the other localize function
+    Mat img = acquireImage(false);
+
+    return( localize(img, true) );
+}
+
+vector<Point> robotShape;
+Configuration2<double> localize(const Mat & img, const bool raw){
+    cout << "0\n";
+
     static bool firstRun = true;
+    static Mat transf, camera_matrix, dist_coeffs;
     if(firstRun){ //executed only at the first iteration of this function
         firstRun = false;
         const string calib_file = sett->intrinsicCalibrationFile;
         loadCoefficients(calib_file, camera_matrix, dist_coeffs);
-    }
 
-    //acquire the img and call the other localize function
-    Mat or_img = acquireImage(false);
-
-    Mat fix_img;
-    undistort(or_img, fix_img, camera_matrix, dist_coeffs);
-
-    //Convert from RGB to HSV= Hue-Saturation-Value
-    Mat hsv_img;
-    cvtColor(fix_img, hsv_img, COLOR_BGR2HSV);
-    #ifdef WAIT
-        my_imshow("Img for localize", hsv_img);
-    #endif
-
-    return( localize( hsv_img ) );
-}
-
-vector<Point> robotShape;
-Point2<int> localize(const Mat & img){
-    static Mat transf;
-    static bool firstRun = true;
-    if(firstRun){ //executed only at the first iteration of this function
-        firstRun = false;
-        Mat camera_matrix, dist_coeffs; //useless
         getConversionParameters(transf, true);
     }
+    cout << "1\n";
 
-    //find robot
-    shape_detection(img, CYAN);
+    if(raw){
+        cout << "RAW RAW RAW RAW RAW RAW RAW RAW RAW RAW RAW RAW \n";
+        Mat fix_img;
+        undistort(img, fix_img, camera_matrix, dist_coeffs);
+
+        //Convert from RGB to HSV= Hue-Saturation-Value
+        Mat hsv_img;
+        cvtColor(fix_img, hsv_img, COLOR_BGR2HSV);
+        #ifdef WAIT
+            my_imshow("Img for localize", hsv_img, true);
+            mywaitkey('w');
+        #endif
+        
+        shape_detection(hsv_img, CYAN);//find robot
+    } else{
+        cout << "CLEAN CLEAN CLEAN CLEAN CLEAN CLEAN CLEAN CLEAN \n";
+        shape_detection(img, CYAN);//find robot
+    }
+    cout << "2\n";
+
     
     //compute barycenter of the robot
     //the barycenter is the mean if the points are 3. Otherwise we also compute the mean over x and y.
-    float yAvg=0.0, xAvg=0.0;
     if(robotShape.size()!=3){
-        cout << "Warning: The robot is not well defined (not 3 points).\n\n";
+        cout << "Warning: The robot is not well defined (not 3 points found but " << robotShape.size() << ").\n\n";
     }
-    // cout << "From localize:\n";
+    cout << "robotShape size " << robotShape.size() << endl;
+    cout << "From localize:\n";
+    vector<Point2f> vpOut;
     for(Point p : robotShape){
-        // cout << p.x << " - " << p.y << endl;
+        cout << p.x << " - " << p.y << endl;  
+    }
+    cout << "a\n";
+    // apply conversion to the right reference system
+    // https://stackoverflow.com/questions/30194211/opencv-applying-affine-transform-to-single-points-rather-than-entire-image
+    /*/ 
+    perspectiveTransform(robotShape, vpOut, transf);  //maybe a simple matrix multiplication will be faster...
+    /*/
+    for(Point p : robotShape) 
+        vpOut.push_back(Point2f((float)p.x, (float)p.y));
+    //*/
+    cout << "b\n";
+    double xAvg=0, yAvg=0;
+    for(Point p : vpOut){
         xAvg += p.x;
         yAvg += p.y;
     }
-    xAvg /= robotShape.size();
-    yAvg /= robotShape.size();
-    // cout << "Barycenter (AKA centroid): " << xAvg << ", " << yAvg << endl;
+    xAvg /= robotShape.size()*1.0;
+    yAvg /= robotShape.size()*1.0;
 
-    robotShape.resize(0);
+    cout << "c\n";
+    Point2<double> confPoint(xAvg, yAvg);
+    cout << "Barycenter (AKA centroid): " << confPoint << endl;
 
-    // apply conversion to the right reference system
-    // https://stackoverflow.com/questions/30194211/opencv-applying-affine-transform-to-single-points-rather-than-entire-image
-    vector<Point2f> vpIn;
-    vector<Point2f> vpOut;
-    vpIn.push_back(Point2f(xAvg, yAvg));
-    perspectiveTransform(vpIn, vpOut, transf);  //maybe a simple matrix multiplication will be faster...
+    cout << "d\n";
+    double Dist=0;
+    Point2<int> tail;
+    for (Point p : vpOut){
+        Point2<int> app = Point2<int>(p);
+        cout << "> " << app << endl;
+        double dist=app.distance(confPoint);
+        if (dist>Dist){
+            tail=app;
+            Dist=dist;
+        }
+    }
 
-    int x = (int) vpOut[0].x;
-    int y = (int) vpOut[0].y;
-    cout << "New robot position:     " << x << " - " << y << endl;
-
-    return(Point2<int>(x, y));
+    cout << "e\n";
+    Configuration2<double> conf(confPoint, tail.th(confPoint));
+    cout << "tail of the robot: " << tail << endl;
+    cout << "New robot position:     " << conf.point() << ", " << conf.angle().toDeg() << "° " << conf.angle().toRad()/3.14 << "pi" << endl;
+    cout << "f\n";
+    mywaitkey('w');
+    cout << "g\n";
+    return(conf);
 }
 
 
@@ -271,7 +303,8 @@ void find_contours( const Mat & img,
         if(contours_approx.size()==1){
             robotShape = contours_approx[0];
         } else{
-            cout << "Warning: Not well defined robot filter.\n\tThere are " << contours_approx.size() << " possible blobs.\n\n";
+            cout << "Warning: Not well defined robot filter.\n\tThere are " << contours_approx.size() << " possible blobs.\n" << flush;
+            cout << "The one with the biggest area will be choosen\n\n" << flush;
             double area, minArea = contourArea(contours_approx[0]);
             int maxIndex = 0;
             for(unsigned int i=1; i<contours_approx.size(); i++){

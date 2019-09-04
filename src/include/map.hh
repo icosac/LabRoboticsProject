@@ -58,6 +58,7 @@ class Mapp{
                 const int _pixX=cellSize, const int _pixY=cellSize, 
                 const int _borderSize=borderSizeDefault, 
                 const vector< vector<Point2<int> > > & vvp = vector< vector<Point2<int> > >() );
+        ~Mapp();
 
         void addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type);
             void addObjects(const vector< vector< Point2<int> > > & vvp, const OBJ_TYPE type);

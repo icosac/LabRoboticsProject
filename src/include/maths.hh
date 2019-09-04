@@ -460,7 +460,7 @@ public:
     va_list ap;
     va_start(ap, _n);
     for (int i=0; i<n; i++){
-      T temp=T(0.0);
+      T temp=T();
       if (std::is_same<T, float>::value){
         temp=va_arg(ap, double);
       }
@@ -862,7 +862,13 @@ public:
     return true;
   }
 
-  // ~Point2(){delete values;}
+  //TODO document
+  template<class T1>
+  Angle th (Point2<T1> P1, 
+            Angle::ANGLE_TYPE type=Angle::RAD){
+    return Angle(atan2((P1.y()-this->y()), (P1.x()-this->x())), type);
+  }
+
 };
 
 
@@ -1061,13 +1067,8 @@ public:
    */
   template<class T2>
   operator Point2<T2> () const {
-    if (is_same<T1, T2>::value){
-      return coord;
-    }
-    else {
       return Point2<T2>((T2)(coord.x()), 
                         (T2)(coord.y()));
-    }
   }
   
   /*! \brief Copy a configuration into another one.

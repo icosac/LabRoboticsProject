@@ -33,9 +33,11 @@ enum COLOR_TYPE {RED, GREEN, BLUE, BLACK, CYAN};
 
 /*! \brief Loads some images and detects shapes according to different colors.
 
+    \param[in] _imgRead Boolean flag that says if load or not the image from file or as a function parameter. True=load from file.
+    \param[in] img The imgage that eventually is loaded from the function.
     \returns Return 0 if the function reach the end.
 */
-int detection();
+int detection(const bool _imgRead=true, const Mat * img=nullptr);
 
 /*! \brief The function simply store the value of the given matrix and allow the access to it from different function location. 
     \details The transformation matrix are computed in the unwrapping phase and taken from the localization.
@@ -47,16 +49,17 @@ void getConversionParameters(Mat & transf, const bool get=true);
 
 /*! \brief Identify the loation of the robot by acquiring the image from the default camera of the environment.
 
-    \returns The coordinates of the robot in this exactly moment.
+    \returns The configuration of the robot in this exactly moment.
 */
-Point2<int> localize();
+Configuration2<double> localize();
 
 /*! \brief Identify the location of the robot respect to the given image.
 
     \param[in] img It is the image where the robot need to be located.
-    \returns The coordinates of the robot in this exactly moment, according to the image.
+    \param[in] raw It is a boolean flag that says if the img is raw and need filters or not.
+    \returns The configuration of the robot in this exactly moment, according to the image.
 */
-Point2<int> localize(const Mat & img);
+Configuration2<double> localize(const Mat & img, const bool raw=true);
 
 /*! \brief Detect shapes inside the image according to the variable 'color'.
 

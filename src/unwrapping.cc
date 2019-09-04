@@ -11,25 +11,29 @@ static double distance(Point c1, Point c2);
     Then, with the use of a filter for the black the region of interest (a rectangle) is identified and all the perspective is rotated for reach a top view of the rectangle.\n
     Finally, the images are saved on some files.
 
+    \param[in] _imgRead Boolean flag that says if load or not the image from file, or as a function parameter. In addition, also the return procedure change if true the image is saved on the disk otherwise is saved on the img function parameter. True=load and store on file.
+    \param[in/out] img The image that eventually is loaded from the function. And the one that will be modified for returning the elaborated frame.
     \returns A 0 is return if the function reach the end.
 */
-int unwrapping(){
-    //Load Settings values
-    // Settings *sett=new Settings();
-    // sett->cleanAndRead();
+int unwrapping(const bool _imgRead, Mat * img){
 
     const string calib_file = sett->intrinsicCalibrationFile;
-    for(int f=0; f<sett->mapsNames.size(); f++){
-        string filename = sett->maps(f).get(0);
-        cout << "Elaborating file: " << filename << endl;
+    for(int f=0; f<(_imgRead ? sett->mapsNames.size() : 1); f++){
         // Load image from file
-        Mat or_img = imread(filename.c_str());
+        Mat or_img;
+        if(_imgRead){
+            string filename = sett->maps(f).get(0);
+            cout << "Elaborating file: " << filename << endl;
+            or_img = imread(filename.c_str());
+        } else{
+            or_img = *img;
+        }
         // Display original image
         
-        #ifdef WAIT
-            my_imshow("Original", or_img, true);
-            mywaitkey();
-        #endif
+        // #ifdef WAIT
+        //     my_imshow("Original", or_img, true);
+        //     mywaitkey();
+        // #endif
         // fix calibration with matrix
         Mat camera_matrix, dist_coeffs;
         loadCoefficients(calib_file, camera_matrix, dist_coeffs);
@@ -187,20 +191,20 @@ int unwrapping(){
         Mat imgCrop;
         imgCrop = unwarped_frame(Rect(0, 0, width, height));
 
-        // Store the cropped image to disk.
-        string file = sett->mapsNames.get(f);
-        string save_name = file.substr(0, file.find_last_of('.'))+"_UN"+file.substr(file.find_last_of('.'), -1);
-        string save_location = (sett->mapsFolder.back()=='/' ? sett->mapsFolder : sett->mapsFolder+"/")+save_name;
-        if (!sett->addUnMap(save_name)){
-            cerr << "File already indexed." << endl;
+        if(_imgRead){
+            // Store the cropped image to disk.
+            string file = sett->mapsNames.get(f);
+            string save_name = file.substr(0, file.find_last_of('.'))+"_UN"+file.substr(file.find_last_of('.'), -1);
+            string save_location = (sett->mapsFolder.back()=='/' ? sett->mapsFolder : sett->mapsFolder+"/")+save_name;
+            if (!sett->addUnMap(save_name)){
+                cerr << "File already indexed." << endl;
+            }
+            imwrite(save_location, imgCrop);
+            cout << "Unwrapped image saved to: " << save_location << endl;
+        } else{
+            cout << "Returned image from unwrapping\n";
+            *img = imgCrop; //return
         }
-        imwrite(save_location, imgCrop);
-        cout << "Unwrapped image saved to: " << save_location << endl;
-
-        #ifdef WAIT
-            // wait a char 'q' to proceed
-            while((char)waitKey(1)!='q'){}
-        #endif
         
     }
     // cout << "Before saving: " << *sett << endl;
