@@ -21,11 +21,12 @@ using namespace std;
  */
 class Settings{
 public:
-	string mapsFolder;                ///<A string containing the path for mapsFolder. No certainty is given about the form of this string
+	string baseFolder;								///<A string containing the path for the base dir of data.
+	string mapsFolder;                ///<A string containing the name for maps folder. No certainty is given about the form of this string
 	Tuple<string> mapsNames;          ///<A Tuple containing the names of the maps. These are not paths but just names.
 	Tuple<string> mapsUnNames;        ///<A Tuple containing the names of the undistorted maps. These are not paths but just names.
-	string intrinsicCalibrationFile;  ///<A string containing the path to the file containing the values of the matrix for the calibration.
-	string calibrationFile;           ///<A string containing the path to the file containing the data for the calibration.
+	string intrinsicCalibrationFile;  ///<A string containing the name to the file containing the values of the matrix for the calibration.
+	string calibrationFile;           ///<A string containing the name to the file containing the data for the calibration.
 	Filter blackMask;                 ///<Filter for black.
 	Filter redMask;                   ///<Filter for red.
 	Filter greenMask;                 ///<Filter for green.
@@ -33,34 +34,36 @@ public:
 	Filter blueMask;                  ///<Filter for blue.
 	Filter robotMask;                 ///<Filter for the triangle above the robot.
 	int kernelSide;
-	string convexHullFile;            ///<AString containing the path to file containing the points of the elements in the arena.
-	string templatesFolder;           ///<A String containing the path of the folder containing the number templates.
+	string convexHullFile;            ///<AString containing the name to file containing the points of the elements in the arena.
+	string templatesFolder;           ///<A String containing the name of the folder containing the number templates.
 	Tuple<string> templates;          ///<A Tuple containing the names of the templates. These are not paths but just names.
 
 	/*!\brief Constructor of class Settings. The value are all set by default. The constructor does NOT read from or write to file.
 	 *
-	 * @param mapsFolder A string containing the path for mapsFolder. No certainty is given about the form of this string
-	 * @param _templatesFolder A String containing the path of the folder containing the number templates.
-	 * @param _mapsNames A Tuple containing the names of the maps. These are not paths but just names.
-	 * @param _mapsUnNames A Tuple containing the names of the undistorted maps. These are not paths but just names.
-	 * @param _calibrationFile A string containing the path to the file containing the data for the calibration.
-	 * @param _intrinsicCalibrationFile A string containing the path to the file containing the values of the matrix for the calibration.
-	 * @param _blackMask Filter for black.
-	 * @param _redMask Filter for red.
-	 * @param _greenMask Filter for green.
-	 * @param _victimMask Filter for the victims.
-	 * @param _blueMask Filter for blue.
-	 * @param _robotMask Filter for the triangle above the robot.
-	 * @param _kernelSide 
-	 * @param _convexHullFile A String containing the path to file containing the points of the elements in the arena.
-	 * @param _templates A Tuple containing the names of the templates. These are not paths but just names.
+	 * \param[in] baseFolder A string containing the path for the base dir of data.
+	 * \param[in] mapsFolder A string containing the name for maps folder. No certainty is given about the form of this string.
+	 * \param[in] _templatesFolder A String containing the name of the folder containing the number templates.
+	 * \param[in] _mapsNames A Tuple containing the names of the maps. These are not paths but just names.
+	 * \param[in] _mapsUnNames A Tuple containing the names of the undistorted maps. These are not paths but just names.
+	 * \param[in] _calibrationFile A string containing the name to the file containing the data for the calibration.
+	 * \param[in] _intrinsicCalibrationFile A string containing the name to the file containing the values of the matrix for the calibration.
+	 * \param[in] _blackMask Filter for black.
+	 * \param[in] _redMask Filter for red.
+	 * \param[in] _greenMask Filter for green.
+	 * \param[in] _victimMask Filter for the victims.
+	 * \param[in] _blueMask Filter for blue.
+	 * \param[in] _robotMask Filter for the triangle above the robot.
+	 * \param[in] _kernelSide 
+	 * \param[in] _convexHullFile A String containing the name to file containing the points of the elements in the arena.
+	 * \param[in] _templates A Tuple containing the names of the templates. These are not paths but just names.
 	 */
 	Settings(
-			string mapsFolder="data/map",
-			string _templatesFolder="data/num_template/",
+			string _baseFolder="data/",
+			string _mapsFolder="map",
+			string _templatesFolder="num_template/",
 			vector<string> _mapsNames={},
 			vector<string> _mapsUnNames={},
-			string _intrinsicCalibrationFile="data/intrinsic_calibration.xml",
+			string _intrinsicCalibrationFile="intrinsic_calibration.xml",
 			string _calibrationFile="data/calib_config.xml",
 			Filter _blackMask=Filter(0, 0, 0, 179, 255, 70),
 			Filter _redMask=Filter(15, 100, 140, 160, 255, 255),
@@ -80,29 +83,31 @@ public:
 
   /*!\brief Function to change values. The value are all set by default. This function does NOT read from or write to file.
    *
-   * @param mapsFolder A string containing the path for mapsFolder. No certainty is given about the form of this string
-   * @param _templatesFolder A String containing the path of the folder containing the number templates.
-   * @param _mapsNames A Tuple containing the names of the maps. These are not paths but just names.
-   * @param _mapsUnNames A Tuple containing the names of the undistorted maps. These are not paths but just names.
-   * @param _calibrationFile A string containing the path to the file containing the data for the calibration.
-   * @param _intrinsicCalibrationFile A string containing the path to the file containing the values of the matrix for the calibration.
-   * @param _blackMask Filter for black.
-   * @param _redMask Filter for red.
-   * @param _greenMask Filter for green.
-   * @param _victimMask Filter for the victims.
-   * @param _blueMask Filter for blue.
-   * @param _robotMask Filter for the triangle above the robot.
-   * @param _kernelSide
-   * @param _convexHullFile A String containing the path to file containing the points of the elements in the arena.
-   * @param _templates A Tuple containing the names of the templates. These are not paths but just names.
+	 * \param[in] baseFolder A string containing the path for the base dir of data.
+   * \param[in] mapsFolder A string containing the name for mapsFolder. No certainty is given about the form of this string
+   * \param[in] _templatesFolder A String containing the name of the folder containing the number templates.
+   * \param[in] _mapsNames A Tuple containing the names of the maps. These are not paths but just names.
+   * \param[in] _mapsUnNames A Tuple containing the names of the undistorted maps. These are not paths but just names.
+   * \param[in] _calibrationFile A string containing the name to the file containing the data for the calibration.
+   * \param[in] _intrinsicCalibrationFile A string containing the name to the file containing the values of the matrix for the calibration.
+   * \param[in] _blackMask Filter for black.
+   * \param[in] _redMask Filter for red.
+   * \param[in] _greenMask Filter for green.
+   * \param[in] _victimMask Filter for the victims.
+   * \param[in] _blueMask Filter for blue.
+   * \param[in] _robotMask Filter for the triangle above the robot.
+   * \param[in] _kernelSide
+   * \param[in] _convexHullFile A String containing the name to file containing the points of the elements in the arena.
+   * \param[in] _templates A Tuple containing the names of the templates. These are not paths but just names.
    */
 	void save (
-			string mapsFolder="data/map",
-			string _templatesFolder="data/num_template/",
+			string _baseFolder="data/",
+			string _mapsFolder="map/",
+			string _templatesFolder="num_template/",
 			vector<string> _mapsNames={},
 			vector<string> _mapsUnNames={},
-			string _intrinsicCalibrationFile="data/intrinsic_calibration.xml",
-			string _calibrationFile="data/calib_config.xml",
+			string _intrinsicCalibrationFile="intrinsic_calibration.xml",
+			string _calibrationFile="calib_config.xml",
 			Filter _blackMask=Filter(0, 0, 0, 179, 255, 70),
 			Filter _redMask=Filter(15, 100, 140, 160, 255, 255),
 			Filter _greenMask=Filter(54, 74, 25, 119, 255, 88),
@@ -110,56 +115,56 @@ public:
 			Filter _blueMask=Filter(100, 100, 40, 140, 200, 170),
 			Filter _roboteMask=Filter(100, 100, 40, 140, 200, 170),
       		int _kernelSide=9,
-			string _convexHullFile="data/convexHull.xml",
+			string _convexHullFile="convexHull.xml",
 			vector<string> _templates={}
 	);
 
 	/*!\brief Function to write settings to file. Default is data/settings.xml.
 	 *
-	 * @param _path The path of the file to write to.
+	 * \param[in] _path Path to the file. Mind that it doesn't require the name of the file.
 	 */
-	void writeToFile(string _path="data/settings.xml");
+	void writeToFile(string _path="");
 
   /*! \brief Function to read from file. The data found is going to be added to the settings. Default file is data/settings.xml
    *
-   * @param _path The path of file to read from.
+	 * \param[in] _path Path to the file. Mind that it doesn't require the name of the file.
    */
-	void readFromFile(string _path="data/settings.xml");
+	void readFromFile(string _path="");
 
 	/*! \brief Function to clean all settings: number types are set to 0, string are set to "", Tuples are set to Tuple<>() and Filter are set to all 0s.
 	 *
 	 */
 	void clean();
 
-	/*! \brief Function to clean all settings and then read from file. Default is data/settings.xml.
-	 *
+	/*! \brief Function to clean all settings and then read from file. If no path is given the baseFolder is used.
+	 * \param[in] _path Path to the file. Mind that it doesn't require the name of the file.
 	 */
-	void cleanAndRead(string _path="data/settings.xml");
+	void cleanAndRead(string _path="");
 
 	/*!\brief Function to return the paths of maps. If ids are not specified all maps are returned.
 	 *
-	 * @param ids A Tuple containing the ids (that is the positions in this.mapsNames) of the maps to be retrieved.
+	 * \param ids A Tuple containing the ids (that is the positions in this.mapsNames) of the maps to be retrieved.
 	 * @return A Tuple containing the paths of the maps.
 	 */
 	Tuple<string> maps(Tuple<int> ids=Tuple<int>());
 
   /*!\brief Function to return the path of a map. If id is negative all maps are returned.
    *
-   * @param id The positions in this.mapsNames of the map to be retrieved
+   * \param id The positions in this.mapsNames of the map to be retrieved
    * @return A Tuple containing the paths of the maps.
    */
   Tuple<string> maps(int id=-1);
 
   /*!\brief A function to return the path of a given map.
    *
-   * @param _mapName The name of the map to check in the Tuple.
+   * \param _mapName The name of the map to check in the Tuple.
    * @return The path to the map if the map is found, an empty string otherwise.
    */
   string maps(string _mapName);
 
   /*!\brief A function to return the paths of a given Tuple of maps.
    *
-   * @param _mapNames A Tuple containing the names of the maps to check in the Tuple.
+   * \param _mapNames A Tuple containing the names of the maps to check in the Tuple.
    * @return The paths to the maps if they are found, an empty Tuple otherwise.
    */
   Tuple<string> maps(Tuple<string> _mapNames);
@@ -168,49 +173,49 @@ public:
 
   /*!\brief Function to return the paths of undistorted maps. If ids are not specified all undistorted maps are returned.
    *
-   * @param ids A Tuple containing the ids (that is the positions in this.mapsUnNames) of the undistorted maps to be retrieved.
+   * \param ids A Tuple containing the ids (that is the positions in this.mapsUnNames) of the undistorted maps to be retrieved.
    * @return A Tuple containing the paths of the undistorted maps.
    */
 	Tuple<string> unMaps(Tuple<int> ids=Tuple<int>());
 
   /*!\brief Function to return the path of an undistorted map. If id is negative all undistorted maps are returned.
    *
-   * @param id The positions in this.mapsUnNames of the undistorted map to be retrieved
+   * \param id The positions in this.mapsUnNames of the undistorted map to be retrieved
    * @return A Tuple containing the paths of the undistorted maps.
    */
   Tuple<string> unMaps(int id=-1);
 
   /*!\brief A function to return the path of a given undistorted map.
    *
-   * @param _unMapName The name of the undistorted map to check in the Tuple.
+   * \param _unMapName The name of the undistorted map to check in the Tuple.
    * @return The path to the undistorted map if it is found, an empty string otherwise.
    */
 	string unMaps(string _unMapName);
 
   /*!\brief A function to return the paths of a given Tuple of undistorted maps.
    *
-   * @param _unMapNames A Tuple containing the names of the undistorted maps to check in the Tuple.
+   * \param _unMapNames A Tuple containing the names of the undistorted maps to check in the Tuple.
    * @return The paths to the undistorted maps if they are found, an empty Tuple otherwise.
    */
 	Tuple<string> unMaps(Tuple<string> _unMapNames);
 
 	/*!\brief Function to return the path of a template. If id is negative all templates are returned.
    *
-   * @param id The positions in this.templates of the template to be retrieved
+   * \param id The positions in this.templates of the template to be retrieved
    * @return A Tuple containing the paths of the templates.
    */
   Tuple<string> getTemplates(int id=-1);
 
 	/*!\brief A function to return the path of a given template.
    *
-   * @param _templateName The name of the template to check in the Tuple.
+   * \param _templateName The name of the template to check in the Tuple.
    * @return The path to the template if it is found, an empty string otherwise.
    */
 	string getTemplates(string _template);
 
 	/*!\brief A function to return the paths of a given Tuple of templates.
    *
-   * @param _template A Tuple containing the names of the templates to check in the Tuple.
+   * \param _template A Tuple containing the names of the templates to check in the Tuple.
    * @return The paths to the templates if they are found, an empty Tuple otherwise.
    */
 	Tuple<string> getTemplates(Tuple<string> _templates);
@@ -219,15 +224,15 @@ public:
 
 	/*!\brief Change the values of Tuple of filters. Mind that no write function is called.
 	 *
-	 * @param color A Tuple containing the colors of the filters to change.
-	 * @param fil The new filters to be stored.
+	 * \param color A Tuple containing the colors of the filters to change.
+	 * \param fil The new filters to be stored.
 	 */
 	void changeMask(Tuple<COLOR> color, Tuple<Filter> fil);
 
 	/*!\brief Change the values of a filter. Mind that no write function is called.
    *
-   * @param color The filter to change.
-   * @param fil The new filter to be stored.
+   * \param color The filter to change.
+   * \param fil The new filter to be stored.
    */
 	void changeMask(COLOR color, Filter fil);
 
@@ -238,6 +243,7 @@ public:
 	 */
 	stringstream to_string () const {
 		stringstream out;
+		out << NAME(baseFolder) << ": " << baseFolder << endl;
 		out << NAME(mapsNames) << ": " << mapsNames << endl;
 		out << NAME(mapsUnNames) << ": " << mapsUnNames << endl;
 		out << NAME(calibrationFile) << ": " << calibrationFile << endl;
@@ -246,8 +252,8 @@ public:
 		out << NAME(redMask) << ": " << redMask << endl;
 		out << NAME(greenMask) << ": " << greenMask << endl;
 		out << NAME(blueMask) << ": " << blueMask << endl;
-	    out << NAME(victimMask) << ": " << victimMask << endl;
-	    out << NAME(robotMask) << ": " << robotMask << endl;
+    out << NAME(victimMask) << ": " << victimMask << endl;
+    out << NAME(robotMask) << ": " << robotMask << endl;
 		out << NAME(kernelSide) << ": " << kernelSide << endl;
 		out << NAME(templatesFolder) << ": " << templatesFolder << endl;
 		out << NAME(convexHullFile) << ": " << convexHullFile << endl;

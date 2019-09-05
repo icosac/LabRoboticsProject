@@ -2,17 +2,18 @@
 #include <iostream>
 #include <unistd.h>
 #include <iostream>
+#include "path.h"
 
 using namespace std;
 
-Settings *sett = new Settings();
+extern Settings *sett;
 extern CameraCapture* camera;
 
 int main(){ 
     sett->cleanAndRead();
     
     cout << "Official Main:\n";
-    RobotProject rp=RobotProject();
+    RobotProject rp=RobotProject(true);
 
     Mat img = acquireImage(true);
     // Mat img = imread(sett->maps(0).get(0).c_str());
@@ -21,7 +22,7 @@ int main(){
         cout << "Error1\n";
     }
 
-    ClipperLib::Path path;
+    Path path;
     if(!rp.planPath(img, path)){
         cout << "Error2\n";
     }
@@ -43,7 +44,7 @@ int main(){
         }
         sleep(2);
     }
-    delete camera;
+
     cout << "END\n";
 return(0);   
 }

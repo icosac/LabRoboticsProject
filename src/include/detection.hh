@@ -51,7 +51,7 @@ void getConversionParameters(Mat & transf, const bool get=true);
 
     \returns The configuration of the robot in this exactly moment.
 */
-Configuration2<double> localize();
+// Configuration2<double> localize();
 
 /*! \brief Identify the location of the robot respect to the given image.
 

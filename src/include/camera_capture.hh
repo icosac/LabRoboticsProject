@@ -6,6 +6,10 @@
 #define CAMERACAPTURE_HH
 
 #include <opencv2/opencv.hpp>
+#include <iostream>
+#include <cstring>
+
+#include <utils.hh>
 
 class CameraCapture: private cv::VideoCapture 
 {

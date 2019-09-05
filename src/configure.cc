@@ -58,34 +58,35 @@ void update_trackers(){
     \param[in] save If save, or not, the acquired image to a file.
     \return The Mat of the acquired frame.
 */
-Mat acquireImage(const bool save){
-  Mat frame;
+// Mat acquireImage(const bool save){
+//   Mat frame;
 
-  double time;
-  if (camera->grab(frame, time)) {
-    #ifdef DEBUG
-      cout << "Frame grabbed successfully" << endl;
-    #endif
-  } else {
-    throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Fail getting camera photo.", __LINE__, __FILE__);    
-  }
+//   double time;
+//   if (camera->grab(frame, time)) {
+//     #ifdef DEBUG
+//       cout << "Frame grabbed successfully" << endl;
+//     #endif
+//   } else {
+//     throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Fail getting camera photo.", __LINE__, __FILE__);    
+//   }
   
-  if(save){
-    imwrite("data/map/01.jpg", frame);
-  }
+//   if(save){
+//     imwrite("data/map/01.jpg", frame);
+//   }
 
-  return(frame);
-}
+//   return(frame);
+// }
 
 /*! \brief If DEPLOY is defined then takes a photo from the camera, shows tha various filters and asks if they are
  *  visually correct. If not then it allows to set the various filters through trackbars.
  *  If DEPLOY is not defined then it takes a map from the folder set in Settings and ask for visual confirmation.
  */
-void configure (bool deploy, int img_id){
-
+void configure(Mat& img, bool deploy, int img_id){
+  cout << "entering configure" << endl;
   Mat frame;
   if (deploy) {
-    frame = acquireImage(true);
+    frame=img;
+    // frame = camera->grab(frame, frame_time);
   }
   else {
     frame = imread(sett->maps(Tuple<int>(1, img_id)).get(0));
@@ -218,7 +219,7 @@ bool show_all_conditions(const Mat& frame){
     c=waitKey(1);
   } while(c!='y' && c!='Y' && c!='n' && c!='N');
 
-  //destroyAllWindows();
+  destroyAllWindows();
 
   if (c=='y' || c=='Y'){
     ret=true;

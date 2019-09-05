@@ -73,11 +73,11 @@ void getConversionParameters(Mat & transf, const bool get){
 
     \returns The configuration of the robot in this exactly moment.
 */
-Configuration2<double> localize(){
-    //acquire the img and call the other localize function
-    Mat img = acquireImage(false);
-    return( localize(img, true) );
-}
+// Configuration2<double> localize(){
+//     //acquire the img and call the other localize function
+//     Mat img = acquireImage(false);
+//     return( localize(img, true) );
+// }
 
 vector<Point> robotShape;
 /*! \brief Identify the location of the robot respect to the given image.

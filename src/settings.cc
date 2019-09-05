@@ -45,6 +45,7 @@ vector<string> getFiles(const string& path){
  * @param _templates A Tuple containing the names of the templates. These are not paths but just names.
  */
 Settings::Settings(
+			string _baseFolder,
 			string _mapsFolder,
 			string _templatesFolder,
 			vector<string> _mapsNames,
@@ -56,15 +57,17 @@ Settings::Settings(
 			Filter _greenMask,
 			Filter _victimMask,
 			Filter _blueMask,
-      Filter _robotMask,
+			Filter _robotMask,
 			int _kernelSide,
 			string _convexHullFile,
 			vector<string> _templates)
 {
-	save(	_mapsFolder, _templatesFolder, _mapsNames, _mapsUnNames, 
+	save(	_baseFolder, _mapsFolder, _templatesFolder, _mapsNames, _mapsUnNames, 
 			_intrinsicCalibrationFile, _calibrationFile, _blackMask, _redMask, _greenMask, 
 			_victimMask, _blueMask, _robotMask, _kernelSide, _convexHullFile, _templates);
 }
+
+Settings::~Settings(){}
 
 /*!\brief Function to change values. The value are all set by default. This function does NOT read from or write to file.
  *
@@ -85,6 +88,7 @@ Settings::Settings(
  * @param _templates A Tuple containing the names of the templates. These are not paths but just names.
  */
 void Settings::save (
+			string _baseFolder,
 			string _mapsFolder,
 			string _templatesFolder,
 			vector<string> _mapsNames,
@@ -109,7 +113,7 @@ void Settings::save (
 	for (auto el : _mapsUnNames){
 		this->mapsUnNames.addIfNot(el);
 	}
-	for (auto el : getFiles(_mapsFolder)){
+	for (auto el : getFiles(_baseFolder+_mapsFolder)){
 		if (el.find("UN")==NPOS){ 	//Get distorted maps
 			this->mapsNames.addIfNot(el);
 		}
@@ -136,7 +140,7 @@ void Settings::save (
 		this->templates.addIfNot(el);
 	}
 
-	for (auto el : getFiles(_templatesFolder)){
+	for (auto el : getFiles(_baseFolder+_templatesFolder)){
 		this->templates.addIfNot(el);
 	}
 }
@@ -157,9 +161,11 @@ inline void vecToFile (FileStorage& fs, vector<int> x){
  * @param _path The path of the file to write to.
  */
 void Settings::writeToFile(string _path){
+	if (_path!="") _path=this->baseFolder;
 	FileStorage fs(_path, FileStorage::WRITE);
 	if (fs.isOpened()){
-		fs << NAME(mapsFolder) << mapsFolder;
+		fs << NAME(baseFolder) << baseFolder;
+		fs << NAME(mapsFolder) << baseFolder+mapsFolder;
 
 		fs << NAME(mapsNames) << "[";
 		for (int i=0; i<mapsNames.size(); i++){
@@ -173,8 +179,8 @@ void Settings::writeToFile(string _path){
 		}
 		fs << "]";
 		
-		fs << NAME(intrinsicCalibrationFile) << intrinsicCalibrationFile;
-		fs << NAME(calibrationFile) << calibrationFile;
+		fs << NAME(intrinsicCalibrationFile) << baseFolder+intrinsicCalibrationFile;
+		fs << NAME(calibrationFile) << baseFolder+calibrationFile;
 
 		fs << NAME(blackMask) << "["; vecToFile(fs, (vector<int>)blackMask); fs <<"]";
 		fs << NAME(redMask) << "["; vecToFile(fs, (vector<int>)redMask); fs <<"]";
@@ -184,8 +190,8 @@ void Settings::writeToFile(string _path){
 		fs << NAME(robotMask) << "["; vecToFile(fs, (vector<int>)robotMask); fs <<"]";
 
 		fs << NAME(kernelSide) << kernelSide;
-		fs << NAME(convexHullFile) << convexHullFile;
-		fs << NAME(templatesFolder) << templatesFolder;
+		fs << NAME(convexHullFile) << baseFolder+convexHullFile;
+		fs << NAME(templatesFolder) << baseFolder+templatesFolder;
 		
 		fs << NAME(templates) << "["; 
 
@@ -207,6 +213,7 @@ void Settings::writeToFile(string _path){
 void Settings::readFromFile(string _path){
 	FileStorage fs(_path, FileStorage::READ);
 
+	baseFolder=(string)fs["baseFolder"];
 	mapsFolder=(string)fs["mapsFolder"];
 	for (uint i=0; i<fs["mapsNames"].size(); i++){
 		mapsNames.addIfNot((string)fs["mapsNames"][i]);
@@ -268,6 +275,7 @@ void Settings::readFromFile(string _path){
  *
  */
 void Settings::clean(){
+	this->baseFolder="";
 	this->mapsFolder="";
 	this->templatesFolder="";
 	this->mapsNames=Tuple<string>();
@@ -316,7 +324,7 @@ Tuple<string> Settings::maps(Tuple<string> _mapNames){
  * @return The path to the map if the map is found, an empty string otherwise.
  */
 string Settings::maps(string _mapName){
-  string prefix=this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
+  string prefix=this->baseFolder+this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
 
   for (auto map : this->mapsNames){
     if (map==_mapName){
@@ -332,7 +340,7 @@ string Settings::maps(string _mapName){
  * @return A Tuple containing the paths of the maps.
  */
 Tuple<string> Settings::maps(Tuple<int> ids){
-  string prefix=this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
+  string prefix=this->baseFolder+this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
   Tuple<string> v;
   if (ids.size()==0){
     for (auto Map : this->mapsNames){
@@ -353,7 +361,7 @@ Tuple<string> Settings::maps(Tuple<int> ids){
  * @return A Tuple containing the paths of the maps.
  */
 Tuple<string> Settings::maps(int id){
-  string prefix=this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
+  string prefix=this->baseFolder+this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
   Tuple<string> v;
   if (id<0){
     for (auto Map : this->mapsNames){
@@ -398,7 +406,7 @@ Tuple<string> Settings::unMaps(Tuple<string> _unMapNames){
  * @return The path to the undistorted map if it is found, an empty string otherwise.
  */
 string Settings::unMaps(string _unMapName){
-  string prefix=this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
+  string prefix=this->baseFolder+this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
 
   for (auto unMap : this->mapsUnNames){
     if (unMap==_unMapName){
@@ -414,7 +422,7 @@ string Settings::unMaps(string _unMapName){
  * @return A Tuple containing the paths of the undistorted maps.
  */
 Tuple<string> Settings::unMaps(Tuple<int> ids){
-  string prefix=this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
+  string prefix=this->baseFolder+this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
   Tuple<string> v;
   if (ids.size()==0){
     for (auto unMap : this->mapsUnNames){
@@ -435,7 +443,7 @@ Tuple<string> Settings::unMaps(Tuple<int> ids){
  * @return A Tuple containing the paths of the undistorted maps.
  */
 Tuple<string> Settings::unMaps(int id){
-  string prefix=this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
+  string prefix=this->baseFolder+this->mapsFolder+(this->mapsFolder.back()=='/' ? "" : "/");
   Tuple<string> v;
   if (id<0){
     for (auto unMap : this->mapsUnNames){
@@ -454,7 +462,7 @@ Tuple<string> Settings::unMaps(int id){
  * @return A Tuple containing the paths of the templates.
  */
 Tuple<string> Settings::getTemplates(int id){
-	string prefix=this->templatesFolder+(this->templatesFolder.back()=='/' ? "" : "/");
+	string prefix=this->baseFolder+this->templatesFolder+(this->templatesFolder.back()=='/' ? "" : "/");
 	Tuple<string> v;
 	if (id<0){
 		for (auto temp : this->templates){
@@ -473,7 +481,7 @@ Tuple<string> Settings::getTemplates(int id){
  * @return The path to the template if it is found, an empty string otherwise.
  */
 string Settings::getTemplates(string _template){
-	string prefix=this->templatesFolder+(this->templatesFolder.back()=='/' ? "" : "/");
+	string prefix=this->baseFolder+this->templatesFolder+(this->templatesFolder.back()=='/' ? "" : "/");
 
   for (auto temp : this->templates){
     if (temp==_template){

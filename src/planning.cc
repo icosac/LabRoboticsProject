@@ -148,8 +148,8 @@ void loadVP(vector<Point2<int> > & vp, FileNode fn){
     \param[in] vp The sorce vector.
     \param[out] path The destination path.
 */
-void fromVpToPath(const vector<Point2<int> > & vp, ClipperLib::Path & path){
-    for(Point2<int> p : vp){
-        path << ClipperLib::IntPoint(p.x(), p.y());
-    }
+void fromVpToPath(const vector<Point2<int> > & vp, Path & path){    //TODO: modify 
+    // for(Point2<int> p : vp){
+    //     path << IntPoint(p.x(), p.y());
+    // }
 }

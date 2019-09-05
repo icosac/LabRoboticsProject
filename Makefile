@@ -4,15 +4,15 @@ OS=$(shell uname)
 OPENCV=opencv
 TESS= #If defined remember to include -D TESS in compiling flags
 
-LIB_DUBINS=libDubins.a
+LIB_DUBINS=libSten.a
 INCLUDE=include
 
 CXX=g++
 
-INC=-I./lib/include 
+INC=-I./lib/include -I../
 LDFLAGS=-Wl,-rpath,/Users/enrico/opencv/lib/
 
-LIBS=-L./lib -lDubins $(INC)
+LIBS=-L./lib -lSten $(INC)
 
 #condition for mac and linux
 ifneq (,$(findstring Darwin, $(OS)))
@@ -97,8 +97,8 @@ include_local:
 	$(MKDIR) lib/include
 	cp -f src/$(INCLUDE)/*.hh lib/include
 #Static library made of objects file
-lib/libDubins.a: include_local obj/ $(OBJ)
-	$(AR) lib/libDubins.a $(OBJ) 
+lib/libSten.a: include_local obj/ $(OBJ)
+	$(AR) lib/libSten.a $(OBJ) 
 
 
 ##CREATE DIRECTORIES

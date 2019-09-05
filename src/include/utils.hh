@@ -137,7 +137,7 @@ public:
   }
 };
 
-//Taken from Paolo Bevilaqua and Valerio Magnago
+//DEFAULT FOR EXAM
 #include <time.h>
 #include <cstdint>
 

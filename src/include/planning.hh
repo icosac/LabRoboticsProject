@@ -11,7 +11,7 @@
 #include <settings.hh>
 #include <objects.hh>
 #include <detection.hh>
-#include "clipper.hh"
+#include "path.h"
 
 using namespace std;
 using namespace cv;
@@ -22,6 +22,6 @@ Mapp * createMapp();
 void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn);
 void loadVP(vector<Point2<int> > & vp, FileNode fn);
 
-void fromVpToPath(const vector<Point2<int> > & vp, ClipperLib::Path & path);
+void fromVpToPath(const vector<Point2<int> > & vp, Path & path);
 
 #endif

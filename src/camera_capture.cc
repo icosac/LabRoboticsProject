@@ -1,10 +1,6 @@
 //
 // Created by valerio on 24/08/17.
 //
-
-#include <iostream>
-#include <utils.hh>
-#include <cstring>
 #include <camera_capture.hh>
 
 #ifdef DEBUG
