@@ -31,7 +31,7 @@ double elapsedRLR=0;
 double elapsedLRL=0;
 
 #define SCALE 1.0
-#define ES 2
+#define ES 1
 
 typedef double TYPE;
 
@@ -105,7 +105,7 @@ int main (){
 	#endif
 
 	auto start_t=Clock::now();
-	double* anglss=dubinsSetCuda(start, end, points, kmax, 1, points.size(), 360);
+	double* anglss=dubinsSetCuda(start, end, points, kmax, 1, points.size(), 90);
 	auto stop_t=Clock::now();
 	double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
 

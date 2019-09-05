@@ -756,7 +756,7 @@ __global__ void computeDubins (	double* _angle, double* inc, double* lengths,
 		#endif
 		#ifdef DUBINS_IN_DEVICE			
 			for (uint i=0; i<size-1; i++){
-				// printf("[%u] angles[0]: %f, angles[1]: %f, angles[2]: %f, angles[3]: %f, angles[4]: %f\n", tidx, angles[0], angles[1], angles[2], angles[3], angles[4]);
+				// printf("[%u] angles[0]: %f, angles[1]: %f, angles[2]: %f, angles[3]: %f\n", tidx, angles[0], angles[1], angles[2], angles[3]);
 				// printf("[%u] x: %f %f %f %f {%f %f}\n", tidx, x[0], x[1], x[2], x[3], (x+i)[0], (x+1+i)[0]);
 				// printf("[%u] y: %f %f %f %f {%f %f}\n", tidx, y[0], y[1], y[2], y[3], (y+i)[0], (y+1+i)[0]);
 				dubins(angles[i], angles[i+1], _kmax, lengths+tidx, i, tidx);
@@ -848,7 +848,7 @@ double* dubinsSetBest(Configuration2<double> start,
 	double* angls=(double*) malloc(sizeof(double)*size);
 	double area=2*M_PI;
 
-	for (int m=1; m<=1; m++){
+	for (int m=1; m<=16; m++){
 		// cout << "m: " << m << endl;
 		double inc=area/(parts-1); 
 		COUT(m)
@@ -902,7 +902,16 @@ double* dubinsSetBest(Configuration2<double> start,
 			}
 		}
 		area=2*temp;
-
+		
+		#define ESRES 3.415578858075
+		switch(m){
+			case 1:
+			case 2:
+			case 4:
+			case 8:
+			case 16:
+				cout << "Parts: " << parts-1 << " M: " << m << " Length: " << Length << " err: " << Length-ESRES << endl;
+		}
 		// cout << "Length at " << m << " " << Length << endl;
 		COUT(pidx)
 		COUT(elapsedCompute)
@@ -939,24 +948,24 @@ double* dubinsSetCuda(Configuration2<double> start,
     endPos=_points.size();
   }
 
-  if (_points.size()+2<ULONG_SIZE/parts && parts!=0){}
-  else if (_points.size()+2<ULONG_SIZE/4){
-    parts=16;
-  }
-  else if (_points.size()+2<ULONG_SIZE/3){
-    parts=8;
-  }
-  else if (_points.size()+2<ULONG_SIZE/2){
-    parts=4;
-  }
-  else if (_points.size()+2<ULONG_SIZE){
-    parts=2;
-  }
+  // if (_points.size()+2<ULONG_SIZE/parts && parts!=0){}
+  // else if (_points.size()+2<ULONG_SIZE/4){
+  //   parts=16;
+  // }
+  // else if (_points.size()+2<ULONG_SIZE/3){
+  //   parts=8;
+  // }
+  // else if (_points.size()+2<ULONG_SIZE/2){
+  //   parts=4;
+  // }
+  // else if (_points.size()+2<ULONG_SIZE){
+  //   parts=2;
+  // }
   
-  else {
-    cerr << "Too many points." << endl;
-    return nullptr; 
-  }
+  // else {
+  //   cerr << "Too many points." << endl;
+  //   return nullptr; 
+  // }
   
   //Compute number of iteration. Since I need to check `parts` incrementation for each angle it'll be `parts`^(endPos-startPos)
   size_t size=_points.size()+2;
@@ -971,7 +980,7 @@ double* dubinsSetCuda(Configuration2<double> start,
     COUT(size)
     COUT(M)}
   cout << "Combinazioni: " << iter_n << endl;
-
+  cout << "Parti: " << parts << endl;
   // double* angles=(double*) malloc(sizeof(double)*_points.size()+2);
 	return dubinsSetBest(start, end, _points, startPos, endPos, iter_n, parts, _kmax);
 
