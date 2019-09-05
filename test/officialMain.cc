@@ -6,9 +6,11 @@
 using namespace std;
 
 Settings *sett = new Settings();
+extern CameraCapture* camera;
 
 int main(){ 
     sett->cleanAndRead();
+    
     cout << "Official Main:\n";
     RobotProject rp=RobotProject();
 
@@ -25,17 +27,23 @@ int main(){
     }
     cout << "path size: " << path.size() << endl;
 
-    Mat imgNew = acquireImage(true);
-    // Mat imgNew = imread(sett->maps(0).get(0).c_str());
+    Mat imgNew = imread(sett->maps(0).get(0).c_str());
     vector<double> state; //x, y, th
-    for(int i=0; i<3; i++){
+    double frame_time;
+    cout << "capturing" << endl;
+    for(int i=0; i<5; i++){
+        Mat imgNew;
+
+        camera->grab(imgNew, frame_time);
+        imwrite(("/home/robotics/Desktop/imgNew"+to_string(i)+".jpg").c_str(), imgNew);
         cout << i+1 << "° ";
         
         if(!rp.localize(imgNew,  state)){
             cout << "Error3\n";
         }
-        sleep(0.05);
+        sleep(2);
     }
-
+    delete camera;
+    cout << "END\n";
 return(0);   
 }

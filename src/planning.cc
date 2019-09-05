@@ -55,17 +55,21 @@ Mapp * createMapp(){
         cout << "loadFile: " << sett->convexHullFile << endl;
     #endif
     FileStorage fs(sett->convexHullFile, FileStorage::READ);
-    cout << "create2\n" << flush;
+    cout << "create2 a\n" << flush;
     
     // load vectors of vectors of objects
         // Obstacles
         vector< vector<Point2<int> > > vvpObstacles;
+        cout << "create2 b\n" << flush;
         loadVVP(vvpObstacles, fs["obstacles"]);
+        cout << "create2 c\n" << flush;
         vector<Obstacle> obstacles;
         for(unsigned int i=0; i<vvpObstacles.size(); i++){
             obstacles.push_back( Obstacle(vvpObstacles[i]) );
         }
+        cout << "create2 d\n" << flush;
         map->addObjects(obstacles);
+        cout << "create2 e\n" << flush;
         if(obstacles.size()==0){
             throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no obstacles for the creating of the map.", __LINE__, __FILE__);
         }

@@ -60,10 +60,7 @@ void update_trackers(){
 */
 Mat acquireImage(const bool save){
   Mat frame;
-  //Create camera object
-  CameraCapture::input_options_t options(1080, 1920, 30, 0);
-  CameraCapture *camera = new CameraCapture(options);
-  
+
   double time;
   if (camera->grab(frame, time)) {
     #ifdef DEBUG
@@ -76,7 +73,7 @@ Mat acquireImage(const bool save){
   if(save){
     imwrite("data/map/01.jpg", frame);
   }
-  delete camera;
+
   return(frame);
 }
 
@@ -186,7 +183,7 @@ void configure (bool deploy, int img_id){
 
   cout << *sett << endl;
   
-  destroyAllWindows();
+  // destroyAllWindows();
 }
 
 /*! Function to show a picture with various filters taken from Settings. It then asks for visual confirmation.
@@ -221,7 +218,7 @@ bool show_all_conditions(const Mat& frame){
     c=waitKey(1);
   } while(c!='y' && c!='Y' && c!='n' && c!='N');
 
-  destroyAllWindows();
+  //destroyAllWindows();
 
   if (c=='y' || c=='Y'){
     ret=true;

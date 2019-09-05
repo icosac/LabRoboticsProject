@@ -26,9 +26,9 @@ using namespace cv;
 // 0 -> Red
 // 1 -> Green
 // 2 -> Blue
-// 3 -> Black
-// 4 -> Cyan (robot)
-enum COLOR_TYPE {RED, GREEN, BLUE, BLACK, CYAN};
+// 3 -> Cyan (robot)
+// 4 -> Black
+enum COLOR_TYPE {RED, GREEN, BLUE, CYAN, BLACK};
 
 
 /*! \brief Loads some images and detects shapes according to different colors.

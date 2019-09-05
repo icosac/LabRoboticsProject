@@ -284,7 +284,7 @@ bool _compare ( const pair<int, int > & a,
 /*! \brief Given an image, in black/white format, identify all the borders that delimit the shapes.
 
     \param[in] img It is an image in HSV format at the base of the elaboration process.
-    \param[out] original It is the original source of 'img', it is used for showing the detected contours.
+    \param[out] original It is the original source of 'img', it is used for showing the detected contours, in the victim number recognition.
     \param[in] color It is the type of reference color.
 */
 #define EPS_CURVE 5
@@ -292,7 +292,7 @@ void find_contours( const Mat & img,
                     const Mat & original, 
                     const COLOR_TYPE color)
 {
-    #define MIN_AREA_SIZE 2000 //defined as pixels^2 (in our scenaria it means mm^2)
+    #define MIN_AREA_SIZE 1000 //defined as pixels^2 (in our scenaria it means mm^2)
     vector<vector<Point>> contours, contours_approx;
     vector<Point> approx_curve, approx_curveMax;
     vector<int> victimNum;
@@ -301,6 +301,7 @@ void find_contours( const Mat & img,
     findContours(img, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE); // find external contours of each blob
 
     if(color==GREEN){cout << "\tNumber detection\n";}
+
     int areaMax = 0;
     for (vector<Point> contour : contours){
         int area = contourArea(contour);
@@ -314,18 +315,29 @@ void find_contours( const Mat & img,
                     contours_approx.push_back(approx_curve);
                     victimNum.push_back(num_detect);
                 }
-            } else if(color!=BLUE){
+            } else if(color==BLUE or color==CYAN){
+                if(area>areaMax){
+                    areaMax = area;
+                    approx_curveMax = approx_curve;
+                }
+            } else{ //I think only RED
                 contours_approx.push_back(approx_curve);
-            }
-            if(area>areaMax){
-                areaMax = area;
-                approx_curveMax = approx_curve;
             }
         }
     }
-    if(color==BLUE && areaMax!=0){
-        contours_approx.push_back(approx_curveMax);
+    if(color==BLUE or color==CYAN){
+        if(areaMax==0){
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, string("No blob found (with the right size) for the GATE/ROBOT due to wrong filters."), __LINE__, __FILE__);
+        } else{
+            cout << "Adding the only existing blob of the color " << color << endl;
+            contours_approx.push_back(approx_curveMax);
+            if(color==CYAN){
+                // the points are returned thanks the global variable robotShape.
+                robotShape = approx_curveMax;
+            }
+        }
     }
+
     #ifdef WAIT
         Scalar s;
         switch(color){
@@ -340,30 +352,7 @@ void find_contours( const Mat & img,
         my_imshow("Detected shape", original);
     #endif
 
-    if(color==CYAN){
-        // the points are returned thanks to a global variable.
-        if(contours_approx.size()==1){
-            robotShape = contours_approx[0];
-        } else{
-            cout << "Warning: Not well defined robot filter.\n\tThere are " << contours_approx.size() << " possible blobs.\n" << flush;
-            if(contours_approx.size()>1){
-                cout << "The one with the biggest area will be choosen\n\n" << flush;
-                double area, minArea = contourArea(contours_approx[0]);
-                int maxIndex = 0;
-                for(unsigned int i=1; i<contours_approx.size(); i++){
-                    area = contourArea(contours_approx[i]);
-                    if(area>minArea){
-                        minArea = area;
-                        maxIndex = i;
-                    }
-                }
-                robotShape = contours_approx[maxIndex];
-            } else{
-                throw MyException<string>(EXCEPTION_TYPE::GENERAL, "No blob found for the robot, wrong filters", __LINE__, __FILE__);
-            }
-        }
-    }
-    if(color==GREEN){
+    if(color!=CYAN){
         // sort the victims' vector of points according to their numbers.
         if(color==GREEN){
             vector<pair<int, int > > vicPoints;

@@ -41,6 +41,10 @@ int unwrapping(const bool _imgRead, Mat * img){
 
         COUT(camera_matrix)
         COUT(dist_coeffs)
+        // Display origina image
+        #ifdef DEBUG
+            my_imshow("Original", or_img);
+        #endif
         undistort(or_img, fix_img, camera_matrix, dist_coeffs);
 
         cout << "undistort" << endl;
@@ -48,7 +52,6 @@ int unwrapping(const bool _imgRead, Mat * img){
         // Display fixed image
         #ifdef DEBUG
             my_imshow("Fixed", fix_img);
-            mywaitkey();
         #endif
 
         //Convert from RGB to HSV= Hue-Saturation-Value
@@ -58,6 +61,7 @@ int unwrapping(const bool _imgRead, Mat * img){
         // Display HSV image
         #ifdef DEBUG
             my_imshow("HSVimage", hsv_img);
+            mywaitkey();
         #endif
 
         // Find black regions (filter on saturation and value)

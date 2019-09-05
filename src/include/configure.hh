@@ -15,6 +15,8 @@
 using namespace std;
 using namespace cv;
 
+extern CameraCapture* camera;
+
 /*! \brief It acqire a frame from the default camera of the pc.
 
     \param[in] save If save, or not, the acquired image to a file.
