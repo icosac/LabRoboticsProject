@@ -1,11 +1,11 @@
 #general compiling options
 OS=$(shell uname)
 
-OPENCV=opencv
+OPENCV=
 TESS= #If defined remember to include -D TESS in compiling flags
 
 CUDA_PATH=/usr/local/cuda
-CUDA_ARCH=sm_60
+CUDA_ARCH=sm_37 #sm_60
 # CUDA_PATH=/opt/cuda
 # CUDA_ARCH=sm_35
 
@@ -15,21 +15,19 @@ INCLUDE=include
 CXX=g++
 
 INC=-I./lib/include
-LDFLAGS=-Wl,-rpath,/Users/enrico/opencv/lib/
 
 LIBS=-L./lib -lDubins $(INC)
 
 #compiling libs&flags
-LDLIBS=$(LIBS) `pkg-config --libs $(TESS) $(OPENCV)`
+LDLIBS=$(LIBS) 
 MORE_FLAGS=
 
 #condition for mac and linux
 ifneq (,$(findstring Darwin, $(OS)))
-	OPENCV=opencv3
-	CXXFLAGS=$(LDFLAGS) `pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -Wno-everything -O3
+	CXXFLAGS=-std=c++11 -Wno-everything -O3
   	AR=libtool -static -o
 else 
-	CXXFLAGS=`pkg-config --cflags $(TESS) $(OPENCV)` -std=c++11 -O3
+	CXXFLAGS=-std=c++11 -O3
 	AR=ar rcs
 endif
 

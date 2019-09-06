@@ -199,23 +199,23 @@ public:
     return out;
   }
 
-  void draw(double& dimX, double& dimY, double inc, Scalar scl, Mat& image, double SHIFT){
-    // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
-    for (auto point : this->splitIt(1)){
-      if (point.x()>dimX || point.y()>dimY){
-        double x=point.x()>dimX ? point.x() : dimX; dimX=x;
-        double y=point.y()>dimY ? point.y() : dimY; dimY=y;
-        Mat newMat(dimX, dimY, CV_8UC3, Scalar(255, 255, 255));
-        for (double _x=0; _x<dimX; _x++){
-          for (double _y=0; _y<dimY; _y++){
-            rectangle(newMat, Point(_x+SHIFT, _y+SHIFT),Point(_x+inc+SHIFT, _y+inc+SHIFT), scl, -1);
-          }
-        }
-        image=newMat;
-      }
-      rectangle(image, Point(point.x()+SHIFT, point.y()+SHIFT), Point(point.x()+inc+SHIFT, point.y()+inc+SHIFT), scl, -1);
-    }
-  }
+  // void draw(double& dimX, double& dimY, double inc, Scalar scl, Mat& image, double SHIFT){
+  //   // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
+  //   for (auto point : this->splitIt(1)){
+  //     if (point.x()>dimX || point.y()>dimY){
+  //       double x=point.x()>dimX ? point.x() : dimX; dimX=x;
+  //       double y=point.y()>dimY ? point.y() : dimY; dimY=y;
+  //       Mat newMat(dimX, dimY, CV_8UC3, Scalar(255, 255, 255));
+  //       for (double _x=0; _x<dimX; _x++){
+  //         for (double _y=0; _y<dimY; _y++){
+  //           rectangle(newMat, Point(_x+SHIFT, _y+SHIFT),Point(_x+inc+SHIFT, _y+inc+SHIFT), scl, -1);
+  //         }
+  //       }
+  //       image=newMat;
+  //     }
+  //     rectangle(image, Point(point.x()+SHIFT, point.y()+SHIFT), Point(point.x()+inc+SHIFT, point.y()+inc+SHIFT), scl, -1);
+  //   }
+  // }
 
 };
 
@@ -710,18 +710,18 @@ public:
     return out;
   }
 
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
-    T start_x=Curve<T>::begin().point().x()+SHIFT;
-    T start_y=Curve<T>::begin().point().y()+SHIFT;
-    T end_x=Curve<T>::end().point().x()+SHIFT;
-    T end_y=Curve<T>::end().point().y()+SHIFT;
-    rectangle(image, Point(start_x-inc, start_y-inc), Point(start_x+inc, start_y+inc), Scalar(0,0,0), -1);
-    rectangle(image, Point(end_x-inc, end_y-inc), Point(end_x+inc, end_y+inc), Scalar(0,0,0), -1);
+  // void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
+  //   T start_x=Curve<T>::begin().point().x()+SHIFT;
+  //   T start_y=Curve<T>::begin().point().y()+SHIFT;
+  //   T end_x=Curve<T>::end().point().x()+SHIFT;
+  //   T end_y=Curve<T>::end().point().y()+SHIFT;
+  //   rectangle(image, Point(start_x-inc, start_y-inc), Point(start_x+inc, start_y+inc), Scalar(0,0,0), -1);
+  //   rectangle(image, Point(end_x-inc, end_y-inc), Point(end_x+inc, end_y+inc), Scalar(0,0,0), -1);
     
-    A1.draw(dimX, dimY, inc, scl, image, SHIFT);
-    A2.draw(dimX, dimY, inc, scl, image, SHIFT);
-    A3.draw(dimX, dimY, inc, scl, image, SHIFT);
-  }
+  //   A1.draw(dimX, dimY, inc, scl, image, SHIFT);
+  //   A2.draw(dimX, dimY, inc, scl, image, SHIFT);
+  //   A3.draw(dimX, dimY, inc, scl, image, SHIFT);
+  // }
 
 };
 
@@ -874,18 +874,18 @@ public:
       if (i==1){break;}
     }
 
-    #ifdef DEBUG 
-      Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
-      for (auto point : _points){
-        rectangle(best_img, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
-      }
-      for (auto dub : this->dubinses){
-        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, SHIFT);
-      }
-      my_imshow("best", best_img, true);
-      mywaitkey();
-      cout << *this << endl;
-    #endif
+    // #ifdef DEBUG 
+    //   Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+    //   for (auto point : _points){
+    //     rectangle(best_img, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+    //   }
+    //   for (auto dub : this->dubinses){
+    //     dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, SHIFT);
+    //   }
+    //   my_imshow("best", best_img, true);
+    //   mywaitkey();
+    //   cout << *this << endl;
+    // #endif
   }
 
   DubinsSet(Tuple<Point2<T> > _points,
@@ -973,18 +973,18 @@ public:
       // allDubins.add(app);
     }
 
-    #ifdef DEBUG 
-      Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
-      for (auto point : _points){
-        rectangle(best_img, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
-      }
-      for (auto dub : this->dubinses){
-        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, SHIFT);
-      }
-      // my_imshow("best", best_img, true);
-      // mywaitkey();
-      cout << *this << endl;
-    #endif
+    // #ifdef DEBUG 
+    //   Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+    //   for (auto point : _points){
+    //     rectangle(best_img, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+    //   }
+    //   for (auto dub : this->dubinses){
+    //     dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, SHIFT);
+    //   }
+    //   // my_imshow("best", best_img, true);
+    //   // mywaitkey();
+    //   cout << *this << endl;
+    // #endif
 
     _angles=angles.get(id);
   }
@@ -1016,11 +1016,11 @@ public:
     return out;
   }
 
-  void draw(double dimX, double dimY, Mat& image, double SHIFT=0, double inc=1, Scalar scl=Scalar(255,0,0)){
-    for (auto dub : this->dubinses){
-      dub.draw(dimY, dimX, inc, scl, image, SHIFT);
-    }
-  }
+  // void draw(double dimX, double dimY, Mat& image, double SHIFT=0, double inc=1, Scalar scl=Scalar(255,0,0)){
+  //   for (auto dub : this->dubinses){
+  //     dub.draw(dimY, dimX, inc, scl, image, SHIFT);
+  //   }
+  // }
 };
 
 #endif

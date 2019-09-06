@@ -11,13 +11,13 @@
 #include <exception>
 #include <chrono>
 
-#include <opencv2/highgui.hpp>
-#include <opencv2/highgui/highgui_c.h>
-#include <opencv2/core.hpp>
-#include <opencv2/opencv.hpp>
-#include <opencv2/imgcodecs.hpp>
+// #include <opencv2/highgui.hpp>
+// #include <opencv2/highgui/highgui_c.h>
+// #include <opencv2/core.hpp>
+// #include <opencv2/opencv.hpp>
+// #include <opencv2/imgcodecs.hpp>
 
-using namespace cv;
+// using namespace cv;
 using namespace std;
 
 typedef chrono::high_resolution_clock Clock;
@@ -75,23 +75,24 @@ namespace CHRONO {
   #define INFO(msg)  ///<Print a messag to stdout only if DEBUG is defined 
 #endif
 
-/*! \brief Function to show images in an order grill.
- * @param win_name The name of the window to use.
- * @param img The Mat containing the image.
- * @param reset If true the image is going to be placed in 0,0 i.e. the top left corner of the screen.
- */
-void my_imshow(const char* win_name, Mat img, bool reset=false);
+// /*! \brief Function to show images in an order grill.
+//  * @param win_name The name of the window to use.
+//  * @param img The Mat containing the image.
+//  * @param reset If true the image is going to be placed in 0,0 i.e. the top left corner of the screen.
+//  */
+// void my_imshow(const char* win_name, Mat img, bool reset=false);
 
-/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed.
- *
- */
-void mywaitkey();
+// /*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed.
+//  *
+//  */
+ 
+// void mywaitkey();
 
-/*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed a specific window is closed.
- *
- * @param windowName The window to close after pressing a key.
- */
-void mywaitkey(string windowName);
+// /*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed a specific window is closed.
+//  *
+//  * @param windowName The window to close after pressing a key.
+//  */
+// void mywaitkey(string windowName);
 
 
 enum EXCEPTION_TYPE {EXISTS, SIZE};

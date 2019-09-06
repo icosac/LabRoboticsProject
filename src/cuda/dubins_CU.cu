@@ -771,7 +771,7 @@ __global__ void computeDubins (	double* _angle, double* inc, double* lengths,
 }
 
 #include<fstream>
-#include<helper_cuda.h>
+// #include<helper_cuda.h>
 typedef unsigned long ulong;
 
 double* dubinsSetBest(Configuration2<double> start,
@@ -784,7 +784,6 @@ double* dubinsSetBest(Configuration2<double> start,
 											double _kmax){
 	size_t size=_points.size()+2;
 	
-	ofstream out_data; out_data.open("data/test/CUDA.test", fstream::app);
 
 	//Create initial angles and coordinates
 	double* init_angle=(double*) malloc(sizeof(double)*size);
@@ -795,13 +794,13 @@ double* dubinsSetBest(Configuration2<double> start,
 	global_x[0]=start.point().x();
 	global_y[0]=start.point().y();
 	for (int i=startPos; i<endPos; i++){
-		init_angle[i]=_points.get(i-1).th(_points.get(i)).toRad();
-		// init_angle[i]=0.0;
+		// init_angle[i]=_points.get(i-1).th(_points.get(i)).toRad();
+		init_angle[i]=0.0;
 		global_x[i]=_points.get(i-1).x();
 		global_y[i]=_points.get(i-1).y();
 	}
-	init_angle[size-2]=_points.get(_points.size()-1).th(end.point()).toRad();
-	// init_angle[size-2]=0.0;
+	// init_angle[size-2]=_points.get(_points.size()-1).th(end.point()).toRad();
+	init_angle[size-2]=0.0;
 	global_x[size-2]=_points.get(_points.size()-1).x();
 	global_y[size-2]=_points.get(_points.size()-1).y();
 	init_angle[size-1]=end.angle();
@@ -841,13 +840,11 @@ double* dubinsSetBest(Configuration2<double> start,
 	double elapsedCopy=CHRONO::getElapsed(start_t, stop);
 
 	COUT(elapsedMalloc)
-	out_data << "elapsedMalloc: " << elapsedMalloc << endl;
 	COUT(elapsedCopy)
-	out_data << "elapsedCopy: " << elapsedCopy << endl;
 
 	double* angls=(double*) malloc(sizeof(double)*size);
 	double area=2*M_PI;
-
+	double tot=0.0;
 	for (int m=1; m<=16; m++){
 		// cout << "m: " << m << endl;
 		double inc=area/(parts-1); 
@@ -864,7 +861,7 @@ double* dubinsSetBest(Configuration2<double> start,
 		cudaMemcpyAsync(dev_init_angle, init_angle, sizeof(double)*size, cudaMemcpyHostToDevice, 0);
 		cudaMemcpyAsync(dev_inc, &inc, sizeof(double), cudaMemcpyHostToDevice, 0);
 		cudaMemcpyAsync(dev_iter, &iter_n, sizeof(ulong), cudaMemcpyHostToDevice, 0);
-		checkCudaErrors(cudaDeviceSynchronize());
+		cudaDeviceSynchronize();
 
 		start_t=Clock::now();
 		computeDubins<<<((int)(iter_n/THREADS)+1), (THREADS>iter_n ? iter_n : THREADS)>>> 
@@ -872,6 +869,7 @@ double* dubinsSetBest(Configuration2<double> start,
 		int val=cudaDeviceSynchronize();
 		stop=Clock::now();
 		double elapsedCompute=CHRONO::getElapsed(start_t, stop);
+		tot+=elapsedCompute;
 
 		cudaMemcpy(lengths, dev_lengths, sizeof(double)*iter_n, cudaMemcpyDeviceToHost);
 
@@ -881,7 +879,6 @@ double* dubinsSetBest(Configuration2<double> start,
 				Length=lengths[i];
 				pidx=i;
 			}
-			COUT(lengths[i])
 			// toBase(angls, init_angle, &inc, parts, i, size, startPos, endPos);
 			// for (int j=0; j<size; j++){
 			// 	cout << angls[j] << (j!=size-1 ? ", " : "\n");
@@ -893,7 +890,6 @@ double* dubinsSetBest(Configuration2<double> start,
 		}
 
 		double temp=3.0/2.0*inc;
-		COUT(temp)
 		// cout << "Stored angles: ";
 		for (int i=0; i<size; i++){
 			// cout << angls[i] << (i!=size-1 ? ", " : "\n");
@@ -903,19 +899,17 @@ double* dubinsSetBest(Configuration2<double> start,
 		}
 		area=2*temp;
 		
-		#define ESRES 3.415578858075
+		#define ESRES 3.415578858075 //7.467562181965
 		switch(m){
 			case 1:
 			case 2:
 			case 4:
 			case 8:
 			case 16:
-				cout << "Parts: " << parts-1 << " M: " << m << " Length: " << Length << " err: " << Length-ESRES << endl;
+				cout << "Parts: " << parts-1 << " M: " << m << " Length: " << Length << " err: " << Length-ESRES << " in: " << tot << " µs" << endl;
 		}
 		// cout << "Length at " << m << " " << Length << endl;
-		COUT(pidx)
-		COUT(elapsedCompute)
-		out_data << "elapsedCompute: " << elapsedCompute << endl;
+		// cout << "elapsedCompute: " << elapsedCompute << endl;
 		if (val!=cudaSuccess)
 			printf("Error: after dubins: %d\n", val);
 	}

@@ -31,7 +31,7 @@ double elapsedRLR=0;
 double elapsedLRL=0;
 
 #define SCALE 1.0
-#define ES 1
+#define ES 2
 
 typedef double TYPE;
 
@@ -104,35 +104,33 @@ int main (){
 	#define ESRES 7.467562181965
 	#endif
 
-	auto start_t=Clock::now();
-	double* anglss=dubinsSetCuda(start, end, points, kmax, 1, points.size(), 90);
-	auto stop_t=Clock::now();
-	double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
+	vector<int> v={4, 16, 90, 360};
+	for (auto P : v){
+		auto start_t=Clock::now();
+		double* anglss=dubinsSetCuda(start, end, points, kmax, 1, points.size(), P);
+		auto stop_t=Clock::now();
+		double elapsedCuda=CHRONO::getElapsed(start_t, stop_t);
 
-	cout << "elapsedCuda: " << elapsedCuda << endl; 
+		cout << "elapsedCuda: " << elapsedCuda << endl; 
 
-	Tuple<Configuration2<double> > confs;
-	cout << start.angle().toRad() << " ";
-	confs.add(start);
-	for (int i=1; i<points.size()+1; i++){
-		cout << anglss[i] << " ";
-		confs.add(Configuration2<double> (points.get(i-1), Angle(anglss[i], Angle::RAD)));
+		Tuple<Configuration2<double> > confs;
+		cout << start.angle().toRad() << " ";
+		confs.add(start);
+		for (int i=1; i<points.size()+1; i++){
+			cout << anglss[i] << " ";
+			confs.add(Configuration2<double> (points.get(i-1), Angle(anglss[i], Angle::RAD)));
+		}
+		cout << end.angle().toRad() << endl;
+		confs.add(end);
+
+		DubinsSet<double> s_CUDA (confs, kmax);
+		COUT(s_CUDA)
+		cout << "Length: " << s_CUDA.getLength() << endl; 
+		cout << "Error: " << s_CUDA.getLength()-ESRES << endl;
+		COUT(s_CUDA.getKmax())
 	}
-	cout << end.angle().toRad() << endl;
-	confs.add(end);
 
-	DubinsSet<double> s_CUDA (confs, kmax);
-	COUT(s_CUDA)
-	cout << "Length: " << s_CUDA.getLength() << endl; 
-	cout << "Error: " << s_CUDA.getLength()-ESRES << endl;
-	COUT(s_CUDA.getKmax())
 
-	uint DIMY=750;
-	uint DIMX=500;
-	Mat map(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
-	s_CUDA.draw(DIMX, DIMY, map, 250, 2.5);
-	my_imshow("CUDA", map, true);
-	mywaitkey();
 
 	// dubinsSetBest(start, end, points, 1, 4, 8, kmax);
 	// DubinsSet<double> s(start, end, points, 8, kmax);

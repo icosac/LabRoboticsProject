@@ -11,7 +11,7 @@
 #include <sstream>
 #include <string>
 
-#include <opencv2/opencv.hpp>
+// #include <opencv2/opencv.hpp>
 
 using namespace std;
 
@@ -1034,9 +1034,9 @@ public:
   /*! \brief Cast to cv::Point
       \returns The value casted to point
   */
-  operator cv::Point() const { 
-    return cv::Point(this->x(), this->y()); 
-  }
+  // operator cv::Point() const { 
+  //   return cv::Point(this->x(), this->y()); 
+  // }
 
   //TODO find better implementation
   bool operator<(const Point2<T>& A){ 
