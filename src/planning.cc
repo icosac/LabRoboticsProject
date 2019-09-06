@@ -143,13 +143,34 @@ void loadVP(vector<Point2<int> > & vp, FileNode fn){
     }
 }
 
-/*! \brief Convert a vector of point to a path, from Enrico's notation to clipper's notation.
+#define SCALE 1000.0
+/*! \brief Convert a vector of point to a path, from Enrico's notation to Paolo's notation.
 
     \param[in] vp The sorce vector.
     \param[out] path The destination path.
 */
-void fromVpToPath(const vector<Point2<int> > & vp, Path & path){    //TODO: modify 
-    // for(Point2<int> p : vp){
-    //     path << IntPoint(p.x(), p.y());
-    // }
+void fromVpToPath(vector<Point2<int> > & vp, Path & path){
+    if(vp.size()>=2){
+        path.resize(0);
+        Pose pose;
+        double th=0.0, s=0.0, k=1; // k will be computed thanks to the dubins
+        unsigned int i;
+        for(i=0; i<vp.size()-1; i++){
+            th = vp[i].th( vp[i+1] ).toRad();
+
+            pose = Pose( s, vp[i].x()/SCALE, vp[i].y()/SCALE, th, k);
+            path.add(pose);
+
+            s += vp[i].distance(vp[i+1])/SCALE;
+        }
+        pose = Pose( s, vp[i].x()/SCALE, vp[i].y()/SCALE, th, k);//use last th and k or simply 0????
+        path.add(pose);
+
+        cout << "Path elements:\n";
+        for(Pose p : path.points){
+            cout << p.string().str() << endl;
+        }
+    } else{
+        throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Impossible to convert vector to path, dimension less than 2.", __LINE__, __FILE__);
+    }
 }

@@ -21,7 +21,7 @@ vector<string> getFiles(const string& path){
 	  }
 	  closedir (dir);
 	} else {
-	  throw MyException<string>(GENERAL, ("Could not open dir: "+path), __LINE__, __FILE__);
+		throw MyException<string>(GENERAL, ("Could not open dir: "+path), __LINE__, __FILE__);
 	}
 	return files;
 }
@@ -106,6 +106,7 @@ void Settings::save (
 			vector<string> _templates)
 {
 	//Get Maps
+	this->baseFolder=_baseFolder;
 	this->mapsFolder=_mapsFolder;
 	for (auto el : _mapsNames){
 		this->mapsNames.addIfNot(el);
@@ -161,11 +162,12 @@ inline void vecToFile (FileStorage& fs, vector<int> x){
  * @param _path The path of the file to write to.
  */
 void Settings::writeToFile(string _path){
-	if (_path!="") _path=this->baseFolder;
+	if (_path=="") _path=this->baseFolder+"settings.xml";
 	FileStorage fs(_path, FileStorage::WRITE);
 	if (fs.isOpened()){
+		cout << "opened file: " << _path << endl;
 		fs << NAME(baseFolder) << baseFolder;
-		fs << NAME(mapsFolder) << baseFolder+mapsFolder;
+		fs << NAME(mapsFolder) << mapsFolder;
 
 		fs << NAME(mapsNames) << "[";
 		for (int i=0; i<mapsNames.size(); i++){
@@ -179,8 +181,8 @@ void Settings::writeToFile(string _path){
 		}
 		fs << "]";
 		
-		fs << NAME(intrinsicCalibrationFile) << baseFolder+intrinsicCalibrationFile;
-		fs << NAME(calibrationFile) << baseFolder+calibrationFile;
+		fs << NAME(intrinsicCalibrationFile) << intrinsicCalibrationFile;
+		fs << NAME(calibrationFile) << calibrationFile;
 
 		fs << NAME(blackMask) << "["; vecToFile(fs, (vector<int>)blackMask); fs <<"]";
 		fs << NAME(redMask) << "["; vecToFile(fs, (vector<int>)redMask); fs <<"]";
@@ -190,8 +192,8 @@ void Settings::writeToFile(string _path){
 		fs << NAME(robotMask) << "["; vecToFile(fs, (vector<int>)robotMask); fs <<"]";
 
 		fs << NAME(kernelSide) << kernelSide;
-		fs << NAME(convexHullFile) << baseFolder+convexHullFile;
-		fs << NAME(templatesFolder) << baseFolder+templatesFolder;
+		fs << NAME(convexHullFile) << convexHullFile;
+		fs << NAME(templatesFolder) << templatesFolder;
 		
 		fs << NAME(templates) << "["; 
 
@@ -210,7 +212,10 @@ void Settings::writeToFile(string _path){
  *
  * @param _path The path of file to read from.
  */
+#include<fstream>
 void Settings::readFromFile(string _path){
+	if (_path=="") _path=this->baseFolder+"settings.xml";
+	cout << "read from file " << _path << endl;
 	FileStorage fs(_path, FileStorage::READ);
 
 	baseFolder=(string)fs["baseFolder"];
@@ -287,7 +292,7 @@ void Settings::clean(){
 	this->greenMask=Filter();
 	this->victimMask=Filter();
 	this->blueMask=Filter();
-  this->robotMask=Filter();
+ 	this->robotMask=Filter();
 	this->kernelSide=0;
 	this->convexHullFile="";
 	this->templates=Tuple<string>();

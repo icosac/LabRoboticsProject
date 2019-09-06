@@ -16,6 +16,8 @@
 using namespace std;
 using namespace cv;
 
+// extern Settings* sett;
+
 class RobotProject{
     public:
         RobotProject(CameraCapture* camera, double& frame_time);

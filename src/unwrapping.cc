@@ -17,7 +17,7 @@ static double distance(Point c1, Point c2);
 */
 int unwrapping(const bool _imgRead, Mat * img){
 
-    const string calib_file = sett->intrinsicCalibrationFile;
+    const string calib_file = sett->baseFolder+sett->intrinsicCalibrationFile;
     for(int f=0; f<(_imgRead ? sett->mapsNames.size() : 1); f++){
         // Load image from file
         Mat or_img;
@@ -29,34 +29,34 @@ int unwrapping(const bool _imgRead, Mat * img){
             or_img = *img;
         }
         
-        COUT(calib_file)
-        cout << "loadCoefficients" << endl;
-        // fix calibration with matrix
-        Mat camera_matrix, dist_coeffs;
-        loadCoefficients(calib_file, camera_matrix, dist_coeffs);
+        #ifdef UNDISTORT
+            COUT(calib_file)
+            cout << "loadCoefficients" << endl;
+            // fix calibration with matrix
+            Mat camera_matrix, dist_coeffs;
+            loadCoefficients(calib_file, camera_matrix, dist_coeffs);
 
-        cout << "loadCoefficients done" << endl;
+            cout << "loadCoefficients done" << endl;
 
-        Mat fix_img;
+            COUT(camera_matrix)
+            COUT(dist_coeffs)
+            // Display origina image
+            #ifdef DEBUG
+                my_imshow("Original", or_img);
+            #endif
+            undistort(or_img, or_img, camera_matrix, dist_coeffs);
 
-        COUT(camera_matrix)
-        COUT(dist_coeffs)
-        // Display origina image
-        #ifdef DEBUG
-            my_imshow("Original", or_img);
-        #endif
-        undistort(or_img, fix_img, camera_matrix, dist_coeffs);
+            cout << "undistort" << endl;
 
-        cout << "undistort" << endl;
-
-        // Display fixed image
-        #ifdef DEBUG
-            my_imshow("Fixed", fix_img);
+            // Display fixed image
+            #ifdef DEBUG
+                my_imshow("Fixed", or_img);
+            #endif
         #endif
 
         //Convert from RGB to HSV= Hue-Saturation-Value
         Mat hsv_img;
-        cvtColor(fix_img, hsv_img, COLOR_BGR2HSV);
+        cvtColor(or_img, hsv_img, COLOR_BGR2HSV);
         cout << "Conversion done" << endl;
         // Display HSV image
         #ifdef DEBUG
@@ -86,7 +86,7 @@ int unwrapping(const bool _imgRead, Mat * img){
         findContours(black_mask, contours, RETR_CCOMP, CHAIN_APPROX_SIMPLE); // find external contours of each blob
         #endif
 
-        Mat app_img=fix_img.clone();
+        Mat app_img=or_img.clone();
         drawContours(app_img, contours, -1, Scalar(0,170,220), 10, LINE_AA);
         destroyAllWindows();
 
@@ -98,7 +98,7 @@ int unwrapping(const bool _imgRead, Mat * img){
 
           area = contourArea(approx_polygon); //compute area
           if (area>AREA_MIN){
-            app_img=fix_img.clone();
+            app_img=or_img.clone();
             if(area > area_max){ //find the second area max (the big rectangle)
                 area_max2 = area_max;
                 contours_approx_big2 = contours_approx_big;
@@ -120,10 +120,10 @@ int unwrapping(const bool _imgRead, Mat * img){
             contours_approx_big = contours_approx_big2;
         }
         //Compute the right vertexes from a vector of points.
-        find_rect(rect, fix_img.size().width, fix_img.size().height);
+        find_rect(rect, or_img.size().width, or_img.size().height);
         
         // show the quadrilateral found
-        Mat quadrilateral_img = fix_img.clone();
+        Mat quadrilateral_img = or_img.clone();
         drawContours(quadrilateral_img, contours_approx_big, -1, Scalar(0,170,220), 5, LINE_AA);
         #ifdef WAIT
             my_imshow("Find rectangle", quadrilateral_img);
@@ -195,7 +195,7 @@ int unwrapping(const bool _imgRead, Mat * img){
 
         Mat transf = getPerspectiveTransform(corner_pixels, transf_pixels);
         Mat unwarped_frame;
-        warpPerspective(fix_img, unwarped_frame, transf, Size(width, height));
+        warpPerspective(or_img, unwarped_frame, transf, Size(width, height));
 
         // select a region of interest
         Mat imgCrop;
@@ -298,14 +298,14 @@ void loadCoefficients(  const string filename,
                         Mat & camera_matrix, 
                         Mat & dist_coeffs)
 {
-  FileStorage fs(filename, FileStorage::READ );
-  if (!fs.isOpened()){
-    throw runtime_error("Could not open file " + filename);
-  }
+    FileStorage fs(filename, FileStorage::READ );
+    if (!fs.isOpened()){
+        throw runtime_error("Could not open file " + filename);
+    }
 
-  fs["camera_matrix"] >> camera_matrix;
-  fs["distortion_coefficients"] >> dist_coeffs;
-  fs.release();
+    fs["camera_matrix"] >> camera_matrix;
+    fs["distortion_coefficients"] >> dist_coeffs;
+    fs.release();
 }
 
 /*! \brief Compute the euclidean distance.

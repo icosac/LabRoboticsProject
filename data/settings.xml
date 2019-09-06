@@ -1,27 +1,28 @@
 <?xml version="1.0"?>
 <opencv_storage>
-<mapsFolder>data/map</mapsFolder>
+<baseFolder>"./exam/data/"</baseFolder>
+<mapsFolder>map</mapsFolder>
 <mapsNames>
   "01.jpg"</mapsNames>
 <mapsUnNames>
   "01_UN.jpg"</mapsUnNames>
-<intrinsicCalibrationFile>data/intrinsic_calibration.xml</intrinsicCalibrationFile>
-<calibrationFile>data/calib_config.xml</calibrationFile>
+<intrinsicCalibrationFile>intrinsic_calibration.xml</intrinsicCalibrationFile>
+<calibrationFile>calib_config.xml</calibrationFile>
 <blackMask>
-  0 0 0 179 255 100</blackMask>
+  51 0 0 179 255 106</blackMask>
 <redMask>
-  114 105 134 180 255 190</redMask>
+  117 110 142 180 255 255</redMask>
 <greenMask>
-  62 64 0 82 255 152</greenMask>
+  70 169 115 103 233 154</greenMask>
 <blueMask>
-  101 151 137 145 216 170</blueMask>
+  91 194 53 117 255 211</blueMask>
 <victimMask>
-  0 0 0 180 125 63</victimMask>
+  70 0 0 118 149 110</victimMask>
 <robotMask>
-  78 100 142 109 182 200</robotMask>
+  78 68 159 161 196 220</robotMask>
 <kernelSide>9</kernelSide>
-<convexHullFile>data/convexHull.xml</convexHullFile>
-<templatesFolder>data/num_template/</templatesFolder>
+<convexHullFile>convexHull.xml</convexHullFile>
+<templatesFolder>num_template/</templatesFolder>
 <templates>
   "0.png" "1.png" "2.png" "3.png" "4.png" "5.png" "6.png" "7.png"
   "8.png" "9.png" "0_inv.png" "1_inv.png" "2_inv.png" "3_inv.png"

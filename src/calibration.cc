@@ -192,8 +192,8 @@ bool CalSettings::isListOfImages( const string& filename)
 */
 int calibration(string inputFile)
 {
-    inputFile=sett->calibrationFile;
-    inputFile=(inputFile=="" ? sett->calibrationFile : inputFile);
+    sett->cleanAndRead("./exam/data/settings.xml");
+    inputFile=(inputFile=="" ? sett->baseFolder+sett->calibrationFile : inputFile);
     //file_read
     CalSettings s;
 

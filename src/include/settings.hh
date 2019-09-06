@@ -64,7 +64,7 @@ public:
 			vector<string> _mapsNames={},
 			vector<string> _mapsUnNames={},
 			string _intrinsicCalibrationFile="intrinsic_calibration.xml",
-			string _calibrationFile="data/calib_config.xml",
+			string _calibrationFile="calib_config.xml",
 			Filter _blackMask=Filter(0, 0, 0, 179, 255, 70),
 			Filter _redMask=Filter(15, 100, 140, 160, 255, 255),
 			Filter _greenMask=Filter(54, 74, 25, 119, 255, 88),
@@ -72,7 +72,7 @@ public:
 			Filter _blueMask=Filter(100, 100, 40, 140, 200, 170),
       Filter _roboteMask=Filter(100, 100, 40, 140, 200, 170),
 			int _kernelSide=9,
-			string _convexHullFile="data/convexHull.xml",
+			string _convexHullFile="convexHull.xml",
 			vector<string> _templates={}
 	);
 

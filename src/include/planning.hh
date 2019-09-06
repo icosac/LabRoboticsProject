@@ -22,6 +22,6 @@ Mapp * createMapp();
 void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn);
 void loadVP(vector<Point2<int> > & vp, FileNode fn);
 
-void fromVpToPath(const vector<Point2<int> > & vp, Path & path);
+void fromVpToPath(vector<Point2<int> > & vp, Path & path);
 
 #endif

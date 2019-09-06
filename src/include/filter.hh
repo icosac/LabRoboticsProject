@@ -42,7 +42,7 @@ class Filter {
 		 */
 		Filter (vector<int> v){
 			if (v.size()!=6){
-				cout << "Wrong number of element in vector." << endl;
+				cout << "Wrong number of element in vector, expected 6, got " << v.size() << "." << endl;
 			}
 			else {
 				*this=Filter(v[0], v[1], v[2], v[3], v[4], v[5]);
