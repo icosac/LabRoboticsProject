@@ -8,6 +8,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <utility>
 
 #if defined DEBUG && defined REALLY_DEBUG
 #include <cstdio> // For sprintf
@@ -43,7 +44,7 @@ using namespace std;
 
 /*!
  * Class that defines a general curve. It just containes a start `Configuration2` and an end `Configuration2`.
- * @tparam T The type of the `Configuration2`s
+ * \tparam T The type of the `Configuration2`s
  */
 template <class T>
 class Curve {
@@ -56,8 +57,8 @@ public:
 
   /*!
    * Constructor that takes two `Configuration2`s and stores them.
-   * @param _P0 Start `Configuration2`.
-   * @param _P1 End `Configuration2`.
+   * \param[in] _P0 Start `Configuration2`.
+   * \param[in] _P1 End `Configuration2`.
    */
   Curve (const Configuration2<T> _P0,
          const Configuration2<T> _P1) :
@@ -65,10 +66,10 @@ public:
 
   /*!
    * Constructor that takes two `Point2`s and two `Angle`s and stores them as `Configuration2`s.
-   * @param _P0 Start `Point2`.
-   * @param _P1 End `Point2`.
-   * @param _th0 Starting `Angle`
-   * @param _th1 Ending `Angle`
+   * \param[in] _P0 Start `Point2`.
+   * \param[in] _P1 End `Point2`.
+   * \param[in] _th0 Starting `Angle`
+   * \param[in] _th1 Ending `Angle`
    */
   Curve (const Point2<T> _P0,
          const Point2<T> _P1,
@@ -78,12 +79,12 @@ public:
 
   /*!
    * Constructor that takes the bare coordinates of two points and their `Angle`s and stores them as `Configuration2`s.
-   * @param x0 Start abscissa coordinate.
-   * @param y0 Start ordinate coordinate.
-   * @param _th0 Start `Angle`.
-   * @param x1 End abscissa coordinate.
-   * @param y1 End ordinate coordinate.
-   * @param _th1 End `Angle`.
+   * \param[in] x0 Start abscissa coordinate.
+   * \param[in] y0 Start ordinate coordinate.
+   * \param[in] _th0 Start `Angle`.
+   * \param[in] x1 End abscissa coordinate.
+   * \param[in] y1 End ordinate coordinate.
+   * \param[in] _th1 End `Angle`.
    */
   Curve (const T x0, const T y0,
          const Angle _th0,
@@ -96,14 +97,14 @@ public:
 
   /*!
    * Function that stores the starting `Configuration2`.
-   * @param _P0 Starting `Configuration2`.
+   * \param[in] _P0 Starting `Configuration2`.
    */
   void begin(Configuration2<T> _P0){
     P0=_P0;
   }
   /*!
    * Function that stores the ending `Configuration2`.
-   * @param _P0 Ending `Configuration2`.
+   * \param[in] _P0 Ending `Configuration2`.
    */
   void end (Configuration2<T> _P1){
     P1=_P1;
@@ -136,8 +137,8 @@ public:
  * sinc(t)=\frac{sin(t)}{t}\quad t\neq 0
  * 1\quad t=0
  * \f]
- * @param t The value of the angle to be used.
- * @return The result of the previous formula.
+ * \param[in] t The value of the angle to be used.
+ * \return The result of the previous formula.
  */
 static double sinc(double t) {
   if (equal(t, 0.0))
@@ -148,10 +149,10 @@ static double sinc(double t) {
 
 /*!
  * Computes an arrival point from an initial configuration through an arc of length _L and curvature _K.
- * @param _L The length of the arch.
- * @param _P0 The starting `Configuration2` of the arc.
- * @param _K The curvature of the arc.
- * @return The ending `Configuration2` of the arc.
+ * \param[in] _L The length of the arch.
+ * \param[in] _P0 The starting `Configuration2` of the arc.
+ * \param[in] _K The curvature of the arc.
+ * \return The ending `Configuration2` of the arc.
  */
 Configuration2<double> circline(double _L,
                                 Configuration2<double> _P0,
@@ -171,8 +172,8 @@ Configuration2<double> circline(double _L,
 /*!
  * \brief Class to store a maneuver of Dubins. It inherits from `Curve`.
  * Since each Dubins is formed of atmost 3 maneuvers, this class is meant to store one of this maneuver, which can be L, R or S respectively Left, Right, Straight.
- * @tparam T1 The type of Length and Curvature.
- * @tparam T2 The type of the class `Curve`.
+ * \tparam T1 The type of Length and Curvature.
+ * \tparam T2 The type of the class `Curve`.
  */
 template <class T1=double, class T2=double>
 class DubinsArc : public Curve<T2>
@@ -191,9 +192,9 @@ public:
 
   /*!
    * Creates a new `DubinsArc` given a start `Configuration2`, the curvature and the length of the arc calling `circline()`.
-   * @param _P0 The starting `Configuration2`.
-   * @param _k The curvature of the `DubinsArc`.
-   * @param _l The length of the `DubinsArc`.
+   * \param[in] _P0 The starting `Configuration2`.
+   * \param[in] _k The curvature of the `DubinsArc`.
+   * \param[in] _l The length of the `DubinsArc`.
    */
   DubinsArc(const Configuration2<T2> _P0,
             const T1 _k,
@@ -222,8 +223,8 @@ public:
   /*!
    * \brief Splits the `DubinsArc` in pieces of _L length.
    * This function starts from the begining of the arc and computes n new arcs through the `circline()` function using the curvature of the `DubinsArc` and _L as the length.
-   * @param _L The length that each points should have.
-   * @return A `Tuple` of `Configuration2`s representing the points along the arc.
+   * \param[in] _L The length that each points should have.
+   * \return A `Tuple` of `Configuration2`s representing the points along the arc.
    */
   Tuple<Point2<T2> > splitIt (double _L=PIECE_LENGTH){
     Tuple<Point2<T2> > ret;
@@ -266,12 +267,12 @@ public:
 
   /*!
    * This function draws the `DubinsArc`.
-   * @param dimX The dimension X of the Mat.
-   * @param dimY The dimension Y of the Mat.
-   * @param inc The value to scale each point.
-   * @param scl The Scalar that defines the color to use.
-   * @param image The Mat where to draw the points.
-   * @param SHIFT The value to use to shift the points to make them stay inside the matrix.
+   * \param[in] dimX The dimension X of the Mat.
+   * \param[in] dimY The dimension Y of the Mat.
+   * \param[in] inc The value to scale each point.
+   * \param[in] scl The Scalar that defines the color to use.
+   * \param[in] image The Mat where to draw the points.
+   * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
   void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT){
     // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
@@ -298,7 +299,7 @@ public:
 /*!
  * \brief Class to store a Dubins curve.
  * This class inherits from `Curve` and is composed of three `DubinsArc`.
- * @tparam T The type of the classes `Curve` and `DubinsArc`.
+ * \tparam T The type of the classes `Curve` and `DubinsArc`.
  */
 template<class T>
 class Dubins : protected Curve<T>
@@ -322,9 +323,9 @@ public:
 
   /*!
    * Constructor that takes an initial and a final `Configuration2`, a curvature and compute the Dubins that connect the two configurations.
-   * @param _P0 Initial `Configuration2`.
-   * @param _P1 Final `Configuration2`.
-   * @param _K Curvature.
+   * \param[in] _P0 Initial `Configuration2`.
+   * \param[in] _P1 Final `Configuration2`.
+   * \param[in] _K Curvature.
    */
   Dubins (const Configuration2<T> _P0,
           const Configuration2<T> _P1,
@@ -340,11 +341,11 @@ public:
 
   /*!
    * Constructor that takes an initial and a final `Point2`, the two respectively `Angle`s and the curvature and computes the Dubins.
-   * @param _P0 Initial `Point2`.
-   * @param _P1 Final `Point2`.
-   * @param _th0 Initial `Angle`
-   * @param _th1 Final `Angle`
-   * @param _K Curvature.
+   * \param[in] _P0 Initial `Point2`.
+   * \param[in] _P1 Final `Point2`.
+   * \param[in] _th0 Initial `Angle`
+   * \param[in] _th1 Final `Angle`
+   * \param[in] _K Curvature.
    */
   Dubins (const Point2<T> _P0,
           const Point2<T> _P1,
@@ -362,13 +363,13 @@ public:
 
   /*!
    * Constructor that takes the initial and final coordinates, the respective `Angle`s and the curvature and compute a Dubins.
-   * @param x0 Initial abscissa coordinate.
-   * @param y0 Initial ordinate coordinate.
-   * @param _th0 Initial `Angle`.
-   * @param x1 Final abscissa coordinate.
-   * @param y1 Final ordinate coordinate.
-   * @param _th1 Final `Angle`.
-   * @param _K Curvature of the curve.
+   * \param[in] x0 Initial abscissa coordinate.
+   * \param[in] y0 Initial ordinate coordinate.
+   * \param[in] _th0 Initial `Angle`.
+   * \param[in] x1 Final abscissa coordinate.
+   * \param[in] y1 Final ordinate coordinate.
+   * \param[in] _th1 Final `Angle`.
+   * \param[in] _K Curvature of the curve.
    */
   Dubins (const T x0, const T y0,
           const Angle _th0,
@@ -394,10 +395,10 @@ public:
 
   /*!
    * Function to compute the set of maneuvers Left Straight Left.
-   * @param th0 The initial angle standardized.
-   * @param th1 The final angle standardized.
-   * @param _kmax The maximum curvature.
-   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   * \param[in] th0 The initial angle standardized.
+   * \param[in] th1 The final angle standardized.
+   * \param[in] _kmax The maximum curvature.
+   * \return An array of dimension 3 containing the length of the 3 maneuvers.
    */
   double* LSL (double th0, double th1, double _kmax)
   {
@@ -432,10 +433,10 @@ public:
 
   /*!
    * Function to compute the set of maneuvers Right Straight Right.
-   * @param th0 The initial angle standardized.
-   * @param th1 The final angle standardized.
-   * @param _kmax The maximum curvature.
-   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   * \param[in] th0 The initial angle standardized.
+   * \param[in] th1 The final angle standardized.
+   * \param[in] _kmax The maximum curvature.
+   * \return An array of dimension 3 containing the length of the 3 maneuvers.
    */
   double* RSR (double th0, double th1, double _kmax)
   {
@@ -470,10 +471,10 @@ public:
 
   /*!
    * Function to compute the set of maneuvers Left Straight Right.
-   * @param th0 The initial angle standardized.
-   * @param th1 The final angle standardized.
-   * @param _kmax The maximum curvature.
-   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   * \param[in] th0 The initial angle standardized.
+   * \param[in] th1 The final angle standardized.
+   * \param[in] _kmax The maximum curvature.
+   * \return An array of dimension 3 containing the length of the 3 maneuvers.
    */
   double* LSR (double th0, double th1, double _kmax)
   {    
@@ -507,10 +508,10 @@ public:
 
   /*!
    * Function to compute the set of maneuvers Right Straight Left.
-   * @param th0 The initial angle standardized.
-   * @param th1 The final angle standardized.
-   * @param _kmax The maximum curvature.
-   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   * \param[in] th0 The initial angle standardized.
+   * \param[in] th1 The final angle standardized.
+   * \param[in] _kmax The maximum curvature.
+   * \return An array of dimension 3 containing the length of the 3 maneuvers.
    */
   double* RSL (double th0, double th1, double _kmax)
   {
@@ -544,10 +545,10 @@ public:
 
   /*!
    * Function to compute the set of maneuvers Right Left Right.
-   * @param th0 The initial angle standardized.
-   * @param th1 The final angle standardized.
-   * @param _kmax The maximum curvature.
-   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   * \param[in] th0 The initial angle standardized.
+   * \param[in] th1 The final angle standardized.
+   * \param[in] _kmax The maximum curvature.
+   * \return An array of dimension 3 containing the length of the 3 maneuvers.
    */
   double* RLR (double th0, double th1, double _kmax)
   {
@@ -585,10 +586,10 @@ public:
 
   /*!
    * Function to compute the set of maneuvers Left Right Left.
-   * @param th0 The initial angle standardized.
-   * @param th1 The final angle standardized.
-   * @param _kmax The maximum curvature.
-   * @return An array of dimension 3 containing the length of the 3 maneuvers.
+   * \param[in] th0 The initial angle standardized.
+   * \param[in] th1 The final angle standardized.
+   * \param[in] _kmax The maximum curvature.
+   * \return An array of dimension 3 containing the length of the 3 maneuvers.
    */
   double* LRL (double th0, double th1, double _kmax)
   {
@@ -628,7 +629,7 @@ public:
   /*!
    * \brief Function to compute standardize the parameters.
    * This function computes the initial and final angles as if the reference system is P0(-1,0), P1(0,1). This allows to simplify the calculations to find the best set of maneuvers.
-   * @return A `Tuple` of `duoble` containing the standardised initial and final angle, the new curvature and the parameter lambda that allows to compute the real dimension lengths.
+   * \return A `Tuple` of `duoble` containing the standardised initial and final angle, the new curvature and the parameter lambda that allows to compute the real dimension lengths.
    */
   Tuple<double> scaleToStandard ()
   {
@@ -661,7 +662,7 @@ public:
   /*!
    * \brief This function computes the shortest path for the Dubins constructed.
    * First the values are scaled. Then the six sets of maneuvers are computed and their lengths are stored. Once the set that gives the Dubins with the minimum length is found, the lengths are rescaled and the `DubinsArc` are created. In the process length is also computed.
-   * @return The id of the set of maneuvers.
+   * \return The id of the set of maneuvers.
    */
   int shortest_path()
   {
@@ -768,15 +769,15 @@ public:
 
   /*!
    * Function that checks that the values got in `shortest_path()` are right.
-   * @param s1 Length for the first `DubinsArc`.
-   * @param k0 Curvature for the first `DubinsArc`.
-   * @param s2 Length for the second `DubinsArc`.
-   * @param k1 Curvature for the second `DubinsArc`.
-   * @param s3 Length for the third `DubinsArc`.
-   * @param k2 Curvature for the third `DubinsArc`.
-   * @param th0 Initial angles (standardised).
-   * @param th1 Final angles (standardised).
-   * @return `true` if the values where correct, `false` otherwise.
+   * \param[in] s1 Length for the first `DubinsArc`.
+   * \param[in] k0 Curvature for the first `DubinsArc`.
+   * \param[in] s2 Length for the second `DubinsArc`.
+   * \param[in] k1 Curvature for the second `DubinsArc`.
+   * \param[in] s3 Length for the third `DubinsArc`.
+   * \param[in] k2 Curvature for the third `DubinsArc`.
+   * \param[in] th0 Initial angles (standardised).
+   * \param[in] th1 Final angles (standardised).
+   * \return `true` if the values where correct, `false` otherwise.
    */
   bool check (double s1,
               double k0,
@@ -806,8 +807,8 @@ public:
 
   /*!
    * Normalize an angular difference \f$(-\pi, \pi]\f$.
-   * @param ang The value of the angle to be normalized.
-   * @return The normalized angle.
+   * \param[in] ang The value of the angle to be normalized.
+   * \return The normalized angle.
   */
   static double rangeSymm (double ang){
     double out = ang;
@@ -823,9 +824,9 @@ public:
   //TODO there are two points that are useless.
   /*!
    * Function to split a Dubins in points.
-   * @param _arch If defined returns only the points for a single `DubinsArc`.
-   * @param _L The distance from one point to another.
-   * @return A `Tuple` containing three `Tuple` of `Point2` (one for each arc) containing the computed points.
+   * \param[in] _arch If defined returns only the points for a single `DubinsArc`.
+   * \param[in] _L The distance from one point to another.
+   * \return A `Tuple` containing three `Tuple` of `Point2` (one for each arc) containing the computed points.
    */
   Tuple<Tuple<Point2<double> > > splitIt (int _arch=0,
                                           double _L=PIECE_LENGTH){
@@ -875,12 +876,12 @@ public:
 
   /*!
    * Function to draw the `Dubins`.
-   * @param dimX The dimension X of the Mat.
-   * @param dimY The dimension Y of the Mat.
-   * @param inc The value to scale each point.
-   * @param scl The Scalar that defines the color to use.
-   * @param image The Mat where to draw the points.
-   * @param SHIFT The value to use to shift the points to make them stay inside the matrix.
+   * \param[in] dimX The dimension X of the Mat.
+   * \param[in] dimY The dimension Y of the Mat.
+   * \param[in] inc The value to scale each point.
+   * \param[in] scl The Scalar that defines the color to use.
+   * \param[in] image The Mat where to draw the points.
+   * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
   void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
     A1.draw(dimX, dimY, inc, scl, image, SHIFT);
@@ -890,55 +891,16 @@ public:
 
 };
 
-// #define EXP
-#ifdef EXP
-/*!
- * \brief Compute the arrangements.
- */
-void disp ( Tuple<Tuple<Angle> >& t,
-            Tuple<Angle>& z,    ///<Vector to use
-            int id,             ///<Position on the vector to change
-            int N,              ///<Number of time to "iterate"
-            const Angle& inc,   ///<Incrementation
-            int startPos=0)        ///<If there are values at the beginning of the tuple not to change.
-// const Angle& start) ///<Starting `Angle`
-{
-  if (id==startPos){
-    Angle start=z.get(id);
-    for (int i=0; i<N; i++){
-      t.addIfNot(z);
-      // a+=inc;
-      z.set(id, z.get(id)+inc);
-      if (i==N-1){
-        t.addIfNot(z);
-      }
-    }
-    z.set(id, start);
-  }
-  else {
-    Angle start=z.get(id);
-    for (int i=0; i<N; i++){
-      disp(t, z, id-1, N, inc, startPos);
-      // a+=inc;
-      z.set(id, z.get(id)+inc);
-      if (i==N-1)
-        disp(t, z, id-1, N, inc, startPos);
-    }
-    z.set(id, start);
-  }
-}
-#else
-
 /*!
  * \brief Convert a value in base 10 to base `base` in a `Tuple`.
  * To each value an inc is muiltiplied and the initial `Angle` is added.
- * @param z A `Tuple` containing all the initial `Angle`s.
- * @param n The value to be converted.
- * @param base The base.
- * @param inc The increment.
- * @param startPos The starting position of the `Tuple` of `Angle`s.
- * @param endPos The ending position of the `Tuple` of `Angle`s.
- * @return
+ * \param[in] z A `Tuple` containing all the initial `Angle`s.
+ * \param[in] n The value to be converted.
+ * \param[in] base The base.
+ * \param[in] inc The increment.
+ * \param[in] startPos The starting position of the `Tuple` of `Angle`s.
+ * \param[in] endPos The ending position of the `Tuple` of `Angle`s.
+ * \return A vector containing the digits of the number converted to the specified base.
  */
 Tuple<Angle> toBase(Tuple<Angle> z, int n, int base, const Angle& inc, int startPos, int endPos){
   int i=z.size()-1;
@@ -957,17 +919,17 @@ Tuple<Angle> toBase(Tuple<Angle> z, int n, int base, const Angle& inc, int start
 /*!
  * \brief Compute the arrangements.
  * Since each arrangement can be computed as \f$n_{parts}\f$, where each values is then multiplied for the increment and is added to the initial values.
- * @param t A `Tuple` containing all the `Tuple`s containing the `Angle`s.
- * @param z A `Tuple` containing all the initial `Angle`s.
- * @param N The number of iterations. Each iteration is going to be converted in base parts.
- * @param inc The increment to give each initial `Angle`.
- * @param startPos The initial position to consider in `Tuple`.
- * @param endPos The final position to consider in `Tuple`.
+ * \param[out] t A `Tuple` containing all the `Tuple`s containing the `Angle`s.
+ * \param[in] z A `Tuple` containing all the initial `Angle`s.
+ * \param[in] N The number of iterations. Each iteration is going to be converted in base parts.
+ * \param[in] inc The increment to give each initial `Angle`.
+ * \param[in] startPos The initial position to consider in `Tuple`.
+ * \param[in] endPos The final position to consider in `Tuple`.
  */
 void disp(Tuple<Tuple<Angle> >& t,
-          Tuple<Angle>& z,    ///<Vector to use
-          int N,              ///<Number of time to "iterate"
-          const Angle& inc,   ///<Incrementation
+          Tuple<Angle>& z,    //Vector to use
+          int N,              //Number of time to "iterate"
+          const Angle& inc,   //Incrementation
           int startPos=0, 
           int endPos=0){
   unsigned long M=z.size()-startPos;
@@ -997,34 +959,10 @@ void disp(Tuple<Tuple<Angle> >& t,
   // }
 
 }
-#endif
-
-#define DELTA M_PI/180.0 
-template <class T>
-vector<Point2<T> > reduce_points(Tuple<Point2<T> > init_points){
-  double delta=DELTA;
-  vector<Point2<T> > ret={};
-  for (int i=0; i<init_points.size(); i++){
-    Point2<T> app=init_points.get(i);
-    if (i==0 || i==init_points.size()-1){
-      ret.push_back(app);
-    }
-    else {
-      if (ret.back().th(app).toRad()<delta){
-        delta+=DELTA;
-      }
-      else {
-        ret.push_back(app);
-        delta=DELTA;
-      }
-    }
-  }
-  return ret;
-}
 
 /*!
  * \brief Given a set of point, compute the shortest set of Dubins that allows to go from start to end through all points.
- * @tparam T Type for class `Dubins`.
+ * \tparam T Type for class `Dubins`.
  */
 template <class T>
 class DubinsSet {
@@ -1035,8 +973,8 @@ private:
 public:
   /*!
    * Constructor that given a `Tuple` of `Dubins` computes stores all of them.
-   * @param _dubinses The `Tuple` of `Dubins`.
-   * @param _kmax The maximum curvature.
+   * \param[in] _dubinses The `Tuple` of `Dubins`.
+   * \param[in] _kmax The maximum curvature.
    */
   DubinsSet(Tuple<Dubins<T> > _dubinses,
             double _kmax=KMAX){
@@ -1049,8 +987,8 @@ public:
 
   /*!
    * Constructor that takes a `Tuple` of `Configuration2`s and computes the `Dubins` between them.
-   * @param _confs The `Tuple` of `Configuration2`s.
-   * @param _kmax The maximum curvature to be used.
+   * \param[in] _confs The `Tuple` of `Configuration2`s.
+   * \param[in] _kmax The maximum curvature to be used.
    */
   DubinsSet(Tuple<Configuration2<T> > _confs,
             double _kmax=KMAX){
@@ -1065,10 +1003,10 @@ public:
   /*!
    * \brief Constructor that given a start `Configuration2`, an end `Configuration2` and a `Tuple` of `Point2`, computes the best path from start to end through all points by brute forcing all possible angles.
    * Since this approach is based on a brute force algorithm, it's best not to use this on too many points.
-   * @param start `Configuration2` of start.
-   * @param end `Configuration2` of end.
-   * @param _points `Tuple` of `Point2` containing all the intermediate points.
-   * @param _kmax The maximum curvature of the system.
+   * \param[in] start `Configuration2` of start.
+   * \param[in] end `Configuration2` of end.
+   * \param[in] _points `Tuple` of `Point2` containing all the intermediate points.
+   * \param[in] _kmax The maximum curvature of the system.
    */
   DubinsSet(Configuration2<T> start, 
             Configuration2<T> end,
@@ -1132,8 +1070,8 @@ public:
   /*!
    * \brief Constructor that computes a series of `Dubins` given only `Point2` points via brute force.
    * Since this approach is based on a brute force algorithm, it's best not to use this on too many points.
-   * @param _points A `Tuple` containing all points.
-   * @param _kmax The maximum curvature to be used for all `Dubins`.
+   * \param[in] _points A `Tuple` containing all points.
+   * \param[in] _kmax The maximum curvature to be used for all `Dubins`.
    */
   DubinsSet(Tuple<Point2<T> > _points,
             double _kmax=KMAX){
@@ -1142,11 +1080,11 @@ public:
 
   /*!
    * Function to compute the best path. This function calls `disp()` in order to calculate all possible angles, and then creates a `Dubins` for each possibility choosing the one with the minimum length.
-   * @param _points A `Tuple` of `Point2` through which the path should flow.
-   * @param _angles A `Tuple` of `Angle` containing all base `Angle`.
-   * @param area This is the angle around each angle to be "scanned".
-   * @param tries The number of discretizations that should be made.
-   * @param _kmax The maximum curvature to be used.
+   * \param[in] _points A `Tuple` of `Point2` through which the path should flow.
+   * \param[in] _angles A `Tuple` of `Angle` containing all base `Angle`.
+   * \param[in] area This is the angle around each angle to be "scanned".
+   * \param[in] tries The number of discretizations that should be made.
+   * \param[in] _kmax The maximum curvature to be used.
    */
   void find_best( Tuple<Point2<T> > _points,
                   Tuple<Angle>& _angles,
@@ -1250,8 +1188,8 @@ public:
 
   /*!
    * Thid functions returns a specific `Dubins` from the set.
-   * @param id The position of the `Dubins` in the set.
-   * @return The id-th `Dubins`.
+   * \param[in] id The position of the `Dubins` in the set.
+   * \return The id-th `Dubins`.
    */
   Dubins<T> getDubins(int id){
     if (id<(this->size()) && id>=0){
@@ -1285,5 +1223,18 @@ public:
 
 
 };
+
+template<class T>
+vector<Point2<T> > plan_best(vector<Point2<T> > vPoints);
+
+
+
+
+
+
+
+
+
+
 
 #endif

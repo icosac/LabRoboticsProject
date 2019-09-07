@@ -62,6 +62,9 @@ namespace CHRONO {
   }
 }
 
+//debug blocks most things, wait only something
+// #define WAIT
+// #define DEBUG
 
 #define NAME(x) #x ///<Returns the name of the variable
 
@@ -85,7 +88,7 @@ void my_imshow(const char* win_name, Mat img, bool reset=false);
 /*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed.
  *
  */
-void mywaitkey();
+void mywaitkey(const char c='q');
 
 /*!\brief Function to use after my_imshow() for keeping the image opened until a key is pressed. When a key is pressed a specific window is closed.
  *
@@ -94,13 +97,14 @@ void mywaitkey();
 void mywaitkey(string windowName);
 
 
-enum EXCEPTION_TYPE {EXISTS, SIZE};
+enum EXCEPTION_TYPE {GENERAL, EXISTS, SIZE};
 
 //TODO document
 template<class T>
 class MyException : public exception {
 private:
-  stringstream exceptString(T value) const {
+  template<class T1>
+  stringstream exceptString(T1 value) const {
     stringstream out;
     out << value;
     return out;
@@ -110,11 +114,16 @@ public:
   EXCEPTION_TYPE type;
   T a;
   int b;
-  MyException(EXCEPTION_TYPE _type, T _a, int _b) : type(_type), a(_a), b(_b) {}
+  string s;
+  MyException(EXCEPTION_TYPE _type, T _a, int _b, string _s = "???") : type(_type), a(_a), b(_b), s(_s){}
   
   const char * what() const throw (){
     string ret;
     switch(type){
+      case GENERAL: {
+        ret=NAME(type)+string("_Exception: ")+exceptString(a).str()+" at line: "+exceptString(b).str()+" in file: "+exceptString(s).str();
+        break;
+      }
       case EXISTS:{
         ret=NAME(type)+string("_Exception: element already exists: ")+exceptString(a).str()+" at pos: "+exceptString(b).str();
         break;
@@ -123,11 +132,12 @@ public:
         ret=NAME(tyoe)+string("_Exception: sizes are different: ")+exceptString(a).str()+"!="+exceptString(b).str();
       }
     }
-    return ret.c_str();
+    cout << ret.c_str() << endl;
+    return "";
   }
 };
 
-//Taken from Paolo Bevilaqua and Valerio Magnago
+//DEFAULT FOR EXAM
 #include <time.h>
 #include <cstdint>
 
