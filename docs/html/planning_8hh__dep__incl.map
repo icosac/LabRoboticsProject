@@ -1,6 +1,8 @@
 <map id="src/include/planning.hh" name="src/include/planning.hh">
-<area shape="rect" id="node1" title=" " alt="" coords="116,5,274,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="235,5,393,31"/>
 <area shape="rect" id="node2" href="$planning_8cc.html" title=" " alt="" coords="5,79,116,104"/>
-<area shape="rect" id="node3" href="$main_8cc.html" title=" " alt="" coords="139,79,251,104"/>
-<area shape="rect" id="node4" href="$planning__run_8cc.html" title=" " alt="" coords="275,79,435,104"/>
+<area shape="rect" id="node3" href="$robot_project_8hh.html" title=" " alt="" coords="140,79,319,104"/>
+<area shape="rect" id="node5" href="$main_8cc.html" title=" " alt="" coords="343,79,455,104"/>
+<area shape="rect" id="node6" href="$planning__run_8cc.html" title=" " alt="" coords="479,79,639,104"/>
+<area shape="rect" id="node4" href="$robot_project_8cc.html" title=" " alt="" coords="164,152,296,177"/>
 </map>

@@ -8,6 +8,7 @@ var searchData=
   ['getbottompt',['GetBottomPt',['../namespace_clipper_lib.html#a52148a9babd2c3227e9088881faa4fe5',1,'ClipperLib']]],
   ['getbounds',['GetBounds',['../class_clipper_lib_1_1_clipper_base.html#a5590a5454248ac3f6beeba7f9690f62e',1,'ClipperLib::ClipperBase']]],
   ['getcenter',['getCenter',['../class_object.html#aa624c3f9e2958743a0ae7efc78f5d586',1,'Object']]],
+  ['getconversionparameters',['getConversionParameters',['../detection_8cc.html#a1fe374ce92cf93eccbf3e374971f9b42',1,'getConversionParameters(Mat &amp;transf, const bool get):&#160;detection.cc'],['../detection_8hh.html#a8d8ce60a84fb2a955ec798ee17345ce2',1,'getConversionParameters(Mat &amp;transf, const bool get=true):&#160;detection.cc']]],
   ['getdubins',['getDubins',['../class_dubins_set.html#a421897996d88df8eb7dad214d7feb84b',1,'DubinsSet']]],
   ['getdubinses',['getDubinses',['../class_dubins_set.html#a2d0216573331d2ca6bf36ea213c4d434',1,'DubinsSet']]],
   ['getdx',['GetDx',['../namespace_clipper_lib.html#adb890cca4fa2a71731b91968cf4ff49d',1,'ClipperLib']]],

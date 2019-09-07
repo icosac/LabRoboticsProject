@@ -6,5 +6,6 @@ var searchData=
   ['find_5fcontours',['find_contours',['../detection_8cc.html#a26fa1540618b22726a42c239030662b4',1,'find_contours(const Mat &amp;img, const Mat &amp;original, const COLOR_TYPE color):&#160;detection.cc'],['../detection_8hh.html#a26fa1540618b22726a42c239030662b4',1,'find_contours(const Mat &amp;img, const Mat &amp;original, const COLOR_TYPE color):&#160;detection.cc']]],
   ['find_5frect',['find_rect',['../unwrapping_8cc.html#ac30b4dbae9022e84e10ef97ba156c581',1,'find_rect(vector&lt; Point &gt; &amp;_rect, const int &amp;width, const int &amp;height):&#160;unwrapping.cc'],['../unwrapping_8hh.html#ac30b4dbae9022e84e10ef97ba156c581',1,'find_rect(vector&lt; Point &gt; &amp;_rect, const int &amp;width, const int &amp;height):&#160;unwrapping.cc']]],
   ['findnextlocmin',['FindNextLocMin',['../namespace_clipper_lib.html#a2e62d7a90f565dceab371c8ed250131e',1,'ClipperLib']]],
-  ['firstisbottompt',['FirstIsBottomPt',['../namespace_clipper_lib.html#a9811846db2631994c7e6a54327bf251d',1,'ClipperLib']]]
+  ['firstisbottompt',['FirstIsBottomPt',['../namespace_clipper_lib.html#a9811846db2631994c7e6a54327bf251d',1,'ClipperLib']]],
+  ['fromvptopath',['fromVpToPath',['../planning_8cc.html#a0a3e9f80c221e62df622b89c26ab42e2',1,'fromVpToPath(vector&lt; Point2&lt; int &gt; &gt; &amp;vp, Path &amp;path):&#160;planning.cc'],['../planning_8hh.html#a0a3e9f80c221e62df622b89c26ab42e2',1,'fromVpToPath(vector&lt; Point2&lt; int &gt; &gt; &amp;vp, Path &amp;path):&#160;planning.cc']]]
 ];

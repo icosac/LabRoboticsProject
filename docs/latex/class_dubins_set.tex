@@ -63,10 +63,10 @@ Given a set of point, compute the shortest set of \mbox{\hyperlink{class_dubins}
 \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $>$}]{\+\_\+dubinses,  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor that given a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} computes stores all of them. 
-\begin{DoxyParams}{Parameters}
-{\em \+\_\+dubinses} & The {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+dubinses} & The {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \\
 \hline
-{\em \+\_\+kmax} & The maximum curvature. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+kmax} & The maximum curvature. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_dubins_set_a60ae5e28b776ad39e965d4019e448d94}\label{class_dubins_set_a60ae5e28b776ad39e965d4019e448d94}} 
@@ -77,10 +77,10 @@ Constructor that given a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\
 \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ $>$}]{\+\_\+confs,  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor that takes a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}s and computes the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} between them. 
-\begin{DoxyParams}{Parameters}
-{\em \+\_\+confs} & The {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}s. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+confs} & The {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}s. \\
 \hline
-{\em \+\_\+kmax} & The maximum curvature to be used. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+kmax} & The maximum curvature to be used. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_dubins_set_a209e9ffddb76419c3ac103afb73b2b10}\label{class_dubins_set_a209e9ffddb76419c3ac103afb73b2b10}} 
@@ -95,14 +95,14 @@ Constructor that takes a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\
 Constructor that given a start {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}, an end {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} and a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}}, computes the best path from start to end through all points by brute forcing all possible angles. Since this approach is based on a brute force algorithm, it\textquotesingle{}s best not to use this on too many points. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em start} & {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of start. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em start} & {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of start. \\
 \hline
-{\em end} & {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of end. \\
+\mbox{\texttt{ in}}  & {\em end} & {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of end. \\
 \hline
-{\em \+\_\+points} & {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} containing all the intermediate points. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+points} & {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} containing all the intermediate points. \\
 \hline
-{\em \+\_\+kmax} & The maximum curvature of the system. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+kmax} & The maximum curvature of the system. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_dubins_set_a4a85ce188aeabebf88509c2f60ceff31}\label{class_dubins_set_a4a85ce188aeabebf88509c2f60ceff31}} 
@@ -117,10 +117,10 @@ Constructor that given a start {\ttfamily \mbox{\hyperlink{class_configuration2}
 Constructor that computes a series of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} given only {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} points via brute force. Since this approach is based on a brute force algorithm, it\textquotesingle{}s best not to use this on too many points. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em \+\_\+points} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all points. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+points} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all points. \\
 \hline
-{\em \+\_\+kmax} & The maximum curvature to be used for all {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+kmax} & The maximum curvature to be used for all {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \\
 \hline
 \end{DoxyParams}
 
@@ -134,16 +134,16 @@ Constructor that computes a series of {\ttfamily \mbox{\hyperlink{class_dubins}{
 void \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::find\+\_\+best (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{\+\_\+points,  }\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \&}]{\+\_\+angles,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{area = {\ttfamily \mbox{\hyperlink{maths_8hh_ad7760000c41920a1ae5cf0f6bf0e4c77}{A\+\_\+2\+PI}}},  }\item[{double}]{tries = {\ttfamily 4.0},  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Function to compute the best path. This function calls {\ttfamily \mbox{\hyperlink{dubins_8hh_a16cf89e561eae9ea10a39e40432af238}{disp()}}} in order to calculate all possible angles, and then creates a {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} for each possibility choosing the one with the minimum length. 
-\begin{DoxyParams}{Parameters}
-{\em \+\_\+points} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} through which the path should flow. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+points} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} through which the path should flow. \\
 \hline
-{\em \+\_\+angles} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} containing all base {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+angles} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} containing all base {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}. \\
 \hline
-{\em area} & This is the angle around each angle to be \char`\"{}scanned\char`\"{}. \\
+\mbox{\texttt{ in}}  & {\em area} & This is the angle around each angle to be \char`\"{}scanned\char`\"{}. \\
 \hline
-{\em tries} & The number of discretizations that should be made. \\
+\mbox{\texttt{ in}}  & {\em tries} & The number of discretizations that should be made. \\
 \hline
-{\em \+\_\+kmax} & The maximum curvature to be used. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+kmax} & The maximum curvature to be used. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_dubins_set_a421897996d88df8eb7dad214d7feb84b}\label{class_dubins_set_a421897996d88df8eb7dad214d7feb84b}} 
@@ -154,8 +154,8 @@ Function to compute the best path. This function calls {\ttfamily \mbox{\hyperli
 \mbox{\hyperlink{class_dubins}{Dubins}}$<$T$>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Dubins (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Thid functions returns a specific {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} from the set. 
-\begin{DoxyParams}{Parameters}
-{\em id} & The position of the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} in the set. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em id} & The position of the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} in the set. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

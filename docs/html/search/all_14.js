@@ -3,7 +3,7 @@ var searchData=
   ['ulong64',['ulong64',['../namespace_clipper_lib.html#a031fec5e97eb7e08708f1cafa53a232d',1,'ClipperLib']]],
   ['unassigned',['Unassigned',['../namespace_clipper_lib.html#ae8c8149f9414a1459f7691ecd2f94669',1,'ClipperLib']]],
   ['unmaps',['unMaps',['../class_settings.html#a7cbf0234eaca6582ce982f0cf756d282',1,'Settings::unMaps(Tuple&lt; int &gt; ids=Tuple&lt; int &gt;())'],['../class_settings.html#a0619c378aff05b5762afe0280b40e07a',1,'Settings::unMaps(int id=-1)'],['../class_settings.html#a6e62c5eb18f6abc4bcbcd11e018fda8b',1,'Settings::unMaps(string _unMapName)'],['../class_settings.html#aa89550d142cb4101faf35af214f4edff',1,'Settings::unMaps(Tuple&lt; string &gt; _unMapNames)']]],
-  ['unwrapping',['unwrapping',['../unwrapping_8cc.html#ae232c3264987d57a223a39226929da29',1,'unwrapping():&#160;unwrapping.cc'],['../unwrapping_8hh.html#ae232c3264987d57a223a39226929da29',1,'unwrapping():&#160;unwrapping.cc']]],
+  ['unwrapping',['unwrapping',['../unwrapping_8cc.html#ac041ab9990eb25243d6e5da1e3d47e96',1,'unwrapping(const bool _imgRead, Mat *img):&#160;unwrapping.cc'],['../unwrapping_8hh.html#a9497176b75c2f48a3a110adce953312f',1,'unwrapping(const bool _imgRead=true, Mat *img=nullptr):&#160;unwrapping.cc']]],
   ['unwrapping_2ecc',['unwrapping.cc',['../unwrapping_8cc.html',1,'']]],
   ['unwrapping_2ehh',['unwrapping.hh',['../unwrapping_8hh.html',1,'']]],
   ['unwrapping_5frun_2ecc',['unwrapping_run.cc',['../unwrapping__run_8cc.html',1,'']]],

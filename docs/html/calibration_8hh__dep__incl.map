@@ -1,6 +1,8 @@
 <map id="src/include/calibration.hh" name="src/include/calibration.hh">
-<area shape="rect" id="node1" title="Library for calibration." alt="" coords="130,5,298,31"/>
+<area shape="rect" id="node1" title="Library for calibration." alt="" coords="243,5,411,31"/>
 <area shape="rect" id="node2" href="$calibration_8cc.html" title=" " alt="" coords="5,85,126,111"/>
-<area shape="rect" id="node3" href="$calibration__run_8cc.html" title=" " alt="" coords="150,79,277,117"/>
-<area shape="rect" id="node4" href="$main_8cc.html" title=" " alt="" coords="300,85,412,111"/>
+<area shape="rect" id="node3" href="$robot_project_8hh.html" title=" " alt="" coords="149,85,329,111"/>
+<area shape="rect" id="node5" href="$calibration__run_8cc.html" title=" " alt="" coords="353,79,480,117"/>
+<area shape="rect" id="node6" href="$main_8cc.html" title=" " alt="" coords="503,85,615,111"/>
+<area shape="rect" id="node4" href="$robot_project_8cc.html" title=" " alt="" coords="173,165,305,191"/>
 </map>

@@ -85,12 +85,12 @@ Plain constructor of {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}
 \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$}]{\+\_\+\+P0,  }\item[{const T1}]{\+\_\+k,  }\item[{const T1}]{\+\_\+l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Creates a new {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} given a start {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}, the curvature and the length of the arc calling {\ttfamily \mbox{\hyperlink{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}{circline()}}}. 
-\begin{DoxyParams}{Parameters}
-{\em \+\_\+\+P0} & The starting {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+\+P0} & The starting {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. \\
 \hline
-{\em \+\_\+k} & The curvature of the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+k} & The curvature of the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
 \hline
-{\em \+\_\+l} & The length of the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+l} & The length of the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. \\
 \hline
 \end{DoxyParams}
 
@@ -104,18 +104,18 @@ Creates a new {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} given
 void \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T1, T2 $>$\+::draw (\begin{DoxyParamCaption}\item[{double}]{dimX,  }\item[{double}]{dimY,  }\item[{double}]{inc,  }\item[{Scalar}]{scl,  }\item[{Mat \&}]{image,  }\item[{double}]{S\+H\+I\+FT }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 This function draws the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. 
-\begin{DoxyParams}{Parameters}
-{\em dimX} & The dimension X of the Mat. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dimX} & The dimension X of the Mat. \\
 \hline
-{\em dimY} & The dimension Y of the Mat. \\
+\mbox{\texttt{ in}}  & {\em dimY} & The dimension Y of the Mat. \\
 \hline
-{\em inc} & The value to scale each point. \\
+\mbox{\texttt{ in}}  & {\em inc} & The value to scale each point. \\
 \hline
-{\em scl} & The Scalar that defines the color to use. \\
+\mbox{\texttt{ in}}  & {\em scl} & The Scalar that defines the color to use. \\
 \hline
-{\em image} & The Mat where to draw the points. \\
+\mbox{\texttt{ in}}  & {\em image} & The Mat where to draw the points. \\
 \hline
-{\em S\+H\+I\+FT} & The value to use to shift the points to make them stay inside the matrix. \\
+\mbox{\texttt{ in}}  & {\em S\+H\+I\+FT} & The value to use to shift the points to make them stay inside the matrix. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_dubins_arc_af3fefdb90ba414db3560ef12b329f54a}\label{class_dubins_arc_af3fefdb90ba414db3560ef12b329f54a}} 
@@ -152,8 +152,8 @@ Returns the length of the arc.
 Splits the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} in pieces of \+\_\+L length. This function starts from the begining of the arc and computes n new arcs through the {\ttfamily \mbox{\hyperlink{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}{circline()}}} function using the curvature of the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} and \+\_\+L as the length. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em \+\_\+L} & The length that each points should have. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+L} & The length that each points should have. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

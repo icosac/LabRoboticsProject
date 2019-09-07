@@ -1,10 +1,11 @@
 <map id="src/include/dubins.hh" name="src/include/dubins.hh">
-<area shape="rect" id="node1" title=" " alt="" coords="819,5,966,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="866,5,1012,31"/>
 <area shape="rect" id="node2" href="$maths_8hh.html" title=" " alt="" coords="681,79,757,104"/>
 <area shape="rect" id="node4" title=" " alt="" coords="1349,225,1417,251"/>
 <area shape="rect" id="node5" title=" " alt="" coords="5,225,78,251"/>
 <area shape="rect" id="node16" title=" " alt="" coords="863,152,921,177"/>
 <area shape="rect" id="node18" title=" " alt="" coords="945,152,999,177"/>
+<area shape="rect" id="node20" title=" " alt="" coords="1073,79,1125,104"/>
 <area shape="rect" id="node3" href="$utils_8hh.html" title=" " alt="" coords="592,152,656,177"/>
 <area shape="rect" id="node11" title=" " alt="" coords="1181,225,1324,251"/>
 <area shape="rect" id="node15" title=" " alt="" coords="782,152,840,177"/>

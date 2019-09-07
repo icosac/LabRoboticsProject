@@ -19,7 +19,7 @@ T \mbox{\hyperlink{class_tuple_aabf82c5d0f19c9a8f6a8f01d95801162}{get}} (const \
 \item 
 void \mbox{\hyperlink{class_tuple_a5d3ee2809d790543195a6e2075aef7d0}{add}} (const T \+\_\+new)
 \begin{DoxyCompactList}\small\item\em Adds a value at the end of the list. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_tuple_a47e90df1240ffe62f6fd177ceea52a39}{add\+If\+Not}} (T \+\_\+el)
+void \mbox{\hyperlink{class_tuple_ac7699d6813e11c18f436098e9f76ebf0}{add\+If\+Not}} (T \+\_\+el, bool \+\_\+throw=false)
 \item 
 \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_tuple_a53a1abc3017d30cf1a6d6858caee8ce8}{remove}} (const T pos)
 \begin{DoxyCompactList}\small\item\em Removes a value from the list. \end{DoxyCompactList}\item 
@@ -61,9 +61,11 @@ string \mbox{\hyperlink{class_tuple_a2c8e5f6fb1abb2b11ab222b7ce772569}{to\+\_\+s
 \item 
 \mbox{\hyperlink{class_tuple_a9a4516890830c7a8bf96c9325718c8c3}{operator std\+::string}} () const
 \item 
+\mbox{\hyperlink{class_tuple_a4189d6fe009e00fbc81061bcad9ee856}{operator vector$<$ T $>$}} () const
+\begin{DoxyCompactList}\small\item\em Overload of cast to vector of same type. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T1 $>$ }\\\mbox{\hyperlink{class_tuple_a924a25df1578ffab148c69a1a1000491}{operator vector$<$ T1 $>$}} () const
-\begin{DoxyCompactList}\small\item\em Overload of cast to vector. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \& \mbox{\hyperlink{class_tuple_acfc65dc0a9af20f2ff8cff2bf3448324}{operator\mbox{[}$\,$\mbox{]}}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} index)
+\begin{DoxyCompactList}\small\item\em Overload of cast to vector of different type. \end{DoxyCompactList}\item 
+T \& \mbox{\hyperlink{class_tuple_ae18a93053af932997709798b3fd5d12d}{operator\mbox{[}$\,$\mbox{]}}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} index)
 \begin{DoxyCompactList}\small\item\em Overloading \mbox{[}\mbox{]} operator to access elements in array style. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{maths_8hh_ad22dcdeefda7d41523cc1604953eb6cc}{tuple\+Iter}} \mbox{\hyperlink{class_tuple_a205dfb3c3dcad03ced830b5c9687d225}{begin}} ()
 \begin{DoxyCompactList}\small\item\em Iterator. \end{DoxyCompactList}\item 
@@ -140,12 +142,12 @@ Adds a value at the end of the list.
 \mbox{\texttt{ in}}  & {\em \+\_\+new} & The new value to be added. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_tuple_a47e90df1240ffe62f6fd177ceea52a39}\label{class_tuple_a47e90df1240ffe62f6fd177ceea52a39}} 
+\mbox{\Hypertarget{class_tuple_ac7699d6813e11c18f436098e9f76ebf0}\label{class_tuple_ac7699d6813e11c18f436098e9f76ebf0}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!addIfNot@{addIfNot}}
 \index{addIfNot@{addIfNot}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
 \subsubsection{\texorpdfstring{addIfNot()}{addIfNot()}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
-void \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::add\+If\+Not (\begin{DoxyParamCaption}\item[{T}]{\+\_\+el }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::add\+If\+Not (\begin{DoxyParamCaption}\item[{T}]{\+\_\+el,  }\item[{bool}]{\+\_\+throw = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_tuple_a1173bba1687b01721f9e4e4c73de0d2a}\label{class_tuple_a1173bba1687b01721f9e4e4c73de0d2a}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!ahead@{ahead}}
@@ -351,6 +353,20 @@ The Manhattan distance between the two \mbox{\hyperlink{class_tuple}{Tuple}}.
 {\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::operator std\+::string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+\mbox{\Hypertarget{class_tuple_a4189d6fe009e00fbc81061bcad9ee856}\label{class_tuple_a4189d6fe009e00fbc81061bcad9ee856}} 
+\index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!operator vector$<$ T $>$@{operator vector$<$ T $>$}}
+\index{operator vector$<$ T $>$@{operator vector$<$ T $>$}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator vector$<$ T $>$()}{operator vector< T >()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::operator vector$<$ T $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Overload of cast to vector of same type. 
+
+\begin{DoxyReturn}{Returns}
+A vector containing the values of elements. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_tuple_a924a25df1578ffab148c69a1a1000491}\label{class_tuple_a924a25df1578ffab148c69a1a1000491}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!operator vector$<$ T1 $>$@{operator vector$<$ T1 $>$}}
 \index{operator vector$<$ T1 $>$@{operator vector$<$ T1 $>$}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
@@ -361,8 +377,13 @@ template$<$class T1 $>$ \\
 
 
 
-Overload of cast to vector. 
+Overload of cast to vector of different type. 
 
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Type} & of vector to cast to. \\
+\hline
+\end{DoxyTemplParams}
 \begin{DoxyReturn}{Returns}
 A vector containing the values of elements. 
 \end{DoxyReturn}
@@ -387,12 +408,12 @@ A vector containing the values of elements.
 {\footnotesize\ttfamily template$<$class T$>$ \\
 bool \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$}]{\+\_\+t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_tuple_acfc65dc0a9af20f2ff8cff2bf3448324}\label{class_tuple_acfc65dc0a9af20f2ff8cff2bf3448324}} 
+\mbox{\Hypertarget{class_tuple_ae18a93053af932997709798b3fd5d12d}\label{class_tuple_ae18a93053af932997709798b3fd5d12d}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
 \index{operator\mbox{[}\mbox{]}@{operator[]}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
 \subsubsection{\texorpdfstring{operator[]()}{operator[]()}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
-\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}\& \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+T\& \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

@@ -2,6 +2,7 @@
 \label{unwrapping_8hh}\index{src/include/unwrapping.hh@{src/include/unwrapping.hh}}
 {\ttfamily \#include $<$utils.\+hh$>$}\newline
 {\ttfamily \#include $<$settings.\+hh$>$}\newline
+{\ttfamily \#include $<$detection.\+hh$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
@@ -30,8 +31,10 @@ This graph shows which files directly or indirectly include this file\+:
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{unwrapping_8hh_ae232c3264987d57a223a39226929da29}{unwrapping}} ()
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{unwrapping_8hh_a9497176b75c2f48a3a110adce953312f}{unwrapping}} (const bool \+\_\+img\+Read=true, Mat $\ast$img=nullptr)
 \begin{DoxyCompactList}\small\item\em Take some images according to a xml and unwrap the black rectangle inside the image after appling undistortion trasformation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{unwrapping_8hh_ac0327df69102bf644a011c245ae7ad4f}{create\+Points\+High}} (const vector$<$ Point $>$ \&rect\+Low, vector$<$ Point $>$ \&rect\+High)
+\begin{DoxyCompactList}\small\item\em Store in the given vector the white corners in the same order as the given black ones. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{unwrapping_8hh_a3cf7df08897ed4d1a7ddcf055b18cca8}{load\+Coefficients}} (const string filename, Mat \&camera\+\_\+matrix, Mat \&dist\+\_\+coeffs)
 \begin{DoxyCompactList}\small\item\em Load coefficients from a file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{unwrapping_8hh_ac30b4dbae9022e84e10ef97ba156c581}{find\+\_\+rect}} (vector$<$ Point $>$ \&\+\_\+rect, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \&width, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \&height)
@@ -39,6 +42,23 @@ void \mbox{\hyperlink{unwrapping_8hh_ac30b4dbae9022e84e10ef97ba156c581}{find\+\_
 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{unwrapping_8hh_ac0327df69102bf644a011c245ae7ad4f}\label{unwrapping_8hh_ac0327df69102bf644a011c245ae7ad4f}} 
+\index{unwrapping.hh@{unwrapping.hh}!createPointsHigh@{createPointsHigh}}
+\index{createPointsHigh@{createPointsHigh}!unwrapping.hh@{unwrapping.hh}}
+\subsubsection{\texorpdfstring{createPointsHigh()}{createPointsHigh()}}
+{\footnotesize\ttfamily void create\+Points\+High (\begin{DoxyParamCaption}\item[{const vector$<$ Point $>$ \&}]{rect\+Low,  }\item[{vector$<$ Point $>$ \&}]{rect\+High }\end{DoxyParamCaption})}
+
+
+
+Store in the given vector the white corners in the same order as the given black ones. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em rect\+Low} & A vector where the low corners of the rectangle (black markers position) are stored. \\
+\hline
+\mbox{\texttt{ out}}  & {\em rect\+High} & A vector where the high corners of the rectangle (white markers position) will be stored. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{unwrapping_8hh_ac30b4dbae9022e84e10ef97ba156c581}\label{unwrapping_8hh_ac30b4dbae9022e84e10ef97ba156c581}} 
 \index{unwrapping.hh@{unwrapping.hh}!find\_rect@{find\_rect}}
 \index{find\_rect@{find\_rect}!unwrapping.hh@{unwrapping.hh}}
@@ -77,11 +97,11 @@ Load two matrix \textquotesingle{}camera\+\_\+matrix\textquotesingle{} and \text
 \mbox{\texttt{ out}}  & {\em dist\+\_\+coeffs} & Where the \textquotesingle{}distortion\+\_\+coefficients\textquotesingle{} matrix is saved. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{unwrapping_8hh_ae232c3264987d57a223a39226929da29}\label{unwrapping_8hh_ae232c3264987d57a223a39226929da29}} 
+\mbox{\Hypertarget{unwrapping_8hh_a9497176b75c2f48a3a110adce953312f}\label{unwrapping_8hh_a9497176b75c2f48a3a110adce953312f}} 
 \index{unwrapping.hh@{unwrapping.hh}!unwrapping@{unwrapping}}
 \index{unwrapping@{unwrapping}!unwrapping.hh@{unwrapping.hh}}
 \subsubsection{\texorpdfstring{unwrapping()}{unwrapping()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} unwrapping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} unwrapping (\begin{DoxyParamCaption}\item[{const bool}]{\+\_\+img\+Read,  }\item[{Mat $\ast$}]{img }\end{DoxyParamCaption})}
 
 
 
@@ -92,6 +112,13 @@ apply the calibration (undistortion trasformation) thanks to the matrices load w
 Then, with the use of a filter for the black the region of interest (a rectangle) is identified and all the perspective is rotated for reach a top view of the rectangle.~\newline
 Finally, the images are saved on some files.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+img\+Read} & Boolean flag that says if load or not the image from file, or as a function parameter. In addition, also the return procedure change if true the image is saved on the disk otherwise is saved on the img function parameter. True=load and store on file. \\
+\hline
+ & {\em \mbox{[}in/out\mbox{]}} & img The image that eventually is loaded from the function. And the one that will be modified for returning the elaborated frame. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A 0 is return if the function reach the end. 
 \end{DoxyReturn}

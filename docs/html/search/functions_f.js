@@ -1,7 +1,9 @@
 var searchData=
 [
   ['parsefirstleft',['ParseFirstLeft',['../namespace_clipper_lib.html#ab4671015e7694c784513f3d3ea4405ce',1,'ClipperLib']]],
-  ['planning',['planning',['../planning_8cc.html#ad3e1a145dd1a47f23969c6f6f6d671eb',1,'planning():&#160;planning.cc'],['../planning_8hh.html#ad3e1a145dd1a47f23969c6f6f6d671eb',1,'planning():&#160;planning.cc']]],
+  ['plan_5fbest',['plan_best',['../dubins_8hh.html#ae0b0aa229802950d33214a8a9e63ce5e',1,'dubins.hh']]],
+  ['planning',['planning',['../planning_8cc.html#aeef9aecfb831780fd7775ac4e750aad8',1,'planning(const Mat &amp;img):&#160;planning.cc'],['../planning_8hh.html#aeef9aecfb831780fd7775ac4e750aad8',1,'planning(const Mat &amp;img):&#160;planning.cc']]],
+  ['planpath',['planPath',['../class_robot_project.html#ad9077931a89d2226e6675c6107adfc53',1,'RobotProject']]],
   ['point',['point',['../class_configuration2.html#a15ce37ad4eae9f4a980fc3578765984d',1,'Configuration2']]],
   ['point2',['Point2',['../class_point2.html#a4674f9e2fab693fc83afd5af234100d3',1,'Point2::Point2()'],['../class_point2.html#ae743063a4348bef19448aabf90901cb3',1,'Point2::Point2(const T _x, const T _y)'],['../class_point2.html#a436478e578e6c7df9ea1bf1136ad8764',1,'Point2::Point2(const cv::Point p)']]],
   ['pointcount',['PointCount',['../namespace_clipper_lib.html#a116d97a3199f4a29f2327b498af00469',1,'ClipperLib']]],
@@ -14,6 +16,7 @@ var searchData=
   ['poplocalminima',['PopLocalMinima',['../class_clipper_lib_1_1_clipper_base.html#aeaf9a35b1e38d1559f24ead2cf211854',1,'ClipperLib::ClipperBase']]],
   ['popscanbeam',['PopScanbeam',['../class_clipper_lib_1_1_clipper_base.html#acb0b72fccefe130d4dc2d3b114e4a2a6',1,'ClipperLib::ClipperBase']]],
   ['pow2',['pow2',['../maths_8hh.html#a054f7427a96b10baa550060a0376584c',1,'maths.hh']]],
+  ['preprocessmap',['preprocessMap',['../class_robot_project.html#a380adb448f0fcbc625df9401de3bb013',1,'RobotProject']]],
   ['preservecollinear',['PreserveCollinear',['../class_clipper_lib_1_1_clipper_base.html#a95c47199aeb139b13059968bc6056f44',1,'ClipperLib::ClipperBase::PreserveCollinear()'],['../class_clipper_lib_1_1_clipper_base.html#aa827cfffd9be40dba7d503a3da708b91',1,'ClipperLib::ClipperBase::PreserveCollinear(bool value)']]],
   ['print',['print',['../class_obstacle.html#a5484b8b93564f029d1e688b477be7d1d',1,'Obstacle::print()'],['../class_gate.html#afdf8579acddb7b4f5be42e861c2c1db2',1,'Gate::print()'],['../class_victim.html#a432fa2051a52fa66ba84170f4b822b91',1,'Victim::print()']]],
   ['printdimensions',['printDimensions',['../class_mapp.html#a0405773fd644d183c603b569e9957248',1,'Mapp']]],

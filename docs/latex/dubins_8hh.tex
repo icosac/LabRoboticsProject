@@ -5,6 +5,7 @@
 {\ttfamily \#include $<$sstream$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
 Include dependency graph for dubins.\+hh\+:
 \nopagebreak
 \begin{figure}[H]
@@ -40,8 +41,6 @@ class \mbox{\hyperlink{class_dubins_set}{Dubins\+Set$<$ T $>$}}
 \#define \mbox{\hyperlink{dubins_8hh_a2bda1a81ce3474772a8a1f165e54516e}{P\+R\+EC}}~100000
 \item 
 \#define \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}~0.\+5
-\item 
-\#define \mbox{\hyperlink{dubins_8hh_a3fd2b1bcd7ddcf506237987ad780f495}{D\+E\+L\+TA}}~M\+\_\+\+PI/180.\+0
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -54,7 +53,7 @@ static double \mbox{\hyperlink{dubins_8hh_a5c88710b236a514392351a4d13d2e767}{sin
 \begin{DoxyCompactList}\small\item\em Convert a value in base 10 to base {\ttfamily base} in a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. To each value an inc is muiltiplied and the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} is added. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{dubins_8hh_a16cf89e561eae9ea10a39e40432af238}{disp}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ $>$ \&t, \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \&z, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} N, const \mbox{\hyperlink{class_angle}{Angle}} \&inc, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} start\+Pos=0, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} end\+Pos=0)
 \begin{DoxyCompactList}\small\item\em Compute the arrangements. Since each arrangement can be computed as $n_{parts}$, where each values is then multiplied for the increment and is added to the initial values. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ \mbox{\hyperlink{dubins_8hh_afa53a085a4bb61c12f09c88a5f583dbd}{reduce\+\_\+points}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ init\+\_\+points)
+{\footnotesize template$<$class T $>$ }\\vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ \mbox{\hyperlink{dubins_8hh_ae0b0aa229802950d33214a8a9e63ce5e}{plan\+\_\+best}} (vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ v\+Points)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -92,12 +91,6 @@ double \mbox{\hyperlink{dubins_8hh_a715f7de2f92786df84a14e5a013b94e9}{elapsed\+L
 
 
 \subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{dubins_8hh_a3fd2b1bcd7ddcf506237987ad780f495}\label{dubins_8hh_a3fd2b1bcd7ddcf506237987ad780f495}} 
-\index{dubins.hh@{dubins.hh}!DELTA@{DELTA}}
-\index{DELTA@{DELTA}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{DELTA}{DELTA}}
-{\footnotesize\ttfamily \#define D\+E\+L\+TA~M\+\_\+\+PI/180.\+0}
-
 \mbox{\Hypertarget{dubins_8hh_a940b85a83458e94519f2685b33ddd276}\label{dubins_8hh_a940b85a83458e94519f2685b33ddd276}} 
 \index{dubins.hh@{dubins.hh}!KMAX@{KMAX}}
 \index{KMAX@{KMAX}!dubins.hh@{dubins.hh}}
@@ -126,12 +119,12 @@ double \mbox{\hyperlink{dubins_8hh_a715f7de2f92786df84a14e5a013b94e9}{elapsed\+L
 {\footnotesize\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$double$>$ circline (\begin{DoxyParamCaption}\item[{double}]{\+\_\+L,  }\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$}]{\+\_\+\+P0,  }\item[{double}]{\+\_\+K }\end{DoxyParamCaption})}
 
 Computes an arrival point from an initial configuration through an arc of length \+\_\+L and curvature \+\_\+K. 
-\begin{DoxyParams}{Parameters}
-{\em \+\_\+L} & The length of the arch. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+L} & The length of the arch. \\
 \hline
-{\em \+\_\+\+P0} & The starting {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the arc. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+\+P0} & The starting {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the arc. \\
 \hline
-{\em \+\_\+K} & The curvature of the arc. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+K} & The curvature of the arc. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -148,35 +141,26 @@ The ending {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} o
 Compute the arrangements. Since each arrangement can be computed as $n_{parts}$, where each values is then multiplied for the increment and is added to the initial values. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em t} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}s containing the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em t} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}s containing the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
 \hline
-{\em z} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\mbox{\texttt{ in}}  & {\em z} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
 \hline
-{\em N} & The number of iterations. Each iteration is going to be converted in base parts. \\
+\mbox{\texttt{ in}}  & {\em N} & The number of iterations. Each iteration is going to be converted in base parts. \\
 \hline
-{\em inc} & The increment to give each initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}. \\
+\mbox{\texttt{ in}}  & {\em inc} & The increment to give each initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}. \\
 \hline
-{\em start\+Pos} & The initial position to consider in {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. \\
+\mbox{\texttt{ in}}  & {\em start\+Pos} & The initial position to consider in {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. \\
 \hline
-{\em end\+Pos} & The final position to consider in {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyParams}{Parameters}
-{\em z} & Vector to use \\
-\hline
-{\em N} & Number of time to \char`\"{}iterate\char`\"{} \\
-\hline
-{\em inc} & Incrementation \\
+\mbox{\texttt{ in}}  & {\em end\+Pos} & The final position to consider in {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{dubins_8hh_afa53a085a4bb61c12f09c88a5f583dbd}\label{dubins_8hh_afa53a085a4bb61c12f09c88a5f583dbd}} 
-\index{dubins.hh@{dubins.hh}!reduce\_points@{reduce\_points}}
-\index{reduce\_points@{reduce\_points}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{reduce\_points()}{reduce\_points()}}
+\mbox{\Hypertarget{dubins_8hh_ae0b0aa229802950d33214a8a9e63ce5e}\label{dubins_8hh_ae0b0aa229802950d33214a8a9e63ce5e}} 
+\index{dubins.hh@{dubins.hh}!plan\_best@{plan\_best}}
+\index{plan\_best@{plan\_best}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{plan\_best()}{plan\_best()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-vector$<$\mbox{\hyperlink{class_point2}{Point2}}$<$T$>$ $>$ reduce\+\_\+points (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{init\+\_\+points }\end{DoxyParamCaption})}
+vector$<$\mbox{\hyperlink{class_point2}{Point2}}$<$T$>$ $>$ plan\+\_\+best (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{v\+Points }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{dubins_8hh_a5c88710b236a514392351a4d13d2e767}\label{dubins_8hh_a5c88710b236a514392351a4d13d2e767}} 
 \index{dubins.hh@{dubins.hh}!sinc@{sinc}}
@@ -185,8 +169,8 @@ vector$<$\mbox{\hyperlink{class_point2}{Point2}}$<$T$>$ $>$ reduce\+\_\+points (
 {\footnotesize\ttfamily static double sinc (\begin{DoxyParamCaption}\item[{double}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 Compute the sinc of the function defined as\+: \[ sinc(t)=\frac{sin(t)}{t}\quad t\neq 0 1\quad t=0 \] 
-\begin{DoxyParams}{Parameters}
-{\em t} & The value of the angle to be used. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em t} & The value of the angle to be used. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -203,22 +187,22 @@ The result of the previous formula.
 Convert a value in base 10 to base {\ttfamily base} in a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. To each value an inc is muiltiplied and the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} is added. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em z} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em z} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
 \hline
-{\em n} & The value to be converted. \\
+\mbox{\texttt{ in}}  & {\em n} & The value to be converted. \\
 \hline
-{\em base} & The base. \\
+\mbox{\texttt{ in}}  & {\em base} & The base. \\
 \hline
-{\em inc} & The increment. \\
+\mbox{\texttt{ in}}  & {\em inc} & The increment. \\
 \hline
-{\em start\+Pos} & The starting position of the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\mbox{\texttt{ in}}  & {\em start\+Pos} & The starting position of the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
 \hline
-{\em end\+Pos} & The ending position of the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\mbox{\texttt{ in}}  & {\em end\+Pos} & The ending position of the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+A vector containing the digits of the number converted to the specified base. 
 \end{DoxyReturn}
 
 

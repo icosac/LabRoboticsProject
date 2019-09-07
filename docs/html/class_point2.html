@@ -97,7 +97,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a967025762c1b4dede5eb822f5c29522e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the ordinate value.  <a href="#a967025762c1b4dede5eb822f5c29522e">More...</a><br /></td></tr>
 <tr class="separator:a967025762c1b4dede5eb822f5c29522e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae55da7a4bd7fe7491ebc0134a39bb791"><td class="memTemplParams" colspan="2">template&lt;class T1 &gt; </td></tr>
-<tr class="memitem:ae55da7a4bd7fe7491ebc0134a39bb791"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_point2.html#ae55da7a4bd7fe7491ebc0134a39bb791">offset</a> (const T1 _offset, const <a class="el" href="class_angle.html">Angle</a> <a class="el" href="class_point2.html#a4557e6d2741e1950ddfc6f854cd4a1fa">th</a>)</td></tr>
+<tr class="memitem:ae55da7a4bd7fe7491ebc0134a39bb791"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_point2.html#ae55da7a4bd7fe7491ebc0134a39bb791">offset</a> (const T1 _offset, const <a class="el" href="class_angle.html">Angle</a> <a class="el" href="class_point2.html#a0ef2bb867cce9a4f184f00af809bc766">th</a>)</td></tr>
 <tr class="memdesc:ae55da7a4bd7fe7491ebc0134a39bb791"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function compute the offset of the point given a vector, that is the lenght of the vector and its angle. The angle must be an <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> variable.  <a href="#ae55da7a4bd7fe7491ebc0134a39bb791">More...</a><br /></td></tr>
 <tr class="separator:ae55da7a4bd7fe7491ebc0134a39bb791"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac171989ec252c36ce6253916269186f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_point2.html#ac171989ec252c36ce6253916269186f8">offset</a> (const <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; p)</td></tr>
@@ -146,8 +146,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0d3f17f7d86d02eae126aa329a20861a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636a84c47519a482cfce43039e981dff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_point2.html#a636a84c47519a482cfce43039e981dff">operator&lt;</a> (const <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; &amp;A)</td></tr>
 <tr class="separator:a636a84c47519a482cfce43039e981dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4557e6d2741e1950ddfc6f854cd4a1fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_point2.html#a4557e6d2741e1950ddfc6f854cd4a1fa">th</a> (<a class="el" href="class_point2.html">Point2</a> P1, <a class="el" href="class_angle.html#a4f7b9849ce8780bcba95ca3ee45cff77">Angle::ANGLE_TYPE</a> type=<a class="el" href="class_angle.html#a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f">Angle::RAD</a>)</td></tr>
-<tr class="separator:a4557e6d2741e1950ddfc6f854cd4a1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ef2bb867cce9a4f184f00af809bc766"><td class="memTemplParams" colspan="2">template&lt;class T1 &gt; </td></tr>
+<tr class="memitem:a0ef2bb867cce9a4f184f00af809bc766"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_angle.html">Angle</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_point2.html#a0ef2bb867cce9a4f184f00af809bc766">th</a> (<a class="el" href="class_point2.html">Point2</a>&lt; T1 &gt; P1, <a class="el" href="class_angle.html#a4f7b9849ce8780bcba95ca3ee45cff77">Angle::ANGLE_TYPE</a> type=<a class="el" href="class_angle.html#a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f">Angle::RAD</a>)</td></tr>
+<tr class="separator:a0ef2bb867cce9a4f184f00af809bc766"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -363,7 +364,7 @@ template&lt;class T1 &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The distance between the two points. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance between the two points. If something went wrong the return is -1.0. </dd></dl>
 
 </div>
 </div>
@@ -847,13 +848,15 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a4557e6d2741e1950ddfc6f854cd4a1fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4557e6d2741e1950ddfc6f854cd4a1fa">&#9670;&nbsp;</a></span>th()</h2>
+<a id="a0ef2bb867cce9a4f184f00af809bc766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ef2bb867cce9a4f184f00af809bc766">&#9670;&nbsp;</a></span>th()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T&gt; </div>
+<div class="memtemplate">
+template&lt;class T1 &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -861,7 +864,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="class_angle.html">Angle</a> <a class="el" href="class_point2.html">Point2</a>&lt; T &gt;::th </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_point2.html">Point2</a>&lt; T &gt;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_point2.html">Point2</a>&lt; T1 &gt;&#160;</td>
           <td class="paramname"><em>P1</em>, </td>
         </tr>
         <tr>

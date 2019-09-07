@@ -90,8 +90,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5d3ee2809d790543195a6e2075aef7d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a5d3ee2809d790543195a6e2075aef7d0">add</a> (const T _new)</td></tr>
 <tr class="memdesc:a5d3ee2809d790543195a6e2075aef7d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a value at the end of the list.  <a href="#a5d3ee2809d790543195a6e2075aef7d0">More...</a><br /></td></tr>
 <tr class="separator:a5d3ee2809d790543195a6e2075aef7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47e90df1240ffe62f6fd177ceea52a39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a47e90df1240ffe62f6fd177ceea52a39">addIfNot</a> (T _el)</td></tr>
-<tr class="separator:a47e90df1240ffe62f6fd177ceea52a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7699d6813e11c18f436098e9f76ebf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#ac7699d6813e11c18f436098e9f76ebf0">addIfNot</a> (T _el, bool _throw=false)</td></tr>
+<tr class="separator:ac7699d6813e11c18f436098e9f76ebf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53a1abc3017d30cf1a6d6858caee8ce8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a53a1abc3017d30cf1a6d6858caee8ce8">remove</a> (const T pos)</td></tr>
 <tr class="memdesc:a53a1abc3017d30cf1a6d6858caee8ce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a value from the list.  <a href="#a53a1abc3017d30cf1a6d6858caee8ce8">More...</a><br /></td></tr>
 <tr class="separator:a53a1abc3017d30cf1a6d6858caee8ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,13 +141,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2c8e5f6fb1abb2b11ab222b7ce772569"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a4516890830c7a8bf96c9325718c8c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a9a4516890830c7a8bf96c9325718c8c3">operator std::string</a> () const</td></tr>
 <tr class="separator:a9a4516890830c7a8bf96c9325718c8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4189d6fe009e00fbc81061bcad9ee856"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a4189d6fe009e00fbc81061bcad9ee856">operator vector&lt; T &gt;</a> () const</td></tr>
+<tr class="memdesc:a4189d6fe009e00fbc81061bcad9ee856"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of cast to vector of same type.  <a href="#a4189d6fe009e00fbc81061bcad9ee856">More...</a><br /></td></tr>
+<tr class="separator:a4189d6fe009e00fbc81061bcad9ee856"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a924a25df1578ffab148c69a1a1000491"><td class="memTemplParams" colspan="2">template&lt;class T1 &gt; </td></tr>
 <tr class="memitem:a924a25df1578ffab148c69a1a1000491"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_tuple.html#a924a25df1578ffab148c69a1a1000491">operator vector&lt; T1 &gt;</a> () const</td></tr>
-<tr class="memdesc:a924a25df1578ffab148c69a1a1000491"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of cast to vector.  <a href="#a924a25df1578ffab148c69a1a1000491">More...</a><br /></td></tr>
+<tr class="memdesc:a924a25df1578ffab148c69a1a1000491"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of cast to vector of different type.  <a href="#a924a25df1578ffab148c69a1a1000491">More...</a><br /></td></tr>
 <tr class="separator:a924a25df1578ffab148c69a1a1000491"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfc65dc0a9af20f2ff8cff2bf3448324"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#acfc65dc0a9af20f2ff8cff2bf3448324">operator[]</a> (<a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> index)</td></tr>
-<tr class="memdesc:acfc65dc0a9af20f2ff8cff2bf3448324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloading [] operator to access elements in array style.  <a href="#acfc65dc0a9af20f2ff8cff2bf3448324">More...</a><br /></td></tr>
-<tr class="separator:acfc65dc0a9af20f2ff8cff2bf3448324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae18a93053af932997709798b3fd5d12d"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#ae18a93053af932997709798b3fd5d12d">operator[]</a> (<a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> index)</td></tr>
+<tr class="memdesc:ae18a93053af932997709798b3fd5d12d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloading [] operator to access elements in array style.  <a href="#ae18a93053af932997709798b3fd5d12d">More...</a><br /></td></tr>
+<tr class="separator:ae18a93053af932997709798b3fd5d12d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a205dfb3c3dcad03ced830b5c9687d225"><td class="memItemLeft" align="right" valign="top"><a class="el" href="maths_8hh.html#ad22dcdeefda7d41523cc1604953eb6cc">tupleIter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a205dfb3c3dcad03ced830b5c9687d225">begin</a> ()</td></tr>
 <tr class="memdesc:a205dfb3c3dcad03ced830b5c9687d225"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator.  <a href="#a205dfb3c3dcad03ced830b5c9687d225">More...</a><br /></td></tr>
 <tr class="separator:a205dfb3c3dcad03ced830b5c9687d225"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -291,8 +294,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a47e90df1240ffe62f6fd177ceea52a39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47e90df1240ffe62f6fd177ceea52a39">&#9670;&nbsp;</a></span>addIfNot()</h2>
+<a id="ac7699d6813e11c18f436098e9f76ebf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7699d6813e11c18f436098e9f76ebf0">&#9670;&nbsp;</a></span>addIfNot()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -306,8 +309,18 @@ template&lt;class T&gt; </div>
           <td class="memname">void <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::addIfNot </td>
           <td>(</td>
           <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>_el</em></td><td>)</td>
+          <td class="paramname"><em>_el</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_throw</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -856,6 +869,36 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
+<a id="a4189d6fe009e00fbc81061bcad9ee856"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4189d6fe009e00fbc81061bcad9ee856">&#9670;&nbsp;</a></span>operator vector&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::operator vector&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overload of cast to vector of same type. </p>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the values of elements. </dd></dl>
+
+</div>
+</div>
 <a id="a924a25df1578ffab148c69a1a1000491"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a924a25df1578ffab148c69a1a1000491">&#9670;&nbsp;</a></span>operator vector&lt; T1 &gt;()</h2>
 
@@ -883,7 +926,13 @@ template&lt;class T1 &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Overload of cast to vector. </p>
+<p>Overload of cast to vector of different type. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Type</td><td>of vector to cast to. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector containing the values of elements. </dd></dl>
 
 </div>
@@ -972,8 +1021,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="acfc65dc0a9af20f2ff8cff2bf3448324"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfc65dc0a9af20f2ff8cff2bf3448324">&#9670;&nbsp;</a></span>operator[]()</h2>
+<a id="ae18a93053af932997709798b3fd5d12d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae18a93053af932997709798b3fd5d12d">&#9670;&nbsp;</a></span>operator[]()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -984,7 +1033,7 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&amp; <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::operator[] </td>
+          <td class="memname">T&amp; <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
