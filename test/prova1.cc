@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <maths.hh>
 #include <dubins.hh>
 // #include <utils.hh>
@@ -14,7 +15,7 @@ typedef double TYPE;
 
 #define SCALE 100.0
 
-#define ES 2
+#define ES 1
 
 double elapsedScale=0.0;
 double elapsedPrimitives=0.0;
@@ -33,6 +34,16 @@ double elapsedRSL=0.0;
 double elapsedRLR=0.0;
 double elapsedLRL=0.0;
 unsigned long countTries=0;
+
+void print(vector<int> v){
+  for (auto a : v) cout << a << " ";
+  cout << endl;
+}
+
+void printd(vector<double> v){
+  for (auto a : v) cout << a << " ";
+  cout << endl;
+}
 
 int main(){ 
   Tuple<Point2<TYPE> > points;
