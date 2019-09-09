@@ -171,7 +171,7 @@ Configuration2<double> localize(const Mat & img, const bool raw){
     // mywaitkey();
     // cout << "end localize\n" << endl;
 
-    return(conf);
+    // return(conf);
 }
 
 

@@ -42,6 +42,7 @@ pair< vector<Point2<int> >, Mapp* > planning(const Mat & img){
     \returns The created mapp.
 */
 Mapp * createMapp(){
+    cout << "sett->baseFolder: " << sett->baseFolder << endl;
     sett->cleanAndRead();
     cout << "create0\n" << flush;
 
@@ -73,7 +74,7 @@ Mapp * createMapp(){
         if(obstacles.size()==0){
             throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no obstacles for the creating of the map.", __LINE__, __FILE__);
         }
-    cout << "create3\n" << flush;
+        cout << "create3\n" << flush;
 
         // Victims
         vector< vector<Point2<int> > > vvpVictims;
@@ -84,7 +85,7 @@ Mapp * createMapp(){
         }
         map->addObjects(victims);
         if(victims.size()==0){
-            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no victims for the creating of the map.", __LINE__, __FILE__);
+            cerr << "Warning: Loaded no victims for the creating of the map. " << __LINE__ << " " << __FILE__ << endl;
         }
         cout << "create4\n" << flush;
 
@@ -167,8 +168,8 @@ void fromVpToPath(vector<Point2<int> > & vp, Path & path){
         path.add(pose);
 
         cout << "Path elements:\n";
-        for(Pose p : path.points){
-            cout << p.string().str() << endl;
+        for(i=0; i<path.size(); i++){
+            cout << "pose " << i+1 << "°:" << path.points[i].string().str() << endl;
         }
     } else{
         throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Impossible to convert vector to path, dimension less than 2.", __LINE__, __FILE__);

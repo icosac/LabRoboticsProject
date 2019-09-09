@@ -49,7 +49,7 @@ bool RobotProject::preprocessMap(const Mat & img){
 bool RobotProject::planPath(const Mat & img, Path & path){
 	cout << "-> -> -> PlanPath\n" << flush;
 
-	/*/
+	//
 	pair< vector<Point2<int> >, Mapp * > tmpPair = planning(img);
 	vector<Point2<int> > pathPoints = tmpPair.first;
 	Mapp * map = tmpPair.second;
