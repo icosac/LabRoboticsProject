@@ -87,91 +87,85 @@ vector<Point> robotShape;
     \returns The configuration of the robot in this exactly moment, according to the image.
 */
 Configuration2<double> localize(const Mat & img, const bool raw){
-    // cout << "begin localize\n" << flush;
+    cout << "begin localize\n" << flush;
 
-    // static bool firstRun = true;
-    // static Mat transf, camera_matrix, dist_coeffs;
-    // if(firstRun){ //executed only at the first iteration of this function
-    //     firstRun = false;
-    //     const string calib_file = sett->intrinsicCalibrationFile;
-    //     loadCoefficients(calib_file, camera_matrix, dist_coeffs);
+    static bool firstRun = true;
+    static Mat transf, camera_matrix, dist_coeffs;
+    if(firstRun){ //executed only at the first iteration of this function
+        firstRun = false;
+        const string calib_file = sett->intrinsicCalibrationFile;
+        loadCoefficients(calib_file, camera_matrix, dist_coeffs);
 
-    //     getConversionParameters(transf, true);
-    // }
-    // // cout << "localize1\n" << flush;
+        getConversionParameters(transf, true);
+    }
 
-    // Mat hsv_img;
-    // cvtColor(img, hsv_img, COLOR_BGR2HSV);
-    // #ifdef WAIT
-    //     my_imshow("Img to localize", img, false);
-    //     my_imshow("Img for localize", hsv_img, false);
-    //     mywaitkey('q');
-    // #endif
+    Mat hsv_img;
+    cvtColor(img, hsv_img, COLOR_BGR2HSV);
+    #ifdef WAIT
+        my_imshow("Img to localize", img, false);
+        my_imshow("Img for localize", hsv_img, false);
+        mywaitkey('q');
+    #endif
 
-    // shape_detection(hsv_img, CYAN);//find robot
-    // // cout << "localize2\n" << endl;
+    shape_detection(hsv_img, CYAN);//find robot
     
-    // //compute barycenter of the robot
-    // //the barycenter is the mean if the points are 3. Otherwise we also compute the mean over x and y.
-    // if(robotShape.size()!=3){
-    //     // cout << "Warning: The robot is not well defined (not 3 points found but " << robotShape.size() << ").\nThe baricenter is still computed as the average of all the points.\n\n";
-    // } else if(robotShape.size()==0){
-    //     throw MyException<string>(EXCEPTION_TYPE::GENERAL, "The robot has no point that define it.", __LINE__, __FILE__);
+    //compute barycenter of the robot
+    //the barycenter is the mean if the points are 3. Otherwise we also compute the mean over x and y.
+    if(robotShape.size()!=3){
+        // cout << "Warning: The robot is not well defined (not 3 points found but " << robotShape.size() << ").\nThe baricenter is still computed as the average of all the points.\n\n";
+    } else if(robotShape.size()==0){
+        throw MyException<string>(EXCEPTION_TYPE::GENERAL, "The robot has no point that define it.", __LINE__, __FILE__);
 
-    // }
-    // // cout << "robotShape size " << robotShape.size() << endl;
-    // // cout << "From localize:\n";
-    // vector<Point2f> vpOut;
-    // // cout << "localize A\n" << endl;
-    // // apply conversion to the right reference system
-    // // https://stackoverflow.com/questions/30194211/opencv-applying-affine-transform-to-single-points-rather-than-entire-image 
-    // {
-    //     vector<Point2f> convert(1);
-    //     for(Point p : robotShape){
-    //         convert[0] = p;
-    //         perspectiveTransform(convert, convert, transf);  //maybe a simple matrix multiplication will be faster...    }
-    //         // cout << "Trasforming: " << p << " to: " << convert[0] << endl;
-    //         vpOut.push_back(convert[0]);
-    //     }
-    // }
-    // // cout << "vpOut size: " << vpOut.size() << endl;
+    }
+    cout << "robotShape size " << robotShape.size() << endl;
 
-    // // cout << "localize B\n" << endl;
-    // double xAvg=0, yAvg=0;
-    // for(Point p : vpOut){
-    //     xAvg += p.x;
-    //     yAvg += p.y;
-    // }
-    // xAvg /= vpOut.size()*1.0;
-    // yAvg /= vpOut.size()*1.0;
+    vector<Point2f> vpOut;
+    // apply conversion to the right reference system
+    // https://stackoverflow.com/questions/30194211/opencv-applying-affine-transform-to-single-points-rather-than-entire-image 
+    {
+        vector<Point2f> convert(1);
+        for(Point p : robotShape){
+            convert[0] = p;
+            perspectiveTransform(convert, convert, transf);  //maybe a simple matrix multiplication will be faster...    }
+            // cout << "Trasforming: " << p << " to: " << convert[0] << endl;
+            vpOut.push_back(convert[0]);
+        }
+    }
+    cout << "vpOut size: " << vpOut.size() << endl;
 
-    // // cout << "localize C\n" << endl;
-    // Point2<double> confPoint(xAvg, yAvg);
-    // // cout << "Barycenter (AKA centroid): " << confPoint << endl;
+    double xAvg=0, yAvg=0;
+    for(Point p : vpOut){
+        xAvg += p.x;
+        yAvg += p.y;
+    }
+    xAvg /= vpOut.size()*1.0;
+    yAvg /= vpOut.size()*1.0;
 
-    // // cout << "localize D\n" << endl;
-    // double Dist=0;
-    // Point2<int> tail;
-    // for (Point p : vpOut){
-    //     Point2<int> app = Point2<int>(p);
-    //     double dist=app.distance(confPoint);
-    //     if (dist>Dist){
-    //         tail=app;
-    //         Dist=dist;
-    //     }
-    // }
+    Point2<double> confPoint(xAvg, yAvg);
+    cout << "Barycenter (AKA centroid): " << confPoint << endl;
 
-    // // cout << "localize E\n" << endl;
-    // Configuration2<double> conf(confPoint, tail.th(confPoint));
-    // // cout << "tail of the robot: " << tail << endl;
-    // // cout << "New robot position:     " << conf.point() << ", " << conf.angle().toDeg() << "° " << conf.angle().toRad()/3.14 << "pi" << endl;
-    // // cout << "localize F\n" << endl;
+    double Dist=0;
+    Point2<int> tail;
+    for (Point p : vpOut){
+        Point2<int> app = Point2<int>(p);
+        double dist=app.distance(confPoint);
+        if (dist>Dist){
+            tail=app;
+            Dist=dist;
+        }
+    }
 
-    // cout << "localize G\n" << endl;
-    // mywaitkey();
-    // cout << "end localize\n" << endl;
+    // cout << "localize E\n" << endl;
+    confPoint.invert();
+    tail.invert();
+    Configuration2<double> conf(confPoint, tail.th(confPoint));
+    // cout << "tail of the robot: " << tail << endl;
+    // cout << "New robot position:     " << conf.point() << ", " << conf.angle().toDeg() << "° " << conf.angle().toRad()/3.14 << "pi" << endl;
 
-    // return(conf);
+    cout << "end localize\n" << endl;
+
+    return(conf);
+    // return( Configuration2<double>(900.0, 300.0, Angle(3.0*M_PI/4.0, Angle::RAD)));
 }
 
 

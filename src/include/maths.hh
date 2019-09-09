@@ -1061,6 +1061,12 @@ public:
     return Angle(atan2((P1.y()-this->y()), (P1.x()-this->x())), type);
   }
 
+  void invert (){
+    T app=X;
+    X=Y;
+    Y=app;
+  }
+
 };
 
 

@@ -16,17 +16,19 @@
 using namespace std;
 using namespace cv;
 
-pair< vector<Point2<int> >, Mapp* > planning(const Mat & img);
-Mapp* createMapp();
+namespace Planning {
+	extern Mapp* map;
 
-void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn);
-void loadVP(vector<Point2<int> > & vp, FileNode fn);
+	vector<Point2<int> > planning(const Mat & img);
+	void createMapp();
 
-void fromVpToPath(vector<Point2<int> > & vp, Path & path);
+	void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn);
+	void loadVP(vector<Point2<int> > & vp, FileNode fn);
 
+	void fromVpToPath(vector<Point2<int> > & vp, Path & path);
+}
 
 template<class T>
 vector<Point2<T> > plan_best(vector<Point2<T> > vPoints);
-
 
 #endif

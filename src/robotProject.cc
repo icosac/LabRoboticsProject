@@ -45,55 +45,28 @@ bool RobotProject::preprocessMap(const Mat & img){
 	return(true);
 }
 
-
 bool RobotProject::planPath(const Mat & img, Path & path){
 	cout << "-> -> -> PlanPath\n" << flush;
 
-	//
-	pair< vector<Point2<int> >, Mapp * > tmpPair = planning(img);
-	vector<Point2<int> > pathPoints = tmpPair.first;
-	Mapp * map = tmpPair.second;
+	vector<Point2<int> > pathPoints = Planning::planning(img);
+	
+	cout << "Creating map" << flush;
 
-	Mat imageMap = map->createMapRepresentation();
-
-	map->imageAddPoints(imageMap, pathPoints);
-	map->imageAddSegments(imageMap, pathPoints);
-	delete map;
-
-	#ifdef WAIT
-		namedWindow("Map", WINDOW_NORMAL);
-		imshow("Map", imageMap);
-		mywaitkey();
-	#endif
-	/*/
-
-	vector<Point2<int> > pathPoints;
-	pathPoints.push_back(Point2<int>(100, 100));
-	pathPoints.push_back(Point2<int>(200, 200));
-	pathPoints.push_back(Point2<int>(300, 300));
-	pathPoints.push_back(Point2<int>(400, 400));
-	pathPoints.push_back(Point2<int>(500, 500));
-	pathPoints.push_back(Point2<int>(600, 600));
-	pathPoints.push_back(Point2<int>(700, 700));
-	pathPoints.push_back(Point2<int>(800, 800));
-	pathPoints.push_back(Point2<int>(900, 900));
-	pathPoints.push_back(Point2<int>(1000, 1000));
-	//*/
-	fromVpToPath(pathPoints, path); //return
+	Planning::fromVpToPath(pathPoints, path); //return
 	cout << "-> -> -> PlanPath end\n" << flush;
 	return(true);
 }
 
-
 bool RobotProject::localize(const Mat & img, vector<double> & state){
-	// Configuration2<double> c = ::localize(img, true);
-	Configuration2<double> c(0.1, 0.1, M_PI/4);
+	Configuration2<double> c = ::localize(img, true);
+	// Configuration2<double> c(0.1, 0.1, M_PI/4);
 
 	state.resize(3);
-	state[0] = c.x();
-	state[1] = c.y();
+	state[0] = c.x()/1000.0;
+	state[1] = c.y()/1000.0;
 	state[2] = c.angle().toRad();
 
+	cout << "Fine localize" << flush;
 	// mywaitkey();
 	return(true);
 }
