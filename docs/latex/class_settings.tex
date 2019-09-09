@@ -11,7 +11,7 @@ Collaboration diagram for Settings\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=245pt]{class_settings__coll__graph}
+\includegraphics[width=244pt]{class_settings__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -24,27 +24,26 @@ enum \mbox{\hyperlink{class_settings_a30d85f2e06a54ae9bc8da2d01037658f}{C\+O\+L\
 \mbox{\hyperlink{class_settings_a30d85f2e06a54ae9bc8da2d01037658fab4951d8c5bc23e9dab4e9cb53ef3fb26}{V\+I\+C\+T\+I\+MS}}, 
 \newline
 \mbox{\hyperlink{class_settings_a30d85f2e06a54ae9bc8da2d01037658fa23f16922180d0f5fdc679584f75f83c3}{B\+L\+UE}}, 
-\mbox{\hyperlink{class_settings_a30d85f2e06a54ae9bc8da2d01037658fa4cb51c6b271152a84e37b4415ad08168}{W\+H\+I\+TE}}, 
 \mbox{\hyperlink{class_settings_a30d85f2e06a54ae9bc8da2d01037658fa1cf089d6c6dda465fa704222461f0b28}{R\+O\+B\+OT}}
  \}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_settings_a751ee75eae398b1bc12ec5c37db9a170}{Settings}} (string \mbox{\hyperlink{class_settings_aeddfd4457036a14cb0a48d50d9e6ccfe}{maps\+Folder}}=\char`\"{}data/map\char`\"{}, string \+\_\+templates\+Folder=\char`\"{}data/num\+\_\+template/\char`\"{}, vector$<$ string $>$ \+\_\+maps\+Names=\{\}, vector$<$ string $>$ \+\_\+maps\+Un\+Names=\{\}, string \+\_\+calibration\+File=\char`\"{}data/calib\+\_\+config.\+xml\char`\"{}, string \+\_\+intrinsic\+Calibration\+File=\char`\"{}data/intrinsic\+\_\+calibration.\+xml\char`\"{}, Filter \+\_\+black\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(0, 0, 0, 179, 255, 70), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+red\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(15, 100, 140, 160, 255, 255), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+green\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(54, 74, 25, 119, 255, 88), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+victim\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(0, 0, 0, 179, 255, 80), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+blue\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(100, 100, 40, 140, 200, 170), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+white\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(100, 100, 40, 140, 200, 170), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+robote\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(100, 100, 40, 140, 200, 170), \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+kernel\+Side=9, string \+\_\+convex\+Hull\+File=\char`\"{}data/convex\+Hull.\+xml\char`\"{}, vector$<$ string $>$ \+\_\+templates=\{\})
+\mbox{\hyperlink{class_settings_a716069efb4808f2c395dfa218ec1c540}{Settings}} (string \+\_\+base\+Folder=\char`\"{}data/\char`\"{}, string \+\_\+maps\+Folder=\char`\"{}map\char`\"{}, string \+\_\+templates\+Folder=\char`\"{}num\+\_\+template/\char`\"{}, vector$<$ string $>$ \+\_\+maps\+Names=\{\}, vector$<$ string $>$ \+\_\+maps\+Un\+Names=\{\}, string \+\_\+intrinsic\+Calibration\+File=\char`\"{}intrinsic\+\_\+calibration.\+xml\char`\"{}, string \+\_\+calibration\+File=\char`\"{}calib\+\_\+config.\+xml\char`\"{}, Filter \+\_\+black\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(0, 0, 0, 179, 255, 70), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+red\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(15, 100, 140, 160, 255, 255), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+green\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(54, 74, 25, 119, 255, 88), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+victim\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(0, 0, 0, 179, 255, 80), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+blue\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(100, 100, 40, 140, 200, 170), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+robote\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(100, 100, 40, 140, 200, 170), \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+kernel\+Side=9, string \+\_\+convex\+Hull\+File=\char`\"{}convex\+Hull.\+xml\char`\"{}, vector$<$ string $>$ \+\_\+templates=\{\})
 \begin{DoxyCompactList}\small\item\em Constructor of class \mbox{\hyperlink{class_settings}{Settings}}. The value are all set by default. The constructor does N\+OT read from or write to file. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_settings_a4a65be5921dfc9fddc476e5320541d89}{$\sim$\+Settings}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_settings_a6e40d9eca9f6794dee65e519ea73bb24}{save}} (string \mbox{\hyperlink{class_settings_aeddfd4457036a14cb0a48d50d9e6ccfe}{maps\+Folder}}=\char`\"{}data/map\char`\"{}, string \+\_\+templates\+Folder=\char`\"{}data/num\+\_\+template/\char`\"{}, vector$<$ string $>$ \+\_\+maps\+Names=\{\}, vector$<$ string $>$ \+\_\+maps\+Un\+Names=\{\}, string \+\_\+calibration\+File=\char`\"{}data/calib\+\_\+config.\+xml\char`\"{}, string \+\_\+intrinsic\+Calibration\+File=\char`\"{}data/intrinsic\+\_\+calibration.\+xml\char`\"{}, Filter \+\_\+black\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(0, 0, 0, 179, 255, 70), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+red\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(15, 100, 140, 160, 255, 255), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+green\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(54, 74, 25, 119, 255, 88), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+victim\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(0, 0, 0, 179, 255, 80), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+blue\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(100, 100, 40, 140, 200, 170), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+white\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(100, 100, 40, 140, 200, 170), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+robote\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(100, 100, 40, 140, 200, 170), \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+kernel\+Side=9, string \+\_\+convex\+Hull\+File=\char`\"{}data/convex\+Hull.\+xml\char`\"{}, vector$<$ string $>$ \+\_\+templates=\{\})
+void \mbox{\hyperlink{class_settings_a14ebf63b888dd7ecf7a34de9eaba1ae8}{save}} (string \+\_\+base\+Folder=\char`\"{}data/\char`\"{}, string \+\_\+maps\+Folder=\char`\"{}map/\char`\"{}, string \+\_\+templates\+Folder=\char`\"{}num\+\_\+template/\char`\"{}, vector$<$ string $>$ \+\_\+maps\+Names=\{\}, vector$<$ string $>$ \+\_\+maps\+Un\+Names=\{\}, string \+\_\+intrinsic\+Calibration\+File=\char`\"{}intrinsic\+\_\+calibration.\+xml\char`\"{}, string \+\_\+calibration\+File=\char`\"{}calib\+\_\+config.\+xml\char`\"{}, Filter \+\_\+black\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(0, 0, 0, 179, 255, 70), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+red\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(15, 100, 140, 160, 255, 255), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+green\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(54, 74, 25, 119, 255, 88), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+victim\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(0, 0, 0, 179, 255, 80), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+blue\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(100, 100, 40, 140, 200, 170), \mbox{\hyperlink{class_filter}{Filter}} \+\_\+robote\+Mask=\mbox{\hyperlink{class_filter}{Filter}}(100, 100, 40, 140, 200, 170), \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+kernel\+Side=9, string \+\_\+convex\+Hull\+File=\char`\"{}convex\+Hull.\+xml\char`\"{}, vector$<$ string $>$ \+\_\+templates=\{\})
 \begin{DoxyCompactList}\small\item\em Function to change values. The value are all set by default. This function does N\+OT read from or write to file. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_settings_a1afc50e91691fae24114ba5e248dfd87}{write\+To\+File}} (string \+\_\+path=\char`\"{}data/settings.\+xml\char`\"{})
+void \mbox{\hyperlink{class_settings_a69b5dc81f8928efdcfc19e409f6015fb}{write\+To\+File}} (string \+\_\+path=\char`\"{}\char`\"{})
 \begin{DoxyCompactList}\small\item\em Function to write settings to file. Default is data/settings.\+xml. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_settings_a016ac9600bf42a2814847f14e5a3d58f}{read\+From\+File}} (string \+\_\+path=\char`\"{}data/settings.\+xml\char`\"{})
+void \mbox{\hyperlink{class_settings_a8491d82663ed43dadc540c4a402156fc}{read\+From\+File}} (string \+\_\+path=\char`\"{}\char`\"{})
 \begin{DoxyCompactList}\small\item\em Function to read from file. The data found is going to be added to the settings. Default file is data/settings.\+xml. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_settings_a8ad60105ab9848720d05ebd19c5063f2}{clean}} ()
 \begin{DoxyCompactList}\small\item\em Function to clean all settings\+: number types are set to 0, string are set to \char`\"{}\char`\"{}, Tuples are set to Tuple$<$$>$() and \mbox{\hyperlink{class_filter}{Filter}} are set to all 0s. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_settings_a2157ac946bff77fef41a2fba737ae4c2}{clean\+And\+Read}} (string \+\_\+path=\char`\"{}data/settings.\+xml\char`\"{})
-\begin{DoxyCompactList}\small\item\em Function to clean all settings and then read from file. Default is data/settings.\+xml. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_settings_acd13c0d603d94c7c2da58cd92bc955c8}{clean\+And\+Read}} (string \+\_\+path=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Function to clean all settings and then read from file. If no path is given the base\+Folder is used. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_aa924e455cc6ac356ba6a4c59ab09591c}{maps}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ ids=\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$())
 \begin{DoxyCompactList}\small\item\em Function to return the paths of maps. If ids are not specified all maps are returned. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_adc050f187f4040f5e897b2ff41caedd0}{maps}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} id=-\/1)
@@ -78,16 +77,18 @@ stringstream \mbox{\hyperlink{class_settings_a20696223267b07d77408e38e87388274}{
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
+string \mbox{\hyperlink{class_settings_ae48d5bd7db6c75ba5c697e08e4b32cee}{base\+Folder}}
+\begin{DoxyCompactList}\small\item\em A string containing the path for the base dir of data. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_settings_aeddfd4457036a14cb0a48d50d9e6ccfe}{maps\+Folder}}
-\begin{DoxyCompactList}\small\item\em A string containing the path for maps\+Folder. No certainty is given about the form of this string. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A string containing the name for maps folder. No certainty is given about the form of this string. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_a4a464c938e96639861dc2deb773a2fb8}{maps\+Names}}
 \begin{DoxyCompactList}\small\item\em A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the maps. These are not paths but just names. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_a1866d578ad33e56429a88617a655f9c6}{maps\+Un\+Names}}
 \begin{DoxyCompactList}\small\item\em A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the undistorted maps. These are not paths but just names. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_settings_a634e9900615e8d5b46b08e0fc86d67a5}{intrinsic\+Calibration\+File}}
-\begin{DoxyCompactList}\small\item\em A string containing the path to the file containing the values of the matrix for the calibration. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A string containing the name to the file containing the values of the matrix for the calibration. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_settings_ac6ff9ca8d90b9e43e26c069c88b7c699}{calibration\+File}}
-\begin{DoxyCompactList}\small\item\em A string containing the path to the file containing the data for the calibration. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A string containing the name to the file containing the data for the calibration. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_filter}{Filter}} \mbox{\hyperlink{class_settings_a78ac37593a52a83973e18deefb2cc96c}{black\+Mask}}
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_filter}{Filter}} for black. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_filter}{Filter}} \mbox{\hyperlink{class_settings_a4ded995ae1c425f92ad712d2987dce71}{red\+Mask}}
@@ -98,16 +99,14 @@ string \mbox{\hyperlink{class_settings_ac6ff9ca8d90b9e43e26c069c88b7c699}{calibr
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_filter}{Filter}} for the victims. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_filter}{Filter}} \mbox{\hyperlink{class_settings_a2b425f747b936e82dfe0b609538f06f1}{blue\+Mask}}
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_filter}{Filter}} for blue. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_filter}{Filter}} \mbox{\hyperlink{class_settings_adcd52fec07542a958be5adf297969db4}{white\+Mask}}
-\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_filter}{Filter}} for white. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_filter}{Filter}} \mbox{\hyperlink{class_settings_aa814fd0ce673e73de3442e5bf5a26fc6}{robot\+Mask}}
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_filter}{Filter}} for the triangle above the robot. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_settings_a376418be10e2c1067b2d03c08e7b6a92}{kernel\+Side}}
 \item 
 string \mbox{\hyperlink{class_settings_aae9ea78e634fee8a76c2eb2b6fd09eeb}{convex\+Hull\+File}}
-\begin{DoxyCompactList}\small\item\em A\+String containing the path to file containing the points of the elements in the arena. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A\+String containing the name to file containing the points of the elements in the arena. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_settings_a3c272482637bc9c3a534e08e75157830}{templates\+Folder}}
-\begin{DoxyCompactList}\small\item\em A String containing the path of the folder containing the number templates. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A String containing the name of the folder containing the number templates. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_add9f0e9a114013a3295ba056e19d991f}{templates}}
 \begin{DoxyCompactList}\small\item\em A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the templates. These are not paths but just names. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
@@ -148,10 +147,6 @@ V\+I\+C\+T\+I\+MS&\\
 B\+L\+UE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{WHITE@{WHITE}!Settings@{Settings}}\index{Settings@{Settings}!WHITE@{WHITE}}}\mbox{\Hypertarget{class_settings_a30d85f2e06a54ae9bc8da2d01037658fa4cb51c6b271152a84e37b4415ad08168}\label{class_settings_a30d85f2e06a54ae9bc8da2d01037658fa4cb51c6b271152a84e37b4415ad08168}} 
-W\+H\+I\+TE&\\
-\hline
-
 \raisebox{\heightof{T}}[0pt][0pt]{\index{ROBOT@{ROBOT}!Settings@{Settings}}\index{Settings@{Settings}!ROBOT@{ROBOT}}}\mbox{\Hypertarget{class_settings_a30d85f2e06a54ae9bc8da2d01037658fa1cf089d6c6dda465fa704222461f0b28}\label{class_settings_a30d85f2e06a54ae9bc8da2d01037658fa1cf089d6c6dda465fa704222461f0b28}} 
 R\+O\+B\+OT&\\
 \hline
@@ -160,49 +155,79 @@ R\+O\+B\+OT&\\
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_settings_a751ee75eae398b1bc12ec5c37db9a170}\label{class_settings_a751ee75eae398b1bc12ec5c37db9a170}} 
+\mbox{\Hypertarget{class_settings_a716069efb4808f2c395dfa218ec1c540}\label{class_settings_a716069efb4808f2c395dfa218ec1c540}} 
 \index{Settings@{Settings}!Settings@{Settings}}
 \index{Settings@{Settings}!Settings@{Settings}}
 \subsubsection{\texorpdfstring{Settings()}{Settings()}}
-{\footnotesize\ttfamily Settings\+::\+Settings (\begin{DoxyParamCaption}\item[{string}]{\+\_\+maps\+Folder = {\ttfamily \char`\"{}data/map\char`\"{}},  }\item[{string}]{\+\_\+templates\+Folder = {\ttfamily \char`\"{}data/num\+\_\+template/\char`\"{}},  }\item[{vector$<$ string $>$}]{\+\_\+maps\+Names = {\ttfamily \{\}},  }\item[{vector$<$ string $>$}]{\+\_\+maps\+Un\+Names = {\ttfamily \{\}},  }\item[{string}]{\+\_\+intrinsic\+Calibration\+File = {\ttfamily \char`\"{}data/calib\+\_\+config.xml\char`\"{}},  }\item[{string}]{\+\_\+calibration\+File = {\ttfamily \char`\"{}data/intrinsic\+\_\+calibration.xml\char`\"{}},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+black\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(0,~0,~0,~179,~255,~70)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+red\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(15,~100,~140,~160,~255,~255)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+green\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(54,~74,~25,~119,~255,~88)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+victim\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(0,~0,~0,~179,~255,~80)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+blue\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(100,~100,~40,~140,~200,~170)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+white\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(100,~100,~40,~140,~200,~170)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+robot\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(100,~100,~40,~140,~200,~170)},  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+kernel\+Side = {\ttfamily 9},  }\item[{string}]{\+\_\+convex\+Hull\+File = {\ttfamily \char`\"{}data/convexHull.xml\char`\"{}},  }\item[{vector$<$ string $>$}]{\+\_\+templates = {\ttfamily \{\}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Settings\+::\+Settings (\begin{DoxyParamCaption}\item[{string}]{\+\_\+base\+Folder = {\ttfamily \char`\"{}data/\char`\"{}},  }\item[{string}]{\+\_\+maps\+Folder = {\ttfamily \char`\"{}map\char`\"{}},  }\item[{string}]{\+\_\+templates\+Folder = {\ttfamily \char`\"{}num\+\_\+template/\char`\"{}},  }\item[{vector$<$ string $>$}]{\+\_\+maps\+Names = {\ttfamily \{\}},  }\item[{vector$<$ string $>$}]{\+\_\+maps\+Un\+Names = {\ttfamily \{\}},  }\item[{string}]{\+\_\+intrinsic\+Calibration\+File = {\ttfamily \char`\"{}intrinsic\+\_\+calibration.xml\char`\"{}},  }\item[{string}]{\+\_\+calibration\+File = {\ttfamily \char`\"{}calib\+\_\+config.xml\char`\"{}},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+black\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(0,~0,~0,~179,~255,~70)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+red\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(15,~100,~140,~160,~255,~255)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+green\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(54,~74,~25,~119,~255,~88)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+victim\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(0,~0,~0,~179,~255,~80)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+blue\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(100,~100,~40,~140,~200,~170)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+robot\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(100,~100,~40,~140,~200,~170)},  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+kernel\+Side = {\ttfamily 9},  }\item[{string}]{\+\_\+convex\+Hull\+File = {\ttfamily \char`\"{}convexHull.xml\char`\"{}},  }\item[{vector$<$ string $>$}]{\+\_\+templates = {\ttfamily \{\}} }\end{DoxyParamCaption})}
 
 
 
 Constructor of class \mbox{\hyperlink{class_settings}{Settings}}. The value are all set by default. The constructor does N\+OT read from or write to file. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em maps\+Folder} & A string containing the path for maps\+Folder. No certainty is given about the form of this string \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em base\+Folder} & A string containing the path for the base dir of data. \\
 \hline
-{\em \+\_\+templates\+Folder} & A String containing the path of the folder containing the number templates. \\
+\mbox{\texttt{ in}}  & {\em maps\+Folder} & A string containing the name for maps folder. No certainty is given about the form of this string. \\
 \hline
-{\em \+\_\+maps\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the maps. These are not paths but just names. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+templates\+Folder} & A String containing the name of the folder containing the number templates. \\
 \hline
-{\em \+\_\+maps\+Un\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the undistorted maps. These are not paths but just names. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+maps\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the maps. These are not paths but just names. \\
 \hline
-{\em \+\_\+calibration\+File} & A string containing the path to the file containing the data for the calibration. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+maps\+Un\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the undistorted maps. These are not paths but just names. \\
 \hline
-{\em \+\_\+intrinsic\+Calibration\+File} & A string containing the path to the file containing the values of the matrix for the calibration. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+calibration\+File} & A string containing the name to the file containing the data for the calibration. \\
 \hline
-{\em \+\_\+black\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for black. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+intrinsic\+Calibration\+File} & A string containing the name to the file containing the values of the matrix for the calibration. \\
 \hline
-{\em \+\_\+red\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for red. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+black\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for black. \\
 \hline
-{\em \+\_\+green\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for green. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+red\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for red. \\
 \hline
-{\em \+\_\+victim\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the victims. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+green\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for green. \\
 \hline
-{\em \+\_\+blue\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for blue. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+victim\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the victims. \\
 \hline
-{\em \+\_\+white\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for white. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+blue\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for blue. \\
 \hline
-{\em \+\_\+robot\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the triangle above the robot. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+robot\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the triangle above the robot. \\
 \hline
-{\em \+\_\+kernel\+Side} & \\
+\mbox{\texttt{ in}}  & {\em \+\_\+kernel\+Side} & \\
 \hline
-{\em \+\_\+convex\+Hull\+File} & A String containing the path to file containing the points of the elements in the arena. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+convex\+Hull\+File} & A String containing the name to file containing the points of the elements in the arena. \\
 \hline
-{\em \+\_\+templates} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the templates. These are not paths but just names. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+templates} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the templates. These are not paths but just names.\\
+\hline
+ & {\em maps\+Folder} & A string containing the path for maps\+Folder. No certainty is given about the form of this string \\
+\hline
+ & {\em \+\_\+templates\+Folder} & A String containing the path of the folder containing the number templates. \\
+\hline
+ & {\em \+\_\+maps\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the maps. These are not paths but just names. \\
+\hline
+ & {\em \+\_\+maps\+Un\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the undistorted maps. These are not paths but just names. \\
+\hline
+ & {\em \+\_\+calibration\+File} & A string containing the path to the file containing the data for the calibration. \\
+\hline
+ & {\em \+\_\+intrinsic\+Calibration\+File} & A string containing the path to the file containing the values of the matrix for the calibration. \\
+\hline
+ & {\em \+\_\+black\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for black. \\
+\hline
+ & {\em \+\_\+red\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for red. \\
+\hline
+ & {\em \+\_\+green\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for green. \\
+\hline
+ & {\em \+\_\+victim\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the victims. \\
+\hline
+ & {\em \+\_\+blue\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for blue. \\
+\hline
+ & {\em \+\_\+robot\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the triangle above the robot. \\
+\hline
+ & {\em \+\_\+kernel\+Side} & \\
+\hline
+ & {\em \+\_\+convex\+Hull\+File} & A String containing the path to file containing the points of the elements in the arena. \\
+\hline
+ & {\em \+\_\+templates} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the templates. These are not paths but just names. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_settings_a4a65be5921dfc9fddc476e5320541d89}\label{class_settings_a4a65be5921dfc9fddc476e5320541d89}} 
@@ -268,16 +293,23 @@ Change the values of a filter. Mind that no write function is called.
 
 Function to clean all settings\+: number types are set to 0, string are set to \char`\"{}\char`\"{}, Tuples are set to Tuple$<$$>$() and \mbox{\hyperlink{class_filter}{Filter}} are set to all 0s. 
 
-\mbox{\Hypertarget{class_settings_a2157ac946bff77fef41a2fba737ae4c2}\label{class_settings_a2157ac946bff77fef41a2fba737ae4c2}} 
+\mbox{\Hypertarget{class_settings_acd13c0d603d94c7c2da58cd92bc955c8}\label{class_settings_acd13c0d603d94c7c2da58cd92bc955c8}} 
 \index{Settings@{Settings}!cleanAndRead@{cleanAndRead}}
 \index{cleanAndRead@{cleanAndRead}!Settings@{Settings}}
 \subsubsection{\texorpdfstring{cleanAndRead()}{cleanAndRead()}}
-{\footnotesize\ttfamily void Settings\+::clean\+And\+Read (\begin{DoxyParamCaption}\item[{string}]{\+\_\+path = {\ttfamily \char`\"{}data/settings.xml\char`\"{}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Settings\+::clean\+And\+Read (\begin{DoxyParamCaption}\item[{string}]{\+\_\+path = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
 
 
 
-Function to clean all settings and then read from file. Default is data/settings.\+xml. 
+Function to clean all settings and then read from file. If no path is given the base\+Folder is used. 
 
+Function to clean all settings and then read from file. Default is data/settings.\+xml.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+path} & Path to the file. Mind that it doesn\textquotesingle{}t require the name of the file.\\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_settings_af68cb84ba3c8d21e004661fee7c0efe7}\label{class_settings_af68cb84ba3c8d21e004661fee7c0efe7}} 
 \index{Settings@{Settings}!getTemplates@{getTemplates}}
 \index{getTemplates@{getTemplates}!Settings@{Settings}}
@@ -416,64 +448,96 @@ A function to return the paths of a given \mbox{\hyperlink{class_tuple}{Tuple}} 
 \begin{DoxyReturn}{Returns}
 The paths to the maps if they are found, an empty \mbox{\hyperlink{class_tuple}{Tuple}} otherwise. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_settings_a016ac9600bf42a2814847f14e5a3d58f}\label{class_settings_a016ac9600bf42a2814847f14e5a3d58f}} 
+\mbox{\Hypertarget{class_settings_a8491d82663ed43dadc540c4a402156fc}\label{class_settings_a8491d82663ed43dadc540c4a402156fc}} 
 \index{Settings@{Settings}!readFromFile@{readFromFile}}
 \index{readFromFile@{readFromFile}!Settings@{Settings}}
 \subsubsection{\texorpdfstring{readFromFile()}{readFromFile()}}
-{\footnotesize\ttfamily void Settings\+::read\+From\+File (\begin{DoxyParamCaption}\item[{string}]{\+\_\+path = {\ttfamily \char`\"{}data/settings.xml\char`\"{}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Settings\+::read\+From\+File (\begin{DoxyParamCaption}\item[{string}]{\+\_\+path = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
 
 
 
 Function to read from file. The data found is going to be added to the settings. Default file is data/settings.\+xml. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em \+\_\+path} & The path of file to read from. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+path} & Path to the file. Mind that it doesn\textquotesingle{}t require the name of the file.\\
+\hline
+ & {\em \+\_\+path} & The path of file to read from. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_settings_a6e40d9eca9f6794dee65e519ea73bb24}\label{class_settings_a6e40d9eca9f6794dee65e519ea73bb24}} 
+\mbox{\Hypertarget{class_settings_a14ebf63b888dd7ecf7a34de9eaba1ae8}\label{class_settings_a14ebf63b888dd7ecf7a34de9eaba1ae8}} 
 \index{Settings@{Settings}!save@{save}}
 \index{save@{save}!Settings@{Settings}}
 \subsubsection{\texorpdfstring{save()}{save()}}
-{\footnotesize\ttfamily void Settings\+::save (\begin{DoxyParamCaption}\item[{string}]{\+\_\+maps\+Folder = {\ttfamily \char`\"{}data/map\char`\"{}},  }\item[{string}]{\+\_\+templates\+Folder = {\ttfamily \char`\"{}data/num\+\_\+template/\char`\"{}},  }\item[{vector$<$ string $>$}]{\+\_\+maps\+Names = {\ttfamily \{\}},  }\item[{vector$<$ string $>$}]{\+\_\+maps\+Un\+Names = {\ttfamily \{\}},  }\item[{string}]{\+\_\+intrinsic\+Calibration\+File = {\ttfamily \char`\"{}data/calib\+\_\+config.xml\char`\"{}},  }\item[{string}]{\+\_\+calibration\+File = {\ttfamily \char`\"{}data/intrinsic\+\_\+calibration.xml\char`\"{}},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+black\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(0,~0,~0,~179,~255,~70)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+red\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(15,~100,~140,~160,~255,~255)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+green\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(54,~74,~25,~119,~255,~88)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+victim\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(0,~0,~0,~179,~255,~80)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+blue\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(100,~100,~40,~140,~200,~170)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+white\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(100,~100,~40,~140,~200,~170)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+robot\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(100,~100,~40,~140,~200,~170)},  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+kernel\+Side = {\ttfamily 9},  }\item[{string}]{\+\_\+convex\+Hull\+File = {\ttfamily \char`\"{}data/convexHull.xml\char`\"{}},  }\item[{vector$<$ string $>$}]{\+\_\+templates = {\ttfamily \{\}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Settings\+::save (\begin{DoxyParamCaption}\item[{string}]{\+\_\+base\+Folder = {\ttfamily \char`\"{}data/\char`\"{}},  }\item[{string}]{\+\_\+maps\+Folder = {\ttfamily \char`\"{}map/\char`\"{}},  }\item[{string}]{\+\_\+templates\+Folder = {\ttfamily \char`\"{}num\+\_\+template/\char`\"{}},  }\item[{vector$<$ string $>$}]{\+\_\+maps\+Names = {\ttfamily \{\}},  }\item[{vector$<$ string $>$}]{\+\_\+maps\+Un\+Names = {\ttfamily \{\}},  }\item[{string}]{\+\_\+intrinsic\+Calibration\+File = {\ttfamily \char`\"{}intrinsic\+\_\+calibration.xml\char`\"{}},  }\item[{string}]{\+\_\+calibration\+File = {\ttfamily \char`\"{}calib\+\_\+config.xml\char`\"{}},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+black\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(0,~0,~0,~179,~255,~70)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+red\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(15,~100,~140,~160,~255,~255)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+green\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(54,~74,~25,~119,~255,~88)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+victim\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(0,~0,~0,~179,~255,~80)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+blue\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(100,~100,~40,~140,~200,~170)},  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{\+\_\+robot\+Mask = {\ttfamily \mbox{\hyperlink{class_filter}{Filter}}(100,~100,~40,~140,~200,~170)},  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+kernel\+Side = {\ttfamily 9},  }\item[{string}]{\+\_\+convex\+Hull\+File = {\ttfamily \char`\"{}convexHull.xml\char`\"{}},  }\item[{vector$<$ string $>$}]{\+\_\+templates = {\ttfamily \{\}} }\end{DoxyParamCaption})}
 
 
 
 Function to change values. The value are all set by default. This function does N\+OT read from or write to file. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em maps\+Folder} & A string containing the path for maps\+Folder. No certainty is given about the form of this string \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em base\+Folder} & A string containing the path for the base dir of data. \\
 \hline
-{\em \+\_\+templates\+Folder} & A String containing the path of the folder containing the number templates. \\
+\mbox{\texttt{ in}}  & {\em maps\+Folder} & A string containing the name for maps\+Folder. No certainty is given about the form of this string \\
 \hline
-{\em \+\_\+maps\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the maps. These are not paths but just names. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+templates\+Folder} & A String containing the name of the folder containing the number templates. \\
 \hline
-{\em \+\_\+maps\+Un\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the undistorted maps. These are not paths but just names. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+maps\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the maps. These are not paths but just names. \\
 \hline
-{\em \+\_\+calibration\+File} & A string containing the path to the file containing the data for the calibration. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+maps\+Un\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the undistorted maps. These are not paths but just names. \\
 \hline
-{\em \+\_\+intrinsic\+Calibration\+File} & A string containing the path to the file containing the values of the matrix for the calibration. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+calibration\+File} & A string containing the name to the file containing the data for the calibration. \\
 \hline
-{\em \+\_\+black\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for black. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+intrinsic\+Calibration\+File} & A string containing the name to the file containing the values of the matrix for the calibration. \\
 \hline
-{\em \+\_\+red\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for red. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+black\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for black. \\
 \hline
-{\em \+\_\+green\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for green. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+red\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for red. \\
 \hline
-{\em \+\_\+victim\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the victims. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+green\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for green. \\
 \hline
-{\em \+\_\+blue\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for blue. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+victim\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the victims. \\
 \hline
-{\em \+\_\+white\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for white. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+blue\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for blue. \\
 \hline
-{\em \+\_\+robot\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the triangle above the robot. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+robot\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the triangle above the robot. \\
 \hline
-{\em \+\_\+kernel\+Side} & \\
+\mbox{\texttt{ in}}  & {\em \+\_\+kernel\+Side} & \\
 \hline
-{\em \+\_\+convex\+Hull\+File} & A String containing the path to file containing the points of the elements in the arena. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+convex\+Hull\+File} & A String containing the name to file containing the points of the elements in the arena. \\
 \hline
-{\em \+\_\+templates} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the templates. These are not paths but just names. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+templates} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the templates. These are not paths but just names.\\
+\hline
+ & {\em maps\+Folder} & A string containing the path for maps\+Folder. No certainty is given about the form of this string \\
+\hline
+ & {\em \+\_\+templates\+Folder} & A String containing the path of the folder containing the number templates. \\
+\hline
+ & {\em \+\_\+maps\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the maps. These are not paths but just names. \\
+\hline
+ & {\em \+\_\+maps\+Un\+Names} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the undistorted maps. These are not paths but just names. \\
+\hline
+ & {\em \+\_\+intrinsic\+Calibration\+File} & A string containing the path to the file containing the values of the matrix for the calibration. \\
+\hline
+ & {\em \+\_\+calibration\+File} & A string containing the path to the file containing the data for the calibration. \\
+\hline
+ & {\em \+\_\+black\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for black. \\
+\hline
+ & {\em \+\_\+red\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for red. \\
+\hline
+ & {\em \+\_\+green\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for green. \\
+\hline
+ & {\em \+\_\+victim\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the victims. \\
+\hline
+ & {\em \+\_\+blue\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for blue. \\
+\hline
+ & {\em \+\_\+robot\+Mask} & \mbox{\hyperlink{class_filter}{Filter}} for the triangle above the robot. \\
+\hline
+ & {\em \+\_\+kernel\+Side} & \\
+\hline
+ & {\em \+\_\+convex\+Hull\+File} & A String containing the path to file containing the points of the elements in the arena. \\
+\hline
+ & {\em \+\_\+templates} & A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the templates. These are not paths but just names. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_settings_a20696223267b07d77408e38e87388274}\label{class_settings_a20696223267b07d77408e38e87388274}} 
@@ -571,19 +635,21 @@ A function to return the paths of a given \mbox{\hyperlink{class_tuple}{Tuple}} 
 \begin{DoxyReturn}{Returns}
 The paths to the undistorted maps if they are found, an empty \mbox{\hyperlink{class_tuple}{Tuple}} otherwise. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_settings_a1afc50e91691fae24114ba5e248dfd87}\label{class_settings_a1afc50e91691fae24114ba5e248dfd87}} 
+\mbox{\Hypertarget{class_settings_a69b5dc81f8928efdcfc19e409f6015fb}\label{class_settings_a69b5dc81f8928efdcfc19e409f6015fb}} 
 \index{Settings@{Settings}!writeToFile@{writeToFile}}
 \index{writeToFile@{writeToFile}!Settings@{Settings}}
 \subsubsection{\texorpdfstring{writeToFile()}{writeToFile()}}
-{\footnotesize\ttfamily void Settings\+::write\+To\+File (\begin{DoxyParamCaption}\item[{string}]{\+\_\+path = {\ttfamily \char`\"{}data/settings.xml\char`\"{}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Settings\+::write\+To\+File (\begin{DoxyParamCaption}\item[{string}]{\+\_\+path = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
 
 
 
 Function to write settings to file. Default is data/settings.\+xml. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em \+\_\+path} & The path of the file to write to. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+path} & Path to the file. Mind that it doesn\textquotesingle{}t require the name of the file.\\
+\hline
+ & {\em \+\_\+path} & The path of the file to write to. \\
 \hline
 \end{DoxyParams}
 
@@ -608,6 +674,16 @@ An output stream to be printed.
 
 
 \subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_settings_ae48d5bd7db6c75ba5c697e08e4b32cee}\label{class_settings_ae48d5bd7db6c75ba5c697e08e4b32cee}} 
+\index{Settings@{Settings}!baseFolder@{baseFolder}}
+\index{baseFolder@{baseFolder}!Settings@{Settings}}
+\subsubsection{\texorpdfstring{baseFolder}{baseFolder}}
+{\footnotesize\ttfamily string Settings\+::base\+Folder}
+
+
+
+A string containing the path for the base dir of data. 
+
 \mbox{\Hypertarget{class_settings_a78ac37593a52a83973e18deefb2cc96c}\label{class_settings_a78ac37593a52a83973e18deefb2cc96c}} 
 \index{Settings@{Settings}!blackMask@{blackMask}}
 \index{blackMask@{blackMask}!Settings@{Settings}}
@@ -636,7 +712,7 @@ An output stream to be printed.
 
 
 
-A string containing the path to the file containing the data for the calibration. 
+A string containing the name to the file containing the data for the calibration. 
 
 \mbox{\Hypertarget{class_settings_aae9ea78e634fee8a76c2eb2b6fd09eeb}\label{class_settings_aae9ea78e634fee8a76c2eb2b6fd09eeb}} 
 \index{Settings@{Settings}!convexHullFile@{convexHullFile}}
@@ -646,7 +722,7 @@ A string containing the path to the file containing the data for the calibration
 
 
 
-A\+String containing the path to file containing the points of the elements in the arena. 
+A\+String containing the name to file containing the points of the elements in the arena. 
 
 \mbox{\Hypertarget{class_settings_a05138be305e15677c8a84ddf27e4d9e8}\label{class_settings_a05138be305e15677c8a84ddf27e4d9e8}} 
 \index{Settings@{Settings}!greenMask@{greenMask}}
@@ -666,7 +742,7 @@ A\+String containing the path to file containing the points of the elements in t
 
 
 
-A string containing the path to the file containing the values of the matrix for the calibration. 
+A string containing the name to the file containing the values of the matrix for the calibration. 
 
 \mbox{\Hypertarget{class_settings_a376418be10e2c1067b2d03c08e7b6a92}\label{class_settings_a376418be10e2c1067b2d03c08e7b6a92}} 
 \index{Settings@{Settings}!kernelSide@{kernelSide}}
@@ -682,7 +758,7 @@ A string containing the path to the file containing the values of the matrix for
 
 
 
-A string containing the path for maps\+Folder. No certainty is given about the form of this string. 
+A string containing the name for maps folder. No certainty is given about the form of this string. 
 
 \mbox{\Hypertarget{class_settings_a4a464c938e96639861dc2deb773a2fb8}\label{class_settings_a4a464c938e96639861dc2deb773a2fb8}} 
 \index{Settings@{Settings}!mapsNames@{mapsNames}}
@@ -742,7 +818,7 @@ A \mbox{\hyperlink{class_tuple}{Tuple}} containing the names of the templates. T
 
 
 
-A String containing the path of the folder containing the number templates. 
+A String containing the name of the folder containing the number templates. 
 
 \mbox{\Hypertarget{class_settings_ad77dc9d3ebdc000309f1279bc0f9e1ea}\label{class_settings_ad77dc9d3ebdc000309f1279bc0f9e1ea}} 
 \index{Settings@{Settings}!victimMask@{victimMask}}
@@ -753,16 +829,6 @@ A String containing the path of the folder containing the number templates.
 
 
 \mbox{\hyperlink{class_filter}{Filter}} for the victims. 
-
-\mbox{\Hypertarget{class_settings_adcd52fec07542a958be5adf297969db4}\label{class_settings_adcd52fec07542a958be5adf297969db4}} 
-\index{Settings@{Settings}!whiteMask@{whiteMask}}
-\index{whiteMask@{whiteMask}!Settings@{Settings}}
-\subsubsection{\texorpdfstring{whiteMask}{whiteMask}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_filter}{Filter}} Settings\+::white\+Mask}
-
-
-
-\mbox{\hyperlink{class_filter}{Filter}} for white. 
 
 
 

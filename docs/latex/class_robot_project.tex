@@ -1,0 +1,69 @@
+\hypertarget{class_robot_project}{}\section{Robot\+Project Class Reference}
+\label{class_robot_project}\index{RobotProject@{RobotProject}}
+
+
+{\ttfamily \#include $<$robot\+Project.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_robot_project_a3afaaa8731fb02fabaf2c47bb7c81799}{Robot\+Project}} (\mbox{\hyperlink{class_camera_capture}{Camera\+Capture}} $\ast$camera, double \&frame\+\_\+time)
+\item 
+\mbox{\hyperlink{class_robot_project_a12f627710a775cdec8a6416eeaf8db3e}{Robot\+Project}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{class_robot_project_a8510ebe175da3b90ffea7c88b690b4f8}{$\sim$\+Robot\+Project}} ()
+\item 
+bool \mbox{\hyperlink{class_robot_project_a380adb448f0fcbc625df9401de3bb013}{preprocess\+Map}} (const Mat \&img)
+\item 
+bool \mbox{\hyperlink{class_robot_project_ad9077931a89d2226e6675c6107adfc53}{plan\+Path}} (const Mat \&img, Path \&path)
+\item 
+bool \mbox{\hyperlink{class_robot_project_a9899c66898ccd1b638fe074797a18398}{localize}} (const Mat \&img, vector$<$ double $>$ \&state)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_robot_project_a3afaaa8731fb02fabaf2c47bb7c81799}\label{class_robot_project_a3afaaa8731fb02fabaf2c47bb7c81799}} 
+\index{RobotProject@{RobotProject}!RobotProject@{RobotProject}}
+\index{RobotProject@{RobotProject}!RobotProject@{RobotProject}}
+\subsubsection{\texorpdfstring{RobotProject()}{RobotProject()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Robot\+Project\+::\+Robot\+Project (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_camera_capture}{Camera\+Capture}} $\ast$}]{camera,  }\item[{double \&}]{frame\+\_\+time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_robot_project_a12f627710a775cdec8a6416eeaf8db3e}\label{class_robot_project_a12f627710a775cdec8a6416eeaf8db3e}} 
+\index{RobotProject@{RobotProject}!RobotProject@{RobotProject}}
+\index{RobotProject@{RobotProject}!RobotProject@{RobotProject}}
+\subsubsection{\texorpdfstring{RobotProject()}{RobotProject()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Robot\+Project\+::\+Robot\+Project (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_robot_project_a8510ebe175da3b90ffea7c88b690b4f8}\label{class_robot_project_a8510ebe175da3b90ffea7c88b690b4f8}} 
+\index{RobotProject@{RobotProject}!````~RobotProject@{$\sim$RobotProject}}
+\index{````~RobotProject@{$\sim$RobotProject}!RobotProject@{RobotProject}}
+\subsubsection{\texorpdfstring{$\sim$RobotProject()}{~RobotProject()}}
+{\footnotesize\ttfamily Robot\+Project\+::$\sim$\+Robot\+Project (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_robot_project_a9899c66898ccd1b638fe074797a18398}\label{class_robot_project_a9899c66898ccd1b638fe074797a18398}} 
+\index{RobotProject@{RobotProject}!localize@{localize}}
+\index{localize@{localize}!RobotProject@{RobotProject}}
+\subsubsection{\texorpdfstring{localize()}{localize()}}
+{\footnotesize\ttfamily bool Robot\+Project\+::localize (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{vector$<$ double $>$ \&}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_robot_project_ad9077931a89d2226e6675c6107adfc53}\label{class_robot_project_ad9077931a89d2226e6675c6107adfc53}} 
+\index{RobotProject@{RobotProject}!planPath@{planPath}}
+\index{planPath@{planPath}!RobotProject@{RobotProject}}
+\subsubsection{\texorpdfstring{planPath()}{planPath()}}
+{\footnotesize\ttfamily bool Robot\+Project\+::plan\+Path (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{Path \&}]{path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_robot_project_a380adb448f0fcbc625df9401de3bb013}\label{class_robot_project_a380adb448f0fcbc625df9401de3bb013}} 
+\index{RobotProject@{RobotProject}!preprocessMap@{preprocessMap}}
+\index{preprocessMap@{preprocessMap}!RobotProject@{RobotProject}}
+\subsubsection{\texorpdfstring{preprocessMap()}{preprocessMap()}}
+{\footnotesize\ttfamily bool Robot\+Project\+::preprocess\+Map (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{robot_project_8hh}{robot\+Project.\+hh}}\item 
+src/\mbox{\hyperlink{robot_project_8cc}{robot\+Project.\+cc}}\end{DoxyCompactItemize}

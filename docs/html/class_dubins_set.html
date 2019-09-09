@@ -160,8 +160,8 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>Constructor that given a <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code> computes stores all of them. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_dubinses</td><td>The <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code>. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_dubinses</td><td>The <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
   </table>
   </dd>
 </dl>
@@ -205,8 +205,8 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>Constructor that takes a <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>s and computes the <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code> between them. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_confs</td><td>The <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>s. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature to be used. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_confs</td><td>The <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>s. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature to be used. </td></tr>
   </table>
   </dd>
 </dl>
@@ -264,10 +264,10 @@ template&lt;class T &gt; </div>
 <p>Constructor that given a start <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>, an end <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> and a <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code>, computes the best path from start to end through all points by brute forcing all possible angles. Since this approach is based on a brute force algorithm, it's best not to use this on too many points. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">start</td><td><code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> of start. </td></tr>
-    <tr><td class="paramname">end</td><td><code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> of end. </td></tr>
-    <tr><td class="paramname">_points</td><td><code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code> containing all the intermediate points. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature of the system. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">start</td><td><code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> of start. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">end</td><td><code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> of end. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_points</td><td><code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code> containing all the intermediate points. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature of the system. </td></tr>
   </table>
   </dd>
 </dl>
@@ -313,8 +313,8 @@ template&lt;class T &gt; </div>
 <p>Constructor that computes a series of <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code> given only <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code> points via brute force. Since this approach is based on a brute force algorithm, it's best not to use this on too many points. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_points</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> containing all points. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature to be used for all <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_points</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> containing all points. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature to be used for all <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -377,11 +377,11 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>Function to compute the best path. This function calls <code><a class="el" href="dubins_8hh.html#a16cf89e561eae9ea10a39e40432af238" title="Compute the arrangements. Since each arrangement can be computed as , where each values is then multi...">disp()</a></code> in order to calculate all possible angles, and then creates a <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code> for each possibility choosing the one with the minimum length. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_points</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code> through which the path should flow. </td></tr>
-    <tr><td class="paramname">_angles</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> containing all base <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>. </td></tr>
-    <tr><td class="paramname">area</td><td>This is the angle around each angle to be "scanned". </td></tr>
-    <tr><td class="paramname">tries</td><td>The number of discretizations that should be made. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature to be used. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_points</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code> through which the path should flow. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_angles</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> containing all base <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">area</td><td>This is the angle around each angle to be "scanned". </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tries</td><td>The number of discretizations that should be made. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature to be used. </td></tr>
   </table>
   </dd>
 </dl>
@@ -415,7 +415,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>Thid functions returns a specific <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code> from the set. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>The position of the <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code> in the set. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">id</td><td>The position of the <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code> in the set. </td></tr>
   </table>
   </dd>
 </dl>

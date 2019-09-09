@@ -235,9 +235,9 @@ template&lt;class T1 = double, class T2 = double&gt; </div>
 </div><div class="memdoc">
 <p>Creates a new <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> given a start <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>, the curvature and the length of the arc calling <code><a class="el" href="dubins_8hh.html#adef8b363044d7fed558e5b47d8d6a3a0">circline()</a></code>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_P0</td><td>The starting <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>. </td></tr>
-    <tr><td class="paramname">_k</td><td>The curvature of the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
-    <tr><td class="paramname">_l</td><td>The length of the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_P0</td><td>The starting <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_k</td><td>The curvature of the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_l</td><td>The length of the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -306,12 +306,12 @@ template&lt;class T1 = double, class T2 = double&gt; </div>
 </div><div class="memdoc">
 <p>This function draws the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dimX</td><td>The dimension X of the Mat. </td></tr>
-    <tr><td class="paramname">dimY</td><td>The dimension Y of the Mat. </td></tr>
-    <tr><td class="paramname">inc</td><td>The value to scale each point. </td></tr>
-    <tr><td class="paramname">scl</td><td>The Scalar that defines the color to use. </td></tr>
-    <tr><td class="paramname">image</td><td>The Mat where to draw the points. </td></tr>
-    <tr><td class="paramname">SHIFT</td><td>The value to use to shift the points to make them stay inside the matrix. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dimX</td><td>The dimension X of the Mat. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dimY</td><td>The dimension Y of the Mat. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">inc</td><td>The value to scale each point. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scl</td><td>The Scalar that defines the color to use. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">image</td><td>The Mat where to draw the points. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">SHIFT</td><td>The value to use to shift the points to make them stay inside the matrix. </td></tr>
   </table>
   </dd>
 </dl>
@@ -405,7 +405,7 @@ template&lt;class T1 = double, class T2 = double&gt; </div>
 <p>Splits the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> in pieces of _L length. This function starts from the begining of the arc and computes n new arcs through the <code><a class="el" href="dubins_8hh.html#adef8b363044d7fed558e5b47d8d6a3a0">circline()</a></code> function using the curvature of the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> and _L as the length. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_L</td><td>The length that each points should have. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_L</td><td>The length that each points should have. </td></tr>
   </table>
   </dd>
 </dl>

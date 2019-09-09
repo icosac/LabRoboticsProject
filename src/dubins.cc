@@ -1,3 +1,3 @@
 #include "dubins.hh"
 
-/* NOTHING TO SEE HERE */  
+/* Nothing to see here */

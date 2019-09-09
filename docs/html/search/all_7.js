@@ -1,6 +1,7 @@
 var searchData=
 [
   ['gate',['Gate',['../class_gate.html',1,'Gate'],['../class_gate.html#aacece347527cf8093fdb3420bc95fb4b',1,'Gate::Gate()'],['../map_8hh.html#a714b9c2c276fbae637fee36453d9121eac00a9212e2a45c125c4e3ca32bbfc0f8',1,'GATE():&#160;map.hh']]],
+  ['general',['GENERAL',['../utils_8hh.html#af26a5d951fd6ab4b44e6cd8425aa0383aa965658e6a84d5502df1c1987b0a8466',1,'utils.hh']]],
   ['get',['get',['../class_angle.html#a8ec5cc925d4ab3a3232746f254bd33a4',1,'Angle::get()'],['../class_tuple.html#aabf82c5d0f19c9a8f6a8f01d95801162',1,'Tuple::get()']]],
   ['geta1',['getA1',['../class_dubins.html#a8ef23becf55e74907b7b9eaa00431fa7',1,'Dubins']]],
   ['geta2',['getA2',['../class_dubins.html#a0291f2dc5b8225c0d85013d42749dd4b',1,'Dubins']]],
@@ -8,6 +9,7 @@ var searchData=
   ['getbottompt',['GetBottomPt',['../namespace_clipper_lib.html#a52148a9babd2c3227e9088881faa4fe5',1,'ClipperLib']]],
   ['getbounds',['GetBounds',['../class_clipper_lib_1_1_clipper_base.html#a5590a5454248ac3f6beeba7f9690f62e',1,'ClipperLib::ClipperBase']]],
   ['getcenter',['getCenter',['../class_object.html#aa624c3f9e2958743a0ae7efc78f5d586',1,'Object']]],
+  ['getconversionparameters',['getConversionParameters',['../detection_8cc.html#a1fe374ce92cf93eccbf3e374971f9b42',1,'getConversionParameters(Mat &amp;transf, const bool get):&#160;detection.cc'],['../detection_8hh.html#a8d8ce60a84fb2a955ec798ee17345ce2',1,'getConversionParameters(Mat &amp;transf, const bool get=true):&#160;detection.cc']]],
   ['getdubins',['getDubins',['../class_dubins_set.html#a421897996d88df8eb7dad214d7feb84b',1,'DubinsSet']]],
   ['getdubinses',['getDubinses',['../class_dubins_set.html#a2d0216573331d2ca6bf36ea213c4d434',1,'DubinsSet']]],
   ['getdx',['GetDx',['../namespace_clipper_lib.html#adb890cca4fa2a71731b91968cf4ff49d',1,'ClipperLib']]],

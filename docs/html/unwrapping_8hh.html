@@ -73,6 +73,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="utils_8hh_source.html">utils.hh</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="settings_8hh_source.html">settings.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="detection_8hh_source.html">detection.hh</a>&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
@@ -87,31 +88,38 @@ Include dependency graph for unwrapping.hh:</div>
 <div class="dyncontent">
 <div class="center"><img src="unwrapping_8hh__incl.png" border="0" usemap="#src_2include_2unwrapping_8hh" alt=""/></div>
 <map name="src_2include_2unwrapping_8hh" id="src_2include_2unwrapping_8hh">
-<area shape="rect"  title=" " alt="" coords="996,5,1172,31"/>
-<area shape="rect"  href="utils_8hh.html" title=" " alt="" coords="866,225,929,251"/>
-<area shape="rect"  title=" " alt="" coords="1084,299,1156,324"/>
-<area shape="rect"  title=" " alt="" coords="5,299,150,324"/>
-<area shape="rect"  title=" " alt="" coords="174,299,301,324"/>
-<area shape="rect"  title=" " alt="" coords="1180,299,1324,324"/>
-<area shape="rect"  title=" " alt="" coords="326,299,491,324"/>
-<area shape="rect"  href="settings_8hh.html" title=" " alt="" coords="1221,79,1307,104"/>
-<area shape="rect"  title=" " alt="" coords="1570,225,1628,251"/>
-<area shape="rect"  title=" " alt="" coords="1703,225,1757,251"/>
-<area shape="rect"  title=" " alt="" coords="1801,79,1866,104"/>
-<area shape="rect"  title=" " alt="" coords="1891,79,2035,104"/>
-<area shape="rect"  title=" " alt="" coords="1348,299,1417,324"/>
-<area shape="rect"  title=" " alt="" coords="981,299,1059,324"/>
-<area shape="rect"  title=" " alt="" coords="514,299,577,324"/>
-<area shape="rect"  title=" " alt="" coords="601,299,791,324"/>
-<area shape="rect"  title=" " alt="" coords="815,299,873,324"/>
-<area shape="rect"  title=" " alt="" coords="897,299,957,324"/>
-<area shape="rect"  href="filter_8hh.html" title=" " alt="" coords="1137,152,1202,177"/>
-<area shape="rect"  href="maths_8hh.html" title=" " alt="" coords="1226,152,1302,177"/>
-<area shape="rect"  title=" " alt="" coords="1326,152,1483,177"/>
-<area shape="rect"  title=" " alt="" coords="1507,152,1573,177"/>
-<area shape="rect"  title=" " alt="" coords="1399,225,1457,251"/>
-<area shape="rect"  title=" " alt="" coords="1481,225,1546,251"/>
-<area shape="rect"  title=" " alt="" coords="1273,225,1325,251"/>
+<area shape="rect"  title=" " alt="" coords="881,5,1057,31"/>
+<area shape="rect"  href="utils_8hh.html" title=" " alt="" coords="1093,372,1157,397"/>
+<area shape="rect"  title=" " alt="" coords="1747,445,1820,471"/>
+<area shape="rect"  title=" " alt="" coords="413,445,557,471"/>
+<area shape="rect"  title=" " alt="" coords="5,445,133,471"/>
+<area shape="rect"  title=" " alt="" coords="1348,445,1491,471"/>
+<area shape="rect"  title=" " alt="" coords="157,445,322,471"/>
+<area shape="rect"  href="settings_8hh.html" title=" " alt="" coords="926,225,1012,251"/>
+<area shape="rect"  title=" " alt="" coords="455,372,512,397"/>
+<area shape="rect"  title=" " alt="" coords="377,372,431,397"/>
+<area shape="rect"  href="detection_8hh.html" title=" " alt="" coords="922,79,1016,104"/>
+<area shape="rect"  title=" " alt="" coords="1832,152,1898,177"/>
+<area shape="rect"  title=" " alt="" coords="2024,79,2167,104"/>
+<area shape="rect"  title=" " alt="" coords="687,445,755,471"/>
+<area shape="rect"  title=" " alt="" coords="1159,445,1238,471"/>
+<area shape="rect"  title=" " alt="" coords="1262,445,1324,471"/>
+<area shape="rect"  title=" " alt="" coords="779,445,970,471"/>
+<area shape="rect"  title=" " alt="" coords="994,445,1051,471"/>
+<area shape="rect"  title=" " alt="" coords="1075,445,1135,471"/>
+<area shape="rect"  href="filter_8hh.html" title=" " alt="" coords="1365,299,1429,324"/>
+<area shape="rect"  href="maths_8hh.html" title=" " alt="" coords="740,299,816,324"/>
+<area shape="rect"  title=" " alt="" coords="840,299,997,324"/>
+<area shape="rect"  title=" " alt="" coords="1021,299,1087,324"/>
+<area shape="rect"  title=" " alt="" coords="740,372,798,397"/>
+<area shape="rect"  title=" " alt="" coords="872,372,938,397"/>
+<area shape="rect"  title=" " alt="" coords="962,372,1014,397"/>
+<area shape="rect"  href="configure_8hh.html" title=" " alt="" coords="1367,152,1462,177"/>
+<area shape="rect"  title=" " alt="" coords="1164,152,1240,177"/>
+<area shape="rect"  title=" " alt="" coords="1468,225,1617,251"/>
+<area shape="rect"  title=" " alt="" coords="1640,225,1796,251"/>
+<area shape="rect"  href="camera__capture_8hh.html" title=" " alt="" coords="1504,299,1640,324"/>
+<area shape="rect"  title=" " alt="" coords="1568,372,1629,397"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -119,10 +127,18 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="unwrapping_8hh__dep__incl.png" border="0" usemap="#src_2include_2unwrapping_8hhdep" alt=""/></div>
 <map name="src_2include_2unwrapping_8hhdep" id="src_2include_2unwrapping_8hhdep">
-<area shape="rect"  title=" " alt="" coords="126,5,302,31"/>
+<area shape="rect"  title=" " alt="" coords="388,5,565,31"/>
 <area shape="rect"  href="unwrapping_8cc.html" title=" " alt="" coords="5,85,134,111"/>
-<area shape="rect"  href="main_8cc.html" title=" " alt="" coords="158,85,270,111"/>
-<area shape="rect"  href="unwrapping__run_8cc.html" title=" " alt="" coords="293,79,428,117"/>
+<area shape="rect"  href="detection_8hh.html" title=" " alt="" coords="396,85,557,111"/>
+<area shape="rect"  href="robot_project_8hh.html" title=" " alt="" coords="149,239,329,264"/>
+<area shape="rect"  href="main_8cc.html" title=" " alt="" coords="671,239,783,264"/>
+<area shape="rect"  href="unwrapping__run_8cc.html" title=" " alt="" coords="868,79,1002,117"/>
+<area shape="rect"  href="detection_8cc.html" title=" " alt="" coords="209,165,323,191"/>
+<area shape="rect"  href="planning_8hh.html" title=" " alt="" coords="398,165,555,191"/>
+<area shape="rect"  href="detection__run_8cc.html" title=" " alt="" coords="629,165,793,191"/>
+<area shape="rect"  href="planning_8cc.html" title=" " alt="" coords="353,239,464,264"/>
+<area shape="rect"  href="planning__run_8cc.html" title=" " alt="" coords="487,239,647,264"/>
+<area shape="rect"  href="robot_project_8cc.html" title=" " alt="" coords="173,312,305,337"/>
 </map>
 </div>
 </div>
@@ -130,9 +146,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae232c3264987d57a223a39226929da29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unwrapping_8hh.html#ae232c3264987d57a223a39226929da29">unwrapping</a> ()</td></tr>
-<tr class="memdesc:ae232c3264987d57a223a39226929da29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take some images according to a xml and unwrap the black rectangle inside the image after appling undistortion trasformation.  <a href="#ae232c3264987d57a223a39226929da29">More...</a><br /></td></tr>
-<tr class="separator:ae232c3264987d57a223a39226929da29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9497176b75c2f48a3a110adce953312f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unwrapping_8hh.html#a9497176b75c2f48a3a110adce953312f">unwrapping</a> (const bool _imgRead=true, Mat *img=nullptr)</td></tr>
+<tr class="memdesc:a9497176b75c2f48a3a110adce953312f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take some images according to a xml and unwrap the black rectangle inside the image after appling undistortion trasformation.  <a href="#a9497176b75c2f48a3a110adce953312f">More...</a><br /></td></tr>
+<tr class="separator:a9497176b75c2f48a3a110adce953312f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0327df69102bf644a011c245ae7ad4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unwrapping_8hh.html#ac0327df69102bf644a011c245ae7ad4f">createPointsHigh</a> (const vector&lt; Point &gt; &amp;rectLow, vector&lt; Point &gt; &amp;rectHigh)</td></tr>
+<tr class="memdesc:ac0327df69102bf644a011c245ae7ad4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store in the given vector the white corners in the same order as the given black ones.  <a href="#ac0327df69102bf644a011c245ae7ad4f">More...</a><br /></td></tr>
+<tr class="separator:ac0327df69102bf644a011c245ae7ad4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cf7df08897ed4d1a7ddcf055b18cca8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unwrapping_8hh.html#a3cf7df08897ed4d1a7ddcf055b18cca8">loadCoefficients</a> (const string filename, Mat &amp;camera_matrix, Mat &amp;dist_coeffs)</td></tr>
 <tr class="memdesc:a3cf7df08897ed4d1a7ddcf055b18cca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load coefficients from a file.  <a href="#a3cf7df08897ed4d1a7ddcf055b18cca8">More...</a><br /></td></tr>
 <tr class="separator:a3cf7df08897ed4d1a7ddcf055b18cca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,6 +160,43 @@ Functions</h2></td></tr>
 <tr class="separator:ac30b4dbae9022e84e10ef97ba156c581"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ac0327df69102bf644a011c245ae7ad4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0327df69102bf644a011c245ae7ad4f">&#9670;&nbsp;</a></span>createPointsHigh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void createPointsHigh </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; Point &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rectLow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; Point &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rectHigh</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Store in the given vector the white corners in the same order as the given black ones. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rectLow</td><td>A vector where the low corners of the rectangle (black markers position) are stored. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">rectHigh</td><td>A vector where the high corners of the rectangle (white markers position) will be stored. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ac30b4dbae9022e84e10ef97ba156c581"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac30b4dbae9022e84e10ef97ba156c581">&#9670;&nbsp;</a></span>find_rect()</h2>
 
@@ -229,8 +285,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae232c3264987d57a223a39226929da29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae232c3264987d57a223a39226929da29">&#9670;&nbsp;</a></span>unwrapping()</h2>
+<a id="a9497176b75c2f48a3a110adce953312f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9497176b75c2f48a3a110adce953312f">&#9670;&nbsp;</a></span>unwrapping()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -238,8 +294,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> unwrapping </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_imgRead</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Mat *&#160;</td>
+          <td class="paramname"><em>img</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -249,6 +316,13 @@ Functions</h2></td></tr>
 apply the calibration (undistortion trasformation) thanks to the matrices load with the 'loadCoefficients' function.<br />
 Then, with the use of a filter for the black the region of interest (a rectangle) is identified and all the perspective is rotated for reach a top view of the rectangle.<br />
 Finally, the images are saved on some files.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_imgRead</td><td>Boolean flag that says if load or not the image from file, or as a function parameter. In addition, also the return procedure change if true the image is saved on the disk otherwise is saved on the img function parameter. True=load and store on file. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">[in/out]</td><td>img The image that eventually is loaded from the function. And the one that will be modified for returning the elaborated frame. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>A 0 is return if the function reach the end. </dd></dl>
 
 </div>

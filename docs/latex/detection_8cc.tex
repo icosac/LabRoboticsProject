@@ -19,14 +19,12 @@ Include dependency graph for detection.\+cc\+:
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{detection_8cc_a17e13c447692201697b084a1906cf6fb}{detection}} ()
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{detection_8cc_a5a1577dc3789e9812db986e2217043b2}{detection}} (const bool \+\_\+img\+Read, const Mat $\ast$img)
 \begin{DoxyCompactList}\small\item\em Loads some images and detects shapes according to different colors. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{detection_8cc_a6dd0ff536f981bf8130318bce3c86e33}{compute\+Conversion\+Parameters}} (Mat \&transf)
-\item 
-\mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \mbox{\hyperlink{detection_8cc_a94b68d9d23169964a60add8408f19235}{localize}} ()
-\item 
-\mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \mbox{\hyperlink{detection_8cc_a51f1fe2f187aa38e68edb89e945d01c0}{localize}} (const Mat \&img)
-\item 
+void \mbox{\hyperlink{detection_8cc_a1fe374ce92cf93eccbf3e374971f9b42}{get\+Conversion\+Parameters}} (Mat \&transf, const bool get)
+\begin{DoxyCompactList}\small\item\em The function simply store the value of the given matrix and allow the access to it from different function location. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \mbox{\hyperlink{detection_8cc_a00434a2f4bcc3a3d7fb89cb8fb21dfe0}{localize}} (const Mat \&img, const bool raw)
+\begin{DoxyCompactList}\small\item\em Identify the location of the robot respect to the given image. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{detection_8cc_a50993b0aa4f01d89a4e5d0aef4e1e5f4}{load\+\_\+number\+\_\+template}} ()
 \begin{DoxyCompactList}\small\item\em Load some templates and save them in the global variable \textquotesingle{}templates\textquotesingle{}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{detection_8cc_a51c055450044eff527349c24c2747cac}{shape\+\_\+detection}} (const Mat \&img, const \mbox{\hyperlink{detection_8hh_aef17e8300db831cb13df4975928a52cb}{C\+O\+L\+O\+R\+\_\+\+T\+Y\+PE}} color)
@@ -49,7 +47,7 @@ void \mbox{\hyperlink{detection_8cc_a2a7fdd973151b59a6b324eaf4f70fdfe}{crop\+\_\
 vector$<$ Mat $>$ \mbox{\hyperlink{detection_8cc_ad6ec2d6b7fce088fa5e9f335f9a6ed38}{templates}}
 \item 
 vector$<$ Point $>$ \mbox{\hyperlink{detection_8cc_acc76a3a441cb348e90dad93b420dc006}{robot\+Shape}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Identify the loation of the robot by acquiring the image from the default camera of the environment. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
@@ -67,7 +65,7 @@ Given an image, in black/white format, identify all the borders that delimit the
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em img} & It is an image in H\+SV format at the base of the elaboration process. \\
 \hline
-\mbox{\texttt{ out}}  & {\em original} & It is the original source of \textquotesingle{}img\textquotesingle{}, it is used for showing the detected contours. \\
+\mbox{\texttt{ out}}  & {\em original} & It is the original source of \textquotesingle{}img\textquotesingle{}, it is used for showing the detected contours, in the victim number recognition. \\
 \hline
 \mbox{\texttt{ in}}  & {\em color} & It is the type of reference color. \\
 \hline
@@ -87,12 +85,6 @@ Given an image, in black/white format, identify all the borders that delimit the
 \subsubsection{\texorpdfstring{\_compare()}{\_compare()}}
 {\footnotesize\ttfamily bool \+\_\+compare (\begin{DoxyParamCaption}\item[{const pair$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{a,  }\item[{const pair$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&}]{b }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{detection_8cc_a6dd0ff536f981bf8130318bce3c86e33}\label{detection_8cc_a6dd0ff536f981bf8130318bce3c86e33}} 
-\index{detection.cc@{detection.cc}!computeConversionParameters@{computeConversionParameters}}
-\index{computeConversionParameters@{computeConversionParameters}!detection.cc@{detection.cc}}
-\subsubsection{\texorpdfstring{computeConversionParameters()}{computeConversionParameters()}}
-{\footnotesize\ttfamily void compute\+Conversion\+Parameters (\begin{DoxyParamCaption}\item[{Mat \&}]{transf }\end{DoxyParamCaption})}
-
 \mbox{\Hypertarget{detection_8cc_a2a7fdd973151b59a6b324eaf4f70fdfe}\label{detection_8cc_a2a7fdd973151b59a6b324eaf4f70fdfe}} 
 \index{detection.cc@{detection.cc}!crop\_number\_section@{crop\_number\_section}}
 \index{crop\_number\_section@{crop\_number\_section}!detection.cc@{detection.cc}}
@@ -108,16 +100,23 @@ Given an image identify the region of interest(\+R\+O\+I) and crop it out.
 \mbox{\texttt{ in,out}}  & {\em R\+OI} & Is the image that the function will going to elaborate. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{detection_8cc_a17e13c447692201697b084a1906cf6fb}\label{detection_8cc_a17e13c447692201697b084a1906cf6fb}} 
+\mbox{\Hypertarget{detection_8cc_a5a1577dc3789e9812db986e2217043b2}\label{detection_8cc_a5a1577dc3789e9812db986e2217043b2}} 
 \index{detection.cc@{detection.cc}!detection@{detection}}
 \index{detection@{detection}!detection.cc@{detection.cc}}
 \subsubsection{\texorpdfstring{detection()}{detection()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} detection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} detection (\begin{DoxyParamCaption}\item[{const bool}]{\+\_\+img\+Read,  }\item[{const Mat $\ast$}]{img }\end{DoxyParamCaption})}
 
 
 
 Loads some images and detects shapes according to different colors. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+img\+Read} & Boolean flag that says if load or not the image from file or as a function parameter. True=load from file. \\
+\hline
+\mbox{\texttt{ in}}  & {\em img} & The imgage that eventually is loaded from the function. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Return 0 if the function reach the end. 
 \end{DoxyReturn}
@@ -159,6 +158,25 @@ Given an image, in black/white format, identify all the borders that delimit the
 \mbox{\texttt{ in}}  & {\em color} & It is the type of reference color. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{detection_8cc_a1fe374ce92cf93eccbf3e374971f9b42}\label{detection_8cc_a1fe374ce92cf93eccbf3e374971f9b42}} 
+\index{detection.cc@{detection.cc}!getConversionParameters@{getConversionParameters}}
+\index{getConversionParameters@{getConversionParameters}!detection.cc@{detection.cc}}
+\subsubsection{\texorpdfstring{getConversionParameters()}{getConversionParameters()}}
+{\footnotesize\ttfamily void get\+Conversion\+Parameters (\begin{DoxyParamCaption}\item[{Mat \&}]{transf,  }\item[{const bool}]{get }\end{DoxyParamCaption})}
+
+
+
+The function simply store the value of the given matrix and allow the access to it from different function location. 
+
+The transformation matrix are computed in the unwrapping phase and taken from the localization.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em transf} & It is the matrix that can be stored but also retrieved. \\
+\hline
+\mbox{\texttt{ in}}  & {\em get} & It is the flag that says if the given matrix need to be stored or retrieved. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{detection_8cc_a50993b0aa4f01d89a4e5d0aef4e1e5f4}\label{detection_8cc_a50993b0aa4f01d89a4e5d0aef4e1e5f4}} 
 \index{detection.cc@{detection.cc}!load\_number\_template@{load\_number\_template}}
 \index{load\_number\_template@{load\_number\_template}!detection.cc@{detection.cc}}
@@ -169,18 +187,28 @@ Given an image, in black/white format, identify all the borders that delimit the
 
 Load some templates and save them in the global variable \textquotesingle{}templates\textquotesingle{}. 
 
-\mbox{\Hypertarget{detection_8cc_a94b68d9d23169964a60add8408f19235}\label{detection_8cc_a94b68d9d23169964a60add8408f19235}} 
+\mbox{\Hypertarget{detection_8cc_a00434a2f4bcc3a3d7fb89cb8fb21dfe0}\label{detection_8cc_a00434a2f4bcc3a3d7fb89cb8fb21dfe0}} 
 \index{detection.cc@{detection.cc}!localize@{localize}}
 \index{localize@{localize}!detection.cc@{detection.cc}}
-\subsubsection{\texorpdfstring{localize()}{localize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_point2}{Point2}}$<$\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}$>$ localize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\subsubsection{\texorpdfstring{localize()}{localize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$double$>$ localize (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{const bool}]{raw }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{detection_8cc_a51f1fe2f187aa38e68edb89e945d01c0}\label{detection_8cc_a51f1fe2f187aa38e68edb89e945d01c0}} 
-\index{detection.cc@{detection.cc}!localize@{localize}}
-\index{localize@{localize}!detection.cc@{detection.cc}}
-\subsubsection{\texorpdfstring{localize()}{localize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_point2}{Point2}}$<$\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}$>$ localize (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})}
 
+
+Identify the location of the robot respect to the given image. 
+
+Identify the loation of the robot by acquiring the image from the default camera of the environment.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & It is the image where the robot need to be located. \\
+\hline
+\mbox{\texttt{ in}}  & {\em raw} & It is a boolean flag that says if the img is raw and need filters or not. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The configuration of the robot in this exactly moment, according to the image. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{detection_8cc_a785fcf35ca81d113a1ea3d831fbdbc22}\label{detection_8cc_a785fcf35ca81d113a1ea3d831fbdbc22}} 
 \index{detection.cc@{detection.cc}!number\_recognition@{number\_recognition}}
 \index{number\_recognition@{number\_recognition}!detection.cc@{detection.cc}}
@@ -244,6 +272,13 @@ Detect shapes inside the image according to the variable \textquotesingle{}color
 \subsubsection{\texorpdfstring{robotShape}{robotShape}}
 {\footnotesize\ttfamily vector$<$Point$>$ robot\+Shape}
 
+
+
+Identify the loation of the robot by acquiring the image from the default camera of the environment. 
+
+\begin{DoxyReturn}{Returns}
+The configuration of the robot in this exactly moment. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{detection_8cc_ad6ec2d6b7fce088fa5e9f335f9a6ed38}\label{detection_8cc_ad6ec2d6b7fce088fa5e9f335f9a6ed38}} 
 \index{detection.cc@{detection.cc}!templates@{templates}}
 \index{templates@{templates}!detection.cc@{detection.cc}}

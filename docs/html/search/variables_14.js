@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['whitemask',['whiteMask',['../class_settings.html#adcd52fec07542a958be5adf297969db4',1,'Settings']]],
   ['windcnt',['WindCnt',['../struct_clipper_lib_1_1_t_edge.html#ad7df0e20b58e4c6bddcfc7faf0003d4c',1,'ClipperLib::TEdge']]],
   ['windcnt2',['WindCnt2',['../struct_clipper_lib_1_1_t_edge.html#a50ccbb54513e60a39132dfca7c9b40f4',1,'ClipperLib::TEdge']]],
   ['winddelta',['WindDelta',['../struct_clipper_lib_1_1_t_edge.html#afd72e2c7b9f97706ead72907509f8bc1',1,'ClipperLib::TEdge']]],

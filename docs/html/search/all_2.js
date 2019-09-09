@@ -2,6 +2,7 @@ var searchData=
 [
   ['b',['b',['../class_my_exception.html#a42f4256beeac79f7ad8ad9682a9b83ee',1,'MyException']]],
   ['basedistance',['baseDistance',['../class_mapp.html#ae6b2f015604d9f3e34c7702aea081e08',1,'Mapp']]],
+  ['basefolder',['baseFolder',['../class_settings.html#ae48d5bd7db6c75ba5c697e08e4b32cee',1,'Settings']]],
   ['begin',['begin',['../class_curve.html#a5d0d409315773f72642e4323cb202711',1,'Curve::begin() const'],['../class_curve.html#a450ecb2eb0200c4f175ad5fc6afe4cb2',1,'Curve::begin(Configuration2&lt; T &gt; _P0)'],['../class_tuple.html#a205dfb3c3dcad03ced830b5c9687d225',1,'Tuple::begin()'],['../class_tuple.html#ab5d618dac69995db6adb0e657cd73bb3',1,'Tuple::begin() const']]],
   ['black',['BLACK',['../class_settings.html#a30d85f2e06a54ae9bc8da2d01037658fad72cf235641afa26b82dc5bb8b0db4e1',1,'Settings::BLACK()'],['../detection_8hh.html#aef17e8300db831cb13df4975928a52cbaf77fb67151d0c18d397069ad8c271ba3',1,'BLACK():&#160;detection.hh']]],
   ['blackmask',['blackMask',['../class_settings.html#a78ac37593a52a83973e18deefb2cc96c',1,'Settings']]],

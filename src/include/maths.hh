@@ -1,8 +1,7 @@
 #ifndef MATHS_HH
 #define MATHS_HH
 
-//#include <utils.hh>
-#include "utils.hh"
+#include <utils.hh>
 
 #include <iostream>
 #include <cmath>
@@ -810,35 +809,36 @@ public:
     return to_std_string();
   }
 
-  /*!\brief Overload of cast to vector.
-   * @return A vector containing the values of elements.
+  /*!\brief Overload of cast to vector of same type.
+   * \return A vector containing the values of elements.
    */
-  //TODO This works only when T1 and T are the same
+  operator vector<T> () const {
+    return this->elements;
+  }
+
+  /*!\brief Overload of cast to vector of different type.
+   * \tparam Type of vector to cast to.
+   * \return A vector containing the values of elements.
+   */
   template <class T1>
   operator vector<T1> () const {
-    if (is_same<T, T1>::value){
-      return elements;
-    }
-    else {
-      std::vector<T1> v;
-      for (int i=0; i<size(); i++){
-        v.push_back((T1)elements[i]);
+      vector<T1> v;
+      for (int i=0; i<this->size(); i++){
+        v.push_back((T1)(this->elements[i]));
       }
       return v;
-    }
   }
 
   /*!\brief Overloading [] operator to access elements in array style 
    * \param[in] index Id of value to get.
    * \returns Value at id position.
    */
-  int &operator[](int index) { 
-      if (index >= size()) 
-      { 
-          cerr << "Array index out of bound, exiting"; 
-          exit(0); 
-      } 
-      return elements[index]; 
+  T &operator[](int index) {
+    if (index >= this->size()) 
+    { 
+      throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Array index out of bound, exiting.", __LINE__, __FILE__); 
+    } 
+    return this->elements[index]; 
   } 
 
 
@@ -846,11 +846,11 @@ public:
   #define tupleConstIter const typename vector<T>::iterator
 
   //////FOREACH CODE///////
-  tupleIter begin()           { return elements.begin(); } ///<Iterator.\returns the elements.begin() iterator.
-  tupleConstIter begin() const{ return elements.begin(); } ///<Const iterator.\returns the elements.begin() iterator.
+  tupleIter begin()           { return this->elements.begin(); } ///<Iterator.\returns the elements.begin() iterator.
+  tupleConstIter begin() const{ return this->elements.begin(); } ///<Const iterator.\returns the elements.begin() iterator.
 
-  tupleIter end()             { return elements.end(); } ///<Iterator.\returns the elements.end() iterator.
-  tupleConstIter end() const  { return elements.end(); } ///<Const iterator.\returns the elements.begin() iterator.
+  tupleIter end()             { return this->elements.end(); } ///<Iterator.\returns the elements.end() iterator.
+  tupleConstIter end() const  { return this->elements.end(); } ///<Const iterator.\returns the elements.begin() iterator.
 };
 
 
@@ -1232,7 +1232,7 @@ public:
   }
   
   /**\brief Function to create a stringstream containing the detail of the configuration.
-   * @return A stringstream.
+   * \return A stringstream.
    */
   stringstream to_string() const {
     stringstream out;
@@ -1254,8 +1254,8 @@ public:
 
   /*!\brief Cast of Configuration to Point2.
    *
-   * @tparam T2 Type of Point2 to be casted to.
-   * @return A Point2 of type T2.
+   * \tparam T2 Type of Point2 to be casted to.
+   * \return A Point2 of type T2.
    */
   template<class T2>
   operator Point2<T2> () const {

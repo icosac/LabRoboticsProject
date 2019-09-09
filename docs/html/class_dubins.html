@@ -277,9 +277,9 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Constructor that takes an initial and a final <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>, a curvature and compute the <a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a> that connect the two configurations. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_P0</td><td>Initial <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>. </td></tr>
-    <tr><td class="paramname">_P1</td><td>Final <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>. </td></tr>
-    <tr><td class="paramname">_K</td><td>Curvature. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_P0</td><td>Initial <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_P1</td><td>Final <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_K</td><td>Curvature. </td></tr>
   </table>
   </dd>
 </dl>
@@ -341,11 +341,11 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Constructor that takes an initial and a final <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code>, the two respectively <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s and the curvature and computes the <a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_P0</td><td>Initial <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code>. </td></tr>
-    <tr><td class="paramname">_P1</td><td>Final <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code>. </td></tr>
-    <tr><td class="paramname">_th0</td><td>Initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> </td></tr>
-    <tr><td class="paramname">_th1</td><td>Final <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> </td></tr>
-    <tr><td class="paramname">_K</td><td>Curvature. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_P0</td><td>Initial <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_P1</td><td>Final <code><a class="el" href="class_point2.html" title="Class that stores two value to construct a point in 2D. The value is saved in a Tuple.">Point2</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_th0</td><td>Initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_th1</td><td>Final <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_K</td><td>Curvature. </td></tr>
   </table>
   </dd>
 </dl>
@@ -419,13 +419,13 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Constructor that takes the initial and final coordinates, the respective <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s and the curvature and compute a <a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x0</td><td>Initial abscissa coordinate. </td></tr>
-    <tr><td class="paramname">y0</td><td>Initial ordinate coordinate. </td></tr>
-    <tr><td class="paramname">_th0</td><td>Initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>. </td></tr>
-    <tr><td class="paramname">x1</td><td>Final abscissa coordinate. </td></tr>
-    <tr><td class="paramname">y1</td><td>Final ordinate coordinate. </td></tr>
-    <tr><td class="paramname">_th1</td><td>Final <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>. </td></tr>
-    <tr><td class="paramname">_K</td><td>Curvature of the curve. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x0</td><td>Initial abscissa coordinate. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">y0</td><td>Initial ordinate coordinate. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_th0</td><td>Initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x1</td><td>Final abscissa coordinate. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">y1</td><td>Final ordinate coordinate. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_th1</td><td>Final <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_K</td><td>Curvature of the curve. </td></tr>
   </table>
   </dd>
 </dl>
@@ -506,14 +506,14 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Function that checks that the values got in <code><a class="el" href="class_dubins.html#a52681fe06e50899b5296204a312233ce" title="This function computes the shortest path for the Dubins constructed. First the values are scaled....">shortest_path()</a></code> are right. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s1</td><td>Length for the first <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
-    <tr><td class="paramname">k0</td><td>Curvature for the first <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
-    <tr><td class="paramname">s2</td><td>Length for the second <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
-    <tr><td class="paramname">k1</td><td>Curvature for the second <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
-    <tr><td class="paramname">s3</td><td>Length for the third <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
-    <tr><td class="paramname">k2</td><td>Curvature for the third <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
-    <tr><td class="paramname">th0</td><td>Initial angles (standardised). </td></tr>
-    <tr><td class="paramname">th1</td><td>Final angles (standardised). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">s1</td><td>Length for the first <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">k0</td><td>Curvature for the first <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">s2</td><td>Length for the second <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">k1</td><td>Curvature for the second <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">s3</td><td>Length for the third <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">k2</td><td>Curvature for the third <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th0</td><td>Initial angles (standardised). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th1</td><td>Final angles (standardised). </td></tr>
   </table>
   </dd>
 </dl>
@@ -582,12 +582,12 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Function to draw the <code><a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a></code>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dimX</td><td>The dimension X of the Mat. </td></tr>
-    <tr><td class="paramname">dimY</td><td>The dimension Y of the Mat. </td></tr>
-    <tr><td class="paramname">inc</td><td>The value to scale each point. </td></tr>
-    <tr><td class="paramname">scl</td><td>The Scalar that defines the color to use. </td></tr>
-    <tr><td class="paramname">image</td><td>The Mat where to draw the points. </td></tr>
-    <tr><td class="paramname">SHIFT</td><td>The value to use to shift the points to make them stay inside the matrix. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dimX</td><td>The dimension X of the Mat. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dimY</td><td>The dimension Y of the Mat. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">inc</td><td>The value to scale each point. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scl</td><td>The Scalar that defines the color to use. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">image</td><td>The Mat where to draw the points. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">SHIFT</td><td>The value to use to shift the points to make them stay inside the matrix. </td></tr>
   </table>
   </dd>
 </dl>
@@ -811,9 +811,9 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Function to compute the set of maneuvers Left Right Left. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
-    <tr><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
   </table>
   </dd>
 </dl>
@@ -864,9 +864,9 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Function to compute the set of maneuvers Left Straight Left. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
-    <tr><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
   </table>
   </dd>
 </dl>
@@ -917,9 +917,9 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Function to compute the set of maneuvers Left Straight Right. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
-    <tr><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
   </table>
   </dd>
 </dl>
@@ -954,7 +954,7 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Normalize an angular difference <img class="formulaInl" alt="$(-\pi, \pi]$" src="form_3.png"/>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ang</td><td>The value of the angle to be normalized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ang</td><td>The value of the angle to be normalized. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1005,9 +1005,9 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Function to compute the set of maneuvers Right Left Right. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
-    <tr><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1058,9 +1058,9 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Function to compute the set of maneuvers Right Straight Left. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
-    <tr><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1111,9 +1111,9 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Function to compute the set of maneuvers Right Straight Right. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
-    <tr><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
-    <tr><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th0</td><td>The initial angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">th1</td><td>The final angle standardized. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_kmax</td><td>The maximum curvature. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1268,8 +1268,8 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 <p>Function to split a <a class="el" href="class_dubins.html" title="Class to store a Dubins curve. This class inherits from Curve and is composed of three DubinsArc.">Dubins</a> in points. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_arch</td><td>If defined returns only the points for a single <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
-    <tr><td class="paramname">_L</td><td>The distance from one point to another. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_arch</td><td>If defined returns only the points for a single <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_L</td><td>The distance from one point to another. </td></tr>
   </table>
   </dd>
 </dl>

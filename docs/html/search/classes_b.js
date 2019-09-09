@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['settings',['Settings',['../class_settings.html',1,'']]]
+  ['robotproject',['RobotProject',['../class_robot_project.html',1,'']]]
 ];

@@ -26,10 +26,8 @@ void \mbox{\hyperlink{configure_8cc_a584e4131f7f9065ddf282f575b9aa429}{on\+\_\+h
 \item 
 void \mbox{\hyperlink{configure_8cc_adb299151078862adbba361536682c3be}{update\+\_\+trackers}} ()
 \item 
-Mat \mbox{\hyperlink{configure_8cc_ac1ddb1a5d34b5273abac494a1c0daa15}{acquire\+Image}} (const bool save)
+void \mbox{\hyperlink{configure_8cc_a0201c21def303c2aeb297b1742406256}{configure}} (Mat \&img, bool deploy, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} img\+\_\+id)
 \begin{DoxyCompactList}\small\item\em It acqire a frame from the default camera of the pc. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{configure_8cc_a771825fc3dc8d2909f167037d64315f5}{configure}} (bool deploy, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} img\+\_\+id)
-\begin{DoxyCompactList}\small\item\em If D\+E\+P\+L\+OY is defined then takes a photo from the camera, shows tha various filters and asks if they are visually correct. If not then it allows to set the various filters through trackbars. If D\+E\+P\+L\+OY is not defined then it takes a map from the folder set in \mbox{\hyperlink{class_settings}{Settings}} and ask for visual confirmation. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{configure_8cc_a7a820e1422cbd41bba0662593fed05d8}{show\+\_\+all\+\_\+conditions}} (const Mat \&frame)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -40,11 +38,11 @@ bool \mbox{\hyperlink{configure_8cc_a7a820e1422cbd41bba0662593fed05d8}{show\+\_\
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{configure_8cc_ac1ddb1a5d34b5273abac494a1c0daa15}\label{configure_8cc_ac1ddb1a5d34b5273abac494a1c0daa15}} 
-\index{configure.cc@{configure.cc}!acquireImage@{acquireImage}}
-\index{acquireImage@{acquireImage}!configure.cc@{configure.cc}}
-\subsubsection{\texorpdfstring{acquireImage()}{acquireImage()}}
-{\footnotesize\ttfamily Mat acquire\+Image (\begin{DoxyParamCaption}\item[{const bool}]{save }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{configure_8cc_a0201c21def303c2aeb297b1742406256}\label{configure_8cc_a0201c21def303c2aeb297b1742406256}} 
+\index{configure.cc@{configure.cc}!configure@{configure}}
+\index{configure@{configure}!configure.cc@{configure.cc}}
+\subsubsection{\texorpdfstring{configure()}{configure()}}
+{\footnotesize\ttfamily void configure (\begin{DoxyParamCaption}\item[{Mat \&}]{img,  }\item[{bool}]{deploy,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{img\+\_\+id }\end{DoxyParamCaption})}
 
 
 
@@ -56,19 +54,9 @@ It acqire a frame from the default camera of the pc.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The Mat of the acquired frame. 
+The Mat of the acquired frame.
 \end{DoxyReturn}
-\mbox{\Hypertarget{configure_8cc_a771825fc3dc8d2909f167037d64315f5}\label{configure_8cc_a771825fc3dc8d2909f167037d64315f5}} 
-\index{configure.cc@{configure.cc}!configure@{configure}}
-\index{configure@{configure}!configure.cc@{configure.cc}}
-\subsubsection{\texorpdfstring{configure()}{configure()}}
-{\footnotesize\ttfamily void configure (\begin{DoxyParamCaption}\item[{bool}]{deploy,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{img\+\_\+id }\end{DoxyParamCaption})}
-
-
-
-If D\+E\+P\+L\+OY is defined then takes a photo from the camera, shows tha various filters and asks if they are visually correct. If not then it allows to set the various filters through trackbars. If D\+E\+P\+L\+OY is not defined then it takes a map from the folder set in \mbox{\hyperlink{class_settings}{Settings}} and ask for visual confirmation. 
-
-If deploy is true then takes a photo from the camera, shows tha various filters and asks if they are visually correct. If not then it allows to set the various filters through trackbars. If deploy is false then it takes the imd\+\_\+id-\/th maps from the folder set in \mbox{\hyperlink{class_settings}{Settings}} and ask for visual confirmation. \mbox{\Hypertarget{configure_8cc_ac1e30dee09879114a5aeb1edcc664af1}\label{configure_8cc_ac1e30dee09879114a5aeb1edcc664af1}} 
+If D\+E\+P\+L\+OY is defined then takes a photo from the camera, shows tha various filters and asks if they are visually correct. If not then it allows to set the various filters through trackbars. If D\+E\+P\+L\+OY is not defined then it takes a map from the folder set in \mbox{\hyperlink{class_settings}{Settings}} and ask for visual confirmation. \mbox{\Hypertarget{configure_8cc_ac1e30dee09879114a5aeb1edcc664af1}\label{configure_8cc_ac1e30dee09879114a5aeb1edcc664af1}} 
 \index{configure.cc@{configure.cc}!on\_high\_h\_thresh\_trackbar@{on\_high\_h\_thresh\_trackbar}}
 \index{on\_high\_h\_thresh\_trackbar@{on\_high\_h\_thresh\_trackbar}!configure.cc@{configure.cc}}
 \subsubsection{\texorpdfstring{on\_high\_h\_thresh\_trackbar()}{on\_high\_h\_thresh\_trackbar()}}

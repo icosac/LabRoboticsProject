@@ -27,20 +27,23 @@ This graph shows which files directly or indirectly include this file\+:
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-Mat \mbox{\hyperlink{configure_8hh_a5a8a77850effc2c4c0a518967713f94f}{acquire\+Image}} (const bool save=true)
+void \mbox{\hyperlink{configure_8hh_a4af3a6cc6d91b8adc318da223264aa2f}{configure}} (Mat \&img, bool deploy=true, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} img\+\_\+id=0)
 \begin{DoxyCompactList}\small\item\em It acqire a frame from the default camera of the pc. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{configure_8hh_afff3976a7e359f9c2baef0fa59f0fca0}{configure}} (bool deploy=true, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} img\+\_\+id=0)
-\begin{DoxyCompactList}\small\item\em If deploy is true then takes a photo from the camera, shows tha various filters and asks if they are visually correct. If not then it allows to set the various filters through trackbars. If deploy is false then it takes the imd\+\_\+id-\/th maps from the folder set in \mbox{\hyperlink{class_settings}{Settings}} and ask for visual confirmation. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{configure_8hh_a7a820e1422cbd41bba0662593fed05d8}{show\+\_\+all\+\_\+conditions}} (const Mat \&frame)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_settings}{Settings}} $\ast$ \mbox{\hyperlink{configure_8hh_a4f37177ee03b8ce3859a16bb3d82f189}{sett}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{configure_8hh_a5a8a77850effc2c4c0a518967713f94f}\label{configure_8hh_a5a8a77850effc2c4c0a518967713f94f}} 
-\index{configure.hh@{configure.hh}!acquireImage@{acquireImage}}
-\index{acquireImage@{acquireImage}!configure.hh@{configure.hh}}
-\subsubsection{\texorpdfstring{acquireImage()}{acquireImage()}}
-{\footnotesize\ttfamily Mat acquire\+Image (\begin{DoxyParamCaption}\item[{const bool}]{save }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{configure_8hh_a4af3a6cc6d91b8adc318da223264aa2f}\label{configure_8hh_a4af3a6cc6d91b8adc318da223264aa2f}} 
+\index{configure.hh@{configure.hh}!configure@{configure}}
+\index{configure@{configure}!configure.hh@{configure.hh}}
+\subsubsection{\texorpdfstring{configure()}{configure()}}
+{\footnotesize\ttfamily void configure (\begin{DoxyParamCaption}\item[{Mat \&}]{img,  }\item[{bool}]{deploy,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{img\+\_\+id }\end{DoxyParamCaption})}
 
 
 
@@ -52,19 +55,19 @@ It acqire a frame from the default camera of the pc.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The Mat of the acquired frame. 
+The Mat of the acquired frame.
 \end{DoxyReturn}
-\mbox{\Hypertarget{configure_8hh_afff3976a7e359f9c2baef0fa59f0fca0}\label{configure_8hh_afff3976a7e359f9c2baef0fa59f0fca0}} 
-\index{configure.hh@{configure.hh}!configure@{configure}}
-\index{configure@{configure}!configure.hh@{configure.hh}}
-\subsubsection{\texorpdfstring{configure()}{configure()}}
-{\footnotesize\ttfamily void configure (\begin{DoxyParamCaption}\item[{bool}]{deploy,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{img\+\_\+id }\end{DoxyParamCaption})}
+If deploy is true then takes a photo from the camera, shows tha various filters and asks if they are visually correct. If not then it allows to set the various filters through trackbars. If deploy is false then it takes the imd\+\_\+id-\/th maps from the folder set in \mbox{\hyperlink{class_settings}{Settings}} and ask for visual confirmation.
 
 
-
-If deploy is true then takes a photo from the camera, shows tha various filters and asks if they are visually correct. If not then it allows to set the various filters through trackbars. If deploy is false then it takes the imd\+\_\+id-\/th maps from the folder set in \mbox{\hyperlink{class_settings}{Settings}} and ask for visual confirmation. 
-
-If deploy is true then takes a photo from the camera, shows tha various filters and asks if they are visually correct. If not then it allows to set the various filters through trackbars. If deploy is false then it takes the imd\+\_\+id-\/th maps from the folder set in \mbox{\hyperlink{class_settings}{Settings}} and ask for visual confirmation. \mbox{\Hypertarget{configure_8hh_a7a820e1422cbd41bba0662593fed05d8}\label{configure_8hh_a7a820e1422cbd41bba0662593fed05d8}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em save} & If save, or not, the acquired image to a file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Mat of the acquired frame.
+\end{DoxyReturn}
+If D\+E\+P\+L\+OY is defined then takes a photo from the camera, shows tha various filters and asks if they are visually correct. If not then it allows to set the various filters through trackbars. If D\+E\+P\+L\+OY is not defined then it takes a map from the folder set in \mbox{\hyperlink{class_settings}{Settings}} and ask for visual confirmation. \mbox{\Hypertarget{configure_8hh_a7a820e1422cbd41bba0662593fed05d8}\label{configure_8hh_a7a820e1422cbd41bba0662593fed05d8}} 
 \index{configure.hh@{configure.hh}!show\_all\_conditions@{show\_all\_conditions}}
 \index{show\_all\_conditions@{show\_all\_conditions}!configure.hh@{configure.hh}}
 \subsubsection{\texorpdfstring{show\_all\_conditions()}{show\_all\_conditions()}}
@@ -78,5 +81,24 @@ Function to show a picture with various filters taken from \mbox{\hyperlink{clas
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
+True if the filters are okay, false otherwise.
+\end{DoxyReturn}
+Function to show a picture with various filters taken from \mbox{\hyperlink{class_settings}{Settings}}. It then asks for visual confirmation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & The image to show. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
 True if the filters are okay, false otherwise. 
 \end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{configure_8hh_a4f37177ee03b8ce3859a16bb3d82f189}\label{configure_8hh_a4f37177ee03b8ce3859a16bb3d82f189}} 
+\index{configure.hh@{configure.hh}!sett@{sett}}
+\index{sett@{sett}!configure.hh@{configure.hh}}
+\subsubsection{\texorpdfstring{sett}{sett}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_settings}{Settings}}$\ast$ sett}
+

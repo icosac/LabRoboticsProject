@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.27)  4 SEP 2019 11:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.27)  7 SEP 2019 12:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1625,7 +1625,7 @@ Underfull \hbox (badness 10000) detected at line 98
 
 ) (./class_clipper_lib_1_1_clipper.tex <./class_clipper_lib_1_1_clipper__inheri
 t__graph.pdf>
-<class_clipper_lib_1_1_clipper__inherit__graph.pdf, id=6894, 201.75375pt x 154.
+<class_clipper_lib_1_1_clipper__inherit__graph.pdf, id=7000, 201.75375pt x 154.
 5775pt>
 File: class_clipper_lib_1_1_clipper__inherit__graph.pdf Graphic file (type pdf)
 
@@ -1634,7 +1634,7 @@ Package pdftex.def Info: class_clipper_lib_1_1_clipper__inherit__graph.pdf used
  on input line 14.
 (pdftex.def)             Requested size: 201.0pt x 154.00159pt.
  <./class_clipper_lib_1_1_clipper__coll__graph.pdf>
-<class_clipper_lib_1_1_clipper__coll__graph.pdf, id=6907, 255.95625pt x 357.335
+<class_clipper_lib_1_1_clipper__coll__graph.pdf, id=7013, 255.95625pt x 357.335
 pt>
 File: class_clipper_lib_1_1_clipper__coll__graph.pdf Graphic file (type pdf)
  <use class_clipper_lib_1_1_clipper__coll__graph.pdf>
@@ -1644,7 +1644,7 @@ Package pdftex.def Info: class_clipper_lib_1_1_clipper__coll__graph.pdf used on
  [62] [63] [64])
 (./class_clipper_lib_1_1_clipper_base.tex <./class_clipper_lib_1_1_clipper_base
 __inherit__graph.pdf>
-<class_clipper_lib_1_1_clipper_base__inherit__graph.pdf, id=6995, 201.75375pt x
+<class_clipper_lib_1_1_clipper_base__inherit__graph.pdf, id=7101, 201.75375pt x
  154.5775pt>
 File: class_clipper_lib_1_1_clipper_base__inherit__graph.pdf Graphic file (type
  pdf)
@@ -1653,7 +1653,7 @@ Package pdftex.def Info: class_clipper_lib_1_1_clipper_base__inherit__graph.pdf
  used on input line 14.
 (pdftex.def)             Requested size: 201.0pt x 154.00159pt.
  <./class_clipper_lib_1_1_clipper_base__coll__graph.pdf>
-<class_clipper_lib_1_1_clipper_base__coll__graph.pdf, id=7008, 255.95625pt x 30
+<class_clipper_lib_1_1_clipper_base__coll__graph.pdf, id=7114, 255.95625pt x 30
 1.125pt>
 File: class_clipper_lib_1_1_clipper_base__coll__graph.pdf Graphic file (type pd
 f)
@@ -1849,7 +1849,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
 [86] <./class_curve__inherit__graph.pdf>
-<class_curve__inherit__graph.pdf, id=7519, 150.5625pt x 154.5775pt>
+<class_curve__inherit__graph.pdf, id=7625, 150.5625pt x 154.5775pt>
 File: class_curve__inherit__graph.pdf Graphic file (type pdf)
 
 <use class_curve__inherit__graph.pdf>
@@ -1857,7 +1857,7 @@ Package pdftex.def Info: class_curve__inherit__graph.pdf used on input line 14.
 
 (pdftex.def)             Requested size: 150.0pt x 154.01338pt.
  <./class_curve__coll__graph.pdf>
-<class_curve__coll__graph.pdf, id=7532, 184.69pt x 174.6525pt>
+<class_curve__coll__graph.pdf, id=7638, 184.69pt x 174.6525pt>
 File: class_curve__coll__graph.pdf Graphic file (type pdf)
 
 <use class_curve__coll__graph.pdf>
@@ -1894,7 +1894,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
  <./class_dubins__inherit__graph.pdf>
-<class_dubins__inherit__graph.pdf, id=7733, 150.5625pt x 154.5775pt>
+<class_dubins__inherit__graph.pdf, id=7839, 150.5625pt x 154.5775pt>
 File: class_dubins__inherit__graph.pdf Graphic file (type pdf)
 
 <use class_dubins__inherit__graph.pdf>
@@ -1902,7 +1902,7 @@ Package pdftex.def Info: class_dubins__inherit__graph.pdf used on input line 19
 .
 (pdftex.def)             Requested size: 150.0pt x 154.01338pt.
  <./class_dubins__coll__graph.pdf>
-<class_dubins__coll__graph.pdf, id=7746, 184.69pt x 230.8625pt>
+<class_dubins__coll__graph.pdf, id=7852, 184.69pt x 230.8625pt>
 File: class_dubins__coll__graph.pdf Graphic file (type pdf)
 
 <use class_dubins__coll__graph.pdf>
@@ -1995,7 +1995,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
  <./class_dubins_arc__inherit__graph.pdf>
-<class_dubins_arc__inherit__graph.pdf, id=8053, 188.705pt x 154.5775pt>
+<class_dubins_arc__inherit__graph.pdf, id=8158, 188.705pt x 154.5775pt>
 File: class_dubins_arc__inherit__graph.pdf Graphic file (type pdf)
 
 <use class_dubins_arc__inherit__graph.pdf>
@@ -2003,7 +2003,7 @@ Package pdftex.def Info: class_dubins_arc__inherit__graph.pdf used on input lin
 e 19.
 (pdftex.def)             Requested size: 188.0pt x 153.99922pt.
  [103] <./class_dubins_arc__coll__graph.pdf> <class_dubins_arc__coll__graph.pdf
-, id=8071, 190.7125pt x 230.8625pt>
+, id=8177, 190.7125pt x 230.8625pt>
 File: class_dubins_arc__coll__graph.pdf Graphic file (type pdf)
 
 <use class_dubins_arc__coll__graph.pdf>
@@ -2098,14 +2098,14 @@ Underfull \hbox (badness 10000) detected at line 205
  []
 
 [116]) (./class_gate.tex <./class_gate__inherit__graph.pdf>
-<class_gate__inherit__graph.pdf, id=8496, 125.46875pt x 154.5775pt>
+<class_gate__inherit__graph.pdf, id=8602, 125.46875pt x 154.5775pt>
 File: class_gate__inherit__graph.pdf Graphic file (type pdf)
 
 <use class_gate__inherit__graph.pdf>
 Package pdftex.def Info: class_gate__inherit__graph.pdf used on input line 14.
 (pdftex.def)             Requested size: 125.0pt x 154.00865pt.
  [117] <./class_gate__coll__graph.pdf>
-<class_gate__coll__graph.pdf, id=8514, 152.57pt x 220.825pt>
+<class_gate__coll__graph.pdf, id=8620, 152.57pt x 220.825pt>
 File: class_gate__coll__graph.pdf Graphic file (type pdf)
 
 <use class_gate__coll__graph.pdf>
@@ -2125,7 +2125,7 @@ Underfull \hbox (badness 10000) detected at line 81
 (./class_clipper_lib_1_1_int128.tex [121] [122] [123] [124])
 (./struct_clipper_lib_1_1_intersect_node.tex <./struct_clipper_lib_1_1_intersec
 t_node__coll__graph.pdf>
-<struct_clipper_lib_1_1_intersect_node__coll__graph.pdf, id=8682, 311.1625pt x 
+<struct_clipper_lib_1_1_intersect_node__coll__graph.pdf, id=8788, 311.1625pt x 
 311.1625pt>
 File: struct_clipper_lib_1_1_intersect_node__coll__graph.pdf Graphic file (type
  pdf)
@@ -2138,7 +2138,7 @@ Package pdftex.def Info: struct_clipper_lib_1_1_intersect_node__coll__graph.pdf
 (./struct_clipper_lib_1_1_int_rect.tex [128])
 (./struct_clipper_lib_1_1_join.tex <./struct_clipper_lib_1_1_join__coll__graph.
 pdf>
-<struct_clipper_lib_1_1_join__coll__graph.pdf, id=8775, 292.09125pt x 240.9pt>
+<struct_clipper_lib_1_1_join__coll__graph.pdf, id=8881, 292.09125pt x 240.9pt>
 File: struct_clipper_lib_1_1_join__coll__graph.pdf Graphic file (type pdf)
 
 <use struct_clipper_lib_1_1_join__coll__graph.pdf>
@@ -2148,7 +2148,7 @@ nput line 10.
  [129])
 (./struct_clipper_lib_1_1_local_minimum.tex <./struct_clipper_lib_1_1_local_min
 imum__coll__graph.pdf>
-<struct_clipper_lib_1_1_local_minimum__coll__graph.pdf, id=8804, 260.975pt x 31
+<struct_clipper_lib_1_1_local_minimum__coll__graph.pdf, id=8910, 260.975pt x 31
 1.1625pt>
 File: struct_clipper_lib_1_1_local_minimum__coll__graph.pdf Graphic file (type 
 pdf)
@@ -2158,23 +2158,35 @@ used on input line 10.
 (pdftex.def)             Requested size: 260.0pt x 310.00323pt.
  [130]
 [131]) (./struct_clipper_lib_1_1_loc_min_sorter.tex) (./class_mapp.tex [132]
-[133] [134] [135] [136] [137]
-Underfull \hbox (badness 10000) detected at line 246
+[133] [134] [135] [136]
+Underfull \hbox (badness 10000) detected at line 254
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 268
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [137]
+Underfull \hbox (badness 10000) detected at line 276
 [][][]
  []
+
+
+Underfull \hbox (badness 10000) detected at line 298
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 311
+[][][]
+ []
+
+
+Overfull \vbox (4.6081pt too high) has occurred while \output is active []
+
 
 [138]
-Underfull \hbox (badness 10000) detected at line 290
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 303
+Underfull \hbox (badness 10000) detected at line 344
 [][][]
  []
 
@@ -2182,49 +2194,38 @@ Underfull \hbox (badness 10000) detected at line 303
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [139]
-Underfull \hbox (badness 10000) detected at line 336
-[][][]
- []
-
-
-Overfull \vbox (15.54958pt too high) has occurred while \output is active []
-
-
 [140]
-Underfull \hbox (badness 10000) detected at line 442
-[][][]
- []
-
-[141]
-Underfull \hbox (badness 10000) detected at line 464
+Underfull \hbox (badness 10000) detected at line 450
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 486
+Underfull \hbox (badness 10000) detected at line 472
 [][][]
  []
 
-[142]
-Underfull \hbox (badness 10000) detected at line 512
-[][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [143]
-Underfull \hbox (badness 10000) detected at line 567
+[141] [142]
+Underfull \hbox (badness 10000) detected at line 494
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 587
+Underfull \hbox (badness 10000) detected at line 520
+[][][]
+ []
+
+[143]
+Underfull \hbox (badness 10000) detected at line 575
 [][][]
  []
 
 [144]
-Underfull \hbox (badness 10000) detected at line 607
+Underfull \hbox (badness 10000) detected at line 595
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 615
 [][][]
  []
 
@@ -2245,8 +2246,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
-[147]) (./class_object.tex [148] <./class_object__inherit__graph.pdf>
-<class_object__inherit__graph.pdf, id=9297, 252.945pt x 154.5775pt>
+[147] [148]) (./class_object.tex <./class_object__inherit__graph.pdf>
+<class_object__inherit__graph.pdf, id=9407, 252.945pt x 154.5775pt>
 File: class_object__inherit__graph.pdf Graphic file (type pdf)
 
 <use class_object__inherit__graph.pdf>
@@ -2254,7 +2255,7 @@ Package pdftex.def Info: class_object__inherit__graph.pdf used on input line 14
 .
 (pdftex.def)             Requested size: 252.0pt x 154.00394pt.
  <./class_object__coll__graph.pdf>
-<class_object__coll__graph.pdf, id=9310, 152.57pt x 164.615pt>
+<class_object__coll__graph.pdf, id=9421, 152.57pt x 164.615pt>
 File: class_object__coll__graph.pdf Graphic file (type pdf)
 
 <use class_object__coll__graph.pdf>
@@ -2290,10 +2291,6 @@ Underfull \hbox (badness 10000) detected at line 169
 [][][]
  []
 
-
-Overfull \vbox (27.74275pt too high) has occurred while \output is active []
-
-
 [152]
 Underfull \hbox (badness 10000) detected at line 203
 [][][]
@@ -2305,7 +2302,7 @@ Underfull \hbox (badness 10000) detected at line 216
  []
 
 ) (./class_obstacle.tex <./class_obstacle__inherit__graph.pdf>
-<class_obstacle__inherit__graph.pdf, id=9411, 135.50626pt x 154.5775pt>
+<class_obstacle__inherit__graph.pdf, id=9521, 135.50626pt x 154.5775pt>
 File: class_obstacle__inherit__graph.pdf Graphic file (type pdf)
 
 <use class_obstacle__inherit__graph.pdf>
@@ -2313,7 +2310,7 @@ Package pdftex.def Info: class_obstacle__inherit__graph.pdf used on input line
 14.
 (pdftex.def)             Requested size: 135.0pt x 154.0063pt.
  [153] <./class_obstacle__coll__graph.pdf> <class_obstacle__coll__graph.pdf, id
-=9429, 152.57pt x 220.825pt>
+=9540, 152.57pt x 220.825pt>
 File: class_obstacle__coll__graph.pdf Graphic file (type pdf)
 
 <use class_obstacle__coll__graph.pdf>
@@ -2330,26 +2327,26 @@ Underfull \hbox (badness 10000) detected at line 81
 [][][]
  []
 
-) (./struct_clipper_lib_1_1_out_pt.tex <./struct_clipper_lib_1_1_out_pt__coll__
-graph.pdf>
-<struct_clipper_lib_1_1_out_pt__coll__graph.pdf, id=9461, 218.8175pt x 165.6187
+[155]) (./struct_clipper_lib_1_1_out_pt.tex <./struct_clipper_lib_1_1_out_pt__c
+oll__graph.pdf>
+<struct_clipper_lib_1_1_out_pt__coll__graph.pdf, id=9578, 218.8175pt x 165.6187
 4pt>
 File: struct_clipper_lib_1_1_out_pt__coll__graph.pdf Graphic file (type pdf)
  <use struct_clipper_lib_1_1_out_pt__coll__graph.pdf>
 Package pdftex.def Info: struct_clipper_lib_1_1_out_pt__coll__graph.pdf used on
  input line 10.
 (pdftex.def)             Requested size: 218.0pt x 165.00171pt.
- [155])
+ [156])
 (./struct_clipper_lib_1_1_out_rec.tex <./struct_clipper_lib_1_1_out_rec__coll__
 graph.pdf>
-<struct_clipper_lib_1_1_out_rec__coll__graph.pdf, id=9494, 396.48125pt x 240.9p
+<struct_clipper_lib_1_1_out_rec__coll__graph.pdf, id=9615, 396.48125pt x 240.9p
 t>
 File: struct_clipper_lib_1_1_out_rec__coll__graph.pdf Graphic file (type pdf)
  <use struct_clipper_lib_1_1_out_rec__coll__graph.pdf>
 Package pdftex.def Info: struct_clipper_lib_1_1_out_rec__coll__graph.pdf used o
 n input line 10.
 (pdftex.def)             Requested size: 350.0pt x 212.66164pt.
- [156] [157])
+ [157])
 (./class_point2.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2377,10 +2374,7 @@ Overfull \hbox (4.48154pt too wide) in paragraph at lines 3--3
 \T1/phv/m/sl/10 _[] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [160]
+[160]
 Underfull \hbox (badness 10000) detected at line 148
 [][][]
  []
@@ -2395,12 +2389,12 @@ Underfull \hbox (badness 10000) detected at line 189
 [][][]
  []
 
-
+[162]
 Underfull \hbox (badness 10000) detected at line 209
 [][][]
  []
 
-[162]
+
 Underfull \hbox (badness 10000) detected at line 229
 [][][]
  []
@@ -2415,12 +2409,12 @@ Underfull \hbox (badness 10000) detected at line 284
 [][][]
  []
 
-
+[164]
 Underfull \hbox (badness 10000) detected at line 303
 [][][]
  []
 
-[164]
+
 Underfull \hbox (badness 10000) detected at line 322
 [][][]
  []
@@ -2430,12 +2424,12 @@ Underfull \hbox (badness 10000) detected at line 336
 [][][]
  []
 
-
+[165]
 Underfull \hbox (badness 10000) detected at line 355
 [][][]
  []
 
-[165]
+
 Underfull \hbox (badness 10000) detected at line 381
 [][][]
  []
@@ -2446,7 +2440,7 @@ Underfull \hbox (badness 10000) detected at line 400
  []
 
 [166]
-Underfull \hbox (badness 10000) detected at line 424
+Underfull \hbox (badness 10000) detected at line 425
 [][][]
  []
 
@@ -2456,33 +2450,33 @@ Overfull \hbox (4.48154pt too wide) in paragraph at lines 1--1
  []
 
 
-Underfull \hbox (badness 10000) detected at line 443
+Underfull \hbox (badness 10000) detected at line 444
 [][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 453
-[][][]
- []
-
-
-Overfull \hbox (4.48154pt too wide) in paragraph at lines 1--1
-\T1/phv/m/sl/10 _[] 
  []
 
 [167]
-Underfull \hbox (badness 10000) detected at line 472
+Underfull \hbox (badness 10000) detected at line 454
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 496
+Overfull \hbox (4.48154pt too wide) in paragraph at lines 1--1
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 473
+[][][]
+ []
+
+[168]
+Underfull \hbox (badness 10000) detected at line 497
 [][][]
  []
 
 ) (./class_clipper_lib_1_1_poly_node.tex <./class_clipper_lib_1_1_poly_node__in
 herit__graph.pdf>
-<class_clipper_lib_1_1_poly_node__inherit__graph.pdf, id=9767, 190.7125pt x 154
+<class_clipper_lib_1_1_poly_node__inherit__graph.pdf, id=9884, 190.7125pt x 154
 .5775pt>
 File: class_clipper_lib_1_1_poly_node__inherit__graph.pdf Graphic file (type pd
 f)
@@ -2490,8 +2484,8 @@ f)
 Package pdftex.def Info: class_clipper_lib_1_1_poly_node__inherit__graph.pdf us
 ed on input line 14.
 (pdftex.def)             Requested size: 190.0pt x 154.0063pt.
- [168] <./class_clipper_lib_1_1_poly_node__coll__graph.pdf>
-<class_clipper_lib_1_1_poly_node__coll__graph.pdf, id=9786, 240.9pt x 99.37125p
+ <./class_clipper_lib_1_1_poly_node__coll__graph.pdf>
+<class_clipper_lib_1_1_poly_node__coll__graph.pdf, id=9897, 240.9pt x 99.37125p
 t>
 File: class_clipper_lib_1_1_poly_node__coll__graph.pdf Graphic file (type pdf)
  <use class_clipper_lib_1_1_poly_node__coll__graph.pdf>
@@ -2501,7 +2495,7 @@ on input line 24.
  [169] [170])
 (./class_clipper_lib_1_1_poly_tree.tex <./class_clipper_lib_1_1_poly_tree__inhe
 rit__graph.pdf>
-<class_clipper_lib_1_1_poly_tree__inherit__graph.pdf, id=9849, 190.7125pt x 154
+<class_clipper_lib_1_1_poly_tree__inherit__graph.pdf, id=9959, 190.7125pt x 154
 .5775pt>
 File: class_clipper_lib_1_1_poly_tree__inherit__graph.pdf Graphic file (type pd
 f)
@@ -2509,83 +2503,95 @@ f)
 Package pdftex.def Info: class_clipper_lib_1_1_poly_tree__inherit__graph.pdf us
 ed on input line 14.
 (pdftex.def)             Requested size: 190.0pt x 154.0063pt.
- <./class_clipper_lib_1_1_poly_tree__coll__graph.pdf>
-<class_clipper_lib_1_1_poly_tree__coll__graph.pdf, id=9862, 240.9pt x 155.58125
+ [171] <./class_clipper_lib_1_1_poly_tree__coll__graph.pdf>
+<class_clipper_lib_1_1_poly_tree__coll__graph.pdf, id=9978, 240.9pt x 155.58125
 pt>
 File: class_clipper_lib_1_1_poly_tree__coll__graph.pdf Graphic file (type pdf)
  <use class_clipper_lib_1_1_poly_tree__coll__graph.pdf>
 Package pdftex.def Info: class_clipper_lib_1_1_poly_tree__coll__graph.pdf used 
 on input line 24.
 (pdftex.def)             Requested size: 240.0pt x 155.00397pt.
- [171] [172])
-(./class_settings.tex <./class_settings__coll__graph.pdf>
-<class_settings__coll__graph.pdf, id=9906, 245.91875pt x 224.84pt>
+ [172])
+(./class_robot_project.tex [173] [174]) (./class_settings.tex <./class_settings
+__coll__graph.pdf>
+<class_settings__coll__graph.pdf, id=10044, 244.915pt x 214.8025pt>
 File: class_settings__coll__graph.pdf Graphic file (type pdf)
 
 <use class_settings__coll__graph.pdf>
 Package pdftex.def Info: class_settings__coll__graph.pdf used on input line 14.
 
-(pdftex.def)             Requested size: 245.0pt x 224.00919pt.
- [173] [174] [175] [176] [177] [178]
-Underfull \hbox (badness 10000) detected at line 298
+(pdftex.def)             Requested size: 244.0pt x 214.00551pt.
+ [175]
+Underfull \hbox (badness 2790) in paragraph at lines 37--38
+[]\T1/phv/m/n/10 void [] (string []_[]base[]Folder="data/", string []_[]maps[]F
+older="map/", string []_[]templates[]Folder="num[]
+ []
+
+
+Underfull \hbox (badness 2556) in paragraph at lines 37--38
+\T1/phv/m/n/10 _[]template/", vector$\OML/cmm/m/it/10 <$ \T1/phv/m/n/10 string 
+$\OML/cmm/m/it/10 >$ []\T1/phv/m/n/10 _[]maps[]Names={}, vector$\OML/cmm/m/it/1
+0 <$ \T1/phv/m/n/10 string $\OML/cmm/m/it/10 >$ []\T1/phv/m/n/10 _[]maps[]Un[]N
+ames={}, string []_[]
+ []
+
+[176] [177] [178] [179] [180]
+Underfull \hbox (badness 10000) detected at line 330
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 316
+Underfull \hbox (badness 10000) detected at line 348
+[][][]
+ []
+
+[181]
+Underfull \hbox (badness 10000) detected at line 366
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 334
-[][][]
- []
-
-[179] [180]
-Underfull \hbox (badness 10000) detected at line 352
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 372
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 380
-[][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [181]
-Underfull \hbox (badness 10000) detected at line 398
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 416
+Underfull \hbox (badness 10000) detected at line 384
 [][][]
  []
 
 [182]
-Underfull \hbox (badness 10000) detected at line 489
-[][][]
- []
-
-[183]
-Underfull \hbox (badness 10000) detected at line 507
+Underfull \hbox (badness 10000) detected at line 404
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 527
+Underfull \hbox (badness 10000) detected at line 412
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 535
+Underfull \hbox (badness 10000) detected at line 430
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 448
+[][][]
+ []
+
+[183] [184]
+Underfull \hbox (badness 10000) detected at line 553
+[][][]
+ []
+
+[185]
+Underfull \hbox (badness 10000) detected at line 571
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 591
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 599
 [][][]
  []
 
@@ -2593,32 +2599,32 @@ Underfull \hbox (badness 10000) detected at line 535
 Overfull \vbox (1.57031pt too high) has occurred while \output is active []
 
 
-[184]
-Underfull \hbox (badness 10000) detected at line 553
+[186]
+Underfull \hbox (badness 10000) detected at line 617
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 571
+Underfull \hbox (badness 10000) detected at line 635
 [][][]
  []
 
-[185]
-Underfull \hbox (badness 10000) detected at line 605
+[187]
+Underfull \hbox (badness 10000) detected at line 671
 [][][]
  []
 
-[186] [187]) (./struct_clipper_lib_1_1_t_edge.tex <./struct_clipper_lib_1_1_t_e
+[188] [189]) (./struct_clipper_lib_1_1_t_edge.tex <./struct_clipper_lib_1_1_t_e
 dge__coll__graph.pdf>
-<struct_clipper_lib_1_1_t_edge__coll__graph.pdf, id=10386, 245.91875pt x 235.88
+<struct_clipper_lib_1_1_t_edge__coll__graph.pdf, id=10558, 245.91875pt x 235.88
 126pt>
 File: struct_clipper_lib_1_1_t_edge__coll__graph.pdf Graphic file (type pdf)
  <use struct_clipper_lib_1_1_t_edge__coll__graph.pdf>
 Package pdftex.def Info: struct_clipper_lib_1_1_t_edge__coll__graph.pdf used on
  input line 10.
 (pdftex.def)             Requested size: 245.0pt x 235.00964pt.
- [188] [189]
-[190]) (./class_tuple.tex
+ [190] [191]
+[192]) (./class_tuple.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
@@ -2635,100 +2641,102 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
-[191] [192] [193]
+[193] [194] [195]
 Overfull \hbox (3.9776pt too wide) in paragraph at lines 1--1
 \T1/phv/m/sl/10 _[] 
- []
-
-[194]
-Underfull \hbox (badness 10000) detected at line 168
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 182
-[][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [195]
-Underfull \hbox (badness 10000) detected at line 204
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 218
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 232
-[][][]
  []
 
 [196]
-Underfull \hbox (badness 10000) detected at line 270
+Underfull \hbox (badness 10000) detected at line 170
 [][][]
  []
 
 
-Overfull \hbox (3.9776pt too wide) in paragraph at lines 1--1
-\T1/phv/m/sl/10 _[] 
- []
-
-
-Underfull \hbox (badness 10000) detected at line 296
+Underfull \hbox (badness 10000) detected at line 184
 [][][]
  []
 
 [197]
-Underfull \hbox (badness 10000) detected at line 316
+Underfull \hbox (badness 10000) detected at line 206
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 220
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 234
 [][][]
  []
 
 [198]
-Underfull \hbox (badness 10000) detected at line 366
+Underfull \hbox (badness 10000) detected at line 272
 [][][]
  []
 
 
-Overfull \vbox (2.63315pt too high) has occurred while \output is active []
+Overfull \hbox (3.9776pt too wide) in paragraph at lines 1--1
+\T1/phv/m/sl/10 _[] 
+ []
+
+
+Overfull \vbox (2.9742pt too high) has occurred while \output is active []
 
 
 [199]
-Underfull \hbox (badness 10000) detected at line 406
+Underfull \hbox (badness 10000) detected at line 298
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 425
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 446
+Underfull \hbox (badness 10000) detected at line 318
 [][][]
  []
 
 [200]
-Underfull \hbox (badness 10000) detected at line 456
+Underfull \hbox (badness 10000) detected at line 367
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 487
+Underfull \hbox (badness 10000) detected at line 387
 [][][]
  []
 
 [201]
-Underfull \hbox (badness 10000) detected at line 511
+Underfull \hbox (badness 10000) detected at line 427
 [][][]
  []
 
-) (./class_victim.tex <./class_victim__inherit__graph.pdf>
-<class_victim__inherit__graph.pdf, id=10739, 125.46875pt x 154.5775pt>
+[202]
+Underfull \hbox (badness 10000) detected at line 446
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 467
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 477
+[][][]
+ []
+
+[203]
+Underfull \hbox (badness 10000) detected at line 508
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 532
+[][][]
+ []
+
+[204]) (./class_victim.tex <./class_victim__inherit__graph.pdf>
+<class_victim__inherit__graph.pdf, id=10918, 125.46875pt x 154.5775pt>
 File: class_victim__inherit__graph.pdf Graphic file (type pdf)
 
 <use class_victim__inherit__graph.pdf>
@@ -2736,44 +2744,44 @@ Package pdftex.def Info: class_victim__inherit__graph.pdf used on input line 14
 .
 (pdftex.def)             Requested size: 125.0pt x 154.00865pt.
  <./class_victim__coll__graph.pdf>
-<class_victim__coll__graph.pdf, id=10753, 152.57pt x 220.825pt>
+<class_victim__coll__graph.pdf, id=10931, 152.57pt x 220.825pt>
 File: class_victim__coll__graph.pdf Graphic file (type pdf)
 
 <use class_victim__coll__graph.pdf>
 Package pdftex.def Info: class_victim__coll__graph.pdf used on input line 24.
 (pdftex.def)             Requested size: 152.0pt x 220.00902pt.
- [202]
+ [205]
 Underfull \hbox (badness 10000) detected at line 65
 [][][]
  []
 
-[203]
+[206]
 Underfull \hbox (badness 10000) detected at line 103
 [][][]
  []
 
-) [204]
+) [207] [208
+
+]
 Chapter 7.
 (./calibration_8cc.tex <./calibration_8cc__incl.pdf>
-<calibration_8cc__incl.pdf, id=10810, 1490.56876pt x 375.4025pt>
+<calibration_8cc__incl.pdf, id=10992, 1490.56876pt x 375.4025pt>
 File: calibration_8cc__incl.pdf Graphic file (type pdf)
 
 <use calibration_8cc__incl.pdf>
 Package pdftex.def Info: calibration_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 88.14513pt.
- [205
-
-]
+ [209]
 Underfull \hbox (badness 10000) detected at line 66
 [][][]
  []
 
-[206]
+[210]
 Underfull \hbox (badness 10000) detected at line 100
 [][][]
  []
 
-[207]
+[211]
 Underfull \hbox (badness 10000) detected at line 153
 [][][]
  []
@@ -2783,120 +2791,137 @@ Underfull \hbox (badness 10000) detected at line 180
 [][][]
  []
 
-[208]) (./camera__capture_8cc.tex <./camera__capture_8cc__incl.pdf>
-<camera__capture_8cc__incl.pdf, id=10906, 1142.2675pt x 209.78375pt>
+[212]) (./camera__capture_8cc.tex <./camera__capture_8cc__incl.pdf>
+<camera__capture_8cc__incl.pdf, id=11087, 1142.2675pt x 264.99pt>
 File: camera__capture_8cc__incl.pdf Graphic file (type pdf)
 
 <use camera__capture_8cc__incl.pdf>
-Package pdftex.def Info: camera__capture_8cc__incl.pdf used on input line 12.
-(pdftex.def)             Requested size: 350.0pt x 64.28003pt.
- [209]) (./clipper_8cc.tex <./clipper_8cc__incl.pdf> <clipper_8cc__incl.pdf, id
-=10928, 660.4675pt x 209.78375pt>
+Package pdftex.def Info: camera__capture_8cc__incl.pdf used on input line 9.
+(pdftex.def)             Requested size: 350.0pt x 81.19585pt.
+ [213]) (./clipper_8cc.tex <./clipper_8cc__incl.pdf> <clipper_8cc__incl.pdf, id
+=11110, 660.4675pt x 209.78375pt>
 File: clipper_8cc__incl.pdf Graphic file (type pdf)
 
 <use clipper_8cc__incl.pdf>
 Package pdftex.def Info: clipper_8cc__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 350.0pt x 111.17204pt.
- [210] [211] [212]) (./configure_8cc.tex <./configure_8cc__incl.pdf>
-<configure_8cc__incl.pdf, id=11083, 1504.62125pt x 375.4025pt>
+ [214] [215] [216]) (./configure_8cc.tex <./configure_8cc__incl.pdf> <configure
+_8cc__incl.pdf, id=11265, 1316.92pt x 375.4025pt>
 File: configure_8cc__incl.pdf Graphic file (type pdf)
 
 <use configure_8cc__incl.pdf>
 Package pdftex.def Info: configure_8cc__incl.pdf used on input line 9.
-(pdftex.def)             Requested size: 350.0pt x 87.326pt.
- [213]
-Underfull \hbox (badness 10000) detected at line 58
+(pdftex.def)             Requested size: 350.0pt x 99.7676pt.
+ [217]
+Underfull \hbox (badness 10000) detected at line 56
 [][][]
  []
 
-[214] [215]
-Underfull \hbox (badness 10000) detected at line 120
+[218]
+Underfull \hbox (badness 10000) detected at line 108
 [][][]
  []
 
-) (./detection_8cc.tex <./detection_8cc__incl.pdf>
-<detection_8cc__incl.pdf, id=11157, 1631.09375pt x 430.60875pt>
+[219]) (./detection_8cc.tex <./detection_8cc__incl.pdf>
+<detection_8cc__incl.pdf, id=11337, 1851.91875pt x 430.60875pt>
 File: detection_8cc__incl.pdf Graphic file (type pdf)
 
 <use detection_8cc__incl.pdf>
 Package pdftex.def Info: detection_8cc__incl.pdf used on input line 9.
-(pdftex.def)             Requested size: 350.0pt x 92.3951pt.
- [216] [217]
-Underfull \hbox (badness 10000) detected at line 121
+(pdftex.def)             Requested size: 350.0pt x 81.37628pt.
+ [220] [221]
+Underfull \hbox (badness 10000) detected at line 120
 [][][]
  []
 
-[218] [219]
-Underfull \hbox (badness 10000) detected at line 201
+[222] [223]
+Underfull \hbox (badness 10000) detected at line 209
 [][][]
  []
 
-[220]) (./dubins_8cc.tex <./dubins_8cc__incl.pdf>
-<dubins_8cc__incl.pdf, id=11265, 1143.27126pt x 320.19624pt>
+
+Underfull \hbox (badness 10000) detected at line 229
+[][][]
+ []
+
+[224]
+Underfull \hbox (badness 10000) detected at line 279
+[][][]
+ []
+
+) (./dubins_8cc.tex <./dubins_8cc__incl.pdf>
+<dubins_8cc__incl.pdf, id=11436, 1143.27126pt x 320.19624pt>
 File: dubins_8cc__incl.pdf Graphic file (type pdf)
 
 <use dubins_8cc__incl.pdf>
 Package pdftex.def Info: dubins_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 98.0237pt.
-) (./calibration_8hh.tex <./calibration_8hh__incl.pdf> <calibration_8hh__incl.p
-df, id=11278, 1490.56876pt x 320.19624pt>
+) (./calibration_8hh.tex [225] <./calibration_8hh__incl.pdf> <calibration_8hh__
+incl.pdf, id=11456, 1490.56876pt x 320.19624pt>
 File: calibration_8hh__incl.pdf Graphic file (type pdf)
 
 <use calibration_8hh__incl.pdf>
 Package pdftex.def Info: calibration_8hh__incl.pdf used on input line 27.
 (pdftex.def)             Requested size: 350.0pt x 75.1826pt.
- [221] <./calibration_8hh__dep__incl.pdf>
-<calibration_8hh__dep__incl.pdf, id=11297, 386.44376pt x 164.615pt>
+ <./calibration_8hh__dep__incl.pdf>
+<calibration_8hh__dep__incl.pdf, id=11469, 539.01375pt x 219.82124pt>
 File: calibration_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use calibration_8hh__dep__incl.pdf>
 Package pdftex.def Info: calibration_8hh__dep__incl.pdf used on input line 35.
-(pdftex.def)             Requested size: 350.0pt x 149.09154pt.
- [222]
+(pdftex.def)             Requested size: 350.0pt x 142.73787pt.
+
+Underfull \vbox (badness 3386) has occurred while \output is active []
+
+ [226]
+[227]
 Underfull \hbox (badness 10000) detected at line 107
 [][][]
  []
 
-[223]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [228]
 Underfull \hbox (badness 10000) detected at line 135
 [][][]
  []
 
 ) (./camera__capture_8hh.tex <./camera__capture_8hh__incl.pdf>
-<camera__capture_8hh__incl.pdf, id=11356, 188.705pt x 164.615pt>
+<camera__capture_8hh__incl.pdf, id=11534, 1142.2675pt x 219.82124pt>
 File: camera__capture_8hh__incl.pdf Graphic file (type pdf)
 
 <use camera__capture_8hh__incl.pdf>
-Package pdftex.def Info: camera__capture_8hh__incl.pdf used on input line 9.
-(pdftex.def)             Requested size: 188.0pt x 163.99919pt.
+Package pdftex.def Info: camera__capture_8hh__incl.pdf used on input line 12.
+(pdftex.def)             Requested size: 350.0pt x 67.35564pt.
  <./camera__capture_8hh__dep__incl.pdf>
-<camera__capture_8hh__dep__incl.pdf, id=11369, 494.84875pt x 330.23375pt>
+<camera__capture_8hh__dep__incl.pdf, id=11547, 838.13126pt x 395.4775pt>
 File: camera__capture_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use camera__capture_8hh__dep__incl.pdf>
 Package pdftex.def Info: camera__capture_8hh__dep__incl.pdf used on input line 
-17.
-(pdftex.def)             Requested size: 350.0pt x 233.57065pt.
- [224]) (./clipper_8hh.tex <./clipper_8hh__incl.pdf> <clipper_8hh__incl.pdf, id
-=11391, 630.355pt x 154.5775pt>
+20.
+(pdftex.def)             Requested size: 350.0pt x 165.14597pt.
+) (./clipper_8hh.tex <./clipper_8hh__incl.pdf> <clipper_8hh__incl.pdf, id=11563
+, 630.355pt x 154.5775pt>
 File: clipper_8hh__incl.pdf Graphic file (type pdf)
 
 <use clipper_8hh__incl.pdf>
 Package pdftex.def Info: clipper_8hh__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 350.0pt x 85.82925pt.
- <./clipper_8hh__dep__incl.pdf>
-<clipper_8hh__dep__incl.pdf, id=11404, 487.8225pt x 320.19624pt>
+ [229] <./clipper_8hh__dep__incl.pdf>
+<clipper_8hh__dep__incl.pdf, id=11583, 557.08125pt x 375.4025pt>
 File: clipper_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use clipper_8hh__dep__incl.pdf>
 Package pdftex.def Info: clipper_8hh__dep__incl.pdf used on input line 25.
-(pdftex.def)             Requested size: 350.0pt x 229.73495pt.
- [225]
+(pdftex.def)             Requested size: 350.0pt x 235.85754pt.
+ [230]
 Underfull \hbox (badness 10000) in paragraph at lines 87--93
 []\T1/phv/m/n/10 enum [] { [], [], [],
  []
 
-[226]
+
 Underfull \hbox (badness 1946) in paragraph at lines 97--103
 []\T1/phv/m/n/10 enum [] { [], [], [],
  []
@@ -2906,375 +2931,420 @@ Underfull \hbox (badness 5036) in paragraph at lines 103--108
 []\T1/phv/m/n/10 enum [] { [] = 1, [] = 2,
  []
 
-) (./configure_8hh.tex [227] <./configure_8hh__incl.pdf>
-<configure_8hh__incl.pdf, id=11526, 1504.62125pt x 320.19624pt>
+[231]) (./configure_8hh.tex <./configure_8hh__incl.pdf>
+<configure_8hh__incl.pdf, id=11698, 1316.92pt x 320.19624pt>
 File: configure_8hh__incl.pdf Graphic file (type pdf)
 
 <use configure_8hh__incl.pdf>
 Package pdftex.def Info: configure_8hh__incl.pdf used on input line 16.
-(pdftex.def)             Requested size: 350.0pt x 74.48393pt.
+(pdftex.def)             Requested size: 350.0pt x 85.09589pt.
  <./configure_8hh__dep__incl.pdf>
-<configure_8hh__dep__incl.pdf, id=11539, 494.84875pt x 264.99pt>
+<configure_8hh__dep__incl.pdf, id=11711, 838.13126pt x 330.23375pt>
 File: configure_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use configure_8hh__dep__incl.pdf>
 Package pdftex.def Info: configure_8hh__dep__incl.pdf used on input line 24.
-(pdftex.def)             Requested size: 350.0pt x 187.42448pt.
- [228]
-Underfull \hbox (badness 10000) detected at line 54
+(pdftex.def)             Requested size: 350.0pt x 137.90106pt.
+ [232] [233]
+Underfull \hbox (badness 10000) detected at line 57
 [][][]
  []
 
-[229]
-Underfull \hbox (badness 10000) detected at line 80
+
+Underfull \hbox (badness 10000) detected at line 67
 [][][]
  []
 
-) (./detection_8hh.tex <./detection_8hh__incl.pdf>
-<detection_8hh__incl.pdf, id=11577, 1631.09375pt x 375.4025pt>
+
+Underfull \hbox (badness 10000) detected at line 83
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 93
+[][][]
+ []
+
+[234]) (./detection_8hh.tex <./detection_8hh__incl.pdf>
+<detection_8hh__incl.pdf, id=11760, 1851.91875pt x 375.4025pt>
 File: detection_8hh__incl.pdf Graphic file (type pdf)
 
 <use detection_8hh__incl.pdf>
-Package pdftex.def Info: detection_8hh__incl.pdf used on input line 22.
-(pdftex.def)             Requested size: 350.0pt x 80.54958pt.
+Package pdftex.def Info: detection_8hh__incl.pdf used on input line 23.
+(pdftex.def)             Requested size: 350.0pt x 70.94342pt.
  <./detection_8hh__dep__incl.pdf>
-<detection_8hh__dep__incl.pdf, id=11590, 496.85625pt x 209.78375pt>
+<detection_8hh__dep__incl.pdf, id=11773, 790.955pt x 275.0275pt>
 File: detection_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use detection_8hh__dep__incl.pdf>
-Package pdftex.def Info: detection_8hh__dep__incl.pdf used on input line 30.
-(pdftex.def)             Requested size: 350.0pt x 147.77911pt.
- [230] [231]
+Package pdftex.def Info: detection_8hh__dep__incl.pdf used on input line 31.
+(pdftex.def)             Requested size: 350.0pt x 121.7007pt.
+ [235] [236] [237]
 Underfull \hbox (badness 10000) detected at line 135
 [][][]
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [232]
-[233]
+[238]
 Underfull \hbox (badness 10000) detected at line 215
 [][][]
  []
 
-) (./draw_8hh.tex <./draw_8hh__incl.pdf>
-<draw_8hh__incl.pdf, id=11684, 600.2425pt x 154.5775pt>
+[239]
+Underfull \hbox (badness 10000) detected at line 227
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 239
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 259
+[][][]
+ []
+
+[240]) (./draw_8hh.tex <./draw_8hh__incl.pdf>
+<draw_8hh__incl.pdf, id=11871, 600.2425pt x 154.5775pt>
 File: draw_8hh__incl.pdf Graphic file (type pdf)
 
 <use draw_8hh__incl.pdf>
 Package pdftex.def Info: draw_8hh__incl.pdf used on input line 14.
 (pdftex.def)             Requested size: 350.0pt x 90.13615pt.
- [234]) (./dubins_8hh.tex <./dubins_8hh__incl.pdf>
-<dubins_8hh__incl.pdf, id=11711, 1143.27126pt x 264.99pt>
+ [241]) (./dubins_8hh.tex <./dubins_8hh__incl.pdf>
+<dubins_8hh__incl.pdf, id=11900, 1143.27126pt x 264.99pt>
 File: dubins_8hh__incl.pdf Graphic file (type pdf)
 
 <use dubins_8hh__incl.pdf>
-Package pdftex.def Info: dubins_8hh__incl.pdf used on input line 13.
+Package pdftex.def Info: dubins_8hh__incl.pdf used on input line 14.
 (pdftex.def)             Requested size: 350.0pt x 81.12306pt.
- [235] <./dubins_8hh__dep__incl.pdf>
-<dubins_8hh__dep__incl.pdf, id=11733, 190.7125pt x 154.5775pt>
+ <./dubins_8hh__dep__incl.pdf>
+<dubins_8hh__dep__incl.pdf, id=11913, 190.7125pt x 154.5775pt>
 File: dubins_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use dubins_8hh__dep__incl.pdf>
-Package pdftex.def Info: dubins_8hh__dep__incl.pdf used on input line 21.
+Package pdftex.def Info: dubins_8hh__dep__incl.pdf used on input line 22.
 (pdftex.def)             Requested size: 190.0pt x 154.0063pt.
- [236] [237]
-Underfull \hbox (badness 10000) detected at line 137
+ [242] [243]
+Underfull \hbox (badness 10000) detected at line 130
 [][][]
  []
 
-[238]
-Underfull \hbox (badness 10000) detected at line 192
+[244]
+Underfull \hbox (badness 10000) detected at line 176
 [][][]
  []
 
-[239]
-Underfull \hbox (badness 10000) detected at line 220
+[245]
+Underfull \hbox (badness 10000) detected at line 204
 [][][]
  []
 
-[240]) (./filter_8hh.tex [241] <./filter_8hh__incl.pdf>
-<filter_8hh__incl.pdf, id=11936, 188.705pt x 154.5775pt>
+[246] [247]) (./filter_8hh.tex <./filter_8hh__incl.pdf>
+<filter_8hh__incl.pdf, id=12113, 188.705pt x 154.5775pt>
 File: filter_8hh__incl.pdf Graphic file (type pdf)
 
 <use filter_8hh__incl.pdf>
 Package pdftex.def Info: filter_8hh__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 188.0pt x 153.99922pt.
  <./filter_8hh__dep__incl.pdf>
-<filter_8hh__dep__incl.pdf, id=11949, 1217.54875pt x 385.44pt>
+<filter_8hh__dep__incl.pdf, id=12126, 1190.4475pt x 440.64626pt>
 File: filter_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use filter_8hh__dep__incl.pdf>
 Package pdftex.def Info: filter_8hh__dep__incl.pdf used on input line 17.
-(pdftex.def)             Requested size: 350.0pt x 110.79843pt.
-) (./map_8hh.tex <./map_8hh__incl.pdf>
-<map_8hh__incl.pdf, id=11963, 1913.1475pt x 320.19624pt>
+(pdftex.def)             Requested size: 350.0pt x 129.55247pt.
+ [248]) (./map_8hh.tex <./map_8hh__incl.pdf>
+<map_8hh__incl.pdf, id=12147, 1913.1475pt x 320.19624pt>
 File: map_8hh__incl.pdf Graphic file (type pdf)
 
 <use map_8hh__incl.pdf>
 Package pdftex.def Info: map_8hh__incl.pdf used on input line 22.
 (pdftex.def)             Requested size: 350.0pt x 58.57579pt.
- [242] <./map_8hh__dep__incl.pdf>
-<map_8hh__dep__incl.pdf, id=11983, 403.5075pt x 209.78375pt>
+ <./map_8hh__dep__incl.pdf>
+<map_8hh__dep__incl.pdf, id=12160, 557.08125pt x 264.99pt>
 File: map_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use map_8hh__dep__incl.pdf>
 Package pdftex.def Info: map_8hh__dep__incl.pdf used on input line 30.
-(pdftex.def)             Requested size: 350.0pt x 181.96619pt.
- [243]) (./maths_8hh.tex <./maths_8hh__incl.pdf>
-<maths_8hh__incl.pdf, id=12013, 1142.2675pt x 209.78375pt>
+(pdftex.def)             Requested size: 350.0pt x 166.48767pt.
+ [249]) (./maths_8hh.tex <./maths_8hh__incl.pdf>
+<maths_8hh__incl.pdf, id=12190, 1142.2675pt x 209.78375pt>
 File: maths_8hh__incl.pdf Graphic file (type pdf)
 
 <use maths_8hh__incl.pdf>
 Package pdftex.def Info: maths_8hh__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 350.0pt x 64.28003pt.
  <./maths_8hh__dep__incl.pdf>
-<maths_8hh__dep__incl.pdf, id=12026, 1562.83875pt x 385.44pt>
+<maths_8hh__dep__incl.pdf, id=12203, 1398.22375pt x 440.64626pt>
 File: maths_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use maths_8hh__dep__incl.pdf>
 Package pdftex.def Info: maths_8hh__dep__incl.pdf used on input line 25.
-(pdftex.def)             Requested size: 350.0pt x 86.32033pt.
+(pdftex.def)             Requested size: 350.0pt x 110.29576pt.
 
 Underfull \vbox (badness 4279) has occurred while \output is active []
 
- [244]
-[245] [246] [247] [248]
+ [250]
+[251] [252] [253] [254]
 Underfull \hbox (badness 10000) detected at line 235
 [][][]
  []
 
 ) (./objects_8hh.tex <./objects_8hh__incl.pdf>
-<objects_8hh__incl.pdf, id=12168, 1330.9725pt x 264.99pt>
+<objects_8hh__incl.pdf, id=12346, 1330.9725pt x 264.99pt>
 File: objects_8hh__incl.pdf Graphic file (type pdf)
 
 <use objects_8hh__incl.pdf>
 Package pdftex.def Info: objects_8hh__incl.pdf used on input line 16.
 (pdftex.def)             Requested size: 350.0pt x 69.68019pt.
- [249] <./objects_8hh__dep__incl.pdf>
-<objects_8hh__dep__incl.pdf, id=12189, 483.8075pt x 264.99pt>
+ [255] <./objects_8hh__dep__incl.pdf>
+<objects_8hh__dep__incl.pdf, id=12366, 557.08125pt x 320.19624pt>
 File: objects_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use objects_8hh__dep__incl.pdf>
 Package pdftex.def Info: objects_8hh__dep__incl.pdf used on input line 24.
-(pdftex.def)             Requested size: 350.0pt x 191.71051pt.
+(pdftex.def)             Requested size: 350.0pt x 201.17259pt.
 ) (./planning_8hh.tex <./planning_8hh__incl.pdf> <planning_8hh__incl.pdf, id=12
-206, 2253.41875pt x 430.60875pt>
+383, 2618.78375pt x 430.60875pt>
 File: planning_8hh__incl.pdf Graphic file (type pdf)
 
 <use planning_8hh__incl.pdf>
-Package pdftex.def Info: planning_8hh__incl.pdf used on input line 17.
-(pdftex.def)             Requested size: 350.0pt x 66.88164pt.
- [250] <./planning_8hh__dep__incl.pdf>
-<planning_8hh__dep__incl.pdf, id=12226, 403.5075pt x 154.5775pt>
+Package pdftex.def Info: planning_8hh__incl.pdf used on input line 18.
+(pdftex.def)             Requested size: 350.0pt x 57.54489pt.
+ [256] <./planning_8hh__dep__incl.pdf>
+<planning_8hh__dep__incl.pdf, id=12403, 557.08125pt x 209.78375pt>
 File: planning_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use planning_8hh__dep__incl.pdf>
-Package pdftex.def Info: planning_8hh__dep__incl.pdf used on input line 25.
-(pdftex.def)             Requested size: 350.0pt x 134.08034pt.
- [251]
-Underfull \hbox (badness 10000) detected at line 52
+Package pdftex.def Info: planning_8hh__dep__incl.pdf used on input line 26.
+(pdftex.def)             Requested size: 350.0pt x 131.80273pt.
+ [257]
+Underfull \hbox (badness 10000) detected at line 55
 [][][]
  []
 
-[252]
-Underfull \hbox (badness 10000) detected at line 101
+[258]
+Underfull \hbox (badness 10000) detected at line 126
 [][][]
  []
 
-) (./settings_8hh.tex <./settings_8hh__incl.pdf>
-<settings_8hh__incl.pdf, id=12285, 1370.11874pt x 264.99pt>
+) (./robot_project_8hh.tex <./robot_project_8hh__incl.pdf>
+<robot_project_8hh__incl.pdf, id=12468, 3242.1125pt x 485.815pt>
+File: robot_project_8hh__incl.pdf Graphic file (type pdf)
+
+<use robot_project_8hh__incl.pdf>
+Package pdftex.def Info: robot_project_8hh__incl.pdf used on input line 17.
+(pdftex.def)             Requested size: 350.0pt x 52.43906pt.
+ <./robot_project_8hh__dep__incl.pdf>
+<robot_project_8hh__dep__incl.pdf, id=12481, 214.8025pt x 154.5775pt>
+File: robot_project_8hh__dep__incl.pdf Graphic file (type pdf)
+
+<use robot_project_8hh__dep__incl.pdf>
+Package pdftex.def Info: robot_project_8hh__dep__incl.pdf used on input line 25
+.
+(pdftex.def)             Requested size: 214.0pt x 154.00159pt.
+ [259]) (./settings_8hh.tex <./settings_8hh__incl.pdf> <settings_8hh__incl.pdf,
+ id=12502, 1370.11874pt x 264.99pt>
 File: settings_8hh__incl.pdf Graphic file (type pdf)
 
 <use settings_8hh__incl.pdf>
 Package pdftex.def Info: settings_8hh__incl.pdf used on input line 16.
 (pdftex.def)             Requested size: 350.0pt x 67.69083pt.
  <./settings_8hh__dep__incl.pdf>
-<settings_8hh__dep__incl.pdf, id=12298, 1075.01625pt x 330.23375pt>
+<settings_8hh__dep__incl.pdf, id=12515, 1144.275pt x 385.44pt>
 File: settings_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use settings_8hh__dep__incl.pdf>
 Package pdftex.def Info: settings_8hh__dep__incl.pdf used on input line 24.
-(pdftex.def)             Requested size: 350.0pt x 107.51616pt.
-) (./unwrapping_8hh.tex <./unwrapping_8hh__incl.pdf> <unwrapping_8hh__incl.pdf,
- id=12317, 1608.0075pt x 320.19624pt>
+(pdftex.def)             Requested size: 350.0pt x 117.89131pt.
+ [260]) (./unwrapping_8hh.tex <./unwrapping_8hh__incl.pdf> <unwrapping_8hh__inc
+l.pdf, id=12542, 1708.3825pt x 430.60875pt>
 File: unwrapping_8hh__incl.pdf Graphic file (type pdf)
 
 <use unwrapping_8hh__incl.pdf>
-Package pdftex.def Info: unwrapping_8hh__incl.pdf used on input line 19.
-(pdftex.def)             Requested size: 350.0pt x 69.69096pt.
- [253] <./unwrapping_8hh__dep__incl.pdf>
-<unwrapping_8hh__dep__incl.pdf, id=12339, 398.48875pt x 164.615pt>
+Package pdftex.def Info: unwrapping_8hh__incl.pdf used on input line 20.
+(pdftex.def)             Requested size: 350.0pt x 88.21622pt.
+ <./unwrapping_8hh__dep__incl.pdf>
+<unwrapping_8hh__dep__incl.pdf, id=12555, 831.105pt x 330.23375pt>
 File: unwrapping_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use unwrapping_8hh__dep__incl.pdf>
-Package pdftex.def Info: unwrapping_8hh__dep__incl.pdf used on input line 27.
-(pdftex.def)             Requested size: 350.0pt x 144.59036pt.
- [254] [255]
-Underfull \hbox (badness 10000) detected at line 95
+Package pdftex.def Info: unwrapping_8hh__dep__incl.pdf used on input line 28.
+(pdftex.def)             Requested size: 350.0pt x 139.0701pt.
+ [261] [262] [263]
+Underfull \hbox (badness 10000) detected at line 122
 [][][]
  []
 
 ) (./utils_8hh.tex <./utils_8hh__incl.pdf>
-<utils_8hh__incl.pdf, id=12379, 1143.27126pt x 154.5775pt>
+<utils_8hh__incl.pdf, id=12605, 1143.27126pt x 154.5775pt>
 File: utils_8hh__incl.pdf Graphic file (type pdf)
 
 <use utils_8hh__incl.pdf>
 Package pdftex.def Info: utils_8hh__incl.pdf used on input line 19.
 (pdftex.def)             Requested size: 350.0pt x 47.32178pt.
  <./utils_8hh__dep__incl.pdf>
-<utils_8hh__dep__incl.pdf, id=12392, 1610.015pt x 440.64626pt>
+<utils_8hh__dep__incl.pdf, id=12618, 1488.56125pt x 515.9275pt>
 File: utils_8hh__dep__incl.pdf Graphic file (type pdf)
 
 <use utils_8hh__dep__incl.pdf>
 Package pdftex.def Info: utils_8hh__dep__incl.pdf used on input line 27.
-(pdftex.def)             Requested size: 350.0pt x 95.786pt.
- [256]
-Underfull \hbox (badness 1558) in paragraph at lines 76--78
+(pdftex.def)             Requested size: 350.0pt x 121.30595pt.
+ [264]
+Underfull \hbox (badness 1558) in paragraph at lines 77--79
 []\T1/phv/m/n/10 string [] (Clock[]::time[]_[]point start, Clock[]::time[]_[]po
 int stop, string ret, T[]I[]M[]E[]_[][]T[]Y[]PE
  []
 
-[257] [258]) (./map_8cc.tex <./map_8cc__incl.pdf>
-<map_8cc__incl.pdf, id=12464, 1913.1475pt x 375.4025pt>
+[265] [266]) (./map_8cc.tex <./map_8cc__incl.pdf>
+<map_8cc__incl.pdf, id=12694, 1913.1475pt x 375.4025pt>
 File: map_8cc__incl.pdf Graphic file (type pdf)
 
 <use map_8cc__incl.pdf>
 Package pdftex.def Info: map_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 68.67506pt.
-) (./maths_8cc.tex <./maths_8cc__incl.pdf>
-<maths_8cc__incl.pdf, id=12477, 1142.2675pt x 264.99pt>
+) (./maths_8cc.tex
+Underfull \vbox (badness 2564) has occurred while \output is active []
+
+ [267] <./maths_8cc__incl.pdf> <maths_8cc__incl.pdf, id=12714, 1142.2675pt x 26
+4.99pt>
 File: maths_8cc__incl.pdf Graphic file (type pdf)
 
 <use maths_8cc__incl.pdf>
 Package pdftex.def Info: maths_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 81.19585pt.
-) (./objects_8cc.tex [259] <./objects_8cc__incl.pdf>
-<objects_8cc__incl.pdf, id=12498, 1330.9725pt x 320.19624pt>
+) (./objects_8cc.tex <./objects_8cc__incl.pdf>
+<objects_8cc__incl.pdf, id=12727, 1330.9725pt x 320.19624pt>
 File: objects_8cc__incl.pdf Graphic file (type pdf)
 
 <use objects_8cc__incl.pdf>
 Package pdftex.def Info: objects_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 84.1969pt.
 ) (./planning_8cc.tex <./planning_8cc__incl.pdf>
-<planning_8cc__incl.pdf, id=12511, 2253.41875pt x 485.815pt>
+<planning_8cc__incl.pdf, id=12740, 2618.78375pt x 485.815pt>
 File: planning_8cc__incl.pdf Graphic file (type pdf)
 
 <use planning_8cc__incl.pdf>
 Package pdftex.def Info: planning_8cc__incl.pdf used on input line 9.
-(pdftex.def)             Requested size: 350.0pt x 75.4562pt.
- [260]
-Underfull \hbox (badness 10000) detected at line 36
+(pdftex.def)             Requested size: 350.0pt x 64.92244pt.
+ [268]
+Underfull \hbox (badness 10000) detected at line 52
 [][][]
  []
 
-[261]
-Underfull \hbox (badness 10000) detected at line 85
+[269] [270]
+Underfull \hbox (badness 10000) detected at line 123
 [][][]
  []
 
+) (./robot_project_8cc.tex <./robot_project_8cc__incl.pdf>
+<robot_project_8cc__incl.pdf, id=12815, 3100.58376pt x 541.02126pt>
+File: robot_project_8cc__incl.pdf Graphic file (type pdf)
+
+<use robot_project_8cc__incl.pdf>
+Package pdftex.def Info: robot_project_8cc__incl.pdf used on input line 9.
+(pdftex.def)             Requested size: 350.0pt x 61.06451pt.
 ) (./calibration__run_8cc.tex <./calibration__run_8cc__incl.pdf>
-<calibration__run_8cc__incl.pdf, id=12571, 1490.56876pt x 385.44pt>
+<calibration__run_8cc__incl.pdf, id=12835, 1490.56876pt x 385.44pt>
 File: calibration__run_8cc__incl.pdf Graphic file (type pdf)
 
 <use calibration__run_8cc__incl.pdf>
 Package pdftex.def Info: calibration__run_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 90.50195pt.
-) (./detection__run_8cc.tex <./detection__run_8cc__incl.pdf>
-<detection__run_8cc__incl.pdf, id=12588, 1631.09375pt x 430.60875pt>
+ [271]) (./detection__run_8cc.tex <./detection__run_8cc__incl.pdf>
+<detection__run_8cc__incl.pdf, id=12861, 1851.91875pt x 430.60875pt>
 File: detection__run_8cc__incl.pdf Graphic file (type pdf)
 
 <use detection__run_8cc__incl.pdf>
 Package pdftex.def Info: detection__run_8cc__incl.pdf used on input line 9.
-(pdftex.def)             Requested size: 350.0pt x 92.3951pt.
- [262]) (./main_8cc.tex <./main_8cc__incl.pdf> <main_8cc__incl.pdf, id=12612, 3
-382.6375pt x 485.815pt>
+(pdftex.def)             Requested size: 350.0pt x 81.37628pt.
+) (./main_8cc.tex <./main_8cc__incl.pdf>
+<main_8cc__incl.pdf, id=12877, 3326.4275pt x 485.815pt>
 File: main_8cc__incl.pdf Graphic file (type pdf)
 
 <use main_8cc__incl.pdf>
 Package pdftex.def Info: main_8cc__incl.pdf used on input line 16.
-(pdftex.def)             Requested size: 350.0pt x 50.26707pt.
-) (./planning__run_8cc.tex [263] <./planning__run_8cc__incl.pdf> <planning__run
-_8cc__incl.pdf, id=12646, 2253.41875pt x 485.815pt>
+(pdftex.def)             Requested size: 350.0pt x 51.11215pt.
+ [272]) (./planning__run_8cc.tex <./planning__run_8cc__incl.pdf> <planning__run
+_8cc__incl.pdf, id=12909, 2618.78375pt x 485.815pt>
 File: planning__run_8cc__incl.pdf Graphic file (type pdf)
 
 <use planning__run_8cc__incl.pdf>
 Package pdftex.def Info: planning__run_8cc__incl.pdf used on input line 9.
-(pdftex.def)             Requested size: 350.0pt x 75.4562pt.
-) (./unwrapping__run_8cc.tex <./unwrapping__run_8cc__incl.pdf>
-<unwrapping__run_8cc__incl.pdf, id=12662, 1608.0075pt x 385.44pt>
+(pdftex.def)             Requested size: 350.0pt x 64.92244pt.
+ [273]) (./unwrapping__run_8cc.tex <./unwrapping__run_8cc__incl.pdf>
+<unwrapping__run_8cc__incl.pdf, id=12935, 1708.3825pt x 495.8525pt>
 File: unwrapping__run_8cc__incl.pdf Graphic file (type pdf)
 
 <use unwrapping__run_8cc__incl.pdf>
 Package pdftex.def Info: unwrapping__run_8cc__incl.pdf used on input line 9.
-(pdftex.def)             Requested size: 350.0pt x 83.89133pt.
- [264]) (./settings_8cc.tex <./settings_8cc__incl.pdf> <settings_8cc__incl.pdf,
- id=12687, 1370.11874pt x 320.19624pt>
+(pdftex.def)             Requested size: 350.0pt x 101.58232pt.
+) (./settings_8cc.tex <./settings_8cc__incl.pdf> <settings_8cc__incl.pdf, id=12
+951, 1370.11874pt x 320.19624pt>
 File: settings_8cc__incl.pdf Graphic file (type pdf)
 
 <use settings_8cc__incl.pdf>
-Package pdftex.def Info: settings_8cc__incl.pdf used on input line 9.
+Package pdftex.def Info: settings_8cc__incl.pdf used on input line 10.
 (pdftex.def)             Requested size: 350.0pt x 81.79309pt.
-
-Overfull \hbox (286.21358pt too wide) in paragraph at lines 21--21
+ [274]
+Overfull \hbox (286.21358pt too wide) in paragraph at lines 22--22
 []\T1/phv/m/sl/9 Function to get all files in di-rec-tory. From [][] \T1/pcr/m/
 sl/9 https[]://stackoverflow.[]com/questions/612097/how-can-i-get-the-list-of-f
 iles-in-a-directory-using-c-or-c[][]\T1/phv/m/sl/9 . 
  []
 
-[265]
-Overfull \hbox (325.01372pt too wide) in paragraph at lines 48--49
+
+Overfull \hbox (325.01372pt too wide) in paragraph at lines 49--50
 []\T1/phv/m/n/10 Function to get all files in di-rec-tory. From [][] \T1/pcr/m/
 n/10 https[]://stackoverflow.[]com/questions/612097/how-can-i-get-the-list-of-f
 iles-in-a-directory-using-c-or-c[][]\T1/phv/m/n/10 . 
  []
 
-
-Underfull \hbox (badness 10000) detected at line 55
+[275]
+Underfull \hbox (badness 10000) detected at line 56
 [][][]
  []
 
 ) (./unwrapping_8cc.tex <./unwrapping_8cc__incl.pdf>
-<unwrapping_8cc__incl.pdf, id=12719, 1608.0075pt x 375.4025pt>
+<unwrapping_8cc__incl.pdf, id=12992, 1708.3825pt x 485.815pt>
 File: unwrapping_8cc__incl.pdf Graphic file (type pdf)
 
 <use unwrapping_8cc__incl.pdf>
 Package pdftex.def Info: unwrapping_8cc__incl.pdf used on input line 9.
-(pdftex.def)             Requested size: 350.0pt x 81.70667pt.
- [266] [267]
-Underfull \hbox (badness 10000) detected at line 65
+(pdftex.def)             Requested size: 350.0pt x 99.526pt.
+ [276] [277]
+Underfull \hbox (badness 10000) detected at line 84
 [][][]
  []
 
-[268]
-Underfull \hbox (badness 10000) detected at line 121
+[278]
+Underfull \hbox (badness 10000) detected at line 147
 [][][]
  []
 
 ) (./utils_8cc.tex <./utils_8cc__incl.pdf>
-<utils_8cc__incl.pdf, id=12771, 1143.27126pt x 209.78375pt>
+<utils_8cc__incl.pdf, id=13045, 1143.27126pt x 209.78375pt>
 File: utils_8cc__incl.pdf Graphic file (type pdf)
 
 <use utils_8cc__incl.pdf>
 Package pdftex.def Info: utils_8cc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 350.0pt x 64.22241pt.
- [269]) [270] (./refman.ind [271
+ [279] [280]) [281] [282
+
+] (./refman.ind [283
 
 
-
-] [272] [273] [274]
-[275] [276] [277] [278] [279] [280] [281] [282] [283] [284] [285] [286]
-[287] [288] [289] [290
-
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 256.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 256.
+] [284]
+[285] [286] [287] [288] [289] [290] [291] [292] [293] [294] [295] [296]
+[297] [298] [299] [300] [301] [302])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 259.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 259.
  (./refman.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 256.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 256.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 259.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 259.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 1B9755E45185918DA0CAFB5A39A75E78;202784.
+(rerunfilecheck)             Checksum: C43C66E18F304CCEB317C1828548EC84;206803.
 
 
 
@@ -3282,13 +3352,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 21792 strings out of 492995
- 396874 string characters out of 6132704
- 692763 words of memory out of 5000000
- 22125 multiletter control sequences out of 15000+600000
+ 21965 strings out of 492995
+ 400350 string characters out of 6132704
+ 721493 words of memory out of 5000000
+ 22218 multiletter control sequences out of 15000+600000
  73221 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,16n,92p,2049b,1056s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,16n,92p,1949b,1075s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/tex
@@ -3309,10 +3379,10 @@ elvetic/uhvb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/helvetic
 /uhvb8ac.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhvr8
 a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
 
-Output written on refman.pdf (318 pages, 1980462 bytes).
+Output written on refman.pdf (330 pages, 2121740 bytes).
 PDF statistics:
- 15161 PDF objects out of 15390 (max. 8388607)
- 14203 compressed objects within 143 object streams
- 2695 named destinations out of 2984 (max. 500000)
- 8477 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 15480 PDF objects out of 18468 (max. 8388607)
+ 14467 compressed objects within 145 object streams
+ 2766 named destinations out of 2984 (max. 500000)
+ 8644 words of extra memory for PDF output out of 10000 (max. 10000000)
 
