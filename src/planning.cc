@@ -8,7 +8,7 @@
 */
 pair< vector<Point2<int> >, Mapp* > planning(const Mat & img){
     cout << "plan0\n" << flush;
-    Mapp * map = createMapp();
+    Mapp* map = createMapp();
     cout << "plan1\n" << flush;
 
     vector<Point2<int> > vp;
@@ -33,6 +33,10 @@ pair< vector<Point2<int> >, Mapp* > planning(const Mat & img){
     cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
     cout << "plan7\n" << flush;
 
+    //Add Dubins
+
+
+
     return( make_pair(cellsOfPath, map) );
     // return( make_pair( vector<Point2<int> >(), map) );
 }
@@ -41,7 +45,7 @@ pair< vector<Point2<int> >, Mapp* > planning(const Mat & img){
 
     \returns The created mapp.
 */
-Mapp * createMapp(){
+Mapp* createMapp(){
     sett->cleanAndRead();
     cout << "create0\n" << flush;
 
@@ -73,7 +77,7 @@ Mapp * createMapp(){
         if(obstacles.size()==0){
             throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no obstacles for the creating of the map.", __LINE__, __FILE__);
         }
-    cout << "create3\n" << flush;
+        cout << "create3\n" << flush;
 
         // Victims
         vector< vector<Point2<int> > > vvpVictims;
@@ -174,3 +178,65 @@ void fromVpToPath(vector<Point2<int> > & vp, Path & path){
         throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Impossible to convert vector to path, dimension less than 2.", __LINE__, __FILE__);
     }
 }
+
+
+
+// TODO should I keep this or not?
+#define DELTA M_PI/180.0 //1 degree
+
+template <class T>
+vector<Point2<T> > reduce_points(Tuple<Point2<T> > init_points){
+  double delta=DELTA;
+  vector<Point2<T> > ret={};
+  for (int i=0; i<init_points.size(); i++){
+    Point2<T> app=init_points.get(i);
+    if (i==0 || i==init_points.size()-1){
+      ret.push_back(app);
+    }
+    else {
+      if (ret.back().th(app).toRad()<delta){
+        delta+=DELTA;
+      }
+      else {
+        ret.push_back(app);
+        delta=DELTA;
+      }
+    }
+  }
+  return ret;
+}
+
+template<class T>
+Dubins<T> start_pos (   const Configuration2<T> _start, 
+                        const vector<Point2<T> >& vPoints){
+    Dubins<T> start_dub;
+    int i=0;
+    bool ok=false;
+    for (int i=0; (i<(vPoints.size()-1)  && start_dub.pidx()<0 && !ok); i++){ //I continue until the points are empty, until a feasible dubins is found. 
+        ok=true; //Need to reset this each loop
+        start_dub=Dubins(_start, Configuration2<T>(vPoints[i], vPoints[i].th(vPoints[i+1])) );
+        Tuple<Tuple<Point2<T> > > vPDub=start_dub.sliptIt(); 
+        for (int j=0; (j<3 && !ok); j++){    
+            for (int k=0; (k<(vPDub[j].size()-1) && !ok); k++){    
+                if (map.checkSegment(vPDub[j][k], vPDub[j][k+1])){ //don't now how I'll pass map
+                    ok=false;
+                }
+            }
+        }
+    }
+    #ifdef DEBUG
+    if (start_dub.pidx()>=0){
+        COUT(start_dub)
+    }
+    else {
+        throw MyException<string> (EXCEPTION_TYPE::GENERAL, "No feasible path was found", __LINE__, __FILE__);
+    }
+    #endif
+}
+
+template<class T>
+vector<Point2<T> > plan_best(   const Configuration2<T> _start,
+                                vector<Point2<T> > vPoints){
+    start_pos(_start, vPoints);
+}
+

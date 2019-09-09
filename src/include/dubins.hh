@@ -1224,17 +1224,4 @@ public:
 
 };
 
-template<class T>
-vector<Point2<T> > plan_best(vector<Point2<T> > vPoints);
-
-
-
-
-
-
-
-
-
-
-
 #endif
