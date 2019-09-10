@@ -16,11 +16,9 @@
 using namespace std;
 using namespace cv;
 
-// extern Settings* sett;
-
 class RobotProject{
     public:
-        RobotProject(CameraCapture* camera, double& frame_time);
+        RobotProject(CameraCapture* camera, double& frame_time, const bool _configure=true);
         RobotProject(int argc, char* argv[]);
         ~RobotProject();
 
@@ -32,13 +30,13 @@ class RobotProject{
 #endif
 
 
-	// //Throw away first n frames to calibrate camera
-	// CameraCapture::input_options_t options(1080, 1920, 30, 0);
- //    camera= new CameraCapture(options);
+// //Throw away first n frames to calibrate camera
+// CameraCapture::input_options_t options(1080, 1920, 30, 0);
+//    camera= new CameraCapture(options);
 
- //    double frame_time=0.0;
- //    for (int i=0; i<50; i++){
- //        Mat frame;
- //        camera->grab(frame, frame_time);
-	//     COUT(frame_time)
- //    }
+//    double frame_time=0.0;
+//    for (int i=0; i<50; i++){
+//        Mat frame;
+//        camera->grab(frame, frame_time);
+//     COUT(frame_time)
+//    }

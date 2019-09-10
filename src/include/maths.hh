@@ -1061,6 +1061,11 @@ public:
     return Angle(atan2((P1.y()-this->y()), (P1.x()-this->x())), type);
   }
 
+  template<class T1>
+  operator Point2<T1>() const {
+    return Point2<T1>((T1)X, (T1)Y);
+  }
+
   void invert (){
     T app=X;
     X=Y;

@@ -106,7 +106,8 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
     // consistency check
     if(vp.size()<3){
         throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Impossible to create the object, less than 3 sides.", __LINE__, __FILE__);
-    } else{
+    } 
+    else {
         //min, max of y computed (need for min&max for each line)
         int yMin=lengthY, yMax=0;
         for(unsigned int a = 0; a<vp.size(); a++){
@@ -270,7 +271,175 @@ bool Mapp::checkSegment(const Point2<int> & p0, const Point2<int> & p1){
     return(checkSegmentCollisionWithType(p0, p1, OBST));
 }
 
-/*! \brief Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*! \brief Converts an integer into the vector of its digits. The result is inverse respect to the given integer.
+
+    \param[in] c The to split into the vector.
+    \param[out] v The vector where the split will be saved.
+*/
+void Mapp::intToVect(int c, vector<int> & v){
+    v.resize(0);
+    while(c>0){
+        v.push_back(c%10);
+        c /= 10;
+    }
+}
+
+/*! \brief Given couples of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
+    \details The function is based on a Breadth-first search (BFS). In addittion, the function considered the bonus choose if it is convinient to collect all the victims or only some of them, the bonus is given for each saved victim.
+
+    \param[in] vp The n points that need to be connected.
+    \param[in] bonus It is the time in second as reward for each victim saved.
+    \returns A vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-1 connecctions.
+*/
+vector<vector<Point2<int> > > Mapp::minPathNPointsWithChoice(const vector<Point2<int> > & vp, const double bonus){
+
+    //allocate
+    double ** distances = new double*[dimY];
+    Point2<int> ** parents = new Point2<int>*[dimY];
+    for(int i=0; i<dimY; i++){
+        // the initializtion is to -1
+        distances[i] = new double[dimX];
+        parents[i] = new Point2<int>[dimX];
+    }
+
+    //compute the simple minPath between all pairs of targets
+    int n = vp.size();
+    vector< vector< vector<Point2<int> > > > vvvp(n, vector< vector<Point2<int> > >(n));
+    vector< vector<int> > vvDist(n, vector<int>(n));
+
+    cout << "\nTable of distances:\n";
+    for(int i=0; i<n; i++){
+        cout << i << "\t";
+    }
+    cout << "\n" << flush;
+
+    for(int i=0; i<n-1; i++){
+        cout << i << ":\t" << flush;
+        for(int j=0; j<i; j++) cout << "\t";
+        for(int j=i+1; j<n; j++){
+            //compute the minPath
+            resetDistanceMap(distances);
+            vvvp[i][j] = minPathTwoPointsInternal(vp[i], vp[j], distances, parents);
+
+            //compute the overall distance along the computed path and store it
+            double dist = 0.0;
+            for(unsigned int q=0; q<vvvp[i][j].size()-1; q++){
+                dist += vvvp[i][j][q].distance( vvvp[i][j][q+1] );
+            }
+            cout << dist << "\t" << flush;
+            vvDist[i][j] = dist;
+            vvDist[j][i] = dist;
+        }
+        cout << "\n" << flush;
+    }
+
+    //generate all the permutations (disposizioni = with order) without repetition
+    vector<int> targets;
+    for(int i=1; i<n-1; i++){
+        targets.push_back(i);
+    }
+
+    set<int> disposizioni;
+    cout << "\nThe possible permutations:\n";
+    disposizioni.insert(0); //option for taking no victim
+    do {
+        for(unsigned int i=0, c=0; i<targets.size(); i++){
+            c *= 10;
+            c += targets[i];
+            disposizioni.insert(c);
+        }
+    } while ( next_permutation(targets.begin(), targets.end()) );
+
+    //compare all the possibilities given by the permutations
+    double gain = bonus*100.0; // the measure unit of the bonus is seconds and the gain is in mm. The scale 100 is given by the speed of the robot: 10cm/s.
+
+    double cost, bestCost = 1000000.0;
+    int bestDisp = 0;
+    for(int el : disposizioni){
+        intToVect(el, targets); //convert back to vector
+        cout << el << ",\tThe cost is: ";
+        if(targets.size()==0){
+            cost = vvDist[0][ n-1 ];                            cout << (int)vvDist[0][ n-1 ] << " = ";
+        } else{
+            //calculate the cost (lenght) of the actual path
+            cost = vvDist[0][ targets.front() ];                cout << (int)vvDist[0][ targets.front() ] << " + ";
+            for(unsigned int q=0; q<targets.size()-1; q++){
+                cost += vvDist[ targets[q] ][ targets[q+1] ];   cout << (int)vvDist[ targets[q] ][ targets[q+1] ] << " + ";
+            }
+            cost += vvDist[ targets.back() ][ n-1 ];            cout << (int)vvDist[ targets.back() ][ n-1 ] << " - ";
+            cost -= gain*targets.size();                        cout << (int)gain*targets.size() << " = ";
+        }
+        cout << cost << endl;
+
+        if(cost<bestCost){
+            bestCost = cost;
+            bestDisp = el;
+        }
+    }
+    cout << "\nThe best cost is: " << bestCost << ", generated by the disp: " << bestDisp << endl;
+
+    //prepare the return values
+    vector< vector<Point2<int> > > vvp;
+    intToVect(bestDisp, targets);
+    if(targets.size()==0){
+        vvp.push_back( vvvp[0][ n-1 ]);
+    } else{
+        vvp.push_back( vvvp[0][targets.front()] );
+        for(unsigned int q=0; q<targets.size()-1; q++){
+            vvp.push_back(vvvp[ targets[q] ][ targets[q+1] ]);
+        }
+        vvp.push_back( vvvp[ targets.back() ][ n-1 ] );
+    }
+
+    //delete
+    for(int i=0; i<dimY; i++){
+        delete [] distances[i];
+        delete [] parents[i];
+    }
+    delete[] distances;
+    delete[] parents;
+
+    return(vvp);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*! \brief Given couples of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
     \details The function is based on a Breadth-first search (BFS).
 
     \param[in] p0 The source point.

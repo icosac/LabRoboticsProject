@@ -6,11 +6,12 @@
 #include <vector>
 
 #include <map.hh>
-#include <utils.hh>
+// #include <utils.hh>
 #include <maths.hh>
 #include <settings.hh>
 #include <objects.hh>
 #include <detection.hh>
+#include <dubins.hh>
 #include "path.h"
 
 using namespace std;
@@ -26,9 +27,11 @@ namespace Planning {
 	void loadVP(vector<Point2<int> > & vp, FileNode fn);
 
 	void fromVpToPath(vector<Point2<int> > & vp, Path & path);
+
+	// template<class T>
+	void plan_best(const Configuration2<double>& _start, vector<vector<Point2<int> > >& vPoints);
 }
 
-template<class T>
-vector<Point2<T> > plan_best(vector<Point2<T> > vPoints);
+
 
 #endif

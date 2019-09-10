@@ -87,8 +87,6 @@ vector<Point> robotShape;
     \returns The configuration of the robot in this exactly moment, according to the image.
 */
 Configuration2<double> localize(const Mat & img, const bool raw){
-    cout << "begin localize\n" << flush;
-
     static bool firstRun = true;
     static Mat transf, camera_matrix, dist_coeffs;
     if(firstRun){ //executed only at the first iteration of this function
@@ -117,7 +115,6 @@ Configuration2<double> localize(const Mat & img, const bool raw){
         throw MyException<string>(EXCEPTION_TYPE::GENERAL, "The robot has no point that define it.", __LINE__, __FILE__);
 
     }
-    cout << "robotShape size " << robotShape.size() << endl;
 
     vector<Point2f> vpOut;
     // apply conversion to the right reference system
@@ -127,11 +124,9 @@ Configuration2<double> localize(const Mat & img, const bool raw){
         for(Point p : robotShape){
             convert[0] = p;
             perspectiveTransform(convert, convert, transf);  //maybe a simple matrix multiplication will be faster...    }
-            // cout << "Trasforming: " << p << " to: " << convert[0] << endl;
             vpOut.push_back(convert[0]);
         }
     }
-    cout << "vpOut size: " << vpOut.size() << endl;
 
     double xAvg=0, yAvg=0;
     for(Point p : vpOut){
@@ -142,7 +137,7 @@ Configuration2<double> localize(const Mat & img, const bool raw){
     yAvg /= vpOut.size()*1.0;
 
     Point2<double> confPoint(xAvg, yAvg);
-    cout << "Barycenter (AKA centroid): " << confPoint << endl;
+    cout << "Given: " << robotShape.size() << " points, the Barycenter (AKA centroid) is: " << confPoint << endl;
 
     double Dist=0;
     Point2<int> tail;
@@ -155,17 +150,11 @@ Configuration2<double> localize(const Mat & img, const bool raw){
         }
     }
 
-    // cout << "localize E\n" << endl;
     confPoint.invert();
     tail.invert();
     Configuration2<double> conf(confPoint, tail.th(confPoint));
-    // cout << "tail of the robot: " << tail << endl;
-    // cout << "New robot position:     " << conf.point() << ", " << conf.angle().toDeg() << "° " << conf.angle().toRad()/3.14 << "pi" << endl;
-
-    cout << "end localize\n" << endl;
 
     return(conf);
-    // return( Configuration2<double>(900.0, 300.0, Angle(3.0*M_PI/4.0, Angle::RAD)));
 }
 
 
@@ -215,7 +204,6 @@ void shape_detection(const Mat & img, const COLOR_TYPE color){
             throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Wrong color type, ", __LINE__, __FILE__);
         break;
     }
-    cout << "Maschera in detection: " << mask << endl;
     Mat color_mask;
     inRange(img, mask.Low(), mask.High(), color_mask);
     
@@ -317,7 +305,6 @@ void find_contours( const Mat & img,
         if(areaMax==0){
             throw MyException<string>(EXCEPTION_TYPE::GENERAL, string("No blob found (with the right size) for the GATE/ROBOT due to wrong filters."), __LINE__, __FILE__);
         } else{
-            cout << "Adding the only existing blob of the color " << color << endl;
             contours_approx.push_back(approx_curveMax);
             if(color==CYAN){
                 // the points are returned thanks the global variable robotShape.

@@ -14,22 +14,6 @@
 #include <cstdio> // For sprintf
 #endif
 
-extern double elapsedScale;
-extern double elapsedPrimitives;
-extern double elapsedBest;
-extern double elapsedArcs;
-extern double elapsedCheck;
-extern unsigned long countTries;
-extern double elapsedVar;
-extern double elapsedCirc;
-extern double elapsedSet;
-extern double elapsedLSL;
-extern double elapsedRSR;
-extern double elapsedLSR;
-extern double elapsedRSL;
-extern double elapsedRLR;
-extern double elapsedLRL;
-
 #ifdef DEBUG
 unsigned int INC=5;
 unsigned int SHIFT=100;
@@ -140,7 +124,7 @@ public:
  * \param[in] t The value of the angle to be used.
  * \return The result of the previous formula.
  */
-static double sinc(double t) {
+inline double sinc(double t) {
   if (equal(t, 0.0))
     return 1 - pow2(t)/6 * (1 - pow2(t)/20);
   else
@@ -156,18 +140,8 @@ static double sinc(double t) {
  */
 Configuration2<double> circline(double _L,
                                 Configuration2<double> _P0,
-                                double _K)
-{
-  double sincc=_L*sinc(_K*_L/2.0);
-  double app=_K*_L/2.0;
-  double phi=_P0.angle().toRad();
-  
-  double x=_P0.x() + sincc * cos(phi+app);
-  double y=_P0.y() + sincc * sin(phi+app);
-  Angle th=Angle(_K*_L+phi, Angle::RAD);
+                                double _K);
 
-  return Configuration2<double>(x, y, th.get());
-}
 
 /*!
  * \brief Class to store a maneuver of Dubins. It inherits from `Curve`.
@@ -199,21 +173,11 @@ public:
   DubinsArc(const Configuration2<T2> _P0,
             const T1 _k,
             const T1 _l) : Curve<T2>() {
-    auto start=Clock::now();
     K=_k;
     L=_l;
-    auto stop=Clock::now();
-    elapsedVar+=CHRONO::getElapsed(start, stop);
 
-    start=Clock::now();
     Configuration2<T2> _P1 = circline(L, _P0, K);
-    stop=Clock::now();
-    elapsedCirc+=CHRONO::getElapsed(start, stop);
-
-    start=Clock::now();
     Curve<T2>::begin(_P0); Curve<T2>::end(_P1);
-    stop=Clock::now();
-    elapsedSet+=CHRONO::getElapsed(start, stop);
   }
 
   T1 getK   () const { return K; } ///< Returns the curvature of the arc.
@@ -307,7 +271,7 @@ class Dubins : protected Curve<T>
 private:
   double Kmax;             ///< The curvature of the Dubins.
   double L;                ///< The length of the curve.
-  int pid;                 ///< An ID that indicates which set of maneuver composes the Dubins.
+  int pid=-1;              ///< An ID that indicates which set of maneuver composes the Dubins.
   DubinsArc<T> A1, A2, A3; ///< The 3 arcs that compose the Dubins.
 
   using Curve<T>::Curve;
@@ -402,7 +366,6 @@ public:
    */
   double* LSL (double th0, double th1, double _kmax)
   {
-    auto start=Clock::now();
     double C=cos(th1)-cos(th0);
     double S=2*_kmax+sin(th0)-sin(th1);
     double tan2=atan2(C, S);
@@ -419,8 +382,6 @@ public:
     double sc_s2=invK*sqrt(temp1);
     double sc_s3=Angle(th1-tan2, Angle::RAD).get()*invK;
     
-    auto stop=Clock::now();
-    elapsedLSL+=CHRONO::getElapsed(start, stop);
 
     double* ret=new double[3];
     ret[0]=sc_s1;
@@ -440,7 +401,6 @@ public:
    */
   double* RSR (double th0, double th1, double _kmax)
   {
-    auto start=Clock::now();
     double C=cos(th0)-cos(th1);
     double S=2*_kmax-sin(th0)+sin(th1);
     
@@ -456,8 +416,6 @@ public:
     double sc_s2=invK*sqrt(temp1);
     double sc_s3=Angle(atan2(C,S)-th1, Angle::RAD).get()*invK;
     
-    auto stop=Clock::now();
-    elapsedRSR+=CHRONO::getElapsed(start, stop);
 
     double* ret=new double[3];
     ret[0]=sc_s1;
@@ -478,7 +436,6 @@ public:
    */
   double* LSR (double th0, double th1, double _kmax)
   {    
-    auto start=Clock::now();
     double C = cos(th0)+cos(th1);
     double S=2*_kmax+sin(th0)+sin(th1);
     
@@ -494,8 +451,6 @@ public:
     double sc_s1= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th0, Angle::RAD).get()*invK;
     double sc_s3= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th1, Angle::RAD).get()*invK;
 
-    auto stop=Clock::now();
-    elapsedLSR+=CHRONO::getElapsed(start, stop);
 
     double* ret=new double[3];
     ret[0]=sc_s1;
@@ -515,7 +470,6 @@ public:
    */
   double* RSL (double th0, double th1, double _kmax)
   {
-    auto start=Clock::now();
     double C = cos(th0)+cos(th1);
     double S=2*_kmax-sin(th0)-sin(th1);
     
@@ -531,8 +485,6 @@ public:
     double sc_s1= Angle(th0-atan2(C,S)+atan2(2, _kmax*sc_s2), Angle::RAD).get()*invK;
     double sc_s3= Angle(th1-atan2(C,S)+atan2(2, _kmax*sc_s2), Angle::RAD).get()*invK;
     
-    auto stop=Clock::now();
-    elapsedRSL+=CHRONO::getElapsed(start, stop);
     
     double* ret=new double[3];
     ret[0]=sc_s1;
@@ -552,7 +504,6 @@ public:
    */
   double* RLR (double th0, double th1, double _kmax)
   {
-    auto start=Clock::now();
     double C=cos(th0)-cos(th1);
     double S=2*_kmax-sin(th0)+sin(th1);
     
@@ -572,8 +523,6 @@ public:
     double sc_s1 = Angle(th0-atan2(C, S)+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
     double sc_s3 = Angle(th0-th1+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
     
-    auto stop=Clock::now();
-    elapsedRLR+=CHRONO::getElapsed(start, stop);
     
     double* ret=new double[3];
     ret[0]=sc_s1;
@@ -593,7 +542,6 @@ public:
    */
   double* LRL (double th0, double th1, double _kmax)
   {
-    auto start=Clock::now();
     double C=cos(th1)-cos(th0);
     double S=2*_kmax+sin(th0)-sin(th1);
     
@@ -613,8 +561,6 @@ public:
     double sc_s1 = Angle(atan2(C, S)-th0+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
     double sc_s3 = Angle(th1-th0+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
     
-    auto stop=Clock::now();
-    elapsedLRL+=CHRONO::getElapsed(start, stop);
     
     double* ret=new double[3];
     ret[0]=sc_s1;
@@ -667,11 +613,7 @@ public:
   int shortest_path()
   {
     int pidx=-1; //Return value
-    auto start=Clock::now();
     Tuple<double> scaled = scaleToStandard();
-    auto stop=Clock::now();
-    // cout << CHRONO::getElapsed(start, stop, "scaleToStandard: ") << endl;
-    elapsedScale+=CHRONO::getElapsed(start, stop);
 
     Angle  sc_th0     =  Angle(scaled.get(0), Angle::RAD);
     Angle  sc_th1     =  Angle(scaled.get(1), Angle::RAD); 
@@ -683,7 +625,6 @@ public:
     double sc_s2  = 0.0;
     double sc_s3  = 0.0;
 
-    start=Clock::now();
     Tuple<double* > res;
     res.add(LSL(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
     res.add(RSR(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
@@ -691,12 +632,8 @@ public:
     res.add(RSL(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
     res.add(RLR(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
     res.add(LRL(sc_th0.toRad(), sc_th1.toRad(), sc_Kmax));
-    stop=Clock::now();
-    // cout << CHRONO::getElapsed(start, stop, "Compute primitives: ") << endl;
-    elapsedPrimitives+=CHRONO::getElapsed(start, stop);
 
     int i=0; 
-    start=Clock::now(); 
     for (auto value : res){
       if (value!=nullptr){
         double appL=value[0]+value[1]+value[2];
@@ -723,7 +660,6 @@ public:
     }
 
     if (pidx>=0){
-      countTries++;
       Tuple<double> sc_std = scaleFromStandard(sc_lambda, sc_s1, sc_s2, sc_s3);
       vector<vector<int> > ksigns ={
         { 1,  0,  1}, // LSL
@@ -734,19 +670,11 @@ public:
         { 1, -1,  1}  // LRL
       };
 
-      stop=Clock::now();
-      // cout << CHRONO::getElapsed(start, stop, "Choose best ") << endl;
-      elapsedBest+=CHRONO::getElapsed(start, stop);
 
-      start=Clock::now();
       A1=DubinsArc<T>(Curve<T>::begin(), ksigns[pidx][0]*Kmax, sc_std.get(0));
       A2=DubinsArc<T>(A1.end(), ksigns[pidx][1]*Kmax, sc_std.get(1));
       A3=DubinsArc<T>(A2.end(), ksigns[pidx][2]*Kmax, sc_std.get(2));
-      stop=Clock::now();
-      // cout << CHRONO::getElapsed(start, stop, "Create arcs ") << endl;
-      elapsedArcs+=CHRONO::getElapsed(start, stop);
 
-      start=Clock::now();
       L=A1.length()+A2.length()+A3.length(); //Save total length of Dubins curve
 
       bool check_ = check(sc_s1, ksigns[pidx][0]*sc_Kmax,
@@ -758,8 +686,6 @@ public:
       if (!check_)
         pidx=-1.0;
 
-      stop=Clock::now();
-      elapsedCheck+=CHRONO::getElapsed(start, stop);
 
     }
     
@@ -849,8 +775,8 @@ public:
         v.add(A2.splitIt(_L));
         v.add(A3.splitIt(_L));
       }
-      return v;
     }
+    return v;
   }
   /*! This function create a strinstream object containing infos about the `Dubins`.
     \returns A string stream.
@@ -902,19 +828,7 @@ public:
  * \param[in] endPos The ending position of the `Tuple` of `Angle`s.
  * \return A vector containing the digits of the number converted to the specified base.
  */
-Tuple<Angle> toBase(Tuple<Angle> z, int n, int base, const Angle& inc, int startPos, int endPos){
-  int i=z.size()-1;
-  do {
-    if (i<startPos || i>endPos){}
-    else {
-      z.set(i, (z.get(i)+Angle(inc.toRad()*(n%base), Angle::RAD)));
-      n=(int)(n/base);
-    }
-    i--;
-  } while(n!=0 && i>-1);
-
-  return z;
-}
+Tuple<Angle> toBase(Tuple<Angle> z, int n, int base, const Angle& inc, int startPos, int endPos);
 
 /*!
  * \brief Compute the arrangements.
@@ -931,34 +845,7 @@ void disp(Tuple<Tuple<Angle> >& t,
           int N,              //Number of time to "iterate"
           const Angle& inc,   //Incrementation
           int startPos=0, 
-          int endPos=0){
-  unsigned long M=z.size()-startPos;
-  if (endPos!=0 && endPos>startPos){
-    M-=(z.size()-endPos-1);
-  }
-  unsigned long iter_n=pow(N, M);
-  COUT(inc)
-  COUT(N)
-  COUT(M)
-  COUT(iter_n)
-  COUT(z.size())
-  COUT(startPos)
-  COUT(endPos)
-  for (unsigned long i=0; i<iter_n; i++){
-    #ifdef DEBUG
-      Tuple<Angle> app=toBase(z, i, N, inc, startPos, endPos);
-      t.add(app);
-      // COUT(app)
-    #else
-      t.add(toBase(z, i, N, inc, startPos, endPos));
-    #endif
-  }
-  cout << "Expected: " << iter_n << " got: " << t.size() << endl;
-  // for (auto T : t) {
-  //   COUT(T)
-  // }
-
-}
+          int endPos=0);
 
 /*!
  * \brief Given a set of point, compute the shortest set of Dubins that allows to go from start to end through all points.

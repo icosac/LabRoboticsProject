@@ -13,18 +13,22 @@ RobotProject::RobotProject(int argc, char* argv[]){
 	cout << "configure done\n";
 }
 
-RobotProject::RobotProject(CameraCapture* camera, double& frame_time){
+RobotProject::RobotProject(CameraCapture* camera, double& frame_time, const bool _configure){
 	cout << "-> -> -> RobotProject constructor\n";
 	
 	sett->cleanAndRead("./exam/data/settings.xml");
 	cout << *sett << endl;
 
-	Mat img;
-	camera->grab(img, frame_time);
-	
-	cout << endl <<"Configure" << endl;
-	configure(img, true);
-	cout << "configure done\n";
+	if(_configure){
+		Mat img;
+		camera->grab(img, frame_time);
+		
+		cout << endl <<"Configure" << endl;
+		configure(img, true);
+		cout << "configure done\n";
+	} else{
+		cout << "configure skipped\n";
+	}
 }
 
 
@@ -59,14 +63,11 @@ bool RobotProject::planPath(const Mat & img, Path & path){
 
 bool RobotProject::localize(const Mat & img, vector<double> & state){
 	Configuration2<double> c = ::localize(img, true);
-	// Configuration2<double> c(0.1, 0.1, M_PI/4);
 
 	state.resize(3);
 	state[0] = c.x()/1000.0;
 	state[1] = c.y()/1000.0;
 	state[2] = c.angle().toRad();
 
-	cout << "Fine localize" << flush;
-	// mywaitkey();
 	return(true);
 }
