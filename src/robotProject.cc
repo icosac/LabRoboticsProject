@@ -13,22 +13,22 @@ RobotProject::RobotProject(int argc, char* argv[]){
 	cout << "configure done\n";
 }
 
-RobotProject::RobotProject(CameraCapture* camera, double& frame_time, const bool _configure){
+RobotProject::RobotProject(CameraCapture* camera, double& frame_time){
 	cout << "-> -> -> RobotProject constructor\n";
 	
 	sett->cleanAndRead("./exam/data/settings.xml");
 	cout << *sett << endl;
 
-	if(_configure){
+	#ifdef CONFIGURE
 		Mat img;
 		camera->grab(img, frame_time);
 		
 		cout << endl <<"Configure" << endl;
 		configure(img, true);
 		cout << "configure done\n";
-	} else{
-		cout << "configure skipped\n";
-	}
+	#else
+		cout << "Configure skipped." << endl;
+	#endif
 }
 
 
@@ -62,7 +62,8 @@ bool RobotProject::planPath(const Mat & img, Path & path){
 }
 
 bool RobotProject::localize(const Mat & img, vector<double> & state){
-	Configuration2<double> c = ::localize(img, true);
+	pair<Configuration2<double>, Configuration2<double> > p = ::localize(img, true);
+	Configuration2<double> c = p.second;
 
 	state.resize(3);
 	state[0] = c.x()/1000.0;

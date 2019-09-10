@@ -529,11 +529,15 @@ vector<Point2<int> > Mapp::minPathTwoPointsInternal(
     queue<Point2<int> > toProcess;
     // initialization of BFS
     toProcess.push(startC);
+    if(map[startC.y()][startC.x()] == OBST){
+        throw MyException<string>(EXCEPTION_TYPE::GENERAL, "The start position of the robot is inside an Obstacle!", __LINE__, __FILE__);
+    }
+
     distances[startC.y()/*i=y()*/][startC.x()/*j=x()*/] = 0.0;
     parents[  startC.y()/*i=y()*/][startC.x()/*j=x()*/] = startC;
     int found = 0;
 
-    // precompute the computation of the distances inn the square of edges around the cell of interest
+    // precompute the computation of the distances in the square of edges around the cell of interest
     const int r = range; //range from class variable (default=3)
     const int side = 2*r+1;
     double computedDistances[(int)pow(side, 2)]; // all the cells in a sqare of side where the center is the cell of interest
@@ -544,6 +548,7 @@ vector<Point2<int> > Mapp::minPathTwoPointsInternal(
     }
 
     // start iteration of the BFS
+    double initialDistAllowed = 30.0; // in case of a starting position of the robot inside the border is it allowed to move inside it for a short path.
     while( !toProcess.empty() && found<=foundLimit ){
         // for each cell from the queue
         Point2<int> cell = toProcess.front();
@@ -560,7 +565,7 @@ vector<Point2<int> > Mapp::minPathTwoPointsInternal(
 
                 // The cell itself (when i=0 and j=0) is considered (here) but never added to the queue due to the logic of the BFS
                 if(0<=ii && 0<=jj && ii<dimY && jj<dimX){
-                    if(map[ii][jj] != OBST && map[ii][jj] != BODA){ 
+                    if(map[ii][jj] != OBST && (dist<initialDistAllowed || map[ii][jj] != BODA )){ 
                         if(ii==endC.y() && jj==endC.x()){
                             found++;
                         }

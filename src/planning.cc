@@ -29,28 +29,41 @@ namespace Planning {
         cout << "plan2\n" << flush;
 
         // use this version when run from the laboratory... 
-        Configuration2<double> conf = localize(img, true);
-        vp.push_back( Point2<int>( (int)conf.y(), (int)conf.x()) ); //robot initial location. Inverted because inverted before in localize. 
-        // 
-        // vp.push_back( Point2<int>(900, 300) );//*/
+        pair<Configuration2<double>, Configuration2<double> > p = ::localize(img, true);
+        Configuration2<double> conf = p.first;
+        vp.push_back( Point2<int>( (int)conf.x(), (int)conf.y()) ); //robot initial location.
+
         cout << "plan3\n" << flush;
         Planning::map->getVictimCenters(vp);
         cout << "plan3 bis\n" << flush;
         Planning::map->getGateCenter(vp);
+
+
+        Mat imageMap = Planning::map->createMapRepresentation();
+        cout << "Created map" << endl << flush;
+
+        imwrite("data/computePlanning.jpg", imageMap);
+        #if defined WAIT || defined SHOW_MAP
+            namedWindow("Map", WINDOW_NORMAL);
+            imshow("Map", imageMap);
+            mywaitkey();
+        #endif
+
+
         cout << "plan4\n" << flush;
 
         #define BEST
         #ifdef BEST 
-            vector<vector<Point2<int> > > vvp = map->minPathNPointsWithChoice(vp, 4);
+            vector<vector<Point2<int> > > vvp = map->minPathNPointsWithChoice(vp, 1);
         #else
             vector<vector<Point2<int> > > vvp = map->minPathNPoints(vp);
         #endif
         cout << "plan5\n" << flush;
 
         //Add Dubins
-        // cout << "Trying to use dubins" << endl << flush;
-        // Planning::plan_best(conf, vvp);
-        // cout << "Found best dubins" << endl;
+        cout << "Trying to use dubins" << endl << flush;
+        Planning::plan_best(conf, vvp);
+        cout << "Found best dubins" << endl;
 
         vector<Point2<int> > cellsOfPath = new_function(vvp);
         // vector<Point2<int> > cellsOfPath = map->sampleNPoints(vvp);
@@ -58,19 +71,21 @@ namespace Planning {
         cout << "plan6\n" << flush;
         cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
         cout << "plan7\n" << flush;
-        Mat imageMap = Planning::map->createMapRepresentation();
+        imageMap = Planning::map->createMapRepresentation();
         cout << "Created map" << endl << flush;
         Planning::map->imageAddPoints(imageMap, cellsOfPath);
+        cout << "Created map 1" << endl << flush;
         Planning::map->imageAddSegments(imageMap, cellsOfPath);
+        cout << "Created map 2" << endl << flush;
 
         imwrite("data/computePlanning.jpg", imageMap);
-        #ifdef WAIT
+        #if defined WAIT || defined SHOW_MAP
             namedWindow("Map", WINDOW_NORMAL);
             imshow("Map", imageMap);
             mywaitkey();
         #endif
 
-        delete Planning::map;
+        // delete Planning::map;
         return( cellsOfPath );
     }
 
@@ -108,7 +123,7 @@ namespace Planning {
             Planning::map->addObjects(obstacles);
             cout << "create2 e\n" << flush;
             if(obstacles.size()==0){
-                throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no obstacles for the creating of the map.", __LINE__, __FILE__);
+                cerr << "Warning: Loaded no obstacles for the creating of the map. " << __LINE__ << " " << __FILE__ << endl;
             }
             cout << "create3\n" << flush;
 
@@ -241,58 +256,97 @@ namespace Planning {
       return ret;
     }
 
-    #define ROB_KMAX 100
+    #define ROB_KMAX 0.01
 
     template<class T>
-    void start_pos( const Configuration2<double>& _start, 
-                    vector<Point2<T> >& vvPoints){
-        Dubins<double> start_dub;
+    void start_end_pos( const Configuration2<double>& anchorPoint, 
+                    vector<Point2<T> >& vPoints,
+                    const bool start)
+    {
+        cout << "K: " << ROB_KMAX << endl;
+        Dubins<double> dub;
         bool ok=false;
-        vector<Point2<T> > new_start;
-        for (uint i=0; (i<(vvPoints.size()-1)  && start_dub.getId()<0 && !ok); i++){ //I continue until the points are empty or until a feasible dubins is not found. 
+        vector<Point2<T> > new_points;
+        uint id=0;
+        const int size=vPoints.size();
+        for (uint i=size-2; (i>0 && !ok); i--){ //I continue until the points are empty or until a feasible dubins is not found. 
+            cout << i << endl;
             ok=true; //Need to reset this each loop
-            new_start.clear();
-            start_dub=Dubins<double>(_start, Configuration2<double>(vvPoints[i], vvPoints[i].th(vvPoints[i+1])), ROB_KMAX);
-            Tuple<Tuple<Point2<double> > > vPDub=start_dub.splitIt(); 
-            for (int j=0; (j<3 && ok); j++){    
-                for (int k=0; (k<(vPDub[j].size()-1) && ok); k++){    
-                    if (Planning::map->checkSegment(vPDub[j][k], vPDub[j][k+1])){
-                        cerr << "Segment through obstacles" << endl;
-                        ok=false;
+            new_points.clear();
+            if (start){
+                dub=Dubins<double>(anchorPoint, Configuration2<double>(vPoints[i], vPoints[i].th(vPoints[i+1])), ROB_KMAX);
+            }
+            else {
+                dub=Dubins<double>(Configuration2<double>(vPoints[size-i-1], vPoints[size-i-1].th(vPoints[size-i])), anchorPoint, ROB_KMAX);
+            }
+
+            if(dub.getId()<0){
+                ok = false;
+                cout << "Couldn't compute Dubins" << endl;
+            }
+            else {
+                Tuple<Tuple<Point2<double> > > vPDub=dub.splitIt(0, 20); 
+                cout << "Dubins split in: " << vPDub[0].size()+vPDub[1].size()+vPDub[2].size() << endl; 
+                for (int j=0; (j<3 && ok); j++){    
+                    for (int k=0; (k<(vPDub[j].size()-1) && ok); k++){    
+                        if (Planning::map->checkSegment(vPDub[j][k], vPDub[j][k+1])){
+                            cout << "Segment through obstacles" << endl;
+                            ok=false;
+                        }
+                        else if(start && !(vPDub[j][k].x()<Planning::map->getActualLengthX() && vPDub[j][k].y()<Planning::map->getActualLengthY() 
+                                && vPDub[j][k].x()>Planning::map->getOffsetValue() && vPDub[j][k].y()>Planning::map->getOffsetValue())){
+                            cout << "Point of index " << k << " out of map: " << vPDub[j][k] << endl;
+                            ok=false;
+                        }
+                        else {
+                            new_points.push_back(vPDub[j][k]);
+                        }
                     }
-                    else if(vPDub[j][k].x()<Planning::map->getActualLengthX() && vPDub[j][k].y()<Planning::map->getActualLengthY() 
-                            && vPDub[j][k].x()>Planning::map->getOffsetValue() && vPDub[j][k].y()>Planning::map->getOffsetValue()){
-                        cerr << "Point out of map " << vPDub[j][k] << endl;
+                    if (Planning::map->getPointType(vPDub[j][vPDub[j].size()-1])==OBJ_TYPE::OBST){
+                        cout << "Last point is on obstacle" << endl;
                         ok=false;
-                    }
-                    else {
-                        new_start.push_back(vPDub[j][k]);
                     }
                 }
-                if (Planning::map->getPointType(vPDub[j][vPDub[j].size()-1])!=OBJ_TYPE::OBST){
-                    cerr << "Last point is on obstacle" << endl;
-                    ok=false;
+                if (ok){
+                    id=i;
                 }
             }
         }
-        if (start_dub.getId()>=0){
-            cout << start_dub << endl;
-            cout << "NEW START" << endl;
-            for (auto a : new_start){
-                cout << a << endl;
+        if (ok){
+            cout << dub << endl;
+            cout << "new_points size: " << new_points.size() << endl;
+            cout << "Size before: " << size << endl;
+            if (start){
+                for (uint i=id+1; i<size; i++){
+                    new_points.push_back(vPoints[i]);
+                }
+                vPoints=new_points;                
             }
-            vvPoints=new_start;
+            else {
+                vector<Point2<int> > app;
+                for (uint i=0; i<size-1-id; i++){
+                    app.push_back(vPoints[i]);
+                }
+                for (uint i=0; i<new_points.size(); i++){
+                    app.push_back(new_points[i]);
+                }
+                vPoints=app;
+            }
+            cout << "Size after: " << size << endl;
         }
         else {
             throw MyException<string> (EXCEPTION_TYPE::GENERAL, "No feasible path was found", __LINE__, __FILE__);
         }
-
     }
 
     // template<class T>
     void plan_best( const Configuration2<double>& _start,
                     vector<vector<Point2<int> > >& vvPoints){
-        start_pos(_start, vvPoints[0]);
+        start_end_pos(_start, vvPoints[0], true);
+        cout << "Starting Dubins found" << endl;
+
+
+        start_end_pos(Configuration2<double>(vvPoints.back().back(), Angle(M_PI, Angle::RAD)), vvPoints.back(), false);
     }
 
 }

@@ -1,7 +1,7 @@
 #ifndef ROBOTPROJECT
 #define ROBOTPROJECT
 
-
+#include <utility>
 #include <utils.hh>
 #include <detection.hh>
 #include <unwrapping.hh>
@@ -18,7 +18,7 @@ using namespace cv;
 
 class RobotProject{
     public:
-        RobotProject(CameraCapture* camera, double& frame_time, const bool _configure=true);
+        RobotProject(CameraCapture* camera, double& frame_time);
         RobotProject(int argc, char* argv[]);
         ~RobotProject();
 

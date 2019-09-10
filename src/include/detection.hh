@@ -13,6 +13,7 @@
 #include <cmath>
 #include <algorithm>
 #include <vector>
+#include <utility>
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/core.hpp>
@@ -57,9 +58,9 @@ void getConversionParameters(Mat & transf, const bool get=true);
 
     \param[in] img It is the image where the robot need to be located.
     \param[in] raw It is a boolean flag that says if the img is raw and need filters or not.
-    \returns The configuration of the robot in this exactly moment, according to the image.
+    \returns A couple of configurations of the robot in this exactly moment, according to the image. The first is in the our official reference system, on the other hand the second one is in the reference system of the exam.
 */
-Configuration2<double> localize(const Mat & img, const bool raw=true);
+pair<Configuration2<double>, Configuration2<double> > localize(const Mat & img, const bool raw=true);
 
 /*! \brief Detect shapes inside the image according to the variable 'color'.
 

@@ -31,7 +31,7 @@ class Mapp{
         constexpr static double baseDistance = -1.0;  //It is the reference base distance for the matrix of distances
         const int range = 3;            // It is the foundamental parameter of the function minPath (the right compromise its 3)
         const int foundLimit = 20;       // Empiric limit of found, it represent how many times the destination will be visited before the end of the BFS. 0 is the base case (first visit=stop) ~150, or better, none is the opposite limit.
-        const int offsetValue = 85;     // It is the offset applied to the obstacles defined in millimeters (it must contain also the border dimension).
+        const int offsetValue = 65;     // It is the offset applied to the obstacles defined in millimeters (it must contain also the border dimension).
         static const int borderSizeDefault = 8;    // It is the default of the border. The border is defined respect to the size of the cells. The border start from the most external cells of the obstacle and go inside (NOT OUTSIDE ! ! !), this mean that the offset value must contain the correct offset and even the border (off = real_off + border)
         static const int cellSize = 5;  // It is the default size of the each cell: 10x10 pixels
         static const int nPoints = 50;  // It is the number of points that the function sampleNPoints will sample from the computed vector of vector retrieved from the minPath.    
