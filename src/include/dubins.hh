@@ -259,7 +259,7 @@ public:
 };
 
 
-#define KMAX 0.5
+#define KMAX 0.01
 /*!
  * \brief Class to store a Dubins curve.
  * This class inherits from `Curve` and is composed of three `DubinsArc`.
@@ -856,7 +856,7 @@ class DubinsSet {
 private: 
   Tuple<Dubins<T> > dubinses; ///< `Tuple` of `Dubins` containing all the computed `Dubins`.
   double Kmax;                ///< Maximum value for curvature.
-  double L;                   ///< Length of all `DubinsSet`.
+  double L=DInf;              ///< Length of all `DubinsSet`.
 public:
   /*!
    * Constructor that given a `Tuple` of `Dubins` computes stores all of them.
@@ -1072,6 +1072,16 @@ public:
   double getKmax()                { return this->Kmax; }            ///< Returns the maximum curvature.
   double getSize()                { return this->dubinses.size(); } ///< Returns the number of `Dubins` stored.
   Tuple<Dubins<T> > getDubinses() { return this->dubinses; }        ///< Returns a `Tuple` containing all the `Dubins`.
+  Configuration2<T> begin()       { return this->dubinses.front().begin(); }
+  Configuration2<T> end()         { return this->dubinses.back().end(); }
+
+  Tuple<Tuple<Tuple<Point2<T> > > > splitIt (double _length=PIECE_LENGTH){
+    Tuple<Tuple<Tuple<Point2<T> > > > ret;
+    for (Dubins<T> dub: this->dubinses){
+      ret.add(dub.splitIt(0, _length));
+    }
+    return ret;
+  }
 
   /*!
    * Thid functions returns a specific `Dubins` from the set.

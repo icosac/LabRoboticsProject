@@ -563,6 +563,10 @@ public:
   T get (const int _n) const {
     return ((_n>=0&&_n<size()) ? elements.at(_n) : T());
   }
+
+  //TODO Document
+  T front ()  { return this->elements.front(); }
+  T back ()   { return this->elements.back(); }
   
   //TODO document
   int find (T _el){
