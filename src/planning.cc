@@ -2,6 +2,7 @@
 
 namespace Planning {
     Mapp* map;
+    Configuration2<double> conf;
 
     vector<Point2<int> > new_function(vector<vector<Point2<int> > > vvp){
         vector<Point2<int> > v;
@@ -30,7 +31,7 @@ namespace Planning {
 
         // use this version when run from the laboratory... 
         pair<Configuration2<double>, Configuration2<double> > p = ::localize(img, true);
-        Configuration2<double> conf = p.first;
+        conf = p.first;
         vp.push_back( Point2<int>( (int)conf.x(), (int)conf.y()) ); //robot initial location.
 
         cout << "plan3\n" << flush;
@@ -52,18 +53,18 @@ namespace Planning {
 
         cout << "plan4\n" << flush;
 
-        #define BEST
+        // #define BEST
         #ifdef BEST 
-            vector<vector<Point2<int> > > vvp = map->minPathNPointsWithChoice(vp, 1);
+            vector<vector<Point2<int> > > vvp = minPathNPointsWithChoice(vp, 1);
         #else
-            vector<vector<Point2<int> > > vvp = map->minPathNPoints(vp);
+            vector<vector<Point2<int> > > vvp = minPathNPoints(vp);
         #endif
         cout << "plan5\n" << flush;
 
         //Add Dubins
-        cout << "Trying to use dubins" << endl << flush;
-        Planning::plan_best(conf, vvp);
-        cout << "Found best dubins" << endl;
+        // cout << "Trying to use dubins" << endl << flush;
+        // Planning::plan_best(conf, vvp);
+        // cout << "Found best dubins" << endl;
 
         vector<Point2<int> > cellsOfPath = new_function(vvp);
         // vector<Point2<int> > cellsOfPath = map->sampleNPoints(vvp);
@@ -152,8 +153,6 @@ namespace Planning {
                 throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no gate for the creating of the map.", __LINE__, __FILE__);
             }
         cout << "create5\n" << flush;
-
-        // return(map);
     }
 
     /*! \brief The function load from the given fileNode a vector of vectors of Point2<int>.
@@ -194,6 +193,466 @@ namespace Planning {
             vp.push_back(Point2<int>(x, y));
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    int getNPoints() { return nPoints; }
+
+    /*! \brief Given couples of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
+        \details The function is based on a Breadth-first search (BFS). In addittion, the function considered the bonus choose if it is convinient to collect all the victims or only some of them, the bonus is given for each saved victim.
+
+        \param[in] vp The n points that need to be connected.
+        \param[in] bonus It is the time in second as reward for each victim saved.
+        \returns A vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-1 connecctions.
+    */
+    vector<vector<Point2<int> > > minPathNPointsWithChoice(const vector<Point2<int> > & vp, const double bonus){
+
+        //allocate
+        double ** distances = new double*[map->getDimY()];
+        Point2<int> ** parents = new Point2<int>*[map->getDimY()];
+        for(int i=0; i<map->getDimY(); i++){
+            // the initializtion is to -1
+            distances[i] = new double[map->getDimX()];
+            parents[i] = new Point2<int>[map->getDimX()];
+        }
+
+        //compute the simple minPath between all pairs of targets
+        int n = vp.size();
+        vector< vector< vector<Point2<int> > > > vvvp(n, vector< vector<Point2<int> > >(n));
+        vector< vector<int> > vvDist(n, vector<int>(n));
+
+        cout << "\nTable of distances:\n";
+        for(int i=0; i<n; i++){
+            cout << i << "\t";
+        }
+
+        for(int i=0; i<n-1; i++){
+            cout << i << ":\t" << flush;
+            for(int j=0; j<i; j++) cout << "\t";
+            for(int j=i+1; j<n; j++){
+                //compute the minPath
+                resetDistanceMap(distances);
+                vvvp[i][j] = minPathTwoPointsInternal(vp[i], vp[j], distances, parents, false); //i==0 means that the segment starts from the robot
+
+                //compute the overall distance along the computed path and store it
+                double dist = 0.0;
+                for(unsigned int q=0; q<vvvp[i][j].size()-1; q++){
+                    dist += vvvp[i][j][q].distance( vvvp[i][j][q+1] );
+                }
+                cout << dist << "\t" << flush;
+                vvDist[i][j] = dist;
+                vvDist[j][i] = dist;
+            }
+        }
+
+        //generate all the permutations (disposizioni = with order) without repetition
+        vector<int> targets;
+        for(int i=1; i<n-1; i++){
+            targets.push_back(i);
+        }
+
+        set<int> disposizioni;
+        cout << "\nThe possible permutations:\n";
+        disposizioni.insert(0); //option for taking no victim
+        do {
+            for(unsigned int i=0, c=0; i<targets.size(); i++){
+                c *= 10;
+                c += targets[i];
+                disposizioni.insert(c);
+            }
+        } while ( next_permutation(targets.begin(), targets.end()) );
+
+        //compare all the possibilities given by the permutations
+        double gain = bonus*100.0; // the measure unit of the bonus is seconds and the gain is in mm. The scale 100 is given by the speed of the robot: 10cm/s.
+
+        double cost, bestCost = 1000000.0;
+        int bestDisp = 0;
+        for(int el : disposizioni){
+            intToVect(el, targets); //convert back to vector
+            cout << el << ",\tThe cost is: ";
+            if(targets.size()==0){
+                cost =       vvDist[0][ n-1 ];                            
+                cout << (int)vvDist[0][ n-1 ] << " = ";
+            } else{
+                //calculate the cost (lenght) of the actual path
+                cost =       vvDist[0][ targets.front() ];                
+                cout << (int)vvDist[0][ targets.front() ] << " + ";
+                for(unsigned int q=0; q<targets.size()-1; q++){
+                    cost +=      vvDist[ targets[q] ][ targets[q+1] ];   
+                    cout << (int)vvDist[ targets[q] ][ targets[q+1] ] << " + ";
+                }
+                cost +=      vvDist[ targets.back() ][ n-1 ];            
+                cout << (int)vvDist[ targets.back() ][ n-1 ] << " - ";
+                
+                cost -=      gain*targets.size();                        
+                cout << (int)gain*targets.size() << " = ";
+            }
+            cout << cost << endl;
+
+            if(cost<bestCost){
+                bestCost = cost;
+                bestDisp = el;
+            }
+        }
+        cout << "\nThe best cost is: " << bestCost << ", generated by the disp: " << bestDisp << endl;
+
+        //prepare the return values
+        vector< vector<Point2<int> > > vvp;
+        intToVect(bestDisp, targets);
+        if(targets.size()==0){
+            vvp.push_back( vvvp[0][ n-1 ]);
+        } else{
+            vvp.push_back( vvvp[0][targets.front()] );
+            for(unsigned int q=0; q<targets.size()-1; q++){
+                vvp.push_back(vvvp[ targets[q] ][ targets[q+1] ]);
+            }
+            vvp.push_back( vvvp[ targets.back() ][ n-1 ] );
+        }
+
+        //delete
+        for(int i=0; i<map->getDimY(); i++){
+            delete [] distances[i];
+            delete [] parents[i];
+        }
+        delete[] distances;
+        delete[] parents;
+
+        return(vvp);
+    }
+
+    /*! \brief Given couples of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
+        \details The function is based on a Breadth-first search (BFS).
+
+        \param[in] p0 The source point.
+        \param[in] p1 The destination point.
+        \returns A vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-1 connecctions.
+    */
+    vector<vector<Point2<int> > > minPathNPoints(const vector<Point2<int> > & vp){
+        //allocate
+        cout << "min0\n" << flush;
+        double ** distances = new double*[map->getDimY()];
+        Point2<int> ** parents = new Point2<int>*[map->getDimY()];
+        cout << "min1\n" << flush;
+        for(int i=0; i<map->getDimY(); i++){
+            // the initializtion is to -1
+            distances[i] = new double[map->getDimX()];
+            parents[i] = new Point2<int>[map->getDimX()];
+        }
+        cout << "min2\n" << flush;
+
+        //function
+        vector<vector<Point2<int> > > vvp;
+        for(unsigned int i=0; i<vp.size()-1; i++){
+            resetDistanceMap(distances);
+            vvp.push_back( minPathTwoPointsInternal(vp[i], vp[i+1], distances, parents, false )); //i==0 means that the segment starts from the robot
+        }
+        cout << "min3\n" << flush;
+
+        //delete
+        for(int i=0; i<map->getDimY(); i++){
+            delete [] distances[i];
+            delete [] parents[i];
+        }
+        cout << "min4\n" << flush;
+        delete[] distances;
+        delete[] parents;
+        cout << "min5\n" << flush;
+
+        return(vvp);
+    }
+
+    /*! \brief Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
+        \details The function is based on a Breadth-first search (BFS).
+
+        \param[in] p0 The source point.
+        \param[in] p1 The destination point.
+        \returns A vector of points along the path (one for each cell of the grid of the map).
+    */
+    vector<Point2<int> > minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1){
+        //allocate
+        double ** distances = new double*[map->getDimY()];
+        Point2<int> ** parents = new Point2<int>*[map->getDimY()];
+        for(int i=0; i<map->getDimY(); i++){
+            distances[i] = new double[map->getDimX()];
+            parents[i] = new Point2<int>[map->getDimX()];
+        }
+
+        // function
+        resetDistanceMap(distances);
+        vector<Point2<int> > vp = minPathTwoPointsInternal(p0, p1, distances, parents, true);
+
+        //delete
+        for(int i=0; i<map->getDimY(); i++){
+            delete [] distances[i];
+            delete [] parents[i];
+        }
+        delete[] distances;
+        delete[] parents;
+
+        return(vp);
+    }
+
+    /*! \brief Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
+        \details The function is based on a Breadth-first search (BFS).
+
+        \param[in] startP The source point.
+        \param[in] endP The destination point.
+        \param[in] distances A matrix that is needed to store the distances of the visited cells.
+        \param[in] parents A matrix that is needed to store the parent of each cell (AKA the one that have discovered that cell with the minimum distance).
+        \param[in] firstSegment It is a flag that says if the first point of the segment (startP) it's the robot location or not.
+        \returns A vector of points along the path (one for each cell of the grid of the map).
+    */
+    vector<Point2<int> > minPathTwoPointsInternal(
+                            const Point2<int> & startP, const Point2<int> & endP, 
+                            double ** distances, Point2<int> ** parents,
+                            const bool firstSegment)
+    {
+        if(firstSegment) cout << "firstSegment\n";
+        double angleRange = 180*M_PI/180;
+        cout << "minInternal a\n" << flush;
+
+        // P=point, C=cell
+        Point2<int> startC(startP.x()/map->getPixX(), startP.y()/map->getPixY()), endC(endP.x()/map->getPixX(), endP.y()/map->getPixY());
+        queue<Configuration2<int> > toProcess;
+        // initialization of BFS
+        if(firstSegment){
+            toProcess.push(Configuration2<int>(startC, conf.angle().toRad())); // AKA startC
+            if(map->getCellType(startC.y(), startC.x()) == OBST){
+                throw MyException<string>(EXCEPTION_TYPE::GENERAL, "The start position of the robot is inside an Obstacle!", __LINE__, __FILE__);
+            }
+        } else{
+            toProcess.push(Configuration2<int>(startC, 0.0));
+        }
+        cout << "minInternal b\n" << flush;
+        distances[startC.y()/*i=y()*/][startC.x()/*j=x()*/] = 0.0;
+        parents[  startC.y()/*i=y()*/][startC.x()/*j=x()*/] = startC;
+        int found = 0;
+        cout << "minInternal c\n" << flush;
+
+        // precompute the computation of the distances and the angle in the square of edges around the cell of interest
+        const int r = range; //range from class variable (default=3)
+        const int side = 2*r+1;
+        double computedDistances[(int)pow(side, 2)]; // all the cells in a sqare of side where the center is the cell of interest
+        double computedAngles[(int)pow(side, 2)]; // all the cells in a sqare of side where the center is the cell of interest
+        for(int i=(-r); i<=r; i++){
+            for(int j=(-r); j<=r; j++){
+                computedDistances[(i+r)*side + (j+r)]  = sqrt( pow(i,2) + pow(j,2) );
+                if(firstSegment){
+                    computedAngles[(i+r)*side + (j+r)] = (Point2<int>(0, 0).th( Point2<int>(i, j) )).toRad();
+                }
+            }
+        }
+        cout << "minInternal d\n" << flush;
+
+        // start iteration of the BFS
+        double initialDistAllowed = 30.0; // in case of a starting position of the robot inside the border is it allowed to move inside it for a short path.
+        while( !toProcess.empty() && found<=foundLimit ){
+            // for each cell from the queue
+            Configuration2<int> cell = toProcess.front();
+            toProcess.pop();
+
+            int iC = (int)cell.y(), jC = (int)cell.x(); //i and j of the cell
+            double dist = distances[iC][jC];
+                    
+            // for each possible edge
+            for(int i=(-r); i<=r; i++){
+                for(int j=(-r); j<=r; j++){
+                    // i&j are relative coordinates, ii&jj are absolute coordinates
+                    int ii = i+iC, jj = j+jC;
+
+                    // In case of first segment, it is also neccessary to check that the angle of the new point is more or less correct respect to the previous one.
+                    if(!firstSegment || fabs( cell.angle().toRad() - computedAngles[(i+r)*side + (j+r)] ) < angleRange ){
+                        // The cell itself (when i=0 and j=0) is here considered but never added to the queue due to the logic of the BFS
+                        if( 0<=ii && 0<=jj && ii<map->getDimY() && jj<map->getDimX() ){
+
+                            if(map->getCellType(ii, jj) != OBST && (dist<initialDistAllowed || map->getCellType(ii, jj) != BODA )){ 
+                                if(ii==endC.y() && jj==endC.x()){
+                                    found++;
+                                }
+                                double myDist = computedDistances[(i+r)*side + (j+r)];
+                                // if not visited or bigger distance
+                                if( equal(distances[ii][jj], baseDistance, 0.001) || distances[ii][jj] > dist + myDist ){
+                                    distances[ii][jj] = dist + myDist;
+                                    parents[ii][jj] = cell;
+
+                                    if(firstSegment){
+                                        toProcess.push(Configuration2<int>(jj, ii, computedAngles[(i+r)*side + (j+r)] ));
+                                    } else{
+                                        toProcess.push(Configuration2<int>(jj, ii, 0.0));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        cout << "minInternal i\n" << flush;
+
+        // reconstruct the vector of parents of the cells in the minPath
+        vector<Point2<int> > computedParents;
+
+        if(found==0){
+            cout << "\n\n\t\tDestination of minPath not reached ! ! !\nSegment from: " << startP << " to " << endP << "\nNo solution exist ! ! !\n\n";
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "MinPath can't reach the destination.", __LINE__, __FILE__);
+        } else {
+            // computing the vector of parents
+            computedParents.push_back(endP);
+            Point2<int> p = endC;
+            while( p!=startC ){
+                p = parents[p.y()][p.x()];
+
+                // conversion from cell of the grid to point of the system (map)
+                computedParents.push_back( Point2<int>(p.x() * (map->getPixX()) + map->getPixX()/2, p.y() * (map->getPixY()) + map->getPixY()/2) );
+            }
+            reverse(computedParents.begin(), computedParents.end()); // I apply the inverse to have the vector from the begin to the end.
+        }
+        cout << "minInternal j\n" << flush;
+        return(computedParents);
+    }
+
+    /*! \brief Converts an integer into the vector of its digits. The result is inverse respect to the given integer.
+
+        \param[in] c The to split into the vector.
+        \param[out] v The vector where the split will be saved.
+    */
+    void intToVect(int c, vector<int> & v){
+        v.resize(0);
+        while(c>0){
+            v.push_back(c%10);
+            c /= 10;
+        }
+    }
+
+    /*! \brief It reset, to the given value, the matrix of distances, to compute again the minPath search.
+
+        \param[in] value The value to be set.
+    */
+    void resetDistanceMap(double ** distances, const double value){
+        for(int i=0; i<map->getDimY(); i++){
+            for(int j=0; j<map->getDimX(); j++){
+                distances[i][j] = value;
+            }
+        }
+    }
+
+    /*! \brief It extracts from the given vector of vector of points, a subset of points that always contains the first one and the last one of each vector.
+
+        \param[in] n The n number of points to sample.
+        \param[in] points The vector of vector of points to be selected.
+        \returns The vector containing the subset of n points.
+    */
+    vector<Point2<int> > sampleNPoints(const vector<vector<Point2<int> > > & vvp, const int n){
+        cout << "sample0\n" << flush;
+        vector<Point2<int> > vp;
+        if(n < (int)vvp.size()+1){
+            cout << "\n\nSampling N points: N is too small (at least vvp.size()+1 is required). . .\n\n";
+        } else{
+        cout << "sample1\n" << flush;
+            int totalSize = 0;
+            for(auto el : vvp){
+                totalSize += el.size()-1;
+            }
+            float step = (totalSize-1)*1.0/(n-2);
+
+        cout << "sample2\n" << flush;
+            int tmpSize = 0;
+            for(float i=0, v=0; (int)i<totalSize; i+=step){
+                if((unsigned int)i < vvp[v].size()+tmpSize){
+                    vp.push_back(vvp[v][(int)i-tmpSize]);        
+                } else{
+                    tmpSize += vvp[v].size();
+                    v++;
+                    if(v>=vvp.size()){
+                        break;
+                    }
+                    vp.push_back( vvp[v][0] );
+                }
+            }
+        cout << "sample3\n" << flush;
+            vp.push_back( vvp.back().back() );
+        }
+        cout << "sample4\n" << flush;
+        return(vp);
+    }
+
+    /*! \brief It extracts from the given vector of points, a subset of points that always contains the first one and the last one.
+
+        \param[in] n The number of points to select exept the extremes, it must be greater or equal than 2.
+        \param[in] points The vector of points to be selected.
+        \returns The vector containing the subset of n points.
+    */
+    vector<Point2<int> > sampleNPoints(const vector<Point2<int> > & points, const int n){
+        vector<Point2<int> > vp;
+        if(n >= (int)points.size() || points.size()==2){
+            vp = points;
+        } else if (points.size() > 2){
+            float step = (points.size()-1)*1.0/n;
+            for(int i=0; i<n-1; i++){
+                vp.push_back(points[ (int)i*step ]);
+            }
+            vp.push_back(points.back());
+        } else{
+            cout << "Invalid value of n and dimension of the vector.\n\n";
+        }
+        return(vp);    
+    }
+
+    /*! \brief It extracts from the given vector of points, a subset of points that always contains the first one and the last one.
+
+        \param[in] step The distance (counted as cells) from the previous to the next cell, it must but >=2 to have a reason.
+        \param[in] points The vector of points to be selected.
+        \returns The vector containing the subset of points, each step cells.
+    */
+    vector<Point2<int> > samplePointsEachNCells(const vector<Point2<int> > & points, const int step){
+        vector<Point2<int> > vp;
+        if(step<=1 || points.size()==2){
+            vp = points;
+        } else if (points.size() > 2){
+            for(unsigned int i=0; i<points.size()-1; i+=step){
+                vp.push_back(points[ i ]);
+            }
+            vp.push_back(points.back());
+        } else{
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Invalid value of step and dimension of the vector.", __LINE__, __FILE__);
+        }
+        return(vp);    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     #define SCALE 1000.0
     /*! \brief Convert a vector of point to a path, from Enrico's notation to Paolo's notation.
 
@@ -268,7 +727,7 @@ namespace Planning {
         bool ok=false;
         vector<Point2<T> > new_points;
         uint id=0;
-        const int size=vPoints.size();
+        const uint size=vPoints.size();
         for (uint i=size-2; (i>0 && !ok); i--){ //I continue until the points are empty or until a feasible dubins is not found. 
             cout << i << endl;
             ok=true; //Need to reset this each loop
@@ -341,7 +800,8 @@ namespace Planning {
 
     // template<class T>
     void plan_best( const Configuration2<double>& _start,
-                    vector<vector<Point2<int> > >& vvPoints){
+                    vector<vector<Point2<int> > >& vvPoints)
+    {
         start_end_pos(_start, vvPoints[0], true);
         cout << "Starting Dubins found" << endl;
 

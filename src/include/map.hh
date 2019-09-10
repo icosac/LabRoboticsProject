@@ -28,19 +28,11 @@ class Mapp{
     protected:
         OBJ_TYPE **map;
 
-        constexpr static double baseDistance = -1.0;  //It is the reference base distance for the matrix of distances
-        const int range = 3;            // It is the foundamental parameter of the function minPath (the right compromise its 3)
-        const int foundLimit = 20;       // Empiric limit of found, it represent how many times the destination will be visited before the end of the BFS. 0 is the base case (first visit=stop) ~150, or better, none is the opposite limit.
         const int offsetValue = 65;     // It is the offset applied to the obstacles defined in millimeters (it must contain also the border dimension).
         static const int borderSizeDefault = 8;    // It is the default of the border. The border is defined respect to the size of the cells. The border start from the most external cells of the obstacle and go inside (NOT OUTSIDE ! ! !), this mean that the offset value must contain the correct offset and even the border (off = real_off + border)
         static const int cellSize = 5;  // It is the default size of the each cell: 10x10 pixels
-        static const int nPoints = 50;  // It is the number of points that the function sampleNPoints will sample from the computed vector of vector retrieved from the minPath.    
 
         set<pair<int, int> > cellsFromSegment(const Point2<int> & p0, const Point2<int> & p1);
-        vector<Point2<int> > minPathTwoPointsInternal(
-                                const Point2<int> & startP, const Point2<int> & endP, 
-                                double ** distances, Point2<int> ** parents);
-        void resetDistanceMap(double ** distances, const double value = baseDistance);
 
         int lengthX;    // dimension of the arena default: 1000
         int lengthY;    // dimension of the arena d: 1500
@@ -71,17 +63,9 @@ class Mapp{
         void getGateCenter(vector<Point2<int> > & vp);
 
         OBJ_TYPE getPointType(const Point2<int> & p);
+        OBJ_TYPE getCellType(const int i, const int j);
         bool checkSegment(const Point2<int> & p0, const Point2<int> & p1);
             bool checkSegmentCollisionWithType(const Point2<int> & p0, const Point2<int> & p1, const OBJ_TYPE type);
-        
-        vector<vector<Point2<int> > > minPathNPointsWithChoice(const vector<Point2<int> > & vp, const double bonus);
-            void intToVect(int c, vector<int> & v);
-
-        vector<vector<Point2<int> > > minPathNPoints(const vector<Point2<int> > & vp);
-        vector<Point2<int> > minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1);
-        vector<Point2<int> > sampleNPoints(const vector<vector<Point2<int> > > & vvp, const int n=nPoints);
-            vector<Point2<int> > sampleNPoints(const vector<Point2<int> > & points, const int n);
-            vector<Point2<int> > samplePointsEachNCells(const vector<Point2<int> > & points, const int step);
 
         Mat createMapRepresentation();
             void imageAddSegments(Mat & image, const vector<Point2<int> > & vp, const int thickness=3);
@@ -96,12 +80,17 @@ class Mapp{
         int getOffsetValue() { return this->offsetValue; }
         int getBorderSizeDefault() { return this->borderSizeDefault; }
         int getCellSize() { return this->cellSize; }
-        int getNPoints() { return this->nPoints; }
         int getLengthX() { return this->lengthX; }
         int getLengthY() { return this->lengthY; }
         int getActualLengthX() { return (this->lengthX-this->offsetValue); }
         int getActualLengthY() { return (this->lengthY-this->offsetValue); }
-              
+
+        int getDimX(){ return this->dimX; }
+        int getDimY(){ return this->dimY; }
+        int getPixX(){ return this->pixX; }
+        int getPixY(){ return this->pixY; }
+        int getBorderSize(){ return this->borderSize; }
+
 };
 
 #endif
