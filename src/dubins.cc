@@ -44,5 +44,7 @@ void disp(Tuple<Tuple<Angle> >& t,
       Tuple<Angle> app=toBase(z, i, N, inc, startPos, endPos);
       t.add(app);
   }
+  #ifdef DEBUG
   cout << "Expected: " << iter_n << " got: " << t.size() << endl;
+  #endif
 }

@@ -283,7 +283,7 @@ public:
   		\returns The new angle. 
   */  
   Angle operator= (const Angle phi){
-    return copy(phi);
+    return this->copy(phi);
   }
 
   Angle operator= (const double phi){
@@ -530,15 +530,15 @@ public:
   		\param[in] ... Objects to store.
 	*/
   Tuple <T> (int _n, ...){
-    n=_n;
+    this->n=_n;
     auto start=Clock::now();
-    elements.reserve(n);
+    this->elements.reserve(this->n);
     auto stop=Clock::now();
     // elapsedTupleSet+=CHRONO::getElapsed(start, stop);
     va_list ap;
     va_start(ap, _n);
     start=Clock::now();
-    for (int i=0; i<n; i++){
+    for (int i=0; i<this->n; i++){
       T temp;
       if (std::is_same<T, float>::value){
         temp=va_arg(ap, double);
@@ -546,10 +546,15 @@ public:
       else {
         temp=va_arg(ap, T);
       }
-      elements.push_back(temp);
+      this->elements.push_back(temp);
     }
     stop=Clock::now();
     // elapsedTuple+=CHRONO::getElapsed(start, stop);
+  }
+
+  Tuple<T> (std::vector<T> v){
+    this->elements=v;
+    this->n=v.size();
   }
   
   // ~Tuple () {elements.clear();}
@@ -614,8 +619,8 @@ public:
   /*! \brief Removes all values from the `Tuple`.
   */
   void eraseAll (){
-    elements.clear();
-    n=0;
+    this->elements.clear();
+    this->n=0;
   }
 
   /*! \brief Set a value in a certain position, or adds the element if the 
@@ -650,6 +655,24 @@ public:
     *this=newT;
   }
   
+  /*! \brief Copy a Tuple into another one.
+    \param [in] A Tuple to be coppied.
+    \returns this. 
+  */
+  Tuple<T> copy (const Tuple<T>& A){
+    this->eraseAll();
+    for (int i=0; i<A.size(); i++){
+      this->add(A.get(i));
+    }
+    return *this;
+  }
+  /*! \brief Overload of the = operator. Just calls `copy`.
+      \param [in] A Tuple to be coppied.
+      \returns this. 
+  */
+  Tuple<T> operator= (const Tuple<T>& A){
+    return this->copy(A);
+  }
 
   bool equal(Tuple<T> _t){
     if (this->size()!=_t.size()){ return false; }
@@ -1022,14 +1045,14 @@ public:
       \returns this. 
   */
   Point2<T> operator= (const Point2<T>& A){
-    return copy(A);
+    return this->copy(A);
   }
   /*! \brief Equalize two points.
       \param [in] A point to be compared to.
       \returns true if the two points are equal. 
   */
   bool equal (const Point2<T>& A){
-    return x()==A.x() && y()==A.y(); 
+    return ::equal(this->x(), A.x()) && ::equal(this->y(), A.y()); 
   }
   /*! \brief Overload of the == operator. Just calls `equal`.
       \param [in] A point to be compared to.
@@ -1061,7 +1084,7 @@ public:
   //TODO Document
   template<class T1>
   Angle th (Point2<T1> P1, 
-            Angle::ANGLE_TYPE type=Angle::RAD){
+            Angle::ANGLE_TYPE type=Angle::RAD) const {
     return Angle(atan2((P1.y()-this->y()), (P1.x()-this->x())), type);
   }
 
@@ -1292,21 +1315,29 @@ public:
       \returns this. 
   */
   Configuration2<T1> operator= (const Configuration2<T1>& A){
-    return copy(A);
+    return this->copy(A);
   }
   /*! \brief Equalize two configurations.
       \param [in] A Configuration to be equalized.
       \returns true if the two configurations are equal. 
   */
   bool equal (const Configuration2<T1>& A){
-    return angle()==A.angle() && point()==A.point();
+    return this->angle()==A.angle() && this->point()==A.point();
   }
   /*! \brief Overload of the == operator. Just calls `equal`.
       \param [in] A Configuration to be equalized.
       \returns true if the two configurations are equal. 
   */
   bool operator== (const Configuration2<T1>& A){
-    return equal(A);
+    return this->equal(A);
+  }
+
+  /*! \brief Overload of the != operator. Just calls `equal` and negates it.
+      \param [in] A Configuration to be equalized.
+      \returns true if the two configurations are different, false otherwise. 
+  */
+  bool operator!= (const Configuration2<T1>& A){
+    return !this->equal(A);
   }
 
   //TODO document

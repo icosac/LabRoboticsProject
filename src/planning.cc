@@ -727,35 +727,35 @@ namespace Planning {
                                      int start_pos=0,
                                      int end_pos=-1){
 
-        vector<Point2<T> > v={Point2<T>(start.point().x(), start.point().y())};
-        //Compute a vector of points which are not on a line
-        for (int i=pos; i<init_points.size(); i++){
-            Point2<T> app=init_points.get(i);
-            if (i==0 || i==init_points.size()-1){
-                v.push_back(app);
-            }
-            else {
-                if (v.back().th(app).toRad()>DELTA){
-                    v.push_back(app);
-                }
-            }
-        }
-        for (int i=0; i<v.size()-1; i++){
-            double th0=0.0, th1=0.0;
-            if (i==0){
-                th0=start.angle().toRad();
-            }
-            else {
-                th1
-            }
-            Dubins<double> app=Dubins()
-        }
+        // vector<Point2<T> > v={Point2<T>(start.point().x(), start.point().y())};
+        // //Compute a vector of points which are not on a line
+        // for (int i=pos; i<init_points.size(); i++){
+        //     Point2<T> app=init_points.get(i);
+        //     if (i==0 || i==init_points.size()-1){
+        //         v.push_back(app);
+        //     }
+        //     else {
+        //         if (v.back().th(app).toRad()>DELTA){
+        //             v.push_back(app);
+        //         }
+        //     }
+        // }
+        // for (int i=0; i<v.size()-1; i++){
+        //     double th0=0.0, th1=0.0;
+        //     if (i==0){
+        //         th0=start.angle().toRad();
+        //     }
+        //     else {
+        //         th1
+        //     }
+        //     Dubins<double> app=Dubins()
+        // }
 
-        return ret;
+        // return ret;
     }
 
     template<class T>
-    bool check_dubins (vector<vector<Point2<T> > >& vPDub){
+    bool check_dubins_T (Tuple<Tuple<Point2<T> > >& vPDub){
         bool ok=true;
         for (int j=0; (j<3 && ok); j++){    
             for (int k=0; (k<(vPDub[j].size()-1) && ok); k++){    
@@ -763,7 +763,31 @@ namespace Planning {
                     cout << "Segment through obstacles" << endl;
                     ok=false;
                 }
-                else if(start && !(vPDub[j][k].x()<Planning::map->getActualLengthX() && vPDub[j][k].y()<Planning::map->getActualLengthY() 
+                else if(!(vPDub[j][k].x()<Planning::map->getActualLengthX() && vPDub[j][k].y()<Planning::map->getActualLengthY() 
+                        && vPDub[j][k].x()>Planning::map->getOffsetValue() && vPDub[j][k].y()>Planning::map->getOffsetValue())){
+                    cout << "Point of index " << k << " out of map: " << vPDub[j][k] << endl;
+                    ok=false;
+                }
+            }
+            if (Planning::map->getPointType(vPDub[j][vPDub[j].size()-1])==OBJ_TYPE::OBST){
+                cout << "Last point is on obstacle" << endl;
+                ok=false;
+            }
+        }
+        return ok;
+    }
+
+    //Maybe I'm never going to use this
+    template<class T>
+    bool check_dubins_V (vector<vector<Point2<T> > >& vPDub){
+        bool ok=true;
+        for (int j=0; (j<3 && ok); j++){    
+            for (int k=0; (k<(vPDub[j].size()-1) && ok); k++){    
+                if (Planning::map->checkSegment(vPDub[j][k], vPDub[j][k+1])){
+                    cout << "Segment through obstacles" << endl;
+                    ok=false;
+                }
+                else if(!(vPDub[j][k].x()<Planning::map->getActualLengthX() && vPDub[j][k].y()<Planning::map->getActualLengthY() 
                         && vPDub[j][k].x()>Planning::map->getOffsetValue() && vPDub[j][k].y()>Planning::map->getOffsetValue())){
                     cout << "Point of index " << k << " out of map: " << vPDub[j][k] << endl;
                     ok=false;
@@ -803,19 +827,19 @@ namespace Planning {
                     bool ok=true;
 
                     for (uint a=0; a<dub_points.size() && ok; a++){ //For each Dubins I check that's ok
-                        ok=check_dubins(dub_points[a]);
+                        ok=check_dubins_T(dub_points[a]);
                     }
 
                     if (!ok){
-                        cout << "Dubins " << a << " from point " << dub_points.front().front().front() << " to point " << dub_points.back().back().back() << " is not feasible" << endl;
+                        cout << "Dubins from point " << dub_points.front().front().front() << " to point " << dub_points.back().back().back() << " is not feasible" << endl;
                     }
                     else {
-                        if (best_intermediate.getLenght()>app.getLenght()){
-                            cout << "New best found " << best_intermediate.getLenght() << ">" << app.getLenght() << endl;
+                        if (best_intermediate.getLength()>app.getLength()){
+                            cout << "New best found " << best_intermediate.getLength() << ">" << app.getLength() << endl;
                             best_intermediate=app; //TODO this probably won't work until you implement the clone
                         }
                         else{
-                            cout << "New best NOT found " << best_intermediate.getLenght() << "<" << app.getLenght() << endl;
+                            cout << "New best NOT found " << best_intermediate.getLength() << "<" << app.getLength() << endl;
                         }
                     }
                 }
@@ -937,7 +961,7 @@ namespace Planning {
                 Tuple<Tuple<Point2<double> > > vPDub=dub.splitIt(0, 20); 
                 cout << "Dubins split in: " << vPDub[0].size()+vPDub[1].size()+vPDub[2].size() << endl; 
                 
-                ok=check_dubins(vPDub);
+                ok=check_dubins_T(vPDub);
                 if (ok){
                     pos=i;
                 }
@@ -961,12 +985,11 @@ namespace Planning {
         uint pos;
         try{
             start_end_pos(_start, vvPoints[0], pos, true);
-        } catch(MyException<string> e){
+        } catch(Exception e){
             cout << e.what() << endl;
         }
-        else {
-            cout << "Starting Dubins found." << endl;
-        }
+        cout << "Starting Dubins found." << endl;
+
 
 
 
@@ -974,14 +997,12 @@ namespace Planning {
 
         //Create Dubins for final path.
         try{
-            start_end_pos(Configuration2<double>(vvPoints.back().back(), Angle(M_PI, Angle::RAD)), vvPoints.back(), false); //TODO find best implementation for final angle
+            start_end_pos(Configuration2<double>(vvPoints.back().back(), Angle(M_PI, Angle::RAD)), vvPoints.back(), pos, false); //TODO find best implementation for final angle
         }
-        catch (MyException e){
+        catch (Exception e){
             cout << e.what() << endl;
         }
-        else {
-            cout << "Ending Dubins found." << endl;
-        }
+        cout << "Ending Dubins found." << endl;
 
     }
 

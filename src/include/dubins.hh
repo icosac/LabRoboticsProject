@@ -349,9 +349,12 @@ public:
     }
   }
 
-  double getKMax  () const { return Kmax; } ///< Returns the maximum curvature of the Dubins.
+  double getKmax  () const { return Kmax; } ///< Returns the maximum curvature of the Dubins.
   double length   () const { return L; }    ///< Returns the length of the Dubins.
   double getId    ()  { return pid; }       ///< Returns the id of the Dubins, that is the set of three maneuvers that creates the curve.
+
+  Configuration2<T> begin () const { return Curve<T>::begin(); }
+  Configuration2<T> end () const { return Curve<T>::end(); }
 
   DubinsArc<T> getA1() const { return A1; } ///< Returns the first `DubinsArc`.
   DubinsArc<T> getA2() const { return A2; } ///< Returns the second `DubinsArc`.
@@ -858,13 +861,15 @@ private:
   double Kmax;                ///< Maximum value for curvature.
   double L=DInf;              ///< Length of all `DubinsSet`.
 public:
+  DubinsSet() : dubinses(), Kmax(0.0), L(DInf) {}
   /*!
    * Constructor that given a `Tuple` of `Dubins` computes stores all of them.
    * \param[in] _dubinses The `Tuple` of `Dubins`.
    * \param[in] _kmax The maximum curvature.
    */
   DubinsSet(Tuple<Dubins<T> > _dubinses,
-            double _kmax=KMAX){
+            double _kmax=KMAX)
+  {
     this->dubinses=_dubinses;
     this->Kmax=_kmax;
     for (Dubins<T> dub : this->dubinses){
@@ -878,7 +883,8 @@ public:
    * \param[in] _kmax The maximum curvature to be used.
    */
   DubinsSet(Tuple<Configuration2<T> > _confs,
-            double _kmax=KMAX){
+            double _kmax=KMAX)
+  {
     for (int i=0; i<_confs.size()-1; i++){
       Dubins<T> dub=Dubins<T>(_confs.get(i), _confs.get(i+1));
       this->dubinses.add(dub);
@@ -898,7 +904,8 @@ public:
   DubinsSet(Configuration2<T> start, 
             Configuration2<T> end,
             Tuple<Point2<T> > _points,
-            double _kmax=KMAX) {
+            double _kmax=KMAX) 
+  {
     this->Kmax=_kmax;
     Tuple<Angle> angles;
 
@@ -908,17 +915,17 @@ public:
       cout << endl;
     #endif
 
-    vector<Point2<T> >new_points=reduce_points(_points);
-    _points.eraseAll();
-    for (auto p : new_points){
-      _points.add(p);
-    }
+    // vector<Point2<T> >new_points=reduce_points(_points);
+    // _points.eraseAll();
+    // for (auto p : new_points){
+    //   _points.add(p);
+    // }
 
-    #ifdef DEBUG
-      cout << "Considered points: " << endl;
-      cout << _points << endl;
-      cout << endl;
-    #endif
+    // #ifdef DEBUG
+    //   cout << "Considered points: " << endl;
+    //   cout << _points << endl;
+    //   cout << endl;
+    // #endif
 
     angles.add(start.angle());
     for (int i=0; i<_points.size()-1; i++){
@@ -977,7 +984,8 @@ public:
                   Tuple<Angle>& _angles,
                   Angle area=A_2PI,
                   double tries=4.0,
-                  double _kmax=KMAX){
+                  double _kmax=KMAX)
+  {
  
     #ifdef DEBUG
       cout << "Considered points: " << endl;
@@ -1005,29 +1013,29 @@ public:
 
     #ifdef DEBUG
       cout << "Considered angles: " << endl;
-      // for (auto tupla : angles){
-      //   cout << "<";
-      //   for (int i=0; i<tupla.size(); i++){
-      //     cout << tupla.get(i).to_string(Angle::DEG).str() << (i==tupla.size()-1 ? "" : ", ");
-      //   }
-      //   cout << ">" << endl;
-      // }
-      // cout << endl;
+      for (auto tupla : angles){
+        cout << "<";
+        for (int i=0; i<tupla.size(); i++){
+          cout << tupla.get(i).to_string(Angle::DEG).str() << (i==tupla.size()-1 ? "" : ", ");
+        }
+        cout << ">" << endl;
+      }
+      cout << endl;
 
-      // Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+      Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
 
-      // for (auto point : _points){
-      //     rectangle(image, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
-      // }
+      for (auto point : _points){
+          rectangle(image, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+      }
 
-      // my_imshow("dubin", image, true);
-      // mywaitkey();
+      my_imshow("dubin", image, true);
+      mywaitkey();
     #endif
 
     //Compute Dubins
     // Tuple<Tuple<Dubins<T> > > allDubins;
     this->L=DInf;
-    int id=0;
+    int id=-1;
     for (int i=0; i<angles.size(); i++){
       Tuple<Dubins<T> > app;
       double l=0.0;
@@ -1065,15 +1073,20 @@ public:
       cout << *this << endl;
     #endif
 
-    _angles=angles.get(id);
+    if (id<0){
+      cerr << "No DubinsSet coudl be computed for given points." << endl;
+    }
+    else {
+      _angles=angles.get(id);
+    }
   }
 
   double getLength()              { return this->L; }               ///< Returns the Length of the set of `Dubins`.
   double getKmax()                { return this->Kmax; }            ///< Returns the maximum curvature.
   double getSize()                { return this->dubinses.size(); } ///< Returns the number of `Dubins` stored.
   Tuple<Dubins<T> > getDubinses() { return this->dubinses; }        ///< Returns a `Tuple` containing all the `Dubins`.
-  Configuration2<T> begin()       { return this->dubinses.front().begin(); }
-  Configuration2<T> end()         { return this->dubinses.back().end(); }
+  Configuration2<T> getBegin()    { return this->dubinses.front().begin(); }
+  Configuration2<T> getEnd()      { return this->dubinses.back().end(); }
 
   Tuple<Tuple<Tuple<Point2<T> > > > splitIt (double _length=PIECE_LENGTH){
     Tuple<Tuple<Tuple<Point2<T> > > > ret;
@@ -1084,15 +1097,94 @@ public:
   }
 
   /*!
-   * Thid functions returns a specific `Dubins` from the set.
+   * This functions returns a specific `Dubins` from the set.
    * \param[in] id The position of the `Dubins` in the set.
    * \return The id-th `Dubins`.
    */
   Dubins<T> getDubins(int id){
-    if (id<(this->size()) && id>=0){
+    if (id<(this->getSize()) && id>=0){
       return dubinses.get(id);
     }
     return Dubins<T>();
+  }
+
+  /*!
+   * This functions returns a specific `Dubins` from the set.
+   * \param[in] id The position of the `Dubins` in the set.
+   * \return The id-th `Dubins`.
+   */
+  Dubins<T>* getDubinsPtr(int id){
+    if (id<(this->getSize()) && id>=0){
+      return &(dubinses[id]);
+    }
+    return nullptr;
+  }
+
+  bool addDubins(Dubins<T>* D){
+    if (this->getSize()!==0){
+      this->dubinses.add(*D);
+      this->L+=D->length();
+    }
+    else {
+      if (this->getKmax()!=D->getKmax()) {
+        cerr << "Cannot add a Dubins with different curvature." << endl;
+        return false;
+      }
+      else {
+        if (this->getEnd()!=D->begin()){
+          cerr << "Cannot add a Dubins that's disconnected from the set." << this->getEnd() << " " << D->begin() << endl;
+          return false;
+        }
+        else {
+          this->dubinses.add(*D);
+          this->L+=D->length();
+        }
+      }
+    }
+    return true;
+  }
+
+  DubinsSet<T> copy (DubinsSet<T>* DS)
+  {
+    this->dubinses.eraseAll();
+    this->dubinses=DS->getDubinses();
+    this->Kmax=DS->getKmax();
+    this->L=DS->getLength();
+    return *this;
+  }
+
+  DubinsSet<T> operator= (DubinsSet<T>* DS) { return this->copy(DS); }
+
+  DubinsSet<T> join (DubinsSet<T>* DS, 
+                     int startPos = -1)
+  {
+    if (this->getKmax()!=DS->getKmax()){
+      cerr << "Cannot join to DubinsSet with different curvature." << endl;
+      return DubinsSet<T>();
+    }
+    else {
+      if (startPos==-1 || startPos>=this->getSize()){
+        for (uint i=0; i<DS->getSize(); i++){
+          if (!(this->addDubins( DS->getDubinsPtr(i)) )) {
+            return DubinsSet<T>();
+          }
+        }
+      }
+      else {
+        DubinsSet<T> new_DS;
+        for (uint i=0; i<startPos; i++){ 
+          new_DS.add(this->getDubinsPtr(i));
+        }
+        for (uint i=0; i<DS->getSize(); i++){
+          new_DS.add(DS->getDubinsPtr(i));
+        }
+        for (uint i=startPos; i<this->getSize(); i++){
+          new_DS->add(this->getDubinsPtr(i));
+        }
+        *this=new_DS;
+      }
+    }
+    return *this;
   }
 
   /*! This function create a strinstream object containing infos about the `DubinsSet`.

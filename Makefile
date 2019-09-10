@@ -42,7 +42,8 @@ SRC=$(wildcard src/*.cc)
 OBJ=$(subst src/,src/obj/,$(patsubst %.cc, %.o, $(SRC)))
 
 #test files
-TEST_SRC= 	test/officialMain.cc
+TEST_SRC= 	test/dubinsSet_test.cc
+#						test/officialMain.cc
 # 					test/prova1.cc\
 # 					test/dubins_test.cc\
 # 					test/maths_test.cc
@@ -135,7 +136,7 @@ run: main
 	./bin/main.out
 #Run tests
 run_test: test
-	./bin/test/officialMain.out
+	./bin/test/dubinsSet_test.out
 #Run calibration
 run_calibration: calibration
 	./bin/calibration_run.out
