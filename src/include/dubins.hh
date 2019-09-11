@@ -15,10 +15,10 @@
 #endif
 
 #ifdef DEBUG
-unsigned int INC=5;
-unsigned int SHIFT=100;
-unsigned int DIMX=200+SHIFT;
-unsigned int DIMY=500+SHIFT;
+unsigned int D_INC=5;
+unsigned int D_SHIFT=100;
+unsigned int D_DIMX=200+D_SHIFT;
+unsigned int D_DIMY=500+D_SHIFT;
 #endif
 
 #define PIECE_LENGTH 2 //mm
@@ -236,9 +236,9 @@ public:
    * \param[in] inc The value to scale each point.
    * \param[in] scl The Scalar that defines the color to use.
    * \param[in] image The Mat where to draw the points.
-   * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
+   * \param[in] D_SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT){
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double D_SHIFT){
     // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
     for (auto point : this->splitIt(1)){
       if (point.x()>dimX || point.y()>dimY){
@@ -247,12 +247,12 @@ public:
         Mat newMat(x, y, CV_8UC3, Scalar(255, 255, 255));
         for (double _x=0; _x<dimX; _x++){
           for (double _y=0; _y<dimY; _y++){
-            rectangle(newMat, Point(_x+SHIFT, _y+SHIFT),Point(_x+inc+SHIFT, _y+inc+SHIFT), scl, -1);
+            rectangle(newMat, Point(_x+D_SHIFT, _y+D_SHIFT),Point(_x+inc+D_SHIFT, _y+inc+D_SHIFT), scl, -1);
           }
         }
         image=newMat;
       }
-      rectangle(image, Point(point.x()+SHIFT, point.y()+SHIFT), Point(point.x()+inc+SHIFT, point.y()+inc+SHIFT), scl, -1);
+      rectangle(image, Point(point.x()+D_SHIFT, point.y()+D_SHIFT), Point(point.x()+inc+D_SHIFT, point.y()+inc+D_SHIFT), scl, -1);
     }
   }
 
@@ -810,12 +810,12 @@ public:
    * \param[in] inc The value to scale each point.
    * \param[in] scl The Scalar that defines the color to use.
    * \param[in] image The Mat where to draw the points.
-   * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
+   * \param[in] D_SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
-    A1.draw(dimX, dimY, inc, scl, image, SHIFT);
-    A2.draw(dimX, dimY, inc, scl, image, SHIFT);
-    A3.draw(dimX, dimY, inc, scl, image, SHIFT);
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double D_SHIFT=0){
+    A1.draw(dimX, dimY, inc, scl, image, D_SHIFT);
+    A2.draw(dimX, dimY, inc, scl, image, D_SHIFT);
+    A3.draw(dimX, dimY, inc, scl, image, D_SHIFT);
   }
 
 };
@@ -948,12 +948,12 @@ public:
     }
 
     #ifdef DEBUG 
-      Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+      Mat best_img(D_DIMY, D_DIMX, CV_8UC3, Scalar(255, 255, 255));
       for (auto point : _points){
-        rectangle(best_img, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+        rectangle(best_img, Point(point.x()-D_INC/2+D_SHIFT, point.y()-D_INC/2+D_SHIFT), Point(point.x()+D_INC/2+D_SHIFT, point.y()+D_INC/2+D_SHIFT), Scalar(0,0,0) , -1);
       }
       for (auto dub : this->dubinses){
-        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, SHIFT);
+        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, D_SHIFT);
       }
       my_imshow("best", best_img, true);
       mywaitkey();
@@ -1022,10 +1022,10 @@ public:
       }
       cout << endl;
 
-      Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+      Mat image(D_DIMY, D_DIMX, CV_8UC3, Scalar(255, 255, 255));
 
       for (auto point : _points){
-          rectangle(image, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+          rectangle(image, Point(point.x()-D_INC/2+D_SHIFT, point.y()-D_INC/2+D_SHIFT), Point(point.x()+D_INC/2+D_SHIFT, point.y()+D_INC/2+D_SHIFT), Scalar(0,0,0) , -1);
       }
 
       my_imshow("dubin", image, true);
@@ -1061,12 +1061,12 @@ public:
     }
 
     #ifdef DEBUG 
-      Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+      Mat best_img(D_DIMY, D_DIMX, CV_8UC3, Scalar(255, 255, 255));
       for (auto point : _points){
-        rectangle(best_img, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+        rectangle(best_img, Point(point.x()-D_INC/2+D_SHIFT, point.y()-D_INC/2+D_SHIFT), Point(point.x()+D_INC/2+D_SHIFT, point.y()+D_INC/2+D_SHIFT), Scalar(0,0,0) , -1);
       }
       for (auto dub : this->dubinses){
-        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, SHIFT);
+        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, D_SHIFT);
       }
       // my_imshow("best", best_img, true);
       // mywaitkey();
@@ -1121,7 +1121,7 @@ public:
   }
 
   bool addDubins(Dubins<T>* D){
-    if (this->getSize()!==0){
+    if (this->getSize()==0){
       this->dubinses.add(*D);
       this->L+=D->length();
     }

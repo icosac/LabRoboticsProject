@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <iomanip>
 
 #include <map.hh>
 #include <maths.hh>
@@ -24,6 +25,9 @@ namespace Planning {
     const int range = 3;            // It is the foundamental parameter of the function minPath (the right compromise its 3)
     const int foundLimit = 20;       // Empiric limit of found, it represent how many times the destination will be visited before the end of the BFS. 0 is the base case (first visit=stop) ~150, or better, none is the opposite limit.
     static const int nPoints = 50;  // It is the number of points that the function sampleNPoints will sample from the computed vector of vector retrieved from the minPath.    
+    constexpr double initialDistAllowed = 20.0; // In case of a starting position of the robot inside the border (not the obstacle) is it allowed to move inside it for a short path, defined in cells size.
+    constexpr double angleRange = 20*M_PI/180; // It is a range that delimit the possibilities of the min path of adding new elements. Practically is used to create a path, more or less, straight that has at most an angle between two consecutive segments of angleRange.
+
 
 	vector<Point2<int> > planning(const Mat & img);
 	void createMapp();

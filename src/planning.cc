@@ -29,11 +29,12 @@ namespace Planning {
         vector<Point2<int> > vp;
         cout << "plan2\n" << flush;
 
-        // use this version when run from the laboratory... 
+        // localize the robot
         pair<Configuration2<double>, Configuration2<double> > p = ::localize(img, true);
         conf = p.first;
         vp.push_back( Point2<int>( (int)conf.x(), (int)conf.y()) ); //robot initial location.
 
+        // update and show the created map
         cout << "plan3\n" << flush;
         Planning::map->getVictimCenters(vp);
         cout << "plan3 bis\n" << flush;
@@ -45,54 +46,25 @@ namespace Planning {
 
         imwrite("data/computePlanning.jpg", imageMap);
         #if defined WAIT || defined SHOW_MAP
-            namedWindow("Map", WINDOW_NORMAL);
-            imshow("Map", imageMap);
+            namedWindow("Map 0", WINDOW_NORMAL);
+            imshow("Map 0", imageMap);
             mywaitkey();
         #endif
-
-
         cout << "plan4\n" << flush;
 
+        // search for the shortest path
         // #define BEST
         #ifdef BEST 
-            vector<vector<Point2<int> > > vvp = minPathNPointsWithChoice(vp, 1);
+            vector<vector<Point2<int> > > vvp = minPathNPointsWithChoice(vp, 5);
         #else
             vector<vector<Point2<int> > > vvp = minPathNPoints(vp);
         #endif
         cout << "plan5\n" << flush;
         vector<vector<Point2<int> > > app=vvp;
         
-        
-            vector<Point2<int> > cellsOfPath = sampleNPoints(vvp);
-            Planning::map->imageAddPoints(imageMap, cellsOfPath);
-            cout << "Created map 1" << endl << flush;
-            Planning::map->imageAddSegments(imageMap, cellsOfPath);
-            cout << "Created map 2" << endl << flush;
-
-            imwrite("data/computePlanning.jpg", imageMap);
-            #if defined WAIT || defined SHOW_MAP
-                namedWindow("Map", WINDOW_NORMAL);
-                imshow("Map", imageMap);
-                mywaitkey();
-            #endif
-        
-
-        //Add Dubins
-        cout << "Trying to use dubins" << endl << flush;
-        Planning::plan_best(conf, vvp);
-        cout << "Found best dubins" << endl;
-
-        // vector<Point2<int> > cellsOfPath = new_function(vvp);
-        cellsOfPath = new_function(vvp);
+        // show the path and prepare it for the return
+        vector<Point2<int> > cellsOfPath = new_function(vvp);
         // vector<Point2<int> > cellsOfPath = sampleNPoints(vvp);
-        // cellsOfPath = sampleNPoints(vvp);
-
-        cout << "plan6\n" << flush;
-        cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
-        cout << "plan7\n" << flush;
-
-        // imageMap = Planning::map->createMapRepresentation();
-        // cout << "Created map" << endl << flush;
         Planning::map->imageAddPoints(imageMap, cellsOfPath);
         cout << "Created map 1" << endl << flush;
         Planning::map->imageAddSegments(imageMap, cellsOfPath);
@@ -100,10 +72,39 @@ namespace Planning {
 
         imwrite("data/computePlanning.jpg", imageMap);
         #if defined WAIT || defined SHOW_MAP
-            namedWindow("Map", WINDOW_NORMAL);
-            imshow("Map", imageMap);
+            namedWindow("Map 1", WINDOW_NORMAL);
+            imshow("Map 1", imageMap);
             mywaitkey();
         #endif
+        
+
+        // Add Dubins to improve the path
+        cout << "Trying to use dubins" << endl << flush;
+        // Planning::plan_best(conf, vvp);
+        // cout << "Found best dubins" << endl;
+
+        // // vector<Point2<int> > cellsOfPath = new_function(vvp);
+        // cellsOfPath = new_function(vvp);
+        // // vector<Point2<int> > cellsOfPath = sampleNPoints(vvp);
+        // // cellsOfPath = sampleNPoints(vvp);
+
+        // cout << "plan6\n" << flush;
+        // cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
+        // cout << "plan7\n" << flush;
+
+        // // imageMap = Planning::map->createMapRepresentation();
+        // // cout << "Created map" << endl << flush;
+        // Planning::map->imageAddPoints(imageMap, cellsOfPath);
+        // cout << "Created map 1" << endl << flush;
+        // Planning::map->imageAddSegments(imageMap, cellsOfPath);
+        // cout << "Created map 2" << endl << flush;
+
+        // imwrite("data/computePlanning.jpg", imageMap);
+        // #if defined WAIT || defined SHOW_MAP
+        //     namedWindow("Map 2", WINDOW_NORMAL);
+        //     imshow("Map 2", imageMap);
+        //     mywaitkey();
+        // #endif
 
         return( cellsOfPath );
     }
@@ -129,22 +130,6 @@ namespace Planning {
         cout << "create2 a\n" << flush;
         
         // load vectors of vectors of objects
-            // Obstacles
-            vector< vector<Point2<int> > > vvpObstacles;
-            cout << "create2 b\n" << flush;
-            Planning::loadVVP(vvpObstacles, fs["obstacles"]);
-            cout << "create2 c\n" << flush;
-            vector<Obstacle> obstacles;
-            for(unsigned int i=0; i<vvpObstacles.size(); i++){
-                obstacles.push_back( Obstacle(vvpObstacles[i]) );
-            }
-            cout << "create2 d\n" << flush;
-            Planning::map->addObjects(obstacles);
-            cout << "create2 e\n" << flush;
-            if(obstacles.size()==0){
-                cerr << "Warning: Loaded no obstacles for the creating of the map. " << __LINE__ << " " << __FILE__ << endl;
-            }
-            cout << "create3\n" << flush;
 
             // Victims
             vector< vector<Point2<int> > > vvpVictims;
@@ -170,6 +155,24 @@ namespace Planning {
             if(gates.size()==0){
                 throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no gate for the creating of the map.", __LINE__, __FILE__);
             }
+
+            // Obstacles
+            vector< vector<Point2<int> > > vvpObstacles;
+            cout << "create2 b\n" << flush;
+            Planning::loadVVP(vvpObstacles, fs["obstacles"]);
+            cout << "create2 c\n" << flush;
+            vector<Obstacle> obstacles;
+            for(unsigned int i=0; i<vvpObstacles.size(); i++){
+                obstacles.push_back( Obstacle(vvpObstacles[i]) );
+            }
+            cout << "create2 d\n" << flush;
+            Planning::map->addObjects(obstacles);
+            cout << "create2 e\n" << flush;
+            if(obstacles.size()==0){
+                cerr << "Warning: Loaded no obstacles for the creating of the map. " << __LINE__ << " " << __FILE__ << endl;
+            }
+            cout << "create3\n" << flush;
+
         cout << "create5\n" << flush;
     }
 
@@ -212,19 +215,6 @@ namespace Planning {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     int getNPoints() { return nPoints; }
 
     /*! \brief Given couples of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.
@@ -261,7 +251,7 @@ namespace Planning {
             for(int j=i+1; j<n; j++){
                 //compute the minPath
                 resetDistanceMap(distances);
-                vvvp[i][j] = minPathTwoPointsInternal(vp[i], vp[j], distances, parents, false); //i==0 means that the segment starts from the robot
+                vvvp[i][j] = minPathTwoPointsInternal(vp[i], vp[j], distances, parents, i==0); //i==0 means that the segment starts from the robot
 
                 //compute the overall distance along the computed path and store it
                 double dist = 0.0;
@@ -373,7 +363,7 @@ namespace Planning {
         vector<vector<Point2<int> > > vvp;
         for(unsigned int i=0; i<vp.size()-1; i++){
             resetDistanceMap(distances);
-            vvp.push_back( minPathTwoPointsInternal(vp[i], vp[i+1], distances, parents, false )); //i==0 means that the segment starts from the robot
+            vvp.push_back( minPathTwoPointsInternal(vp[i], vp[i+1], distances, parents, i==0 )); //i==0 means that the segment starts from the robot
         }
         cout << "min3\n" << flush;
 
@@ -436,10 +426,6 @@ namespace Planning {
                             double ** distances, Point2<int> ** parents,
                             const bool firstSegment)
     {
-        if(firstSegment) cout << "firstSegment\n";
-        double angleRange = 180*M_PI/180;
-        cout << "minInternal a\n" << flush;
-
         // P=point, C=cell
         Point2<int> startC(startP.x()/map->getPixX(), startP.y()/map->getPixY()), endC(endP.x()/map->getPixX(), endP.y()/map->getPixY());
         queue<Configuration2<int> > toProcess;
@@ -452,29 +438,31 @@ namespace Planning {
         } else{
             toProcess.push(Configuration2<int>(startC, 0.0));
         }
-        cout << "minInternal b\n" << flush;
         distances[startC.y()/*i=y()*/][startC.x()/*j=x()*/] = 0.0;
         parents[  startC.y()/*i=y()*/][startC.x()/*j=x()*/] = startC;
         int found = 0;
-        cout << "minInternal c\n" << flush;
 
         // precompute the computation of the distances and the angle in the square of edges around the cell of interest
         const int r = range; //range from class variable (default=3)
         const int side = 2*r+1;
         double computedDistances[(int)pow(side, 2)]; // all the cells in a sqare of side where the center is the cell of interest
         double computedAngles[(int)pow(side, 2)]; // all the cells in a sqare of side where the center is the cell of interest
-        for(int i=(-r); i<=r; i++){
+        
+        if(firstSegment) cout << "\ncomputedAngles\n\t";
+        for(int j=(-r); j<=r; j++) if(firstSegment) cout << j << "\t";
+        for(int i=r; i>=(-r); i--){
+            if(firstSegment) cout << "\n" << i << ":\t";
             for(int j=(-r); j<=r; j++){
+
                 computedDistances[(i+r)*side + (j+r)]  = sqrt( pow(i,2) + pow(j,2) );
                 if(firstSegment){
-                    computedAngles[(i+r)*side + (j+r)] = (Point2<int>(0, 0).th( Point2<int>(i, j) )).toRad();
+                    computedAngles[(i+r)*side + (j+r)] = (Point2<int>(0, 0).th( Point2<int>(j, i) )).toRad();
+                    cout << (int)(computedAngles[(i+r)*side + (j+r)]*180.0/M_PI) << "\t";
                 }
             }
         }
-        cout << "minInternal d\n" << flush;
 
         // start iteration of the BFS
-        double initialDistAllowed = 30.0; // in case of a starting position of the robot inside the border is it allowed to move inside it for a short path.
         while( !toProcess.empty() && found<=foundLimit ){
             // for each cell from the queue
             Configuration2<int> cell = toProcess.front();
@@ -484,13 +472,13 @@ namespace Planning {
             double dist = distances[iC][jC];
                     
             // for each possible edge
-            for(int i=(-r); i<=r; i++){
+            for(int i=r; i>=(-r); i--){
                 for(int j=(-r); j<=r; j++){
                     // i&j are relative coordinates, ii&jj are absolute coordinates
                     int ii = i+iC, jj = j+jC;
 
                     // In case of first segment, it is also neccessary to check that the angle of the new point is more or less correct respect to the previous one.
-                    if(!firstSegment || fabs( cell.angle().toRad() - computedAngles[(i+r)*side + (j+r)] ) < angleRange ){
+                    if(!firstSegment || fabs( computedAngles[(i+r)*side + (j+r)] - cell.angle().toRad() ) < angleRange ){
                         // The cell itself (when i=0 and j=0) is here considered but never added to the queue due to the logic of the BFS
                         if( 0<=ii && 0<=jj && ii<map->getDimY() && jj<map->getDimX() ){
 
@@ -499,7 +487,7 @@ namespace Planning {
                                     found++;
                                 }
                                 double myDist = computedDistances[(i+r)*side + (j+r)];
-                                // if not visited or bigger distance
+                                // if not visited or previous bigger distance
                                 if( equal(distances[ii][jj], baseDistance, 0.001) || distances[ii][jj] > dist + myDist ){
                                     distances[ii][jj] = dist + myDist;
                                     parents[ii][jj] = cell;
@@ -516,7 +504,6 @@ namespace Planning {
                 }
             }
         }
-        cout << "minInternal i\n" << flush;
 
         // reconstruct the vector of parents of the cells in the minPath
         vector<Point2<int> > computedParents;
@@ -536,7 +523,6 @@ namespace Planning {
             }
             reverse(computedParents.begin(), computedParents.end()); // I apply the inverse to have the vector from the begin to the end.
         }
-        cout << "minInternal j\n" << flush;
         return(computedParents);
     }
 
@@ -647,29 +633,6 @@ namespace Planning {
         }
         return(vp);    
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     #define SCALE 1000.0
     /*! \brief Convert a vector of point to a path, from Enrico's notation to Paolo's notation.
