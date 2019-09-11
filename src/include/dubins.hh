@@ -15,10 +15,10 @@
 #endif
 
 #ifdef DEBUG
-unsigned int INC=5;
-unsigned int SHIFT=100;
-unsigned int DIMX=200+SHIFT;
-unsigned int DIMY=500+SHIFT;
+unsigned int D_INC=5;
+unsigned int D_SHIFT=100;
+unsigned int D_DIMX=200+D_SHIFT;
+unsigned int D_DIMY=500+D_SHIFT;
 #endif
 
 #define PIECE_LENGTH 2 //mm
@@ -190,19 +190,19 @@ public:
    * \param[in] _L The length that each points should have.
    * \return A `Tuple` of `Configuration2`s representing the points along the arc.
    */
-  Tuple<Point2<T2> > splitIt (double _L=PIECE_LENGTH){
-    Tuple<Point2<T2> > ret;
+  Tuple<Configuration2<T2> > splitIt (double _L=PIECE_LENGTH){
+    Tuple<Configuration2<T2> > ret;
     Configuration2<T2> _old=Curve<T2>::begin();
-    double sum=0;
+    double sum=0.0;
 
-    ret.add(_old); 
-
-    while( length()>sum+_L ){
+    while( this->length()>sum+_L ){
       Configuration2<T2> _new=circline(_L, _old, getK());
       ret.add(_new);
       _old=_new; //Maybeeeee using pointers can improve performance?
       sum+=_L;
     }
+
+    ret.add(Curve<T2>::end());
     return ret;
   }
 
@@ -236,9 +236,9 @@ public:
    * \param[in] inc The value to scale each point.
    * \param[in] scl The Scalar that defines the color to use.
    * \param[in] image The Mat where to draw the points.
-   * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
+   * \param[in] D_SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT){
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double D_SHIFT){
     // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
     for (auto point : this->splitIt(1)){
       if (point.x()>dimX || point.y()>dimY){
@@ -247,12 +247,12 @@ public:
         Mat newMat(x, y, CV_8UC3, Scalar(255, 255, 255));
         for (double _x=0; _x<dimX; _x++){
           for (double _y=0; _y<dimY; _y++){
-            rectangle(newMat, Point(_x+SHIFT, _y+SHIFT),Point(_x+inc+SHIFT, _y+inc+SHIFT), scl, -1);
+            rectangle(newMat, Point(_x+D_SHIFT, _y+D_SHIFT),Point(_x+inc+D_SHIFT, _y+inc+D_SHIFT), scl, -1);
           }
         }
         image=newMat;
       }
-      rectangle(image, Point(point.x()+SHIFT, point.y()+SHIFT), Point(point.x()+inc+SHIFT, point.y()+inc+SHIFT), scl, -1);
+      rectangle(image, Point(point.x()+D_SHIFT, point.y()+D_SHIFT), Point(point.x()+inc+D_SHIFT, point.y()+inc+D_SHIFT), scl, -1);
     }
   }
 
@@ -279,7 +279,7 @@ public:
   /*!
    * Plain constructor for Dubins that calls the plain constructor of `Curve` and `DubinsArc`.
    */
-  Dubins () : Kmax(KMAX), Curve<T>() {
+  Dubins () : Kmax(KMAX), Curve<T>(), L(DInf) {
     A1=DubinsArc<T>();
     A2=DubinsArc<T>();
     A3=DubinsArc<T>();
@@ -757,9 +757,9 @@ public:
    * \param[in] _L The distance from one point to another.
    * \return A `Tuple` containing three `Tuple` of `Point2` (one for each arc) containing the computed points.
    */
-  Tuple<Tuple<Point2<double> > > splitIt (int _arch=0,
-                                          double _L=PIECE_LENGTH){
-    Tuple<Tuple<Point2<double> > > v;
+  Tuple<Tuple<Configuration2<double> > > splitIt (double _L=PIECE_LENGTH, 
+                                                  int _arch=0){
+    Tuple<Tuple<Configuration2<double> > > v;
     switch(_arch){
       case 1: {
         v.add(A1.splitIt(_L));
@@ -810,12 +810,12 @@ public:
    * \param[in] inc The value to scale each point.
    * \param[in] scl The Scalar that defines the color to use.
    * \param[in] image The Mat where to draw the points.
-   * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
+   * \param[in] D_SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
-    A1.draw(dimX, dimY, inc, scl, image, SHIFT);
-    A2.draw(dimX, dimY, inc, scl, image, SHIFT);
-    A3.draw(dimX, dimY, inc, scl, image, SHIFT);
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double D_SHIFT=0){
+    A1.draw(dimX, dimY, inc, scl, image, D_SHIFT);
+    A2.draw(dimX, dimY, inc, scl, image, D_SHIFT);
+    A3.draw(dimX, dimY, inc, scl, image, D_SHIFT);
   }
 
 };
@@ -948,12 +948,12 @@ public:
     }
 
     #ifdef DEBUG 
-      Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+      Mat best_img(D_DIMY, D_DIMX, CV_8UC3, Scalar(255, 255, 255));
       for (auto point : _points){
-        rectangle(best_img, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+        rectangle(best_img, Point(point.x()-D_INC/2+D_SHIFT, point.y()-D_INC/2+D_SHIFT), Point(point.x()+D_INC/2+D_SHIFT, point.y()+D_INC/2+D_SHIFT), Scalar(0,0,0) , -1);
       }
       for (auto dub : this->dubinses){
-        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, SHIFT);
+        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, D_SHIFT);
       }
       my_imshow("best", best_img, true);
       mywaitkey();
@@ -1022,10 +1022,10 @@ public:
       }
       cout << endl;
 
-      Mat image(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+      Mat image(D_DIMY, D_DIMX, CV_8UC3, Scalar(255, 255, 255));
 
       for (auto point : _points){
-          rectangle(image, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+          rectangle(image, Point(point.x()-D_INC/2+D_SHIFT, point.y()-D_INC/2+D_SHIFT), Point(point.x()+D_INC/2+D_SHIFT, point.y()+D_INC/2+D_SHIFT), Scalar(0,0,0) , -1);
       }
 
       my_imshow("dubin", image, true);
@@ -1061,12 +1061,12 @@ public:
     }
 
     #ifdef DEBUG 
-      Mat best_img(DIMY, DIMX, CV_8UC3, Scalar(255, 255, 255));
+      Mat best_img(D_DIMY, D_DIMX, CV_8UC3, Scalar(255, 255, 255));
       for (auto point : _points){
-        rectangle(best_img, Point(point.x()-INC/2+SHIFT, point.y()-INC/2+SHIFT), Point(point.x()+INC/2+SHIFT, point.y()+INC/2+SHIFT), Scalar(0,0,0) , -1);
+        rectangle(best_img, Point(point.x()-D_INC/2+D_SHIFT, point.y()-D_INC/2+D_SHIFT), Point(point.x()+D_INC/2+D_SHIFT, point.y()+D_INC/2+D_SHIFT), Scalar(0,0,0) , -1);
       }
       for (auto dub : this->dubinses){
-        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, SHIFT);
+        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, D_SHIFT);
       }
       // my_imshow("best", best_img, true);
       // mywaitkey();
@@ -1088,14 +1088,6 @@ public:
   Configuration2<T> getBegin()    { return this->dubinses.front().begin(); }
   Configuration2<T> getEnd()      { return this->dubinses.back().end(); }
 
-  Tuple<Tuple<Tuple<Point2<T> > > > splitIt (double _length=PIECE_LENGTH){
-    Tuple<Tuple<Tuple<Point2<T> > > > ret;
-    for (Dubins<T> dub: this->dubinses){
-      ret.add(dub.splitIt(0, _length));
-    }
-    return ret;
-  }
-
   /*!
    * This functions returns a specific `Dubins` from the set.
    * \param[in] id The position of the `Dubins` in the set.
@@ -1106,6 +1098,10 @@ public:
       return dubinses.get(id);
     }
     return Dubins<T>();
+  }
+
+  Tuple<Dubins<T> > getDubinsFrom(int id){
+    return (this->getDubinses()).get(id, this->getSize()-1);
   }
 
   /*!
@@ -1120,24 +1116,33 @@ public:
     return nullptr;
   }
 
+  void clean (){
+    this->dubinses.eraseAll();
+    this->Kmax=0;
+    this->L=DInf;
+  }
+
   bool addDubins(Dubins<T>* D){
-    if (this->getSize()!==0){
-      this->dubinses.add(*D);
-      this->L+=D->length();
-    }
-    else {
-      if (this->getKmax()!=D->getKmax()) {
-        cerr << "Cannot add a Dubins with different curvature." << endl;
-        return false;
+    if (D->length()!=DInf){
+      if (this->getSize()==0){
+        this->dubinses.add(*D);
+        this->L=D->length();
+        this->Kmax=D->getKmax();
       }
       else {
-        if (this->getEnd()!=D->begin()){
-          cerr << "Cannot add a Dubins that's disconnected from the set." << this->getEnd() << " " << D->begin() << endl;
+        if (this->getKmax()!=D->getKmax()) {
+          cerr << "Cannot add a Dubins with different curvature." << endl;
           return false;
         }
         else {
-          this->dubinses.add(*D);
-          this->L+=D->length();
+          if (this->getEnd()!=D->begin()){
+            cerr << "Cannot add a Dubins that's disconnected from the set." << this->getEnd() << " " << D->begin() << endl;
+            return false;
+          }
+          else {
+            this->dubinses.add(*D);
+            this->L+=D->length();
+          }
         }
       }
     }
@@ -1158,33 +1163,49 @@ public:
   DubinsSet<T> join (DubinsSet<T>* DS, 
                      int startPos = -1)
   {
-    if (this->getKmax()!=DS->getKmax()){
-      cerr << "Cannot join to DubinsSet with different curvature." << endl;
-      return DubinsSet<T>();
-    }
-    else {
-      if (startPos==-1 || startPos>=this->getSize()){
-        for (uint i=0; i<DS->getSize(); i++){
-          if (!(this->addDubins( DS->getDubinsPtr(i)) )) {
-            return DubinsSet<T>();
-          }
-        }
+    if (DS->getSize()>0){
+      if (this->getKmax()!=DS->getKmax()){
+        cerr << "Cannot join to DubinsSet with different curvature." << endl;
+        return DubinsSet<T>();
       }
       else {
-        DubinsSet<T> new_DS;
-        for (uint i=0; i<startPos; i++){ 
-          new_DS.add(this->getDubinsPtr(i));
+        if (startPos==-1 || startPos>=this->getSize()){ //Then I need to add all the Dubins 
+          for (uint i=0; i<DS->getSize(); i++){  
+            if (!(this->addDubins( DS->getDubinsPtr(i)) )) { //If an error occured then I return an empty set. 
+              return DubinsSet<T>();
+            }
+          }
         }
-        for (uint i=0; i<DS->getSize(); i++){
-          new_DS.add(DS->getDubinsPtr(i));
+        else { //Otherwise I need to split the set and then add the Dubins.
+          DubinsSet<T> new_DS;
+          for (uint i=0; i<startPos; i++){ 
+            if (!(new_DS.addDubins(this->getDubinsPtr(i)))){
+              return DubinsSet<T>();
+            }
+          }
+          for (uint i=0; i<DS->getSize(); i++){
+            if (!(new_DS.addDubins(DS->getDubinsPtr(i)))){
+              return DubinsSet<T>();
+            }
+          }
+          for (uint i=startPos; i<this->getSize(); i++){
+            if (!(new_DS.addDubins(this->getDubinsPtr(i)))){
+              return DubinsSet<T>();
+            }
+          }
+          *this=new_DS;
         }
-        for (uint i=startPos; i<this->getSize(); i++){
-          new_DS->add(this->getDubinsPtr(i));
-        }
-        *this=new_DS;
       }
     }
     return *this;
+  }
+
+  Tuple<Tuple<Tuple<Configuration2<T> > > > splitIt (double _length=PIECE_LENGTH){
+    Tuple<Tuple<Tuple<Configuration2<T> > > > ret;
+    for (Dubins<T> dub: this->dubinses){
+      ret.add(dub.splitIt(_length, 0));
+    }
+    return ret;
   }
 
   /*! This function create a strinstream object containing infos about the `DubinsSet`.

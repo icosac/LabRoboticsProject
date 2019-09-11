@@ -569,6 +569,18 @@ public:
     return ((_n>=0&&_n<size()) ? elements.at(_n) : T());
   }
 
+  Tuple<T> get(const int start, const int end){
+    Tuple<T> ret;
+    if (start>end){
+      throw MyException<string>(GENERAL, "End is bigger than start", __LINE__, __FILE__);
+    }
+    else {
+      for (uint i=start; i<end; i++){
+        ret.add(this->get(i));
+      }
+    }
+  }
+
   //TODO Document
   T front ()  { return this->elements.front(); }
   T back ()   { return this->elements.back(); }
@@ -926,16 +938,17 @@ public:
 			\returns 1 if everything went fine, 0 otherwise.
   */
   template <class T1>
-  void offset(const T1 _offset, const Angle th){
+  Point2<T> offset(const T1 _offset, const Angle th){
     double dx=_offset*th.cos();
     double dy=_offset*th.sin();
     if (is_same<T, int>::value){ //Since casting truncates the value, adding 0.5 is the best way to round the numbr
       dx+=0.5;
       dy+=0.5;
     }
-    T _x=x()+(T)dx;
-    T _y=y()+(T)dy;
-    x(_x); y(_y);
+    T _x=this->x()+(T)dx;
+    T _y=this->y()+(T)dy;
+    this->x(_x); this->y(_y);
+    return *this;
   }
   
   /*! \brief This function compute an offset given another point made 
@@ -943,9 +956,10 @@ public:
   		\param[in] p The point with the offsets.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  void offset (const Point2<T> p){
+  Point2<T> offset (const Point2<T> p){
     x(p.x()+x());
     y(p.y()+y()); 
+    return *this;
   }
   
   /*! \brief This function compute an offset given a `Tuple` made 
@@ -953,30 +967,33 @@ public:
   		\param[in] p The `Tuple` with the offsets. Its dimension must be 2.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  void offset (const Tuple<T> p){
+  Point2<T> offset (const Tuple<T> p){
     int res=0;
     if (p.size()==2){
       x(p.get(0)+x());
       y(p.get(1)+y());
     }
+    return *this;
   }
   
   /*! \brief This function compute an offset for the abscissa.
   		\param[in] _offset The offset.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  void offset_x(const T _offset){
+  Point2<T> offset_x(const T _offset){
     x(_offset+x());
     // return values.set(0, _offset+values.get(0));
+    return *this;
   }
   
   /*! \brief This function compute an offset for the ordinate.
   		\param[in] _offset The offset.
   		\returns 1 if everything went fine, 0 otherwise.
   */
-  void offset_y(const T _offset){
+  Point2<T> offset_y(const T _offset){
     y(_offset+y());
     // return values.set(1, _offset+values.get(1));
+    return *this;
   }
   
   /*!	\brief Wrapper to compute different distances. 
@@ -1090,7 +1107,7 @@ public:
 
   template<class T1>
   operator Point2<T1>() const {
-    return Point2<T1>((T1)X, (T1)Y);
+    return Point2<T1>((T1)(this->x()), (T1)(this->y()));
   }
 
   void invert (){
@@ -1338,6 +1355,10 @@ public:
   */
   bool operator!= (const Configuration2<T1>& A){
     return !this->equal(A);
+  }
+
+  operator Point2<T1>(){
+    return this->point();
   }
 
   //TODO document
