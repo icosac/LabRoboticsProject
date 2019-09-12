@@ -23,14 +23,14 @@ namespace Planning {
 
 	constexpr static double baseDistance = -1.0;  //It is the reference base distance for the matrix of distances
 	constexpr static double baseDir = -1.0;  //It is the reference base direction for the angle sampling in the minPath
-    const int nAngles = 8;
+    extern const int nAngles;
+    extern const double angleRange; // It is a range that delimit the possibilities of the min path of adding new elements. Practically is used to create a path, more or less, straight that has at most an angle between two consecutive segments of angleRange.
 
-    const int range = 3;            // It is the foundamental parameter of the function minPath (the right compromise its 3)
+    extern const int range;            // It is the foundamental parameter of the function minPath (the right compromise its 3)
     const int foundLimit = 20;       // Empiric limit of found, it represent how many times the destination will be visited before the end of the BFS. 0 is the base case (first visit=stop) ~150, or better, none is the opposite limit.
     const int foundLimitAngles = 40;       // Empiric limit of found, it represent how many times the destination will be visited before the end of the BFS. 0 is the base case (first visit=stop) ~150, or better, none is the opposite limit. foundLimitAngles is for the complex version of the min path that consider also the different ending sectors.
     static const int nPoints = 50;  // It is the number of points that the function sampleNPoints will sample from the computed vector of vector retrieved from the minPath.    
     constexpr double initialDistAllowed = 20.0; // In case of a starting position of the robot inside the border (not the obstacle) is it allowed to move inside it for a short path, defined in cells size.
-    constexpr double angleRange = 20*M_PI/180; // It is a range that delimit the possibilities of the min path of adding new elements. Practically is used to create a path, more or less, straight that has at most an angle between two consecutive segments of angleRange.
 
 
 	vector<Point2<int> > planning(const Mat & img);
@@ -74,12 +74,11 @@ namespace Planning {
 
 
     vector<vector<Point2<int> > > minPathNPointsWithChoice(const vector<Point2<int> > & vp, const double bonus);
-    vector<vector<Point2<int> > > minPathNPoints(const vector<Point2<int> > & vp);
+    vector<vector<Point2<int> > > minPathNPoints(const vector<Point2<int> > & vp, const bool angle);
     vector<Point2<int> > minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1);
 	    vector<Point2<int> > minPathTwoPointsInternal(
 	                            const Point2<int> & startP, const Point2<int> & endP, 
-	                            double ** distances, Point2<int> ** parents,
-	                            const bool firstSegment=false);
+	                            double ** distances, Point2<int> ** parents);
 	    vector<Point2<int> > minPathTwoPointsInternalAngles(
                             const Point2<int> & startP, const Point2<int> & endP, 
                             double *** distances, int **** parents,
