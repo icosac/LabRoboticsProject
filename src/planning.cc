@@ -753,8 +753,8 @@ namespace Planning {
     }
 
     inline bool in_map(Point2<double> P) {
-        return P.x()<Planning::map->getActualLengthX() && P.y()<Planning::map->getActualLengthY() 
-                && P.x()>Planning::map->getOffsetValue() && P.y()>Planning::map->getOffsetValue();
+        return (Planning::map->getPointType(P)==GATE || (P.x()<Planning::map->getActualLengthX() && P.y()<Planning::map->getActualLengthY() 
+                && P.x()>Planning::map->getOffsetValue() && P.y()>Planning::map->getOffsetValue()));
     }
 
     // TODO should I keep this or not?
@@ -916,47 +916,45 @@ namespace Planning {
             vC1_pos=vC1_id;
             vC2_pos=vC2_id;
         }
-        // if (!ok){//Oh boy we are in truble. 
-        //     //First I try to create a Dubins from a point to the victim.
-        //     DS.clean();
-        //     Dubins<double> D;
-        //     Configuration2<double> end (vC1.back(), vC1[vC1.size()-2].th(vC1[vC1.size()-1])); //I want to arrive to the victim with an angle such as the direction
-        //     // for (vC1_id=1; vC1_id<vC1.size()-1 && !ok; vC1_id++){
-        //     for (vC1_id=vC1_pos; vC1_id<vC1.size()-1 && !ok; vC1_id++){
-        //         vC1_pos=vC1_id; //Update pos;
-        //         Configuration2<double> start(vC1[vC1_id], vC1[vC1_id].th(vC1[vC1_id+1]));
-        //         D=Dubins<double> (start, end, ROB_KMAX);
-        //         ok=check_dubins_D(D);
-        //     }
-        //     if (ok){ 
-        //         vC1_pos=vC1_id;
-        //         ok=false;
-        //         DubinsSet<double> new_DS;
-        //         for (vC2_id=0; vC2_id<(vC2.size()-2) && !ok; vC2_id++){
-        //             vC2_pos=vC2_id;
-        //             Configuration2<double> end=Configuration2<double> (vC2[vC2_id], vC2[vC2_id].th(vC2[vC2_id+1])); 
-        //             Configuration2<double> start=D.end();
-        //             start.offset_angle(Angle(-M_PI/3.0, Angle::RAD));
-        //             //Then I try to find a DubinsSet from the victim to a point in V2 with different orientation in \phi-60, \phi+60
+        if (!ok){//Oh boy we are in truble. 
+            //First I try to create a Dubins from a point to the victim.
+            DS.clean();
+            Dubins<double> D;
+            Configuration2<double> end=vC1.back(); //I want to arrive to the victim with an angle such as the direction
+            // for (vC1_id=1; vC1_id<vC1.size()-1 && !ok; vC1_id++){
+            for (vC1_id=SCRAP; vC1_id<vC1.size()-SCRAP && !ok; vC1_id++){
+                D=Dubins<double> (vC1[vC1_id], end, ROB_KMAX);
+                ok=check_dubins_D(D);
+            }
+            if (ok){ 
+                ok=false;
+                DubinsSet<double> new_DS;
+                for (vC2_id=0; vC2_id<(vC2.size()-SCRAP) && !ok; vC2_id++){
+                    end=vC2[vC2_id]; 
+                    Configuration2<double> start=D.end();
                     
-        //             for (int i=0; i<5 && !ok; i++){
-        //                 start.offset_angle(Angle(M_PI/12.0, Angle::RAD));
-        //                 Point2<T> intermediate=::circline(INCREASE, start, 0);
-        //                 do {
-        //                     new_DS=DubinsSet<double> (start, end, Tuple<Point2<double> > (vector<Point2<double> >{intermediate}), ROB_KMAX);
-        //                     ok=check_dubins_DS(new_DS);
-        //                     intermediate.offset(INCREASE, start.angle());
-        //                 } while(in_map(intermediate.offset(INCREASE, start.angle())) && !ok);
+                    start.offset_angle(Angle(-M_PI/3.0, Angle::RAD));
+                    //Then I try to find a DubinsSet from the victim to a point in V2 with different orientation in \phi-60, \phi+60
+                    
+                    for (int i=0; i<5 && !ok; i++){
+                        start.offset_angle(Angle(M_PI/12.0, Angle::RAD));
+                        Point2<T> intermediate=::circline(INCREASE, start, 0);
+                        do {
+                            new_DS=DubinsSet<double> (start, end, Tuple<Point2<double> > (vector<Point2<double> >{intermediate}), ROB_KMAX);
+                            ok=check_dubins_DS(new_DS);
+                            intermediate.offset(INCREASE, start.angle());
+                        } while(in_map(intermediate.offset(INCREASE, start.angle())) && !ok);
 
-        //             }
-        //         }
-        //         if (ok){ //Add everything at then end.
-        //             DS.addDubins(&D);
-        //             DS.join(&new_DS);
-        //         }
-        //     }
-            
-        // }
+                    }
+                }
+                if (ok){ //Add everything at the end.
+                    vC1_pos=vC1_id;
+                    vC2_pos=vC2_id;
+                    DS.addDubins(&D);
+                    DS.join(&new_DS);
+                }
+            }
+        }
         if (!ok){
             throw MyException<string> (GENERAL, ("No DubinsSet could be computed for victim at: "+vC1.back().to_string().str()), __LINE__, __FILE__);
         }
