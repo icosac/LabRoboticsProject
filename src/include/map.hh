@@ -28,8 +28,8 @@ class Mapp{
     protected:
         OBJ_TYPE **map;
 
-        const int offsetValue = 55;     // It is the offset applied to the obstacles defined in millimeters (it must contain also the border dimension).
-        static const int borderSizeDefault = 20;   // It is the default of the border defined in millimiters.
+        const int offsetValue = 60;     // It is the offset applied to the obstacles defined in millimeters (it must contain also the border dimension).
+        static const int borderSizeDefault = 40;   // It is the default of the border defined in millimiters.
         static const int cellSize = 5;  // It is the default size of the each cell: 10x10 pixels
 
         set<pair<int, int> > cellsFromSegment(const Point2<int> & p0, const Point2<int> & p1);
@@ -68,8 +68,10 @@ class Mapp{
             bool checkSegmentCollisionWithType(const Point2<int> & p0, const Point2<int> & p1, const OBJ_TYPE type);
 
         Mat createMapRepresentation();
-            void imageAddSegments(Mat & image, const vector<Point2<int> > & vp, const int thickness=3);
+            void imageAddSegments(Mat & image, const vector<Point2<int> > & v, const int thickness=3);
+            void imageAddSegments(Mat & image, const vector<Configuration2<double> > & v, const int thickness=3);
             void imageAddSegment(Mat & image, const Point2<int> & p0, const Point2<int> & p1, const int thickness);
+            void imageAddPoints(Mat & image, const vector<Configuration2<double> > & v, const int radius=7);
             void imageAddPoints(Mat & image, const vector<Point2<int> > & vp, const int radius=7);
             void imageAddPoint(Mat & image, const Point2<int> & p, const int radius=7, const Scalar color = Scalar(0, 255, 255));
 

@@ -33,7 +33,7 @@ namespace Planning {
     constexpr double initialDistAllowed = 20.0; // In case of a starting position of the robot inside the border (not the obstacle) is it allowed to move inside it for a short path, defined in cells size.
 
 
-	vector<Point2<int> > planning(const Mat & img);
+	vector<Configuration2<double> > planning(const Mat & img);
 	void createMapp();
 
 	void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn);
@@ -93,7 +93,7 @@ namespace Planning {
         vector<Point2<int> > sampleNPoints(const vector<Point2<int> > & points, const int n);
         vector<Point2<int> > samplePointsEachNCells(const vector<Point2<int> > & points, const int step);
 
-	void fromVpToPath(vector<Point2<int> > & vp, Path & path);
+	void fromVcToPath(vector<Configuration2<double> > & vp, Path & path);
     int getNPoints();
 
 	// template<class T>
