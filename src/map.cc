@@ -96,7 +96,7 @@ set<pair<int, int> > Mapp::cellsFromSegment(const Point2<int> & p0, const Point2
     return(cells);
 }
 
-/*! \brief Given an obstacle it is added to the map.
+/*! \brief Given an object it is added to the map.
     \details This means that all the cells of the map that are partly cover from this obstacle will be set to its type.
 
     \param[in] vp It is the vector of points (convex hull) that delimit the object of interest.
@@ -120,8 +120,8 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
 
         // generate vectors of min&max x for each line
         int vectSize = iMax-iMin+1;
-        int * minimums = new int[vectSize];
-        int * maximums = new int[vectSize];
+        int minimums[lengthY];
+        int maximums[lengthY];
 
         for(int a=0; a<vectSize; a++){
             minimums[a] = dimX;
@@ -136,29 +136,23 @@ void Mapp::addObject(const vector<Point2<int> > & vp, const OBJ_TYPE type){
             for(pair<int, int> el : collisionSet){
 
                 int i=get<0>(el), j=el.second;  // two methods for get elements from a pair structure( get<0>(el)==el.first )
-                map[i][j] = ((type==OBST) ? BODA : type);
+                // map[i][j] = ((type==OBST) ? BODA : type);
 
                 minimums[i-iMin] = min(minimums[i-iMin], j);
                 maximums[i-iMin] = max(maximums[i-iMin], j);
             }
         }
-        //draw the boder
+
+        // draw the BODA and the inside of the objects
         for(int k=0; k<vectSize; k++){
-            for(int j=minimums[k]+1; j<maximums[k]; j++){
-                if(type==OBST){
-                    if( k<borderSize || vectSize-(k+1)<borderSize ||
-                        j-minimums[k]<borderSize || maximums[k]-(j+1)<borderSize ){
-                        map[k+iMin][j] = BODA;
-                    } else{
-                        map[k+iMin][j] = OBST;
-                    }
-                } else{
+            for(int j=minimums[k]; j<=maximums[k]; j++){
+                
+                if(map[k+iMin][j] != OBST){
                     map[k+iMin][j] = type;
                 }
             }
         }
-        // delete[] minimums;
-        // delete[] maximums; //NEVER uncomment this line. it cause "double free or corruption (out)" error ! ! ! 
+
     }
 }
 
@@ -186,6 +180,10 @@ void Mapp::addObjects(const vector<Obstacle> & objs){
 
         vObstacles.push_back(el);
         addObject(el.getPoints(), OBST);
+
+        // local modify for adding the border (BODA)
+        el.offsetting(borderSizeDefault, lengthX-1, lengthY-1);
+        addObject(el.getPoints(), BODA);
     }
 }
 
@@ -324,7 +322,7 @@ Mat Mapp::createMapRepresentation(){
     \param[in] thickness The thickness of the lines to be drawn.
 */
 void Mapp::imageAddSegments(Mat & image, const vector<Point2<int> > & vp, const int thickness){
-    for(unsigned int i=0; i<vp.size()-1; i++){
+    for(int i=0; i<(int)(vp.size())-1; i++){
         line( image, 
             Point(vp[ i ].x(), vp[ i ].y()), 
             Point(vp[i+1].x(), vp[i+1].y()), 

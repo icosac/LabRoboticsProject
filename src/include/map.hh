@@ -28,8 +28,8 @@ class Mapp{
     protected:
         OBJ_TYPE **map;
 
-        const int offsetValue = 65;     // It is the offset applied to the obstacles defined in millimeters (it must contain also the border dimension).
-        static const int borderSizeDefault = 8;    // It is the default of the border. The border is defined respect to the size of the cells. The border start from the most external cells of the obstacle and go inside (NOT OUTSIDE ! ! !), this mean that the offset value must contain the correct offset and even the border (off = real_off + border)
+        const int offsetValue = 55;     // It is the offset applied to the obstacles defined in millimeters (it must contain also the border dimension).
+        static const int borderSizeDefault = 20;   // It is the default of the border defined in millimiters.
         static const int cellSize = 5;  // It is the default size of the each cell: 10x10 pixels
 
         set<pair<int, int> > cellsFromSegment(const Point2<int> & p0, const Point2<int> & p1);

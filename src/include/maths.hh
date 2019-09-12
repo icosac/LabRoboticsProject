@@ -359,7 +359,6 @@ public:
       \returns `true` if the two angle are equal, `false` otherwise.  
   */
   bool operator== (const Angle& phi){
-    cout << "this: " << (*this) << "   , phi: " << phi << endl;
     return this->equal(phi);
   }
 
@@ -579,7 +578,6 @@ public:
         ret.add(this->get(i));
       }
     }
-    cout << "returning " << ret.size() << endl;
     return ret;
   }
 

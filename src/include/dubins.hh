@@ -236,9 +236,9 @@ public:
    * \param[in] inc The value to scale each point.
    * \param[in] scl The Scalar that defines the color to use.
    * \param[in] image The Mat where to draw the points.
-   * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
+   * \param[in] D_SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT){
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double D_SHIFT){
     // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
     for (auto point : this->splitIt(1)){
       if (point.x()>dimX || point.y()>dimY){
@@ -247,12 +247,12 @@ public:
         Mat newMat(x, y, CV_8UC3, Scalar(255, 255, 255));
         for (double _x=0; _x<dimX; _x++){
           for (double _y=0; _y<dimY; _y++){
-            rectangle(newMat, Point(_x+SHIFT, _y+SHIFT),Point(_x+inc+SHIFT, _y+inc+SHIFT), scl, -1);
+            rectangle(newMat, Point(_x+D_SHIFT, _y+D_SHIFT),Point(_x+inc+D_SHIFT, _y+inc+D_SHIFT), scl, -1);
           }
         }
         image=newMat;
       }
-      rectangle(image, Point(point.x()+SHIFT, point.y()+SHIFT), Point(point.x()+inc+SHIFT, point.y()+inc+SHIFT), scl, -1);
+      rectangle(image, Point(point.x()+D_SHIFT, point.y()+D_SHIFT), Point(point.x()+inc+D_SHIFT, point.y()+inc+D_SHIFT), scl, -1);
     }
   }
 
@@ -810,12 +810,12 @@ public:
    * \param[in] inc The value to scale each point.
    * \param[in] scl The Scalar that defines the color to use.
    * \param[in] image The Mat where to draw the points.
-   * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
+   * \param[in] D_SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
-    A1.draw(dimX, dimY, inc, scl, image, SHIFT);
-    A2.draw(dimX, dimY, inc, scl, image, SHIFT);
-    A3.draw(dimX, dimY, inc, scl, image, SHIFT);
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double D_SHIFT=0){
+    A1.draw(dimX, dimY, inc, scl, image, D_SHIFT);
+    A2.draw(dimX, dimY, inc, scl, image, D_SHIFT);
+    A3.draw(dimX, dimY, inc, scl, image, D_SHIFT);
   }
 
 };
@@ -1102,7 +1102,6 @@ public:
   }
 
   Tuple<Dubins<T> > getDubinsFrom(int id){
-    cout << "\n\n\tThere are " << this->getSize() << " Dubins, returning from: " << id << endl;
     return ((this->getDubinses()).get(id, this->getSize()));
   }
 
