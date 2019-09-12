@@ -4,6 +4,16 @@ namespace Planning {
     Mapp* map;
     Configuration2<double> conf;
 
+    vector<Point2<int> > new_function(vector<vector<Configuration2<double> > > vvp){
+        vector<Point2<int> > v;
+        for (auto a : vvp){
+            for (auto b : a){
+                v.push_back(b.point());
+            }
+        }
+        return v;
+    }
+
     vector<Point2<int> > new_function(vector<vector<Point2<int> > > vvp){
         vector<Point2<int> > v;
         for (auto a : vvp){
@@ -12,6 +22,32 @@ namespace Planning {
             }
         }
         return v;
+    }
+
+    void new_draw(vector<vector<Point2<int> > > vv, string name){
+        #if defined WAIT || defined SHOW_MAP
+            Mat imageMap = Planning::map->createMapRepresentation();
+            vector<Point2<int> > cellsOfPath = new_function(vv);
+            Planning::map->imageAddPoints(imageMap, cellsOfPath);
+            Planning::map->imageAddSegments(imageMap, cellsOfPath);
+            
+            namedWindow(name.c_str(), WINDOW_NORMAL);
+            imshow(name.c_str(), imageMap);
+            mywaitkey();
+        #endif
+    }
+
+    void new_draw(vector<vector<Configuration2<double> > > vv, string name){
+        #if defined WAIT || defined SHOW_MAP
+            Mat imageMap = Planning::map->createMapRepresentation();
+            vector<Point2<int> > cellsOfPath = new_function(vv);
+            Planning::map->imageAddPoints(imageMap, cellsOfPath);
+            Planning::map->imageAddSegments(imageMap, cellsOfPath);
+            
+            namedWindow(name.c_str(), WINDOW_NORMAL);
+            imshow(name.c_str(), imageMap);
+            mywaitkey();
+        #endif
     }
 
     /*! \brief The function plan a route from the actual position of the robot up to the final gate through all the victims.
@@ -60,39 +96,9 @@ namespace Planning {
             vector<vector<Point2<int> > > vvp = minPathNPoints(vp);
         #endif
         cout << "plan5\n" << flush;
-        vector<vector<Point2<int> > > app=vvp;
         
-        
-            vector<Point2<int> > cellsOfPath = sampleNPoints(vvp);
-            Planning::map->imageAddPoints(imageMap, cellsOfPath);
-            cout << "Created map 1" << endl << flush;
-            Planning::map->imageAddSegments(imageMap, cellsOfPath);
-            cout << "Created map 2" << endl << flush;
-
-            imwrite("data/computePlanning.jpg", imageMap);
-            #if defined WAIT || defined SHOW_MAP
-                namedWindow("Map", WINDOW_NORMAL);
-                imshow("Map", imageMap);
-                mywaitkey();
-            #endif
-        
-
-        //Add Dubins
-        cout << "Trying to use dubins" << endl << flush;
-        Planning::plan_dubins(conf, vvp);
-        cout << "Found best dubins" << endl;
-
-        // vector<Point2<int> > cellsOfPath = new_function(vvp);
-        cellsOfPath = new_function(vvp);
         // vector<Point2<int> > cellsOfPath = sampleNPoints(vvp);
-        // cellsOfPath = sampleNPoints(vvp);
-
-        cout << "plan6\n" << flush;
-        cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
-        cout << "plan7\n" << flush;
-
-        // imageMap = Planning::map->createMapRepresentation();
-        // cout << "Created map" << endl << flush;
+        vector<Point2<int> > cellsOfPath = new_function(vvp);
         Planning::map->imageAddPoints(imageMap, cellsOfPath);
         cout << "Created map 1" << endl << flush;
         Planning::map->imageAddSegments(imageMap, cellsOfPath);
@@ -100,10 +106,41 @@ namespace Planning {
 
         imwrite("data/computePlanning.jpg", imageMap);
         #if defined WAIT || defined SHOW_MAP
-            namedWindow("Map", WINDOW_NORMAL);
-            imshow("Map", imageMap);
+            namedWindow("Map2", WINDOW_NORMAL);
+            imshow("Map2", imageMap);
             mywaitkey();
         #endif
+        
+
+        //Add Dubins
+        cout << "Trying to use dubins" << endl << flush;
+        vector<vector<Configuration2<double> > > vvc(vvp.size());
+        for (uint i=0; i<vvp.size(); i++){
+            for (uint j=0; j<vvp[i].size(); j++){
+                if (j==(vvp[i].size()-1)){
+                    vvc[i].push_back(Configuration2<double> (Point2<double>((double)vvp[i][j].x(), (double)vvp[i][j].y()), vvp[i][j-1].th(vvp[i][j])));
+                }
+                else {
+                    vvc[i].push_back(Configuration2<double> (Point2<double>((double)vvp[i][j].x(), (double)vvp[i][j].y()), vvp[i][j].th(vvp[i][j+1])));
+                }
+            }
+        }
+
+        cout << "Calling dubins function" << endl;
+        Planning::plan_dubins(conf, vvc);
+        cout << "Found best dubins" << endl;
+
+
+        // vector<Point2<int> > cellsOfPath = new_function(vvp);
+        cellsOfPath = new_function(vvc);
+        // vector<Point2<int> > cellsOfPath = sampleNPoints(vvp);
+        // cellsOfPath = sampleNPoints(vvp);
+
+        cout << "plan6\n" << flush;
+        cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
+        cout << "plan7\n" << flush;
+
+        new_draw(vvc, "map2");
 
         return( cellsOfPath );
     }
@@ -723,7 +760,7 @@ namespace Planning {
     // TODO should I keep this or not?
     #define DELTA M_PI/180.0 //1 degree
     #define ROB_KMAX KMAX //0.01
-    #define ROB_PIECE_LENGTH 20
+    #define ROB_PIECE_LENGTH 10
 
     template<class T>
     bool check_dubins_D (Dubins<T>& D){
@@ -763,7 +800,8 @@ namespace Planning {
                                      Configuration2<double>* start=nullptr,
                                      Configuration2<double>* end=nullptr,
                                      int start_pos=0,
-                                     int end_pos=-1){
+                                     int end_pos=-1)
+    {
 
         // vector<uint> ret={}; //Save the ids of the points where the curvature changes too much. 
         if (end_pos==-1) end_pos=init_points.size()-1;
@@ -843,10 +881,319 @@ namespace Planning {
             //Check if a line is feasible.
 
         } 
+        return ret;
+    }
 
+    #define INCREASE 20 //mm
+    #define SCRAP 3 //Number of points to be scrapped at the extremities of each segment of path
+    //TODO CHECK vP2_pos
+    template<class T> 
+    DubinsSet<double> victims_dubins (const vector<Configuration2<T> >& vC1,
+                                      const vector<Configuration2<T> >& vC2,
+                                     uint& vC1_pos,
+                                     uint& vC2_pos)
+    {
+        uint vC1_id=0;
+        uint vC2_id=0; 
+
+        cout << "vC1_pos: " << vC1_pos << ", vC2_pos: " << vC2_pos << ", vC1.size(): " << vC1.size() << ", vC2.size(): " << vC2.size() << endl << flush; 
+
+        DubinsSet<double> DS;
+        bool ok=false;
+        uint i=0;
+
+        for (vC1_id=SCRAP; vC1_id<vC1.size()-SCRAP && !ok; vC1_id++){
+            for (vC2_id=vC2.size()-SCRAP; vC2_id>SCRAP && !ok; vC2_id--){
+
+                DS=DubinsSet<double> (vC1[vC1_id], vC2[vC2_id], Tuple<Point2<double> >(vector<Point2<double> >{vC1.back().point()}), ROB_KMAX);
+                ok=check_dubins_DS(DS);
+                i++;
+            }
+        }
+        cout << "i: " << i << endl;
+        if (ok){
+            cout << DS << endl;
+            vC1_pos=vC1_id;
+            vC2_pos=vC2_id;
+        }
+        // if (!ok){//Oh boy we are in truble. 
+        //     //First I try to create a Dubins from a point to the victim.
+        //     DS.clean();
+        //     Dubins<double> D;
+        //     Configuration2<double> end (vC1.back(), vC1[vC1.size()-2].th(vC1[vC1.size()-1])); //I want to arrive to the victim with an angle such as the direction
+        //     // for (vC1_id=1; vC1_id<vC1.size()-1 && !ok; vC1_id++){
+        //     for (vC1_id=vC1_pos; vC1_id<vC1.size()-1 && !ok; vC1_id++){
+        //         vC1_pos=vC1_id; //Update pos;
+        //         Configuration2<double> start(vC1[vC1_id], vC1[vC1_id].th(vC1[vC1_id+1]));
+        //         D=Dubins<double> (start, end, ROB_KMAX);
+        //         ok=check_dubins_D(D);
+        //     }
+        //     if (ok){ 
+        //         vC1_pos=vC1_id;
+        //         ok=false;
+        //         DubinsSet<double> new_DS;
+        //         for (vC2_id=0; vC2_id<(vC2.size()-2) && !ok; vC2_id++){
+        //             vC2_pos=vC2_id;
+        //             Configuration2<double> end=Configuration2<double> (vC2[vC2_id], vC2[vC2_id].th(vC2[vC2_id+1])); 
+        //             Configuration2<double> start=D.end();
+        //             start.offset_angle(Angle(-M_PI/3.0, Angle::RAD));
+        //             //Then I try to find a DubinsSet from the victim to a point in V2 with different orientation in \phi-60, \phi+60
+                    
+        //             for (int i=0; i<5 && !ok; i++){
+        //                 start.offset_angle(Angle(M_PI/12.0, Angle::RAD));
+        //                 Point2<T> intermediate=::circline(INCREASE, start, 0);
+        //                 do {
+        //                     new_DS=DubinsSet<double> (start, end, Tuple<Point2<double> > (vector<Point2<double> >{intermediate}), ROB_KMAX);
+        //                     ok=check_dubins_DS(new_DS);
+        //                     intermediate.offset(INCREASE, start.angle());
+        //                 } while(in_map(intermediate.offset(INCREASE, start.angle())) && !ok);
+
+        //             }
+        //         }
+        //         if (ok){ //Add everything at then end.
+        //             DS.addDubins(&D);
+        //             DS.join(&new_DS);
+        //         }
+        //     }
+            
+        // }
+        if (!ok){
+            throw MyException<string> (GENERAL, ("No DubinsSet could be computed for victim at: "+vC1.back().to_string().str()), __LINE__, __FILE__);
+        }
+        return DS;
+    }
+
+
+    template<class T>
+    Dubins<double> start_end_dubins(const Configuration2<double>& anchorPoint, 
+                                    const vector<Configuration2<T> >& vConfs,
+                                    uint& pos,
+                                    const bool start)
+    {
+        Dubins<double> dub;
+        bool ok=false;
+        const uint size=vConfs.size()-1;
+        for (uint i=size-2; (i>0 && !ok); i--){ //I continue until the points are empty or until a feasible dubins is not found. 
+            ok=true; //Need to reset this each loop
+            if (start){
+                dub=Dubins<double>(anchorPoint, vConfs[i], ROB_KMAX);
+            }
+            else {
+                dub=Dubins<double>(vConfs[size-i-1], anchorPoint, ROB_KMAX);
+            }
+
+            if(dub.getId()<0){
+                ok = false;
+                cout << "Couldn't compute Dubins" << endl;
+            }
+            else {                
+                ok=check_dubins_D(dub);
+                if (ok){
+                    if (start){
+                        pos=i;
+                    }
+                    else {
+                        pos=size-i;
+                    }
+                }
+            }
+        }
+        if (ok){
+            return dub;
+        }
+        else {
+            pos=0;
+            throw MyException<string> (EXCEPTION_TYPE::GENERAL, "No feasible path was found.", __LINE__, __FILE__);
+        }
+    }
+
+    vector<Configuration2<double> > vvCtovC(Tuple<Tuple<Configuration2<double> > > vv)
+    {
+        vector<Configuration2<double> >v={};
+        for (auto a : vv){
+            for (auto b : a){
+                v.push_back(b);
+            }
+        }
+        return v;
+    }
+
+    vector<Configuration2<double> > vvvCtovC(Tuple<Tuple<Tuple<Configuration2<double> > > > vvv)
+    {
+        vector<Configuration2<double> > v={};
+        for (auto a : vvv){
+            for (auto b : a){
+                for (auto c : b){
+                    v.push_back(c);
+                }
+            }
+        }
+        return v;
+    }
+
+    Angle compute_final_angle (Configuration2<double> gate){
+        double dx=Planning::map->getLengthX()-gate.x();
+        double dy=Planning::map->getLengthY()-gate.y();
+        if (dx<gate.x()){
+            if (dx<gate.y()){
+                if (dx<dy){
+                    return Angle(0.0, Angle::RAD);
+                }
+                else {
+                    return Angle(3.0*M_PI/2.0, Angle::RAD);
+                }
+            }
+            else {
+                if (gate.y()<dy){
+                    return Angle(M_PI/2.0, Angle::RAD);
+                }
+                else {
+                    return Angle(3.0*M_PI/2.0, Angle::RAD);
+                }
+            }
+        }
+        else {
+           if (gate.x()<gate.y()){
+                if (gate.x()<dy){
+                    return Angle(M_PI, Angle::RAD);
+                }
+                else {
+                    return Angle(3.0*M_PI/2.0, Angle::RAD);
+                }
+            }
+            else {
+                if (gate.y()<dy){
+                    return Angle(M_PI/2.0, Angle::RAD);
+                }
+                else {
+                    return Angle(3.0*M_PI/2.0, Angle::RAD);
+                }
+            } 
+        }
     }
 
     // template<class T>
+    void plan_dubins( const Configuration2<double>& _start,
+                        vector<vector<Configuration2<double> > >& vvConfs)
+    {
+        DubinsSet<double> path;
+        //Create Dubins for first path.
+        Dubins<double> start;
+        vector<uint> lenghts={}; for (auto a : vvConfs) {lenghts.push_back(a.size());} //TODO do I use this??
+
+        uint start_pos=0, end_pos=0;
+        try{
+            start=start_end_dubins(_start, vvConfs[0], start_pos, true);
+        } catch(Exception e){
+            cout << e.what() << endl << flush;
+            start=Dubins<double>();
+        }
+        if (start.length()!=DInf){
+            cout << "Starting Dubins found." << endl << flush;
+            uint app=start_pos;
+            vector<Configuration2<double> > new_points=vvCtovC(start.splitIt(ROB_PIECE_LENGTH));
+            start_pos=new_points.size()-1;
+            for (uint i=app+1; i<vvConfs[0].size(); i++){
+                new_points.push_back(vvConfs[0][i]);
+            }
+            vvConfs[0]=new_points;
+        }
+
+        cout << "vvConfs " << vvConfs[0].size() << endl;
+
+        new_draw(vvConfs, "Map Start");
+
+        //Create Dubins for victims
+        vector<DubinsSet<double> >victimV; //TODO do i use this??
+        DubinsSet<double> victim;
+        for (uint i=0; i<vvConfs.size()-1; i++){
+            try{
+                victim=victims_dubins(vvConfs[i], vvConfs[i+1], start_pos, end_pos);
+            } 
+            catch(Exception e){
+                cout << e.what() << endl << flush;
+                victim=DubinsSet<double>();
+            }
+            if (victim.getLength()!=DInf){
+                victimV.push_back(victim);
+                cout << "Dubins for victim: " << i+1 << " Found." << endl << flush;
+                //First vector
+                vector<Configuration2<double> > V1={};
+                vector<Configuration2<double> > new_points=vvCtovC(victim.getDubins(0).splitIt(ROB_PIECE_LENGTH));
+                cout << "new_points for first dubins: " << new_points.size() << endl;
+                for (uint j=0; j<start_pos; j++){
+                    V1.push_back(vvConfs[i][j]);
+                }
+                for (uint j=0; j<new_points.size(); j++){
+                    V1.push_back(new_points[j]);
+                }
+                //Second vector
+                vector<Configuration2<double> > V2={};
+                new_points=vvvCtovC(DubinsSet<double>(victim.getDubinsFrom(1)).splitIt(ROB_PIECE_LENGTH));
+                cout << "new_points for second dubins: " << new_points.size() << endl;
+                for (uint j=0; j<new_points.size(); j++){
+                    V2.push_back(new_points[j]);
+                }
+                for (uint j=end_pos+1; j<vvConfs[i+1].size(); j++){
+                    V2.push_back(vvConfs[i+1][j]);
+                } 
+                vvConfs[i]=V1;
+                vvConfs[i+1]=V2;
+                cout << "Finished setting victim " << i+1 << endl << flush; 
+
+                new_draw(vvConfs, ("map victim "+to_string(i+1)));
+            }
+        }
+
+        //Create Dubins for final path.
+        Dubins<double> end;
+        try{
+            end=start_end_dubins(Configuration2<double>(vvConfs.back().back().point(), compute_final_angle(vvConfs.back().back())),
+                                 vvConfs.back(), end_pos, false); //TODO find better implementation for final angle
+        }
+        catch (Exception e){
+            cout << e.what() << endl << flush;
+            end=Dubins<double>();
+        }
+        if (end.length()!=DInf){
+            cout << "Ending Dubins found." << endl << flush;
+
+            vector<Configuration2<double> > new_points=vvCtovC(end.splitIt(ROB_PIECE_LENGTH));
+            cout << "new_points: " << new_points.size() << " pos: " << end_pos << " vvConfs[-1]: " << vvConfs.back().size() << endl << flush;
+
+            vector<Configuration2<double> > app;
+            for (uint i=0; i<end_pos; i++){
+                app.push_back(vvConfs.back()[i]);
+            }
+            for (uint i=0; i<new_points.size(); i++){
+                app.push_back(new_points[i]);
+            }
+            vvConfs[vvConfs.size()-1]=app;
+            cout << "Size: " << (vvConfs.back()).size() << endl;
+            
+            new_draw(vvConfs, "map end");
+        }
+
+        cout << "End of using Dubins" << endl << flush;
+
+        path.addDubins(&start);
+        for (auto a : victimV){
+            path.join(&a);
+        }
+        path.addDubins(&end);
+        // for (auto a : otherV){
+        //     path.join(&v)
+        // }
+
+        //Create intermediate Dubins.
+
+    }
+
+}
+
+
+
+// template<class T>
     // void start_end_dubins( const Configuration2<double>& anchorPoint, 
     //                 vector<Point2<T> >& vPoints,
     //                 const bool start)
@@ -926,245 +1273,3 @@ namespace Planning {
     //         throw MyException<string> (EXCEPTION_TYPE::GENERAL, "No feasible path was found", __LINE__, __FILE__);
     //     }
     // }
-    #define INCREASE 20 //mm
-    template<class T> 
-    DubinsSet<double> victims_dubins (vector<Point2<T> >& vP1,
-                                     vector<Point2<T> >& vP2,
-                                     uint& vP1_pos,
-                                     uint& vP2_pos)
-    {
-        uint vP1_id=0;
-        uint vP2_id=0;
-
-        DubinsSet<double> DS;
-        bool ok=false;
-        for (vP1_id=vP1.size()-2; vP1_id>0 && !ok; vP1_id--){
-            vP1_pos=vP1_id;
-            for (vP2_id=1; vP2_id<vP2.size() && !ok; vP2_id++){
-                vP2_pos=vP2_id;
-                Configuration2<double> start(vP1[vP1_id], vP1[vP1_id].th(vP1[vP1_id+1]));
-                Configuration2<double> end (vP2[vP2_id], vP2[vP2_id].th(vP2[vP2_id+1]));
-                
-                DS=DubinsSet<double> (start, end, Tuple<Point2<double> >(vector<Point2<double> >{vP1.back()}), ROB_KMAX);
-                ok=check_dubins_DS(DS);
-            }
-        }
-        if (!ok){//Oh boy we are in truble. 
-            //First I try to create a Dubins from a point to the victim.
-            DS.clean();
-            Dubins<double> D;
-            Configuration2<double> end (vP1.back(), vP1[vP1.size()-2].th(vP1[vP1.size()-1])); //I want to arrive to the victim with an angle such as the direction
-            for (vP1_id=1; vP1_id<vP1.size()-1 && !ok; vP1_id++){
-                vP1_pos=vP1_id; //Update pos;
-                Configuration2<double> start(vP1[vP1_id], vP1[vP1_id].th(vP1[vP1_id+1]));
-                D=Dubins<double> (start, end, ROB_KMAX);
-                ok=check_dubins_D(D);
-            }
-            if (ok){                
-                ok=false;
-                DubinsSet<double> new_DS;
-                for (vP2_id=0; vP2_id<(vP2.size()-2) && !ok; vP2_id++){
-                    vP2_pos=vP2_id;
-                    Configuration2<double> end=Configuration2<double> (vP2[vP2_id], vP2[vP2_id].th(vP2[vP2_id+1])); 
-                    Configuration2<double> start=D.end();
-                    start.offset_angle(Angle(-M_PI/3.0, Angle::RAD));
-                    //Then I try to find a DubinsSet from the victim to a point in V2 with different orientation in \phi-60, \phi+60
-                    
-                    for (int i=0; i<5 && !ok; i++){
-                        start.offset_angle(Angle(M_PI/12.0, Angle::RAD));
-                        Point2<T> intermediate=::circline(INCREASE, start, 0);
-                        do {
-                            new_DS=DubinsSet<double> (start, end, Tuple<Point2<double> > (vector<Point2<double> >{intermediate}), ROB_KMAX);
-                            ok=check_dubins_DS(new_DS);
-                            intermediate.offset(INCREASE, start.angle());
-                        } while(in_map(intermediate.offset(INCREASE, start.angle())) && !ok);
-
-                    }
-                }
-                if (ok){ //Add everything at then end.
-                    DS.addDubins(&D);
-                    DS.join(&new_DS);
-                }
-            }
-            
-        }
-        if (!ok){
-            throw MyException<string> (GENERAL, ("No DubinsSet could be computed for victim at: "+vP1.back().to_string().str()), __LINE__, __FILE__);
-        }
-        return DS;
-    }
-
-
-    template<class T>
-    Dubins<double> start_end_dubins( const Configuration2<double>& anchorPoint, 
-                                vector<Point2<T> >& vPoints,
-                                uint& pos,
-                                const bool start)
-    {
-        Dubins<double> dub;
-        bool ok=false;
-        const uint size=vPoints.size();
-        for (uint i=size-2; (i>0 && !ok); i--){ //I continue until the points are empty or until a feasible dubins is not found. 
-            cout << i << endl;
-            ok=true; //Need to reset this each loop
-            if (start){
-                dub=Dubins<double>(anchorPoint, Configuration2<double>(vPoints[i], vPoints[i].th(vPoints[i+1])), ROB_KMAX);
-            }
-            else {
-                dub=Dubins<double>(Configuration2<double>(vPoints[size-i-1], vPoints[size-i-1].th(vPoints[size-i])), anchorPoint, ROB_KMAX);
-            }
-
-            if(dub.getId()<0){
-                ok = false;
-                cout << "Couldn't compute Dubins" << endl;
-            }
-            else {
-                Tuple<Tuple<Configuration2<double> > > vPDub=dub.splitIt(ROB_PIECE_LENGTH); 
-                
-                ok=check_dubins_D(dub);
-                if (ok){
-                    pos=i;
-                }
-            }
-        }
-        if (ok){
-            return dub;
-        }
-        else {
-            pos=0;
-            throw MyException<string> (EXCEPTION_TYPE::GENERAL, "No feasible path was found.", __LINE__, __FILE__);
-        }
-    }
-
-    vector<Point2<int> > vvCtovP(Tuple<Tuple<Configuration2<double> > > vv)
-    {
-        vector<Point2<int> >v={};
-        for (auto a : vv){
-            for (auto b : a){
-                v.push_back(Point2<int>(b.x(), b.y()));
-            }
-        }
-        return v;
-    }
-
-    vector<Point2<int> > vvvCtovP(Tuple<Tuple<Tuple<Configuration2<double> > > > vvv)
-    {
-        vector<Point2<int> > v={};
-        for (auto a : vvv){
-            for (auto b : a){
-                for (auto c : b){
-                    v.push_back(Point2<int>(c.x(), c.y()));
-                }
-            }
-        }
-        return v;
-    }
-
-    // template<class T>
-    void plan_dubins( const Configuration2<double>& _start,
-                    vector<vector<Point2<int> > >& vvPoints)
-    {
-        DubinsSet<double> path;
-        //Create Dubins for first path.
-        Dubins<double> start;
-        uint pos;
-        try{
-            start=start_end_dubins(_start, vvPoints[0], pos, true);
-        } catch(Exception e){
-            cout << e.what() << endl;
-            start=Dubins<double>();
-        }
-        if (start.length()!=DInf){
-            cout << "Starting Dubins found." << endl;
-            vector<Point2<int> > new_points=vvCtovP(start.splitIt(ROB_PIECE_LENGTH));
-            for (uint i=pos+1; i<vvPoints[0].size(); i++){
-                new_points.push_back(vvPoints[0][i]);
-            }
-            vvPoints[0]=new_points;
-        }
-
-        //Create Dubins for victims
-        vector<DubinsSet<double> >victimV;
-        DubinsSet<double> victim;
-        uint start_pos, end_pos;
-        for (uint i=0; i<vvPoints.size()-1; i++){
-            try{
-                victim=victims_dubins(vvPoints[i], vvPoints[i+1], start_pos, end_pos);
-            } 
-            catch(Exception e){
-                cout << e.what() << endl;
-                victim=DubinsSet<double>();
-            }
-            if (victim.getLength()!=DInf){
-                victimV.push_back(victim);
-                cout << "Dubins for victim: " << i+1 << " Found." << endl;
-                //First vector
-                vector<Point2<int> > V1={};
-                vector<Point2<int> > new_points=vvCtovP(victim.getDubins(0).splitIt(ROB_PIECE_LENGTH));
-                for (int j=0; j<start_pos; j++){
-                    V1.push_back(vvPoints[i][j]);
-                }
-                for (int j=0; j<new_points.size(); j++){
-                    V1.push_back(new_points[j]);
-                }
-                for (int j=start_pos+1; j<start_pos; j++){
-                    V1.push_back(vvPoints[i][j]);
-                }
-                //Second vector
-                vector<Point2<int> > V2={};
-                new_points=vvvCtovP(DubinsSet<double>(victim.getDubinsFrom(1)).splitIt(ROB_PIECE_LENGTH));
-                for (int j=0; j<end_pos; j++){
-                    V2.push_back(vvPoints[i+1][j]);
-                }
-                for (int j=0; j<new_points.size(); j++){
-                    V2.push_back(new_points[j]);
-                }
-                for (int j=end_pos+1; j<end_pos; j++){
-                    V2.push_back(vvPoints[i+1][j]);
-                } 
-                vvPoints[i]=V1;
-                vvPoints[i+1]=V2;
-            }
-        }
-
-        //Create Dubins for final path.
-        Dubins<double> end;
-        try{
-            end=start_end_dubins(Configuration2<double>(vvPoints.back().back(), Angle(M_PI, Angle::RAD)), vvPoints.back(), pos, false); //TODO find better implementation for final angle
-        }
-        catch (Exception e){
-            cout << e.what() << endl;
-            end=Dubins<double>();
-        }
-        if (end.length()!=DInf){
-            cout << "Ending Dubins found." << endl;
-
-            vector<Point2<int> > new_points=vvCtovP(end.splitIt(ROB_PIECE_LENGTH));
-
-            vector<Point2<int> > app;
-            for (uint i=0; i<vvPoints[vvPoints.size()-1].size()-1-pos; i++){
-                app.push_back(vvPoints[vvPoints.size()-1][i]);
-            }
-            for (uint i=0; i<new_points.size(); i++){
-                app.push_back(new_points[i]);
-            }
-            vvPoints[vvPoints.size()-1]=app;
-        }
-
-        path.addDubins(&start);
-        for (auto a : victimV){
-            path.join(&a);
-        }
-        path.addDubins(&end);
-        // for (auto a : otherV){
-        //     path.join(&v)
-        // }
-
-        //Create intermediate Dubins.
-
-    }
-
-}
-
-
-

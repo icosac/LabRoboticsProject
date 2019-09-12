@@ -50,7 +50,7 @@ namespace Planning {
     int getNPoints();
 
 	// template<class T>
-	void plan_dubins(const Configuration2<double>& _start, vector<vector<Point2<int> > >& vPoints);
+	void plan_dubins(const Configuration2<double>& _start, vector<vector<Configuration2<double> > >& vConfs);
 }
 
 

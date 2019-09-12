@@ -569,7 +569,7 @@ public:
     return ((_n>=0&&_n<size()) ? elements.at(_n) : T());
   }
 
-  Tuple<T> get(const int start, const int end){
+  Tuple<T> get(const uint start, const uint end){
     Tuple<T> ret;
     if (start>end){
       throw MyException<string>(GENERAL, "End is bigger than start", __LINE__, __FILE__);
@@ -579,6 +579,8 @@ public:
         ret.add(this->get(i));
       }
     }
+    cout << "returning " << ret.size() << endl;
+    return ret;
   }
 
   //TODO Document
@@ -1155,6 +1157,19 @@ public:
 	*/
   Configuration2(	const Point2<T1> P, 
   								const Angle _th) {
+    coord=Point2<T1>(P.x(), P.y());
+    th=_th;
+  }
+
+  /*! \brief Default constructor that takes the point, the angle, and
+            stores them.
+      \tparam Type of point in input.
+      \param[in] P The coordinates.
+      \param[in] _th The angle.
+  */
+  template<class T2>
+  Configuration2( const Point2<T2> P, 
+                  const Angle _th) {
     coord=Point2<T1>(P.x(), P.y());
     th=_th;
   }

@@ -365,9 +365,10 @@ void Mapp::imageAddPoints(Mat & image, const vector<Point2<int> > & vp, const in
     \param[in/out] map The image where the points will be added.
     \param[in] p The point to add.
     \param[in] radius The radius of the point to be drawn.
+    \param[in] color The color of the point to be drawn.
 */
-void Mapp::imageAddPoint(Mat & image, const Point2<int> & p, const int radius){
-    circle(image, Point(p.x(), p.y()), radius, Scalar(0, 255, 255), -1);
+void Mapp::imageAddPoint(Mat & image, const Point2<int> & p, const int radius, const Scalar color){
+    circle(image, Point(p.x(), p.y()), radius, color, -1);
 }
 
 /*! \brief Print to the terminal the main informations of the Map.
