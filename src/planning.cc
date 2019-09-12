@@ -3,9 +3,9 @@
 namespace Planning {
     Mapp* map;
     Configuration2<double> conf;
-    const double angleRange = 15*M_PI/180;
+    const double angleRange = 20*M_PI/180;
     const int nAngles = 60;
-    const int range = 5;    
+    const int range = 3;    
 
 
     vector<Point2<int> > new_function(vector<vector<Point2<int> > > vvp){
@@ -26,22 +26,16 @@ namespace Planning {
     */
     // pair< vector<Point2<int> >, Mapp* > Planning::planning(const Mat & img){
     vector<Point2<int> > planning(const Mat & img){
-        cout << "plan0\n" << flush;
         Planning::createMapp();
-        cout << "plan1\n" << flush;
-
-        vector<Point2<int> > vp;
-        cout << "plan2\n" << flush;
 
         // localize the robot
         pair<Configuration2<double>, Configuration2<double> > p = ::localize(img, true);
         conf = p.first;
+        vector<Point2<int> > vp;
         vp.push_back( Point2<int>( (int)conf.x(), (int)conf.y()) ); //robot initial location.
 
         // update and show the created map
-        cout << "plan3\n" << flush;
         Planning::map->getVictimCenters(vp);
-        cout << "plan3 bis\n" << flush;
         Planning::map->getGateCenter(vp);
 
 
@@ -54,25 +48,20 @@ namespace Planning {
             imshow("Map 0", imageMap);
             mywaitkey();
         #endif
-        cout << "plan4\n" << flush;
 
         // search for the shortest path
         // #define BEST
         #ifdef BEST 
-            vector<vector<Point2<int> > > vvp = minPathNPointsWithChoice(vp, 5);
+            vector<vector<Point2<int> > > vvp = minPathNPointsWithChoice(vp, 5, true);
         #else
             vector<vector<Point2<int> > > vvp = minPathNPoints(vp, true);
         #endif
-        cout << "plan5\n" << flush;
+
         // show the path and prepare it for the return
-        cout << "aaa\n";
         vector<Point2<int> > cellsOfPath = new_function(vvp);
         // vector<Point2<int> > cellsOfPath = sampleNPoints(vvp);
-        cout << "aaa\n";
         Planning::map->imageAddPoints(imageMap, cellsOfPath);
-        cout << "aaa\n";
         Planning::map->imageAddSegments(imageMap, cellsOfPath);
-        cout << "Created map 2" << endl << flush;
 
         imwrite("data/computePlanning.jpg", imageMap);
         #if defined WAIT || defined SHOW_MAP
@@ -290,18 +279,17 @@ namespace Planning {
 
         \param[in] vp The n points that need to be connected.
         \param[in] bonus It is the time in second as reward for each victim saved.
+        \param[in] angle It is a boolean flag that says if (for the segment starting from the robot) call the angle version of the minPath or not.
         \returns A vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-1 connecctions.
     */
-    vector<vector<Point2<int> > > minPathNPointsWithChoice(const vector<Point2<int> > & vp, const double bonus){
+    vector<vector<Point2<int> > > minPathNPointsWithChoice(const vector<Point2<int> > & vp, const double bonus, const bool angle){
 
         //allocate
-        double ** distances = new double*[map->getDimY()];
-        Point2<int> ** parents = new Point2<int>*[map->getDimY()];
-        for(int i=0; i<map->getDimY(); i++){
-            // the initializtion is to -1
-            distances[i] = new double[map->getDimX()];
-            parents[i] = new Point2<int>[map->getDimX()];
-        }
+        double ** distances = allocateAADouble(map->getDimY(), map->getDimX());
+        Point2<int> ** parents = allocateAAPointInt(map->getDimY(), map->getDimX());
+        
+        double *** distancesAngles = allocateAAADouble(map->getDimY(), map->getDimX(), nAngles);
+        int **** parentsAngles = allocateAAAAInt(map->getDimY(), map->getDimX(), nAngles, 3);
 
         //compute the simple minPath between all pairs of targets
         int n = vp.size();
@@ -318,7 +306,11 @@ namespace Planning {
             for(int j=0; j<i; j++) cout << "\t";
             for(int j=i+1; j<n; j++){
                 //compute the minPath
-                vvvp[i][j] = minPathTwoPointsInternal(vp[i], vp[j], distances, parents);
+                if(angle && i==0){
+                    vvvp[i][j] = minPathTwoPointsInternalAngles(vp[i], vp[j], distancesAngles, parentsAngles, conf.angle().toRad());
+                } else{
+                    vvvp[i][j] = minPathTwoPointsInternal(vp[i], vp[j], distances, parents);
+                }
 
                 //compute the overall distance along the computed path and store it
                 double dist = 0.0;
@@ -396,12 +388,11 @@ namespace Planning {
         }
 
         //delete
-        for(int i=0; i<map->getDimY(); i++){
-            delete [] distances[i];
-            delete [] parents[i];
-        }
-        delete[] distances;
-        delete[] parents;
+        deleteAA(distances, map->getDimY());
+        deleteAA(parents, map->getDimY());
+
+        deleteAAA(distancesAngles, map->getDimY(), map->getDimX());
+        deleteAAAA(parentsAngles, map->getDimY(), map->getDimX(), nAngles);
 
         return(vvp);
     }
@@ -415,8 +406,6 @@ namespace Planning {
         \returns A vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-1 connecctions.
     */
     vector<vector<Point2<int> > > minPathNPoints(const vector<Point2<int> > & vp, const bool angle){
-        cout << "min0\n" << flush;
-
         //function
         vector<vector<Point2<int> > > vvp;
         // with Angles version
@@ -429,8 +418,8 @@ namespace Planning {
             vvp.push_back(  minPathTwoPointsInternalAngles(vp[0], vp[1], distances, parents, conf.angle().toRad() ));
 
             //delete
-            // deleteAAA(distances, map->getDimY(), map->getDimX());
-            // deleteAAAA(parents, map->getDimY(), map->getDimX(), nAngles);
+            deleteAAA(distances, map->getDimY(), map->getDimX());
+            deleteAAAA(parents, map->getDimY(), map->getDimX(), nAngles);
             i++;
         }
 
@@ -445,11 +434,9 @@ namespace Planning {
         }
 
         //delete
-        // deleteAA(distances, map->getDimY());
-        // deleteAA(parents, map->getDimY());
+        deleteAA(distances, map->getDimY());
+        deleteAA(parents, map->getDimY());
         
-        cout << "min5\n" << flush;
-
         return(vvp);
     }
 
@@ -458,27 +445,33 @@ namespace Planning {
 
         \param[in] p0 The source point.
         \param[in] p1 The destination point.
+        \param[in] angle It is a boolean flag that says if call the angle version of the minPath or not.
         \returns A vector of points along the path (one for each cell of the grid of the map).
     */
-    vector<Point2<int> > minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1){
-        //allocate
-        double ** distances = new double*[map->getDimY()];
-        Point2<int> ** parents = new Point2<int>*[map->getDimY()];
-        for(int i=0; i<map->getDimY(); i++){
-            distances[i] = new double[map->getDimX()];
-            parents[i] = new Point2<int>[map->getDimX()];
-        }
+    vector<Point2<int> > minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1, const bool angle){
+        vector<Point2<int> > vp;
+        if(angle){
+            //allocate
+            double *** distances = allocateAAADouble(map->getDimY(), map->getDimX(), nAngles);
+            int **** parents = allocateAAAAInt(map->getDimY(), map->getDimX(), nAngles, 3);
 
-        // function
-        vector<Point2<int> > vp = minPathTwoPointsInternal(p0, p1, distances, parents);
+            vp = minPathTwoPointsInternalAngles(p0, p1, distances, parents, conf.angle().toRad() );
 
-        //delete
-        for(int i=0; i<map->getDimY(); i++){
-            delete [] distances[i];
-            delete [] parents[i];
+            //delete
+            deleteAAA(distances, map->getDimY(), map->getDimX());
+            deleteAAAA(parents, map->getDimY(), map->getDimX(), nAngles);
+
+        } else{
+            //allocate
+            double ** distances = allocateAADouble(map->getDimY(), map->getDimX());
+            Point2<int> ** parents = allocateAAPointInt(map->getDimY(), map->getDimX());
+            
+            vp = minPathTwoPointsInternal(p0, p1, distances, parents);
+            
+            //delete
+            deleteAA(distances, map->getDimY());
+            deleteAA(parents, map->getDimY());
         }
-        delete[] distances;
-        delete[] parents;
 
         return(vp);
     }
@@ -594,9 +587,6 @@ namespace Planning {
                             double *** distances, int **** parents,
                             const double initialDir)
     {
-        static int counter = 1;
-        cout << "\nCall of minPathTwoPointsInternalAngles, search for vict: " << counter++ << endl;
-
         // reset base values
         resetDistanceMap(distances);
 
@@ -613,7 +603,8 @@ namespace Planning {
 
         // initialization of BFS (adding the first configurations: one or nAngles)
         queue<Configuration2<int> > toProcess;
-        if(equal( initialDir, baseDir, 0.001)){
+        if(equal( initialDir, baseDir, 0.001)){ // never used and probably this option has no reason to exist.
+            // initialize a direction with dist=0 for each angle sector
             for(int q=0; q<nAngles; q++){
                 toProcess.push(Configuration2<int>(startC, (q+0.5)*(2*M_PI/nAngles) ));
                 distances[startC.y()/*i=y()*/][startC.x()/*j=x()*/][q] = 0.0;
@@ -709,12 +700,11 @@ namespace Planning {
             // choose the best direction path up to the end point
             double bestDist = DInf;
             int bestDir = -1;
-            cout << "The final distance for the point: " << endP <<  " from the point " << startP << endl;
-            cout << "AKA the cells: " << endC << " and " << startC << endl;
+            // cout << "The final distance for the point: " << endP <<  " from the point " << startP << endl << "AKA the cells: " << endC << " and " << startC << endl;
 
             for(int q=0; q<nAngles; q++){
                 double finalDist = distances[endC.y()][endC.x()][q];
-                cout << q << ": Dir [" << q*45 << ", " << q*45+44 << "]: " << finalDist << endl;
+                // cout << q << ": Dir [" << q*45 << ", " << q*45+44 << "]: " << finalDist << endl;
                 if( !equal(finalDist, baseDistance, 0.0001) && bestDist>finalDist ){
                     bestDist = finalDist;
                     bestDir = q;
@@ -723,36 +713,21 @@ namespace Planning {
             if(bestDir==-1){
                 throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Something strange went wrong in the computation of the vector of parents in the minPath.", __LINE__, __FILE__);
             } else{
-                cout << "Chosen the best! is " << bestDir << " with: " << bestDist << endl;
-                cout << "endP: " << endP << endl;
-                Point2<int> appP=endP;
+                // cout << "Chosen the best! is " << bestDir << " with: " << bestDist << endl;
+                
                 computedParents.resize(0);
-                cout << "!!!\n";
-                cout << "computedParents size: " << computedParents.size() << endl;
-                cout << "!!!\n";
                 // computing the vector of parents
-
-                if (counter==4){
-                    computedParents.push_back(Point2<int>(20,37));
-                }
-                else {
-                    computedParents.push_back(endP);
-                }
-                cout << "???\n" << flush;
+                computedParents.push_back(endP);
                 int * v = new int[3] { endC.y(), endC.x(), bestDir };
-                cout << "prima while\n";
                 while(!( v[0]==startC.y() && v[1]==startC.x() )){
-                    cout << "v[0]: " << v[0] << ", v[01]: " << v[1] << ", v[2]: " << v[2] << endl;
                     v = parents[v[0]][v[1]][v[2]];
 
                     // conversion from cell of the grid to point of the system (map)
                     computedParents.push_back( Point2<int>( (v[1]+0.5)*map->getPixX(), (v[0]+0.5)*map->getPixY() ));
                 }
                 reverse(computedParents.begin(), computedParents.end()); // I apply the inverse to have the vector from the begin to the end.
-                cout << "deleting" << endl;
-                delete[] v;
+                // delete[] v; doesn't need to be deleted now, will be done soon.
             }
-            cout << "end" << endl;
         }
 
         return(computedParents);

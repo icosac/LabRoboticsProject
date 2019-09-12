@@ -56,7 +56,7 @@ namespace Planning {
     }
 
     template <class T>
-    void deleteAAA(T ** arr, const int a, const int b){
+    void deleteAAA(T *** arr, const int a, const int b){
         for(int i=0; i<a; i++){
             deleteAA(arr[i], b);
         }
@@ -64,7 +64,7 @@ namespace Planning {
     }
 
     template <class T>
-    void deleteAAAA(T ** arr, const int a, const int b, const int c){
+    void deleteAAAA(T **** arr, const int a, const int b, const int c){
         for(int i=0; i<a; i++){
             deleteAAA(arr[i], b, c);
         }
@@ -73,16 +73,16 @@ namespace Planning {
 
 
 
-    vector<vector<Point2<int> > > minPathNPointsWithChoice(const vector<Point2<int> > & vp, const double bonus);
+    vector<vector<Point2<int> > > minPathNPointsWithChoice(const vector<Point2<int> > & vp, const double bonus, const bool angle);
     vector<vector<Point2<int> > > minPathNPoints(const vector<Point2<int> > & vp, const bool angle);
-    vector<Point2<int> > minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1);
+    vector<Point2<int> > minPathTwoPoints(const Point2<int> & p0, const Point2<int> & p1, const bool angle);
 	    vector<Point2<int> > minPathTwoPointsInternal(
 	                            const Point2<int> & startP, const Point2<int> & endP, 
 	                            double ** distances, Point2<int> ** parents);
 	    vector<Point2<int> > minPathTwoPointsInternalAngles(
                             const Point2<int> & startP, const Point2<int> & endP, 
                             double *** distances, int **** parents,
-                            const double initialDir = baseDir);
+                            const double initialDir);
 
     	int angleSector(const double & d);
     	void intToVect(int c, vector<int> & v);
