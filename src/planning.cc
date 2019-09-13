@@ -3,13 +3,23 @@
 namespace Planning {
     Mapp* map;
     Configuration2<double> conf;
-    const double angleRange = 13*M_PI/180;
+    const double angleRange = 12*M_PI/180;
     const int nAngles = 90;
-    const int range = 3;    
+    const int range = 3;   
 
-    vector<Point2<int> > new_function(vector<vector<Configuration2<double> > > vvp){
+    vector<Point2<int> > convertToVP(vector<vector<Point2<int> > > arr){
         vector<Point2<int> > v;
-        for (auto a : vvp){
+        for (auto a : arr){
+            for (auto b : a){
+                v.push_back(b);
+            }
+        }
+        return v;
+    } 
+
+    vector<Point2<int> > convertToVP(vector<vector<Configuration2<double> > > arr){
+        vector<Point2<int> > v;
+        for (auto a : arr){
             for (auto b : a){
                 v.push_back(b.point());
             }
@@ -17,9 +27,9 @@ namespace Planning {
         return v;
     }
 
-    vector<Point2<int> > new_function(vector<vector<Point2<int> > > vvp){
-        vector<Point2<int> > v;
-        for (auto a : vvp){
+    vector<Configuration2<double> > convertToVC(vector<vector<Configuration2<double> > > arr){
+        vector<Configuration2<double> > v;
+        for (auto a : arr){
             for (auto b : a){
                 v.push_back(b);
             }
@@ -27,10 +37,21 @@ namespace Planning {
         return v;
     }
 
+    vector<Configuration2<double> > convertToVC(vector<vector<Point2<int> > > arr){
+        vector<Point2<int> > v = convertToVP(arr);
+        vector<Configuration2<double> > ret;
+        uint i=0;
+        for(; i<v.size()-1; i++){
+            ret.push_back(Configuration2<double>( (double)v[i].x(), (double)v[i].y(), v[i].th(v[i+1]) ));
+        }
+        ret.push_back(Configuration2<double>( (double)v[i].x(), (double)v[i].y(), v[i-1].th(v[i]) ));
+        return ret;
+    }
+
     void new_draw(vector<vector<Point2<int> > > vv, string name){
         #if defined WAIT || defined SHOW_MAP
             Mat imageMap = Planning::map->createMapRepresentation();
-            vector<Point2<int> > cellsOfPath = new_function(vv);
+            vector<Point2<int> > cellsOfPath = convertToVP(vv);
             Planning::map->imageAddPoints(imageMap, cellsOfPath);
             Planning::map->imageAddSegments(imageMap, cellsOfPath);
             
@@ -43,10 +64,11 @@ namespace Planning {
     void new_draw(  vector<vector<Configuration2<double> > > vv, 
                     vector<Configuration2<double> >& left, 
                     vector<Configuration2<double> >& right, 
-                    string name){
+                    string name)
+    {
         #if defined WAIT || defined SHOW_MAP
             Mat imageMap = Planning::map->createMapRepresentation();
-            vector<Point2<int> > cellsOfPath = new_function(vv);
+            vector<Point2<int> > cellsOfPath = convertToVP(vv);
             Planning::map->imageAddPoints(imageMap, cellsOfPath);
             Planning::map->imageAddSegments(imageMap, cellsOfPath);
             
@@ -68,7 +90,7 @@ namespace Planning {
     void new_draw(vector<vector<Configuration2<double> > > vv, string name){
         #if defined WAIT || defined SHOW_MAP
             Mat imageMap = Planning::map->createMapRepresentation();
-            vector<Point2<int> > cellsOfPath = new_function(vv);
+            vector<Point2<int> > cellsOfPath = convertToVP(vv);
             Planning::map->imageAddPoints(imageMap, cellsOfPath);
             Planning::map->imageAddSegments(imageMap, cellsOfPath);
             
@@ -85,7 +107,7 @@ namespace Planning {
         \returns Two elements are returned: a pointer to the Mapp where all data are stored and a vector of points placed on the computed route.
     */
     // pair< vector<Point2<int> >, Mapp* > Planning::planning(const Mat & img){
-    vector<Point2<int> > planning(const Mat & img){
+    vector<Configuration2<double> > planning(const Mat & img){
         Planning::createMapp();
 
         // localize the robot
@@ -102,7 +124,6 @@ namespace Planning {
         Mat imageMap = Planning::map->createMapRepresentation();
         cout << "Created map" << endl << flush;
 
-        imwrite("data/computePlanning.jpg", imageMap);
         #if defined WAIT || defined SHOW_MAP
             namedWindow("Map 0", WINDOW_NORMAL);
             imshow("Map 0", imageMap);
@@ -114,49 +135,54 @@ namespace Planning {
         #ifdef BEST 
             vector<vector<Point2<int> > > vvp = minPathNPointsWithChoice(vp, 5, true);
         #else
-            vector<vector<Point2<int> > > vvp = minPathNPoints(vp, true);
+            vector<vector<Point2<int> > > vvp = minPathNPoints(vp, false);
         #endif
         
-        // vector<Point2<int> > cellsOfPath = sampleNPoints(vvp);
-        vector<Point2<int> > cellsOfPath = new_function(vvp);
+        vector<Configuration2<double> > cellsOfPath = convertToVC(vvp);
         Planning::map->imageAddPoints(imageMap, cellsOfPath);
         Planning::map->imageAddSegments(imageMap, cellsOfPath);
 
-        imwrite("data/computePlanning.jpg", imageMap);
         #if defined WAIT || defined SHOW_MAP
             namedWindow("Map2", WINDOW_NORMAL);
             imshow("Map2", imageMap);
             mywaitkey();
         #endif
         
-
-        //Add Dubins
-        cout << "Trying to use dubins" << endl << flush;
-        vector<vector<Configuration2<double> > > vvc(vvp.size());
-        for (uint i=0; i<vvp.size(); i++){
-            for (uint j=0; j<vvp[i].size(); j++){
-                if (j==(vvp[i].size()-1)){
-                    vvc[i].push_back(Configuration2<double> (Point2<double>((double)vvp[i][j].x(), (double)vvp[i][j].y()), vvp[i][j-1].th(vvp[i][j])));
-                }
-                else {
-                    vvc[i].push_back(Configuration2<double> (Point2<double>((double)vvp[i][j].x(), (double)vvp[i][j].y()), vvp[i][j].th(vvp[i][j+1])));
+        // #define NOT_DUBINS 
+        #ifndef NOT_DUBINS
+            //Add Dubins
+            cout << "Trying to use dubins" << endl << flush;
+            vector<vector<Configuration2<double> > > vvc(vvp.size());
+            for (uint i=0; i<vvp.size(); i++){
+                for (uint j=0; j<vvp[i].size(); j++){
+                    if (j==(vvp[i].size()-1)){
+                        vvc[i].push_back(Configuration2<double> (Point2<double>((double)vvp[i][j].x(), (double)vvp[i][j].y()), vvp[i][j-1].th(vvp[i][j])));
+                    }
+                    else {
+                        vvc[i].push_back(Configuration2<double> (Point2<double>((double)vvp[i][j].x(), (double)vvp[i][j].y()), vvp[i][j].th(vvp[i][j+1])));
+                    }
                 }
             }
-        }
 
-        cout << "Calling dubins function" << endl;
-        Planning::plan_dubins(conf, vvc);
-        cout << "Found best dubins" << endl;
+            cout << "Calling dubins function" << endl;
+            Planning::plan_dubins(conf, vvc);
+            cout << "Found best dubins" << endl;
 
 
-        // vector<Point2<int> > cellsOfPath = new_function(vvp);
-        cellsOfPath = new_function(vvc);
-        // vector<Point2<int> > cellsOfPath = sampleNPoints(vvp);
-        // cellsOfPath = sampleNPoints(vvp);
+            cellsOfPath = convertToVC(vvc);
+            cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
+        #endif
 
-        cout << "\tCellsOfPath size: " << cellsOfPath.size() <<endl;
+        Mat imageMap2 = Planning::map->createMapRepresentation();
+        Planning::map->imageAddPoints(imageMap2, cellsOfPath);
+        Planning::map->imageAddSegments(imageMap2, cellsOfPath);
 
-        new_draw(vvc, "map2");
+        imwrite("data/computePlanning.jpg", imageMap2);
+        #if defined WAIT || defined SHOW_MAP
+            namedWindow("Map Final", WINDOW_NORMAL);
+            imshow("Map Final", imageMap2);
+            mywaitkey();
+        #endif
 
         return( cellsOfPath );
     }
@@ -591,12 +617,15 @@ namespace Planning {
                     int ii = i+iC, jj = j+jC;
 
                     // The cell itself (when i=0 and j=0) is here considered but never added to the queue due to the logic of the BFS
-                    if(    Planning::map->getOffsetValue() <= ii*Planning::map->getCellSize() 
+                    if( Planning::map->getCellType(ii, jj) == GATE
+                        || (Planning::map->getOffsetValue() <= ii*Planning::map->getCellSize() 
                         && Planning::map->getOffsetValue() <= jj*Planning::map->getCellSize() 
                         && ii*Planning::map->getCellSize() <  Planning::map->getActualLengthY()
-                        && jj*Planning::map->getCellSize() <  Planning::map->getActualLengthX() ){
+                        && jj*Planning::map->getCellSize() <  Planning::map->getActualLengthX() )){
 
-                        if(map->getCellType(ii, jj) != OBST && (dist<initialDistAllowed || map->getCellType(ii, jj) != BODA )){ 
+                        if( Planning::map->getCellType(ii, jj) != OBST 
+                            && (dist<initialDistAllowed || map->getCellType(ii, jj) != BODA )
+                            ){ 
                             if(ii==endC.y() && jj==endC.x()){
                                 found++;
                             }
@@ -685,23 +714,23 @@ namespace Planning {
         int found = 0;
 
         // precompute the computation of the distances and the angle in the square of edges around the cell of interest
-        const int r = range+12; //range from class variable (default=3)
+        const int r = range+10; //range from class variable (default=3)
         const int side = 2*r+1;
         double computedDistances[(int)pow(side, 2)]; // all the cells in a sqare of side where the center is the cell of interest
         double computedAngles[(int)pow(side, 2)]; // all the cells in a sqare of side where the center is the cell of interest
         
-        cout << "\ncomputedAngles\n\t";
+        cout << "\ncomputedAngles\n\t\b\b";
         for(int j=(-r); j<=r; j++){
-            cout << j << "\t";
+            cout << j << "\t\b\b";
         }
         for(int i=r; i>=(-r); i--){
-            cout << "\n" << i << ":\t";
+            cout << "\n" << i << ":\t\b\b";
             for(int j=(-r); j<=r; j++){
 
                 computedDistances[(i+r)*side + (j+r)]  = sqrt( pow(i,2) + pow(j,2) );
                 computedAngles[(i+r)*side + (j+r)] = (Point2<int>(0, 0).th( Point2<int>(j, i) )).toRad();
                 
-                cout << (int)(computedAngles[(i+r)*side + (j+r)]*180.0/M_PI) << "\t";
+                cout << (int)(computedAngles[(i+r)*side + (j+r)]*180.0/M_PI) << "\t\b\b";
             }
         }
 
@@ -728,12 +757,15 @@ namespace Planning {
                     // In case of first segment, it is also neccessary to check that the angle of the new point is more or less correct respect to the previous one.
                     if(fabs( myAngle-thC ) < angleRange ){
                         // The cell itself (when i=0 and j=0) is here considered but never added to the queue due to the logic of the BFS
-                        if(    Planning::map->getOffsetValue() <= ii*Planning::map->getCellSize() 
+                        if( Planning::map->getCellType(ii, jj) == GATE
+                            || (Planning::map->getOffsetValue() <= ii*Planning::map->getCellSize() 
                             && Planning::map->getOffsetValue() <= jj*Planning::map->getCellSize() 
                             && ii*Planning::map->getCellSize() <  Planning::map->getActualLengthY()
-                            && jj*Planning::map->getCellSize() <  Planning::map->getActualLengthX() ){
+                            && jj*Planning::map->getCellSize() <  Planning::map->getActualLengthX() )){
                             // cell is allowed
-                            if(map->getCellType(ii, jj) != OBST && (dist<initialDistAllowed || map->getCellType(ii, jj) != BODA )){ 
+                            if( map->getCellType(ii, jj) != OBST
+                                // && (dist<initialDistAllowed || map->getCellType(ii, jj) != BODA )
+                                ){ 
 
                                 if(ii==endC.y() && jj==endC.x()){
                                     found++;
@@ -928,33 +960,42 @@ namespace Planning {
         \param[in] vp The sorce vector.
         \param[out] path The destination path.
     */
-    void fromVpToPath(vector<Point2<int> > & vp, Path & path){
-        if(vp.size()>=2){
+    void fromVcToPath(vector<Configuration2<double> > & vc, Path & path){
+        if(vc.size()>=2){
             path.resize(0);
             Pose pose;
-            double s=0.0; // k will be computed thanks to the dubins
-            vp[0].invert();
+            double th=0.0, s=0.0; // k will be computed thanks to the dubins
             uint i=0;
+            Point2<double> p0, p1;
+            p0 = vc[0].point();
+            p0.invert();
 
-            for(i=0; i<vp.size()-1; i++){
+            for(i=0; i<vc.size()-1; i++){
+                // th = vc[i].angle().toRad();
+                // app = Point2<int>( vc[i].x()+cos(th), vc[i].y()+sin(th) );
+                // vc[i].point().invert();
+                // app.invert();
+                // th = vc[i].point().th( app ).toRad();
 
-                vp[i+1].invert();
-                double th = vp[i].th( vp[i+1] ).toRad();
+                p1 = vc[i+1].point();
+                p1.invert();
+
+                double th = p0.th( p1 ).toRad();
                 double k=0.1;
-
-                if (equal(th, 0.01)){ 
+                if (equal(th, 0.0)){ 
                     k=0;
                 }
                 else if (th>M_PI){
                     k=-k;
                 }
 
-                pose = Pose( s, vp[i].x()/SCALE, vp[i].y()/SCALE, th, k);
+                pose = Pose( s, p0.x()/SCALE, p0.y()/SCALE, th, k);
                 path.add(pose);
 
-                s += vp[i].distance(vp[i+1])/SCALE;
+                s += p0.distance(p1)/SCALE;
+                p0 = p1;
             }
-            pose = Pose( s, vp[i].x()/SCALE, vp[i].y()/SCALE, M_PI, 0.0);//use last th and k or simply 0????
+            pose = Pose( s, p1.x()/SCALE, p1.y()/SCALE, th, 0.0);
             path.add(pose);
 
             cout << "Path elements:\n";
@@ -1295,7 +1336,7 @@ namespace Planning {
             try{
                 path.join(&victimV[i]);
             }
-            catch(Exception e){
+            catch(exception& e){
                 cerr << e.what() << endl;
                 ok=false;
             }        
@@ -1312,7 +1353,7 @@ namespace Planning {
                     try{
                         path.addDubins(&D);
                     }
-                    catch (Exception e){
+                    catch (exception& e){
                         cerr << e.what() << endl;
                         ok=false;
                     }
@@ -1344,7 +1385,7 @@ namespace Planning {
         uint start_pos=0, end_pos=0;
         try{
             start=start_end_dubins(_start, vvConfs[0], start_pos, true);
-        } catch(Exception e){
+        } catch(exception& e){
             cout << e.what() << endl << flush;
             start=Dubins<double>();
         }
@@ -1360,7 +1401,7 @@ namespace Planning {
 
             vI.push_back(start_pos);
             path.addDubins(&start);
-        }
+        } 
 
         cout << "vvConfs " << vvConfs[0].size() << endl;
 
@@ -1373,7 +1414,7 @@ namespace Planning {
             try{
                 victim=victims_dubins(vvConfs[i], vvConfs[i+1], start_pos, end_pos);
             } 
-            catch(Exception e){
+            catch(exception& e){
                 cout << e.what() << endl << flush;
                 victim=DubinsSet<double>();
             }
@@ -1415,7 +1456,7 @@ namespace Planning {
             end=start_end_dubins(Configuration2<double>(vvConfs.back().back().point(), compute_final_angle(vvConfs.back().back())),
                                  vvConfs.back(), end_pos, false); //TODO find better implementation for final angle
         }
-        catch (Exception e){
+        catch (exception& e){
             cout << e.what() << endl << flush;
             end=Dubins<double>();
         }
@@ -1443,7 +1484,7 @@ namespace Planning {
         try {
             path.addDubins(&end);
         }
-        catch (Exception e){
+        catch (exception& e){
             cerr << e.what() << endl;
         }
 

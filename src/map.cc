@@ -318,14 +318,30 @@ Mat Mapp::createMapRepresentation(){
 /*! \brief It add to the given image a set of (n-1) segments specified by the n points given.
 
     \param[in/out] map The image where the segments will be added.
-    \param[in] vp The vector of points that identify the segments.
+    \param[in] v The vector of points that identify the segments.
     \param[in] thickness The thickness of the lines to be drawn.
 */
-void Mapp::imageAddSegments(Mat & image, const vector<Point2<int> > & vp, const int thickness){
-    for(int i=0; i<(int)(vp.size())-1; i++){
+void Mapp::imageAddSegments(Mat & image, const vector<Point2<int> > & v, const int thickness){
+    for(int i=0; i<(int)(v.size())-1; i++){
         line( image, 
-            Point(vp[ i ].x(), vp[ i ].y()), 
-            Point(vp[i+1].x(), vp[i+1].y()), 
+            Point(v[ i ].x(), v[ i ].y()), 
+            Point(v[i+1].x(), v[i+1].y()), 
+            Scalar(0, 255, 255),
+            thickness);
+    }
+}
+
+/*! \brief It add to the given image a set of (n-1) segments specified by the n points given.
+
+    \param[in/out] map The image where the segments will be added.
+    \param[in] v The vector of points that identify the segments.
+    \param[in] thickness The thickness of the lines to be drawn.
+*/
+void Mapp::imageAddSegments(Mat & image, const vector<Configuration2<double> > & v, const int thickness){
+    for(int i=0; i<(int)(v.size())-1; i++){
+        line( image, 
+            Point((int)v[ i ].x(), (int)v[ i ].y()), 
+            Point((int)v[i+1].x(), (int)v[i+1].y()), 
             Scalar(0, 255, 255),
             thickness);
     }
@@ -349,12 +365,24 @@ void Mapp::imageAddSegment(Mat & image, const Point2<int> & p0, const Point2<int
 /*! \brief It add to the given image a vector of points.
 
     \param[in/out] map The image where the point will be added.
-    \param[in] vp The vecotor of points to add.
+    \param[in] v The vecotor of points to add.
     \param[in] radius The radius of the points to be drawn.
 */
-void Mapp::imageAddPoints(Mat & image, const vector<Point2<int> > & vp, const int radius){
-    for(Point2<int> el : vp){
+void Mapp::imageAddPoints(Mat & image, const vector<Point2<int> > & v, const int radius){
+    for(Point2<int> el : v){
         circle(image, Point(el.x(), el.y()), radius, Scalar(0, 255, 255), -1);
+    }
+}
+
+/*! \brief It add to the given image a vector of points.
+
+    \param[in/out] map The image where the point will be added.
+    \param[in] v The vecotor of points to add.
+    \param[in] radius The radius of the points to be drawn.
+*/
+void Mapp::imageAddPoints(Mat & image, const vector<Configuration2<double> > & v, const int radius){
+    for(Configuration2<double> el : v){
+        circle(image, Point((int)el.x(), (int)el.y()), radius, Scalar(0, 255, 255), -1);
     }
 }
 

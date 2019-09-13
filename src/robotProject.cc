@@ -52,11 +52,11 @@ bool RobotProject::preprocessMap(const Mat & img){
 bool RobotProject::planPath(const Mat & img, Path & path){
 	cout << "-> -> -> PlanPath\n" << flush;
 
-	vector<Point2<int> > pathPoints = Planning::planning(img);
+	vector<Configuration2<double> > pathPoints = Planning::planning(img);
 	
 	cout << "Creating map" << flush;
 
-	Planning::fromVpToPath(pathPoints, path); //return
+	Planning::fromVcToPath(pathPoints, path); //return
 	cout << "-> -> -> PlanPath end\n" << flush;
 	return(true);
 }
