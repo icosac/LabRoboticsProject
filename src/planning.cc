@@ -11,6 +11,7 @@ namespace Planning {
     #define DELTA M_PI/180.0 //1 degree
     #define ROB_KMAX KMAX //0.01
     #define ROB_PIECE_LENGTH 10
+    #define BONUS 5
 
     vector<Point2<int> > convertToVP(vector<vector<Point2<int> > > arr){
         vector<Point2<int> > v;
@@ -136,9 +137,9 @@ namespace Planning {
         #endif
 
         // search for the shortest path
-        #define BEST
+        // #define BEST
         #ifdef BEST 
-            vector<vector<Point2<int> > > vvp = minPathNPointsWithChoice(vp, 100, false);
+            vector<vector<Point2<int> > > vvp = minPathNPointsWithChoice(vp, BONUS, false);
         #else
             vector<vector<Point2<int> > > vvp = minPathNPoints(vp, false);
         #endif
@@ -1016,9 +1017,9 @@ namespace Planning {
                 if(equal(th, th1, 0.001)){
                     k = 0.0;
                 } else if(th > th1){    //right k=-1
-                    k = 10*ROB_KMAX*(normalScenario ?  (-1) : 1);
+                    k = SCALE*ROB_KMAX*(normalScenario ?  1 : (-1));
                 } else{                 //left k=+1
-                    k = 10*ROB_KMAX*(normalScenario ?  1 : (-1));
+                    k = SCALE*ROB_KMAX*(normalScenario ?  (-1) : 1);
                 }
 
                 if(!normalScenario){
@@ -1030,6 +1031,9 @@ namespace Planning {
                 pose = Pose( s, vc[i].x()/SCALE, vc[i].y()/SCALE, th, k);
                 path.add(pose);
             }
+            path.points[path.points.size()-1].kappa = 0.0;
+            path.points[path.points.size()-2].kappa = 0.0;
+            path.points[path.points.size()-3].kappa = 0.0;
 
             cout << "Path elements:\n";
             for(i=0; i<path.size(); i++){

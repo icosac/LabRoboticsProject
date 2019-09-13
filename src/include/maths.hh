@@ -620,7 +620,7 @@ public:
 	*/
   bool remove (const uint pos) {
   	bool res=false;
-  	if (pos>=0 && pos<n){
+  	if (pos>=0 && ((int)pos)<n){
   		res=true;
   		elements.erase(elements.begin()+pos);
   		n--;
