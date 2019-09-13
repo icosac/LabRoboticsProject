@@ -1110,6 +1110,7 @@ public:
     return Point2<T1>((T1)(this->x()), (T1)(this->y()));
   }
 
+  /*! \brief Invert the x and y of the point.*/
   void invert (){
     T app=X;
     X=Y;
@@ -1118,6 +1119,10 @@ public:
 
 };
 
+/*! \brief Invert the angle by inverting its reference system (swap x and y).
+    \param [in/out] The angle that need to be inverted.
+*/
+void invertAngle (Angle & a);
 
 /*!	\brief This class stores a configuration, that is a point and an angle.
 		\tparam T1 The type of the coordinates.
@@ -1380,8 +1385,16 @@ public:
     return ( Configuration2<T2>((T2)(this->x()), (T2)(this->y()), this->angle()) );
   }
 
+  /*! \brief Invert the x and y of the point, and even the angle of the configuration.*/
+  void invert (){
+    cout << "\n\nInversion of the configuration:\n";
+    cout << *this << endl;
+    coord.invert();
+    invertAngle(th);
+    cout << *this << endl;
+  }
+
   // ~Configuration2(){delete coord;}
 };
-
 
 #endif

@@ -9,17 +9,17 @@
 <intrinsicCalibrationFile>intrinsic_calibration.xml</intrinsicCalibrationFile>
 <calibrationFile>calib_config.xml</calibrationFile>
 <blackMask>
-  77 0 0 148 255 144</blackMask>
+  77 0 0 148 255 99</blackMask>
 <redMask>
-  99 38 151 180 248 255</redMask>
+  112 38 151 180 248 255</redMask>
 <greenMask>
   49 80 83 85 255 234</greenMask>
 <blueMask>
-  106 105 118 144 255 255</blueMask>
+  104 161 114 144 255 255</blueMask>
 <victimMask>
-  43 23 22 132 213 93</victimMask>
+  43 23 22 132 213 57</victimMask>
 <robotMask>
-  85 77 98 103 196 240</robotMask>
+  85 123 149 104 196 240</robotMask>
 <kernelSide>9</kernelSide>
 <convexHullFile>convexHull.xml</convexHullFile>
 <templatesFolder>num_template/</templatesFolder>
