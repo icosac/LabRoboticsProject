@@ -2,23 +2,30 @@
 #include<dubins.hh>
 
 #define ROB_PIECE_LENGTH 0.5
+#define KMAX 0.01
 
 int main (){
-	Configuration2<double> start(1.4, 0.0, Angle(0.0, Angle::RAD));
-	vector<Point2<double> > intermediates {Point2<double> (10.0, 0.0)};
-	Configuration2<double> end(0.0, 0.0, Angle(M_PI, Angle::RAD));
+	Configuration2<double> start(0.0, 0.0, Angle(M_PI/2.0, Angle::RAD));
+	Configuration2<double> end(200.0, 0.0, Angle(3.0*M_PI/2.0, Angle::RAD));
+	Configuration2<double> start_(300.0, 0.0, Angle(3.0*M_PI/2.0, Angle::RAD));
+	Configuration2<double> end_(500.0, 0.0, Angle(M_PI/2.0, Angle::RAD));
 
-	DubinsSet<double> d (start, end, Tuple<Point2<double> >(intermediates), 0.1);
-	cout << d << endl;
-	cout << d.getBegin() << endl;
-	cout << d.getEnd() << endl;
-	
-	
+	Dubins<double> A(start, end, KMAX);
+	Dubins<double> B(start_, end_, KMAX);
 
-	Tuple<Tuple<Tuple<Configuration2<double> > > > t = d.splitIt(ROB_PIECE_LENGTH);
-	for (auto a : t){
-		cout << a << endl;
-	}
+	cout << "A: " << endl << A << endl << endl;
+	cout << "B: " << endl << B << endl << endl;
+
+	DubinsSet<double> DS;
+	cout << "DS: " << endl << DS << endl << endl;
+
+	DS.addDubins(&A);
+	cout << "DS: " << endl << DS << endl << endl;
+	DS.addDubins(&B);
+	cout << "DS: " << endl << DS << endl << endl;
 
 	return 0;
 }
+
+
+

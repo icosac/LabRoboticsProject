@@ -142,6 +142,46 @@ Configuration2<double> circline(double _L,
                                 Configuration2<double> _P0,
                                 double _K);
 
+//TODO document
+template<class T>
+bool is_on_circarc( Point2<T> p0, 
+                    Point2<T> pi, 
+                    Point2<T> pf,
+                    Point2<T> p
+                  ){
+  //Compute circonference with Cramer
+  double d0=-((pow2(p0.x())+pow2(p0.y())));
+  double di=-((pow2(pi.x())+pow2(pi.y())));
+  double df=-((pow2(pf.x())+pow2(pf.y())));
+  //Compute determinants
+  double D = (p0.x()*pi.y())+(p0.y()*pf.x())+(pi.x()*pf.y()) - ( p0.x()*pf.y()+p0.y()*pi.x()+(pi.y()*pf.x()) );
+  double Da= (p0.x()*d0)+(p0.y()*df)+(pf.y()*di) - ( d0*pf.y()+di*p0.y()+df*pi.y() );
+  double Db= (p0.x()*di)+(d0*pf.x())+(pi.x()*df) - ( df*p0.x()+ d0*pi.x()+di*pf.x() );
+  double Dc= (p0.x()*pi.y()*df)+(p0.y()*di*pf.x())+(d0*pi.x()*pf.y()) - ( p0.x()*di*pf.y()+p0.y()*pi.x()*df+d0*pi.y()*pf.x() );
+  //Compute circle's parameters
+  double a=Da/D;
+  double b=Db/D;
+  double c=Dc/D;
+
+  bool ok=true;
+
+  if ( equal((pow2(p.x())+pow2(p.y())+a*p.x()+b*p.y()+c), 0.0) ){ //Check if point is on circonference
+    Point2<double> center (-a/2.0, -b/2.0); //Compute center
+
+    //Compute angles of extremities and point of intereset p. Mind that center.th(p0) is 0 only if p0 is on the right.
+    Angle th0=center.th(p0);
+    Angle thf=center.th(pf);
+    Angle th=center.th(p);
+  
+    if (th>=th0 && th<=thf){ //Point is not in the arc.
+      ok=false;
+    }
+  }
+  else {
+    ok=false;
+  }
+  return ok;
+}
 
 /*!
  * \brief Class to store a maneuver of Dubins. It inherits from `Curve`.
@@ -256,6 +296,26 @@ public:
     }
   }
 
+  bool is_on_dubinsArc(Configuration2<T2> C){ 
+    bool ok=false;
+    if (!equal(this->length(), 0.0)){
+      if (equal(this->getK(), 0.0)){ //Check if on line
+        cout << "Checking on line" << endl;
+        if(Curve<T2>::begin().angle()==C.angle()){
+          if (Curve<T2>::begin().point().th(C.point())==C.angle()) {
+            ok=true;
+          }
+        }
+      }
+      else {
+        cout << "Checking on arc" << endl;
+        Configuration2<T2> intermediate=circline(this->length()-this->length()/100.0, Curve<T2>::begin(), this->getK());
+        ok=is_on_circarc(Curve<T2>::begin().point(), intermediate.point(), Curve<T2>::end().point(), C.point());
+      }
+      cout << "Returning " << ok << endl;
+    }
+    return ok;
+  }
 };
 
 
@@ -818,6 +878,15 @@ public:
     A3.draw(dimX, dimY, inc, scl, image, D_SHIFT);
   }
 
+  bool is_on_dubins (Configuration2<T> C){
+    bool ok=false;
+    cout << *this << endl;
+    ok=A1.is_on_dubinsArc(C); cout << "Point " << C.point() << " is " << (ok ? "" : "not ") << "on arc 1" << endl; 
+    ok=A2.is_on_dubinsArc(C); cout << "Point " << C.point() << " is " << (ok ? "" : "not ") << "on arc 1" << endl; 
+    ok=A3.is_on_dubinsArc(C); cout << "Point " << C.point() << " is " << (ok ? "" : "not ") << "on arc 1" << endl << endl << endl; 
+    return (A1.is_on_dubinsArc(C) || A2.is_on_dubinsArc(C) || A3.is_on_dubinsArc(C));
+  }
+
 };
 
 /*!
@@ -1123,6 +1192,16 @@ public:
     this->L=DInf;
   }
 
+  int is_on_dubinsSet(Configuration2<T> C){
+    int ret=0;
+    bool ok=false;
+    for (ret=0; ret<this->getSize() && !ok; ret++){
+      ok=this->getDubins(ret).is_on_dubins(C);
+    }
+    if (!ok) ret=-1;
+    return --ret;
+  }
+
   bool addDubins(Dubins<T>* D){
     if (D->length()!=DInf){
       if (this->getSize()==0){
@@ -1137,8 +1216,26 @@ public:
         }
         else {
           if (this->getEnd()!=D->begin()){
-            cerr << "Cannot add a Dubins that's disconnected from the set." << this->getEnd() << " " << D->begin() << endl;
-            return false;
+            int pos=is_on_dubinsSet(D->begin());
+            if (pos>-1){ //Check if start is inside DubinSet somewhere
+              if (pos==this->getSize()-1){ //Then I remove the last Dubins, recompute it, readd it and add the new one.
+                Dubins<T> app (this->getDubins(pos).begin(), D->begin(), this->getKmax());
+                cout << app << endl;
+                this->removeDubins(pos);
+                this->dubinses.add(app);
+                this->L+=app.length();
+                this->dubinses.add(*D);
+                this->L+=D->length();
+              }
+              else{
+                cerr << "Cannot add a Dubins that's disconnected from the set, wrong position." << this->getEnd() << " " << D->begin() << endl;
+                return false;    
+              }
+            }
+            else {
+              cerr << "Cannot add a Dubins that's disconnected from the set." << this->getEnd() << " " << D->begin() << endl;
+              return false;
+            }
           }
           else {
             this->dubinses.add(*D);
@@ -1148,6 +1245,16 @@ public:
       }
     }
     return true;
+  }
+
+  bool removeDubins(uint pos){
+    if (pos>=this->getSize()){
+      return false;
+    } 
+    else {
+      this->L-=this->getDubins(pos).length();
+      this->dubinses.remove(pos);
+    }
   }
 
   DubinsSet<T> copy (DubinsSet<T>* DS)
