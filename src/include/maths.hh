@@ -616,16 +616,30 @@ public:
 
   /*! \brief Removes a value from the list.
   		\param[in] pos The position of the value to be removed.
-      \returns 1 if verything went fine, 0 otherwise.
+      \returns `true` if verything went fine, `false` otherwise.
 	*/
-  int remove (const T pos) {
-  	int res=0;
+  bool remove (const uint pos) {
+  	bool res=false;
   	if (pos>=0 && pos<n){
-  		res=1;
+  		res=true;
   		elements.erase(elements.begin()+pos);
   		n--;
   	}
   	return res;
+  }
+
+  //TODO document
+  bool remove_from (const uint pos){
+    bool res=true;
+    if (pos<this->size()){
+      for (uint i=pos; i<this->size() && res; i++){
+        res=this->remove(i);
+      }      
+    }
+    else {
+      res=false;
+    }
+    return res;
   }
 
   /*! \brief Removes all values from the `Tuple`.
