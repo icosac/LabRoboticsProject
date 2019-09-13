@@ -17,7 +17,6 @@ RobotProject::RobotProject(CameraCapture* camera, double& frame_time){
 	cout << "-> -> -> RobotProject constructor\n";
 	
 	sett->cleanAndRead("./exam/data/settings.xml");
-	cout << *sett << endl;
 
 	#ifdef CONFIGURE
 		Mat img;

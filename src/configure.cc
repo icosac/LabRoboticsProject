@@ -181,8 +181,6 @@ void configure(Mat& img, bool deploy, int img_id){
     cout << "Robot filter done: " << filter << endl;
   }
   sett->writeToFile();
-
-  cout << *sett << endl;
   
   // destroyAllWindows();
 }

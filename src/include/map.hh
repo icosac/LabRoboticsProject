@@ -22,7 +22,7 @@
 using namespace std;
 using namespace cv;
 
-enum OBJ_TYPE {FREE, VICT, OBST, GATE, BODA/*shortcut for border*/};
+enum OBJ_TYPE {FREE, VICT, OBST, GATE, BODA/*shortcut for border*/, OUT_OF_MAP};
 
 class Mapp{
     protected:
@@ -66,6 +66,9 @@ class Mapp{
         OBJ_TYPE getCellType(const int i, const int j);
         bool checkSegment(const Point2<int> & p0, const Point2<int> & p1);
             bool checkSegmentCollisionWithType(const Point2<int> & p0, const Point2<int> & p1, const OBJ_TYPE type);
+        bool checkPointInMap(Point2<int> P);
+            bool checkPointInActualMap(Point2<int> P);
+        bool checkCellInMap(const int i, const int j);
 
         Mat createMapRepresentation();
             void imageAddSegments(Mat & image, const vector<Point2<int> > & v, const int thickness=3);

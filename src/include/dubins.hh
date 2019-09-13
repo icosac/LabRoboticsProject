@@ -300,7 +300,6 @@ public:
     bool ok=false;
     if (!equal(this->length(), 0.0)){
       if (equal(this->getK(), 0.0)){ //Check if on line
-        cout << "Checking on line" << endl;
         if(Curve<T2>::begin().angle()==C.angle()){
           if (Curve<T2>::begin().point().th(C.point())==C.angle()) {
             ok=true;
@@ -308,11 +307,9 @@ public:
         }
       }
       else {
-        cout << "Checking on arc" << endl;
         Configuration2<T2> intermediate=circline(this->length()-this->length()/100.0, Curve<T2>::begin(), this->getK());
         ok=is_on_circarc(Curve<T2>::begin().point(), intermediate.point(), Curve<T2>::end().point(), C.point());
       }
-      cout << "Returning " << ok << endl;
     }
     return ok;
   }
@@ -879,11 +876,6 @@ public:
   }
 
   bool is_on_dubins (Configuration2<T> C){
-    bool ok=false;
-    cout << *this << endl;
-    ok=A1.is_on_dubinsArc(C); cout << "Point " << C.point() << " is " << (ok ? "" : "not ") << "on arc 1" << endl; 
-    ok=A2.is_on_dubinsArc(C); cout << "Point " << C.point() << " is " << (ok ? "" : "not ") << "on arc 1" << endl; 
-    ok=A3.is_on_dubinsArc(C); cout << "Point " << C.point() << " is " << (ok ? "" : "not ") << "on arc 1" << endl << endl << endl; 
     return (A1.is_on_dubinsArc(C) || A2.is_on_dubinsArc(C) || A3.is_on_dubinsArc(C));
   }
 
@@ -1254,6 +1246,7 @@ public:
     else {
       this->L-=this->getDubins(pos).length();
       this->dubinses.remove(pos);
+      return true;
     }
   }
 

@@ -10,7 +10,7 @@ namespace Planning {
     // TODO should I keep this or not?
     #define DELTA M_PI/180.0 //1 degree
     #define ROB_KMAX KMAX //0.01
-    #define ROB_PIECE_LENGTH 10
+    #define ROB_PIECE_LENGTH 20
     #define BONUS 5
 
     vector<Point2<int> > convertToVP(vector<vector<Point2<int> > > arr){
@@ -144,6 +144,8 @@ namespace Planning {
             vector<vector<Point2<int> > > vvp = minPathNPoints(vp, false);
         #endif
         
+        cout << "Path planned" << endl;
+
         vector<Configuration2<double> > cellsOfPath = convertToVC(vvp);
         Planning::map->imageAddPoints(imageMap, cellsOfPath);
         Planning::map->imageAddSegments(imageMap, cellsOfPath);
@@ -153,7 +155,7 @@ namespace Planning {
             imshow("Map2", imageMap);
             mywaitkey();
         #endif
-        
+        cout << "created second map" << endl;
         // #define NOT_DUBINS 
         #ifndef NOT_DUBINS
             //Add Dubins
@@ -199,72 +201,62 @@ namespace Planning {
     */
     void createMapp(){
         sett->cleanAndRead();
-        cout << "create0\n" << flush;
 
         //create the map
         int dimX=1000, dimY=1500;
         Planning::map = new Mapp(dimX, dimY);
-        cout << "create1\n" << flush;
 
         // open file
         #ifdef WAIT
             cout << "loadFile: " << sett->convexHullFile << endl;
         #endif
         FileStorage fs(sett->convexHullFile, FileStorage::READ);
-        cout << "CONVEXHULLFILE: " << (sett->baseFolder+sett->convexHullFile) << endl;
-        cout << "create2 a\n" << flush;
         
         // load vectors of vectors of objects
 
-            // Victims
-            vector< vector<Point2<int> > > vvpVictims;
-            Planning::loadVVP(vvpVictims, fs["victims"]);
-            vector<Victim> victims;
-            for(unsigned int i=0; i<vvpVictims.size(); i++){
-                victims.push_back( Victim(vvpVictims[i], i+1) );    // the victims are already sorted
-            }
-            Planning::map->addObjects(victims);
-            if(victims.size()==0){
-                cerr << "Warning: Loaded no victims for the creating of the map. " << __LINE__ << " " << __FILE__ << endl;
-            }
+        // Victims
+        vector< vector<Point2<int> > > vvpVictims;
+        Planning::loadVVP(vvpVictims, fs["victims"]);
+        vector<Victim> victims;
+        for(unsigned int i=0; i<vvpVictims.size(); i++){
+            victims.push_back( Victim(vvpVictims[i], i+1) );    // the victims are already sorted
+        }
+        Planning::map->addObjects(victims);
+        if(victims.size()==0){
+            cerr << "Warning: Loaded no victims for the creating of the map. " << __LINE__ << " " << __FILE__ << endl;
+        }
 
-            // Gate
-            vector< vector<Point2<int> > > vvpGates;
-            Planning::loadVVP(vvpGates, fs["gate"]);
+        // Gate
+        vector< vector<Point2<int> > > vvpGates;
+        Planning::loadVVP(vvpGates, fs["gate"]);
 
-            vector<Gate> gates;
-            for(unsigned int i=0; i<vvpGates.size(); i++){
-                gates.push_back( Gate(vvpGates[i]) );
+        vector<Gate> gates;
+        for(unsigned int i=0; i<vvpGates.size(); i++){
+            gates.push_back( Gate(vvpGates[i]) );
 
-                for(auto el : vvpGates[i]){
-                    cout << el << " ";
-                }
-                cout << endl;
-                gates[i].print();
+            for(auto el : vvpGates[i]){
+                cout << el << " ";
             }
-            Planning::map->addObjects(gates);
-            if(gates.size()==0){
-                throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no gate for the creating of the map.", __LINE__, __FILE__);
-            }
+            cout << endl;
+            gates[i].print();
+        }
+        Planning::map->addObjects(gates);
+        if(gates.size()==0){
+            throw MyException<string>(EXCEPTION_TYPE::GENERAL, "Loaded no gate for the creating of the map.", __LINE__, __FILE__);
+        }
 
-            // Obstacles
-            vector< vector<Point2<int> > > vvpObstacles;
-            cout << "create2 b\n" << flush;
-            Planning::loadVVP(vvpObstacles, fs["obstacles"]);
-            cout << "create2 c\n" << flush;
-            vector<Obstacle> obstacles;
-            for(unsigned int i=0; i<vvpObstacles.size(); i++){
-                obstacles.push_back( Obstacle(vvpObstacles[i]) );
-            }
-            cout << "create2 d\n" << flush;
-            Planning::map->addObjects(obstacles);
-            cout << "create2 e\n" << flush;
-            if(obstacles.size()==0){
-                cerr << "Warning: Loaded no obstacles for the creating of the map. " << __LINE__ << " " << __FILE__ << endl;
-            }
-            cout << "create3\n" << flush;
+        // Obstacles
+        vector< vector<Point2<int> > > vvpObstacles;
+        Planning::loadVVP(vvpObstacles, fs["obstacles"]);
+        vector<Obstacle> obstacles;
+        for(unsigned int i=0; i<vvpObstacles.size(); i++){
+            obstacles.push_back( Obstacle(vvpObstacles[i]) );
+        }
+        Planning::map->addObjects(obstacles);
+        if(obstacles.size()==0){
+            cerr << "Warning: Loaded no obstacles for the creating of the map. " << __LINE__ << " " << __FILE__ << endl;
+        }
 
-        cout << "create4\n" << flush;
     }
 
     /*! \brief The function load from the given fileNode a vector of vectors of Point2<int>.
@@ -374,7 +366,7 @@ namespace Planning {
         \returns A vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-1 connecctions.
     */
     vector<vector<Point2<int> > > minPathNPointsWithChoice(const vector<Point2<int> > & vp, const double bonus, const bool angle){
-
+        cout << "Begin minpath with BEST." << endl;
         //allocate
         double ** distances = allocateAADouble(map->getDimY(), map->getDimX());
         Point2<int> ** parents = allocateAAPointInt(map->getDimY(), map->getDimX());
@@ -439,16 +431,8 @@ namespace Planning {
         int bestDisp = 0;
         for(int el : disposizioni){
             intToVect(el, targets); //convert back to vector
-            
-            if(el==0){
-                cout << "0";
-            } else{
-                for(int c : targets){
-                    cout << c;
-                }
-            }
 
-            cout << " ->\tThe cost is: ";
+            cout << el << " ->\tThe cost is: ";
             if(targets.size()==0){
                 cost =       vvDist[0][ n-1 ];                            
                 cout << (int)vvDist[0][ n-1 ] << " = ";
@@ -473,19 +457,9 @@ namespace Planning {
                 bestDisp = el;
             }
         }
-        cout << "\nThe best cost is: " << bestCost << ", generated by the disp: ";
+        cout << "\nThe best cost is: " << bestCost << ", generated by the disp: " << bestDisp << endl << endl;
+        
         intToVect(bestDisp, targets);
-
-        if(bestDisp==0){
-            cout << "0";
-        } else{
-            for(int c : targets){
-                cout << c;
-            }
-        }
-        cout << endl;
-
-
         //prepare the return values
         vector< vector<Point2<int> > > vvp;
         if(targets.size()==0){
@@ -510,6 +484,7 @@ namespace Planning {
 
         deleteAAA(distancesAngles, map->getDimY(), map->getDimX());
         deleteAAAA(parentsAngles, map->getDimY(), map->getDimX(), nAngles);
+        cout << "End minpath with BEST." << endl;
 
         return(vvp);
     }
@@ -523,6 +498,7 @@ namespace Planning {
         \returns A vector of vector of points along the path (one for each cell of the grid of the map). Each vector is the best path for one connection, given n points there are n-1 connecctions.
     */
     vector<vector<Point2<int> > > minPathNPoints(const vector<Point2<int> > & vp, const bool angle){
+        cout << "Begin minpath." << endl;
         //function
         vector<vector<Point2<int> > > vvp;
         // with Angles version
@@ -545,15 +521,18 @@ namespace Planning {
         double ** distances = allocateAADouble(map->getDimY(), map->getDimX());
         Point2<int> ** parents = allocateAAPointInt(map->getDimY(), map->getDimX());
 
+        cout << "vp: " << vp.size() << endl;
         // function
         for(; i<(int)(vp.size())-1; i++){
+            cout << "computing " << i << endl;
             vvp.push_back( minPathTwoPointsInternal(vp[i], vp[i+1], distances, parents));
+            cout << "end computing " << i << endl;
         }
 
         //delete
         deleteAA(distances, map->getDimY());
         deleteAA(parents, map->getDimY());
-        
+        cout << "End minpath." << endl;
         return(vvp);
     }
 
@@ -632,7 +611,7 @@ namespace Planning {
                 computedDistances[(i+r)*side + (j+r)]  = sqrt( pow(i,2) + pow(j,2) );
             }
         }
-
+        cout << "start iteration" << endl;
         // start iteration of the BFS
         while( !toProcess.empty() && found<=foundLimit ){
             // for each cell from the queue
@@ -649,11 +628,9 @@ namespace Planning {
                     int ii = i+iC, jj = j+jC;
 
                     // The cell itself (when i=0 and j=0) is here considered but never added to the queue due to the logic of the BFS
-                    if( Planning::map->getCellType(ii, jj) == GATE
-                        || (Planning::map->getOffsetValue() <= ii*Planning::map->getCellSize() 
-                        && Planning::map->getOffsetValue() <= jj*Planning::map->getCellSize() 
-                        && ii*Planning::map->getCellSize() <  Planning::map->getActualLengthY()
-                        && jj*Planning::map->getCellSize() <  Planning::map->getActualLengthX() )){
+                    if( Planning::map->checkPointInActualMap(Point2<int>( jj*Planning::map->getCellSize(), ii*Planning::map->getCellSize() ))
+                        ||
+                        (  Planning::map->checkCellInMap(ii, jj) && Planning::map->getCellType(ii, jj) == GATE ) ){
 
                         if( Planning::map->getCellType(ii, jj) != OBST 
                             && (dist<initialDistAllowed || map->getCellType(ii, jj) != BODA )
@@ -675,6 +652,7 @@ namespace Planning {
             }
         }
 
+        cout << "End iteration" << endl;
         // reconstruct the vector of parents of the cells in the minPath
         vector<Point2<int> > computedParents;
 
@@ -789,11 +767,9 @@ namespace Planning {
                     // In case of first segment, it is also neccessary to check that the angle of the new point is more or less correct respect to the previous one.
                     if(fabs( myAngle-thC ) < angleRange ){
                         // The cell itself (when i=0 and j=0) is here considered but never added to the queue due to the logic of the BFS
-                        if( Planning::map->getCellType(ii, jj) == GATE
-                            || (Planning::map->getOffsetValue() <= ii*Planning::map->getCellSize() 
-                            && Planning::map->getOffsetValue() <= jj*Planning::map->getCellSize() 
-                            && ii*Planning::map->getCellSize() <  Planning::map->getActualLengthY()
-                            && jj*Planning::map->getCellSize() <  Planning::map->getActualLengthX() )){
+                        if( Planning::map->checkPointInActualMap(Point2<int>( jj*Planning::map->getCellSize(), ii*Planning::map->getCellSize() ))
+                            ||
+                            (  Planning::map->checkCellInMap(ii, jj) && Planning::map->getCellType(ii, jj) == GATE ) ){
                             // cell is allowed
                             if( map->getCellType(ii, jj) != OBST
                                 // && (dist<initialDistAllowed || map->getCellType(ii, jj) != BODA )
@@ -875,6 +851,7 @@ namespace Planning {
             v.push_back(c%10);
             c /= 10;
         }
+        reverse(v.begin(), v.end());
     }
 
     /*! \brief It reset, to the given value, the matrix of distances, to compute again the minPath search.
@@ -1044,31 +1021,37 @@ namespace Planning {
         }
     }
 
-    inline bool in_map(Point2<double> P) {
-        return (Planning::map->getPointType(P)==GATE || (P.x()<Planning::map->getActualLengthX() && P.y()<Planning::map->getActualLengthY() 
-                && P.x()>Planning::map->getOffsetValue() && P.y()>Planning::map->getOffsetValue()));
-    }
-
     template<class T>
     bool check_dubins_D (Dubins<T>& D){
-        Tuple<Tuple<Configuration2<T> > > vPDub=D.splitIt(ROB_PIECE_LENGTH);
+        cout << "Checking dubins " << endl; 
+        Tuple<Tuple<Configuration2<T> > > vPDub=D.splitIt(10);
         bool ok=true;
-        for (int j=0; (j<3 && ok); j++){    
-            for (int k=0; (k<(vPDub[j].size()-1) && ok); k++){    
-                if (Planning::map->checkSegment(vPDub[j][k].point(), vPDub[j][k+1].point())){
-                    // cout << "Segment through obstacles: " << vPDub[j][k].point() << " " << vPDub[j][k+1].point() << endl;
+        for (int j=0; j<3 && ok; j++){ 
+            cout << "j: " << j << endl;   
+            for (int k=0; (k<(int)(vPDub[j].size())-1) && ok; k++){    
+                cout << "k: " << k << endl;
+                if(!(Planning::map->checkPointInActualMap(vPDub[j][k].point()) || Planning::map->getPointType(vPDub[j][k].point())==GATE)) {
+                    cout << "Point of index " << k << " out of map: " << vPDub[j][k] << endl;
+                    ok=false;
+                } 
+                else if (Planning::map->checkSegment(vPDub[j][k].point(), vPDub[j][k+1].point())){
+                    cout << "Segment through obstacles: " << vPDub[j][k].point() << " " << vPDub[j][k+1].point() << endl;
                     ok=false;
                 }
-                else if(!in_map(vPDub[j][k].point())){
-                    // cout << "Point of index " << k << " out of map: " << vPDub[j][k] << endl;
-                    ok=false;
-                }
+                cout << "end of k " << k << endl;
             }
+            cout << "Checking type of cell." << endl;
             if (Planning::map->getPointType(vPDub[j][vPDub[j].size()-1].point())==OBJ_TYPE::OBST){
-                // cout << "Last point is on obstacle: " << vPDub[j].back().point() << endl;
+                cout << "Last point is on obstacle: " << vPDub[j].back().point() << endl;
                 ok=false;
             }
+            else if (Planning::map->getPointType(vPDub[j][vPDub[j].size()-1].point())==OBJ_TYPE::OUT_OF_MAP){
+                cout << "Last point is out of map: " << vPDub[j].back().point() << endl;
+                ok=false;
+            }
+            cout << "end of j " << j << endl; 
         }
+        cout << "End checking dubins " << ok << endl; 
         return ok;
     }
 
@@ -1187,17 +1170,15 @@ namespace Planning {
 
         DubinsSet<double> DS;
         bool ok=false;
-        uint i=0;
+
+        cout << "vC1.size(): " << vC1.size() << " vC2.size(): " << vC2.size() << endl;
 
         for (vC1_id=SCRAP; vC1_id<vC1.size()-SCRAP && !ok; vC1_id++){
             for (vC2_id=vC2.size()-SCRAP; vC2_id>SCRAP && !ok; vC2_id--){
-
                 DS=DubinsSet<double> (vC1[vC1_id], vC2[vC2_id], Tuple<Point2<double> >(vector<Point2<double> >{vC1.back().point()}), ROB_KMAX);
                 ok=check_dubins_DS(DS);
-                i++;
             }
         }
-        cout << "i: " << i << endl;
         if (ok){
             cout << DS << endl;
             vC1_pos=vC1_id;
@@ -1205,6 +1186,7 @@ namespace Planning {
         }
         if (!ok){//Oh boy we are in truble. 
             //First I try to create a Dubins from a point to the victim.
+            cout << "TRYING MORE DUBINS" << endl;
             DS.clean();
             Dubins<double> D;
             Configuration2<double> end=vC1.back(); //I want to arrive to the victim with an angle such as the direction
@@ -1230,7 +1212,7 @@ namespace Planning {
                             new_DS=DubinsSet<double> (start, end, Tuple<Point2<double> > (vector<Point2<double> >{intermediate}), ROB_KMAX);
                             ok=check_dubins_DS(new_DS);
                             intermediate.offset(INCREASE, start.angle());
-                        } while(in_map(intermediate.offset(INCREASE, start.angle())) && !ok);
+                        } while(Planning::map->checkPointInActualMap(intermediate.offset(INCREASE, start.angle())) && !ok);
 
                     }
                 }
@@ -1258,6 +1240,7 @@ namespace Planning {
         Dubins<double> dub;
         bool ok=false;
         const uint size=vConfs.size()-1;
+        cout << "size: " << size << endl;
         for (uint i=size-2; (i>0 && !ok); i--){ //I continue until the points are empty or until a feasible dubins is not found. 
             ok=true; //Need to reset this each loop
             if (start){
@@ -1267,9 +1250,11 @@ namespace Planning {
                 dub=Dubins<double>(vConfs[size-i-1], anchorPoint, ROB_KMAX);
             }
 
+            cout << "dubins computed " << i << " " << dub.getId() << endl;
+
             if(dub.getId()<0){
                 ok = false;
-                cout << "Couldn't compute Dubins" << endl;
+                cerr << "Couldn't compute Dubins" << endl;
             }
             else {                
                 ok=check_dubins_D(dub);
@@ -1282,7 +1267,9 @@ namespace Planning {
                     }
                 }
             }
+            cout << "Dubins computed " << i << endl;
         }
+        cout << "End dubins start/end" << endl;
         if (ok){
             return dub;
         }
@@ -1360,7 +1347,8 @@ namespace Planning {
     void inter_victims(vector<vector<Configuration2<double> > >& vvConfs,
                             vector<int>& vI,
                             DubinsSet<double>& path,
-                            vector<DubinsSet<double> >& victimV){
+                            vector<DubinsSet<double> >& victimV)
+    {
         Configuration2<double> right, left;
         
         for (uint i=0; i<vvConfs.size(); i++){ 
@@ -1371,14 +1359,13 @@ namespace Planning {
             catch(exception& e){
                 cerr << e.what() << endl;
                 ok=false;
-            }        
-            if (ok){
-                cout << "EVVIVA" << endl;
-            }
+            }    
             if (vI[i*2]<vI[i*2+1]){ //Right < Left
                 right= vvConfs[i][vI[i*2]];
                 left= vvConfs[i][vI[i*2+1]];
-                cout << "Trying Dubins from: " << right << " to " << left << endl;
+                #ifdef DEBUG
+                    cout << "Trying Dubins from: " << right << " to " << left << endl;
+                #endif
                 Dubins<double> D = Dubins<double> (left, right, ROB_KMAX);
                 ok=true;
                 if (!equal(D.length(), DInf) && check_dubins_D(D)){
@@ -1393,9 +1380,6 @@ namespace Planning {
                 else {
                     cerr << "No Dubins could be created between Configurations " << right << " and " << left << endl;
                     ok=false;
-                }
-                if (ok){
-                    cout << "EVVIVA" << endl;
                 }
                 
             }
@@ -1424,7 +1408,7 @@ namespace Planning {
         if (start.length()!=DInf){
             cout << "Starting Dubins found." << endl << flush;
             uint app=start_pos;
-            vector<Configuration2<double> > new_points=vvCtovC(start.splitIt(ROB_PIECE_LENGTH));
+            vector<Configuration2<double> > new_points=vvCtovC(start.splitIt((ROB_PIECE_LENGTH>10.0) ? ROB_PIECE_LENGTH/2.0 : ROB_PIECE_LENGTH));
             start_pos=new_points.size()-1;
             for (uint i=app+1; i<vvConfs[0].size(); i++){
                 new_points.push_back(vvConfs[0][i]);
@@ -1444,6 +1428,7 @@ namespace Planning {
         DubinsSet<double> victim;
 
         for (uint i=0; i<vvConfs.size()-1; i++){
+            cout << "Trying Dubins for victim: " << i << endl;
             try{
                 victim=victims_dubins(vvConfs[i], vvConfs[i+1], start_pos, end_pos);
             } 
@@ -1463,6 +1448,7 @@ namespace Planning {
                 for (uint j=0; j<new_points.size(); j++){
                     V1.push_back(new_points[j]);
                 }
+                cout << "Created first sector" << endl;
                 //Second vector
                 vector<Configuration2<double> > V2={};
                 new_points=vvvCtovC(DubinsSet<double>(victim.getDubinsFrom(1)).splitIt(ROB_PIECE_LENGTH));
@@ -1485,6 +1471,7 @@ namespace Planning {
 
         //Create Dubins for final path.
         Dubins<double> end;
+        cout << "Creating Dubins for end" << endl;
         try{
             end=start_end_dubins(Configuration2<double>(vvConfs.back().back().point(), compute_final_angle(vvConfs.back().back())),
                                  vvConfs.back(), end_pos, false); //TODO find better implementation for final angle
@@ -1512,14 +1499,13 @@ namespace Planning {
             new_draw(vvConfs, "map end");
         }
 
-        inter_victims(vvConfs, vI, path, victimV);
-
-        try {
-            path.addDubins(&end);
-        }
-        catch (exception& e){
-            cerr << e.what() << endl;
-        }
+        // try {
+        //     inter_victims(vvConfs, vI, path, victimV);
+        //     path.addDubins(&end);
+        // }
+        // catch (exception& e){
+        //     cerr << e.what() << endl;
+        // }
 
         cout << "End of using Dubins" << endl << flush;
         cout << "vI: " << vI.size() << endl;

@@ -235,6 +235,9 @@ void Mapp::getGateCenter(vector<Point2<int> > & vp){
     \returns The type (OBJ_TYPE) of the cell.
 */
 OBJ_TYPE Mapp::getPointType(const Point2<int> & p){
+    if (!this->checkPointInMap(p)){
+        return OUT_OF_MAP;
+    }
     int j = p.x()/pixX;
     int i = p.y()/pixY;
     return(map[i][j]);
@@ -247,6 +250,9 @@ OBJ_TYPE Mapp::getPointType(const Point2<int> & p){
     \returns The type (OBJ_TYPE) of the requested cell.
 */
 OBJ_TYPE Mapp::getCellType(const int i, const int j){
+    if(!this->checkCellInMap(i, j)){
+        return OUT_OF_MAP;
+    }
     return(map[i][j]);
 }
 
@@ -258,13 +264,19 @@ OBJ_TYPE Mapp::getCellType(const int i, const int j){
     \returns True if the type was found, false otherwise.
 */
 bool Mapp::checkSegmentCollisionWithType(const Point2<int> & p0, const Point2<int> & p1, const OBJ_TYPE type){
+    if (!this->checkPointInMap(p0) || !this->checkPointInMap(p1)){
+        return false;
+    }
+    cout << "checkSegmentCollisionWithType" << endl;
     set<pair<int, int> > collisionSet = cellsFromSegment(p0, p1);
     for(auto el:collisionSet){
         int i=get<0>(el), j=el.second;  // two methods for get elements from a pair structure
         if( map[i][j] == type ){
+            cout << "checkSegmentCollisionWithType end" << endl;
             return(true);
         }
     }
+    cout << "checkSegmentCollisionWithType end" << endl;
     return(false);
 }
 
@@ -276,7 +288,23 @@ bool Mapp::checkSegmentCollisionWithType(const Point2<int> & p0, const Point2<in
     \returns True if the obstacles were crossed, false otherwise.
 */
 bool Mapp::checkSegment(const Point2<int> & p0, const Point2<int> & p1){
+    cout << "checkSegment" << endl;
     return(checkSegmentCollisionWithType(p0, p1, OBST));
+}
+
+bool Mapp::checkPointInMap(Point2<int> P) {
+    return (P.x()<this->getLengthX() && P.y()<this->getLengthY() 
+            && P.x()>=0 && P.y()>=0);
+}
+
+bool Mapp::checkPointInActualMap(Point2<int> P){
+    return (P.x()<this->getActualLengthX() && P.y()<this->getActualLengthY() 
+            && P.x()>this->getOffsetValue() && P.y()>this->getOffsetValue());
+}
+
+bool Mapp::checkCellInMap(const int i, const int j){
+    return (j>=0 && i>=0 &&
+            j<this->getDimX() && i<this->getDimY());
 }
 
 /*! \brief The function create an image (Mat) with the dimensions of the Mapp and all its objects inside.
