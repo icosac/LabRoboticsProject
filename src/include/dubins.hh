@@ -202,7 +202,7 @@ public:
   /*!
    * Plain constructor of `DubinsArc` that sets L and K to 0 and creates a plain `Curve`.
    */
-  DubinsArc () : L(0), K(0), Curve<T2>() {}
+  DubinsArc () : Curve<T2>(), L(0), K(0) {}
 
   /*!
    * Creates a new `DubinsArc` given a start `Configuration2`, the curvature and the length of the arc calling `circline()`.
@@ -276,9 +276,9 @@ public:
    * \param[in] inc The value to scale each point.
    * \param[in] scl The Scalar that defines the color to use.
    * \param[in] image The Mat where to draw the points.
-   * \param[in] D_SHIFT The value to use to shift the points to make them stay inside the matrix.
+   * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double D_SHIFT){
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=D_SHIFT){
     // Mat imageMap(dimX, dimY, CV_8UC3, Scalar(255,255,255));
     for (auto point : this->splitIt(1)){
       if (point.x()>dimX || point.y()>dimY){
@@ -287,12 +287,12 @@ public:
         Mat newMat(x, y, CV_8UC3, Scalar(255, 255, 255));
         for (double _x=0; _x<dimX; _x++){
           for (double _y=0; _y<dimY; _y++){
-            rectangle(newMat, Point(_x+D_SHIFT, _y+D_SHIFT),Point(_x+inc+D_SHIFT, _y+inc+D_SHIFT), scl, -1);
+            rectangle(newMat, Point(_x+SHIFT, _y+SHIFT),Point(_x+inc+SHIFT, _y+inc+SHIFT), scl, -1);
           }
         }
         image=newMat;
       }
-      rectangle(image, Point(point.x()+D_SHIFT, point.y()+D_SHIFT), Point(point.x()+inc+D_SHIFT, point.y()+inc+D_SHIFT), scl, -1);
+      rectangle(image, Point(point.x()+SHIFT, point.y()+SHIFT), Point(point.x()+inc+SHIFT, point.y()+inc+SHIFT), scl, -1);
     }
   }
 
@@ -336,7 +336,7 @@ public:
   /*!
    * Plain constructor for Dubins that calls the plain constructor of `Curve` and `DubinsArc`.
    */
-  Dubins () : Kmax(KMAX), Curve<T>(), L(DInf) {
+  Dubins () : Curve<T>(), Kmax(KMAX), L(DInf) {
     A1=DubinsArc<T>();
     A2=DubinsArc<T>();
     A3=DubinsArc<T>();
@@ -867,12 +867,12 @@ public:
    * \param[in] inc The value to scale each point.
    * \param[in] scl The Scalar that defines the color to use.
    * \param[in] image The Mat where to draw the points.
-   * \param[in] D_SHIFT The value to use to shift the points to make them stay inside the matrix.
+   * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double D_SHIFT=0){
-    A1.draw(dimX, dimY, inc, scl, image, D_SHIFT);
-    A2.draw(dimX, dimY, inc, scl, image, D_SHIFT);
-    A3.draw(dimX, dimY, inc, scl, image, D_SHIFT);
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
+    A1.draw(dimX, dimY, inc, scl, image, SHIFT);
+    A2.draw(dimX, dimY, inc, scl, image, SHIFT);
+    A3.draw(dimX, dimY, inc, scl, image, SHIFT);
   }
 
   bool is_on_dubins (Configuration2<T> C){
@@ -1008,19 +1008,6 @@ public:
       area=area/8.0;
       i++;
     }
-
-    #ifdef DEBUG 
-      Mat best_img(D_DIMY, D_DIMX, CV_8UC3, Scalar(255, 255, 255));
-      for (auto point : _points){
-        rectangle(best_img, Point(point.x()-D_INC/2+D_SHIFT, point.y()-D_INC/2+D_SHIFT), Point(point.x()+D_INC/2+D_SHIFT, point.y()+D_INC/2+D_SHIFT), Scalar(0,0,0) , -1);
-      }
-      for (auto dub : this->dubinses){
-        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, D_SHIFT);
-      }
-      my_imshow("best", best_img, true);
-      mywaitkey();
-      cout << *this << endl;
-    #endif
   }
 
   /*!
@@ -1073,26 +1060,17 @@ public:
     COUT(_points.size())
     disp(angles, _angles, tries, inc, 1, _points.size()-2); //startPos=1 and endPos=size()-2 since I have to check for all angles except the first and the last.
 
-    #ifdef DEBUG
-      cout << "Considered angles: " << endl;
-      for (auto tupla : angles){
-        cout << "<";
-        for (int i=0; i<tupla.size(); i++){
-          cout << tupla.get(i).to_string(Angle::DEG).str() << (i==tupla.size()-1 ? "" : ", ");
-        }
-        cout << ">" << endl;
-      }
-      cout << endl;
-
-      Mat image(D_DIMY, D_DIMX, CV_8UC3, Scalar(255, 255, 255));
-
-      for (auto point : _points){
-          rectangle(image, Point(point.x()-D_INC/2+D_SHIFT, point.y()-D_INC/2+D_SHIFT), Point(point.x()+D_INC/2+D_SHIFT, point.y()+D_INC/2+D_SHIFT), Scalar(0,0,0) , -1);
-      }
-
-      my_imshow("dubin", image, true);
-      mywaitkey();
-    #endif
+    // #ifdef DEBUG
+    //   cout << "Considered angles: " << endl;
+    //   for (auto tupla : angles){
+    //     cout << "<";
+    //     for (int i=0; i<tupla.size(); i++){
+    //       cout << tupla.get(i).to_string(Angle::DEG).str() << (i==tupla.size()-1 ? "" : ", ");
+    //     }
+    //     cout << ">" << endl;
+    //   }
+    //   cout << endl;
+    // #endif
 
     //Compute Dubins
     // Tuple<Tuple<Dubins<T> > > allDubins;
@@ -1123,15 +1101,6 @@ public:
     }
 
     #ifdef DEBUG 
-      Mat best_img(D_DIMY, D_DIMX, CV_8UC3, Scalar(255, 255, 255));
-      for (auto point : _points){
-        rectangle(best_img, Point(point.x()-D_INC/2+D_SHIFT, point.y()-D_INC/2+D_SHIFT), Point(point.x()+D_INC/2+D_SHIFT, point.y()+D_INC/2+D_SHIFT), Scalar(0,0,0) , -1);
-      }
-      for (auto dub : this->dubinses){
-        dub.draw(1500, 1000, 1, Scalar(255, 0, 0), best_img, D_SHIFT);
-      }
-      // my_imshow("best", best_img, true);
-      // mywaitkey();
       cout << *this << endl;
     #endif
 
@@ -1279,7 +1248,7 @@ public:
         }
         else { //Otherwise I need to split the set and then add the Dubins.
           DubinsSet<T> new_DS;
-          for (uint i=0; i<startPos; i++){ 
+          for (int i=0; i<startPos; i++){ 
             if (!(new_DS.addDubins(this->getDubinsPtr(i)))){
               return DubinsSet<T>();
             }
@@ -1289,7 +1258,7 @@ public:
               return DubinsSet<T>();
             }
           }
-          for (uint i=startPos; i<this->getSize(); i++){
+          for (int i=startPos; i<this->getSize(); i++){
             if (!(new_DS.addDubins(this->getDubinsPtr(i)))){
               return DubinsSet<T>();
             }

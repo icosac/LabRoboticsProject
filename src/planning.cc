@@ -1014,6 +1014,7 @@ namespace Planning {
             path.points[path.points.size()-1].kappa = 0.0;
             path.points[path.points.size()-2].kappa = 0.0;
             path.points[path.points.size()-3].kappa = 0.0;
+            path.points.pop_back();
 
             cout << "Path elements:\n";
             for(i=0; i<path.size(); i++){
@@ -1076,11 +1077,11 @@ namespace Planning {
             Configuration2<double> end=vC[vC_id]; 
             Configuration2<double> start=_start;
 
-            Angle offset(-2.0*M_PI/3.0, Angle::RAD);
+            Angle offset(-3.0*M_PI/4.0, Angle::RAD);
             start.offset_angle(offset);
             //Then I try to find a DubinsSet from the victim to a point in V2 with different orientation in \phi-60, \phi+60
             
-            for (int i=0; i<(offset.toRad()*2.0/(20.0*::DEGTORAD)+1) && !ok; i++){
+            for (int i=0; i<(offset.toRad()*2.0/(10.0*::DEGTORAD)+1) && !ok; i++){
                 start.offset_angle(Angle(20.0*::DEGTORAD, Angle::RAD));
                 Point2<double> intermediate=::circline(INCREASE, start, 0);
                 do {
@@ -1188,7 +1189,7 @@ namespace Planning {
             }//I should never need to find a way around for the end and, if I do, it's probably going to be too expensive 
             else {
                 cout << "TRYING MORE DUBINS" << endl;
-                for (uint i=0; i<(int)(vConfs.size()-SCRAP) && !ok; i++){
+                for (int i=0; i<(int)(vConfs.size()-SCRAP) && !ok; i++){
                     ok=compute_roundabout_dubins(ds, vConfs[i], vector<Configuration2<double> >{anchorPoint}, pos, true);
                 }
             }
@@ -1278,34 +1279,29 @@ namespace Planning {
     {
         Configuration2<double> right, left;
         cout << "vvConfs.size(): " << vvConfs.size() << " vI.size: " <<  vI.size() << endl; 
-        for (int i=0; i<(int)vvConfs.size() && i<(int)(vI.size()/2); i++){ 
+        for (int i=0; i<(int)vvConfs.size() && i<(int)(vI.size()/2) && victimV.size()>0; i++){ 
             cout << "Adding victim: " << i << endl;
-            bool ok=true;
             try{
                 path.join(&victimV[i]);
             }
             catch(exception& e){
                 cerr << "inter_victims: " << e.what() << endl;
-                ok=false;
             }    
             if (vI[i*2]<vI[i*2+1]){ //Right < Left
                 right= vvConfs[i][vI[i*2]];
                 left= vvConfs[i][vI[i*2+1]];
                 cout << "Trying Dubins from: " << right << " to " << left << endl;
                 Dubins<double> D = Dubins<double> (left, right, ROB_KMAX);
-                ok=true;
                 if (!equal(D.length(), DInf) && check_dubins_D(D)){
                     try{
                         path.addDubins(&D);
                     }
                     catch (exception& e){
                         cerr << e.what() << endl;
-                        ok=false;
                     }
                 }
                 else {
                     cerr << "No Dubins could be created between Configurations " << right << " and " << left << endl;
-                    ok=false;
                 }
                 
             }
@@ -1345,15 +1341,13 @@ namespace Planning {
             vI.push_back(start_pos);
         } 
 
-        cout << "vvConfs " << vvConfs[0].size() << endl;
-
         new_draw(vvConfs, "Map Start");
 
         //Create Dubins for victims
         vector<DubinsSet<double> >victimV; //TODO do i use this??
         DubinsSet<double> victim;
 
-        for (uint i=0; i<vvConfs.size()-1; i++){
+        for (int i=0; i<(int)(vvConfs.size())-1; i++){
             cout << "Trying Dubins for victim: " << i << endl;
             try{
                 victim=victims_dubins(vvConfs[i], vvConfs[i+1], start_pos, end_pos);
@@ -1374,7 +1368,6 @@ namespace Planning {
                 for (uint j=0; j<new_points.size(); j++){
                     V1.push_back(new_points[j]);
                 }
-                cout << "Created first sector" << endl;
                 //Second vector
                 vector<Configuration2<double> > V2={};
                 new_points=vvvCtovC(DubinsSet<double>(victim.getDubinsFrom(1)).splitIt(ROB_PIECE_LENGTH));
@@ -1389,10 +1382,7 @@ namespace Planning {
                 vI.push_back(start_pos);
                 vI.push_back(end_pos);
 
-                cout << "Finished setting victim " << i+1 << endl << flush; 
-
                 new_draw(vvConfs, ("map victim "+to_string(i+1)));
-                cout << "victim.getDubins(victim.size()-1).end(): " << victim.getDubins(victim.getSize()-1).end() << endl;
             }
         }
 
@@ -1447,7 +1437,7 @@ namespace Planning {
         vector<Configuration2<double> > left, right;
         cout << "vvConfs.size: " << vvConfs.size() << endl;
         cout << "(int)(vI.size()/2): " << (int)(vI.size()/2) << endl;
-        for (uint i=0; i<(int)(vI.size()/2) && i<vvConfs.size(); i++){ 
+        for (uint i=0; i<(uint)(vI.size()/2) && i<(uint)(vvConfs.size()); i++){ 
             right.push_back(vvConfs[i][vI[i*2]]);
             left.push_back(vvConfs[i][vI[i*2+1]]);
             cout << i << " Right: " << right.back() << " left: " << left.back() << endl;

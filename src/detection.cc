@@ -99,11 +99,6 @@ pair<Configuration2<double>, Configuration2<double> > localize(const Mat & img, 
 
     Mat hsv_img;
     cvtColor(img, hsv_img, COLOR_BGR2HSV);
-    #ifdef WAIT
-        my_imshow("Img to localize", img, false);
-        my_imshow("Img for localize", hsv_img, false);
-        mywaitkey('q');
-    #endif
 
     shape_detection(hsv_img, CYAN);//find robot
     
@@ -213,7 +208,7 @@ void shape_detection(const Mat & img, const COLOR_TYPE color){
     inRange(img, mask.Low(), mask.High(), color_mask);
     
     #ifdef DEBUG
-        my_imshow("Color_filter", color_mask);
+        if(color!=CYAN) my_imshow("Color_filter", color_mask);
     #endif
 
     find_contours(color_mask, img, color);

@@ -309,6 +309,7 @@ bool Mapp::checkCellInMap(const int i, const int j){
 Mat Mapp::createMapRepresentation(){
     // example code at: https://docs.opencv.org/2.4/doc/tutorials/core/basic_geometric_drawing/basic_geometric_drawing.html
     Mat imageMap(lengthY, lengthX, CV_8UC3, Scalar(47, 98, 145));// empty map
+
     for(int i=0; i<dimY; i++){
         for(int j=0; j<dimX; j++){
             if(map[i][j]!=FREE){
@@ -336,6 +337,12 @@ Mat Mapp::createMapRepresentation(){
             }
         }
     }
+    
+    imageAddSegment(imageMap, Point2<int>(getOffsetValue(), getOffsetValue()), Point2<int>(getActualLengthX(), getOffsetValue()), 3, Scalar(0, 0, 50));
+    imageAddSegment(imageMap, Point2<int>(getActualLengthX(), getOffsetValue()), Point2<int>(getActualLengthX(), getActualLengthY()), 3, Scalar(0, 0, 50));
+    imageAddSegment(imageMap, Point2<int>(getActualLengthX(), getActualLengthY()), Point2<int>(getOffsetValue(), getActualLengthY()), 3, Scalar(0, 0, 50));
+    imageAddSegment(imageMap, Point2<int>(getOffsetValue(), getActualLengthY()), Point2<int>(getOffsetValue(), getOffsetValue()), 3, Scalar(0, 0, 50));
+
     return(imageMap);
 }
 
@@ -378,11 +385,11 @@ void Mapp::imageAddSegments(Mat & image, const vector<Configuration2<double> > &
     \param[in] p1 The end point of the segment.
     \param[in] thickness The thickness of the line to be drawn.
 */
-void Mapp::imageAddSegment(Mat & image, const Point2<int> & p0, const Point2<int> & p1, const int thickness){
+void Mapp::imageAddSegment(Mat & image, const Point2<int> & p0, const Point2<int> & p1, const int thickness, const Scalar color){
     line( image, 
         Point(p0.x(), p0.y()), 
         Point(p1.x(), p1.y()), 
-        Scalar(0, 255, 255),
+        color,
         thickness);
 }
 

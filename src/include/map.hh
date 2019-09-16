@@ -73,7 +73,7 @@ class Mapp{
         Mat createMapRepresentation();
             void imageAddSegments(Mat & image, const vector<Point2<int> > & v, const int thickness=3);
             void imageAddSegments(Mat & image, const vector<Configuration2<double> > & v, const int thickness=3);
-            void imageAddSegment(Mat & image, const Point2<int> & p0, const Point2<int> & p1, const int thickness);
+            void imageAddSegment(Mat & image, const Point2<int> & p0, const Point2<int> & p1, const int thickness=3, const Scalar color = Scalar(0, 255, 255));
             void imageAddPoints(Mat & image, const vector<Configuration2<double> > & v, const int radius=7);
             void imageAddPoints(Mat & image, const vector<Point2<int> > & vp, const int radius=7);
             void imageAddPoint(Mat & image, const Point2<int> & p, const int radius=7, const Scalar color = Scalar(0, 255, 255));

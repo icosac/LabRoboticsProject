@@ -1401,11 +1401,8 @@ public:
 
   /*! \brief Invert the x and y of the point, and even the angle of the configuration.*/
   void invert (){
-    cout << "\n\nInversion of the configuration:\n";
-    cout << *this << endl;
     coord.invert();
     invertAngle(th);
-    cout << *this << endl;
   }
 
   // ~Configuration2(){delete coord;}
