@@ -128,6 +128,9 @@ namespace Planning {
 
 
         Mat imageMap = Planning::map->createMapRepresentation();
+        Planning::map->imageAddPoint(imageMap, conf.point(), 10, Scalar(0,0,0));
+        Planning::map->imageAddPoint(imageMap, conf.point().offset(20, conf.angle()), 10, Scalar(100,100,100));
+
         cout << "Created map" << endl << flush;
 
         #if defined WAIT || defined SHOW_MAP
@@ -1060,23 +1063,28 @@ namespace Planning {
 
     #define INCREASE 20 //mm
     #define SCRAP 3 //Number of points to be scrapped at the extremities of each segment of path
+    extern const double DEGTORAD;
 
     bool compute_roundabout_dubins( DubinsSet<double>& new_DS,
-                                    Configuration2<double> start, 
+                                    Configuration2<double> _start, 
                                     const vector<Configuration2<double> >& vC,
-                                    uint& vC_id){
+                                    uint& vC_id, //I want to return the last pos I checked
+                                    bool gate=false){
         bool ok=false;
-        for (vC_id=SCRAP; vC_id<(vC.size()-SCRAP) && !ok; vC_id++){
+        int scrap = (gate ? 0 : SCRAP);
+        for (vC_id=scrap; (vC_id<(vC.size()-scrap) && !ok); vC_id++){
             Configuration2<double> end=vC[vC_id]; 
-            
-            start.offset_angle(Angle(-M_PI/3.0, Angle::RAD));
+            Configuration2<double> start=_start;
+
+            Angle offset(-2.0*M_PI/3.0, Angle::RAD);
+            start.offset_angle(offset);
             //Then I try to find a DubinsSet from the victim to a point in V2 with different orientation in \phi-60, \phi+60
             
-            for (int i=0; i<5 && !ok; i++){
-                start.offset_angle(Angle(M_PI/12.0, Angle::RAD));
+            for (int i=0; i<(offset.toRad()*2.0/(20.0*::DEGTORAD)+1) && !ok; i++){
+                start.offset_angle(Angle(20.0*::DEGTORAD, Angle::RAD));
                 Point2<double> intermediate=::circline(INCREASE, start, 0);
                 do {
-                    new_DS=DubinsSet<double> (start, end, Tuple<Point2<double> > (vector<Point2<double> >{intermediate}), ROB_KMAX);
+                    new_DS=DubinsSet<double> (_start, end, Tuple<Point2<double> > (vector<Point2<double> >{intermediate}), ROB_KMAX);
                     ok=check_dubins_DS(new_DS);
                     // intermediate.offset(INCREASE, start.angle());
                 } while(Planning::map->checkPointInActualMap(intermediate.offset(INCREASE, start.angle())) && !ok);
@@ -1096,12 +1104,8 @@ namespace Planning {
         uint vC1_id=0;
         uint vC2_id=0; 
 
-        cout << "vC1_pos: " << vC1_pos << ", vC2_pos: " << vC2_pos << ", vC1.size(): " << vC1.size() << ", vC2.size(): " << vC2.size() << endl << flush; 
-
         DubinsSet<double> DS;
         bool ok=false;
-
-        cout << "vC1.size(): " << vC1.size() << " vC2.size(): " << vC2.size() << endl;
 
         for (vC1_id=SCRAP; vC1_id<vC1.size()-SCRAP && !ok; vC1_id++){
             for (vC2_id=vC2.size()-SCRAP; vC2_id>SCRAP && !ok; vC2_id--){
@@ -1179,14 +1183,18 @@ namespace Planning {
             }
         }
         if (!ok) { //If even after all points in the vector no Dubins could be found, then try some more points. 
-            Configuration2<double> begin;
             if(start){//If we are working on the start, then the first point is from where I want to start from and get back to.
-                begin=vConfs[0];
-                ok=compute_roundabout_dubins(ds, begin, vConfs, pos);
-                if(!ok){ //If now way around was found, then reset DS.
-                    ds=DubinsSet<double> ();
-                }
+                ok=compute_roundabout_dubins(ds, anchorPoint, vConfs, pos);
             }//I should never need to find a way around for the end and, if I do, it's probably going to be too expensive 
+            else {
+                cout << "TRYING MORE DUBINS" << endl;
+                for (uint i=0; i<(int)(vConfs.size()-SCRAP) && !ok; i++){
+                    ok=compute_roundabout_dubins(ds, vConfs[i], vector<Configuration2<double> >{anchorPoint}, pos, true);
+                }
+            }
+            if (!ok){
+                ds=DubinsSet<double> ();
+            }
         }
         cout << "End dubins start/end" << endl;
         if (ok){
@@ -1231,15 +1239,15 @@ namespace Planning {
                     return Angle(0.0, Angle::RAD);
                 }
                 else {
-                    return Angle(3.0*M_PI/2.0, Angle::RAD);
+                    return Angle(M_PI/2.0, Angle::RAD);
                 }
             }
             else {
                 if (gate.y()<dy){
-                    return Angle(M_PI/2.0, Angle::RAD);
+                    return Angle(3.0*M_PI/2.0, Angle::RAD);
                 }
                 else {
-                    return Angle(3.0*M_PI/2.0, Angle::RAD);
+                    return Angle(M_PI/2.0, Angle::RAD);
                 }
             }
         }
@@ -1249,15 +1257,15 @@ namespace Planning {
                     return Angle(M_PI, Angle::RAD);
                 }
                 else {
-                    return Angle(3.0*M_PI/2.0, Angle::RAD);
+                    return Angle(M_PI/2.0, Angle::RAD);
                 }
             }
             else {
                 if (gate.y()<dy){
-                    return Angle(M_PI/2.0, Angle::RAD);
+                    return Angle(3.0*M_PI/2.0, Angle::RAD);
                 }
                 else {
-                    return Angle(3.0*M_PI/2.0, Angle::RAD);
+                    return Angle(M_PI/2.0, Angle::RAD);
                 }
             } 
         }
@@ -1310,6 +1318,7 @@ namespace Planning {
     void plan_dubins( const Configuration2<double>& _start,
                         vector<vector<Configuration2<double> > >& vvConfs)
     {
+        cout << "conf in plan: " << _start << endl ;
         DubinsSet<double> path;
         //Create Dubins for first path.
         DubinsSet<double> start;
@@ -1326,7 +1335,7 @@ namespace Planning {
         if (start.getLength()!=DInf){
             cout << "Starting Dubins found." << endl << flush;
             uint app=start_pos;
-            vector<Configuration2<double> > new_points=vvvCtovC(start.splitIt((ROB_PIECE_LENGTH>10.0) ? ROB_PIECE_LENGTH/2.0 : ROB_PIECE_LENGTH));
+            vector<Configuration2<double> > new_points=vvvCtovC(start.splitIt((ROB_PIECE_LENGTH>15.0) ? 15.0 : ROB_PIECE_LENGTH));
             start_pos=new_points.size()-1;
             for (uint i=app+1; i<vvConfs[0].size(); i++){
                 new_points.push_back(vvConfs[0][i]);
@@ -1383,6 +1392,7 @@ namespace Planning {
                 cout << "Finished setting victim " << i+1 << endl << flush; 
 
                 new_draw(vvConfs, ("map victim "+to_string(i+1)));
+                cout << "victim.getDubins(victim.size()-1).end(): " << victim.getDubins(victim.getSize()-1).end() << endl;
             }
         }
 
@@ -1445,13 +1455,6 @@ namespace Planning {
         cout << "About to draw" << endl;
         new_draw(vvConfs, left, right, "SD");
         cout << "End drawing " << path.getSize() << endl;
-
-        // for (auto a : otherV){
-        //     path.join(&v)
-        // }
-
-        //Create intermediate Dubins.
-
     }
 }
 

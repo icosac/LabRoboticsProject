@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <opencv_storage>
-<baseFolder>"./data/"</baseFolder>
+<baseFolder>"./exam/data/"</baseFolder>
 <mapsFolder>map</mapsFolder>
 <mapsNames>
   "01.jpg"</mapsNames>
@@ -9,17 +9,17 @@
 <intrinsicCalibrationFile>intrinsic_calibration.xml</intrinsicCalibrationFile>
 <calibrationFile>calib_config.xml</calibrationFile>
 <blackMask>
-  93 0 0 147 255 98</blackMask>
+  59 0 0 147 255 89</blackMask>
 <redMask>
-  130 45 151 180 248 255</redMask>
+  118 104 119 180 255 255</redMask>
 <greenMask>
-  49 80 83 85 255 234</greenMask>
+  49 96 94 81 255 234</greenMask>
 <blueMask>
-  105 178 127 141 255 255</blueMask>
+  105 186 100 153 255 255</blueMask>
 <victimMask>
   43 23 22 132 213 79</victimMask>
 <robotMask>
-  70 146 148 104 255 240</robotMask>
+  84 133 131 101 255 240</robotMask>
 <kernelSide>9</kernelSide>
 <convexHullFile>convexHull.xml</convexHullFile>
 <templatesFolder>num_template/</templatesFolder>

@@ -152,6 +152,9 @@ pair<Configuration2<double>, Configuration2<double> > localize(const Mat & img, 
 
     Configuration2<double> cRight(confPoint, tail.th(confPoint));
 
+    cout << "Tail: " << tail << endl;
+    cout << "confPoint: " << cRight << endl;
+
     confPoint.invert();
     tail.invert();
     Configuration2<double> cReverse(confPoint, tail.th(confPoint));

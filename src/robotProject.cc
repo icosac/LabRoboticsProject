@@ -1,6 +1,6 @@
 #include "robotProject.hh"
 
-Settings *sett=new Settings("./data/");
+Settings *sett=new Settings("./exam/data/");
 
 RobotProject::RobotProject(int argc, char* argv[]){
 	cout << "-> -> -> RobotProject constructor\n";
@@ -16,14 +16,15 @@ RobotProject::RobotProject(int argc, char* argv[]){
 RobotProject::RobotProject(CameraCapture* camera, double& frame_time){
 	cout << "-> -> -> RobotProject constructor\n";
 	
-	sett->cleanAndRead("./data/settings.xml");
+	sett->cleanAndRead("./exam/data/settings.xml");
 
 	#ifdef CONFIGURE
 		Mat img;
-		// camera->grab(img, frame_time);
-		img=imread(sett->unMaps(0).get(0));
-		my_imshow("configure", img);
-		mywaitkey();
+		camera->grab(img, frame_time);
+		//TODo Remove this.
+		// img=imread(sett->unMaps(0).get(0));
+		// my_imshow("configure", img);
+		// mywaitkey();
 		cout << endl << "Configure" << endl;
 		configure(img, true);
 		cout << "configure done\n";
