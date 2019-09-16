@@ -302,9 +302,12 @@ void Settings::clean(){
  *
  */
 void Settings::cleanAndRead(string _path){
+	cout << "_path: " << _path << endl;
 	string app=this->baseFolder;
 	this->clean();
-	this->baseFolder=app;
+	if (_path==""){
+		this->baseFolder=app;
+	}
 	this->readFromFile(_path);
 }
 

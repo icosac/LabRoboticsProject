@@ -91,7 +91,7 @@ pair<Configuration2<double>, Configuration2<double> > localize(const Mat & img, 
     static Mat transf, camera_matrix, dist_coeffs;
     if(firstRun){ //executed only at the first iteration of this function
         firstRun = false;
-        const string calib_file = sett->intrinsicCalibrationFile;
+        const string calib_file = sett->baseFolder+sett->intrinsicCalibrationFile;
         loadCoefficients(calib_file, camera_matrix, dist_coeffs);
 
         getConversionParameters(transf, true);

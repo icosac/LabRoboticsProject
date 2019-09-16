@@ -1265,7 +1265,7 @@ public:
                      int startPos = -1)
   {
     if (DS->getSize()>0){
-      if (this->getKmax()!=DS->getKmax()){
+      if (this->getSize()!=0 && this->getKmax()!=DS->getKmax()){
         cerr << "Cannot join to DubinsSet with different curvature." << endl;
         return DubinsSet<T>();
       }

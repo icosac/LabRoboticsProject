@@ -24,7 +24,6 @@ docs/
 
 *_UN.jpg
 data/convexHull.xml
-data/intrinsic_calibration.xml
 
 # Except the files
 #!Makefile

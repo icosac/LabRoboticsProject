@@ -1,6 +1,6 @@
 #include "robotProject.hh"
 
-Settings *sett=new Settings("./exam/data/");
+Settings *sett=new Settings("./data/");
 
 RobotProject::RobotProject(int argc, char* argv[]){
 	cout << "-> -> -> RobotProject constructor\n";
@@ -16,13 +16,15 @@ RobotProject::RobotProject(int argc, char* argv[]){
 RobotProject::RobotProject(CameraCapture* camera, double& frame_time){
 	cout << "-> -> -> RobotProject constructor\n";
 	
-	sett->cleanAndRead("./exam/data/settings.xml");
+	sett->cleanAndRead("./data/settings.xml");
 
 	#ifdef CONFIGURE
 		Mat img;
-		camera->grab(img, frame_time);
-		
-		cout << endl <<"Configure" << endl;
+		// camera->grab(img, frame_time);
+		img=imread(sett->unMaps(0).get(0));
+		my_imshow("configure", img);
+		mywaitkey();
+		cout << endl << "Configure" << endl;
 		configure(img, true);
 		cout << "configure done\n";
 	#else
@@ -53,7 +55,7 @@ bool RobotProject::planPath(const Mat & img, Path & path){
 
 	vector<Configuration2<double> > pathPoints = Planning::planning(img);
 	
-	cout << "Creating map" << flush;
+	cout << "Creating map\n" << flush;
 
 	Planning::fromVcToPath(pathPoints, path); //return
 	cout << "-> -> -> PlanPath end\n" << flush;

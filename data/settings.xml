@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <opencv_storage>
-<baseFolder>"./exam/data/"</baseFolder>
+<baseFolder>"./data/"</baseFolder>
 <mapsFolder>map</mapsFolder>
 <mapsNames>
   "01.jpg"</mapsNames>
@@ -19,7 +19,7 @@
 <victimMask>
   43 23 22 132 213 79</victimMask>
 <robotMask>
-  85 146 156 104 196 240</robotMask>
+  70 146 148 104 255 240</robotMask>
 <kernelSide>9</kernelSide>
 <convexHullFile>convexHull.xml</convexHullFile>
 <templatesFolder>num_template/</templatesFolder>

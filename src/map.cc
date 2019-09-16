@@ -267,16 +267,13 @@ bool Mapp::checkSegmentCollisionWithType(const Point2<int> & p0, const Point2<in
     if (!this->checkPointInMap(p0) || !this->checkPointInMap(p1)){
         return false;
     }
-    cout << "checkSegmentCollisionWithType" << endl;
     set<pair<int, int> > collisionSet = cellsFromSegment(p0, p1);
     for(auto el:collisionSet){
         int i=get<0>(el), j=el.second;  // two methods for get elements from a pair structure
         if( map[i][j] == type ){
-            cout << "checkSegmentCollisionWithType end" << endl;
             return(true);
         }
     }
-    cout << "checkSegmentCollisionWithType end" << endl;
     return(false);
 }
 
@@ -288,7 +285,6 @@ bool Mapp::checkSegmentCollisionWithType(const Point2<int> & p0, const Point2<in
     \returns True if the obstacles were crossed, false otherwise.
 */
 bool Mapp::checkSegment(const Point2<int> & p0, const Point2<int> & p1){
-    cout << "checkSegment" << endl;
     return(checkSegmentCollisionWithType(p0, p1, OBST));
 }
 
