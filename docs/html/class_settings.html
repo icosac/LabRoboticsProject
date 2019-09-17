@@ -134,6 +134,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab638c9895f57ed5e8ab64084752c660d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to return the paths of a given <a class="el" href="class_tuple.html">Tuple</a> of maps.  <a href="#ab638c9895f57ed5e8ab64084752c660d">More...</a><br /></td></tr>
 <tr class="separator:ab638c9895f57ed5e8ab64084752c660d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeee4537bd39c18ca3a711a73c9c2277e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#aeee4537bd39c18ca3a711a73c9c2277e">addUnMap</a> (string unMap)</td></tr>
+<tr class="memdesc:aeee4537bd39c18ca3a711a73c9c2277e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the name of an undistorted map to the list.  <a href="#aeee4537bd39c18ca3a711a73c9c2277e">More...</a><br /></td></tr>
 <tr class="separator:aeee4537bd39c18ca3a711a73c9c2277e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cbf0234eaca6582ce982f0cf756d282"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_settings.html#a7cbf0234eaca6582ce982f0cf756d282">unMaps</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; ids=<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt;())</td></tr>
 <tr class="memdesc:a7cbf0234eaca6582ce982f0cf756d282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to return the paths of undistorted maps. If ids are not specified all undistorted maps are returned.  <a href="#a7cbf0234eaca6582ce982f0cf756d282">More...</a><br /></td></tr>
@@ -427,11 +428,28 @@ Friends</h2></td></tr>
           <td class="memname">bool Settings::addUnMap </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>unMap</em></td><td>)</td>
+          <td class="paramname"><em>_unMap</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adds the name of an undistorted map to the list. </p>
+<p>Adds the name of an undistorted map.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">unMap</td><td>The undistorted map</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> of the name of the map could be added, <code>false</code> otherwise.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_unMap</td><td>The name of the undistorted map </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if it succeded, <code>false</code> otherwise. </dd></dl>
 
 </div>
 </div>

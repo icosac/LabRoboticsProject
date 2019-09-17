@@ -77,8 +77,10 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a64761d17cba58aea7336353837d7a80c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_exception.html#a64761d17cba58aea7336353837d7a80c">MyException</a> (<a class="el" href="utils_8hh.html#af26a5d951fd6ab4b44e6cd8425aa0383">EXCEPTION_TYPE</a> _type, T _a, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> _b, string _s=&quot;???&quot;)</td></tr>
+<tr class="memdesc:a64761d17cba58aea7336353837d7a80c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plain constructor for the object.  <a href="#a64761d17cba58aea7336353837d7a80c">More...</a><br /></td></tr>
 <tr class="separator:a64761d17cba58aea7336353837d7a80c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0a4ef3c9897eb136fa37aec342406fd"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_exception.html#ad0a4ef3c9897eb136fa37aec342406fd">what</a> () const  throw ()</td></tr>
+<tr class="memdesc:ad0a4ef3c9897eb136fa37aec342406fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to call to get the exception meaning.  <a href="#ad0a4ef3c9897eb136fa37aec342406fd">More...</a><br /></td></tr>
 <tr class="separator:ad0a4ef3c9897eb136fa37aec342406fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -92,7 +94,17 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ac8762871298754f14ce579ee2c928510"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_exception.html#ac8762871298754f14ce579ee2c928510">s</a></td></tr>
 <tr class="separator:ac8762871298754f14ce579ee2c928510"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class T&gt;<br />
+class MyException&lt; T &gt;</h3>
+
+<p>This class allows to throw personalized exceptions. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of a variable. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a64761d17cba58aea7336353837d7a80c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a64761d17cba58aea7336353837d7a80c">&#9670;&nbsp;</a></span>MyException()</h2>
 
@@ -141,6 +153,17 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Plain constructor for the object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_type</td><td>The type of the exception </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_a</td><td>Variable meaning. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_b</td><td>Variable meaning. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_s</td><td>Variable meaning. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -174,6 +197,9 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Function to call to get the exception meaning. </p>
+<dl class="section return"><dt>Returns</dt><dd>A string containing why the exception was thrown. </dd></dl>
 
 </div>
 </div>

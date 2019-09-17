@@ -67,9 +67,9 @@ bool \mbox{\hyperlink{class_configuration2_a7dda6b86ded2376a78a7f3d9f2811740}{op
 bool \mbox{\hyperlink{class_configuration2_a616d2dd99d9250eeda1bc933e7b0a2da}{operator!=}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&A)
 \begin{DoxyCompactList}\small\item\em Overload of the != operator. Just calls {\ttfamily equal} and negates it. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_configuration2_a8f9c571c4438c591dbafbd76eda85a0e}{operator Point2$<$ T1 $>$}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Cast a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to a {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} of the same type. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T2 $>$ }\\\mbox{\hyperlink{class_configuration2_a3bc8dfea259f6d3f97f6770c09ff6526}{operator Configuration2$<$ T2 $>$}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Cast a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of a different type. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_configuration2_a0a63aa5b2089b11bf0f6ec9c65560e56}{invert}} ()
 \begin{DoxyCompactList}\small\item\em Invert the x and y of the point, and even the angle of the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
@@ -431,12 +431,25 @@ Function to add an offset to the ordinate.
 template$<$class T2 $>$ \\
 \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::operator \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Cast a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of a different type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T2} & The type of the {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to be casted to. \\
+\hline
+\end{DoxyTemplParams}
 \mbox{\Hypertarget{class_configuration2_a8f9c571c4438c591dbafbd76eda85a0e}\label{class_configuration2_a8f9c571c4438c591dbafbd76eda85a0e}} 
 \index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator Point2$<$ T1 $>$@{operator Point2$<$ T1 $>$}}
 \index{operator Point2$<$ T1 $>$@{operator Point2$<$ T1 $>$}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
 \subsubsection{\texorpdfstring{operator Point2$<$ T1 $>$()}{operator Point2< T1 >()}}
 {\footnotesize\ttfamily template$<$class T1$>$ \\
 \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::operator \mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cast a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to a {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} of the same type. 
 
 \mbox{\Hypertarget{class_configuration2_a68bfa8b94c1cff3179698e00edb2890e}\label{class_configuration2_a68bfa8b94c1cff3179698e00edb2890e}} 
 \index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator Point2$<$ T2 $>$@{operator Point2$<$ T2 $>$}}

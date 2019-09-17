@@ -461,15 +461,7 @@ The value in R\+AD of the angle casted to long
 \subsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
 {\footnotesize\ttfamily bool Angle\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-This function overload the operator ==. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}{equal()}}} function. 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em phi} & The second angle. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if the two angle are equal, {\ttfamily false} otherwise.
-\end{DoxyReturn}
-This function overload the operator ==. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}{equal()}}} function and negates it. 
+This function overload the operator !=. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}{equal()}}} function and negates it. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em phi} & The second angle. \\
 \hline
@@ -574,12 +566,28 @@ This function overload the operator /=. It simply calls the {\ttfamily \mbox{\hy
 \subsubsection{\texorpdfstring{operator$<$()}{operator<()}}
 {\footnotesize\ttfamily bool Angle\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+This function overload the operator $<$. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a4e25c0ed5a92eb8af995a038c70f4e26}{less()}}} function. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em phi} & The second angle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the first angle (this) is less than the second one, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_angle_ad18dd2a58b59f2b8d57431cf122f026c}\label{class_angle_ad18dd2a58b59f2b8d57431cf122f026c}} 
 \index{Angle@{Angle}!operator$<$=@{operator$<$=}}
 \index{operator$<$=@{operator$<$=}!Angle@{Angle}}
 \subsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
 {\footnotesize\ttfamily bool Angle\+::operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+This function overload the operator $<$. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a4e25c0ed5a92eb8af995a038c70f4e26}{less()}}} function and {\ttfamily \mbox{\hyperlink{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}{equal()}}} function. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em phi} & The second angle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the first angle (this) is less or equal than the second one, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_angle_a93da39f08e2e110e278bb94d1c279ac6}\label{class_angle_a93da39f08e2e110e278bb94d1c279ac6}} 
 \index{Angle@{Angle}!operator=@{operator=}}
 \index{operator=@{operator=}!Angle@{Angle}}
@@ -620,12 +628,28 @@ This function overload the operator ==. It simply calls the {\ttfamily \mbox{\hy
 \subsubsection{\texorpdfstring{operator$>$()}{operator>()}}
 {\footnotesize\ttfamily bool Angle\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+This function overload the operator $>$. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a2ead65678819acef29cc4c7f2400f631}{greater()}}} function. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em phi} & The second angle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the first angle (this) is greater than the second one, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_angle_a2cedd44bb72da23b24d2fd57eacf3b79}\label{class_angle_a2cedd44bb72da23b24d2fd57eacf3b79}} 
 \index{Angle@{Angle}!operator$>$=@{operator$>$=}}
 \index{operator$>$=@{operator$>$=}!Angle@{Angle}}
 \subsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
 {\footnotesize\ttfamily bool Angle\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{phi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+This function overload the operator $<$. It simply calls the {\ttfamily \mbox{\hyperlink{class_angle_a2ead65678819acef29cc4c7f2400f631}{greater()}}} function and {\ttfamily \mbox{\hyperlink{class_angle_a21d2e7c68957afdd5c7edf3efd3e0bdc}{equal()}}} function. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em phi} & The second angle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the first angle (this) is greater or equal than the second one, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_angle_a8d7691e304041c8deafdec82497a781f}\label{class_angle_a8d7691e304041c8deafdec82497a781f}} 
 \index{Angle@{Angle}!radToDeg@{radToDeg}}
 \index{radToDeg@{radToDeg}!Angle@{Angle}}

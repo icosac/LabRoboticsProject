@@ -40,8 +40,6 @@ var searchData=
   ['mul',['mul',['../class_angle.html#aa1c4b848f4ac7ece9d2fa010abc91511',1,'Angle::mul()'],['../class_tuple.html#aa04cadf68dd3658943db047b6fd500fa',1,'Tuple::mul(Tuple&lt; T &gt; t)'],['../class_tuple.html#ad1de2e1ba86734fb751897138707a603',1,'Tuple::mul(T inc)']]],
   ['musec',['MUSEC',['../namespace_c_h_r_o_n_o.html#a246e471488a6e6b17ddb86e3b817c7d9aba8c3a9d281e3b934b74d5ff97a3a093',1,'CHRONO']]],
   ['my_5fimshow',['my_imshow',['../utils_8cc.html#a42cf7c7168e800fdcd1cefcaf9e00f84',1,'my_imshow(const char *win_name, cv::Mat img, bool reset):&#160;utils.cc'],['../utils_8hh.html#aabfea83501dfccfa4c420b8c19ceefd7',1,'my_imshow(const char *win_name, Mat img, bool reset=false):&#160;utils.hh']]],
-  ['my_5fmax',['my_max',['../maths_8hh.html#ab5d415a0bb0219a327f458c94fe972d3',1,'maths.hh']]],
-  ['my_5fmin',['my_min',['../maths_8hh.html#ad7d1cdfd24f29909819edf72add024a3',1,'maths.hh']]],
   ['myexception',['MyException',['../class_my_exception.html',1,'MyException&lt; T &gt;'],['../class_my_exception.html#a64761d17cba58aea7336353837d7a80c',1,'MyException::MyException()']]],
   ['mywaitkey',['mywaitkey',['../utils_8cc.html#af46b349425ca5a77d30444f8aa8cef42',1,'mywaitkey(const char c):&#160;utils.cc'],['../utils_8cc.html#a31ae190fba03c3a422a13a4271e0e424',1,'mywaitkey(string windowName):&#160;utils.cc'],['../utils_8hh.html#af046ae860c3e4985ab0968caffb4c772',1,'mywaitkey(const char c=&apos;q&apos;):&#160;utils.cc'],['../utils_8hh.html#a31ae190fba03c3a422a13a4271e0e424',1,'mywaitkey(string windowName):&#160;utils.cc']]]
 ];

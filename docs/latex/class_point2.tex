@@ -43,7 +43,7 @@ void \mbox{\hyperlink{class_point2_a967025762c1b4dede5eb822f5c29522e}{y}} (const
 {\footnotesize template$<$class T1 $>$ }\\double \mbox{\hyperlink{class_point2_aa930b619ed2efeda96b4210ee3b8cb9c}{Eu\+Distance}} (\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ B)
 \begin{DoxyCompactList}\small\item\em Function that compute the Euclidean Distance between two points. \textbackslash{}tparan T1 The type of the elements in the second {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}}. \end{DoxyCompactList}\item 
 stringstream \mbox{\hyperlink{class_point2_aa04082290a2f554060081beafd7d7e0d}{to\+\_\+string}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Returns a string representation of the object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \mbox{\hyperlink{class_point2_abf5cfefe8e75dda02f681fc8d74c2c39}{copy}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \&A)
 \begin{DoxyCompactList}\small\item\em Copy a point into another one. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \mbox{\hyperlink{class_point2_af715722f2b04def60eb23f291e31c4d8}{operator=}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \&A)
@@ -57,11 +57,11 @@ bool \mbox{\hyperlink{class_point2_ad671e757853f5d7d5431d011d9e94b03}{operator!=
 \mbox{\hyperlink{class_point2_a0d3f17f7d86d02eae126aa329a20861a}{operator cv\+::\+Point}} () const
 \begin{DoxyCompactList}\small\item\em Cast to cv\+::\+Point. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_point2_a636a84c47519a482cfce43039e981dff}{operator$<$}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \&A)
-\item 
+\begin{DoxyCompactList}\small\item\em Overloading of operator $<$. Since no roght implementetion can be used, then it returns only {\ttfamily true} \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T1 $>$ }\\\mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_point2_afe4e1b27eb2a47f6f98695d0b715a044}{th}} (\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ P1, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77}{Angle\+::\+A\+N\+G\+L\+E\+\_\+\+T\+Y\+PE}} type=\mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}}) const
-\item 
+\begin{DoxyCompactList}\small\item\em Computes the angle between two points, that is the atan of the angular coeficcient of the line joining the two points. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T1 $>$ }\\\mbox{\hyperlink{class_point2_a3af3e22d9650f7bde9dd9deeb043dffa}{operator Point2$<$ T1 $>$}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Cast to a \mbox{\hyperlink{class_point2}{Point2}} of different type. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_point2_aabc6ec4c0ed4c7757ac61a9448195c97}{invert}} ()
 \begin{DoxyCompactList}\small\item\em Invert the x and y of the point. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
@@ -359,6 +359,15 @@ The value casted to point
 template$<$class T1 $>$ \\
 \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::operator \mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Cast to a \mbox{\hyperlink{class_point2}{Point2}} of different type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & The type of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} to be casted to. \\
+\hline
+\end{DoxyTemplParams}
 \mbox{\Hypertarget{class_point2_ad671e757853f5d7d5431d011d9e94b03}\label{class_point2_ad671e757853f5d7d5431d011d9e94b03}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!operator"!=@{operator"!=}}
 \index{operator"!=@{operator"!=}!Point2$<$ T $>$@{Point2$<$ T $>$}}
@@ -385,6 +394,18 @@ true if the two configurations are different.
 {\footnotesize\ttfamily template$<$class T$>$ \\
 bool \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Overloading of operator $<$. Since no roght implementetion can be used, then it returns only {\ttfamily true} 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & The second {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} to be compared to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true}. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_point2_af715722f2b04def60eb23f291e31c4d8}\label{class_point2_af715722f2b04def60eb23f291e31c4d8}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!Point2$<$ T $>$@{Point2$<$ T $>$}}
@@ -431,6 +452,25 @@ true if the two configurations are equal.
 template$<$class T1 $>$ \\
 \mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::th (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$}]{P1,  }\item[{\mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77}{Angle\+::\+A\+N\+G\+L\+E\+\_\+\+T\+Y\+PE}}}]{type = {\ttfamily \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Computes the angle between two points, that is the atan of the angular coeficcient of the line joining the two points. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em P1} & The point towards which the line is going. \\
+\hline
+\mbox{\texttt{ in}}  & {\em type} & The type of the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} to be returned.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & The type of the point.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_point2_aa04082290a2f554060081beafd7d7e0d}\label{class_point2_aa04082290a2f554060081beafd7d7e0d}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!to\_string@{to\_string}}
 \index{to\_string@{to\_string}!Point2$<$ T $>$@{Point2$<$ T $>$}}
@@ -438,6 +478,13 @@ template$<$class T1 $>$ \\
 {\footnotesize\ttfamily template$<$class T$>$ \\
 stringstream \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::to\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Returns a string representation of the object. 
+
+\begin{DoxyReturn}{Returns}
+String representation of the object. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_point2_adbf149d6f50de0d91c714a3fc45a80c5}\label{class_point2_adbf149d6f50de0d91c714a3fc45a80c5}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!x@{x}}
 \index{x@{x}!Point2$<$ T $>$@{Point2$<$ T $>$}}

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['d_5fshift',['D_SHIFT',['../dubins_8hh.html#ad18a9640dcab4f84a2b1710a78bf813e',1,'dubins.hh']]],
   ['def_5farc_5ftolerance',['def_arc_tolerance',['../namespace_clipper_lib.html#ab44dd4f071b7d92294a2af242e8c70d4',1,'ClipperLib']]],
   ['deg',['DEG',['../class_angle.html#a4f7b9849ce8780bcba95ca3ee45cff77a65e2aa4bc05730c9c2e8fdaf73612282',1,'Angle']]],
   ['degtorad',['degToRad',['../class_angle.html#a0db2d1c054e899c7f5d27091a82dec4a',1,'Angle::degToRad()'],['../namespace_planning.html#a49f0f600eb7b6eb6f951cc645eabd286',1,'Planning::DEGTORAD()'],['../maths_8hh.html#abe8c019db43eb490b67df53e48a69d28',1,'DEGTORAD():&#160;maths.hh']]],

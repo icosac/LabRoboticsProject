@@ -53,7 +53,7 @@ string \mbox{\hyperlink{class_settings_aa34e6004beffad1bc5fd81f99353d3e1}{maps}}
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_ab638c9895f57ed5e8ab64084752c660d}{maps}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \+\_\+map\+Names)
 \begin{DoxyCompactList}\small\item\em A function to return the paths of a given \mbox{\hyperlink{class_tuple}{Tuple}} of maps. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_settings_aeee4537bd39c18ca3a711a73c9c2277e}{add\+Un\+Map}} (string un\+Map)
-\item 
+\begin{DoxyCompactList}\small\item\em Adds the name of an undistorted map to the list. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_a7cbf0234eaca6582ce982f0cf756d282}{un\+Maps}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ ids=\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$())
 \begin{DoxyCompactList}\small\item\em Function to return the paths of undistorted maps. If ids are not specified all undistorted maps are returned. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ string $>$ \mbox{\hyperlink{class_settings_a0619c378aff05b5762afe0280b40e07a}{un\+Maps}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} id=-\/1)
@@ -247,8 +247,30 @@ Destructor.
 \index{Settings@{Settings}!addUnMap@{addUnMap}}
 \index{addUnMap@{addUnMap}!Settings@{Settings}}
 \subsubsection{\texorpdfstring{addUnMap()}{addUnMap()}}
-{\footnotesize\ttfamily bool Settings\+::add\+Un\+Map (\begin{DoxyParamCaption}\item[{string}]{un\+Map }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Settings\+::add\+Un\+Map (\begin{DoxyParamCaption}\item[{string}]{\+\_\+un\+Map }\end{DoxyParamCaption})}
 
+
+
+Adds the name of an undistorted map to the list. 
+
+Adds the name of an undistorted map.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em un\+Map} & The undistorted map\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} of the name of the map could be added, {\ttfamily false} otherwise.
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+un\+Map} & The name of the undistorted map \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if it succeded, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_settings_ad0d55c536a84990b048463b924c7d88e}\label{class_settings_ad0d55c536a84990b048463b924c7d88e}} 
 \index{Settings@{Settings}!changeMask@{changeMask}}
 \index{changeMask@{changeMask}!Settings@{Settings}}
