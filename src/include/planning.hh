@@ -96,7 +96,6 @@ namespace Planning {
 	void fromVcToPath(vector<Configuration2<double> > & vp, Path & path);
     int getNPoints();
 
-	// template<class T>
 	void plan_dubins(const Configuration2<double>& _start, vector<vector<Configuration2<double> > >& vConfs);
 }
 

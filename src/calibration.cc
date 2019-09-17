@@ -177,10 +177,6 @@ bool CalSettings::isListOfImages( const string& filename)
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-
 /*! 
     \brief Function to run the complete calibration. 
 
@@ -211,8 +207,7 @@ int calibration(string inputFile)
     //FileStorage fout("CalSettings.yml", FileStorage::WRITE); // write config as YAML
     //fout << "CalSettings" << s;
 
-    if (!s.goodInput)
-    {
+    if (!s.goodInput){
         cerr << "Invalid input detected. Application stopping. " << endl;
         return -2;
     }
@@ -228,16 +223,14 @@ int calibration(string inputFile)
     #endif
     //get_input
 
-    for(;;)
-    {
+    while(true){
         Mat view; //The matrix in which the image being considered is stored
         bool blinkOutput = false;
         //Store next image
         view = s.nextImage(); 
 
         // If no more image, or got enough, then stop calibration and show result
-        if( mode == CAPTURING && imagePoints.size() >= (size_t)s.nrFrames )
-        {
+        if( mode == CAPTURING && imagePoints.size() >= (size_t)s.nrFrames ){
             if( runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints))
               mode = CALIBRATED;
             else
@@ -245,8 +238,7 @@ int calibration(string inputFile)
         }
 
         // If there are no more images stop the loop
-        if(view.empty())
-        {   
+        if(view.empty()){   
             // if calibration threshold was not reached yet, calibrate now
           if( mode != CALIBRATED && !imagePoints.empty() )
             runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints);
@@ -256,7 +248,7 @@ int calibration(string inputFile)
 
         //get_input
         imageSize = view.size();  // Format input image.
-        if( s.flipVertical )    {
+        if( s.flipVertical ){
             flip( view, view, 0 );
         }
 
@@ -270,15 +262,14 @@ int calibration(string inputFile)
         found = findChessboardCorners( view, s.boardSize, pointBuf, chessBoardFlags);
         
         //find_pattern
-        if ( found)                // If done with success,
-        {
+        if(found){                // If done with success,
               // improve the found corners' coordinate accuracy for chessboard
             Mat viewGray;
             cvtColor(view, viewGray, COLOR_BGR2GRAY);
             cornerSubPix(   viewGray, pointBuf, Size(11,11), Size(-1,-1), 
                             TermCriteria( TermCriteria::EPS+TermCriteria::COUNT, 30, 0.1 ));
 
-          if( mode == CAPTURING) {
+          if( mode == CAPTURING){
               imagePoints.push_back(pointBuf);
           }
             // Draw the corners.
@@ -294,8 +285,7 @@ int calibration(string inputFile)
         Size textSize = getTextSize(msg, 1, 1, 1, &baseLine);
         Point textOrigin(view.cols - 2*textSize.width - 10, view.rows - 2*baseLine - 10);
 
-        if( mode == CAPTURING )
-        {
+        if( mode == CAPTURING ){
             if(s.showUndistorsed)
                 msg = format( "%d/%d Undist", (int)imagePoints.size(), s.nrFrames );
             else
@@ -309,8 +299,7 @@ int calibration(string inputFile)
         //output_text
         //------------------------- Video capture  output  undistorted ------------------------------
         //output_undistorted
-        if( mode == CALIBRATED && s.showUndistorsed )
-        {
+        if( mode == CALIBRATED && s.showUndistorsed ){
             Mat temp = view.clone();
             undistort(temp, view, cameraMatrix, distCoeffs);
         }
@@ -341,17 +330,15 @@ int calibration(string inputFile)
     //End of for cycle
     // -----------------------Show the undistorted image for the image list ------------------------
     //show_results
-    if( s.inputType == CalSettings::IMAGE_LIST && s.showUndistorsed )
-    {
+    if( s.inputType == CalSettings::IMAGE_LIST && s.showUndistorsed ){
         Mat view, rview, map1, map2;
-//        Mat optimalCamera = getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0);
+        // Mat optimalCamera = getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0);
         initUndistortRectifyMap(
             cameraMatrix, distCoeffs, Mat(),
             getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0),
             imageSize, CV_16SC2, map1, map2);
 
-        for(size_t i = 0; i < s.imageList.size(); i++ )
-        {
+        for(size_t i = 0; i < s.imageList.size(); i++ ){
             view = imread(s.imageList[i], IMREAD_COLOR);
             if(view.empty())
                 continue;
@@ -364,14 +351,8 @@ int calibration(string inputFile)
             #endif
         }
     }
-    //show_results
-	
     return 0;
 }
-
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
 
 /*! \brief Reads CalSettings from file. If there is none then initiate a new `CalSettings`.
     

@@ -119,6 +119,7 @@ int unwrapping(const bool _imgRead, Mat * img){
             rect = rect2;
             contours_approx_big = contours_approx_big2;
         }
+
         //Compute the right vertexes from a vector of points.
         find_rect(rect, or_img.size().width, or_img.size().height);
         
@@ -218,9 +219,14 @@ int unwrapping(const bool _imgRead, Mat * img){
         
     }
     sett->writeToFile();
-return(0);
+    return(0);
 }
 
+/*! \brief Given the lower rectangle's points compute and retrieve the higher rectangle's points.
+    \deteils The matching between the vectors is guarantee: the i elements of the vectors is refered to the same x,y point (with different z). At the moment the white points are constant and not taken from the image).
+    \param[in] rectLow The 4 points that define the black rectangle on the floor.
+    \param[out] rectHigh The vector that will contain the 4 points that will define the high corner that pass through the white points. 
+*/
 void createPointsHigh(const vector<Point> & rectLow, vector<Point> & rectHigh){
     rectHigh.resize(0);
 
@@ -240,6 +246,11 @@ void createPointsHigh(const vector<Point> & rectLow, vector<Point> & rectHigh){
     } // else nothing
 }
 
+/*! \brief Compute the right vertexes from a vector of points that more or less define the rectangle.
+    \param[in/out] _rect The vector containing the actual possible points that delimt the rectangle.
+    \param[in] width The width of the original image from which the points of the rectangle come from.
+    \param[in] height The height of the original image from which the points of the rectangle come from.
+*/
 void find_rect(vector<Point>& _rect, const int& width, const int& height){
     Tuple<Point2<int> > rect;
     

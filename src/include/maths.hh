@@ -1133,8 +1133,8 @@ public:
 
 };
 
-/*! \brief Invert the angle by inverting its reference system (swap x and y).
-    \param [in/out] The angle that need to be inverted.
+/*! \brief Transform the angle given i the new reference system where x and y will be swapped.
+    \param[in/out] a The angle that need to be inverted.
 */
 void invertAngle (Angle & a);
 

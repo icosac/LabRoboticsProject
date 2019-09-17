@@ -13,6 +13,11 @@ namespace Planning {
     #define ROB_PIECE_LENGTH 20
     #define BONUS 5
 
+    /*! \brief Convert a vector of vector of points into a vector of points (AKA collapse everything).
+
+        \param[in] The vector of vector of points that needs to be collapsed
+        \returns The new vector of points.
+    */
     vector<Point2<int> > convertToVP(vector<vector<Point2<int> > > arr){
         vector<Point2<int> > v;
         for (auto a : arr){
@@ -21,8 +26,13 @@ namespace Planning {
             }
         }
         return v;
-    } 
+    }
 
+    /*! \brief Convert a vector of vector of configurations into a vector of points (AKA collapse everything).
+
+        \param[in] The vector of vector of configurations that needs to be collapsed
+        \returns The new vector of points.
+    */
     vector<Point2<int> > convertToVP(vector<vector<Configuration2<double> > > arr){
         vector<Point2<int> > v;
         for (auto a : arr){
@@ -33,6 +43,11 @@ namespace Planning {
         return v;
     }
 
+    /*! \brief Convert a vector of vector of configurations into a vector of configurations (AKA collapse everything).
+
+        \param[in] The vector of vector of configurations that needs to be collapsed
+        \returns The new vector of configurations.
+    */
     vector<Configuration2<double> > convertToVC(vector<vector<Configuration2<double> > > arr){
         vector<Configuration2<double> > v;
         for (auto a : arr){
@@ -43,6 +58,11 @@ namespace Planning {
         return v;
     }
 
+    /*! \brief Convert a vector of vector of points into a vector of configurations (AKA collapse everything).
+
+        \param[in] The vector of vector of points that needs to be collapsed
+        \returns The new vector of configurations.
+    */
     vector<Configuration2<double> > convertToVC(vector<vector<Point2<int> > > arr){
         vector<Point2<int> > v = convertToVP(arr);
         vector<Configuration2<double> > ret;
@@ -54,7 +74,12 @@ namespace Planning {
         return ret;
     }
 
-    void new_draw(vector<vector<Point2<int> > > vv, string name){
+    /*! \brief Show in a window the representation of the map with the addition of the points and segment taken from the parameters.
+
+        \param[in] vv A vector of vector of points that will be added to the map.
+        \param[in] name The name of the window that will be created.
+    */
+    void draw(vector<vector<Point2<int> > >& vv, string name){
         #if defined WAIT || defined SHOW_MAP
             Mat imageMap = Planning::map->createMapRepresentation();
             vector<Point2<int> > cellsOfPath = convertToVP(vv);
@@ -67,10 +92,35 @@ namespace Planning {
         #endif
     }
 
-    void new_draw(  vector<vector<Configuration2<double> > > vv, 
-                    vector<Configuration2<double> >& left, 
-                    vector<Configuration2<double> >& right, 
-                    string name)
+    /*! \brief Show in a window the representation of the map with the addition of the configurations and segment taken from the parameters.
+
+        \param[in] vv A vector of vector of configurations that will be added to the map.
+        \param[in] name The name of the window that will be created.
+    */
+    void draw(vector<vector<Configuration2<double> > > vv, string name){
+        #if defined WAIT || defined SHOW_MAP
+            Mat imageMap = Planning::map->createMapRepresentation();
+            vector<Point2<int> > cellsOfPath = convertToVP(vv);
+            Planning::map->imageAddPoints(imageMap, cellsOfPath);
+            Planning::map->imageAddSegments(imageMap, cellsOfPath);
+            
+            namedWindow(name.c_str(), WINDOW_NORMAL);
+            imshow(name.c_str(), imageMap);
+            mywaitkey();
+        #endif
+    }
+
+    /*! \brief Show in a window the representation of the map with the addition of the configurations and segment taken from the parameters. Plus a set of grey points (left vector) and black points (right vector).
+
+        \param[in] vv A vector of vector of configurations that will be added to the map.
+        \param[in] left A set of grey points will be added to the map.
+        \param[in] right A set of bleck points will be added to the map.
+        \param[in] name The name of the window that will be created.
+    */
+    void draw(  vector<vector<Configuration2<double> > > vv, 
+                vector<Configuration2<double> >& left, 
+                vector<Configuration2<double> >& right, 
+                string name)
     {
         #if defined WAIT || defined SHOW_MAP
             Mat imageMap = Planning::map->createMapRepresentation();
@@ -93,26 +143,12 @@ namespace Planning {
         #endif
     }
 
-    void new_draw(vector<vector<Configuration2<double> > > vv, string name){
-        #if defined WAIT || defined SHOW_MAP
-            Mat imageMap = Planning::map->createMapRepresentation();
-            vector<Point2<int> > cellsOfPath = convertToVP(vv);
-            Planning::map->imageAddPoints(imageMap, cellsOfPath);
-            Planning::map->imageAddSegments(imageMap, cellsOfPath);
-            
-            namedWindow(name.c_str(), WINDOW_NORMAL);
-            imshow(name.c_str(), imageMap);
-            mywaitkey();
-        #endif
-    }
-
     /*! \brief The function plan a route from the actual position of the robot up to the final gate through all the victims.
         \details All the data about the objects are loaded from the files previously saved. Then a Mapp is created and on that structure, thanks to a minPath function and a lot of dubin curves, the best route is computed.
 
         \param[in] img It is a raw image of the scene that will be used from the localize function to find the starting state of the robot.
         \returns Two elements are returned: a pointer to the Mapp where all data are stored and a vector of points placed on the computed route.
     */
-    // pair< vector<Point2<int> >, Mapp* > Planning::planning(const Mat & img){
     vector<Configuration2<double> > planning(const Mat & img){
         Planning::createMapp();
 
@@ -301,9 +337,17 @@ namespace Planning {
         }
     }
 
+    /*! \brief Get the numper of points needed for the function sampleNpoints.
+        \returns The number of points.
+    */
     int getNPoints() { return nPoints; }
 
+    /*! \brief Allocate a dynamic 2D array of int.
 
+        \param[in] a The first dimension.
+        \param[in] b The second dimension.
+        \returns The allocated array.
+    */
     int ** allocateAAInt(const int a, const int b){
         int ** arr = new int*[a];
         for(int i=0; i<a; i++){
@@ -312,6 +356,13 @@ namespace Planning {
         return(arr);
     }
 
+    /*! \brief Allocate a dynamic 3D array of int.
+
+        \param[in] a The first dimension.
+        \param[in] b The second dimension.
+        \param[in] c The third dimension.
+        \returns The allocated array.
+    */
     int *** allocateAAAInt(const int a, const int b, const int c){
         int *** arr = new int**[a];
         for(int i=0; i<a; i++){
@@ -320,6 +371,14 @@ namespace Planning {
         return(arr);
     }
 
+    /*! \brief Allocate a dynamic 4D array of int.
+
+        \param[in] a The first dimension.
+        \param[in] b The second dimension.
+        \param[in] c The third dimension.
+        \param[in] d The fourth dimension.
+        \returns The allocated array.
+    */
     int **** allocateAAAAInt(const int a, const int b, const int c, const int d){
         int **** arr = new int***[a];
         for(int i=0; i<a; i++){
@@ -328,6 +387,12 @@ namespace Planning {
         return(arr);
     }
 
+    /*! \brief Allocate a dynamic 2D array of int.
+
+        \param[in] a The first dimension.
+        \param[in] b The second dimension.
+        \returns The allocated array.
+    */
     double ** allocateAADouble(const int a, const int b){
         double ** arr = new double*[a];
         for(int i=0; i<a; i++){
@@ -336,6 +401,13 @@ namespace Planning {
         return(arr);
     }
 
+    /*! \brief Allocate a dynamic 3D array of double.
+
+        \param[in] a The first dimension.
+        \param[in] b The second dimension.
+        \param[in] c The third dimension.
+        \returns The allocated array.
+    */
     double *** allocateAAADouble(const int a, const int b, const int c){
         double *** arr = new double**[a];
         for(int i=0; i<a; i++){
@@ -344,6 +416,14 @@ namespace Planning {
         return(arr);
     }
 
+    /*! \brief Allocate a dynamic 4D array of double.
+
+        \param[in] a The first dimension.
+        \param[in] b The second dimension.
+        \param[in] c The third dimension.
+        \param[in] d The fourth dimension.
+        \returns The allocated array.
+    */
     double **** allocateAAAADouble(const int a, const int b, const int c, const int d){
         double **** arr = new double***[a];
         for(int i=0; i<a; i++){
@@ -352,6 +432,12 @@ namespace Planning {
         return(arr);
     }
 
+    /*! \brief Allocate a dynamic 2D array of Points.
+
+        \param[in] a The first dimension.
+        \param[in] b The second dimension.
+        \returns The allocated array.
+    */
     Point2<int> ** allocateAAPointInt(const int a, const int b){
         Point2<int> ** arr = new Point2<int>*[a];
         for(int i=0; i<a; i++){
@@ -857,8 +943,9 @@ namespace Planning {
         reverse(v.begin(), v.end());
     }
 
-    /*! \brief It reset, to the given value, the matrix of distances, to compute again the minPath search.
+    /*! \brief It reset, to the given value, the matrix of distances given, to compute again the minPath search.
 
+        \param[out] distances It is the array that need to be initialized.
         \param[in] value The value to be set.
     */
     void resetDistanceMap(double ** distances, const double value){
@@ -869,8 +956,9 @@ namespace Planning {
         }
     }
 
-    /*! \brief It reset, to the given value, the matrix of distances, to compute again the minPath search.
+    /*! \brief It reset, to the given value, the matrix of distances given, to compute again the minPath search.
 
+        \param[out] distances It is the array that need to be initialized.
         \param[in] value The value to be set.
     */
     void resetDistanceMap(double *** distances, const double value){
@@ -1341,7 +1429,7 @@ namespace Planning {
             vI.push_back(start_pos);
         } 
 
-        new_draw(vvConfs, "Map Start");
+        draw(vvConfs, "Map Start");
 
         //Create Dubins for victims
         vector<DubinsSet<double> >victimV; //TODO do i use this??
@@ -1382,7 +1470,7 @@ namespace Planning {
                 vI.push_back(start_pos);
                 vI.push_back(end_pos);
 
-                new_draw(vvConfs, ("map victim "+to_string(i+1)));
+                draw(vvConfs, ("map victim "+to_string(i+1)));
             }
         }
 
@@ -1413,7 +1501,7 @@ namespace Planning {
             vvConfs[vvConfs.size()-1]=app;
             cout << "Size: " << (vvConfs.back()).size() << endl;
             vI.push_back(end_pos);    
-            new_draw(vvConfs, "map end");
+            draw(vvConfs, "map end");
         }
 
         cout << "BUILDING DUBINS THROUGH VICTIMS" << endl;
@@ -1443,7 +1531,7 @@ namespace Planning {
             cout << i << " Right: " << right.back() << " left: " << left.back() << endl;
         }
         cout << "About to draw" << endl;
-        new_draw(vvConfs, left, right, "SD");
+        draw(vvConfs, left, right, "SD");
         cout << "End drawing " << path.getSize() << endl;
     }
 }
