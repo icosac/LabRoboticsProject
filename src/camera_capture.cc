@@ -95,8 +95,6 @@ bool CameraCapture::loadCoefficients(std::string const & filename)
   fs["distortion_coefficients"] >> distCoeffs;
   fs.release();
   loadedCoefficients = true;
-//  std::cout << cameraMatrix << std::endl;
-//  std::cout << distCoeffs << std::endl;
   return true;
 }
 

@@ -84,9 +84,9 @@ vector<Point> robotShape;
 
     \param[in] img It is the image where the robot need to be located.
     \param[in] raw It is a boolean flag that says if the img is raw and need filters or not.
-    \returns A couple of configurations of the robot in this exactly moment, according to the image. The first is in the our official reference system, on the other hand the second one is in the reference system of the exam.
+    \returns Configuration of the robot in this exactly moment, according to the image.
 */
-pair<Configuration2<double>, Configuration2<double> > localize(const Mat & img, const bool raw){
+Configuration2<double> localize(const Mat & img, const bool raw){
     static bool firstRun = true;
     static Mat transf, camera_matrix, dist_coeffs;
     if(firstRun){ //executed only at the first iteration of this function
@@ -145,16 +145,7 @@ pair<Configuration2<double>, Configuration2<double> > localize(const Mat & img, 
         }
     }
 
-    Configuration2<double> cRight(confPoint, tail.th(confPoint));
-
-    cout << "Tail: " << tail << endl;
-    cout << "confPoint: " << cRight << endl;
-
-    confPoint.invert();
-    tail.invert();
-    Configuration2<double> cReverse(confPoint, tail.th(confPoint));
-
-    return(make_pair(cRight, cReverse));
+    return( Configuration2<double>(confPoint, tail.th(confPoint)) );
 }
 
 

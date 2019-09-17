@@ -97,5 +97,4 @@ class Mapp{
         int getBorderSize(){ return this->borderSize; }
 
 };
-
 #endif

@@ -19,7 +19,7 @@ using namespace cv;
 class RobotProject{
     public:
         RobotProject(CameraCapture* camera, double& frame_time);
-        RobotProject(int argc, char* argv[]);
+        // RobotProject(int argc, char* argv[]);
         ~RobotProject();
 
         bool preprocessMap(const Mat & img);

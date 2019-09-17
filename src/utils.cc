@@ -80,7 +80,6 @@ namespace timeutils {
     clock_gettime(CLOCK_REALTIME, &spec);
     int64_t timediff = timespecDiff(&spec, &t0);
     return timediff/1e9;
-//    return ((spec.tv_sec * 1000000000) + spec.tv_nsec)/1e9;
   }
 
 }

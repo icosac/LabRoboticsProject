@@ -1142,8 +1142,8 @@ public:
 
 };
 
-/*! \brief Invert the angle by inverting its reference system (swap x and y).
-    \param [in/out] The angle that need to be inverted.
+/*! \brief Transform the angle given i the new reference system where x and y will be swapped.
+    \param[in/out] a The angle that need to be inverted.
 */
 void invertAngle (Angle & a);
 
@@ -1409,7 +1409,7 @@ public:
   }
 
   /*! \brief Invert the x and y of the point, and even the angle of the configuration.*/
-  void invert (){
+  void invert(){
     coord.invert();
     invertAngle(th);
   }

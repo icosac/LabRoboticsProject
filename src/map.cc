@@ -33,6 +33,8 @@ Mapp::Mapp( const int _lengthX, const int _lengthY, const int _pixX, const int _
     }
 }
 
+/*! \brief Destructor of the class.
+*/
 Mapp::~Mapp(){
     for(int i=0; i<dimY; i++){
         delete [] map[i];
@@ -288,16 +290,33 @@ bool Mapp::checkSegment(const Point2<int> & p0, const Point2<int> & p1){
     return(checkSegmentCollisionWithType(p0, p1, OBST));
 }
 
+/*! \brief Given a point, the function answer if that point is inside the map.
+
+    \param[in] p The point that need to be checked.
+    \returns True if the point is inside the map, false otherwise.
+*/
 bool Mapp::checkPointInMap(Point2<int> P) {
     return (P.x()<this->getLengthX() && P.y()<this->getLengthY() 
             && P.x()>=0 && P.y()>=0);
 }
 
+
+/*! \brief Given a point, the function answer if that point is inside the actual map. This means that the border of the map also consider the offsetting due to the robot and not only the point.
+
+    \param[in] p The point that need to be checked.
+    \returns True if the point is inside the actual map, false otherwise.
+*/
 bool Mapp::checkPointInActualMap(Point2<int> P){
     return (P.x()<this->getActualLengthX() && P.y()<this->getActualLengthY() 
             && P.x()>this->getOffsetValue() && P.y()>this->getOffsetValue());
 }
 
+/*! \brief Given a cell(defined with its row and column), the function answer if that cell is inside the cell representation of the map.
+
+    \param[in] i The i=row of the cell.
+    \param[in] j The j=column of the cell.
+    \returns True if the cell is inside the cell representation of the map, false otherwise.
+*/
 bool Mapp::checkCellInMap(const int i, const int j){
     return (j>=0 && i>=0 &&
             j<this->getDimX() && i<this->getDimY());
@@ -384,6 +403,7 @@ void Mapp::imageAddSegments(Mat & image, const vector<Configuration2<double> > &
     \param[in] p0 The first point of the segment.
     \param[in] p1 The end point of the segment.
     \param[in] thickness The thickness of the line to be drawn.
+    \param[in] colot The color of the line to be drawn.
 */
 void Mapp::imageAddSegment(Mat & image, const Point2<int> & p0, const Point2<int> & p1, const int thickness, const Scalar color){
     line( image, 
