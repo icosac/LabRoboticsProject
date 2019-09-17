@@ -36,6 +36,18 @@ namespace Planning {
 	vector<Configuration2<double> > planning(const Mat & img);
 	void createMapp();
 
+    vector<Point2<int> > convertToVP(const vector<vector<Point2<int> > > & arr);
+    vector<Point2<int> > convertToVP(const vector<vector<Configuration2<double> > > & arr);
+    vector<Configuration2<double> > convertToVC(const vector<vector<Configuration2<double> > > & arr);
+    vector<Configuration2<double> > convertToVC(const vector<vector<Point2<int> > > & arr);
+
+    void draw(const vector<vector<Point2<int> > > & vv, string name);
+    void draw(const vector<vector<Configuration2<double> > > & vv, string name);
+    void draw(  const vector<vector<Configuration2<double> > > & vv, 
+                const vector<Configuration2<double> > & left, 
+                const vector<Configuration2<double> > & right, 
+                string name);
+
 	void loadVVP(vector<vector<Point2<int> > > & vvp, FileNode fn);
 	void loadVP(vector<Point2<int> > & vp, FileNode fn);
 

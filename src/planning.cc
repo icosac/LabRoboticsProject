@@ -18,7 +18,7 @@ namespace Planning {
         \param[in] The vector of vector of points that needs to be collapsed
         \returns The new vector of points.
     */
-    vector<Point2<int> > convertToVP(vector<vector<Point2<int> > > arr){
+    vector<Point2<int> > convertToVP(const vector<vector<Point2<int> > > & arr){
         vector<Point2<int> > v;
         for (auto a : arr){
             for (auto b : a){
@@ -33,7 +33,7 @@ namespace Planning {
         \param[in] The vector of vector of configurations that needs to be collapsed
         \returns The new vector of points.
     */
-    vector<Point2<int> > convertToVP(vector<vector<Configuration2<double> > > arr){
+    vector<Point2<int> > convertToVP(const vector<vector<Configuration2<double> > > & arr){
         vector<Point2<int> > v;
         for (auto a : arr){
             for (auto b : a){
@@ -48,7 +48,7 @@ namespace Planning {
         \param[in] The vector of vector of configurations that needs to be collapsed
         \returns The new vector of configurations.
     */
-    vector<Configuration2<double> > convertToVC(vector<vector<Configuration2<double> > > arr){
+    vector<Configuration2<double> > convertToVC(const vector<vector<Configuration2<double> > > & arr){
         vector<Configuration2<double> > v;
         for (auto a : arr){
             for (auto b : a){
@@ -63,7 +63,7 @@ namespace Planning {
         \param[in] The vector of vector of points that needs to be collapsed
         \returns The new vector of configurations.
     */
-    vector<Configuration2<double> > convertToVC(vector<vector<Point2<int> > > arr){
+    vector<Configuration2<double> > convertToVC(const vector<vector<Point2<int> > > & arr){
         vector<Point2<int> > v = convertToVP(arr);
         vector<Configuration2<double> > ret;
         uint i=0;
@@ -79,7 +79,7 @@ namespace Planning {
         \param[in] vv A vector of vector of points that will be added to the map.
         \param[in] name The name of the window that will be created.
     */
-    void draw(vector<vector<Point2<int> > >& vv, string name){
+    void draw(const vector<vector<Point2<int> > > & vv, string name){
         #if defined WAIT || defined SHOW_MAP
             Mat imageMap = Planning::map->createMapRepresentation();
             vector<Point2<int> > cellsOfPath = convertToVP(vv);
@@ -97,7 +97,7 @@ namespace Planning {
         \param[in] vv A vector of vector of configurations that will be added to the map.
         \param[in] name The name of the window that will be created.
     */
-    void draw(vector<vector<Configuration2<double> > > vv, string name){
+    void draw(const vector<vector<Configuration2<double> > > & vv, string name){
         #if defined WAIT || defined SHOW_MAP
             Mat imageMap = Planning::map->createMapRepresentation();
             vector<Point2<int> > cellsOfPath = convertToVP(vv);
@@ -117,9 +117,9 @@ namespace Planning {
         \param[in] right A set of bleck points will be added to the map.
         \param[in] name The name of the window that will be created.
     */
-    void draw(  vector<vector<Configuration2<double> > > vv, 
-                vector<Configuration2<double> >& left, 
-                vector<Configuration2<double> >& right, 
+    void draw(  const vector<vector<Configuration2<double> > > & vv, 
+                const vector<Configuration2<double> > & left, 
+                const vector<Configuration2<double> > & right, 
                 string name)
     {
         #if defined WAIT || defined SHOW_MAP
@@ -153,8 +153,7 @@ namespace Planning {
         Planning::createMapp();
 
         // localize the robot
-        pair<Configuration2<double>, Configuration2<double> > p = ::localize(img, true);
-        conf = p.first;
+        Configuration2<double> conf = ::localize(img, true);
         vector<Point2<int> > vp;
         vp.push_back( Point2<int>( (int)conf.x(), (int)conf.y()) ); //robot initial location.
 

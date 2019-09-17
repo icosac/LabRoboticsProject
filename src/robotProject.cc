@@ -92,8 +92,8 @@ bool RobotProject::planPath(const Mat & img, Path & path){
 	\returns A true value if everything goes well. False otherwise.
 */
 bool RobotProject::localize(const Mat & img, vector<double> & state){
-	pair<Configuration2<double>, Configuration2<double> > p = ::localize(img, true);
-	Configuration2<double> c = p.second;
+	Configuration2<double> c = ::localize(img, true);
+	c.invert();
 
 	state.resize(3);
 	state[0] = c.x()/1000.0;

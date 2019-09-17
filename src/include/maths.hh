@@ -1400,7 +1400,7 @@ public:
   }
 
   /*! \brief Invert the x and y of the point, and even the angle of the configuration.*/
-  void invert (){
+  void invert(){
     coord.invert();
     invertAngle(th);
   }
