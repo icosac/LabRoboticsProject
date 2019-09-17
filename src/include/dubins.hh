@@ -14,9 +14,9 @@
 #include <cstdio> // For sprintf
 #endif
 
+#define D_SHIFT 100
 #ifdef DEBUG
 #define D_INC 5
-#define D_SHIFT 100
 #define D_DIMX 200+D_SHIFT
 #define D_DIMY 500+D_SHIFT
 #endif
@@ -320,8 +320,8 @@ public:
       if (equal(this->getK(), 0.0)){ //Check if on line
         T2 max_x = (Curve<T2>::begin().x()>Curve<T2>::end().x()) ? Curve<T2>::begin().x() : Curve<T2>::end().x();
         T2 min_x = (Curve<T2>::begin().x()<Curve<T2>::end().x()) ? Curve<T2>::begin().x() : Curve<T2>::end().x();
-        T2 max_x = (Curve<T2>::begin().y()>Curve<T2>::end().y()) ? Curve<T2>::begin().y() : Curve<T2>::end().y();
-        T2 min_x = (Curve<T2>::begin().y()<Curve<T2>::end().y()) ? Curve<T2>::begin().y() : Curve<T2>::end().y();
+        T2 max_y = (Curve<T2>::begin().y()>Curve<T2>::end().y()) ? Curve<T2>::begin().y() : Curve<T2>::end().y();
+        T2 min_y = (Curve<T2>::begin().y()<Curve<T2>::end().y()) ? Curve<T2>::begin().y() : Curve<T2>::end().y();
         if( Curve<T2>::begin().angle()==C.angle() && //Same direction
             Curve<T2>::begin().point().th(C.point())==C.angle() && //Same line
             !(C.x()>max_x || C.x()<min_x || C.y()>max_y || C.y()<min_y) //And inside segment
@@ -1072,7 +1072,6 @@ public:
     Tuple<Tuple<Angle> > angles;
 
     //Create all angles to check
-    COUT(_points.size())
     disp(angles, _angles, tries, inc, 1, _points.size()-2); //startPos=1 and endPos=size()-2 since I have to check for all angles except the first and the last.
 
     // #ifdef DEBUG
@@ -1114,10 +1113,6 @@ public:
 
       // allDubins.add(app);
     }
-
-    #ifdef DEBUG 
-      cout << *this << endl;
-    #endif
 
     if (id<0){
       cerr << "No DubinsSet coudl be computed for given points." << endl;
@@ -1211,7 +1206,7 @@ public:
               if (pos==this->getSize()-1){ //Then I remove the last Dubins, recompute it, readd it and add the new one.
                 Dubins<T> app (this->getDubins(pos).begin(), D->begin(), this->getKmax());
                 cout << app << endl;
-                this->removeDubins(pos);
+                this->removeDubins();
                 this->dubinses.add(app);
                 this->L+=app.length();
                 this->dubinses.add(*D);

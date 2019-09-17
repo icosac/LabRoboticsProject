@@ -2,22 +2,6 @@
 
 Settings *sett=new Settings("./exam/data/");
 
-/*! \brief A not used constructor of the class. 
-
-	\param[in] 
-	\returns 
-*/
-// RobotProject::RobotProject(int argc, char* argv[]){
-// 	cout << "-> -> -> RobotProject constructor\n";
-
-// 	// cout << "calibration" << endl;
-// 	// calibration(); //BUG????!?!?!?!?!?!??!?!?!
-
-// 	cout << endl <<"Configure" << endl;
-// 	// configure(true);
-// 	cout << "configure done\n";
-// }
-
 /*! \brief The main constructor of the class.
 
 	\param[in] camera It is the camera from which the image will be loaded.
@@ -25,7 +9,7 @@ Settings *sett=new Settings("./exam/data/");
 	\returns 
 */
 RobotProject::RobotProject(CameraCapture* camera, double& frame_time){
-	cout << "-> -> -> RobotProject constructor\n";
+	cout << "\n-> -> -> RobotProject constructor\n";
 	
 	sett->cleanAndRead("./exam/data/settings.xml");
 
@@ -55,7 +39,7 @@ RobotProject::~RobotProject(){
 	\returns A true value if everything goes well. False otherwise.
 */
 bool RobotProject::preprocessMap(const Mat & img){
-	cout << "-> -> -> PreprocessMap\n" << flush;
+	cout << "\n-> -> -> PreprocessMap\n" << flush;
 
 	Mat internalImg = img;
 	cout << endl << "unwrapping" << endl << flush;
@@ -74,14 +58,14 @@ bool RobotProject::preprocessMap(const Mat & img){
 	\returns A true value if everything goes well. False otherwise.
 */
 bool RobotProject::planPath(const Mat & img, Path & path){
-	cout << "-> -> -> PlanPath\n" << flush;
+	cout << "\n-> -> -> PlanPath\n" << flush;
 
 	vector<Configuration2<double> > pathPoints = Planning::planning(img);
 	
 	cout << "Creating map\n" << flush;
 
 	Planning::fromVcToPath(pathPoints, path); //return
-	cout << "-> -> -> PlanPath end\n" << flush;
+	cout << "\n-> -> -> PlanPath end\n" << flush;
 	return(true);
 }
 
