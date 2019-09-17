@@ -11,15 +11,15 @@
 <blackMask>
   59 0 0 147 255 89</blackMask>
 <redMask>
-  120 39 155 180 255 255</redMask>
+  120 69 123 180 255 255</redMask>
 <greenMask>
   56 62 47 81 255 234</greenMask>
 <blueMask>
-  101 186 87 153 255 255</blueMask>
+  105 182 123 153 255 255</blueMask>
 <victimMask>
   73 0 0 132 213 103</victimMask>
 <robotMask>
-  84 88 107 101 255 240</robotMask>
+  84 122 108 101 255 240</robotMask>
 <kernelSide>9</kernelSide>
 <convexHullFile>convexHull.xml</convexHullFile>
 <templatesFolder>num_template/</templatesFolder>

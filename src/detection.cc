@@ -389,7 +389,7 @@ int number_recognition(Rect blob, const Mat & base){ //filtering
         my_imshow("before black filter", processROI, true);
     #endif
     Filter mask = sett->victimMask;
-    COUT(mask)
+
     inRange(processROI, mask.Low(), mask.High(), processROI);
     #ifdef WAIT
         my_imshow("before erode", processROI);
@@ -480,10 +480,8 @@ void crop_number_section(Mat & ROI){
         drawContours(drawing, contours, -1, color, 1, 8, vector<Vec4i>(), 0, Point() );
         cout << endl;
         for( int i = 0; i < 4; i++ ){
-            //cout << "point[" << i << "] x: " << rect_points[i].x << " y: " << rect_points[i].y << endl;
             line( drawing, rect_points[i], rect_points[(i+1)%4], color, 1, 8 );
         }
-        cout << "angle: " << minRect.angle << " x: " << x << " y: " << y << " width: " << w  << " height: " << h << endl;
         // Show in a window
         my_imshow("Contour", drawing );
     #endif
