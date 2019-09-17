@@ -1025,6 +1025,7 @@ namespace Planning {
         }
     }
 
+
     template<class T>
     bool check_dubins_D (Dubins<T>& D){
         Tuple<Tuple<Configuration2<T> > > vPDub=D.splitIt(10);
@@ -1310,7 +1311,11 @@ namespace Planning {
 
     } 
 
-    // template<class T>
+    /*!
+     * Function to compute `Dubins` between the various points in the path.
+     * \param[in] start `Configuration2` that is the starting configuration. 
+     * \param[in/out] vvConfs Vector of vectors of `Configuration2` that are the points of the path.
+     */
     void plan_dubins( const Configuration2<double>& _start,
                         vector<vector<Configuration2<double> > >& vvConfs)
     {
@@ -1447,94 +1452,3 @@ namespace Planning {
         cout << "End drawing " << path.getSize() << endl;
     }
 }
-
-
-
-    // template <class T>
-    // DubinsSet<double> reduce_points_dubins(Tuple<Point2<T> > init_points,
-    //                                  Configuration2<double>* start=nullptr,
-    //                                  Configuration2<double>* end=nullptr,
-    //                                  int start_pos=0,
-    //                                  int end_pos=-1)
-    // {
-
-    //     // vector<uint> ret={}; //Save the ids of the points where the curvature changes too much. 
-    //     if (end_pos==-1) end_pos=init_points.size()-1;
-    //     DubinsSet<double> DS;
-    //     //First try to connect start with the last point.
-    //     uint i=0;
-    //     for (i=end_pos; i>0; i--){
-    //         Dubins<double> dub;
-    //         Configuration2<double> new_end=*end;
-    //         if (i!=end_pos){ 
-    //             new_end=Configuration2<double>(init_points.get(i), (init_points.get(i).th(init_points.get(i+1))).toRad());
-    //         }
-    //         dub=Dubins<double> (*start, new_end, ROB_KMAX);
-            
-    //         if (check_dubins_D(dub)){ //Ok, I can't reach it with only one, maybe with more than one?
-    //             DS.addDubins(&dub);
-    //         }
-    //         else if (i!=0){ //Ok, I can't reach it with only one, maybe with more than one?
-    //             DubinsSet<double> new_DS (*start, new_end, init_points.get(start, i), ROB_KMAX);
-    //             bool ok=check_dubins_DS(new_DS);  
-    //         }
-    //     }
-    //     if (i==0){ //No Dubins was computed, throw error
-    //         throw MyException<string>(GENERAL, "No Dubins could be computed. ", __LINE__, __FILE__);
-    //     }
-    //     else if (i!=end_pos){ //Dubins was computed but not for the whole path. Repeat the process. 
-
-    //     }
-    //     // ret.push_back{*end};
-
-    //     return DS;
-    // }
-
-    // DubinsSet<double> create_dubins_path (  const vector<Point2<int> >& vP1,
-    //                                         const vector<Point2<int> >& vP2,
-    //                                         const Configuration2<double> endStart,
-    //                                         uint pos)
-    // {
-    //     DubinsSet<double> ret;
-    //     //First I need to compute Dubins at extremities
-    //     DubinsSet<double> best_intermediate;
-    //     Tuple<Point2<double> > intermediates; intermediates.add(vP1.back()); //This cast should work without problems. BUT......
-    //     uint i=0, j=0;
-    //     for (i=pos; i<vP1.size()-1; i++){
-    //         for (j=1; j<vP2.size()-1; j++){
-    //             //Compute possible DubinsSet
-    //             DubinsSet<double> app; 
-    //             if (i==pos){ //If i==pos than I'm starting from a given configuration to a point in vP2
-    //                 app=DubinsSet<double> (endStart, Configuration2<double>(vP2[j], vP2[j].th(vP2[j+1])), intermediates, ROB_KMAX); 
-    //             }
-    //             else { //Else I'm starting from an "unknown" point of vP1 to a point in vP2.
-    //                 app=DubinsSet<double> (Configuration2<double>(vP1[i], vP1[i].th(vP1[i+1])), Configuration2<double>(vP2[j], vP2[j].th(vP2[j+1])), intermediates, ROB_KMAX);
-    //             }
-
-    //             if (app.getSize()>0){ //First I check DubinsSet was successful
-    //                 //Then I split the Dubins and check if it's ok
-    //                 bool ok=check_dubins_DS(app);
-
-    //                 Tuple<Tuple<Tuple<Configuration2<double> > > > dub_points=app.splitIt(ROB_PIECE_LENGTH);
-    //                 if (!ok){
-    //                     cout << "Dubins from point " << dub_points.front().front().front() << " to point " << dub_points.back().back().back() << " is not feasible" << endl;
-    //                 }
-    //                 else {
-    //                     if (best_intermediate.getLength()>app.getLength()){
-    //                         cout << "New best found " << best_intermediate.getLength() << ">" << app.getLength() << endl;
-    //                         best_intermediate=app; //TODO this probably won't work until you implement the clone
-    //                     }
-    //                     else{
-    //                         cout << "New best NOT found " << best_intermediate.getLength() << "<" << app.getLength() << endl;
-    //                     }
-    //                 }
-    //             }
-
-    //         }
-    //     }
-    //     if (i!=pos){ //Then there are some points from a DubinsSet to a Dubins that are not included.
-    //         //Check if a line is feasible.
-
-    //     } 
-    //     return ret;
-    // }

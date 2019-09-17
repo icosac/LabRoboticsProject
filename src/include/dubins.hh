@@ -94,8 +94,9 @@ public:
     P1=_P1;
   }
 
-  /*! This function create a strinstream object containing infos about the `Curve`.
-      \returns A string stream.
+  /*! 
+   * This function create a strinstream object containing infos about the `Curve`.
+   * \returns A string stream.
   */
   stringstream to_string() const{
     stringstream out;
@@ -142,13 +143,23 @@ Configuration2<double> circline(double _L,
                                 Configuration2<double> _P0,
                                 double _K);
 
-//TODO document
+/*!
+ * \brief Function that computes a circle given 3 points and check if a point is on the circle arc.
+ * \details This function computes the 3 parameters \f$a, b, c\f$ for a circle with equation \f$x^2+y^2+ax+by+c=0\f$ using Cramer method. Then checks if the given point is on the circle: if it's not then returns `false`, otherwise checks the angle with respect to the initial point and the final point to see if the point is on the arc.
+ * \tparam T The type of the point.
+ * \param p0 The initial point of the arc.
+ * \param pi An intermediate point of the arc.
+ * \param pf The final point of the arc.
+ * \param p The point to verify if it's on the arc or not.
+ * \return `true` if the point is on the arc, `false` otherwise.
+ */
 template<class T>
 bool is_on_circarc( Point2<T> p0, 
                     Point2<T> pi, 
                     Point2<T> pf,
                     Point2<T> p
-                  ){
+                  )
+{
   //Compute circonference with Cramer
   double d0=-((pow2(p0.x())+pow2(p0.y())));
   double di=-((pow2(pi.x())+pow2(pi.y())));
@@ -212,7 +223,8 @@ public:
    */
   DubinsArc(const Configuration2<T2> _P0,
             const T1 _k,
-            const T1 _l) : Curve<T2>() {
+            const T1 _l) : Curve<T2>() 
+  {
     K=_k;
     L=_l;
 
@@ -223,7 +235,6 @@ public:
   T1 getK   () const { return K; } ///< Returns the curvature of the arc.
   T1 length () const { return L; } ///< Returns the length of the arc.
 
-  //TODO Add last point of curve
   /*!
    * \brief Splits the `DubinsArc` in pieces of _L length.
    * This function starts from the begining of the arc and computes n new arcs through the `circline()` function using the curvature of the `DubinsArc` and _L as the length.
@@ -246,8 +257,9 @@ public:
     return ret;
   }
 
-  /*! This function create a strinstream object containing infos about the `DubinsArc`.
-      \returns A string stream.
+  /*! 
+   * This function create a strinstream object containing infos about the `DubinsArc`.
+   * \returns A string stream.
   */
   stringstream to_string() const {
     stringstream out;
@@ -296,14 +308,25 @@ public:
     }
   }
 
+  /*!
+   * Function that given a `Configuration2` says if the point is on the `DubinsArc`, or not.
+   * \details If the arc has 0 curvature, than the arc is a line and so the configuration needs to have the same direction as the start configuration, have the same angle from start than the angle from start to end and be inside the extremities of the segment. If the curvature is not 0, then we are on a circle and the function `is_on_circarc` is called.
+   * \param[in] C The `Configuration2` to be checked.
+   * \return `true` if the configuration is on the arc, `false` otherwise. 
+   */
   bool is_on_dubinsArc(Configuration2<T2> C){ 
     bool ok=false;
     if (!equal(this->length(), 0.0)){
       if (equal(this->getK(), 0.0)){ //Check if on line
-        if(Curve<T2>::begin().angle()==C.angle()){
-          if (Curve<T2>::begin().point().th(C.point())==C.angle()) {
-            ok=true;
-          }
+        T2 max_x = (Curve<T2>::begin().x()>Curve<T2>::end().x()) ? Curve<T2>::begin().x() : Curve<T2>::end().x();
+        T2 min_x = (Curve<T2>::begin().x()<Curve<T2>::end().x()) ? Curve<T2>::begin().x() : Curve<T2>::end().x();
+        T2 max_x = (Curve<T2>::begin().y()>Curve<T2>::end().y()) ? Curve<T2>::begin().y() : Curve<T2>::end().y();
+        T2 min_x = (Curve<T2>::begin().y()<Curve<T2>::end().y()) ? Curve<T2>::begin().y() : Curve<T2>::end().y();
+        if( Curve<T2>::begin().angle()==C.angle() && //Same direction
+            Curve<T2>::begin().point().th(C.point())==C.angle() && //Same line
+            !(C.x()>max_x || C.x()<min_x || C.y()>max_y || C.y()<min_y) //And inside segment
+          ) {
+          ok=true;
         }
       }
       else {
@@ -442,14 +465,12 @@ public:
     double sc_s2=invK*sqrt(temp1);
     double sc_s3=Angle(th1-tan2, Angle::RAD).get()*invK;
     
-
     double* ret=new double[3];
     ret[0]=sc_s1;
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
     return ret;
-    // return Tuple<double>(3, sc_s1.get(), sc_s2, sc_s3.get());
   }
 
   /*!
@@ -475,16 +496,13 @@ public:
     double sc_s1=Angle(th0-atan2(C,S), Angle::RAD).get()*invK;
     double sc_s2=invK*sqrt(temp1);
     double sc_s3=Angle(atan2(C,S)-th1, Angle::RAD).get()*invK;
-    
-
+  
     double* ret=new double[3];
     ret[0]=sc_s1;
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
     return ret;
-    
-    // return Tuple<double> (3, sc_s1, sc_s2, sc_s3);
   }
 
   /*!
@@ -511,14 +529,12 @@ public:
     double sc_s1= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th0, Angle::RAD).get()*invK;
     double sc_s3= Angle(atan2(-C,S)-atan2(-2, _kmax*sc_s2)-th1, Angle::RAD).get()*invK;
 
-
     double* ret=new double[3];
     ret[0]=sc_s1;
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
     return ret;
-    // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
   /*!
@@ -552,7 +568,6 @@ public:
     ret[2]=sc_s3;
 
     return ret;
-    // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
   /*!
@@ -590,7 +605,6 @@ public:
     ret[2]=sc_s3;
 
     return ret;
-    // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
   /*!
@@ -620,16 +634,13 @@ public:
     double sc_s2 = Angle(2*M_PI-acos(temp1), Angle::RAD).get()*invK;
     double sc_s1 = Angle(atan2(C, S)-th0+0.5*_kmax*sc_s2, Angle::RAD).get()*invK;
     double sc_s3 = Angle(th1-th0+_kmax*(sc_s2-sc_s1), Angle::RAD).get()*invK;
-    
-    
+        
     double* ret=new double[3];
     ret[0]=sc_s1;
     ret[1]=sc_s2;
     ret[2]=sc_s3;
 
     return ret;
-
-    // return Tuple<double>(3, sc_s1, sc_s2, sc_s3);
   }
 
   /*!
@@ -656,6 +667,14 @@ public:
     return Tuple<double> (4, sc_th0.toRad(), sc_th1.toRad(), sc_Kmax, lambda);
   }
 
+  /*!
+   * Function that scales from a given system to another through a parameter lambda.
+   * \param[in] lambda Coefficient to be applied to restore original system.
+   * \param[in] sc_s1 Angle or value to be scaled.
+   * \param[in] sc_s1 Angle or value to be scaled.
+   * \param[in] sc_s1 Angle or value to be scaled.
+   * \return a `Tuple` containing the value scaled. 
+   */
   Tuple<double> scaleFromStandard(double lambda,
                                   double sc_s1,
                                   double sc_s2,
@@ -705,17 +724,6 @@ public:
           pidx=i;
         }
       }
-
-      // if (value.size()>0){
-      //   double appL=value.get(0)+value.get(1)+value.get(2);
-      //   if (appL<Length){
-      //     Length = appL;
-      //     sc_s1=value.get(0);
-      //     sc_s2=value.get(1);
-      //     sc_s3=value.get(2);
-      //     pidx=i;
-      //   }
-      // }
       i++;
     }
 
@@ -745,11 +753,7 @@ public:
                         );
       if (!check_)
         pidx=-1.0;
-
-
     }
-    
-    
     return pidx;
   }
 
@@ -807,7 +811,6 @@ public:
     return out;
   }
 
-  //TODO there are two points that are useless.
   /*!
    * Function to split a Dubins in points.
    * \param[in] _arch If defined returns only the points for a single `DubinsArc`.
@@ -815,7 +818,8 @@ public:
    * \return A `Tuple` containing three `Tuple` of `Point2` (one for each arc) containing the computed points.
    */
   Tuple<Tuple<Configuration2<double> > > splitIt (double _L=PIECE_LENGTH, 
-                                                  int _arch=0){
+                                                  int _arch=0)
+  {
     Tuple<Tuple<Configuration2<double> > > v;
     switch(_arch){
       case 1: {
@@ -838,8 +842,9 @@ public:
     }
     return v;
   }
-  /*! This function create a strinstream object containing infos about the `Dubins`.
-    \returns A string stream.
+  /*! 
+   *  This function create a strinstream object containing infos about the `Dubins`.
+   *  \returns A string stream.
   */
   stringstream to_string() const {
     stringstream out;
@@ -869,13 +874,19 @@ public:
    * \param[in] image The Mat where to draw the points.
    * \param[in] SHIFT The value to use to shift the points to make them stay inside the matrix.
    */
-  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0){
+  void draw(double dimX, double dimY, double inc, Scalar scl, Mat& image, double SHIFT=0)
+  {
     A1.draw(dimX, dimY, inc, scl, image, SHIFT);
     A2.draw(dimX, dimY, inc, scl, image, SHIFT);
     A3.draw(dimX, dimY, inc, scl, image, SHIFT);
   }
 
-  bool is_on_dubins (Configuration2<T> C){
+  /*! 
+   *  Function to check if a `Configuration2` is on a `Dubins`.
+   *  \return `true` if the `Configuration2` is on the `Dubins`, `false` otherwise.
+   */
+  bool is_on_dubins (Configuration2<T> C)
+  {
     return (A1.is_on_dubinsArc(C) || A2.is_on_dubinsArc(C) || A3.is_on_dubinsArc(C));
   }
 
@@ -922,7 +933,11 @@ private:
   double Kmax;                ///< Maximum value for curvature.
   double L=DInf;              ///< Length of all `DubinsSet`.
 public:
+  /*!
+   * Plain constructor for `DubinsSet`.
+   */
   DubinsSet() : dubinses(), Kmax(0.0), L(DInf) {}
+  
   /*!
    * Constructor that given a `Tuple` of `Dubins` computes stores all of them.
    * \param[in] _dubinses The `Tuple` of `Dubins`.
@@ -1112,12 +1127,12 @@ public:
     }
   }
 
-  double getLength()              { return this->L; }               ///< Returns the Length of the set of `Dubins`.
-  double getKmax()                { return this->Kmax; }            ///< Returns the maximum curvature.
-  double getSize()                { return this->dubinses.size(); } ///< Returns the number of `Dubins` stored.
-  Tuple<Dubins<T> > getDubinses() { return this->dubinses; }        ///< Returns a `Tuple` containing all the `Dubins`.
-  Configuration2<T> getBegin()    { return this->dubinses.front().begin(); }
-  Configuration2<T> getEnd()      { return this->dubinses.back().end(); }
+  double getLength()              { return this->L; }                         ///< Returns the Length of the set of `Dubins`.
+  double getKmax()                { return this->Kmax; }                      ///< Returns the maximum curvature.
+  double getSize()                { return this->dubinses.size(); }           ///< Returns the number of `Dubins` stored.
+  Tuple<Dubins<T> > getDubinses() { return this->dubinses; }                  ///< Returns a `Tuple` containing all the `Dubins`.
+  Configuration2<T> getBegin()    { return this->dubinses.front().begin(); }  ///< Returns the starting `Configuration2` of the `DubinsSet`.
+  Configuration2<T> getEnd()      { return this->dubinses.back().end(); }     ///< Returns the ending `Configuration2` of the `DubinsSet`
 
   /*!
    * This functions returns a specific `Dubins` from the set.
@@ -1147,12 +1162,20 @@ public:
     return nullptr;
   }
 
+  /*!
+   * Function to remove all `Dubins`, set curvature to 0 and L to \f$\infty \f$
+   */
   void clean (){
     this->dubinses.eraseAll();
     this->Kmax=0;
     this->L=DInf;
   }
 
+  /*!
+   * \brief Function that checks whether a `Configuration2` is on the `DubinsSet` or not.
+   * \param C The `Configuration2` to be checked.
+   * \return The id of the `Dubins` on which the point is.
+   */
   int is_on_dubinsSet(Configuration2<T> C){
     int ret=0;
     bool ok=false;
@@ -1163,6 +1186,12 @@ public:
     return --ret;
   }
 
+  /*!
+   * \brief Function to add a `Dubins` at the end of the `DubinsSet`.
+   * \details The `Dubins` to be added must respect some conditions such as the same curvature as the `DubinsSet`, the initial `Configuration2` must be on the path of the `DubinsSet`.
+   * \param D The `Dubins` to add.
+   * \return `true` if the `Dubins` could be added, `false` otherwise.
+   */
   bool addDubins(Dubins<T>* D){
     if (D->length()!=DInf){
       if (this->getSize()==0){
@@ -1208,17 +1237,19 @@ public:
     return true;
   }
 
-  bool removeDubins(uint pos){
-    if (pos>=this->getSize()){
-      return false;
-    } 
-    else {
-      this->L-=this->getDubins(pos).length();
-      this->dubinses.remove(pos);
-      return true;
-    }
+  /*!
+   * \brief Remove the last `Dubins` from the set.
+   */
+  void removeDubins(){
+    this->L-=this->getDubins(this->getSize()-1).length();
+    this->dubinses.remove(this->getSize()-1);
   }
 
+  /*!
+   * Function to copy a `DubinsSet` on to `this`.
+   * \param DS The `DubinsSet` to be copied on `this`
+   * \return `this`, that is DS.
+   */
   DubinsSet<T> copy (DubinsSet<T>* DS)
   {
     this->dubinses.eraseAll();
@@ -1228,8 +1259,20 @@ public:
     return *this;
   }
 
+  /*!
+   * Overload of operator =. It calls the function copy.
+   * \param DS The `DubinsSet` to copy to `this`.
+   * \return `this`, that is DS.
+   */
   DubinsSet<T> operator= (DubinsSet<T>* DS) { return this->copy(DS); }
 
+  /*!
+   * \brief Function to join two DubinsSet.
+   * \details This function joins two DubinsSet. If `this` is empty, than stores the `Dubins` from the `DubinsSet` to join. If it is not, then checks whether the `Configuration2` of the ending `Dubins` coincides with the starting `Configuration2` of the `Dubins` to join. If they do then the two sets can be merged, otherwise they cannot.
+   * \param DS The `DubinSet` to join to `this`.
+   * \param startPos If this value is negative, then all `Dubins` in DS are going to be merged, otherwise only the `Dubins` from this position onwards.
+   * \return `this`, that is the merged `DubinsSet`.
+   */
   DubinsSet<T> join (DubinsSet<T>* DS, 
                      int startPos = -1)
   {
@@ -1270,6 +1313,11 @@ public:
     return *this;
   }
 
+  /*!
+   * Function to split a Dubins in points.
+   * \param[in] _length The distance from one point to another.
+   * \return A `Tuple` containing a `Tuple` containing three `Tuple` of `Configuration2` for each Dubins in the DubinsSet.
+   */
   Tuple<Tuple<Tuple<Configuration2<T> > > > splitIt (double _length=PIECE_LENGTH){
     Tuple<Tuple<Tuple<Configuration2<T> > > > ret;
     for (Dubins<T> dub: this->dubinses){

@@ -37,9 +37,18 @@ inline T pow2 (const T x){
   return x*x;
 }
 
+template<class T>
+inline T my_max (const T& A, const T& B){
+  return (A>B ? A : B);
+}
+
+template<class T>
+inline T my_min (const T& A, const T& B){
+  return (A<B ? A : B);
+}
+
 const double DEGTORAD=(M_PI/180.0);
 const double RADTODEG=(180.0/M_PI);
-
 
 /*! \brief This class allows to save and handle angles. It supports DEG and RAD, 
 		operations such as addition and subtraction with operators overloading, 
