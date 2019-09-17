@@ -9,7 +9,7 @@ var searchData=
   ['m_5fpreservecollinear',['m_PreserveCollinear',['../class_clipper_lib_1_1_clipper_base.html#aad4ca0f2a16a6fb466036b36cc5ff638',1,'ClipperLib::ClipperBase']]],
   ['m_5fscanbeam',['m_Scanbeam',['../class_clipper_lib_1_1_clipper_base.html#a74dba851f53114c06257d407bbcc170e',1,'ClipperLib::ClipperBase']]],
   ['m_5fusefullrange',['m_UseFullRange',['../class_clipper_lib_1_1_clipper_base.html#aea11d183617adc12d7ba2b84533f7f45',1,'ClipperLib::ClipperBase']]],
-  ['map',['map',['../class_mapp.html#a91181e95875bc82d03e832b9d901cb59',1,'Mapp']]],
+  ['map',['map',['../class_mapp.html#a91181e95875bc82d03e832b9d901cb59',1,'Mapp::map()'],['../namespace_planning.html#ab0ebb62df4445b6351592a77421badf6',1,'Planning::map()']]],
   ['map_5fbuffer',['map_buffer',['../namespace_d_w.html#a888297366f850dc6344c0d54c57550c7',1,'DW']]],
   ['mapsfolder',['mapsFolder',['../class_settings.html#aeddfd4457036a14cb0a48d50d9e6ccfe',1,'Settings']]],
   ['mapsnames',['mapsNames',['../class_settings.html#a4a464c938e96639861dc2deb773a2fb8',1,'Settings']]],

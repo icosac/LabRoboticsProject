@@ -80,11 +80,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af64f6017bf08af095addedf084863f22"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#af64f6017bf08af095addedf084863f22">Tuple</a> (<a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> _n,...)</td></tr>
 <tr class="memdesc:af64f6017bf08af095addedf084863f22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors that takes the number of objectes to be stored, the objects and then stores them. For compatibility problem we strongly suggest to use this constructor only with standard types or types that can be promotted to one of the standard ones. For any other type we suggest to use an empty constructor and then use the <code><a class="el" href="class_tuple.html#a5d3ee2809d790543195a6e2075aef7d0" title="Adds a value at the end of the list.">add()</a></code> function.  <a href="#af64f6017bf08af095addedf084863f22">More...</a><br /></td></tr>
 <tr class="separator:af64f6017bf08af095addedf084863f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adff6ec647c0f16a061adae02814ad45e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#adff6ec647c0f16a061adae02814ad45e">Tuple</a> (std::vector&lt; T &gt; v)</td></tr>
+<tr class="separator:adff6ec647c0f16a061adae02814ad45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fffdb4c6d86d10fcf4aee1b0261e4ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a8fffdb4c6d86d10fcf4aee1b0261e4ba">size</a> () const</td></tr>
 <tr class="separator:a8fffdb4c6d86d10fcf4aee1b0261e4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabf82c5d0f19c9a8f6a8f01d95801162"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#aabf82c5d0f19c9a8f6a8f01d95801162">get</a> (const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> _n) const</td></tr>
 <tr class="memdesc:aabf82c5d0f19c9a8f6a8f01d95801162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the n-th element.  <a href="#aabf82c5d0f19c9a8f6a8f01d95801162">More...</a><br /></td></tr>
 <tr class="separator:aabf82c5d0f19c9a8f6a8f01d95801162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cd0c2fb33a5861e3f171614881393ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a7cd0c2fb33a5861e3f171614881393ce">get</a> (const uint start, const uint <a class="el" href="class_tuple.html#a345d8a3efbf58fe4cc7295c3cf66e8ab">end</a>)</td></tr>
+<tr class="separator:a7cd0c2fb33a5861e3f171614881393ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f97540a70c1e40e3a34c1b5dee9fa0e"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a3f97540a70c1e40e3a34c1b5dee9fa0e">front</a> ()</td></tr>
+<tr class="separator:a3f97540a70c1e40e3a34c1b5dee9fa0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad885e206e13107c8f4c6005216f5da29"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#ad885e206e13107c8f4c6005216f5da29">back</a> ()</td></tr>
+<tr class="separator:ad885e206e13107c8f4c6005216f5da29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab743167e9fd750f71add11b1aa48f6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#aab743167e9fd750f71add11b1aa48f6b">find</a> (T _el)</td></tr>
 <tr class="separator:aab743167e9fd750f71add11b1aa48f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d3ee2809d790543195a6e2075aef7d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a5d3ee2809d790543195a6e2075aef7d0">add</a> (const T _new)</td></tr>
@@ -92,9 +100,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5d3ee2809d790543195a6e2075aef7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7699d6813e11c18f436098e9f76ebf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#ac7699d6813e11c18f436098e9f76ebf0">addIfNot</a> (T _el, bool _throw=false)</td></tr>
 <tr class="separator:ac7699d6813e11c18f436098e9f76ebf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53a1abc3017d30cf1a6d6858caee8ce8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a53a1abc3017d30cf1a6d6858caee8ce8">remove</a> (const T pos)</td></tr>
-<tr class="memdesc:a53a1abc3017d30cf1a6d6858caee8ce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a value from the list.  <a href="#a53a1abc3017d30cf1a6d6858caee8ce8">More...</a><br /></td></tr>
-<tr class="separator:a53a1abc3017d30cf1a6d6858caee8ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7436ece54558c2940f79c539f83f611"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#ad7436ece54558c2940f79c539f83f611">remove</a> (const uint pos)</td></tr>
+<tr class="memdesc:ad7436ece54558c2940f79c539f83f611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a value from the list.  <a href="#ad7436ece54558c2940f79c539f83f611">More...</a><br /></td></tr>
+<tr class="separator:ad7436ece54558c2940f79c539f83f611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60370cde243871dfafb0ac96404c6f90"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a60370cde243871dfafb0ac96404c6f90">remove_from</a> (const uint pos)</td></tr>
+<tr class="separator:a60370cde243871dfafb0ac96404c6f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae36c533bd6e97ac45a2ed69a0c4760e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#ae36c533bd6e97ac45a2ed69a0c4760e4">eraseAll</a> ()</td></tr>
 <tr class="memdesc:ae36c533bd6e97ac45a2ed69a0c4760e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all values from the <code><a class="el" href="class_tuple.html">Tuple</a></code>.  <a href="#ae36c533bd6e97ac45a2ed69a0c4760e4">More...</a><br /></td></tr>
 <tr class="separator:ae36c533bd6e97ac45a2ed69a0c4760e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,6 +113,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6ecd34c0308891b7bec87b4736a6eaa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1173bba1687b01721f9e4e4c73de0d2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a1173bba1687b01721f9e4e4c73de0d2a">ahead</a> (const T _new)</td></tr>
 <tr class="separator:a1173bba1687b01721f9e4e4c73de0d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4b525e02b40a646ebd4f600fe78d00f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#ac4b525e02b40a646ebd4f600fe78d00f">copy</a> (const <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt; &amp;A)</td></tr>
+<tr class="memdesc:ac4b525e02b40a646ebd4f600fe78d00f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a <a class="el" href="class_tuple.html">Tuple</a> into another one.  <a href="#ac4b525e02b40a646ebd4f600fe78d00f">More...</a><br /></td></tr>
+<tr class="separator:ac4b525e02b40a646ebd4f600fe78d00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab47559b59159610317779405337c2b44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#ab47559b59159610317779405337c2b44">operator=</a> (const <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt; &amp;A)</td></tr>
+<tr class="memdesc:ab47559b59159610317779405337c2b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of the = operator. Just calls <code>copy</code>.  <a href="#ab47559b59159610317779405337c2b44">More...</a><br /></td></tr>
+<tr class="separator:ab47559b59159610317779405337c2b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68d1d3aaecc187f8f78b46f4e1b48260"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#a68d1d3aaecc187f8f78b46f4e1b48260">equal</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt; _t)</td></tr>
 <tr class="separator:a68d1d3aaecc187f8f78b46f4e1b48260"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8f90a7c0726fae5ac5651c4e16222cd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tuple.html#ad8f90a7c0726fae5ac5651c4e16222cd">operator==</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt; _t)</td></tr>
@@ -182,7 +198,7 @@ class Tuple&lt; T &gt;</h3>
 </dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae8bde0e2215d6d5235a2a45195f7bfae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8bde0e2215d6d5235a2a45195f7bfae">&#9670;&nbsp;</a></span>Tuple() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8bde0e2215d6d5235a2a45195f7bfae">&#9670;&nbsp;</a></span>Tuple() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +227,7 @@ template&lt;class T&gt; </div>
 </div>
 </div>
 <a id="af64f6017bf08af095addedf084863f22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af64f6017bf08af095addedf084863f22">&#9670;&nbsp;</a></span>Tuple() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af64f6017bf08af095addedf084863f22">&#9670;&nbsp;</a></span>Tuple() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,6 +270,34 @@ template&lt;class T&gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="adff6ec647c0f16a061adae02814ad45e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adff6ec647c0f16a061adae02814ad45e">&#9670;&nbsp;</a></span>Tuple() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::<a class="el" href="class_tuple.html">Tuple</a> </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -360,6 +404,33 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
+<a id="ad885e206e13107c8f4c6005216f5da29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad885e206e13107c8f4c6005216f5da29">&#9670;&nbsp;</a></span>back()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::back </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a205dfb3c3dcad03ced830b5c9687d225"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a205dfb3c3dcad03ced830b5c9687d225">&#9670;&nbsp;</a></span>begin() <span class="overload">[1/2]</span></h2>
 
@@ -417,6 +488,43 @@ template&lt;class T&gt; </div>
 
 <p>Const iterator. </p>
 <dl class="section return"><dt>Returns</dt><dd>the elements.begin() iterator. </dd></dl>
+
+</div>
+</div>
+<a id="ac4b525e02b40a646ebd4f600fe78d00f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4b525e02b40a646ebd4f600fe78d00f">&#9670;&nbsp;</a></span>copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt;T&gt; <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::copy </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>A</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy a <a class="el" href="class_tuple.html">Tuple</a> into another one. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td><a class="el" href="class_tuple.html">Tuple</a> to be coppied. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this. </dd></dl>
 
 </div>
 </div>
@@ -654,8 +762,35 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
+<a id="a3f97540a70c1e40e3a34c1b5dee9fa0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f97540a70c1e40e3a34c1b5dee9fa0e">&#9670;&nbsp;</a></span>front()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::front </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aabf82c5d0f19c9a8f6a8f01d95801162"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabf82c5d0f19c9a8f6a8f01d95801162">&#9670;&nbsp;</a></span>get()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aabf82c5d0f19c9a8f6a8f01d95801162">&#9670;&nbsp;</a></span>get() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -688,6 +823,44 @@ template&lt;class T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The element in the n-th position or an empty costructor if _n is greater then n or less than 0. </dd></dl>
+
+</div>
+</div>
+<a id="a7cd0c2fb33a5861e3f171614881393ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cd0c2fb33a5861e3f171614881393ce">&#9670;&nbsp;</a></span>get() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt;T&gt; <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::get </td>
+          <td>(</td>
+          <td class="paramtype">const uint&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -993,6 +1166,43 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
+<a id="ab47559b59159610317779405337c2b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab47559b59159610317779405337c2b44">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt;T&gt; <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>A</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overload of the = operator. Just calls <code>copy</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td><a class="el" href="class_tuple.html">Tuple</a> to be coppied. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this. </dd></dl>
+
+</div>
+</div>
 <a id="ad8f90a7c0726fae5ac5651c4e16222cd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad8f90a7c0726fae5ac5651c4e16222cd">&#9670;&nbsp;</a></span>operator==()</h2>
 
@@ -1058,8 +1268,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a53a1abc3017d30cf1a6d6858caee8ce8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53a1abc3017d30cf1a6d6858caee8ce8">&#9670;&nbsp;</a></span>remove()</h2>
+<a id="ad7436ece54558c2940f79c539f83f611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7436ece54558c2940f79c539f83f611">&#9670;&nbsp;</a></span>remove()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1070,9 +1280,9 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::remove </td>
+          <td class="memname">bool <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::remove </td>
           <td>(</td>
-          <td class="paramtype">const T&#160;</td>
+          <td class="paramtype">const uint&#160;</td>
           <td class="paramname"><em>pos</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1091,7 +1301,35 @@ template&lt;class T&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 if verything went fine, 0 otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if verything went fine, <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a60370cde243871dfafb0ac96404c6f90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60370cde243871dfafb0ac96404c6f90">&#9670;&nbsp;</a></span>remove_from()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_tuple.html">Tuple</a>&lt; T &gt;::remove_from </td>
+          <td>(</td>
+          <td class="paramtype">const uint&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -1134,12 +1372,12 @@ template&lt;class T&gt; </div>
 <p>Set a value in a certain position, or adds the element if the position equals the number of elements. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Must be in <img class="formulaInl" alt="$[0, n-1] $" src="form_8.png"/>. If pos <img class="formulaInl" alt="$=n$" src="form_9.png"/> then the element is added at the end of the vector. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Must be in <img class="formulaInl" alt="$[0, n-1] $" src="form_11.png"/>. If pos <img class="formulaInl" alt="$=n$" src="form_12.png"/> then the element is added at the end of the vector. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_new</td><td>The new element to be set. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 if everything went right, 0 if the position was greater than <img class="formulaInl" alt="$n$" src="form_10.png"/> or less the 0. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if everything went right, 0 if the position was greater than <img class="formulaInl" alt="$n$" src="form_13.png"/> or less the 0. </dd></dl>
 
 </div>
 </div>

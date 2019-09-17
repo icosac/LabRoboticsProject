@@ -106,13 +106,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1b0bfacb344d17377f4bda55fdaecae4"><td class="memItemLeft" align="right" valign="top">T1&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dubins_arc.html#a1b0bfacb344d17377f4bda55fdaecae4">length</a> () const</td></tr>
 <tr class="memdesc:a1b0bfacb344d17377f4bda55fdaecae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the length of the arc.  <a href="#a1b0bfacb344d17377f4bda55fdaecae4">More...</a><br /></td></tr>
 <tr class="separator:a1b0bfacb344d17377f4bda55fdaecae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a346c19e3e9f25747e3e3ae9de997e09d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_point2.html">Point2</a>&lt; T2 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dubins_arc.html#a346c19e3e9f25747e3e3ae9de997e09d">splitIt</a> (double _L=<a class="el" href="dubins_8hh.html#a5b2500ca93a5100f73dc442d3cfea7d4">PIECE_LENGTH</a>)</td></tr>
-<tr class="memdesc:a346c19e3e9f25747e3e3ae9de997e09d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Splits the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> in pieces of _L length. This function starts from the begining of the arc and computes n new arcs through the <code><a class="el" href="dubins_8hh.html#adef8b363044d7fed558e5b47d8d6a3a0">circline()</a></code> function using the curvature of the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> and _L as the length.  <a href="#a346c19e3e9f25747e3e3ae9de997e09d">More...</a><br /></td></tr>
-<tr class="separator:a346c19e3e9f25747e3e3ae9de997e09d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7c6ad3f4c81b2b75c9f439afd9fa746"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; T2 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dubins_arc.html#af7c6ad3f4c81b2b75c9f439afd9fa746">splitIt</a> (double _L=<a class="el" href="dubins_8hh.html#a5b2500ca93a5100f73dc442d3cfea7d4">PIECE_LENGTH</a>)</td></tr>
+<tr class="memdesc:af7c6ad3f4c81b2b75c9f439afd9fa746"><td class="mdescLeft">&#160;</td><td class="mdescRight">Splits the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> in pieces of _L length. This function starts from the begining of the arc and computes n new arcs through the <code><a class="el" href="dubins_8cc.html#adef8b363044d7fed558e5b47d8d6a3a0">circline()</a></code> function using the curvature of the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> and _L as the length.  <a href="#af7c6ad3f4c81b2b75c9f439afd9fa746">More...</a><br /></td></tr>
+<tr class="separator:af7c6ad3f4c81b2b75c9f439afd9fa746"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa90c32f88f048e4e17ea79489f44dbfb"><td class="memItemLeft" align="right" valign="top">stringstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dubins_arc.html#aa90c32f88f048e4e17ea79489f44dbfb">to_string</a> () const</td></tr>
 <tr class="separator:aa90c32f88f048e4e17ea79489f44dbfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ceb55d50ce337ff81c6d65a26761da6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dubins_arc.html#a5ceb55d50ce337ff81c6d65a26761da6">draw</a> (double dimX, double dimY, double inc, Scalar scl, Mat &amp;image, double SHIFT)</td></tr>
-<tr class="separator:a5ceb55d50ce337ff81c6d65a26761da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a649ed569e8d8786e54d1553dd6be8dcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dubins_arc.html#a649ed569e8d8786e54d1553dd6be8dcb">draw</a> (double dimX, double dimY, double inc, Scalar scl, Mat &amp;image, double SHIFT=D_SHIFT)</td></tr>
+<tr class="separator:a649ed569e8d8786e54d1553dd6be8dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa92108d7dab38e8ace212d621f9fb8dc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dubins_arc.html#aa92108d7dab38e8ace212d621f9fb8dc">is_on_dubinsArc</a> (<a class="el" href="class_configuration2.html">Configuration2</a>&lt; T2 &gt; C)</td></tr>
+<tr class="separator:aa92108d7dab38e8ace212d621f9fb8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_curve"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_curve')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_curve.html">Curve&lt; T2 &gt;</a></td></tr>
 <tr class="memitem:a43ec90b53ea751c2df30ee3688af8a30 inherit pub_methods_class_curve"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_curve.html#a43ec90b53ea751c2df30ee3688af8a30">Curve</a> ()</td></tr>
 <tr class="memdesc:a43ec90b53ea751c2df30ee3688af8a30 inherit pub_methods_class_curve"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default plain constructor which creates two plain <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>s.  <a href="class_curve.html#a43ec90b53ea751c2df30ee3688af8a30">More...</a><br /></td></tr>
@@ -233,7 +235,7 @@ template&lt;class T1 = double, class T2 = double&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Creates a new <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> given a start <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>, the curvature and the length of the arc calling <code><a class="el" href="dubins_8hh.html#adef8b363044d7fed558e5b47d8d6a3a0">circline()</a></code>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Creates a new <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> given a start <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>, the curvature and the length of the arc calling <code><a class="el" href="dubins_8cc.html#adef8b363044d7fed558e5b47d8d6a3a0">circline()</a></code>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_P0</td><td>The starting <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_k</td><td>The curvature of the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>. </td></tr>
@@ -245,8 +247,8 @@ template&lt;class T1 = double, class T2 = double&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5ceb55d50ce337ff81c6d65a26761da6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ceb55d50ce337ff81c6d65a26761da6">&#9670;&nbsp;</a></span>draw()</h2>
+<a id="a649ed569e8d8786e54d1553dd6be8dcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a649ed569e8d8786e54d1553dd6be8dcb">&#9670;&nbsp;</a></span>draw()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -290,7 +292,7 @@ template&lt;class T1 = double, class T2 = double&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>SHIFT</em>&#160;</td>
+          <td class="paramname"><em>SHIFT</em> = <code>D_SHIFT</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -347,6 +349,42 @@ template&lt;class T1 = double, class T2 = double&gt; </div>
 
 </div>
 </div>
+<a id="aa92108d7dab38e8ace212d621f9fb8dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92108d7dab38e8ace212d621f9fb8dc">&#9670;&nbsp;</a></span>is_on_dubinsArc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T1 = double, class T2 = double&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_dubins_arc.html">DubinsArc</a>&lt; T1, T2 &gt;::is_on_dubinsArc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_configuration2.html">Configuration2</a>&lt; T2 &gt;&#160;</td>
+          <td class="paramname"><em>C</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Function that given a <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> says if the point is on the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code>, or not.</p>
+<p>If the arc has 0 curvature, than the arc is a line and so the configuration needs to have the same direction as the start configuration, have the same angle from start than the angle from start to end and be inside the extremities of the segment. If the curvature is not 0, then we are on a circle and the function <code>is_on_circarc</code> is called. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">C</td><td>The <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the configuration is on the arc, <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
 <a id="a1b0bfacb344d17377f4bda55fdaecae4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1b0bfacb344d17377f4bda55fdaecae4">&#9670;&nbsp;</a></span>length()</h2>
 
@@ -376,8 +414,8 @@ template&lt;class T1 = double, class T2 = double&gt; </div>
 
 </div>
 </div>
-<a id="a346c19e3e9f25747e3e3ae9de997e09d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a346c19e3e9f25747e3e3ae9de997e09d">&#9670;&nbsp;</a></span>splitIt()</h2>
+<a id="af7c6ad3f4c81b2b75c9f439afd9fa746"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7c6ad3f4c81b2b75c9f439afd9fa746">&#9670;&nbsp;</a></span>splitIt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,7 +426,7 @@ template&lt;class T1 = double, class T2 = double&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt;<a class="el" href="class_point2.html">Point2</a>&lt;T2&gt; &gt; <a class="el" href="class_dubins_arc.html">DubinsArc</a>&lt; T1, T2 &gt;::splitIt </td>
+          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt;<a class="el" href="class_configuration2.html">Configuration2</a>&lt;T2&gt; &gt; <a class="el" href="class_dubins_arc.html">DubinsArc</a>&lt; T1, T2 &gt;::splitIt </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>_L</em> = <code><a class="el" href="dubins_8hh.html#a5b2500ca93a5100f73dc442d3cfea7d4">PIECE_LENGTH</a></code></td><td>)</td>
@@ -402,7 +440,7 @@ template&lt;class T1 = double, class T2 = double&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Splits the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> in pieces of _L length. This function starts from the begining of the arc and computes n new arcs through the <code><a class="el" href="dubins_8hh.html#adef8b363044d7fed558e5b47d8d6a3a0">circline()</a></code> function using the curvature of the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> and _L as the length. </p>
+<p>Splits the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> in pieces of _L length. This function starts from the begining of the arc and computes n new arcs through the <code><a class="el" href="dubins_8cc.html#adef8b363044d7fed558e5b47d8d6a3a0">circline()</a></code> function using the curvature of the <code><a class="el" href="class_dubins_arc.html" title="Class to store a maneuver of Dubins. It inherits from Curve. Since each Dubins is formed of atmost 3 ...">DubinsArc</a></code> and _L as the length. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_L</td><td>The length that each points should have. </td></tr>

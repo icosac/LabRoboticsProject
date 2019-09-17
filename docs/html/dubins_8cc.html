@@ -65,6 +65,8 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">dubins.cc File Reference</div>  </div>
 </div><!--header-->
@@ -98,7 +100,194 @@ Include dependency graph for dubins.cc:</div>
 <area shape="rect"  title=" " alt="" coords="184,299,243,324"/>
 </map>
 </div>
-</div></div><!-- contents -->
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:adef8b363044d7fed558e5b47d8d6a3a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8cc.html#adef8b363044d7fed558e5b47d8d6a3a0">circline</a> (double _L, <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; _P0, double _K)</td></tr>
+<tr class="separator:adef8b363044d7fed558e5b47d8d6a3a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24a357b93081a0180dfec16136bc8ff7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8cc.html#a24a357b93081a0180dfec16136bc8ff7">toBase</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; z, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> n, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> base, const <a class="el" href="class_angle.html">Angle</a> &amp;inc, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> startPos, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> endPos)</td></tr>
+<tr class="memdesc:a24a357b93081a0180dfec16136bc8ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a value in base 10 to base <code>base</code> in a <code><a class="el" href="class_tuple.html">Tuple</a></code>. To each value an inc is muiltiplied and the initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> is added.  <a href="#a24a357b93081a0180dfec16136bc8ff7">More...</a><br /></td></tr>
+<tr class="separator:a24a357b93081a0180dfec16136bc8ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab93f9d42e66345d6252debb196f0f012"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8cc.html#ab93f9d42e66345d6252debb196f0f012">disp</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; &gt; &amp;t, <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; &amp;z, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> N, const <a class="el" href="class_angle.html">Angle</a> &amp;inc, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> startPos, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> endPos)</td></tr>
+<tr class="memdesc:ab93f9d42e66345d6252debb196f0f012"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the arrangements. Since each arrangement can be computed as <img class="formulaInl" alt="$n_{parts}$" src="form_4.png"/>, where each values is then multiplied for the increment and is added to the initial values.  <a href="#ab93f9d42e66345d6252debb196f0f012">More...</a><br /></td></tr>
+<tr class="separator:ab93f9d42e66345d6252debb196f0f012"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="adef8b363044d7fed558e5b47d8d6a3a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adef8b363044d7fed558e5b47d8d6a3a0">&#9670;&nbsp;</a></span>circline()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_configuration2.html">Configuration2</a>&lt;double&gt; circline </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_L</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>_P0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_K</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Computes an arrival point from an initial configuration through an arc of length _L and curvature _K. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_L</td><td>The length of the arch. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_P0</td><td>The starting <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> of the arc. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_K</td><td>The curvature of the arc. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ending <code><a class="el" href="class_configuration2.html" title="This class stores a configuration, that is a point and an angle.">Configuration2</a></code> of the arc. </dd></dl>
+
+</div>
+</div>
+<a id="ab93f9d42e66345d6252debb196f0f012"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab93f9d42e66345d6252debb196f0f012">&#9670;&nbsp;</a></span>disp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void disp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
+          <td class="paramname"><em>inc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>startPos</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>endPos</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the arrangements. Since each arrangement can be computed as <img class="formulaInl" alt="$n_{parts}$" src="form_4.png"/>, where each values is then multiplied for the increment and is added to the initial values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">t</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> containing all the <code><a class="el" href="class_tuple.html">Tuple</a></code>s containing the <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">z</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> containing all the initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">N</td><td>The number of iterations. Each iteration is going to be converted in base parts. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">inc</td><td>The increment to give each initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">startPos</td><td>The initial position to consider in <code><a class="el" href="class_tuple.html">Tuple</a></code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">endPos</td><td>The final position to consider in <code><a class="el" href="class_tuple.html">Tuple</a></code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a24a357b93081a0180dfec16136bc8ff7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24a357b93081a0180dfec16136bc8ff7">&#9670;&nbsp;</a></span>toBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tuple.html">Tuple</a>&lt;<a class="el" href="class_angle.html">Angle</a>&gt; toBase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt;&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_angle.html">Angle</a> &amp;&#160;</td>
+          <td class="paramname"><em>inc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>startPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
+          <td class="paramname"><em>endPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a value in base 10 to base <code>base</code> in a <code><a class="el" href="class_tuple.html">Tuple</a></code>. To each value an inc is muiltiplied and the initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> is added. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">z</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> containing all the initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>The value to be converted. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">base</td><td>The base. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">inc</td><td>The increment. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">startPos</td><td>The starting position of the <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">endPos</td><td>The ending position of the <code><a class="el" href="class_tuple.html">Tuple</a></code> of <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the digits of the number converted to the specified base. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

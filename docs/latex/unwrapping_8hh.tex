@@ -56,7 +56,16 @@ Store in the given vector the white corners in the same order as the given black
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em rect\+Low} & A vector where the low corners of the rectangle (black markers position) are stored. \\
 \hline
-\mbox{\texttt{ out}}  & {\em rect\+High} & A vector where the high corners of the rectangle (white markers position) will be stored. \\
+\mbox{\texttt{ out}}  & {\em rect\+High} & A vector where the high corners of the rectangle (white markers position) will be stored.\\
+\hline
+\end{DoxyParams}
+Store in the given vector the white corners in the same order as the given black ones.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em rect\+Low} & The 4 points that define the black rectangle on the floor. \\
+\hline
+\mbox{\texttt{ out}}  & {\em rect\+High} & The vector that will contain the 4 points that will define the high corner that pass through the white points. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{unwrapping_8hh_ac30b4dbae9022e84e10ef97ba156c581}\label{unwrapping_8hh_ac30b4dbae9022e84e10ef97ba156c581}} 
@@ -75,7 +84,18 @@ Since the border of the arena might not always be clean but might have some impe
 \hline
 \mbox{\texttt{ in}}  & {\em width} & The width of the image. \\
 \hline
-\mbox{\texttt{ in}}  & {\em height} & The height of the image. \\
+\mbox{\texttt{ in}}  & {\em height} & The height of the image.\\
+\hline
+\end{DoxyParams}
+Since the border of the arena might not always be clean but might have some imperfection, this functions computes the four vertixes taking all the points and computing the four that are the clostest to the corner of the image.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em \mbox{[}in/out\mbox{]}} & \+\_\+rect The vector containing the actual possible points that delimt the rectangle. \\
+\hline
+\mbox{\texttt{ in}}  & {\em width} & The width of the original image from which the points of the rectangle come from. \\
+\hline
+\mbox{\texttt{ in}}  & {\em height} & The height of the original image from which the points of the rectangle come from. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{unwrapping_8hh_a3cf7df08897ed4d1a7ddcf055b18cca8}\label{unwrapping_8hh_a3cf7df08897ed4d1a7ddcf055b18cca8}} 

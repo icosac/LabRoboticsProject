@@ -1307,7 +1307,6 @@ IntRect ClipperBase::GetBounds()
   result.bottom = lm->LeftBound->Bot.Y;
   while (lm != m_MinimaList.end())
   {
-    //todo - needs fixing for open paths
     result.bottom = std::max(result.bottom, lm->LeftBound->Bot.Y);
     TEdge* e = lm->LeftBound;
     for (;;) {

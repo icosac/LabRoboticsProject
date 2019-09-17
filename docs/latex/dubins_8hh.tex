@@ -19,7 +19,7 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=190pt]{dubins_8hh__dep__incl}
+\includegraphics[width=350pt]{dubins_8hh__dep__incl}
 \end{center}
 \end{figure}
 \subsection*{Classes}
@@ -40,54 +40,21 @@ class \mbox{\hyperlink{class_dubins_set}{Dubins\+Set$<$ T $>$}}
 \item 
 \#define \mbox{\hyperlink{dubins_8hh_a2bda1a81ce3474772a8a1f165e54516e}{P\+R\+EC}}~100000
 \item 
-\#define \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}~0.\+5
+\#define \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}~0.\+01
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static double \mbox{\hyperlink{dubins_8hh_a5c88710b236a514392351a4d13d2e767}{sinc}} (double t)
+double \mbox{\hyperlink{dubins_8hh_a2678c9ac5e8585534a9c5a2385169324}{sinc}} (double t)
 \item 
 \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \mbox{\hyperlink{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}{circline}} (double \+\_\+L, \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \+\_\+\+P0, double \+\_\+K)
 \item 
+{\footnotesize template$<$class T $>$ }\\bool \mbox{\hyperlink{dubins_8hh_a301ba17400a2911095c4fcba0a9b7174}{is\+\_\+on\+\_\+circarc}} (\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ p0, \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ pi, \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ pf, \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ p)
+\begin{DoxyCompactList}\small\item\em Function that computes a circle given 3 points and check if a point is on the circle arc. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \mbox{\hyperlink{dubins_8hh_a24a357b93081a0180dfec16136bc8ff7}{to\+Base}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ z, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} n, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} base, const \mbox{\hyperlink{class_angle}{Angle}} \&inc, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} start\+Pos, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} end\+Pos)
 \begin{DoxyCompactList}\small\item\em Convert a value in base 10 to base {\ttfamily base} in a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. To each value an inc is muiltiplied and the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} is added. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{dubins_8hh_a16cf89e561eae9ea10a39e40432af238}{disp}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ $>$ \&t, \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \&z, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} N, const \mbox{\hyperlink{class_angle}{Angle}} \&inc, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} start\+Pos=0, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} end\+Pos=0)
-\begin{DoxyCompactList}\small\item\em Compute the arrangements. Since each arrangement can be computed as $n_{parts}$, where each values is then multiplied for the increment and is added to the initial values. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ \mbox{\hyperlink{dubins_8hh_ae0b0aa229802950d33214a8a9e63ce5e}{plan\+\_\+best}} (vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$ v\+Points)
-\end{DoxyCompactItemize}
-\subsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-double \mbox{\hyperlink{dubins_8hh_a5880c4830bf2ab16bad216015448eacb}{elapsed\+Scale}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_aa36733aa8c8ca5849070a465409dbe81}{elapsed\+Primitives}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_a0031b22718178ccc76a4d8178e582b25}{elapsed\+Best}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_a2ea7ce6fc7223d1e06dc71644336d66f}{elapsed\+Arcs}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_a06fc38271c4ca7f7799fa903d94cae5a}{elapsed\+Check}}
-\item 
-unsigned long \mbox{\hyperlink{dubins_8hh_abcfdf634840cd6f14ae6d0762ecd1f95}{count\+Tries}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_addc0762dc6f907d08093d87133317157}{elapsed\+Var}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_ad0abfff7e943d5425fde32277365912b}{elapsed\+Circ}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_abb6d93608c94bd3bd63217dc721ea2bf}{elapsed\+Set}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_af7f52b98e604497e1df6126251edffcf}{elapsed\+L\+SL}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_a5381897b84c903a717eda9680319f40a}{elapsed\+R\+SR}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_ada1c98b34a456476f08c5cafbfe893ad}{elapsed\+L\+SR}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_acb44475744bcbfbdf6609efd02c6c6fb}{elapsed\+R\+SL}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_a3972b672793842e7de439255254d3085}{elapsed\+R\+LR}}
-\item 
-double \mbox{\hyperlink{dubins_8hh_a715f7de2f92786df84a14e5a013b94e9}{elapsed\+L\+RL}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Compute the arrangements. Since each arrangement can be computed as $n_{parts}$, where each values is then multiplied for the increment and is added to the initial values. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
@@ -95,7 +62,7 @@ double \mbox{\hyperlink{dubins_8hh_a715f7de2f92786df84a14e5a013b94e9}{elapsed\+L
 \index{dubins.hh@{dubins.hh}!KMAX@{KMAX}}
 \index{KMAX@{KMAX}!dubins.hh@{dubins.hh}}
 \subsubsection{\texorpdfstring{KMAX}{KMAX}}
-{\footnotesize\ttfamily \#define K\+M\+AX~0.\+5}
+{\footnotesize\ttfamily \#define K\+M\+AX~0.\+01}
 
 \mbox{\Hypertarget{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}\label{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}} 
 \index{dubins.hh@{dubins.hh}!PIECE\_LENGTH@{PIECE\_LENGTH}}
@@ -155,18 +122,41 @@ Compute the arrangements. Since each arrangement can be computed as $n_{parts}$,
 \mbox{\texttt{ in}}  & {\em end\+Pos} & The final position to consider in {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{dubins_8hh_ae0b0aa229802950d33214a8a9e63ce5e}\label{dubins_8hh_ae0b0aa229802950d33214a8a9e63ce5e}} 
-\index{dubins.hh@{dubins.hh}!plan\_best@{plan\_best}}
-\index{plan\_best@{plan\_best}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{plan\_best()}{plan\_best()}}
+\mbox{\Hypertarget{dubins_8hh_a301ba17400a2911095c4fcba0a9b7174}\label{dubins_8hh_a301ba17400a2911095c4fcba0a9b7174}} 
+\index{dubins.hh@{dubins.hh}!is\_on\_circarc@{is\_on\_circarc}}
+\index{is\_on\_circarc@{is\_on\_circarc}!dubins.hh@{dubins.hh}}
+\subsubsection{\texorpdfstring{is\_on\_circarc()}{is\_on\_circarc()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-vector$<$\mbox{\hyperlink{class_point2}{Point2}}$<$T$>$ $>$ plan\+\_\+best (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{v\+Points }\end{DoxyParamCaption})}
+bool is\+\_\+on\+\_\+circarc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$}]{p0,  }\item[{\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$}]{pi,  }\item[{\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$}]{pf,  }\item[{\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$}]{p }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{dubins_8hh_a5c88710b236a514392351a4d13d2e767}\label{dubins_8hh_a5c88710b236a514392351a4d13d2e767}} 
+
+
+Function that computes a circle given 3 points and check if a point is on the circle arc. 
+
+This function computes the 3 parameters $a, b, c$ for a circle with equation $x^2+y^2+ax+by+c=0$ using Cramer method. Then checks if the given point is on the circle\+: if it\textquotesingle{}s not then returns {\ttfamily false}, otherwise checks the angle with respect to the initial point and the final point to see if the point is on the arc. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the point. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em p0} & The initial point of the arc. \\
+\hline
+{\em pi} & An intermediate point of the arc. \\
+\hline
+{\em pf} & The final point of the arc. \\
+\hline
+{\em p} & The point to verify if it\textquotesingle{}s on the arc or not. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the point is on the arc, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dubins_8hh_a2678c9ac5e8585534a9c5a2385169324}\label{dubins_8hh_a2678c9ac5e8585534a9c5a2385169324}} 
 \index{dubins.hh@{dubins.hh}!sinc@{sinc}}
 \index{sinc@{sinc}!dubins.hh@{dubins.hh}}
 \subsubsection{\texorpdfstring{sinc()}{sinc()}}
-{\footnotesize\ttfamily static double sinc (\begin{DoxyParamCaption}\item[{double}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily double sinc (\begin{DoxyParamCaption}\item[{double}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Compute the sinc of the function defined as\+: \[ sinc(t)=\frac{sin(t)}{t}\quad t\neq 0 1\quad t=0 \] 
 \begin{DoxyParams}[1]{Parameters}
@@ -204,96 +194,3 @@ Convert a value in base 10 to base {\ttfamily base} in a {\ttfamily \mbox{\hyper
 \begin{DoxyReturn}{Returns}
 A vector containing the digits of the number converted to the specified base. 
 \end{DoxyReturn}
-
-
-\subsection{Variable Documentation}
-\mbox{\Hypertarget{dubins_8hh_abcfdf634840cd6f14ae6d0762ecd1f95}\label{dubins_8hh_abcfdf634840cd6f14ae6d0762ecd1f95}} 
-\index{dubins.hh@{dubins.hh}!countTries@{countTries}}
-\index{countTries@{countTries}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{countTries}{countTries}}
-{\footnotesize\ttfamily unsigned long count\+Tries}
-
-\mbox{\Hypertarget{dubins_8hh_a2ea7ce6fc7223d1e06dc71644336d66f}\label{dubins_8hh_a2ea7ce6fc7223d1e06dc71644336d66f}} 
-\index{dubins.hh@{dubins.hh}!elapsedArcs@{elapsedArcs}}
-\index{elapsedArcs@{elapsedArcs}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedArcs}{elapsedArcs}}
-{\footnotesize\ttfamily double elapsed\+Arcs}
-
-\mbox{\Hypertarget{dubins_8hh_a0031b22718178ccc76a4d8178e582b25}\label{dubins_8hh_a0031b22718178ccc76a4d8178e582b25}} 
-\index{dubins.hh@{dubins.hh}!elapsedBest@{elapsedBest}}
-\index{elapsedBest@{elapsedBest}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedBest}{elapsedBest}}
-{\footnotesize\ttfamily double elapsed\+Best}
-
-\mbox{\Hypertarget{dubins_8hh_a06fc38271c4ca7f7799fa903d94cae5a}\label{dubins_8hh_a06fc38271c4ca7f7799fa903d94cae5a}} 
-\index{dubins.hh@{dubins.hh}!elapsedCheck@{elapsedCheck}}
-\index{elapsedCheck@{elapsedCheck}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedCheck}{elapsedCheck}}
-{\footnotesize\ttfamily double elapsed\+Check}
-
-\mbox{\Hypertarget{dubins_8hh_ad0abfff7e943d5425fde32277365912b}\label{dubins_8hh_ad0abfff7e943d5425fde32277365912b}} 
-\index{dubins.hh@{dubins.hh}!elapsedCirc@{elapsedCirc}}
-\index{elapsedCirc@{elapsedCirc}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedCirc}{elapsedCirc}}
-{\footnotesize\ttfamily double elapsed\+Circ}
-
-\mbox{\Hypertarget{dubins_8hh_a715f7de2f92786df84a14e5a013b94e9}\label{dubins_8hh_a715f7de2f92786df84a14e5a013b94e9}} 
-\index{dubins.hh@{dubins.hh}!elapsedLRL@{elapsedLRL}}
-\index{elapsedLRL@{elapsedLRL}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedLRL}{elapsedLRL}}
-{\footnotesize\ttfamily double elapsed\+L\+RL}
-
-\mbox{\Hypertarget{dubins_8hh_af7f52b98e604497e1df6126251edffcf}\label{dubins_8hh_af7f52b98e604497e1df6126251edffcf}} 
-\index{dubins.hh@{dubins.hh}!elapsedLSL@{elapsedLSL}}
-\index{elapsedLSL@{elapsedLSL}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedLSL}{elapsedLSL}}
-{\footnotesize\ttfamily double elapsed\+L\+SL}
-
-\mbox{\Hypertarget{dubins_8hh_ada1c98b34a456476f08c5cafbfe893ad}\label{dubins_8hh_ada1c98b34a456476f08c5cafbfe893ad}} 
-\index{dubins.hh@{dubins.hh}!elapsedLSR@{elapsedLSR}}
-\index{elapsedLSR@{elapsedLSR}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedLSR}{elapsedLSR}}
-{\footnotesize\ttfamily double elapsed\+L\+SR}
-
-\mbox{\Hypertarget{dubins_8hh_aa36733aa8c8ca5849070a465409dbe81}\label{dubins_8hh_aa36733aa8c8ca5849070a465409dbe81}} 
-\index{dubins.hh@{dubins.hh}!elapsedPrimitives@{elapsedPrimitives}}
-\index{elapsedPrimitives@{elapsedPrimitives}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedPrimitives}{elapsedPrimitives}}
-{\footnotesize\ttfamily double elapsed\+Primitives}
-
-\mbox{\Hypertarget{dubins_8hh_a3972b672793842e7de439255254d3085}\label{dubins_8hh_a3972b672793842e7de439255254d3085}} 
-\index{dubins.hh@{dubins.hh}!elapsedRLR@{elapsedRLR}}
-\index{elapsedRLR@{elapsedRLR}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedRLR}{elapsedRLR}}
-{\footnotesize\ttfamily double elapsed\+R\+LR}
-
-\mbox{\Hypertarget{dubins_8hh_acb44475744bcbfbdf6609efd02c6c6fb}\label{dubins_8hh_acb44475744bcbfbdf6609efd02c6c6fb}} 
-\index{dubins.hh@{dubins.hh}!elapsedRSL@{elapsedRSL}}
-\index{elapsedRSL@{elapsedRSL}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedRSL}{elapsedRSL}}
-{\footnotesize\ttfamily double elapsed\+R\+SL}
-
-\mbox{\Hypertarget{dubins_8hh_a5381897b84c903a717eda9680319f40a}\label{dubins_8hh_a5381897b84c903a717eda9680319f40a}} 
-\index{dubins.hh@{dubins.hh}!elapsedRSR@{elapsedRSR}}
-\index{elapsedRSR@{elapsedRSR}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedRSR}{elapsedRSR}}
-{\footnotesize\ttfamily double elapsed\+R\+SR}
-
-\mbox{\Hypertarget{dubins_8hh_a5880c4830bf2ab16bad216015448eacb}\label{dubins_8hh_a5880c4830bf2ab16bad216015448eacb}} 
-\index{dubins.hh@{dubins.hh}!elapsedScale@{elapsedScale}}
-\index{elapsedScale@{elapsedScale}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedScale}{elapsedScale}}
-{\footnotesize\ttfamily double elapsed\+Scale}
-
-\mbox{\Hypertarget{dubins_8hh_abb6d93608c94bd3bd63217dc721ea2bf}\label{dubins_8hh_abb6d93608c94bd3bd63217dc721ea2bf}} 
-\index{dubins.hh@{dubins.hh}!elapsedSet@{elapsedSet}}
-\index{elapsedSet@{elapsedSet}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedSet}{elapsedSet}}
-{\footnotesize\ttfamily double elapsed\+Set}
-
-\mbox{\Hypertarget{dubins_8hh_addc0762dc6f907d08093d87133317157}\label{dubins_8hh_addc0762dc6f907d08093d87133317157}} 
-\index{dubins.hh@{dubins.hh}!elapsedVar@{elapsedVar}}
-\index{elapsedVar@{elapsedVar}!dubins.hh@{dubins.hh}}
-\subsubsection{\texorpdfstring{elapsedVar}{elapsedVar}}
-{\footnotesize\ttfamily double elapsed\+Var}
-

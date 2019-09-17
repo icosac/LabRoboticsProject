@@ -66,8 +66,10 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">planning.cc File Reference</div>  </div>
 </div><!--header-->
@@ -78,80 +80,288 @@ Include dependency graph for planning.cc:</div>
 <div class="dyncontent">
 <div class="center"><img src="planning_8cc__incl.png" border="0" usemap="#src_2planning_8cc" alt=""/></div>
 <map name="src_2planning_8cc" id="src_2planning_8cc">
-<area shape="rect"  title=" " alt="" coords="1060,5,1170,31"/>
-<area shape="rect"  href="planning_8hh.html" title=" " alt="" coords="1070,79,1160,104"/>
-<area shape="rect"  title=" " alt="" coords="1363,519,1435,544"/>
-<area shape="rect"  title=" " alt="" coords="602,299,652,324"/>
-<area shape="rect"  title=" " alt="" coords="635,445,693,471"/>
-<area shape="rect"  href="map_8hh.html" title=" " alt="" coords="1038,225,1104,251"/>
-<area shape="rect"  href="maths_8hh.html" title=" " alt="" coords="1057,372,1133,397"/>
-<area shape="rect"  href="utils_8hh.html" title=" " alt="" coords="2359,445,2423,471"/>
-<area shape="rect"  href="settings_8hh.html" title=" " alt="" coords="1331,299,1416,324"/>
-<area shape="rect"  href="objects_8hh.html" title=" " alt="" coords="778,299,860,324"/>
-<area shape="rect"  href="detection_8hh.html" title=" " alt="" coords="2317,152,2411,177"/>
-<area shape="rect"  title=" " alt="" coords="3319,152,3377,177"/>
-<area shape="rect"  title=" " alt="" coords="489,445,528,471"/>
-<area shape="rect"  title=" " alt="" coords="552,445,611,471"/>
-<area shape="rect"  title=" " alt="" coords="883,299,952,324"/>
-<area shape="rect"  title=" " alt="" coords="2719,519,2863,544"/>
-<area shape="rect"  title=" " alt="" coords="2567,519,2695,544"/>
-<area shape="rect"  title=" " alt="" coords="1831,519,1975,544"/>
-<area shape="rect"  title=" " alt="" coords="2982,519,3147,544"/>
-<area shape="rect"  title=" " alt="" coords="883,519,952,544"/>
-<area shape="rect"  title=" " alt="" coords="2175,445,2233,471"/>
-<area shape="rect"  title=" " alt="" coords="1182,445,1247,471"/>
-<area shape="rect"  title=" " alt="" coords="1372,445,1426,471"/>
-<area shape="rect"  title=" " alt="" coords="1106,445,1158,471"/>
-<area shape="rect"  title=" " alt="" coords="2378,519,2457,544"/>
-<area shape="rect"  title=" " alt="" coords="2481,519,2543,544"/>
-<area shape="rect"  title=" " alt="" coords="1998,519,2189,544"/>
-<area shape="rect"  title=" " alt="" coords="2213,519,2270,544"/>
-<area shape="rect"  title=" " alt="" coords="2294,519,2354,544"/>
-<area shape="rect"  href="filter_8hh.html" title=" " alt="" coords="2096,372,2160,397"/>
-<area shape="rect"  title=" " alt="" coords="1462,372,1619,397"/>
-<area shape="rect"  title=" " alt="" coords="1643,372,1709,397"/>
-<area shape="rect"  href="clipper_8hh.html" title=" " alt="" coords="386,372,465,397"/>
-<area shape="rect"  title=" " alt="" coords="45,445,84,471"/>
-<area shape="rect"  title=" " alt="" coords="108,445,186,471"/>
-<area shape="rect"  title=" " alt="" coords="769,445,829,471"/>
-<area shape="rect"  title=" " alt="" coords="211,445,270,471"/>
-<area shape="rect"  title=" " alt="" coords="293,445,363,471"/>
-<area shape="rect"  title=" " alt="" coords="386,445,465,471"/>
-<area shape="rect"  href="configure_8hh.html" title=" " alt="" coords="1775,225,1870,251"/>
-<area shape="rect"  href="unwrapping_8hh.html" title=" " alt="" coords="2563,225,2672,251"/>
-<area shape="rect"  title=" " alt="" coords="3026,299,3092,324"/>
-<area shape="rect"  title=" " alt="" coords="2047,225,2124,251"/>
-<area shape="rect"  title=" " alt="" coords="1924,299,2073,324"/>
-<area shape="rect"  title=" " alt="" coords="1745,299,1901,324"/>
-<area shape="rect"  href="camera__capture_8hh.html" title=" " alt="" coords="1835,372,1971,397"/>
-<area shape="rect"  title=" " alt="" coords="2756,299,2900,324"/>
+<area shape="rect"  title=" " alt="" coords="1245,5,1355,31"/>
+<area shape="rect"  href="planning_8hh.html" title=" " alt="" coords="1255,79,1345,104"/>
+<area shape="rect"  title=" " alt="" coords="1869,519,1942,544"/>
+<area shape="rect"  title=" " alt="" coords="786,445,843,471"/>
+<area shape="rect"  title=" " alt="" coords="1614,372,1666,397"/>
+<area shape="rect"  title=" " alt="" coords="1541,299,1609,324"/>
+<area shape="rect"  href="map_8hh.html" title=" " alt="" coords="1267,225,1333,251"/>
+<area shape="rect"  href="maths_8hh.html" title=" " alt="" coords="1058,372,1134,397"/>
+<area shape="rect"  href="settings_8hh.html" title=" " alt="" coords="1986,299,2072,324"/>
+<area shape="rect"  href="objects_8hh.html" title=" " alt="" coords="635,299,717,324"/>
+<area shape="rect"  href="detection_8hh.html" title=" " alt="" coords="2113,152,2207,177"/>
+<area shape="rect"  href="dubins_8hh.html" title=" " alt="" coords="1058,299,1137,324"/>
+<area shape="rect"  title=" " alt="" coords="2231,152,2289,177"/>
+<area shape="rect"  title=" " alt="" coords="538,445,577,471"/>
+<area shape="rect"  title=" " alt="" coords="652,445,711,471"/>
+<area shape="rect"  title=" " alt="" coords="1212,299,1262,324"/>
+<area shape="rect"  title=" " alt="" coords="1633,299,1709,324"/>
+<area shape="rect"  href="utils_8hh.html" title=" " alt="" coords="2874,445,2937,471"/>
+<area shape="rect"  title=" " alt="" coords="3264,519,3408,544"/>
+<area shape="rect"  title=" " alt="" coords="2623,519,2750,544"/>
+<area shape="rect"  title=" " alt="" coords="2282,519,2425,544"/>
+<area shape="rect"  title=" " alt="" coords="3477,519,3643,544"/>
+<area shape="rect"  title=" " alt="" coords="982,519,1050,544"/>
+<area shape="rect"  title=" " alt="" coords="2301,445,2358,471"/>
+<area shape="rect"  title=" " alt="" coords="1053,445,1118,471"/>
+<area shape="rect"  title=" " alt="" coords="1674,445,1728,471"/>
+<area shape="rect"  title=" " alt="" coords="1142,445,1194,471"/>
+<area shape="rect"  title=" " alt="" coords="2774,519,2853,544"/>
+<area shape="rect"  title=" " alt="" coords="2877,519,2939,544"/>
+<area shape="rect"  title=" " alt="" coords="2963,519,3154,544"/>
+<area shape="rect"  title=" " alt="" coords="3178,519,3235,544"/>
+<area shape="rect"  title=" " alt="" coords="2539,519,2599,544"/>
+<area shape="rect"  href="filter_8hh.html" title=" " alt="" coords="2524,372,2588,397"/>
+<area shape="rect"  title=" " alt="" coords="1994,372,2150,397"/>
+<area shape="rect"  title=" " alt="" coords="2175,372,2241,397"/>
+<area shape="rect"  href="clipper_8hh.html" title=" " alt="" coords="471,372,550,397"/>
+<area shape="rect"  title=" " alt="" coords="289,445,327,471"/>
+<area shape="rect"  title=" " alt="" coords="351,445,430,471"/>
+<area shape="rect"  title=" " alt="" coords="867,445,928,471"/>
+<area shape="rect"  title=" " alt="" coords="454,445,514,471"/>
+<area shape="rect"  title=" " alt="" coords="93,445,163,471"/>
+<area shape="rect"  title=" " alt="" coords="186,445,265,471"/>
+<area shape="rect"  href="configure_8hh.html" title=" " alt="" coords="2377,225,2471,251"/>
+<area shape="rect"  href="unwrapping_8hh.html" title=" " alt="" coords="3006,225,3114,251"/>
+<area shape="rect"  title=" " alt="" coords="2855,299,2921,324"/>
+<area shape="rect"  title=" " alt="" coords="2350,299,2498,324"/>
+<area shape="rect"  title=" " alt="" coords="2522,299,2678,324"/>
+<area shape="rect"  href="camera__capture_8hh.html" title=" " alt="" coords="2723,372,2859,397"/>
+<area shape="rect"  title=" " alt="" coords="3300,299,3444,324"/>
 </map>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespace_planning"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html">Planning</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a3fd2b1bcd7ddcf506237987ad780f495"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#a3fd2b1bcd7ddcf506237987ad780f495">DELTA</a>&#160;&#160;&#160;M_PI/180.0</td></tr>
+<tr class="separator:a3fd2b1bcd7ddcf506237987ad780f495"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a995e4ef5ee87adb8c6be7fd61339030d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#a995e4ef5ee87adb8c6be7fd61339030d">ROB_KMAX</a>&#160;&#160;&#160;<a class="el" href="dubins_8hh.html#a940b85a83458e94519f2685b33ddd276">KMAX</a></td></tr>
+<tr class="separator:a995e4ef5ee87adb8c6be7fd61339030d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6ad9a7ba19bd508888116e6cac9ed52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#aa6ad9a7ba19bd508888116e6cac9ed52">ROB_PIECE_LENGTH</a>&#160;&#160;&#160;20</td></tr>
+<tr class="separator:aa6ad9a7ba19bd508888116e6cac9ed52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96a9822fa134450197dd454b1478a193"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#a96a9822fa134450197dd454b1478a193">BONUS</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a96a9822fa134450197dd454b1478a193"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cbea62f1ce2043dd08108e65ed8de1d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#a0cbea62f1ce2043dd08108e65ed8de1d">SCALE</a>&#160;&#160;&#160;1000.0</td></tr>
 <tr class="separator:a0cbea62f1ce2043dd08108e65ed8de1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a336f67e9817ede04fdf58ee2cd144522"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#a336f67e9817ede04fdf58ee2cd144522">INCREASE</a>&#160;&#160;&#160;20</td></tr>
+<tr class="separator:a336f67e9817ede04fdf58ee2cd144522"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59b3a25e0a42a4e000a3475761969b6f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#a59b3a25e0a42a4e000a3475761969b6f">SCRAP</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:a59b3a25e0a42a4e000a3475761969b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aeef9aecfb831780fd7775ac4e750aad8"><td class="memItemLeft" align="right" valign="top">pair&lt; vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt;, <a class="el" href="class_mapp.html">Mapp</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#aeef9aecfb831780fd7775ac4e750aad8">planning</a> (const Mat &amp;img)</td></tr>
-<tr class="memdesc:aeef9aecfb831780fd7775ac4e750aad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function plan a route from the actual position of the robot up to the final gate through all the victims.  <a href="#aeef9aecfb831780fd7775ac4e750aad8">More...</a><br /></td></tr>
-<tr class="separator:aeef9aecfb831780fd7775ac4e750aad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c7b2e381023697547786d663894435d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_mapp.html">Mapp</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#a7c7b2e381023697547786d663894435d">createMapp</a> ()</td></tr>
-<tr class="memdesc:a7c7b2e381023697547786d663894435d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The goal is to load, all the neccessary data, from files and create a <a class="el" href="class_mapp.html">Mapp</a> that store everything.  <a href="#a7c7b2e381023697547786d663894435d">More...</a><br /></td></tr>
-<tr class="separator:a7c7b2e381023697547786d663894435d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6ed6af027c9a35de0c872788d50c733"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#ad6ed6af027c9a35de0c872788d50c733">loadVVP</a> (vector&lt; vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &gt; &amp;vvp, FileNode fn)</td></tr>
-<tr class="memdesc:ad6ed6af027c9a35de0c872788d50c733"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function load from the given fileNode a vector of vectors of <a class="el" href="class_point2.html">Point2&lt;int&gt;</a>.  <a href="#ad6ed6af027c9a35de0c872788d50c733">More...</a><br /></td></tr>
-<tr class="separator:ad6ed6af027c9a35de0c872788d50c733"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3a220a5ab5f16da550b786caa041f6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#aa3a220a5ab5f16da550b786caa041f6b">loadVP</a> (vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &amp;vp, FileNode fn)</td></tr>
-<tr class="memdesc:aa3a220a5ab5f16da550b786caa041f6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function load from the given fileNode a vector of <a class="el" href="class_point2.html">Point2&lt;int&gt;</a>.  <a href="#aa3a220a5ab5f16da550b786caa041f6b">More...</a><br /></td></tr>
-<tr class="separator:aa3a220a5ab5f16da550b786caa041f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a3e9f80c221e62df622b89c26ab42e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="planning_8cc.html#a0a3e9f80c221e62df622b89c26ab42e2">fromVpToPath</a> (vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &amp;vp, Path &amp;path)</td></tr>
-<tr class="memdesc:a0a3e9f80c221e62df622b89c26ab42e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a vector of point to a path, from Enrico's notation to Paolo's notation.  <a href="#a0a3e9f80c221e62df622b89c26ab42e2">More...</a><br /></td></tr>
-<tr class="separator:a0a3e9f80c221e62df622b89c26ab42e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42e39a8167b883f4c838a7578266ea42"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a42e39a8167b883f4c838a7578266ea42">Planning::convertToVP</a> (const vector&lt; vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &gt; &amp;arr)</td></tr>
+<tr class="memdesc:a42e39a8167b883f4c838a7578266ea42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a vector of vector of points into a vector of points (AKA collapse everything).  <a href="namespace_planning.html#a42e39a8167b883f4c838a7578266ea42">More...</a><br /></td></tr>
+<tr class="separator:a42e39a8167b883f4c838a7578266ea42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a116566c3be0464d544c772de25cead67"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a116566c3be0464d544c772de25cead67">Planning::convertToVP</a> (const vector&lt; vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &gt; &amp;arr)</td></tr>
+<tr class="memdesc:a116566c3be0464d544c772de25cead67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a vector of vector of configurations into a vector of points (AKA collapse everything).  <a href="namespace_planning.html#a116566c3be0464d544c772de25cead67">More...</a><br /></td></tr>
+<tr class="separator:a116566c3be0464d544c772de25cead67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b77ef5e5628030b9f80b2ec9250e9ab"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a6b77ef5e5628030b9f80b2ec9250e9ab">Planning::convertToVC</a> (const vector&lt; vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &gt; &amp;arr)</td></tr>
+<tr class="memdesc:a6b77ef5e5628030b9f80b2ec9250e9ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a vector of vector of configurations into a vector of configurations (AKA collapse everything).  <a href="namespace_planning.html#a6b77ef5e5628030b9f80b2ec9250e9ab">More...</a><br /></td></tr>
+<tr class="separator:a6b77ef5e5628030b9f80b2ec9250e9ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc80df7ce19138eff08f00c4c7f4c609"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#adc80df7ce19138eff08f00c4c7f4c609">Planning::convertToVC</a> (const vector&lt; vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &gt; &amp;arr)</td></tr>
+<tr class="memdesc:adc80df7ce19138eff08f00c4c7f4c609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a vector of vector of points into a vector of configurations (AKA collapse everything).  <a href="namespace_planning.html#adc80df7ce19138eff08f00c4c7f4c609">More...</a><br /></td></tr>
+<tr class="separator:adc80df7ce19138eff08f00c4c7f4c609"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11af0aafe85bf1cf4c8203c67f1e61f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a11af0aafe85bf1cf4c8203c67f1e61f8">Planning::draw</a> (const vector&lt; vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &gt; &amp;vv, string name)</td></tr>
+<tr class="memdesc:a11af0aafe85bf1cf4c8203c67f1e61f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show in a window the representation of the map with the addition of the points and segment taken from the parameters.  <a href="namespace_planning.html#a11af0aafe85bf1cf4c8203c67f1e61f8">More...</a><br /></td></tr>
+<tr class="separator:a11af0aafe85bf1cf4c8203c67f1e61f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a204e9795df1a3bc7bfeb3239a39d37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a2a204e9795df1a3bc7bfeb3239a39d37">Planning::draw</a> (const vector&lt; vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &gt; &amp;vv, string name)</td></tr>
+<tr class="memdesc:a2a204e9795df1a3bc7bfeb3239a39d37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show in a window the representation of the map with the addition of the configurations and segment taken from the parameters.  <a href="namespace_planning.html#a2a204e9795df1a3bc7bfeb3239a39d37">More...</a><br /></td></tr>
+<tr class="separator:a2a204e9795df1a3bc7bfeb3239a39d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86b12372b440be1858c26eb256586d98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a86b12372b440be1858c26eb256586d98">Planning::draw</a> (const vector&lt; vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &gt; &amp;vv, const vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &amp;left, const vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &amp;right, string name)</td></tr>
+<tr class="memdesc:a86b12372b440be1858c26eb256586d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show in a window the representation of the map with the addition of the configurations and segment taken from the parameters. Plus a set of grey points (left vector) and black points (right vector).  <a href="namespace_planning.html#a86b12372b440be1858c26eb256586d98">More...</a><br /></td></tr>
+<tr class="separator:a86b12372b440be1858c26eb256586d98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a917977f5667fee899252864d88830f78"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a917977f5667fee899252864d88830f78">Planning::planning</a> (const Mat &amp;img)</td></tr>
+<tr class="memdesc:a917977f5667fee899252864d88830f78"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function plan a route from the actual position of the robot up to the final gate through all the victims.  <a href="namespace_planning.html#a917977f5667fee899252864d88830f78">More...</a><br /></td></tr>
+<tr class="separator:a917977f5667fee899252864d88830f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3962a61cb050b623abd1720107d2ea5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#ab3962a61cb050b623abd1720107d2ea5">Planning::createMapp</a> ()</td></tr>
+<tr class="memdesc:ab3962a61cb050b623abd1720107d2ea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The goal is to load, all the neccessary data, from files and create a <a class="el" href="class_mapp.html">Mapp</a> that store everything.  <a href="namespace_planning.html#ab3962a61cb050b623abd1720107d2ea5">More...</a><br /></td></tr>
+<tr class="separator:ab3962a61cb050b623abd1720107d2ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a927f4df9eaa7ed3d75f0c410b668f72c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a927f4df9eaa7ed3d75f0c410b668f72c">Planning::loadVVP</a> (vector&lt; vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &gt; &amp;vvp, FileNode fn)</td></tr>
+<tr class="memdesc:a927f4df9eaa7ed3d75f0c410b668f72c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function load from the given fileNode a vector of vectors of <a class="el" href="class_point2.html">Point2&lt;int&gt;</a>.  <a href="namespace_planning.html#a927f4df9eaa7ed3d75f0c410b668f72c">More...</a><br /></td></tr>
+<tr class="separator:a927f4df9eaa7ed3d75f0c410b668f72c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07837e248f45a8a62555c6e16b94d9f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a07837e248f45a8a62555c6e16b94d9f3">Planning::loadVP</a> (vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &amp;vp, FileNode fn)</td></tr>
+<tr class="memdesc:a07837e248f45a8a62555c6e16b94d9f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function load from the given fileNode a vector of <a class="el" href="class_point2.html">Point2&lt;int&gt;</a>.  <a href="namespace_planning.html#a07837e248f45a8a62555c6e16b94d9f3">More...</a><br /></td></tr>
+<tr class="separator:a07837e248f45a8a62555c6e16b94d9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a071810fbd87c8655bd34b769971c7033"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a071810fbd87c8655bd34b769971c7033">Planning::getNPoints</a> ()</td></tr>
+<tr class="memdesc:a071810fbd87c8655bd34b769971c7033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the numper of points needed for the function sampleNpoints.  <a href="namespace_planning.html#a071810fbd87c8655bd34b769971c7033">More...</a><br /></td></tr>
+<tr class="separator:a071810fbd87c8655bd34b769971c7033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0dac0907f2f18ba6bb0b6f43be68582"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#ab0dac0907f2f18ba6bb0b6f43be68582">Planning::allocateAAInt</a> (const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> a, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> b)</td></tr>
+<tr class="memdesc:ab0dac0907f2f18ba6bb0b6f43be68582"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a dynamic 2D array of int.  <a href="namespace_planning.html#ab0dac0907f2f18ba6bb0b6f43be68582">More...</a><br /></td></tr>
+<tr class="separator:ab0dac0907f2f18ba6bb0b6f43be68582"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ae72275fa883dcc05d2fbb904c2a2f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> ***&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a5ae72275fa883dcc05d2fbb904c2a2f0">Planning::allocateAAAInt</a> (const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> a, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> b, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> c)</td></tr>
+<tr class="memdesc:a5ae72275fa883dcc05d2fbb904c2a2f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a dynamic 3D array of int.  <a href="namespace_planning.html#a5ae72275fa883dcc05d2fbb904c2a2f0">More...</a><br /></td></tr>
+<tr class="separator:a5ae72275fa883dcc05d2fbb904c2a2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f8e86525e4d2cd1baea518351b5cad8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> ****&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a8f8e86525e4d2cd1baea518351b5cad8">Planning::allocateAAAAInt</a> (const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> a, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> b, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> c, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> d)</td></tr>
+<tr class="memdesc:a8f8e86525e4d2cd1baea518351b5cad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a dynamic 4D array of int.  <a href="namespace_planning.html#a8f8e86525e4d2cd1baea518351b5cad8">More...</a><br /></td></tr>
+<tr class="separator:a8f8e86525e4d2cd1baea518351b5cad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaad40b9cb461fc136e1e275bd0674aa4"><td class="memItemLeft" align="right" valign="top">double **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#aaad40b9cb461fc136e1e275bd0674aa4">Planning::allocateAADouble</a> (const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> a, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> b)</td></tr>
+<tr class="memdesc:aaad40b9cb461fc136e1e275bd0674aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a dynamic 2D array of int.  <a href="namespace_planning.html#aaad40b9cb461fc136e1e275bd0674aa4">More...</a><br /></td></tr>
+<tr class="separator:aaad40b9cb461fc136e1e275bd0674aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6990cb8290d7ec992e2e83b6869e3146"><td class="memItemLeft" align="right" valign="top">double ***&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a6990cb8290d7ec992e2e83b6869e3146">Planning::allocateAAADouble</a> (const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> a, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> b, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> c)</td></tr>
+<tr class="memdesc:a6990cb8290d7ec992e2e83b6869e3146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a dynamic 3D array of double.  <a href="namespace_planning.html#a6990cb8290d7ec992e2e83b6869e3146">More...</a><br /></td></tr>
+<tr class="separator:a6990cb8290d7ec992e2e83b6869e3146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cf5cca8792007e0a24e3e090f44e9d0"><td class="memItemLeft" align="right" valign="top">double ****&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a3cf5cca8792007e0a24e3e090f44e9d0">Planning::allocateAAAADouble</a> (const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> a, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> b, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> c, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> d)</td></tr>
+<tr class="memdesc:a3cf5cca8792007e0a24e3e090f44e9d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a dynamic 4D array of double.  <a href="namespace_planning.html#a3cf5cca8792007e0a24e3e090f44e9d0">More...</a><br /></td></tr>
+<tr class="separator:a3cf5cca8792007e0a24e3e090f44e9d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbbcfd636e5470ac0a4c63d0b937dae5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#acbbcfd636e5470ac0a4c63d0b937dae5">Planning::allocateAAPointInt</a> (const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> a, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> b)</td></tr>
+<tr class="memdesc:acbbcfd636e5470ac0a4c63d0b937dae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a dynamic 2D array of Points.  <a href="namespace_planning.html#acbbcfd636e5470ac0a4c63d0b937dae5">More...</a><br /></td></tr>
+<tr class="separator:acbbcfd636e5470ac0a4c63d0b937dae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf487d74b6a92cbe0def431eeea3f4c1"><td class="memItemLeft" align="right" valign="top">vector&lt; vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#acf487d74b6a92cbe0def431eeea3f4c1">Planning::minPathNPointsWithChoice</a> (const vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &amp;vp, const double bonus, const bool angle)</td></tr>
+<tr class="memdesc:acf487d74b6a92cbe0def431eeea3f4c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given couples of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.  <a href="namespace_planning.html#acf487d74b6a92cbe0def431eeea3f4c1">More...</a><br /></td></tr>
+<tr class="separator:acf487d74b6a92cbe0def431eeea3f4c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ca794173976e803c536ccb0771fed71"><td class="memItemLeft" align="right" valign="top">vector&lt; vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a5ca794173976e803c536ccb0771fed71">Planning::minPathNPoints</a> (const vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &amp;vp, const bool angle)</td></tr>
+<tr class="memdesc:a5ca794173976e803c536ccb0771fed71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given couples of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.  <a href="namespace_planning.html#a5ca794173976e803c536ccb0771fed71">More...</a><br /></td></tr>
+<tr class="separator:a5ca794173976e803c536ccb0771fed71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a645b7e3cfd258b27b5d5fdaff55c6695"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a645b7e3cfd258b27b5d5fdaff55c6695">Planning::minPathTwoPoints</a> (const <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &amp;p0, const <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &amp;p1, const bool angle)</td></tr>
+<tr class="memdesc:a645b7e3cfd258b27b5d5fdaff55c6695"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.  <a href="namespace_planning.html#a645b7e3cfd258b27b5d5fdaff55c6695">More...</a><br /></td></tr>
+<tr class="separator:a645b7e3cfd258b27b5d5fdaff55c6695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e656de5d640f17aa38e95c34dcf9a0c"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a4e656de5d640f17aa38e95c34dcf9a0c">Planning::minPathTwoPointsInternal</a> (const <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &amp;startP, const <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &amp;endP, double **distances, <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; **parents)</td></tr>
+<tr class="memdesc:a4e656de5d640f17aa38e95c34dcf9a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a couple of points the function compute the minimum path that connect them avoiding the intersection of OBST and BODA.  <a href="namespace_planning.html#a4e656de5d640f17aa38e95c34dcf9a0c">More...</a><br /></td></tr>
+<tr class="separator:a4e656de5d640f17aa38e95c34dcf9a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f6200091c6c5a0fe6904a11ee568c77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a0f6200091c6c5a0fe6904a11ee568c77">Planning::angleSector</a> (const double &amp;d)</td></tr>
+<tr class="memdesc:a0f6200091c6c5a0fe6904a11ee568c77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the sector of an angle.  <a href="namespace_planning.html#a0f6200091c6c5a0fe6904a11ee568c77">More...</a><br /></td></tr>
+<tr class="separator:a0f6200091c6c5a0fe6904a11ee568c77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf3302dbca007b8938bc7242316c966e"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#acf3302dbca007b8938bc7242316c966e">Planning::minPathTwoPointsInternalAngles</a> (const <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &amp;startP, const <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &amp;endP, double ***distances, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> ****parents, const double initialDir)</td></tr>
+<tr class="separator:acf3302dbca007b8938bc7242316c966e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe68d6842f203b50f874a32c95a4c467"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#afe68d6842f203b50f874a32c95a4c467">Planning::intToVect</a> (<a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> c, vector&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &amp;v)</td></tr>
+<tr class="memdesc:afe68d6842f203b50f874a32c95a4c467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an integer into the vector of its digits. The result is inverse respect to the given integer.  <a href="namespace_planning.html#afe68d6842f203b50f874a32c95a4c467">More...</a><br /></td></tr>
+<tr class="separator:afe68d6842f203b50f874a32c95a4c467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59d4c857b69023af6fb0798a0439fb1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a59d4c857b69023af6fb0798a0439fb1a">Planning::resetDistanceMap</a> (double **distances, const double value)</td></tr>
+<tr class="memdesc:a59d4c857b69023af6fb0798a0439fb1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">It reset, to the given value, the matrix of distances given, to compute again the minPath search.  <a href="namespace_planning.html#a59d4c857b69023af6fb0798a0439fb1a">More...</a><br /></td></tr>
+<tr class="separator:a59d4c857b69023af6fb0798a0439fb1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bd3ab5b4f39b9979b04947292efbc45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a6bd3ab5b4f39b9979b04947292efbc45">Planning::resetDistanceMap</a> (double ***distances, const double value)</td></tr>
+<tr class="memdesc:a6bd3ab5b4f39b9979b04947292efbc45"><td class="mdescLeft">&#160;</td><td class="mdescRight">It reset, to the given value, the matrix of distances given, to compute again the minPath search.  <a href="namespace_planning.html#a6bd3ab5b4f39b9979b04947292efbc45">More...</a><br /></td></tr>
+<tr class="separator:a6bd3ab5b4f39b9979b04947292efbc45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d6db51a94000c789125c2b54f6c056b"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a9d6db51a94000c789125c2b54f6c056b">Planning::sampleNPoints</a> (const vector&lt; vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &gt; &amp;vvp, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> n)</td></tr>
+<tr class="memdesc:a9d6db51a94000c789125c2b54f6c056b"><td class="mdescLeft">&#160;</td><td class="mdescRight">It extracts from the given vector of vector of points, a subset of points that always contains the first one and the last one of each vector.  <a href="namespace_planning.html#a9d6db51a94000c789125c2b54f6c056b">More...</a><br /></td></tr>
+<tr class="separator:a9d6db51a94000c789125c2b54f6c056b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5333e6807ac1e95550d13c2d77437d84"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a5333e6807ac1e95550d13c2d77437d84">Planning::sampleNPoints</a> (const vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &amp;points, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> n)</td></tr>
+<tr class="memdesc:a5333e6807ac1e95550d13c2d77437d84"><td class="mdescLeft">&#160;</td><td class="mdescRight">It extracts from the given vector of points, a subset of points that always contains the first one and the last one.  <a href="namespace_planning.html#a5333e6807ac1e95550d13c2d77437d84">More...</a><br /></td></tr>
+<tr class="separator:a5333e6807ac1e95550d13c2d77437d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d69e9ad820fa066fd2271bafbc2e507"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a5d69e9ad820fa066fd2271bafbc2e507">Planning::samplePointsEachNCells</a> (const vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &amp;points, const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> step)</td></tr>
+<tr class="memdesc:a5d69e9ad820fa066fd2271bafbc2e507"><td class="mdescLeft">&#160;</td><td class="mdescRight">It extracts from the given vector of points, a subset of points that always contains the first one and the last one.  <a href="namespace_planning.html#a5d69e9ad820fa066fd2271bafbc2e507">More...</a><br /></td></tr>
+<tr class="separator:a5d69e9ad820fa066fd2271bafbc2e507"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afca419fdf7cd1598ea05025f36ed8711"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#afca419fdf7cd1598ea05025f36ed8711">Planning::fromVcToPath</a> (vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &amp;vc, Path &amp;path)</td></tr>
+<tr class="memdesc:afca419fdf7cd1598ea05025f36ed8711"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a vector of point to a path, from Enrico's notation to Paolo's notation.  <a href="namespace_planning.html#afca419fdf7cd1598ea05025f36ed8711">More...</a><br /></td></tr>
+<tr class="separator:afca419fdf7cd1598ea05025f36ed8711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a312e4e0aa3f1626357f85cfac3afa75c"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a312e4e0aa3f1626357f85cfac3afa75c"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a312e4e0aa3f1626357f85cfac3afa75c">Planning::check_dubins_D</a> (<a class="el" href="class_dubins.html">Dubins</a>&lt; T &gt; &amp;D)</td></tr>
+<tr class="separator:a312e4e0aa3f1626357f85cfac3afa75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ba2ab5465066518f036f97ef3a85ac3"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a5ba2ab5465066518f036f97ef3a85ac3"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a5ba2ab5465066518f036f97ef3a85ac3">Planning::check_dubins_DS</a> (<a class="el" href="class_dubins_set.html">DubinsSet</a>&lt; T &gt; &amp;DS)</td></tr>
+<tr class="separator:a5ba2ab5465066518f036f97ef3a85ac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6f2d3277ec42c86328ca33519f53a1e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#ad6f2d3277ec42c86328ca33519f53a1e">Planning::compute_roundabout_dubins</a> (<a class="el" href="class_dubins_set.html">DubinsSet</a>&lt; double &gt; &amp;new_DS, <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; _start, const vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &amp;vC, uint &amp;vC_id, bool gate=false)</td></tr>
+<tr class="separator:ad6f2d3277ec42c86328ca33519f53a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05040ef8e86180eb57a4d4c88ccc8974"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a05040ef8e86180eb57a4d4c88ccc8974"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_dubins_set.html">DubinsSet</a>&lt; double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a05040ef8e86180eb57a4d4c88ccc8974">Planning::victims_dubins</a> (const vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; T &gt; &gt; &amp;vC1, const vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; T &gt; &gt; &amp;vC2, uint &amp;vC1_pos, uint &amp;vC2_pos)</td></tr>
+<tr class="separator:a05040ef8e86180eb57a4d4c88ccc8974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58174c629acff8f3787b8484ce5aac96"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a58174c629acff8f3787b8484ce5aac96"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_dubins_set.html">DubinsSet</a>&lt; double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a58174c629acff8f3787b8484ce5aac96">Planning::start_end_dubins</a> (const <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &amp;anchorPoint, const vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; T &gt; &gt; &amp;vConfs, uint &amp;pos, const bool start)</td></tr>
+<tr class="separator:a58174c629acff8f3787b8484ce5aac96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8331436c5b56f32b9d03625aaefe68d3"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a8331436c5b56f32b9d03625aaefe68d3">Planning::vvCtovC</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &gt; vv)</td></tr>
+<tr class="separator:a8331436c5b56f32b9d03625aaefe68d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d7e81ea41c76c9df1cd3e63294e82e6"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a4d7e81ea41c76c9df1cd3e63294e82e6">Planning::vvvCtovC</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &gt; &gt; vvv)</td></tr>
+<tr class="separator:a4d7e81ea41c76c9df1cd3e63294e82e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbd6bab9fdc09fd149031a6fbd074227"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_angle.html">Angle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#adbd6bab9fdc09fd149031a6fbd074227">Planning::compute_final_angle</a> (<a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; gate)</td></tr>
+<tr class="separator:adbd6bab9fdc09fd149031a6fbd074227"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1ba247cf8fe87846f0a3d3ce6e8aa9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#af1ba247cf8fe87846f0a3d3ce6e8aa9c">Planning::inter_victims</a> (vector&lt; vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &gt; &amp;vvConfs, vector&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &amp;vI, <a class="el" href="class_dubins_set.html">DubinsSet</a>&lt; double &gt; &amp;path, vector&lt; <a class="el" href="class_dubins_set.html">DubinsSet</a>&lt; double &gt; &gt; &amp;victimV)</td></tr>
+<tr class="separator:af1ba247cf8fe87846f0a3d3ce6e8aa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27b3acc7671e5608febced6f0488356b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a27b3acc7671e5608febced6f0488356b">Planning::plan_dubins</a> (const <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &amp;_start, vector&lt; vector&lt; <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; &gt; &gt; &amp;vvConfs)</td></tr>
+<tr class="separator:a27b3acc7671e5608febced6f0488356b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ab0ebb62df4445b6351592a77421badf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_mapp.html">Mapp</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#ab0ebb62df4445b6351592a77421badf6">Planning::map</a></td></tr>
+<tr class="separator:ab0ebb62df4445b6351592a77421badf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c65f036c975f86cd840ccd0e1fd57cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a7c65f036c975f86cd840ccd0e1fd57cb">Planning::conf</a></td></tr>
+<tr class="separator:a7c65f036c975f86cd840ccd0e1fd57cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab49704afab612c84aa89b45e0d98973f"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#ab49704afab612c84aa89b45e0d98973f">Planning::angleRange</a> = 12*M_PI/180</td></tr>
+<tr class="separator:ab49704afab612c84aa89b45e0d98973f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad20d6b79741af2a51de604e75f1fdc48"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#ad20d6b79741af2a51de604e75f1fdc48">Planning::nAngles</a> = 90</td></tr>
+<tr class="separator:ad20d6b79741af2a51de604e75f1fdc48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff68ed452ba1f706c2f89a779c813dac"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#aff68ed452ba1f706c2f89a779c813dac">Planning::range</a> = 3</td></tr>
+<tr class="separator:aff68ed452ba1f706c2f89a779c813dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49f0f600eb7b6eb6f951cc645eabd286"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_planning.html#a49f0f600eb7b6eb6f951cc645eabd286">Planning::DEGTORAD</a></td></tr>
+<tr class="separator:a49f0f600eb7b6eb6f951cc645eabd286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a96a9822fa134450197dd454b1478a193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96a9822fa134450197dd454b1478a193">&#9670;&nbsp;</a></span>BONUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BONUS&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3fd2b1bcd7ddcf506237987ad780f495"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fd2b1bcd7ddcf506237987ad780f495">&#9670;&nbsp;</a></span>DELTA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DELTA&#160;&#160;&#160;M_PI/180.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a336f67e9817ede04fdf58ee2cd144522"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a336f67e9817ede04fdf58ee2cd144522">&#9670;&nbsp;</a></span>INCREASE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INCREASE&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a995e4ef5ee87adb8c6be7fd61339030d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a995e4ef5ee87adb8c6be7fd61339030d">&#9670;&nbsp;</a></span>ROB_KMAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ROB_KMAX&#160;&#160;&#160;<a class="el" href="dubins_8hh.html#a940b85a83458e94519f2685b33ddd276">KMAX</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa6ad9a7ba19bd508888116e6cac9ed52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6ad9a7ba19bd508888116e6cac9ed52">&#9670;&nbsp;</a></span>ROB_PIECE_LENGTH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ROB_PIECE_LENGTH&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0cbea62f1ce2043dd08108e65ed8de1d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0cbea62f1ce2043dd08108e65ed8de1d">&#9670;&nbsp;</a></span>SCALE</h2>
 
@@ -166,163 +376,17 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a7c7b2e381023697547786d663894435d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c7b2e381023697547786d663894435d">&#9670;&nbsp;</a></span>createMapp()</h2>
+<a id="a59b3a25e0a42a4e000a3475761969b6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59b3a25e0a42a4e000a3475761969b6f">&#9670;&nbsp;</a></span>SCRAP</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_mapp.html">Mapp</a>* createMapp </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname">#define SCRAP&#160;&#160;&#160;3</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>The goal is to load, all the neccessary data, from files and create a <a class="el" href="class_mapp.html">Mapp</a> that store everything. </p>
-<dl class="section return"><dt>Returns</dt><dd>The created mapp. </dd></dl>
-
-</div>
-</div>
-<a id="a0a3e9f80c221e62df622b89c26ab42e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a3e9f80c221e62df622b89c26ab42e2">&#9670;&nbsp;</a></span>fromVpToPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void fromVpToPath </td>
-          <td>(</td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Path &amp;&#160;</td>
-          <td class="paramname"><em>path</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Convert a vector of point to a path, from Enrico's notation to Paolo's notation. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">vp</td><td>The sorce vector. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">path</td><td>The destination path. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aa3a220a5ab5f16da550b786caa041f6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3a220a5ab5f16da550b786caa041f6b">&#9670;&nbsp;</a></span>loadVP()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void loadVP </td>
-          <td>(</td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">FileNode&#160;</td>
-          <td class="paramname"><em>fn</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The function load from the given fileNode a vector of <a class="el" href="class_point2.html">Point2&lt;int&gt;</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">vp</td><td>The location where to save the loaded vector. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">fn</td><td>The fileNode from which to load the vector. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ad6ed6af027c9a35de0c872788d50c733"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6ed6af027c9a35de0c872788d50c733">&#9670;&nbsp;</a></span>loadVVP()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void loadVVP </td>
-          <td>(</td>
-          <td class="paramtype">vector&lt; vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> &gt; &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vvp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">FileNode&#160;</td>
-          <td class="paramname"><em>fn</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The function load from the given fileNode a vector of vectors of <a class="el" href="class_point2.html">Point2&lt;int&gt;</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">vvp</td><td>The location where to save the loaded vector of vectors. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">fn</td><td>The fileNode from which to load the vector of vectors. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aeef9aecfb831780fd7775ac4e750aad8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeef9aecfb831780fd7775ac4e750aad8">&#9670;&nbsp;</a></span>planning()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">pair&lt; vector&lt;<a class="el" href="class_point2.html">Point2</a>&lt;<a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&gt; &gt;, <a class="el" href="class_mapp.html">Mapp</a>* &gt; planning </td>
-          <td>(</td>
-          <td class="paramtype">const Mat &amp;&#160;</td>
-          <td class="paramname"><em>img</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The function plan a route from the actual position of the robot up to the final gate through all the victims. </p>
-<p>All the data about the objects are loaded from the files previously saved. Then a <a class="el" href="class_mapp.html">Mapp</a> is created and on that structure, thanks to a minPath function and a lot of dubin curves, the best route is computed.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">img</td><td>It is a raw image of the scene that will be used from the localize function to find the starting state of the robot. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Two elements are returned: a pointer to the <a class="el" href="class_mapp.html">Mapp</a> where all data are stored and a vector of points placed on the computed route. </dd></dl>
 
 </div>
 </div>

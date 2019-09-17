@@ -384,7 +384,12 @@ Tuple<string> Settings::maps(int id){
   return v;
 }
 
-bool Settings::addUnMap(string _unMap){ //TODO document
+/**
+ * @brief      Adds the name of an undistorted map.
+ * @param[in]  _unMap  The name of the undistorted map
+ * @return     `true` if it succeded, `false` otherwise. 
+ */
+bool Settings::addUnMap(string _unMap){ 
 	for (auto el : this->mapsUnNames){
 		if (el==_unMap){
 			return false;

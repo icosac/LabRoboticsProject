@@ -11,24 +11,38 @@
 \begin{DoxyCompactList}\small\item\em Defualt constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple_af64f6017bf08af095addedf084863f22}{Tuple}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+n,...)
 \begin{DoxyCompactList}\small\item\em Constructors that takes the number of objectes to be stored, the objects and then stores them. For compatibility problem we strongly suggest to use this constructor only with standard types or types that can be promotted to one of the standard ones. For any other type we suggest to use an empty constructor and then use the {\ttfamily \mbox{\hyperlink{class_tuple_a5d3ee2809d790543195a6e2075aef7d0}{add()}}} function. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tuple_adff6ec647c0f16a061adae02814ad45e}{Tuple}} (std\+::vector$<$ T $>$ v)
+\item 
 \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_tuple_a8fffdb4c6d86d10fcf4aee1b0261e4ba}{size}} () const
 \item 
 T \mbox{\hyperlink{class_tuple_aabf82c5d0f19c9a8f6a8f01d95801162}{get}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \+\_\+n) const
 \begin{DoxyCompactList}\small\item\em Gets the n-\/th element. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ \mbox{\hyperlink{class_tuple_a7cd0c2fb33a5861e3f171614881393ce}{get}} (const uint start, const uint \mbox{\hyperlink{class_tuple_a345d8a3efbf58fe4cc7295c3cf66e8ab}{end}})
+\item 
+T \mbox{\hyperlink{class_tuple_a3f97540a70c1e40e3a34c1b5dee9fa0e}{front}} ()
+\item 
+T \mbox{\hyperlink{class_tuple_ad885e206e13107c8f4c6005216f5da29}{back}} ()
+\item 
 \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_tuple_aab743167e9fd750f71add11b1aa48f6b}{find}} (T \+\_\+el)
 \item 
 void \mbox{\hyperlink{class_tuple_a5d3ee2809d790543195a6e2075aef7d0}{add}} (const T \+\_\+new)
 \begin{DoxyCompactList}\small\item\em Adds a value at the end of the list. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tuple_ac7699d6813e11c18f436098e9f76ebf0}{add\+If\+Not}} (T \+\_\+el, bool \+\_\+throw=false)
 \item 
-\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_tuple_a53a1abc3017d30cf1a6d6858caee8ce8}{remove}} (const T pos)
+bool \mbox{\hyperlink{class_tuple_ad7436ece54558c2940f79c539f83f611}{remove}} (const uint pos)
 \begin{DoxyCompactList}\small\item\em Removes a value from the list. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tuple_a60370cde243871dfafb0ac96404c6f90}{remove\+\_\+from}} (const uint pos)
+\item 
 void \mbox{\hyperlink{class_tuple_ae36c533bd6e97ac45a2ed69a0c4760e4}{erase\+All}} ()
 \begin{DoxyCompactList}\small\item\em Removes all values from the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_tuple_a6ecd34c0308891b7bec87b4736a6eaa5}{set}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} pos, const T \+\_\+new)
 \begin{DoxyCompactList}\small\item\em Set a value in a certain position, or adds the element if the position equals the number of elements. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_tuple_a1173bba1687b01721f9e4e4c73de0d2a}{ahead}} (const T \+\_\+new)
 \item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ \mbox{\hyperlink{class_tuple_ac4b525e02b40a646ebd4f600fe78d00f}{copy}} (const \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ \&A)
+\begin{DoxyCompactList}\small\item\em Copy a \mbox{\hyperlink{class_tuple}{Tuple}} into another one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ \mbox{\hyperlink{class_tuple_ab47559b59159610317779405337c2b44}{operator=}} (const \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ \&A)
+\begin{DoxyCompactList}\small\item\em Overload of the = operator. Just calls {\ttfamily copy}. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_tuple_a68d1d3aaecc187f8f78b46f4e1b48260}{equal}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ \+\_\+t)
 \item 
 bool \mbox{\hyperlink{class_tuple_ad8f90a7c0726fae5ac5651c4e16222cd}{operator==}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ \+\_\+t)
@@ -97,7 +111,7 @@ class Tuple$<$ T $>$}
 \mbox{\Hypertarget{class_tuple_ae8bde0e2215d6d5235a2a45195f7bfae}\label{class_tuple_ae8bde0e2215d6d5235a2a45195f7bfae}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!Tuple@{Tuple}}
 \index{Tuple@{Tuple}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
-\subsubsection{\texorpdfstring{Tuple()}{Tuple()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\subsubsection{\texorpdfstring{Tuple()}{Tuple()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::\mbox{\hyperlink{class_tuple}{Tuple}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -108,7 +122,7 @@ Defualt constructor.
 \mbox{\Hypertarget{class_tuple_af64f6017bf08af095addedf084863f22}\label{class_tuple_af64f6017bf08af095addedf084863f22}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!Tuple@{Tuple}}
 \index{Tuple@{Tuple}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
-\subsubsection{\texorpdfstring{Tuple()}{Tuple()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\subsubsection{\texorpdfstring{Tuple()}{Tuple()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::\mbox{\hyperlink{class_tuple}{Tuple}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+n,  }\item[{}]{... }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -123,6 +137,13 @@ Constructors that takes the number of objectes to be stored, the objects and the
 \mbox{\texttt{ in}}  & {\em ...} & Objects to store. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{class_tuple_adff6ec647c0f16a061adae02814ad45e}\label{class_tuple_adff6ec647c0f16a061adae02814ad45e}} 
+\index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!Tuple@{Tuple}}
+\index{Tuple@{Tuple}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
+\subsubsection{\texorpdfstring{Tuple()}{Tuple()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::\mbox{\hyperlink{class_tuple}{Tuple}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T $>$}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 \subsection{Member Function Documentation}
@@ -156,6 +177,13 @@ void \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::add\+If\+Not (\begin{Doxy
 {\footnotesize\ttfamily template$<$class T$>$ \\
 void \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::ahead (\begin{DoxyParamCaption}\item[{const T}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+\mbox{\Hypertarget{class_tuple_ad885e206e13107c8f4c6005216f5da29}\label{class_tuple_ad885e206e13107c8f4c6005216f5da29}} 
+\index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!back@{back}}
+\index{back@{back}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
+\subsubsection{\texorpdfstring{back()}{back()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+T \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::back (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_tuple_a205dfb3c3dcad03ced830b5c9687d225}\label{class_tuple_a205dfb3c3dcad03ced830b5c9687d225}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!begin@{begin}}
 \index{begin@{begin}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
@@ -183,6 +211,25 @@ Const iterator.
 
 \begin{DoxyReturn}{Returns}
 the elements.\+begin() iterator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_tuple_ac4b525e02b40a646ebd4f600fe78d00f}\label{class_tuple_ac4b525e02b40a646ebd4f600fe78d00f}} 
+\index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!copy@{copy}}
+\index{copy@{copy}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
+\subsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$T$>$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::copy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy a \mbox{\hyperlink{class_tuple}{Tuple}} into another one. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & \mbox{\hyperlink{class_tuple}{Tuple}} to be coppied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_tuple_af47521571361439c96392dee70a79cc7}\label{class_tuple_af47521571361439c96392dee70a79cc7}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!distance@{distance}}
@@ -279,10 +326,17 @@ The Euclidean distance between the two \mbox{\hyperlink{class_tuple}{Tuple}}.
 {\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::find (\begin{DoxyParamCaption}\item[{T}]{\+\_\+el }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+\mbox{\Hypertarget{class_tuple_a3f97540a70c1e40e3a34c1b5dee9fa0e}\label{class_tuple_a3f97540a70c1e40e3a34c1b5dee9fa0e}} 
+\index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!front@{front}}
+\index{front@{front}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
+\subsubsection{\texorpdfstring{front()}{front()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+T \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::front (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_tuple_aabf82c5d0f19c9a8f6a8f01d95801162}\label{class_tuple_aabf82c5d0f19c9a8f6a8f01d95801162}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!get@{get}}
 \index{get@{get}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
-\subsubsection{\texorpdfstring{get()}{get()}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
 T \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::get (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{\+\_\+n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -298,6 +352,13 @@ Gets the n-\/th element.
 \begin{DoxyReturn}{Returns}
 The element in the n-\/th position or an empty costructor if \+\_\+n is greater then n or less than 0. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_tuple_a7cd0c2fb33a5861e3f171614881393ce}\label{class_tuple_a7cd0c2fb33a5861e3f171614881393ce}} 
+\index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!get@{get}}
+\index{get@{get}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$T$>$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::get (\begin{DoxyParamCaption}\item[{const uint}]{start,  }\item[{const uint}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_tuple_ac668269743d9be71769c9b4a424c785f}\label{class_tuple_ac668269743d9be71769c9b4a424c785f}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!MaDistance@{MaDistance}}
 \index{MaDistance@{MaDistance}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
@@ -401,6 +462,25 @@ A vector containing the values of elements.
 {\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$T$>$\& \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::operator+= (\begin{DoxyParamCaption}\item[{T}]{inc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+\mbox{\Hypertarget{class_tuple_ab47559b59159610317779405337c2b44}\label{class_tuple_ab47559b59159610317779405337c2b44}} 
+\index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$T$>$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Overload of the = operator. Just calls {\ttfamily copy}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & \mbox{\hyperlink{class_tuple}{Tuple}} to be coppied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_tuple_ad8f90a7c0726fae5ac5651c4e16222cd}\label{class_tuple_ad8f90a7c0726fae5ac5651c4e16222cd}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!operator==@{operator==}}
 \index{operator==@{operator==}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
@@ -427,12 +507,12 @@ Overloading \mbox{[}\mbox{]} operator to access elements in array style.
 \begin{DoxyReturn}{Returns}
 Value at id position. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_tuple_a53a1abc3017d30cf1a6d6858caee8ce8}\label{class_tuple_a53a1abc3017d30cf1a6d6858caee8ce8}} 
+\mbox{\Hypertarget{class_tuple_ad7436ece54558c2940f79c539f83f611}\label{class_tuple_ad7436ece54558c2940f79c539f83f611}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!remove@{remove}}
 \index{remove@{remove}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
 \subsubsection{\texorpdfstring{remove()}{remove()}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
-\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::remove (\begin{DoxyParamCaption}\item[{const T}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+bool \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::remove (\begin{DoxyParamCaption}\item[{const uint}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -444,8 +524,15 @@ Removes a value from the list.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-1 if verything went fine, 0 otherwise. 
+{\ttfamily true} if verything went fine, {\ttfamily false} otherwise. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_tuple_a60370cde243871dfafb0ac96404c6f90}\label{class_tuple_a60370cde243871dfafb0ac96404c6f90}} 
+\index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!remove\_from@{remove\_from}}
+\index{remove\_from@{remove\_from}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}
+\subsubsection{\texorpdfstring{remove\_from()}{remove\_from()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+bool \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$\+::remove\+\_\+from (\begin{DoxyParamCaption}\item[{const uint}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_tuple_a6ecd34c0308891b7bec87b4736a6eaa5}\label{class_tuple_a6ecd34c0308891b7bec87b4736a6eaa5}} 
 \index{Tuple$<$ T $>$@{Tuple$<$ T $>$}!set@{set}}
 \index{set@{set}!Tuple$<$ T $>$@{Tuple$<$ T $>$}}

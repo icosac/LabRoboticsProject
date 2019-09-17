@@ -8,37 +8,42 @@
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_robot_project_a3afaaa8731fb02fabaf2c47bb7c81799}{Robot\+Project}} (\mbox{\hyperlink{class_camera_capture}{Camera\+Capture}} $\ast$camera, double \&frame\+\_\+time)
-\item 
-\mbox{\hyperlink{class_robot_project_a12f627710a775cdec8a6416eeaf8db3e}{Robot\+Project}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
-\item 
+\begin{DoxyCompactList}\small\item\em A not used constructor of the class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_robot_project_a8510ebe175da3b90ffea7c88b690b4f8}{$\sim$\+Robot\+Project}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em The destructor of the class. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_robot_project_a380adb448f0fcbc625df9401de3bb013}{preprocess\+Map}} (const Mat \&img)
-\item 
+\begin{DoxyCompactList}\small\item\em Taken an image this function elaborate it in order to detect the foundamental elements and store them on files. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_robot_project_ad9077931a89d2226e6675c6107adfc53}{plan\+Path}} (const Mat \&img, Path \&path)
-\item 
+\begin{DoxyCompactList}\small\item\em Taken an image this function try to compute (and return) a path on it, that will bring the robot from its actual position through all the victims and in the end up to the gate. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_robot_project_a9899c66898ccd1b638fe074797a18398}{localize}} (const Mat \&img, vector$<$ double $>$ \&state)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Taken an image this function try to localize the position and the orientation of the robot. It also apply the neccessary transformation matrix to solve the problem of the different planes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_robot_project_a3afaaa8731fb02fabaf2c47bb7c81799}\label{class_robot_project_a3afaaa8731fb02fabaf2c47bb7c81799}} 
 \index{RobotProject@{RobotProject}!RobotProject@{RobotProject}}
 \index{RobotProject@{RobotProject}!RobotProject@{RobotProject}}
-\subsubsection{\texorpdfstring{RobotProject()}{RobotProject()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\subsubsection{\texorpdfstring{RobotProject()}{RobotProject()}}
 {\footnotesize\ttfamily Robot\+Project\+::\+Robot\+Project (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_camera_capture}{Camera\+Capture}} $\ast$}]{camera,  }\item[{double \&}]{frame\+\_\+time }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_robot_project_a12f627710a775cdec8a6416eeaf8db3e}\label{class_robot_project_a12f627710a775cdec8a6416eeaf8db3e}} 
-\index{RobotProject@{RobotProject}!RobotProject@{RobotProject}}
-\index{RobotProject@{RobotProject}!RobotProject@{RobotProject}}
-\subsubsection{\texorpdfstring{RobotProject()}{RobotProject()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Robot\+Project\+::\+Robot\+Project (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
+
+A not used constructor of the class. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_robot_project_a8510ebe175da3b90ffea7c88b690b4f8}\label{class_robot_project_a8510ebe175da3b90ffea7c88b690b4f8}} 
 \index{RobotProject@{RobotProject}!````~RobotProject@{$\sim$RobotProject}}
 \index{````~RobotProject@{$\sim$RobotProject}!RobotProject@{RobotProject}}
 \subsubsection{\texorpdfstring{$\sim$RobotProject()}{~RobotProject()}}
 {\footnotesize\ttfamily Robot\+Project\+::$\sim$\+Robot\+Project (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The destructor of the class. 
 
 
 
@@ -49,18 +54,58 @@ bool \mbox{\hyperlink{class_robot_project_a9899c66898ccd1b638fe074797a18398}{loc
 \subsubsection{\texorpdfstring{localize()}{localize()}}
 {\footnotesize\ttfamily bool Robot\+Project\+::localize (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{vector$<$ double $>$ \&}]{state }\end{DoxyParamCaption})}
 
+
+
+Taken an image this function try to localize the position and the orientation of the robot. It also apply the neccessary transformation matrix to solve the problem of the different planes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & The immage that will be processed. \\
+\hline
+\mbox{\texttt{ out}}  & {\em state} & The state that acts as the return value of the function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A true value if everything goes well. False otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_robot_project_ad9077931a89d2226e6675c6107adfc53}\label{class_robot_project_ad9077931a89d2226e6675c6107adfc53}} 
 \index{RobotProject@{RobotProject}!planPath@{planPath}}
 \index{planPath@{planPath}!RobotProject@{RobotProject}}
 \subsubsection{\texorpdfstring{planPath()}{planPath()}}
 {\footnotesize\ttfamily bool Robot\+Project\+::plan\+Path (\begin{DoxyParamCaption}\item[{const Mat \&}]{img,  }\item[{Path \&}]{path }\end{DoxyParamCaption})}
 
+
+
+Taken an image this function try to compute (and return) a path on it, that will bring the robot from its actual position through all the victims and in the end up to the gate. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & The immage that will be processed. \\
+\hline
+\mbox{\texttt{ out}}  & {\em path} & The path that acts as the return value of the function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A true value if everything goes well. False otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_robot_project_a380adb448f0fcbc625df9401de3bb013}\label{class_robot_project_a380adb448f0fcbc625df9401de3bb013}} 
 \index{RobotProject@{RobotProject}!preprocessMap@{preprocessMap}}
 \index{preprocessMap@{preprocessMap}!RobotProject@{RobotProject}}
 \subsubsection{\texorpdfstring{preprocessMap()}{preprocessMap()}}
 {\footnotesize\ttfamily bool Robot\+Project\+::preprocess\+Map (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})}
 
+
+
+Taken an image this function elaborate it in order to detect the foundamental elements and store them on files. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & The immage that will be processed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A true value if everything goes well. False otherwise. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

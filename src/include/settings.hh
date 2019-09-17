@@ -169,7 +169,14 @@ public:
    */
   Tuple<string> maps(Tuple<string> _mapNames);
 
-  bool addUnMap(string unMap); //TODO document
+  /**
+   * @brief      Adds the name of an undistorted map to the list.
+   *
+   * @param[in]  unMap  The undistorted map
+   *
+   * @return     `true` of the name of the map could be added, `false` otherwise.
+   */
+  bool addUnMap(string unMap); 
 
   /*!\brief Function to return the paths of undistorted maps. If ids are not specified all undistorted maps are returned.
    *

@@ -1183,7 +1183,6 @@ namespace Planning {
         return ok;
     }
 
-    //TODO CHECK vP2_pos
     template<class T> 
     DubinsSet<double> victims_dubins (const vector<Configuration2<T> >& vC1,
                                       const vector<Configuration2<T> >& vC2,
@@ -1410,7 +1409,6 @@ namespace Planning {
         DubinsSet<double> path;
         //Create Dubins for first path.
         DubinsSet<double> start;
-        vector<uint> lenghts={}; for (auto a : vvConfs) {lenghts.push_back(a.size());} //TODO do I use this??
         vector<int> vI;
 
         uint start_pos=0, end_pos=0;
@@ -1436,7 +1434,7 @@ namespace Planning {
         draw(vvConfs, "Map Start");
 
         //Create Dubins for victims
-        vector<DubinsSet<double> >victimV; //TODO do i use this??
+        vector<DubinsSet<double> >victimV;
         DubinsSet<double> victim;
 
         for (int i=0; i<(int)(vvConfs.size())-1; i++){
@@ -1483,7 +1481,7 @@ namespace Planning {
         cout << "Creating Dubins for end" << endl;
         try{
             end=start_end_dubins(Configuration2<double>(vvConfs.back().back().point(), compute_final_angle(vvConfs.back().back())),
-                                 vvConfs.back(), end_pos, false); //TODO find better implementation for final angle
+                                 vvConfs.back(), end_pos, false); 
         }
         catch (exception& e){
             cout << e.what() << endl << flush;

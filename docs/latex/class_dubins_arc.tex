@@ -40,11 +40,13 @@ T1 \mbox{\hyperlink{class_dubins_arc_af3fefdb90ba414db3560ef12b329f54a}{getK}} (
 \begin{DoxyCompactList}\small\item\em Returns the curvature of the arc. \end{DoxyCompactList}\item 
 T1 \mbox{\hyperlink{class_dubins_arc_a1b0bfacb344d17377f4bda55fdaecae4}{length}} () const
 \begin{DoxyCompactList}\small\item\em Returns the length of the arc. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T2 $>$ $>$ \mbox{\hyperlink{class_dubins_arc_a346c19e3e9f25747e3e3ae9de997e09d}{split\+It}} (double \+\_\+L=\mbox{\hyperlink{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}{P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}})
-\begin{DoxyCompactList}\small\item\em Splits the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} in pieces of \+\_\+L length. This function starts from the begining of the arc and computes n new arcs through the {\ttfamily \mbox{\hyperlink{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}{circline()}}} function using the curvature of the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} and \+\_\+L as the length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$ $>$ \mbox{\hyperlink{class_dubins_arc_af7c6ad3f4c81b2b75c9f439afd9fa746}{split\+It}} (double \+\_\+L=\mbox{\hyperlink{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}{P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}})
+\begin{DoxyCompactList}\small\item\em Splits the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} in pieces of \+\_\+L length. This function starts from the begining of the arc and computes n new arcs through the {\ttfamily \mbox{\hyperlink{dubins_8cc_adef8b363044d7fed558e5b47d8d6a3a0}{circline()}}} function using the curvature of the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} and \+\_\+L as the length. \end{DoxyCompactList}\item 
 stringstream \mbox{\hyperlink{class_dubins_arc_aa90c32f88f048e4e17ea79489f44dbfb}{to\+\_\+string}} () const
 \item 
-void \mbox{\hyperlink{class_dubins_arc_a5ceb55d50ce337ff81c6d65a26761da6}{draw}} (double dimX, double dimY, double inc, Scalar scl, Mat \&image, double S\+H\+I\+FT)
+void \mbox{\hyperlink{class_dubins_arc_a649ed569e8d8786e54d1553dd6be8dcb}{draw}} (double dimX, double dimY, double inc, Scalar scl, Mat \&image, double S\+H\+I\+FT=D\+\_\+\+S\+H\+I\+FT)
+\item 
+bool \mbox{\hyperlink{class_dubins_arc_aa92108d7dab38e8ace212d621f9fb8dc}{is\+\_\+on\+\_\+dubins\+Arc}} (\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$ C)
 \end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -84,7 +86,7 @@ Plain constructor of {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}
 {\footnotesize\ttfamily template$<$class T1 = double, class T2 = double$>$ \\
 \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T1, T2 $>$\+::\mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$}]{\+\_\+\+P0,  }\item[{const T1}]{\+\_\+k,  }\item[{const T1}]{\+\_\+l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Creates a new {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} given a start {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}, the curvature and the length of the arc calling {\ttfamily \mbox{\hyperlink{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}{circline()}}}. 
+Creates a new {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} given a start {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}, the curvature and the length of the arc calling {\ttfamily \mbox{\hyperlink{dubins_8cc_adef8b363044d7fed558e5b47d8d6a3a0}{circline()}}}. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em \+\_\+\+P0} & The starting {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}. \\
 \hline
@@ -96,12 +98,12 @@ Creates a new {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} given
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_dubins_arc_a5ceb55d50ce337ff81c6d65a26761da6}\label{class_dubins_arc_a5ceb55d50ce337ff81c6d65a26761da6}} 
+\mbox{\Hypertarget{class_dubins_arc_a649ed569e8d8786e54d1553dd6be8dcb}\label{class_dubins_arc_a649ed569e8d8786e54d1553dd6be8dcb}} 
 \index{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!draw@{draw}}
 \index{draw@{draw}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}}
 \subsubsection{\texorpdfstring{draw()}{draw()}}
 {\footnotesize\ttfamily template$<$class T1 = double, class T2 = double$>$ \\
-void \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T1, T2 $>$\+::draw (\begin{DoxyParamCaption}\item[{double}]{dimX,  }\item[{double}]{dimY,  }\item[{double}]{inc,  }\item[{Scalar}]{scl,  }\item[{Mat \&}]{image,  }\item[{double}]{S\+H\+I\+FT }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T1, T2 $>$\+::draw (\begin{DoxyParamCaption}\item[{double}]{dimX,  }\item[{double}]{dimY,  }\item[{double}]{inc,  }\item[{Scalar}]{scl,  }\item[{Mat \&}]{image,  }\item[{double}]{S\+H\+I\+FT = {\ttfamily D\+\_\+SHIFT} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 This function draws the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}. 
 \begin{DoxyParams}[1]{Parameters}
@@ -129,6 +131,23 @@ T1 \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T1, T2 $>$\+::getK (\begi
 
 Returns the curvature of the arc. 
 
+\mbox{\Hypertarget{class_dubins_arc_aa92108d7dab38e8ace212d621f9fb8dc}\label{class_dubins_arc_aa92108d7dab38e8ace212d621f9fb8dc}} 
+\index{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!is\_on\_dubinsArc@{is\_on\_dubinsArc}}
+\index{is\_on\_dubinsArc@{is\_on\_dubinsArc}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}}
+\subsubsection{\texorpdfstring{is\_on\_dubinsArc()}{is\_on\_dubinsArc()}}
+{\footnotesize\ttfamily template$<$class T1 = double, class T2 = double$>$ \\
+bool \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T1, T2 $>$\+::is\+\_\+on\+\_\+dubins\+Arc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$}]{C }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Function that given a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} says if the point is on the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}}, or not.
+
+If the arc has 0 curvature, than the arc is a line and so the configuration needs to have the same direction as the start configuration, have the same angle from start than the angle from start to end and be inside the extremities of the segment. If the curvature is not 0, then we are on a circle and the function {\ttfamily is\+\_\+on\+\_\+circarc} is called. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em C} & The {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the configuration is on the arc, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_dubins_arc_a1b0bfacb344d17377f4bda55fdaecae4}\label{class_dubins_arc_a1b0bfacb344d17377f4bda55fdaecae4}} 
 \index{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!length@{length}}
 \index{length@{length}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}}
@@ -140,16 +159,16 @@ T1 \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T1, T2 $>$\+::length (\be
 
 Returns the length of the arc. 
 
-\mbox{\Hypertarget{class_dubins_arc_a346c19e3e9f25747e3e3ae9de997e09d}\label{class_dubins_arc_a346c19e3e9f25747e3e3ae9de997e09d}} 
+\mbox{\Hypertarget{class_dubins_arc_af7c6ad3f4c81b2b75c9f439afd9fa746}\label{class_dubins_arc_af7c6ad3f4c81b2b75c9f439afd9fa746}} 
 \index{DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}!splitIt@{splitIt}}
 \index{splitIt@{splitIt}!DubinsArc$<$ T1, T2 $>$@{DubinsArc$<$ T1, T2 $>$}}
 \subsubsection{\texorpdfstring{splitIt()}{splitIt()}}
 {\footnotesize\ttfamily template$<$class T1 = double, class T2 = double$>$ \\
-\mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_point2}{Point2}}$<$T2$>$ $>$ \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T1, T2 $>$\+::split\+It (\begin{DoxyParamCaption}\item[{double}]{\+\_\+L = {\ttfamily \mbox{\hyperlink{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}{P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$T2$>$ $>$ \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}$<$ T1, T2 $>$\+::split\+It (\begin{DoxyParamCaption}\item[{double}]{\+\_\+L = {\ttfamily \mbox{\hyperlink{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}{P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Splits the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} in pieces of \+\_\+L length. This function starts from the begining of the arc and computes n new arcs through the {\ttfamily \mbox{\hyperlink{dubins_8hh_adef8b363044d7fed558e5b47d8d6a3a0}{circline()}}} function using the curvature of the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} and \+\_\+L as the length. 
+Splits the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} in pieces of \+\_\+L length. This function starts from the begining of the arc and computes n new arcs through the {\ttfamily \mbox{\hyperlink{dubins_8cc_adef8b363044d7fed558e5b47d8d6a3a0}{circline()}}} function using the curvature of the {\ttfamily \mbox{\hyperlink{class_dubins_arc}{Dubins\+Arc}}} and \+\_\+L as the length. 
 
 
 \begin{DoxyParams}[1]{Parameters}

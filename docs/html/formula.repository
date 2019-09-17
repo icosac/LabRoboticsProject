@@ -1,11 +1,14 @@
 \form#0:$10^{-6}$
 \form#1:\[ sinc(t)=\frac{sin(t)}{t}\quad t\neq 0 1\quad t=0 \]
-\form#2:$n_{parts}$
-\form#3:$(-\pi, \pi]$
-\form#4:$\vert A-B\vert < \varepsilon$
-\form#5:$\varepsilon$
-\form#6:$[0, 2\pi)$
-\form#7:$[0, 360°)$
-\form#8:$[0, n-1] $
-\form#9:$=n$
-\form#10:$n$
+\form#2:$a, b, c$
+\form#3:$x^2+y^2+ax+by+c=0$
+\form#4:$n_{parts}$
+\form#5:$(-\pi, \pi]$
+\form#6:$\infty $
+\form#7:$\vert A-B\vert < \varepsilon$
+\form#8:$\varepsilon$
+\form#9:$[0, 2\pi)$
+\form#10:$[0, 360°)$
+\form#11:$[0, n-1] $
+\form#12:$=n$
+\form#13:$n$

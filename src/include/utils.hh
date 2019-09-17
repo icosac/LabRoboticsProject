@@ -96,13 +96,21 @@ void mywaitkey(const char c='q');
  */
 void mywaitkey(string windowName);
 
+enum EXCEPTION_TYPE {GENERAL, EXISTS, SIZE}; ///< The type of the exceptions. GENERAL allows to pass a string with a general exception. EXISTS should be used in case an element already exists. SIZE should be used when there is a problem with vector's size.
 
-enum EXCEPTION_TYPE {GENERAL, EXISTS, SIZE};
-
-//TODO document
+/*!
+ * This class allows to throw personalized exceptions. 
+ * \tparam T The type of a variable.
+ */
 template<class T>
 class MyException : public exception {
 private:
+  /**
+   * \brief      A function to convert a value of type T in a string
+   * \param[in]  value  The value to convert.
+   * \tparam     T1 The type of the value to convert.
+   * \return     A string containing the value.
+   */
   template<class T1>
   stringstream exceptString(T1 value) const {
     stringstream out;
@@ -115,8 +123,21 @@ public:
   T a;
   int b;
   string s;
+  /**
+   * \brief      Plain constructor for the object.
+   *
+   * \param[in]  _type  The type of the exception
+   * \param[in]  _a     Variable meaning.
+   * \param[in]  _b     Variable meaning.
+   * \param[in]  _s     Variable meaning.
+   */
   MyException(EXCEPTION_TYPE _type, T _a, int _b, string _s = "???") : type(_type), a(_a), b(_b), s(_s){}
   
+  /**
+   * \brief      Function to call to get the exception meaning. 
+   *
+   * \return     A string containing why the exception was thrown.
+   */
   const char * what() const throw (){
     string ret;
     switch(type){

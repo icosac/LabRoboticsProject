@@ -1,8 +1,8 @@
 var searchData=
 [
   ['parsefirstleft',['ParseFirstLeft',['../namespace_clipper_lib.html#ab4671015e7694c784513f3d3ea4405ce',1,'ClipperLib']]],
-  ['plan_5fbest',['plan_best',['../dubins_8hh.html#ae0b0aa229802950d33214a8a9e63ce5e',1,'dubins.hh']]],
-  ['planning',['planning',['../planning_8cc.html#aeef9aecfb831780fd7775ac4e750aad8',1,'planning(const Mat &amp;img):&#160;planning.cc'],['../planning_8hh.html#aeef9aecfb831780fd7775ac4e750aad8',1,'planning(const Mat &amp;img):&#160;planning.cc']]],
+  ['plan_5fdubins',['plan_dubins',['../namespace_planning.html#a27b3acc7671e5608febced6f0488356b',1,'Planning']]],
+  ['planning',['planning',['../namespace_planning.html#a917977f5667fee899252864d88830f78',1,'Planning']]],
   ['planpath',['planPath',['../class_robot_project.html#ad9077931a89d2226e6675c6107adfc53',1,'RobotProject']]],
   ['point',['point',['../class_configuration2.html#a15ce37ad4eae9f4a980fc3578765984d',1,'Configuration2']]],
   ['point2',['Point2',['../class_point2.html#a4674f9e2fab693fc83afd5af234100d3',1,'Point2::Point2()'],['../class_point2.html#ae743063a4348bef19448aabf90901cb3',1,'Point2::Point2(const T _x, const T _y)'],['../class_point2.html#a436478e578e6c7df9ea1bf1136ad8764',1,'Point2::Point2(const cv::Point p)']]],

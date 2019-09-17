@@ -7,5 +7,6 @@ var searchData=
   ['find_5frect',['find_rect',['../unwrapping_8cc.html#ac30b4dbae9022e84e10ef97ba156c581',1,'find_rect(vector&lt; Point &gt; &amp;_rect, const int &amp;width, const int &amp;height):&#160;unwrapping.cc'],['../unwrapping_8hh.html#ac30b4dbae9022e84e10ef97ba156c581',1,'find_rect(vector&lt; Point &gt; &amp;_rect, const int &amp;width, const int &amp;height):&#160;unwrapping.cc']]],
   ['findnextlocmin',['FindNextLocMin',['../namespace_clipper_lib.html#a2e62d7a90f565dceab371c8ed250131e',1,'ClipperLib']]],
   ['firstisbottompt',['FirstIsBottomPt',['../namespace_clipper_lib.html#a9811846db2631994c7e6a54327bf251d',1,'ClipperLib']]],
-  ['fromvptopath',['fromVpToPath',['../planning_8cc.html#a0a3e9f80c221e62df622b89c26ab42e2',1,'fromVpToPath(vector&lt; Point2&lt; int &gt; &gt; &amp;vp, Path &amp;path):&#160;planning.cc'],['../planning_8hh.html#a0a3e9f80c221e62df622b89c26ab42e2',1,'fromVpToPath(vector&lt; Point2&lt; int &gt; &gt; &amp;vp, Path &amp;path):&#160;planning.cc']]]
+  ['fromvctopath',['fromVcToPath',['../namespace_planning.html#afca419fdf7cd1598ea05025f36ed8711',1,'Planning']]],
+  ['front',['front',['../class_tuple.html#a3f97540a70c1e40e3a34c1b5dee9fa0e',1,'Tuple']]]
 ];

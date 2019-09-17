@@ -74,21 +74,24 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3afaaa8731fb02fabaf2c47bb7c81799"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_project.html#a3afaaa8731fb02fabaf2c47bb7c81799">RobotProject</a> (<a class="el" href="class_camera_capture.html">CameraCapture</a> *camera, double &amp;frame_time)</td></tr>
+<tr class="memdesc:a3afaaa8731fb02fabaf2c47bb7c81799"><td class="mdescLeft">&#160;</td><td class="mdescRight">A not used constructor of the class.  <a href="#a3afaaa8731fb02fabaf2c47bb7c81799">More...</a><br /></td></tr>
 <tr class="separator:a3afaaa8731fb02fabaf2c47bb7c81799"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12f627710a775cdec8a6416eeaf8db3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_project.html#a12f627710a775cdec8a6416eeaf8db3e">RobotProject</a> (<a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> argc, char *argv[])</td></tr>
-<tr class="separator:a12f627710a775cdec8a6416eeaf8db3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8510ebe175da3b90ffea7c88b690b4f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_project.html#a8510ebe175da3b90ffea7c88b690b4f8">~RobotProject</a> ()</td></tr>
+<tr class="memdesc:a8510ebe175da3b90ffea7c88b690b4f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor of the class.  <a href="#a8510ebe175da3b90ffea7c88b690b4f8">More...</a><br /></td></tr>
 <tr class="separator:a8510ebe175da3b90ffea7c88b690b4f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a380adb448f0fcbc625df9401de3bb013"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_project.html#a380adb448f0fcbc625df9401de3bb013">preprocessMap</a> (const Mat &amp;img)</td></tr>
+<tr class="memdesc:a380adb448f0fcbc625df9401de3bb013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Taken an image this function elaborate it in order to detect the foundamental elements and store them on files.  <a href="#a380adb448f0fcbc625df9401de3bb013">More...</a><br /></td></tr>
 <tr class="separator:a380adb448f0fcbc625df9401de3bb013"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9077931a89d2226e6675c6107adfc53"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_project.html#ad9077931a89d2226e6675c6107adfc53">planPath</a> (const Mat &amp;img, Path &amp;path)</td></tr>
+<tr class="memdesc:ad9077931a89d2226e6675c6107adfc53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Taken an image this function try to compute (and return) a path on it, that will bring the robot from its actual position through all the victims and in the end up to the gate.  <a href="#ad9077931a89d2226e6675c6107adfc53">More...</a><br /></td></tr>
 <tr class="separator:ad9077931a89d2226e6675c6107adfc53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9899c66898ccd1b638fe074797a18398"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot_project.html#a9899c66898ccd1b638fe074797a18398">localize</a> (const Mat &amp;img, vector&lt; double &gt; &amp;state)</td></tr>
+<tr class="memdesc:a9899c66898ccd1b638fe074797a18398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Taken an image this function try to localize the position and the orientation of the robot. It also apply the neccessary transformation matrix to solve the problem of the different planes.  <a href="#a9899c66898ccd1b638fe074797a18398">More...</a><br /></td></tr>
 <tr class="separator:a9899c66898ccd1b638fe074797a18398"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3afaaa8731fb02fabaf2c47bb7c81799"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3afaaa8731fb02fabaf2c47bb7c81799">&#9670;&nbsp;</a></span>RobotProject() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3afaaa8731fb02fabaf2c47bb7c81799">&#9670;&nbsp;</a></span>RobotProject()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -113,33 +116,13 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a12f627710a775cdec8a6416eeaf8db3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12f627710a775cdec8a6416eeaf8db3e">&#9670;&nbsp;</a></span>RobotProject() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">RobotProject::RobotProject </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a>&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>argv</em>[]&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>A not used constructor of the class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -157,6 +140,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The destructor of the class. </p>
 
 </div>
 </div>
@@ -187,6 +172,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Taken an image this function try to localize the position and the orientation of the robot. It also apply the neccessary transformation matrix to solve the problem of the different planes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">img</td><td>The immage that will be processed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">state</td><td>The state that acts as the return value of the function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A true value if everything goes well. False otherwise. </dd></dl>
+
 </div>
 </div>
 <a id="ad9077931a89d2226e6675c6107adfc53"></a>
@@ -215,6 +210,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Taken an image this function try to compute (and return) a path on it, that will bring the robot from its actual position through all the victims and in the end up to the gate. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">img</td><td>The immage that will be processed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">path</td><td>The path that acts as the return value of the function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A true value if everything goes well. False otherwise. </dd></dl>
+
 </div>
 </div>
 <a id="a380adb448f0fcbc625df9401de3bb013"></a>
@@ -232,6 +237,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Taken an image this function elaborate it in order to detect the foundamental elements and store them on files. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">img</td><td>The immage that will be processed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A true value if everything goes well. False otherwise. </dd></dl>
 
 </div>
 </div>

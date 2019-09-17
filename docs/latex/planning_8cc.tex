@@ -9,117 +9,172 @@ Include dependency graph for planning.\+cc\+:
 \includegraphics[width=350pt]{planning_8cc__incl}
 \end{center}
 \end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_planning}{Planning}}
+\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
+\#define \mbox{\hyperlink{planning_8cc_a3fd2b1bcd7ddcf506237987ad780f495}{D\+E\+L\+TA}}~M\+\_\+\+PI/180.\+0
+\item 
+\#define \mbox{\hyperlink{planning_8cc_a995e4ef5ee87adb8c6be7fd61339030d}{R\+O\+B\+\_\+\+K\+M\+AX}}~\mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}
+\item 
+\#define \mbox{\hyperlink{planning_8cc_aa6ad9a7ba19bd508888116e6cac9ed52}{R\+O\+B\+\_\+\+P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}}~20
+\item 
+\#define \mbox{\hyperlink{planning_8cc_a96a9822fa134450197dd454b1478a193}{B\+O\+N\+US}}~5
+\item 
 \#define \mbox{\hyperlink{planning_8cc_a0cbea62f1ce2043dd08108e65ed8de1d}{S\+C\+A\+LE}}~1000.\+0
+\item 
+\#define \mbox{\hyperlink{planning_8cc_a336f67e9817ede04fdf58ee2cd144522}{I\+N\+C\+R\+E\+A\+SE}}~20
+\item 
+\#define \mbox{\hyperlink{planning_8cc_a59b3a25e0a42a4e000a3475761969b6f}{S\+C\+R\+AP}}~3
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-pair$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$, \mbox{\hyperlink{class_mapp}{Mapp}} $\ast$ $>$ \mbox{\hyperlink{planning_8cc_aeef9aecfb831780fd7775ac4e750aad8}{planning}} (const Mat \&img)
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{namespace_planning_a42e39a8167b883f4c838a7578266ea42}{Planning\+::convert\+To\+VP}} (const vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&arr)
+\begin{DoxyCompactList}\small\item\em Convert a vector of vector of points into a vector of points (A\+KA collapse everything). \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{namespace_planning_a116566c3be0464d544c772de25cead67}{Planning\+::convert\+To\+VP}} (const vector$<$ vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ $>$ \&arr)
+\begin{DoxyCompactList}\small\item\em Convert a vector of vector of configurations into a vector of points (A\+KA collapse everything). \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ \mbox{\hyperlink{namespace_planning_a6b77ef5e5628030b9f80b2ec9250e9ab}{Planning\+::convert\+To\+VC}} (const vector$<$ vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ $>$ \&arr)
+\begin{DoxyCompactList}\small\item\em Convert a vector of vector of configurations into a vector of configurations (A\+KA collapse everything). \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ \mbox{\hyperlink{namespace_planning_adc80df7ce19138eff08f00c4c7f4c609}{Planning\+::convert\+To\+VC}} (const vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&arr)
+\begin{DoxyCompactList}\small\item\em Convert a vector of vector of points into a vector of configurations (A\+KA collapse everything). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_planning_a11af0aafe85bf1cf4c8203c67f1e61f8}{Planning\+::draw}} (const vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&vv, string name)
+\begin{DoxyCompactList}\small\item\em Show in a window the representation of the map with the addition of the points and segment taken from the parameters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_planning_a2a204e9795df1a3bc7bfeb3239a39d37}{Planning\+::draw}} (const vector$<$ vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ $>$ \&vv, string name)
+\begin{DoxyCompactList}\small\item\em Show in a window the representation of the map with the addition of the configurations and segment taken from the parameters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_planning_a86b12372b440be1858c26eb256586d98}{Planning\+::draw}} (const vector$<$ vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ $>$ \&vv, const vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ \&left, const vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ \&right, string name)
+\begin{DoxyCompactList}\small\item\em Show in a window the representation of the map with the addition of the configurations and segment taken from the parameters. Plus a set of grey points (left vector) and black points (right vector). \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ \mbox{\hyperlink{namespace_planning_a917977f5667fee899252864d88830f78}{Planning\+::planning}} (const Mat \&img)
 \begin{DoxyCompactList}\small\item\em The function plan a route from the actual position of the robot up to the final gate through all the victims. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_mapp}{Mapp}} $\ast$ \mbox{\hyperlink{planning_8cc_a7c7b2e381023697547786d663894435d}{create\+Mapp}} ()
+void \mbox{\hyperlink{namespace_planning_ab3962a61cb050b623abd1720107d2ea5}{Planning\+::create\+Mapp}} ()
 \begin{DoxyCompactList}\small\item\em The goal is to load, all the neccessary data, from files and create a \mbox{\hyperlink{class_mapp}{Mapp}} that store everything. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{planning_8cc_ad6ed6af027c9a35de0c872788d50c733}{load\+V\+VP}} (vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&vvp, File\+Node fn)
+void \mbox{\hyperlink{namespace_planning_a927f4df9eaa7ed3d75f0c410b668f72c}{Planning\+::load\+V\+VP}} (vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&vvp, File\+Node fn)
 \begin{DoxyCompactList}\small\item\em The function load from the given file\+Node a vector of vectors of \mbox{\hyperlink{class_point2}{Point2$<$int$>$}}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{planning_8cc_aa3a220a5ab5f16da550b786caa041f6b}{load\+VP}} (vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp, File\+Node fn)
+void \mbox{\hyperlink{namespace_planning_a07837e248f45a8a62555c6e16b94d9f3}{Planning\+::load\+VP}} (vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp, File\+Node fn)
 \begin{DoxyCompactList}\small\item\em The function load from the given file\+Node a vector of \mbox{\hyperlink{class_point2}{Point2$<$int$>$}}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{planning_8cc_a0a3e9f80c221e62df622b89c26ab42e2}{from\+Vp\+To\+Path}} (vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp, Path \&path)
-\begin{DoxyCompactList}\small\item\em Convert a vector of point to a path, from Enrico\textquotesingle{}s notation to Paolo\textquotesingle{}s notation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{namespace_planning_a071810fbd87c8655bd34b769971c7033}{Planning\+::get\+N\+Points}} ()
+\begin{DoxyCompactList}\small\item\em Get the numper of points needed for the function sample\+Npoints. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $\ast$$\ast$ \mbox{\hyperlink{namespace_planning_ab0dac0907f2f18ba6bb0b6f43be68582}{Planning\+::allocate\+A\+A\+Int}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} a, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} b)
+\begin{DoxyCompactList}\small\item\em Allocate a dynamic 2D array of int. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $\ast$$\ast$$\ast$ \mbox{\hyperlink{namespace_planning_a5ae72275fa883dcc05d2fbb904c2a2f0}{Planning\+::allocate\+A\+A\+A\+Int}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} a, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} b, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} c)
+\begin{DoxyCompactList}\small\item\em Allocate a dynamic 3D array of int. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $\ast$$\ast$$\ast$$\ast$ \mbox{\hyperlink{namespace_planning_a8f8e86525e4d2cd1baea518351b5cad8}{Planning\+::allocate\+A\+A\+A\+A\+Int}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} a, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} b, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} c, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} d)
+\begin{DoxyCompactList}\small\item\em Allocate a dynamic 4D array of int. \end{DoxyCompactList}\item 
+double $\ast$$\ast$ \mbox{\hyperlink{namespace_planning_aaad40b9cb461fc136e1e275bd0674aa4}{Planning\+::allocate\+A\+A\+Double}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} a, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} b)
+\begin{DoxyCompactList}\small\item\em Allocate a dynamic 2D array of int. \end{DoxyCompactList}\item 
+double $\ast$$\ast$$\ast$ \mbox{\hyperlink{namespace_planning_a6990cb8290d7ec992e2e83b6869e3146}{Planning\+::allocate\+A\+A\+A\+Double}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} a, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} b, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} c)
+\begin{DoxyCompactList}\small\item\em Allocate a dynamic 3D array of double. \end{DoxyCompactList}\item 
+double $\ast$$\ast$$\ast$$\ast$ \mbox{\hyperlink{namespace_planning_a3cf5cca8792007e0a24e3e090f44e9d0}{Planning\+::allocate\+A\+A\+A\+A\+Double}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} a, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} b, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} c, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} d)
+\begin{DoxyCompactList}\small\item\em Allocate a dynamic 4D array of double. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $\ast$$\ast$ \mbox{\hyperlink{namespace_planning_acbbcfd636e5470ac0a4c63d0b937dae5}{Planning\+::allocate\+A\+A\+Point\+Int}} (const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} a, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} b)
+\begin{DoxyCompactList}\small\item\em Allocate a dynamic 2D array of Points. \end{DoxyCompactList}\item 
+vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \mbox{\hyperlink{namespace_planning_acf487d74b6a92cbe0def431eeea3f4c1}{Planning\+::min\+Path\+N\+Points\+With\+Choice}} (const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp, const double bonus, const bool angle)
+\begin{DoxyCompactList}\small\item\em Given couples of points the function compute the minimum path that connect them avoiding the intersection of O\+B\+ST and B\+O\+DA. \end{DoxyCompactList}\item 
+vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \mbox{\hyperlink{namespace_planning_a5ca794173976e803c536ccb0771fed71}{Planning\+::min\+Path\+N\+Points}} (const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&vp, const bool angle)
+\begin{DoxyCompactList}\small\item\em Given couples of points the function compute the minimum path that connect them avoiding the intersection of O\+B\+ST and B\+O\+DA. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{namespace_planning_a645b7e3cfd258b27b5d5fdaff55c6695}{Planning\+::min\+Path\+Two\+Points}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p0, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&p1, const bool angle)
+\begin{DoxyCompactList}\small\item\em Given a couple of points the function compute the minimum path that connect them avoiding the intersection of O\+B\+ST and B\+O\+DA. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{namespace_planning_a4e656de5d640f17aa38e95c34dcf9a0c}{Planning\+::min\+Path\+Two\+Points\+Internal}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&startP, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&endP, double $\ast$$\ast$distances, \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $\ast$$\ast$parents)
+\begin{DoxyCompactList}\small\item\em Given a couple of points the function compute the minimum path that connect them avoiding the intersection of O\+B\+ST and B\+O\+DA. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{namespace_planning_a0f6200091c6c5a0fe6904a11ee568c77}{Planning\+::angle\+Sector}} (const double \&d)
+\begin{DoxyCompactList}\small\item\em Compute the sector of an angle. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{namespace_planning_acf3302dbca007b8938bc7242316c966e}{Planning\+::min\+Path\+Two\+Points\+Internal\+Angles}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&startP, const \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&endP, double $\ast$$\ast$$\ast$distances, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $\ast$$\ast$$\ast$$\ast$parents, const double initial\+Dir)
+\item 
+void \mbox{\hyperlink{namespace_planning_afe68d6842f203b50f874a32c95a4c467}{Planning\+::int\+To\+Vect}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} c, vector$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Converts an integer into the vector of its digits. The result is inverse respect to the given integer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_planning_a59d4c857b69023af6fb0798a0439fb1a}{Planning\+::reset\+Distance\+Map}} (double $\ast$$\ast$distances, const double value)
+\begin{DoxyCompactList}\small\item\em It reset, to the given value, the matrix of distances given, to compute again the min\+Path search. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_planning_a6bd3ab5b4f39b9979b04947292efbc45}{Planning\+::reset\+Distance\+Map}} (double $\ast$$\ast$$\ast$distances, const double value)
+\begin{DoxyCompactList}\small\item\em It reset, to the given value, the matrix of distances given, to compute again the min\+Path search. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{namespace_planning_a9d6db51a94000c789125c2b54f6c056b}{Planning\+::sample\+N\+Points}} (const vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&vvp, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} n)
+\begin{DoxyCompactList}\small\item\em It extracts from the given vector of vector of points, a subset of points that always contains the first one and the last one of each vector. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{namespace_planning_a5333e6807ac1e95550d13c2d77437d84}{Planning\+::sample\+N\+Points}} (const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&points, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} n)
+\begin{DoxyCompactList}\small\item\em It extracts from the given vector of points, a subset of points that always contains the first one and the last one. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \mbox{\hyperlink{namespace_planning_a5d69e9ad820fa066fd2271bafbc2e507}{Planning\+::sample\+Points\+Each\+N\+Cells}} (const vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&points, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} step)
+\begin{DoxyCompactList}\small\item\em It extracts from the given vector of points, a subset of points that always contains the first one and the last one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_planning_afca419fdf7cd1598ea05025f36ed8711}{Planning\+::from\+Vc\+To\+Path}} (vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ \&vc, Path \&path)
+\begin{DoxyCompactList}\small\item\em Convert a vector of point to a path, from Enrico\textquotesingle{}s notation to Paolo\textquotesingle{}s notation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\bool \mbox{\hyperlink{namespace_planning_a312e4e0aa3f1626357f85cfac3afa75c}{Planning\+::check\+\_\+dubins\+\_\+D}} (\mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ \&D)
+\item 
+{\footnotesize template$<$class T $>$ }\\bool \mbox{\hyperlink{namespace_planning_a5ba2ab5465066518f036f97ef3a85ac3}{Planning\+::check\+\_\+dubins\+\_\+\+DS}} (\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ \&DS)
+\item 
+bool \mbox{\hyperlink{namespace_planning_ad6f2d3277ec42c86328ca33519f53a1e}{Planning\+::compute\+\_\+roundabout\+\_\+dubins}} (\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ double $>$ \&new\+\_\+\+DS, \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \+\_\+start, const vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ \&vC, uint \&v\+C\+\_\+id, bool gate=false)
+\item 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ double $>$ \mbox{\hyperlink{namespace_planning_a05040ef8e86180eb57a4d4c88ccc8974}{Planning\+::victims\+\_\+dubins}} (const vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ $>$ \&v\+C1, const vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ $>$ \&v\+C2, uint \&v\+C1\+\_\+pos, uint \&v\+C2\+\_\+pos)
+\item 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ double $>$ \mbox{\hyperlink{namespace_planning_a58174c629acff8f3787b8484ce5aac96}{Planning\+::start\+\_\+end\+\_\+dubins}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \&anchor\+Point, const vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ $>$ \&v\+Confs, uint \&pos, const bool start)
+\item 
+vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ \mbox{\hyperlink{namespace_planning_a8331436c5b56f32b9d03625aaefe68d3}{Planning\+::vv\+CtovC}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ $>$ vv)
+\item 
+vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ \mbox{\hyperlink{namespace_planning_a4d7e81ea41c76c9df1cd3e63294e82e6}{Planning\+::vvv\+CtovC}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ $>$ $>$ vvv)
+\item 
+\mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{namespace_planning_adbd6bab9fdc09fd149031a6fbd074227}{Planning\+::compute\+\_\+final\+\_\+angle}} (\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ gate)
+\item 
+void \mbox{\hyperlink{namespace_planning_af1ba247cf8fe87846f0a3d3ce6e8aa9c}{Planning\+::inter\+\_\+victims}} (vector$<$ vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ $>$ \&vv\+Confs, vector$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ \&vI, \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ double $>$ \&path, vector$<$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ double $>$ $>$ \&victimV)
+\item 
+void \mbox{\hyperlink{namespace_planning_a27b3acc7671e5608febced6f0488356b}{Planning\+::plan\+\_\+dubins}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \&\+\_\+start, vector$<$ vector$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ $>$ $>$ \&vv\+Confs)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_mapp}{Mapp}} $\ast$ \mbox{\hyperlink{namespace_planning_ab0ebb62df4445b6351592a77421badf6}{Planning\+::map}}
+\item 
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \mbox{\hyperlink{namespace_planning_a7c65f036c975f86cd840ccd0e1fd57cb}{Planning\+::conf}}
+\item 
+const double \mbox{\hyperlink{namespace_planning_ab49704afab612c84aa89b45e0d98973f}{Planning\+::angle\+Range}} = 12$\ast$M\+\_\+\+PI/180
+\item 
+const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{namespace_planning_ad20d6b79741af2a51de604e75f1fdc48}{Planning\+::n\+Angles}} = 90
+\item 
+const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{namespace_planning_aff68ed452ba1f706c2f89a779c813dac}{Planning\+::range}} = 3
+\item 
+const double \mbox{\hyperlink{namespace_planning_a49f0f600eb7b6eb6f951cc645eabd286}{Planning\+::\+D\+E\+G\+T\+O\+R\+AD}}
+\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{planning_8cc_a96a9822fa134450197dd454b1478a193}\label{planning_8cc_a96a9822fa134450197dd454b1478a193}} 
+\index{planning.cc@{planning.cc}!BONUS@{BONUS}}
+\index{BONUS@{BONUS}!planning.cc@{planning.cc}}
+\subsubsection{\texorpdfstring{BONUS}{BONUS}}
+{\footnotesize\ttfamily \#define B\+O\+N\+US~5}
+
+\mbox{\Hypertarget{planning_8cc_a3fd2b1bcd7ddcf506237987ad780f495}\label{planning_8cc_a3fd2b1bcd7ddcf506237987ad780f495}} 
+\index{planning.cc@{planning.cc}!DELTA@{DELTA}}
+\index{DELTA@{DELTA}!planning.cc@{planning.cc}}
+\subsubsection{\texorpdfstring{DELTA}{DELTA}}
+{\footnotesize\ttfamily \#define D\+E\+L\+TA~M\+\_\+\+PI/180.\+0}
+
+\mbox{\Hypertarget{planning_8cc_a336f67e9817ede04fdf58ee2cd144522}\label{planning_8cc_a336f67e9817ede04fdf58ee2cd144522}} 
+\index{planning.cc@{planning.cc}!INCREASE@{INCREASE}}
+\index{INCREASE@{INCREASE}!planning.cc@{planning.cc}}
+\subsubsection{\texorpdfstring{INCREASE}{INCREASE}}
+{\footnotesize\ttfamily \#define I\+N\+C\+R\+E\+A\+SE~20}
+
+\mbox{\Hypertarget{planning_8cc_a995e4ef5ee87adb8c6be7fd61339030d}\label{planning_8cc_a995e4ef5ee87adb8c6be7fd61339030d}} 
+\index{planning.cc@{planning.cc}!ROB\_KMAX@{ROB\_KMAX}}
+\index{ROB\_KMAX@{ROB\_KMAX}!planning.cc@{planning.cc}}
+\subsubsection{\texorpdfstring{ROB\_KMAX}{ROB\_KMAX}}
+{\footnotesize\ttfamily \#define R\+O\+B\+\_\+\+K\+M\+AX~\mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}}
+
+\mbox{\Hypertarget{planning_8cc_aa6ad9a7ba19bd508888116e6cac9ed52}\label{planning_8cc_aa6ad9a7ba19bd508888116e6cac9ed52}} 
+\index{planning.cc@{planning.cc}!ROB\_PIECE\_LENGTH@{ROB\_PIECE\_LENGTH}}
+\index{ROB\_PIECE\_LENGTH@{ROB\_PIECE\_LENGTH}!planning.cc@{planning.cc}}
+\subsubsection{\texorpdfstring{ROB\_PIECE\_LENGTH}{ROB\_PIECE\_LENGTH}}
+{\footnotesize\ttfamily \#define R\+O\+B\+\_\+\+P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH~20}
+
 \mbox{\Hypertarget{planning_8cc_a0cbea62f1ce2043dd08108e65ed8de1d}\label{planning_8cc_a0cbea62f1ce2043dd08108e65ed8de1d}} 
 \index{planning.cc@{planning.cc}!SCALE@{SCALE}}
 \index{SCALE@{SCALE}!planning.cc@{planning.cc}}
 \subsubsection{\texorpdfstring{SCALE}{SCALE}}
 {\footnotesize\ttfamily \#define S\+C\+A\+LE~1000.\+0}
 
+\mbox{\Hypertarget{planning_8cc_a59b3a25e0a42a4e000a3475761969b6f}\label{planning_8cc_a59b3a25e0a42a4e000a3475761969b6f}} 
+\index{planning.cc@{planning.cc}!SCRAP@{SCRAP}}
+\index{SCRAP@{SCRAP}!planning.cc@{planning.cc}}
+\subsubsection{\texorpdfstring{SCRAP}{SCRAP}}
+{\footnotesize\ttfamily \#define S\+C\+R\+AP~3}
 
-
-\subsection{Function Documentation}
-\mbox{\Hypertarget{planning_8cc_a7c7b2e381023697547786d663894435d}\label{planning_8cc_a7c7b2e381023697547786d663894435d}} 
-\index{planning.cc@{planning.cc}!createMapp@{createMapp}}
-\index{createMapp@{createMapp}!planning.cc@{planning.cc}}
-\subsubsection{\texorpdfstring{createMapp()}{createMapp()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_mapp}{Mapp}}$\ast$ create\+Mapp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-The goal is to load, all the neccessary data, from files and create a \mbox{\hyperlink{class_mapp}{Mapp}} that store everything. 
-
-\begin{DoxyReturn}{Returns}
-The created mapp. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{planning_8cc_a0a3e9f80c221e62df622b89c26ab42e2}\label{planning_8cc_a0a3e9f80c221e62df622b89c26ab42e2}} 
-\index{planning.cc@{planning.cc}!fromVpToPath@{fromVpToPath}}
-\index{fromVpToPath@{fromVpToPath}!planning.cc@{planning.cc}}
-\subsubsection{\texorpdfstring{fromVpToPath()}{fromVpToPath()}}
-{\footnotesize\ttfamily void from\+Vp\+To\+Path (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{vp,  }\item[{Path \&}]{path }\end{DoxyParamCaption})}
-
-
-
-Convert a vector of point to a path, from Enrico\textquotesingle{}s notation to Paolo\textquotesingle{}s notation. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em vp} & The sorce vector. \\
-\hline
-\mbox{\texttt{ out}}  & {\em path} & The destination path. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{planning_8cc_aa3a220a5ab5f16da550b786caa041f6b}\label{planning_8cc_aa3a220a5ab5f16da550b786caa041f6b}} 
-\index{planning.cc@{planning.cc}!loadVP@{loadVP}}
-\index{loadVP@{loadVP}!planning.cc@{planning.cc}}
-\subsubsection{\texorpdfstring{loadVP()}{loadVP()}}
-{\footnotesize\ttfamily void load\+VP (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ \&}]{vp,  }\item[{File\+Node}]{fn }\end{DoxyParamCaption})}
-
-
-
-The function load from the given file\+Node a vector of \mbox{\hyperlink{class_point2}{Point2$<$int$>$}}. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em vp} & The location where to save the loaded vector. \\
-\hline
-\mbox{\texttt{ in}}  & {\em fn} & The file\+Node from which to load the vector. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{planning_8cc_ad6ed6af027c9a35de0c872788d50c733}\label{planning_8cc_ad6ed6af027c9a35de0c872788d50c733}} 
-\index{planning.cc@{planning.cc}!loadVVP@{loadVVP}}
-\index{loadVVP@{loadVVP}!planning.cc@{planning.cc}}
-\subsubsection{\texorpdfstring{loadVVP()}{loadVVP()}}
-{\footnotesize\ttfamily void load\+V\+VP (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} $>$ $>$ $>$ \&}]{vvp,  }\item[{File\+Node}]{fn }\end{DoxyParamCaption})}
-
-
-
-The function load from the given file\+Node a vector of vectors of \mbox{\hyperlink{class_point2}{Point2$<$int$>$}}. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em vvp} & The location where to save the loaded vector of vectors. \\
-\hline
-\mbox{\texttt{ in}}  & {\em fn} & The file\+Node from which to load the vector of vectors. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{planning_8cc_aeef9aecfb831780fd7775ac4e750aad8}\label{planning_8cc_aeef9aecfb831780fd7775ac4e750aad8}} 
-\index{planning.cc@{planning.cc}!planning@{planning}}
-\index{planning@{planning}!planning.cc@{planning.cc}}
-\subsubsection{\texorpdfstring{planning()}{planning()}}
-{\footnotesize\ttfamily pair$<$ vector$<$\mbox{\hyperlink{class_point2}{Point2}}$<$\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}$>$ $>$, \mbox{\hyperlink{class_mapp}{Mapp}}$\ast$ $>$ planning (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})}
-
-
-
-The function plan a route from the actual position of the robot up to the final gate through all the victims. 
-
-All the data about the objects are loaded from the files previously saved. Then a \mbox{\hyperlink{class_mapp}{Mapp}} is created and on that structure, thanks to a min\+Path function and a lot of dubin curves, the best route is computed.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em img} & It is a raw image of the scene that will be used from the localize function to find the starting state of the robot. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Two elements are returned\+: a pointer to the \mbox{\hyperlink{class_mapp}{Mapp}} where all data are stored and a vector of points placed on the computed route. 
-\end{DoxyReturn}

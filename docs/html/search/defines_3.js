@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['eps_5fcurve',['EPS_CURVE',['../detection_8cc.html#a0cfe53ea953c48d0949ffb63574ccd3b',1,'detection.cc']]],
-  ['epsi',['Epsi',['../maths_8hh.html#a78802b279ab85021d7f6bffe51621703',1,'maths.hh']]]
+  ['delta',['DELTA',['../planning_8cc.html#a3fd2b1bcd7ddcf506237987ad780f495',1,'planning.cc']]],
+  ['dinf',['DInf',['../maths_8hh.html#a995779faef78614d4f074b7d444de767',1,'maths.hh']]]
 ];

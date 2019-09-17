@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['tolerance',['TOLERANCE',['../clipper_8cc.html#a30c17564229ec2e37dfea9c6c9ad643e',1,'clipper.cc']]],
-  ['tupleconstiter',['tupleConstIter',['../maths_8hh.html#a2eba794860251c1b30e532df32ee4d1b',1,'maths.hh']]],
-  ['tupleiter',['tupleIter',['../maths_8hh.html#ad22dcdeefda7d41523cc1604953eb6cc',1,'maths.hh']]]
+  ['rob_5fkmax',['ROB_KMAX',['../planning_8cc.html#a995e4ef5ee87adb8c6be7fd61339030d',1,'planning.cc']]],
+  ['rob_5fpiece_5flength',['ROB_PIECE_LENGTH',['../planning_8cc.html#aa6ad9a7ba19bd508888116e6cac9ed52',1,'planning.cc']]]
 ];

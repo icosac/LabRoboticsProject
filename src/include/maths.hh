@@ -371,12 +371,7 @@ public:
     return this->equal(phi);
   }
 
-  /*! This function overload the operator ==. It simply calls the `equal()` function.
-      \param[in] phi The second angle.
-      \returns `true` if the two angle are equal, `false` otherwise.  
-  */
-
-  /*! This function overload the operator ==. It simply calls the `equal()` function and negates it.
+  /*! This function overload the operator !=. It simply calls the `equal()` function and negates it.
       \param[in] phi The second angle.
       \returns `false` if the two angle are equal, `true` otherwise.  
   */
@@ -384,19 +379,34 @@ public:
     return !(this->equal(phi));
   }
 
-  //TODO document
+  /*! This function overload the operator <. It simply calls the `less()` function.
+      \param[in] phi The second angle.
+      \returns `true` if the first angle (this) is less than the second one, `false` otherwise.  
+  */
   bool operator< (const Angle& phi){
     return this->less(phi);
   }
 
+  /*! This function overload the operator >. It simply calls the `greater()` function.
+      \param[in] phi The second angle.
+      \returns `true` if the first angle (this) is greater than the second one, `false` otherwise.  
+  */
   bool operator> (const Angle& phi){
     return this->greater(phi);
   }
 
+  /*! This function overload the operator <. It simply calls the `less()` function and `equal()` function.
+      \param[in] phi The second angle.
+      \returns `true` if the first angle (this) is less or equal than the second one, `false` otherwise.  
+  */
   bool operator<= (const Angle& phi){
     return (this->less(phi) || this->equal(phi));
   }
 
+  /*! This function overload the operator <. It simply calls the `greater()` function and `equal()` function.
+      \param[in] phi The second angle.
+      \returns `true` if the first angle (this) is greater or equal than the second one, `false` otherwise.  
+  */
   bool operator>= (const Angle& phi){
     return (this->greater(phi) || this->equal(phi));
   }
@@ -560,6 +570,11 @@ public:
     // elapsedTuple+=CHRONO::getElapsed(start, stop);
   }
 
+  /**
+   * @brief      Constructor that takes a vector with elements and stores it.
+   *
+   * @param[in]  v     The vector to store.
+   */
   Tuple<T> (std::vector<T> v){
     this->elements=v;
     this->n=v.size();
@@ -577,6 +592,14 @@ public:
     return ((_n>=0&&_n<size()) ? elements.at(_n) : T());
   }
 
+  /**
+   * @brief      Function that returns a `Tuple` with elements.
+   *
+   * @param[in]  start  The starting position
+   * @param[in]  end    The ending position
+   *
+   * @return     A `Tuple` containing the element from the start-th position to the end-th.
+   */
   Tuple<T> get(const uint start, const uint end){
     Tuple<T> ret;
     if (start>end){
@@ -590,11 +613,17 @@ public:
     return ret;
   }
 
-  //TODO Document
-  T front ()  { return this->elements.front(); }
-  T back ()   { return this->elements.back(); }
+
+  T front ()  { return this->elements.front(); } ///< \return The first element in the `Tuple`.
+  T back ()   { return this->elements.back(); } ///< \return The last element in the `Tuple`.
   
-  //TODO document
+  /**
+   * @brief      A function that search for an element in the `Tuple` and returns it. 
+   *
+   * @param[in]  _el   The element you are looking for.
+   *
+   * @return     The position of the element. -1 if no such element was found.
+   */
   int find (T _el){
     for (int i=0; i<this->size(); i++){
       if (this->get(i)==_el){
@@ -612,7 +641,12 @@ public:
   	elements.push_back(_new);
   }
   
-  //TODO document
+  /**
+   * @brief      Adds a value. but only if it is not already present.
+   *
+   * @param[in]  _el     The element to add. 
+   * @param[in]  _throw  If an exception can be thrown.
+   */
   void addIfNot(T _el, bool _throw=false){
     int id=find(_el); 
     if (id<0){
@@ -637,7 +671,13 @@ public:
   	return res;
   }
 
-  //TODO document
+  /**
+   * @brief      Removes all the element from a position onwards.
+   *
+   * @param[in]  pos   The position from which to remove the elements.
+   *
+   * @return     `true` if the elements could be removed, `false` otherwise.
+   */
   bool remove_from (const uint pos){
     bool res=true;
     if (pos<this->size()){
@@ -679,7 +719,11 @@ public:
     return res;
   }
 
-  //TODO Document and also should test......
+  /**
+   * @brief      Function that adds an element at the head of the vector.
+   *
+   * @param[in]  _new  The element to be added.
+   */
   void ahead (const T _new){
     Tuple<T> newT;
     newT.add(_new);
@@ -709,6 +753,12 @@ public:
     return this->copy(A);
   }
 
+  /**
+   * @brief      Function that takes two `Tuple`s and verifies if they contain the same values. 
+   * @param[in]  _t    The `Tuple` to compare. 
+   *
+   * @return     `true` if the two `Tuple`s have the same element, `false` otherwise.
+   */
   bool equal(Tuple<T> _t){
     if (this->size()!=_t.size()){ return false; }
 
@@ -720,6 +770,10 @@ public:
     return true;
   }
   
+  /*! This function overload the operator ==. It simply calls the `equal()` function.
+    \param[in] _t The second `Tuple`.
+    \returns `true` if the first `Tuple` (this) is equal to the second one, `false` otherwise.  
+  */
   bool operator== (Tuple<T> _t){
     return equal(_t);
   }
@@ -734,6 +788,13 @@ public:
     return (*this);
   }
 
+  /**
+   * @brief      Function to sum a value to all the elements in the `Tuple`.
+   *
+   * @param[in]  inc   The increment
+   *
+   * @return     A `Tuple` (this) containing the new values.
+   */
   Tuple<T> sum(T inc){
     for (int i=0; i<this->size(); i++){
       this->set(i, (this->get(i)+inc));
@@ -741,14 +802,29 @@ public:
     return (*this);
   }
 
+  /*! This function overload the operator +. It simply calls the `sum()` function.
+    \param[in] _t The increment.
+    \returns A `Tuple` (this) containing the new values.  
+  */
   Tuple<T> operator+ (T inc){
     return this->sum(inc);
   }
 
+  /*! This function overload the operator +. It simply calls the `sum()` function.
+    \param[in] _t The increment.
+    \returns A `Tuple` (this) containing the new values.  
+  */
   Tuple<T>& operator+= (T inc){
     return this->sum(inc);
   }
 
+  /**
+   * @brief      Function to multiply one by one the values from this to the values of a `Tuple`.
+   *
+   * @param[in]  inc   The multiplier `Tuple`
+   *
+   * @return     A `Tuple` (this) containing the new values.
+   */
   Tuple<T> mul(Tuple<T> t){
     if (this->size()!=t.size()){
       throw MyException<int>(EXCEPTION_TYPE::SIZE, this->size, t.size());
@@ -759,6 +835,13 @@ public:
     return (*this);
   }
 
+  /**
+   * @brief      Function to multiply a value to all the elements in the `Tuple`.
+   *
+   * @param[in]  inc   The multiplier
+   *
+   * @return     A `Tuple` (this) containing the new values.
+   */
   Tuple<T> mul(T inc){
     for (int i=0; i<this->size(); i++){
       this->set(i, (this->get(i)*inc));
@@ -766,10 +849,18 @@ public:
     return (*this);
   }
 
+  /*! This function overload the operator *. It simply calls the `mul()` function with only a multiplier and not a `Tuple`.
+    \param[in] _t The increment.
+    \returns A `Tuple` (this) containing the new values.  
+  */
   Tuple<T> operator* (T inc){
     return this->mul(inc);
   }
 
+  /*! This function overload the operator *=. It simply calls the `mul()` function with only a multiplier and not a `Tuple`.
+    \param[in] _t The increment.
+    \returns A `Tuple` (this) containing the new values.  
+  */
   Tuple<T>& operator*= (T inc){
     return this->mul(inc);
   }
@@ -838,7 +929,6 @@ public:
     return ret;
   }
 
-  //TODO check this prefix thing
   /*! This function create a strinstream object containing the values of the Tuple.
     \returns A string stream.
   */
@@ -863,10 +953,18 @@ public:
     return out;
   }
 
+  /**
+   * @brief      Returns a standard string of the object.
+   *
+   * @return     Standard string of the object.
+   */
   string to_std_string() const {
     return this->to_string().str();
   }
   
+  /**
+   * @brief      Overload of operator std::string(). It simply calls the function `to_std_string()`.
+   */
   operator std::string() const {
     return to_std_string();
   }
@@ -1054,6 +1152,11 @@ public:
     return sqrt(pow2(x()-B.x())+pow2(y()-B.y()));
   }
   
+  /**
+   * @brief      Returns a string representation of the object.
+   *
+   * @return     String representation of the object.
+   */
   stringstream to_string () const {
     stringstream out;
     out << "x: " << x();
@@ -1116,18 +1219,38 @@ public:
     return cv::Point(this->x(), this->y()); 
   }
 
-  //TODO find better implementation
+  /**
+   * @brief      Overloading of operator <. Since no roght implementetion can be used, then it returns only `true`
+   *
+   * @param[in]  A     The second `Point2` to be compared to.
+   *
+   * @return     `true`.
+   */
   bool operator<(const Point2<T>& A){ 
     return true;
   }
 
-  //TODO Document
+  /**
+   * @brief      Computes the angle between two points, that is the atan of the angular coeficcient of the line joining the two points.
+   *
+   * @param[in]  P1    The point towards which the line is going.
+   * @param[in]  type  The type of the `Angle` to be returned.
+   *
+   * @tparam     T1    The type of the point.
+   *
+   * @return     The `Angle`.
+   */
   template<class T1>
   Angle th (Point2<T1> P1, 
             Angle::ANGLE_TYPE type=Angle::RAD) const {
     return Angle(atan2((P1.y()-this->y()), (P1.x()-this->x())), type);
   }
 
+  /**
+   * @brief      Cast to a Point2 of different type.
+   *
+   * @tparam     T1    The type of `Point2` to be casted to.
+   */
   template<class T1>
   operator Point2<T1>() const {
     return Point2<T1>((T1)(this->x()), (T1)(this->y()));
@@ -1398,11 +1521,18 @@ public:
     return !this->equal(A);
   }
 
+  /**
+   * @brief      Cast a `Configuration2` to a `Point2` of the same type.
+   */
   operator Point2<T1>(){
     return this->point();
   }
 
-  //TODO document
+  /**
+   * @brief      Cast a `Configuration2` to a `Configuration2` of a different type.
+   *
+   * @tparam     T2   The type of the `Configuration2` to be casted to.
+   */
   template<class T2>
   operator Configuration2<T2>() const {
     return ( Configuration2<T2>((T2)(this->x()), (T2)(this->y()), this->angle()) );

@@ -47,7 +47,6 @@ void loadCoefficients(  const string filename,
                         Mat& camera_matrix, 
                         Mat& dist_coeffs);
 
-//TODO better implementation with lines????
 /*! \brief Since the border of the arena might not always be clean but might have some imperfection, this functions computes the four vertixes taking all the points and computing the four that are the clostest to the corner of the image.
 	\param[in] _rect The vector of cv::Point to work on.
 	\param[in] width The width of the image.

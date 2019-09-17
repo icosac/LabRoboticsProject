@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['piece_5flength',['PIECE_LENGTH',['../dubins_8hh.html#a5b2500ca93a5100f73dc442d3cfea7d4',1,'dubins.hh']]],
-  ['prec',['PREC',['../dubins_8hh.html#a2bda1a81ce3474772a8a1f165e54516e',1,'dubins.hh']]]
+  ['name',['NAME',['../utils_8hh.html#a14111ac8f43949172b152e50dc720aba',1,'utils.hh']]],
+  ['near_5fzero',['NEAR_ZERO',['../clipper_8cc.html#abc7dddd0f7b471d49cce3e0ea6790d84',1,'clipper.cc']]],
+  ['npos',['NPOS',['../settings_8cc.html#a4da1373308859dfe96570032c5a3c6eb',1,'settings.cc']]]
 ];

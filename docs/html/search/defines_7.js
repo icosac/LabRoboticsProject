@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['min_5farea_5fsize',['MIN_AREA_SIZE',['../detection_8cc.html#aee3415ba4422db269c18fb6819a8d7a8',1,'detection.cc']]]
+  ['kmax',['KMAX',['../dubins_8hh.html#a940b85a83458e94519f2685b33ddd276',1,'dubins.hh']]]
 ];

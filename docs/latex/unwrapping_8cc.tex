@@ -24,9 +24,9 @@ static double \mbox{\hyperlink{unwrapping_8cc_abf82b59ef33c7549580276e00ae85d18}
 \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{unwrapping_8cc_ac041ab9990eb25243d6e5da1e3d47e96}{unwrapping}} (const bool \+\_\+img\+Read, Mat $\ast$img)
 \begin{DoxyCompactList}\small\item\em Take some images according to a xml and unwrap the black rectangle inside the image after appling undistortion trasformation. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{unwrapping_8cc_ac0327df69102bf644a011c245ae7ad4f}{create\+Points\+High}} (const vector$<$ Point $>$ \&rect\+Low, vector$<$ Point $>$ \&rect\+High)
-\begin{DoxyCompactList}\small\item\em Store in the given vector the white corners in the same order as the given black ones. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Given the lower rectangle\textquotesingle{}s points compute and retrieve the higher rectangle\textquotesingle{}s points. \textbackslash{}deteils The matching between the vectors is guarantee\+: the i elements of the vectors is refered to the same x,y point (with different z). At the moment the white points are constant and not taken from the image). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{unwrapping_8cc_ac30b4dbae9022e84e10ef97ba156c581}{find\+\_\+rect}} (vector$<$ Point $>$ \&\+\_\+rect, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \&width, const \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \&height)
-\begin{DoxyCompactList}\small\item\em Since the border of the arena might not always be clean but might have some imperfection, this functions computes the four vertixes taking all the points and computing the four that are the clostest to the corner of the image. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Compute the right vertexes from a vector of points that more or less define the rectangle. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{unwrapping_8cc_a3cf7df08897ed4d1a7ddcf055b18cca8}{load\+Coefficients}} (const string filename, Mat \&camera\+\_\+matrix, Mat \&dist\+\_\+coeffs)
 \begin{DoxyCompactList}\small\item\em Load coefficients from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -55,13 +55,15 @@ void \mbox{\hyperlink{unwrapping_8cc_a3cf7df08897ed4d1a7ddcf055b18cca8}{load\+Co
 
 
 
-Store in the given vector the white corners in the same order as the given black ones. 
+Given the lower rectangle\textquotesingle{}s points compute and retrieve the higher rectangle\textquotesingle{}s points. \textbackslash{}deteils The matching between the vectors is guarantee\+: the i elements of the vectors is refered to the same x,y point (with different z). At the moment the white points are constant and not taken from the image). 
+
+Store in the given vector the white corners in the same order as the given black ones.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em rect\+Low} & A vector where the low corners of the rectangle (black markers position) are stored. \\
+\mbox{\texttt{ in}}  & {\em rect\+Low} & The 4 points that define the black rectangle on the floor. \\
 \hline
-\mbox{\texttt{ out}}  & {\em rect\+High} & A vector where the high corners of the rectangle (white markers position) will be stored. \\
+\mbox{\texttt{ out}}  & {\em rect\+High} & The vector that will contain the 4 points that will define the high corner that pass through the white points. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{unwrapping_8cc_abf82b59ef33c7549580276e00ae85d18}\label{unwrapping_8cc_abf82b59ef33c7549580276e00ae85d18}} 
@@ -92,15 +94,17 @@ The euclidean distance.
 
 
 
-Since the border of the arena might not always be clean but might have some imperfection, this functions computes the four vertixes taking all the points and computing the four that are the clostest to the corner of the image. 
+Compute the right vertexes from a vector of points that more or less define the rectangle. 
+
+Since the border of the arena might not always be clean but might have some imperfection, this functions computes the four vertixes taking all the points and computing the four that are the clostest to the corner of the image.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em \+\_\+rect} & The vector of cv\+::\+Point to work on. \\
+ & {\em \mbox{[}in/out\mbox{]}} & \+\_\+rect The vector containing the actual possible points that delimt the rectangle. \\
 \hline
-\mbox{\texttt{ in}}  & {\em width} & The width of the image. \\
+\mbox{\texttt{ in}}  & {\em width} & The width of the original image from which the points of the rectangle come from. \\
 \hline
-\mbox{\texttt{ in}}  & {\em height} & The height of the image. \\
+\mbox{\texttt{ in}}  & {\em height} & The height of the original image from which the points of the rectangle come from. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{unwrapping_8cc_a3cf7df08897ed4d1a7ddcf055b18cca8}\label{unwrapping_8cc_a3cf7df08897ed4d1a7ddcf055b18cca8}} 

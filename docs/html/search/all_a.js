@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['join',['Join',['../struct_clipper_lib_1_1_join.html',1,'ClipperLib']]],
+  ['join',['Join',['../struct_clipper_lib_1_1_join.html',1,'ClipperLib::Join'],['../class_dubins_set.html#ac6014ed731c39a23df08a4ec2c41ae0f',1,'DubinsSet::join()']]],
   ['joinhorz',['JoinHorz',['../namespace_clipper_lib.html#acd026a4d43018ae65b8d253fbf44b680',1,'ClipperLib']]],
   ['joinlist',['JoinList',['../namespace_clipper_lib.html#a7e09990d21008cefa4e28e9056c654c4',1,'ClipperLib']]],
   ['jointype',['JoinType',['../namespace_clipper_lib.html#ab3880a3ca1b45df3ce93ac315a74c06e',1,'ClipperLib']]],

@@ -26,15 +26,15 @@ void \mbox{\hyperlink{class_point2_a0693b1a0d34cb1dd3a4d30ea078a4d5e}{x}} (const
 \begin{DoxyCompactList}\small\item\em Set the abscissa value. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_point2_a967025762c1b4dede5eb822f5c29522e}{y}} (const T \+\_\+y)
 \begin{DoxyCompactList}\small\item\em Set the ordinate value. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T1 $>$ }\\void \mbox{\hyperlink{class_point2_ae55da7a4bd7fe7491ebc0134a39bb791}{offset}} (const T1 \+\_\+offset, const \mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_point2_a0ef2bb867cce9a4f184f00af809bc766}{th}})
+{\footnotesize template$<$class T1 $>$ }\\\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \mbox{\hyperlink{class_point2_a1c49ae936487b2f7b72682ba97eed1cb}{offset}} (const T1 \+\_\+offset, const \mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_point2_afe4e1b27eb2a47f6f98695d0b715a044}{th}})
 \begin{DoxyCompactList}\small\item\em This function compute the offset of the point given a vector, that is the lenght of the vector and its angle. The angle must be an {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} variable. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_point2_ac171989ec252c36ce6253916269186f8}{offset}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ p)
+\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \mbox{\hyperlink{class_point2_a45882a15db20f34b2d062d7f11a135cd}{offset}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ p)
 \begin{DoxyCompactList}\small\item\em This function compute an offset given another point made of the abscissa offset and the ordinate offset. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_point2_aaa05b71e25db64c365fe2377d4f3f812}{offset}} (const \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ p)
+\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \mbox{\hyperlink{class_point2_afaa5aa2f9bff328766572129db789059}{offset}} (const \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$ p)
 \begin{DoxyCompactList}\small\item\em This function compute an offset given a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} made of the abscissa offset and the ordinate offset. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_point2_a24d1c6e9487f0baa48543b0fa1c87906}{offset\+\_\+x}} (const T \+\_\+offset)
+\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \mbox{\hyperlink{class_point2_ae1536c8c7960ddfdf2087a9e12ddfcf9}{offset\+\_\+x}} (const T \+\_\+offset)
 \begin{DoxyCompactList}\small\item\em This function compute an offset for the abscissa. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_point2_a847590c808b59b824ac3c0044544ab6b}{offset\+\_\+y}} (const T \+\_\+offset)
+\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \mbox{\hyperlink{class_point2_abfbc8c5842e9876f7b89d18575fe138d}{offset\+\_\+y}} (const T \+\_\+offset)
 \begin{DoxyCompactList}\small\item\em This function compute an offset for the ordinate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T1 $>$ }\\double \mbox{\hyperlink{class_point2_a5f50f8f110af78415a56b0c32c2c8b8f}{distance}} (\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ B, \mbox{\hyperlink{maths_8hh_ac50d7263b1cae8691420b86282b27f90}{D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+T\+Y\+PE}} dist=\mbox{\hyperlink{maths_8hh_ac50d7263b1cae8691420b86282b27f90a81bbbc4428c3ff3f1327e94957e2b5f1}{E\+U\+C\+L\+I\+D\+E\+AN}})
 \begin{DoxyCompactList}\small\item\em Wrapper to compute different distances. \textbackslash{}tparan T1 The type of the elements in the second {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}}. \end{DoxyCompactList}\item 
@@ -58,8 +58,12 @@ bool \mbox{\hyperlink{class_point2_ad671e757853f5d7d5431d011d9e94b03}{operator!=
 \begin{DoxyCompactList}\small\item\em Cast to cv\+::\+Point. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_point2_a636a84c47519a482cfce43039e981dff}{operator$<$}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ \&A)
 \item 
-{\footnotesize template$<$class T1 $>$ }\\\mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_point2_a0ef2bb867cce9a4f184f00af809bc766}{th}} (\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ P1, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77}{Angle\+::\+A\+N\+G\+L\+E\+\_\+\+T\+Y\+PE}} type=\mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}})
-\end{DoxyCompactItemize}
+{\footnotesize template$<$class T1 $>$ }\\\mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_point2_afe4e1b27eb2a47f6f98695d0b715a044}{th}} (\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ P1, \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77}{Angle\+::\+A\+N\+G\+L\+E\+\_\+\+T\+Y\+PE}} type=\mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}}) const
+\item 
+{\footnotesize template$<$class T1 $>$ }\\\mbox{\hyperlink{class_point2_a3af3e22d9650f7bde9dd9deeb043dffa}{operator Point2$<$ T1 $>$}} () const
+\item 
+void \mbox{\hyperlink{class_point2_aabc6ec4c0ed4c7757ac61a9448195c97}{invert}} ()
+\begin{DoxyCompactList}\small\item\em Invert the x and y of the point. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -209,6 +213,17 @@ Function that compute the Euclidean Distance between two points. \textbackslash{
 \begin{DoxyReturn}{Returns}
 The Euclidean distance between the two points. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_point2_aabc6ec4c0ed4c7757ac61a9448195c97}\label{class_point2_aabc6ec4c0ed4c7757ac61a9448195c97}} 
+\index{Point2$<$ T $>$@{Point2$<$ T $>$}!invert@{invert}}
+\index{invert@{invert}!Point2$<$ T $>$@{Point2$<$ T $>$}}
+\subsubsection{\texorpdfstring{invert()}{invert()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::invert (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Invert the x and y of the point. 
+
 \mbox{\Hypertarget{class_point2_a10a4aa3d7939b1675f4bd18b8f9f0ead}\label{class_point2_a10a4aa3d7939b1675f4bd18b8f9f0ead}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!MaDistance@{MaDistance}}
 \index{MaDistance@{MaDistance}!Point2$<$ T $>$@{Point2$<$ T $>$}}
@@ -229,13 +244,13 @@ Function that compute the Manhattan Distance between two points. \textbackslash{
 \begin{DoxyReturn}{Returns}
 The Manhattan distance between the two points. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_point2_ae55da7a4bd7fe7491ebc0134a39bb791}\label{class_point2_ae55da7a4bd7fe7491ebc0134a39bb791}} 
+\mbox{\Hypertarget{class_point2_a1c49ae936487b2f7b72682ba97eed1cb}\label{class_point2_a1c49ae936487b2f7b72682ba97eed1cb}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!offset@{offset}}
 \index{offset@{offset}!Point2$<$ T $>$@{Point2$<$ T $>$}}
 \subsubsection{\texorpdfstring{offset()}{offset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
 template$<$class T1 $>$ \\
-void \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::offset (\begin{DoxyParamCaption}\item[{const T1}]{\+\_\+offset,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{th }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_point2}{Point2}}$<$T$>$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::offset (\begin{DoxyParamCaption}\item[{const T1}]{\+\_\+offset,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{th }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -246,12 +261,12 @@ This function compute the offset of the point given a vector, that is the lenght
 {\em } & \\
 \hline
 \end{DoxyTemplParams}
-\mbox{\Hypertarget{class_point2_ac171989ec252c36ce6253916269186f8}\label{class_point2_ac171989ec252c36ce6253916269186f8}} 
+\mbox{\Hypertarget{class_point2_a45882a15db20f34b2d062d7f11a135cd}\label{class_point2_a45882a15db20f34b2d062d7f11a135cd}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!offset@{offset}}
 \index{offset@{offset}!Point2$<$ T $>$@{Point2$<$ T $>$}}
 \subsubsection{\texorpdfstring{offset()}{offset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
-void \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::offset (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_point2}{Point2}}$<$T$>$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::offset (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -265,12 +280,12 @@ This function compute an offset given another point made of the abscissa offset 
 \begin{DoxyReturn}{Returns}
 1 if everything went fine, 0 otherwise. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_point2_aaa05b71e25db64c365fe2377d4f3f812}\label{class_point2_aaa05b71e25db64c365fe2377d4f3f812}} 
+\mbox{\Hypertarget{class_point2_afaa5aa2f9bff328766572129db789059}\label{class_point2_afaa5aa2f9bff328766572129db789059}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!offset@{offset}}
 \index{offset@{offset}!Point2$<$ T $>$@{Point2$<$ T $>$}}
 \subsubsection{\texorpdfstring{offset()}{offset()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
-void \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::offset (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_point2}{Point2}}$<$T$>$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::offset (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_tuple}{Tuple}}$<$ T $>$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -284,12 +299,12 @@ This function compute an offset given a {\ttfamily \mbox{\hyperlink{class_tuple}
 \begin{DoxyReturn}{Returns}
 1 if everything went fine, 0 otherwise. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_point2_a24d1c6e9487f0baa48543b0fa1c87906}\label{class_point2_a24d1c6e9487f0baa48543b0fa1c87906}} 
+\mbox{\Hypertarget{class_point2_ae1536c8c7960ddfdf2087a9e12ddfcf9}\label{class_point2_ae1536c8c7960ddfdf2087a9e12ddfcf9}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!offset\_x@{offset\_x}}
 \index{offset\_x@{offset\_x}!Point2$<$ T $>$@{Point2$<$ T $>$}}
 \subsubsection{\texorpdfstring{offset\_x()}{offset\_x()}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
-void \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::offset\+\_\+x (\begin{DoxyParamCaption}\item[{const T}]{\+\_\+offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_point2}{Point2}}$<$T$>$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::offset\+\_\+x (\begin{DoxyParamCaption}\item[{const T}]{\+\_\+offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -303,12 +318,12 @@ This function compute an offset for the abscissa.
 \begin{DoxyReturn}{Returns}
 1 if everything went fine, 0 otherwise. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_point2_a847590c808b59b824ac3c0044544ab6b}\label{class_point2_a847590c808b59b824ac3c0044544ab6b}} 
+\mbox{\Hypertarget{class_point2_abfbc8c5842e9876f7b89d18575fe138d}\label{class_point2_abfbc8c5842e9876f7b89d18575fe138d}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!offset\_y@{offset\_y}}
 \index{offset\_y@{offset\_y}!Point2$<$ T $>$@{Point2$<$ T $>$}}
 \subsubsection{\texorpdfstring{offset\_y()}{offset\_y()}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
-void \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::offset\+\_\+y (\begin{DoxyParamCaption}\item[{const T}]{\+\_\+offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_point2}{Point2}}$<$T$>$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::offset\+\_\+y (\begin{DoxyParamCaption}\item[{const T}]{\+\_\+offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -336,6 +351,14 @@ Cast to cv\+::\+Point.
 \begin{DoxyReturn}{Returns}
 The value casted to point 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_point2_a3af3e22d9650f7bde9dd9deeb043dffa}\label{class_point2_a3af3e22d9650f7bde9dd9deeb043dffa}} 
+\index{Point2$<$ T $>$@{Point2$<$ T $>$}!operator Point2$<$ T1 $>$@{operator Point2$<$ T1 $>$}}
+\index{operator Point2$<$ T1 $>$@{operator Point2$<$ T1 $>$}!Point2$<$ T $>$@{Point2$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator Point2$<$ T1 $>$()}{operator Point2< T1 >()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+template$<$class T1 $>$ \\
+\mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::operator \mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_point2_ad671e757853f5d7d5431d011d9e94b03}\label{class_point2_ad671e757853f5d7d5431d011d9e94b03}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!operator"!=@{operator"!=}}
 \index{operator"!=@{operator"!=}!Point2$<$ T $>$@{Point2$<$ T $>$}}
@@ -400,13 +423,13 @@ Overload of the == operator. Just calls {\ttfamily equal}.
 \begin{DoxyReturn}{Returns}
 true if the two configurations are equal. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_point2_a0ef2bb867cce9a4f184f00af809bc766}\label{class_point2_a0ef2bb867cce9a4f184f00af809bc766}} 
+\mbox{\Hypertarget{class_point2_afe4e1b27eb2a47f6f98695d0b715a044}\label{class_point2_afe4e1b27eb2a47f6f98695d0b715a044}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!th@{th}}
 \index{th@{th}!Point2$<$ T $>$@{Point2$<$ T $>$}}
 \subsubsection{\texorpdfstring{th()}{th()}}
 {\footnotesize\ttfamily template$<$class T$>$ \\
 template$<$class T1 $>$ \\
-\mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::th (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$}]{P1,  }\item[{\mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77}{Angle\+::\+A\+N\+G\+L\+E\+\_\+\+T\+Y\+PE}}}]{type = {\ttfamily \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_angle}{Angle}} \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$\+::th (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$}]{P1,  }\item[{\mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77}{Angle\+::\+A\+N\+G\+L\+E\+\_\+\+T\+Y\+PE}}}]{type = {\ttfamily \mbox{\hyperlink{class_angle_a4f7b9849ce8780bcba95ca3ee45cff77a93ab6b68075fd7a6fe724fbde5b13c1f}{Angle\+::\+R\+AD}}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_point2_aa04082290a2f554060081beafd7d7e0d}\label{class_point2_aa04082290a2f554060081beafd7d7e0d}} 
 \index{Point2$<$ T $>$@{Point2$<$ T $>$}!to\_string@{to\_string}}

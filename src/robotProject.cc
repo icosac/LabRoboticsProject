@@ -32,10 +32,6 @@ RobotProject::RobotProject(CameraCapture* camera, double& frame_time){
 	#ifdef CONFIGURE
 		Mat img;
 		camera->grab(img, frame_time);
-		//TODo Remove this.
-		// img=imread(sett->unMaps(0).get(0));
-		// my_imshow("configure", img);
-		// mywaitkey();
 		cout << endl << "Configure" << endl;
 		configure(img, true);
 		cout << "configure done\n";

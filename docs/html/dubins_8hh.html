@@ -68,8 +68,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">dubins.hh File Reference</div>  </div>
 </div><!--header-->
@@ -112,8 +111,14 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="dubins_8hh__dep__incl.png" border="0" usemap="#src_2include_2dubins_8hhdep" alt=""/></div>
 <map name="src_2include_2dubins_8hhdep" id="src_2include_2dubins_8hhdep">
-<area shape="rect"  title=" " alt="" coords="5,5,152,31"/>
-<area shape="rect"  href="dubins_8cc.html" title=" " alt="" coords="29,79,128,104"/>
+<area shape="rect"  title=" " alt="" coords="165,5,311,31"/>
+<area shape="rect"  href="dubins_8cc.html" title=" " alt="" coords="112,79,211,104"/>
+<area shape="rect"  href="planning_8hh.html" title=" " alt="" coords="235,79,393,104"/>
+<area shape="rect"  href="planning_8cc.html" title=" " alt="" coords="5,152,116,177"/>
+<area shape="rect"  href="robot_project_8hh.html" title=" " alt="" coords="140,152,319,177"/>
+<area shape="rect"  href="main_8cc.html" title=" " alt="" coords="343,152,455,177"/>
+<area shape="rect"  href="planning__run_8cc.html" title=" " alt="" coords="479,152,639,177"/>
+<area shape="rect"  href="robot_project_8cc.html" title=" " alt="" coords="164,225,296,251"/>
 </map>
 </div>
 </div>
@@ -139,57 +144,25 @@ Macros</h2></td></tr>
 <tr class="separator:a5b2500ca93a5100f73dc442d3cfea7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bda1a81ce3474772a8a1f165e54516e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a2bda1a81ce3474772a8a1f165e54516e">PREC</a>&#160;&#160;&#160;100000</td></tr>
 <tr class="separator:a2bda1a81ce3474772a8a1f165e54516e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a940b85a83458e94519f2685b33ddd276"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a940b85a83458e94519f2685b33ddd276">KMAX</a>&#160;&#160;&#160;0.5</td></tr>
+<tr class="memitem:a940b85a83458e94519f2685b33ddd276"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a940b85a83458e94519f2685b33ddd276">KMAX</a>&#160;&#160;&#160;0.01</td></tr>
 <tr class="separator:a940b85a83458e94519f2685b33ddd276"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5c88710b236a514392351a4d13d2e767"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a5c88710b236a514392351a4d13d2e767">sinc</a> (double t)</td></tr>
-<tr class="separator:a5c88710b236a514392351a4d13d2e767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2678c9ac5e8585534a9c5a2385169324"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a2678c9ac5e8585534a9c5a2385169324">sinc</a> (double t)</td></tr>
+<tr class="separator:a2678c9ac5e8585534a9c5a2385169324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adef8b363044d7fed558e5b47d8d6a3a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#adef8b363044d7fed558e5b47d8d6a3a0">circline</a> (double _L, <a class="el" href="class_configuration2.html">Configuration2</a>&lt; double &gt; _P0, double _K)</td></tr>
 <tr class="separator:adef8b363044d7fed558e5b47d8d6a3a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a301ba17400a2911095c4fcba0a9b7174"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a301ba17400a2911095c4fcba0a9b7174"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a301ba17400a2911095c4fcba0a9b7174">is_on_circarc</a> (<a class="el" href="class_point2.html">Point2</a>&lt; T &gt; p0, <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; pi, <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; pf, <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; p)</td></tr>
+<tr class="memdesc:a301ba17400a2911095c4fcba0a9b7174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that computes a circle given 3 points and check if a point is on the circle arc.  <a href="#a301ba17400a2911095c4fcba0a9b7174">More...</a><br /></td></tr>
+<tr class="separator:a301ba17400a2911095c4fcba0a9b7174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24a357b93081a0180dfec16136bc8ff7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a24a357b93081a0180dfec16136bc8ff7">toBase</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; z, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> n, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> base, const <a class="el" href="class_angle.html">Angle</a> &amp;inc, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> startPos, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> endPos)</td></tr>
 <tr class="memdesc:a24a357b93081a0180dfec16136bc8ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a value in base 10 to base <code>base</code> in a <code><a class="el" href="class_tuple.html">Tuple</a></code>. To each value an inc is muiltiplied and the initial <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code> is added.  <a href="#a24a357b93081a0180dfec16136bc8ff7">More...</a><br /></td></tr>
 <tr class="separator:a24a357b93081a0180dfec16136bc8ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16cf89e561eae9ea10a39e40432af238"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a16cf89e561eae9ea10a39e40432af238">disp</a> (<a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; &gt; &amp;t, <a class="el" href="class_tuple.html">Tuple</a>&lt; <a class="el" href="class_angle.html">Angle</a> &gt; &amp;z, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> N, const <a class="el" href="class_angle.html">Angle</a> &amp;inc, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> startPos=0, <a class="el" href="draw_8hh.html#aa620a13339ac3a1177c86edc549fda9b">int</a> endPos=0)</td></tr>
-<tr class="memdesc:a16cf89e561eae9ea10a39e40432af238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the arrangements. Since each arrangement can be computed as <img class="formulaInl" alt="$n_{parts}$" src="form_2.png"/>, where each values is then multiplied for the increment and is added to the initial values.  <a href="#a16cf89e561eae9ea10a39e40432af238">More...</a><br /></td></tr>
+<tr class="memdesc:a16cf89e561eae9ea10a39e40432af238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the arrangements. Since each arrangement can be computed as <img class="formulaInl" alt="$n_{parts}$" src="form_4.png"/>, where each values is then multiplied for the increment and is added to the initial values.  <a href="#a16cf89e561eae9ea10a39e40432af238">More...</a><br /></td></tr>
 <tr class="separator:a16cf89e561eae9ea10a39e40432af238"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0b0aa229802950d33214a8a9e63ce5e"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:ae0b0aa229802950d33214a8a9e63ce5e"><td class="memTemplItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#ae0b0aa229802950d33214a8a9e63ce5e">plan_best</a> (vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; &gt; vPoints)</td></tr>
-<tr class="separator:ae0b0aa229802950d33214a8a9e63ce5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a5880c4830bf2ab16bad216015448eacb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a5880c4830bf2ab16bad216015448eacb">elapsedScale</a></td></tr>
-<tr class="separator:a5880c4830bf2ab16bad216015448eacb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa36733aa8c8ca5849070a465409dbe81"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#aa36733aa8c8ca5849070a465409dbe81">elapsedPrimitives</a></td></tr>
-<tr class="separator:aa36733aa8c8ca5849070a465409dbe81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0031b22718178ccc76a4d8178e582b25"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a0031b22718178ccc76a4d8178e582b25">elapsedBest</a></td></tr>
-<tr class="separator:a0031b22718178ccc76a4d8178e582b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ea7ce6fc7223d1e06dc71644336d66f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a2ea7ce6fc7223d1e06dc71644336d66f">elapsedArcs</a></td></tr>
-<tr class="separator:a2ea7ce6fc7223d1e06dc71644336d66f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06fc38271c4ca7f7799fa903d94cae5a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a06fc38271c4ca7f7799fa903d94cae5a">elapsedCheck</a></td></tr>
-<tr class="separator:a06fc38271c4ca7f7799fa903d94cae5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcfdf634840cd6f14ae6d0762ecd1f95"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#abcfdf634840cd6f14ae6d0762ecd1f95">countTries</a></td></tr>
-<tr class="separator:abcfdf634840cd6f14ae6d0762ecd1f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addc0762dc6f907d08093d87133317157"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#addc0762dc6f907d08093d87133317157">elapsedVar</a></td></tr>
-<tr class="separator:addc0762dc6f907d08093d87133317157"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0abfff7e943d5425fde32277365912b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#ad0abfff7e943d5425fde32277365912b">elapsedCirc</a></td></tr>
-<tr class="separator:ad0abfff7e943d5425fde32277365912b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb6d93608c94bd3bd63217dc721ea2bf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#abb6d93608c94bd3bd63217dc721ea2bf">elapsedSet</a></td></tr>
-<tr class="separator:abb6d93608c94bd3bd63217dc721ea2bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7f52b98e604497e1df6126251edffcf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#af7f52b98e604497e1df6126251edffcf">elapsedLSL</a></td></tr>
-<tr class="separator:af7f52b98e604497e1df6126251edffcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5381897b84c903a717eda9680319f40a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a5381897b84c903a717eda9680319f40a">elapsedRSR</a></td></tr>
-<tr class="separator:a5381897b84c903a717eda9680319f40a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada1c98b34a456476f08c5cafbfe893ad"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#ada1c98b34a456476f08c5cafbfe893ad">elapsedLSR</a></td></tr>
-<tr class="separator:ada1c98b34a456476f08c5cafbfe893ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb44475744bcbfbdf6609efd02c6c6fb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#acb44475744bcbfbdf6609efd02c6c6fb">elapsedRSL</a></td></tr>
-<tr class="separator:acb44475744bcbfbdf6609efd02c6c6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3972b672793842e7de439255254d3085"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a3972b672793842e7de439255254d3085">elapsedRLR</a></td></tr>
-<tr class="separator:a3972b672793842e7de439255254d3085"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a715f7de2f92786df84a14e5a013b94e9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dubins_8hh.html#a715f7de2f92786df84a14e5a013b94e9">elapsedLRL</a></td></tr>
-<tr class="separator:a715f7de2f92786df84a14e5a013b94e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a940b85a83458e94519f2685b33ddd276"></a>
@@ -199,7 +172,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define KMAX&#160;&#160;&#160;0.5</td>
+          <td class="memname">#define KMAX&#160;&#160;&#160;0.01</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -328,7 +301,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Compute the arrangements. Since each arrangement can be computed as <img class="formulaInl" alt="$n_{parts}$" src="form_2.png"/>, where each values is then multiplied for the increment and is added to the initial values. </p>
+<p>Compute the arrangements. Since each arrangement can be computed as <img class="formulaInl" alt="$n_{parts}$" src="form_4.png"/>, where each values is then multiplied for the increment and is added to the initial values. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">t</td><td>A <code><a class="el" href="class_tuple.html">Tuple</a></code> containing all the <code><a class="el" href="class_tuple.html">Tuple</a></code>s containing the <code><a class="el" href="class_angle.html" title="This class allows to save and handle angles. It supports DEG and RAD, operations such as addition and...">Angle</a></code>s. </td></tr>
@@ -343,8 +316,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ae0b0aa229802950d33214a8a9e63ce5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0b0aa229802950d33214a8a9e63ce5e">&#9670;&nbsp;</a></span>plan_best()</h2>
+<a id="a301ba17400a2911095c4fcba0a9b7174"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a301ba17400a2911095c4fcba0a9b7174">&#9670;&nbsp;</a></span>is_on_circarc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,19 +325,59 @@ Variables</h2></td></tr>
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt;<a class="el" href="class_point2.html">Point2</a>&lt;T&gt; &gt; plan_best </td>
+          <td class="memname">bool is_on_circarc </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_point2.html">Point2</a>&lt; T &gt; &gt;&#160;</td>
-          <td class="paramname"><em>vPoints</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_point2.html">Point2</a>&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>p0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_point2.html">Point2</a>&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>pi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_point2.html">Point2</a>&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>pf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_point2.html">Point2</a>&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Function that computes a circle given 3 points and check if a point is on the circle arc. </p>
+<p>This function computes the 3 parameters <img class="formulaInl" alt="$a, b, c$" src="form_2.png"/> for a circle with equation <img class="formulaInl" alt="$x^2+y^2+ax+by+c=0$" src="form_3.png"/> using Cramer method. Then checks if the given point is on the circle: if it's not then returns <code>false</code>, otherwise checks the angle with respect to the initial point and the final point to see if the point is on the arc. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of the point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p0</td><td>The initial point of the arc. </td></tr>
+    <tr><td class="paramname">pi</td><td>An intermediate point of the arc. </td></tr>
+    <tr><td class="paramname">pf</td><td>The final point of the arc. </td></tr>
+    <tr><td class="paramname">p</td><td>The point to verify if it's on the arc or not. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the point is on the arc, <code>false</code> otherwise. </dd></dl>
+
 </div>
 </div>
-<a id="a5c88710b236a514392351a4d13d2e767"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c88710b236a514392351a4d13d2e767">&#9670;&nbsp;</a></span>sinc()</h2>
+<a id="a2678c9ac5e8585534a9c5a2385169324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2678c9ac5e8585534a9c5a2385169324">&#9670;&nbsp;</a></span>sinc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -373,7 +386,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static double sinc </td>
+          <td class="memname">double sinc </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
@@ -382,7 +395,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -462,217 +475,6 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector containing the digits of the number converted to the specified base. </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="abcfdf634840cd6f14ae6d0762ecd1f95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcfdf634840cd6f14ae6d0762ecd1f95">&#9670;&nbsp;</a></span>countTries</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned long countTries</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a2ea7ce6fc7223d1e06dc71644336d66f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ea7ce6fc7223d1e06dc71644336d66f">&#9670;&nbsp;</a></span>elapsedArcs</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedArcs</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0031b22718178ccc76a4d8178e582b25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0031b22718178ccc76a4d8178e582b25">&#9670;&nbsp;</a></span>elapsedBest</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedBest</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a06fc38271c4ca7f7799fa903d94cae5a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06fc38271c4ca7f7799fa903d94cae5a">&#9670;&nbsp;</a></span>elapsedCheck</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedCheck</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad0abfff7e943d5425fde32277365912b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0abfff7e943d5425fde32277365912b">&#9670;&nbsp;</a></span>elapsedCirc</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedCirc</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a715f7de2f92786df84a14e5a013b94e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a715f7de2f92786df84a14e5a013b94e9">&#9670;&nbsp;</a></span>elapsedLRL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedLRL</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af7f52b98e604497e1df6126251edffcf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7f52b98e604497e1df6126251edffcf">&#9670;&nbsp;</a></span>elapsedLSL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedLSL</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ada1c98b34a456476f08c5cafbfe893ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada1c98b34a456476f08c5cafbfe893ad">&#9670;&nbsp;</a></span>elapsedLSR</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedLSR</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa36733aa8c8ca5849070a465409dbe81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa36733aa8c8ca5849070a465409dbe81">&#9670;&nbsp;</a></span>elapsedPrimitives</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedPrimitives</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3972b672793842e7de439255254d3085"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3972b672793842e7de439255254d3085">&#9670;&nbsp;</a></span>elapsedRLR</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedRLR</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="acb44475744bcbfbdf6609efd02c6c6fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb44475744bcbfbdf6609efd02c6c6fb">&#9670;&nbsp;</a></span>elapsedRSL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedRSL</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5381897b84c903a717eda9680319f40a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5381897b84c903a717eda9680319f40a">&#9670;&nbsp;</a></span>elapsedRSR</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedRSR</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5880c4830bf2ab16bad216015448eacb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5880c4830bf2ab16bad216015448eacb">&#9670;&nbsp;</a></span>elapsedScale</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedScale</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="abb6d93608c94bd3bd63217dc721ea2bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb6d93608c94bd3bd63217dc721ea2bf">&#9670;&nbsp;</a></span>elapsedSet</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedSet</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="addc0762dc6f907d08093d87133317157"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addc0762dc6f907d08093d87133317157">&#9670;&nbsp;</a></span>elapsedVar</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double elapsedVar</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>

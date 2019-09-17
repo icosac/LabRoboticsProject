@@ -9,7 +9,8 @@ var searchData=
   ['fixk5',['fixK5',['../class_cal_settings.html#a2f22ee23f05778e7a44e2f8b15c1298d',1,'CalSettings']]],
   ['flag',['flag',['../class_cal_settings.html#a59cd0b6f52c18498cb3f1ad5ac030338',1,'CalSettings']]],
   ['flipvertical',['flipVertical',['../class_cal_settings.html#a9a2cff2a0d53011d5a3b1a03a7460589',1,'CalSettings']]],
-  ['foundlimit',['foundLimit',['../class_mapp.html#acbe12d109f5393640f23956295bf1bdc',1,'Mapp']]],
+  ['foundlimit',['foundLimit',['../namespace_planning.html#aa0ab57db0371be33cf108295f3abcb1a',1,'Planning']]],
+  ['foundlimitangles',['foundLimitAngles',['../namespace_planning.html#a181d6d7e178083d86e64985d23f3048f',1,'Planning']]],
   ['frameheight_5fpx',['frameHeight_px',['../struct_camera_capture_1_1input__options__t.html#aee1ab45b4ec0cbebc0a548f0e0b9ab18',1,'CameraCapture::input_options_t']]],
   ['framewidth_5fpx',['frameWidth_px',['../struct_camera_capture_1_1input__options__t.html#a0b6cfab2f45deab8a4eb56d570385d8a',1,'CameraCapture::input_options_t']]]
 ];

@@ -9,3 +9,86 @@ Include dependency graph for dubins.\+cc\+:
 \includegraphics[width=350pt]{dubins_8cc__incl}
 \end{center}
 \end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \mbox{\hyperlink{dubins_8cc_adef8b363044d7fed558e5b47d8d6a3a0}{circline}} (double \+\_\+L, \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$ \+\_\+\+P0, double \+\_\+K)
+\item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \mbox{\hyperlink{dubins_8cc_a24a357b93081a0180dfec16136bc8ff7}{to\+Base}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ z, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} n, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} base, const \mbox{\hyperlink{class_angle}{Angle}} \&inc, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} start\+Pos, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} end\+Pos)
+\begin{DoxyCompactList}\small\item\em Convert a value in base 10 to base {\ttfamily base} in a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. To each value an inc is muiltiplied and the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} is added. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dubins_8cc_ab93f9d42e66345d6252debb196f0f012}{disp}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ $>$ \&t, \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \&z, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} N, const \mbox{\hyperlink{class_angle}{Angle}} \&inc, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} start\+Pos, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} end\+Pos)
+\begin{DoxyCompactList}\small\item\em Compute the arrangements. Since each arrangement can be computed as $n_{parts}$, where each values is then multiplied for the increment and is added to the initial values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dubins_8cc_adef8b363044d7fed558e5b47d8d6a3a0}\label{dubins_8cc_adef8b363044d7fed558e5b47d8d6a3a0}} 
+\index{dubins.cc@{dubins.cc}!circline@{circline}}
+\index{circline@{circline}!dubins.cc@{dubins.cc}}
+\subsubsection{\texorpdfstring{circline()}{circline()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$double$>$ circline (\begin{DoxyParamCaption}\item[{double}]{\+\_\+L,  }\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ double $>$}]{\+\_\+\+P0,  }\item[{double}]{\+\_\+K }\end{DoxyParamCaption})}
+
+Computes an arrival point from an initial configuration through an arc of length \+\_\+L and curvature \+\_\+K. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+L} & The length of the arch. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+\+P0} & The starting {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the arc. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+K} & The curvature of the arc. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ending {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the arc. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dubins_8cc_ab93f9d42e66345d6252debb196f0f012}\label{dubins_8cc_ab93f9d42e66345d6252debb196f0f012}} 
+\index{dubins.cc@{dubins.cc}!disp@{disp}}
+\index{disp@{disp}!dubins.cc@{dubins.cc}}
+\subsubsection{\texorpdfstring{disp()}{disp()}}
+{\footnotesize\ttfamily void disp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ $>$ \&}]{t,  }\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \&}]{z,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{N,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{inc,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{start\+Pos = {\ttfamily 0},  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{end\+Pos = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Compute the arrangements. Since each arrangement can be computed as $n_{parts}$, where each values is then multiplied for the increment and is added to the initial values. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em t} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}s containing the {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\hline
+\mbox{\texttt{ in}}  & {\em z} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\hline
+\mbox{\texttt{ in}}  & {\em N} & The number of iterations. Each iteration is going to be converted in base parts. \\
+\hline
+\mbox{\texttt{ in}}  & {\em inc} & The increment to give each initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em start\+Pos} & The initial position to consider in {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em end\+Pos} & The final position to consider in {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dubins_8cc_a24a357b93081a0180dfec16136bc8ff7}\label{dubins_8cc_a24a357b93081a0180dfec16136bc8ff7}} 
+\index{dubins.cc@{dubins.cc}!toBase@{toBase}}
+\index{toBase@{toBase}!dubins.cc@{dubins.cc}}
+\subsubsection{\texorpdfstring{toBase()}{toBase()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_angle}{Angle}}$>$ to\+Base (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$}]{z,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{n,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{base,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}} \&}]{inc,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{start\+Pos,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{end\+Pos }\end{DoxyParamCaption})}
+
+
+
+Convert a value in base 10 to base {\ttfamily base} in a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}}. To each value an inc is muiltiplied and the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}} is added. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em z} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the initial {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & The value to be converted. \\
+\hline
+\mbox{\texttt{ in}}  & {\em base} & The base. \\
+\hline
+\mbox{\texttt{ in}}  & {\em inc} & The increment. \\
+\hline
+\mbox{\texttt{ in}}  & {\em start\+Pos} & The starting position of the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\hline
+\mbox{\texttt{ in}}  & {\em end\+Pos} & The ending position of the {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_angle}{Angle}}}s. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector containing the digits of the number converted to the specified base. 
+\end{DoxyReturn}

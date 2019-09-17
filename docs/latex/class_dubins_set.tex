@@ -12,6 +12,8 @@ Given a set of point, compute the shortest set of \mbox{\hyperlink{class_dubins}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{class_dubins_set_a86b2db7ab4ca20735b9fdeb0bf847d76}{Dubins\+Set}} ()
+\item 
 \mbox{\hyperlink{class_dubins_set_a36295af30ddae6a33bb6a8e35aee7eb1}{Dubins\+Set}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $>$ \+\_\+dubinses, double \+\_\+kmax=\mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}})
 \item 
 \mbox{\hyperlink{class_dubins_set_a60ae5e28b776ad39e965d4019e448d94}{Dubins\+Set}} (\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ $>$ \+\_\+confs, double \+\_\+kmax=\mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}})
@@ -30,7 +32,31 @@ double \mbox{\hyperlink{class_dubins_set_a41f7dbb6b82c8822e427ee1a3059b8ca}{get\
 \begin{DoxyCompactList}\small\item\em Returns the number of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} stored. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $>$ \mbox{\hyperlink{class_dubins_set_a2d0216573331d2ca6bf36ea213c4d434}{get\+Dubinses}} ()
 \begin{DoxyCompactList}\small\item\em Returns a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ \mbox{\hyperlink{class_dubins_set_aabfea80321040d789819e0f940a16e50}{get\+Begin}} ()
+\begin{DoxyCompactList}\small\item\em Returns the starting {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ \mbox{\hyperlink{class_dubins_set_a3dfb9cf9fc781deaa1f9d2e7201b81e7}{get\+End}} ()
+\begin{DoxyCompactList}\small\item\em Returns the ending {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}} \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ \mbox{\hyperlink{class_dubins_set_a421897996d88df8eb7dad214d7feb84b}{get\+Dubins}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} id)
+\item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $>$ \mbox{\hyperlink{class_dubins_set_a03b0025e832aa83736f64d8800ba2778}{get\+Dubins\+From}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} id)
+\item 
+\mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $\ast$ \mbox{\hyperlink{class_dubins_set_a18797b4a054cd1be2680a26603d2af9a}{get\+Dubins\+Ptr}} (\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} id)
+\item 
+void \mbox{\hyperlink{class_dubins_set_ac10e53aa7e66448de77371a047801fc6}{clean}} ()
+\item 
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_dubins_set_ad651ad84f4de5a395f63152ee663dc02}{is\+\_\+on\+\_\+dubins\+Set}} (\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ C)
+\begin{DoxyCompactList}\small\item\em Function that checks whether a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} is on the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}} or not. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_dubins_set_a7a86238ae8e2c86280bbb4e2b47f01a0}{add\+Dubins}} (\mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $\ast$D)
+\begin{DoxyCompactList}\small\item\em Function to add a {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} at the end of the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dubins_set_ae7243dad869372a527c4229193f6303b}{remove\+Dubins}} ()
+\begin{DoxyCompactList}\small\item\em Remove the last {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} from the set. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ \mbox{\hyperlink{class_dubins_set_af3f067123eb6ab19028b3c0dd50c8226}{copy}} (\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ $\ast$DS)
+\item 
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ \mbox{\hyperlink{class_dubins_set_a72235c9cfc00e200b8a7fdf5efb4c126}{operator=}} (\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ $\ast$DS)
+\item 
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ \mbox{\hyperlink{class_dubins_set_ac6014ed731c39a23df08a4ec2c41ae0f}{join}} (\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ $\ast$DS, \mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} start\+Pos=-\/1)
+\begin{DoxyCompactList}\small\item\em Function to join two \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ $>$ $>$ $>$ \mbox{\hyperlink{class_dubins_set_a3db386908cfe6d3c59b724add11dd367}{split\+It}} (double \+\_\+length=\mbox{\hyperlink{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}{P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}})
 \item 
 stringstream \mbox{\hyperlink{class_dubins_set_acfedfbe0ef1ff445cbaff93c70205f86}{to\+\_\+string}} ()
 \end{DoxyCompactItemize}
@@ -55,11 +81,18 @@ Given a set of point, compute the shortest set of \mbox{\hyperlink{class_dubins}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_dubins_set_a36295af30ddae6a33bb6a8e35aee7eb1}\label{class_dubins_set_a36295af30ddae6a33bb6a8e35aee7eb1}} 
+\mbox{\Hypertarget{class_dubins_set_a86b2db7ab4ca20735b9fdeb0bf847d76}\label{class_dubins_set_a86b2db7ab4ca20735b9fdeb0bf847d76}} 
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!DubinsSet@{DubinsSet}}
 \index{DubinsSet@{DubinsSet}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
-\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Plain constructor for {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}. \mbox{\Hypertarget{class_dubins_set_a36295af30ddae6a33bb6a8e35aee7eb1}\label{class_dubins_set_a36295af30ddae6a33bb6a8e35aee7eb1}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!DubinsSet@{DubinsSet}}
+\index{DubinsSet@{DubinsSet}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $>$}]{\+\_\+dubinses,  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor that given a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} computes stores all of them. 
@@ -72,8 +105,8 @@ Constructor that given a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\
 \mbox{\Hypertarget{class_dubins_set_a60ae5e28b776ad39e965d4019e448d94}\label{class_dubins_set_a60ae5e28b776ad39e965d4019e448d94}} 
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!DubinsSet@{DubinsSet}}
 \index{DubinsSet@{DubinsSet}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
-\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$ $>$}]{\+\_\+confs,  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor that takes a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}}s and computes the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} between them. 
@@ -86,8 +119,8 @@ Constructor that takes a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\
 \mbox{\Hypertarget{class_dubins_set_a209e9ffddb76419c3ac103afb73b2b10}\label{class_dubins_set_a209e9ffddb76419c3ac103afb73b2b10}} 
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!DubinsSet@{DubinsSet}}
 \index{DubinsSet@{DubinsSet}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
-\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$}]{start,  }\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$}]{end,  }\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{\+\_\+points,  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -108,8 +141,8 @@ Constructor that given a start {\ttfamily \mbox{\hyperlink{class_configuration2}
 \mbox{\Hypertarget{class_dubins_set_a4a85ce188aeabebf88509c2f60ceff31}\label{class_dubins_set_a4a85ce188aeabebf88509c2f60ceff31}} 
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!DubinsSet@{DubinsSet}}
 \index{DubinsSet@{DubinsSet}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
-\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+\subsubsection{\texorpdfstring{DubinsSet()}{DubinsSet()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{\+\_\+points,  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -126,14 +159,55 @@ Constructor that computes a series of {\ttfamily \mbox{\hyperlink{class_dubins}{
 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_dubins_set_a7a86238ae8e2c86280bbb4e2b47f01a0}\label{class_dubins_set_a7a86238ae8e2c86280bbb4e2b47f01a0}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!addDubins@{addDubins}}
+\index{addDubins@{addDubins}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{addDubins()}{addDubins()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+bool \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::add\+Dubins (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dubins}{Dubins}}$<$ T $>$ $\ast$}]{D }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to add a {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} at the end of the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}. 
+
+The {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} to be added must respect some conditions such as the same curvature as the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}, the initial {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} must be on the path of the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}. 
+\begin{DoxyParams}{Parameters}
+{\em D} & The {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} could be added, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_set_ac10e53aa7e66448de77371a047801fc6}\label{class_dubins_set_ac10e53aa7e66448de77371a047801fc6}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!clean@{clean}}
+\index{clean@{clean}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{clean()}{clean()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::clean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Function to remove all {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}, set curvature to 0 and L to $\infty $ \mbox{\Hypertarget{class_dubins_set_af3f067123eb6ab19028b3c0dd50c8226}\label{class_dubins_set_af3f067123eb6ab19028b3c0dd50c8226}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!copy@{copy}}
+\index{copy@{copy}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$T$>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ $\ast$}]{DS }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Function to copy a {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}} on to {\ttfamily this}. 
+\begin{DoxyParams}{Parameters}
+{\em DS} & The {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}} to be copied on {\ttfamily this} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily this}, that is DS. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_dubins_set_a12ea86c3250f8fff7a5db2d759cde33d}\label{class_dubins_set_a12ea86c3250f8fff7a5db2d759cde33d}} 
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!find\_best@{find\_best}}
 \index{find\_best@{find\_best}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
 \subsubsection{\texorpdfstring{find\_best()}{find\_best()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 void \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::find\+\_\+best (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_point2}{Point2}}$<$ T $>$ $>$}]{\+\_\+points,  }\item[{\mbox{\hyperlink{class_tuple}{Tuple}}$<$ \mbox{\hyperlink{class_angle}{Angle}} $>$ \&}]{\+\_\+angles,  }\item[{\mbox{\hyperlink{class_angle}{Angle}}}]{area = {\ttfamily \mbox{\hyperlink{maths_8hh_ad7760000c41920a1ae5cf0f6bf0e4c77}{A\+\_\+2\+PI}}},  }\item[{double}]{tries = {\ttfamily 4.0},  }\item[{double}]{\+\_\+kmax = {\ttfamily \mbox{\hyperlink{dubins_8hh_a940b85a83458e94519f2685b33ddd276}{K\+M\+AX}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Function to compute the best path. This function calls {\ttfamily \mbox{\hyperlink{dubins_8hh_a16cf89e561eae9ea10a39e40432af238}{disp()}}} in order to calculate all possible angles, and then creates a {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} for each possibility choosing the one with the minimum length. 
+Function to compute the best path. This function calls {\ttfamily \mbox{\hyperlink{dubins_8cc_ab93f9d42e66345d6252debb196f0f012}{disp()}}} in order to calculate all possible angles, and then creates a {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} for each possibility choosing the one with the minimum length. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em \+\_\+points} & A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_point2}{Point2}}} through which the path should flow. \\
 \hline
@@ -146,14 +220,25 @@ Function to compute the best path. This function calls {\ttfamily \mbox{\hyperli
 \mbox{\texttt{ in}}  & {\em \+\_\+kmax} & The maximum curvature to be used. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{class_dubins_set_aabfea80321040d789819e0f940a16e50}\label{class_dubins_set_aabfea80321040d789819e0f940a16e50}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getBegin@{getBegin}}
+\index{getBegin@{getBegin}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{getBegin()}{getBegin()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$T$>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the starting {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}. 
+
 \mbox{\Hypertarget{class_dubins_set_a421897996d88df8eb7dad214d7feb84b}\label{class_dubins_set_a421897996d88df8eb7dad214d7feb84b}} 
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getDubins@{getDubins}}
 \index{getDubins@{getDubins}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
 \subsubsection{\texorpdfstring{getDubins()}{getDubins()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_dubins}{Dubins}}$<$T$>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Dubins (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Thid functions returns a specific {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} from the set. 
+This functions returns a specific {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} from the set. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em id} & The position of the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} in the set. \\
 \hline
@@ -165,18 +250,51 @@ The id-\/th {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}.
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getDubinses@{getDubinses}}
 \index{getDubinses@{getDubinses}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
 \subsubsection{\texorpdfstring{getDubinses()}{getDubinses()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 \mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_dubins}{Dubins}}$<$T$>$ $>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Dubinses (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Returns a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing all the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. 
 
+\mbox{\Hypertarget{class_dubins_set_a03b0025e832aa83736f64d8800ba2778}\label{class_dubins_set_a03b0025e832aa83736f64d8800ba2778}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getDubinsFrom@{getDubinsFrom}}
+\index{getDubinsFrom@{getDubinsFrom}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{getDubinsFrom()}{getDubinsFrom()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_dubins}{Dubins}}$<$T$>$ $>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Dubins\+From (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_dubins_set_a18797b4a054cd1be2680a26603d2af9a}\label{class_dubins_set_a18797b4a054cd1be2680a26603d2af9a}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getDubinsPtr@{getDubinsPtr}}
+\index{getDubinsPtr@{getDubinsPtr}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{getDubinsPtr()}{getDubinsPtr()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_dubins}{Dubins}}$<$T$>$$\ast$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Dubins\+Ptr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This functions returns a specific {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} from the set. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em id} & The position of the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} in the set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The id-\/th {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_set_a3dfb9cf9fc781deaa1f9d2e7201b81e7}\label{class_dubins_set_a3dfb9cf9fc781deaa1f9d2e7201b81e7}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getEnd@{getEnd}}
+\index{getEnd@{getEnd}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{getEnd()}{getEnd()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$T$>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+End (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the ending {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}} 
+
 \mbox{\Hypertarget{class_dubins_set_af97fa42a6a9a6325c4d1ed4541758272}\label{class_dubins_set_af97fa42a6a9a6325c4d1ed4541758272}} 
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getKmax@{getKmax}}
 \index{getKmax@{getKmax}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
 \subsubsection{\texorpdfstring{getKmax()}{getKmax()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 double \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Kmax (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -187,7 +305,7 @@ Returns the maximum curvature.
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getLength@{getLength}}
 \index{getLength@{getLength}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
 \subsubsection{\texorpdfstring{getLength()}{getLength()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 double \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -198,18 +316,99 @@ Returns the Length of the set of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubin
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!getSize@{getSize}}
 \index{getSize@{getSize}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
 \subsubsection{\texorpdfstring{getSize()}{getSize()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 double \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Returns the number of {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} stored. 
 
+\mbox{\Hypertarget{class_dubins_set_ad651ad84f4de5a395f63152ee663dc02}\label{class_dubins_set_ad651ad84f4de5a395f63152ee663dc02}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!is\_on\_dubinsSet@{is\_on\_dubinsSet}}
+\index{is\_on\_dubinsSet@{is\_on\_dubinsSet}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{is\_on\_dubinsSet()}{is\_on\_dubinsSet()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}} \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::is\+\_\+on\+\_\+dubins\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T $>$}]{C }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function that checks whether a {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} is on the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}} or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em C} & The {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The id of the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} on which the point is. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_set_ac6014ed731c39a23df08a4ec2c41ae0f}\label{class_dubins_set_ac6014ed731c39a23df08a4ec2c41ae0f}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!join@{join}}
+\index{join@{join}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$T$>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::join (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ $\ast$}]{DS,  }\item[{\mbox{\hyperlink{draw_8hh_aa620a13339ac3a1177c86edc549fda9b}{int}}}]{start\+Pos = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to join two \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}. 
+
+This function joins two \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}. If {\ttfamily this} is empty, than stores the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} from the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}} to join. If it is not, then checks whether the {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the ending {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} coincides with the starting {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} of the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} to join. If they do then the two sets can be merged, otherwise they cannot. 
+\begin{DoxyParams}{Parameters}
+{\em DS} & The {\ttfamily Dubin\+Set} to join to {\ttfamily this}. \\
+\hline
+{\em start\+Pos} & If this value is negative, then all {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} in DS are going to be merged, otherwise only the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} from this position onwards. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily this}, that is the merged {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_set_a72235c9cfc00e200b8a7fdf5efb4c126}\label{class_dubins_set_a72235c9cfc00e200b8a7fdf5efb4c126}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$T$>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ $\ast$}]{DS }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Overload of operator =. It calls the function copy. 
+\begin{DoxyParams}{Parameters}
+{\em DS} & The {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}} to copy to {\ttfamily this}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily this}, that is DS. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dubins_set_ae7243dad869372a527c4229193f6303b}\label{class_dubins_set_ae7243dad869372a527c4229193f6303b}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!removeDubins@{removeDubins}}
+\index{removeDubins@{removeDubins}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{removeDubins()}{removeDubins()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::remove\+Dubins (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove the last {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} from the set. 
+
+\mbox{\Hypertarget{class_dubins_set_a3db386908cfe6d3c59b724add11dd367}\label{class_dubins_set_a3db386908cfe6d3c59b724add11dd367}} 
+\index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!splitIt@{splitIt}}
+\index{splitIt@{splitIt}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
+\subsubsection{\texorpdfstring{splitIt()}{splitIt()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_tuple}{Tuple}}$<$\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$T$>$ $>$ $>$ $>$ \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::split\+It (\begin{DoxyParamCaption}\item[{double}]{\+\_\+length = {\ttfamily \mbox{\hyperlink{dubins_8hh_a5b2500ca93a5100f73dc442d3cfea7d4}{P\+I\+E\+C\+E\+\_\+\+L\+E\+N\+G\+TH}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Function to split a \mbox{\hyperlink{class_dubins}{Dubins}} in points. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+length} & The distance from one point to another. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing a {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} containing three {\ttfamily \mbox{\hyperlink{class_tuple}{Tuple}}} of {\ttfamily \mbox{\hyperlink{class_configuration2}{Configuration2}}} for each \mbox{\hyperlink{class_dubins}{Dubins}} in the \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_dubins_set_acfedfbe0ef1ff445cbaff93c70205f86}\label{class_dubins_set_acfedfbe0ef1ff445cbaff93c70205f86}} 
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!to\_string@{to\_string}}
 \index{to\_string@{to\_string}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
 \subsubsection{\texorpdfstring{to\_string()}{to\_string()}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 stringstream \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$\+::to\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 This function create a strinstream object containing infos about the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}. \begin{DoxyReturn}{Returns}
@@ -222,7 +421,7 @@ A string stream.
 \index{DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!DubinsSet$<$ T $>$@{DubinsSet$<$ T $>$}}
 \subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
+{\footnotesize\ttfamily template$<$class T$>$ \\
 ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{\mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}$<$ T $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
 This function overload the $<$$<$ operator so to print with {\ttfamily std\+::cout} the values of the {\ttfamily \mbox{\hyperlink{class_dubins_set}{Dubins\+Set}}}, that is printing all the {\ttfamily \mbox{\hyperlink{class_dubins}{Dubins}}} stored. 

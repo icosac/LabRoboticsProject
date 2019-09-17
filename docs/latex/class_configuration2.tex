@@ -18,6 +18,8 @@ This class stores a configuration, that is a point and an angle.
 \begin{DoxyCompactList}\small\item\em Default constructor that takes the coordinates, the angle, and stores them. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_configuration2_aab6ae19e1f7703bbfd9e1d0be1ca76a5}{Configuration2}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ P, const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+th)
 \begin{DoxyCompactList}\small\item\em Default constructor that takes the point, the angle, and stores them. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T2 $>$ }\\\mbox{\hyperlink{class_configuration2_a74a634afc5adbd791736cdd4b8c542cb}{Configuration2}} (const \mbox{\hyperlink{class_point2}{Point2}}$<$ T2 $>$ P, const \mbox{\hyperlink{class_angle}{Angle}} \+\_\+th)
+\begin{DoxyCompactList}\small\item\em Default constructor that takes the point, the angle, and stores them. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ \mbox{\hyperlink{class_configuration2_a15ce37ad4eae9f4a980fc3578765984d}{point}} () const
 \item 
 T1 \mbox{\hyperlink{class_configuration2_a430b4b412cbdad376feec03c52bde56f}{x}} () const
@@ -62,8 +64,14 @@ bool \mbox{\hyperlink{class_configuration2_a1744207d1346e2ec554795255a58c241}{eq
 \begin{DoxyCompactList}\small\item\em Equalize two configurations. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_configuration2_a7dda6b86ded2376a78a7f3d9f2811740}{operator==}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&A)
 \begin{DoxyCompactList}\small\item\em Overload of the == operator. Just calls {\ttfamily equal}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_configuration2_a616d2dd99d9250eeda1bc933e7b0a2da}{operator!=}} (const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&A)
+\begin{DoxyCompactList}\small\item\em Overload of the != operator. Just calls {\ttfamily equal} and negates it. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_configuration2_a8f9c571c4438c591dbafbd76eda85a0e}{operator Point2$<$ T1 $>$}} ()
+\item 
 {\footnotesize template$<$class T2 $>$ }\\\mbox{\hyperlink{class_configuration2_a3bc8dfea259f6d3f97f6770c09ff6526}{operator Configuration2$<$ T2 $>$}} () const
-\end{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_configuration2_a0a63aa5b2089b11bf0f6ec9c65560e56}{invert}} ()
+\begin{DoxyCompactList}\small\item\em Invert the x and y of the point, and even the angle of the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -88,7 +96,7 @@ This class stores a configuration, that is a point and an angle.
 \mbox{\Hypertarget{class_configuration2_a6fc5a5a723da700b6a869db09ec5614f}\label{class_configuration2_a6fc5a5a723da700b6a869db09ec5614f}} 
 \index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!Configuration2@{Configuration2}}
 \index{Configuration2@{Configuration2}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
-\subsubsection{\texorpdfstring{Configuration2()}{Configuration2()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+\subsubsection{\texorpdfstring{Configuration2()}{Configuration2()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
 {\footnotesize\ttfamily template$<$class T1$>$ \\
 \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::\mbox{\hyperlink{class_configuration2}{Configuration2}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -99,7 +107,7 @@ Default constructor that use as point (0,0) and as angle 0 R\+AD.
 \mbox{\Hypertarget{class_configuration2_a09e73e9fe2ae9a67a037a0b3d0619047}\label{class_configuration2_a09e73e9fe2ae9a67a037a0b3d0619047}} 
 \index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!Configuration2@{Configuration2}}
 \index{Configuration2@{Configuration2}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
-\subsubsection{\texorpdfstring{Configuration2()}{Configuration2()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+\subsubsection{\texorpdfstring{Configuration2()}{Configuration2()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
 {\footnotesize\ttfamily template$<$class T1$>$ \\
 \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::\mbox{\hyperlink{class_configuration2}{Configuration2}} (\begin{DoxyParamCaption}\item[{const T1}]{\+\_\+x,  }\item[{const T1}]{\+\_\+y,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -119,7 +127,7 @@ Default constructor that takes the coordinates, the angle, and stores them.
 \mbox{\Hypertarget{class_configuration2_aab6ae19e1f7703bbfd9e1d0be1ca76a5}\label{class_configuration2_aab6ae19e1f7703bbfd9e1d0be1ca76a5}} 
 \index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!Configuration2@{Configuration2}}
 \index{Configuration2@{Configuration2}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
-\subsubsection{\texorpdfstring{Configuration2()}{Configuration2()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+\subsubsection{\texorpdfstring{Configuration2()}{Configuration2()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
 {\footnotesize\ttfamily template$<$class T1$>$ \\
 \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::\mbox{\hyperlink{class_configuration2}{Configuration2}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$}]{P,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -127,6 +135,30 @@ Default constructor that takes the coordinates, the angle, and stores them.
 
 Default constructor that takes the point, the angle, and stores them. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em P} & The coordinates. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+th} & The angle. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_configuration2_a74a634afc5adbd791736cdd4b8c542cb}\label{class_configuration2_a74a634afc5adbd791736cdd4b8c542cb}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!Configuration2@{Configuration2}}
+\index{Configuration2@{Configuration2}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{Configuration2()}{Configuration2()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+template$<$class T2 $>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::\mbox{\hyperlink{class_configuration2}{Configuration2}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_point2}{Point2}}$<$ T2 $>$}]{P,  }\item[{const \mbox{\hyperlink{class_angle}{Angle}}}]{\+\_\+th }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor that takes the point, the angle, and stores them. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Type} & of point in input. \\
+\hline
+\end{DoxyTemplParams}
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em P} & The coordinates. \\
@@ -246,6 +278,17 @@ Function that compute the Euclidean Distance between two configurations. \textba
 \begin{DoxyReturn}{Returns}
 The Euclidean distance between the two configurations. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a0a63aa5b2089b11bf0f6ec9c65560e56}\label{class_configuration2_a0a63aa5b2089b11bf0f6ec9c65560e56}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!invert@{invert}}
+\index{invert@{invert}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{invert()}{invert()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+void \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::invert (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Invert the x and y of the point, and even the angle of the configuration. 
+
 \mbox{\Hypertarget{class_configuration2_afb287896fc721e64bc50425795a84a77}\label{class_configuration2_afb287896fc721e64bc50425795a84a77}} 
 \index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!MaDistance@{MaDistance}}
 \index{MaDistance@{MaDistance}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
@@ -388,6 +431,13 @@ Function to add an offset to the ordinate.
 template$<$class T2 $>$ \\
 \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::operator \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T2 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+\mbox{\Hypertarget{class_configuration2_a8f9c571c4438c591dbafbd76eda85a0e}\label{class_configuration2_a8f9c571c4438c591dbafbd76eda85a0e}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator Point2$<$ T1 $>$@{operator Point2$<$ T1 $>$}}
+\index{operator Point2$<$ T1 $>$@{operator Point2$<$ T1 $>$}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{operator Point2$<$ T1 $>$()}{operator Point2< T1 >()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+\mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::operator \mbox{\hyperlink{class_point2}{Point2}}$<$ T1 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_configuration2_a68bfa8b94c1cff3179698e00edb2890e}\label{class_configuration2_a68bfa8b94c1cff3179698e00edb2890e}} 
 \index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator Point2$<$ T2 $>$@{operator Point2$<$ T2 $>$}}
 \index{operator Point2$<$ T2 $>$@{operator Point2$<$ T2 $>$}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
@@ -407,6 +457,25 @@ Cast of Configuration to \mbox{\hyperlink{class_point2}{Point2}}.
 \end{DoxyTemplParams}
 \begin{DoxyReturn}{Returns}
 A \mbox{\hyperlink{class_point2}{Point2}} of type T2. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration2_a616d2dd99d9250eeda1bc933e7b0a2da}\label{class_configuration2_a616d2dd99d9250eeda1bc933e7b0a2da}} 
+\index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$class T1$>$ \\
+bool \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_configuration2}{Configuration2}}$<$ T1 $>$ \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Overload of the != operator. Just calls {\ttfamily equal} and negates it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Configuration to be equalized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the two configurations are different, false otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_configuration2_a9ef2f57ddcc1f0c8117a9ed2f13141aa}\label{class_configuration2_a9ef2f57ddcc1f0c8117a9ed2f13141aa}} 
 \index{Configuration2$<$ T1 $>$@{Configuration2$<$ T1 $>$}!operator=@{operator=}}
