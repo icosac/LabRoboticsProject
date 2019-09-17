@@ -8,9 +8,56 @@
 		\item Calibration
 		\item Unwarping
 		\item Detection
+		\item Path planning
+		\item Dubins interpolation
+		\item Localization
 	\end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{But first Settings}	
+	\texttt{Settings.xml}
+\end{frame}
+
+\begin{frame}[fragile]{Settings}	
+	\begin{center}
+		\includegraphics[width=\linewidth]{Immagini/settings.png}
+	\vspace{1cm}
+	\newline
+	\href{https://icosac.github.io/LabRoboticsProject/html/class_settings.html#a4a464c938e96639861dc2deb773a2fb8}{Link to settings.hh}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Support objects – maths.hh}
+	\begin{itemize}
+		\item Angle: class to handle both RAD and DEG angles.
+		\item Tuple: an extension of vector.
+		\item Point2: a simple point in the cartesian plane, with useful functionalities.
+		\item Configuration2: a \texttt{Point2} with an orientation as \texttt{Angle}. 
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{maths.hh}
+\begin{center}
+	\href{https://icosac.github.io/LabRoboticsProject/html/maths_8hh.html}{\includegraphics[width=\linewidth]{Immagini/maths}}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Support objects – filter.hh}
+Class attributes:
+\begin{itemize}
+	\item low$\_$h: Lower value for hue	
+	\item low$\_$s: Lower value for saturation
+	\item low$\_$v: Lower value for value
+	\item high$\_$h: Higher value for hue
+	\item high$\_$s: Higher value for saturation
+	\item high$\_$v: Higher value for value
+\end{itemize}
+Class functions:
+\begin{itemize}
+	\item High();
+	\item Low();
+\end{itemize}
+Each returns a \texttt{Scalar} with the correspondent values.
+\end{frame}
 
 \begin{frame}{Calibration}
 	Given a set of pictures taken with a camera, the object of this step is to find the camera matrix $A$ and the distortion coefficients $\dot{d}$.\newline
@@ -66,23 +113,74 @@
 	\]
 \end{frame}
 
-\begin{frame}{Unwarping}
-Once the camera matrix and the distortion coefficients are known, the next step is to focus on the target, that is the circuit, and then to "un-distort" it. 
+\begin{frame}[fragile]{Configure}
+Function to change the filters if the result of their use doesn't look good.
+\end{frame}
+
+\begin{frame}[fragile]{Configure}
 \begin{center}
-	\includegraphics[scale=0.155]{Immagini/Wrapped.jpg}
+\includegraphics[width=\linewidth]{Immagini/configure1}
+\end{center}
+\begin{center}
+\includegraphics[width=\linewidth]{Immagini/configure2}
 \end{center}
 \end{frame}
 
-\begin{frame}{Unwarping}
+\begin{frame}[fragile]{Configure}
+\begin{figure}[H]
+	\begin{minipage}{0.48\linewidth}
+		\includegraphics[width=\linewidth]{Immagini/filterBlack}
+	\end{minipage}
+	\vspace{0.04\linewidth}
+	\begin{minipage}{0.48\linewidth}
+		\includegraphics[width=\linewidth]{Immagini/filterBlue}
+	\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Configure}
+\begin{figure}[H]
+	\begin{minipage}{0.48\linewidth}
+		\includegraphics[width=\linewidth]{Immagini/filterRed}
+	\end{minipage}
+	\vspace{0.04\linewidth}
+	\begin{minipage}{0.48\linewidth}
+		\includegraphics[width=\linewidth]{Immagini/filterGreen}
+	\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Configure}
+\begin{figure}[H]
+	\begin{minipage}{0.48\linewidth}
+		\includegraphics[width=\linewidth]{Immagini/filterRobot}
+	\end{minipage}
+	\vspace{0.07\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		Once finished setting them up, the filters are saved in settings.xml and available during all the execution.
+	\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Unwarping}
+Once the camera matrix and the distortion coefficients are known and the filters are nice, the next step is to focus on the target, that is the circuit, and then to “un-distort” it from this: 
 	\begin{center}
-		\includegraphics[scale=0.25]{Immagini/Unwrapped.jpg}
+		\includegraphics[scale=0.145]{Immagini/UNUndistort}
 	\end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Unwarping}
+To this:
+	\begin{center}
+		\includegraphics[scale=0.18]{Immagini/Unwrapped.png}
+	\end{center}
+\end{frame}
+%TODO change this images
+
+\begin{frame}[fragile]{Unwarping}
 	Straighten the image using the distortion coefficients. 
 	\begin{center}
-		\includegraphics[scale=0.15]{Immagini/UNUndistort}	
+		\includegraphics[scale=0.15]{Immagini/Undistorted}	
 	\end{center}
 	\begin{minted}[fontsize=\stsize]{c++}
 		loadCoefficients(calib_file, camera_matrix, dist_coeffs);
@@ -109,9 +207,8 @@ Once the camera matrix and the distortion coefficients are known, the next step 
 	\end{center}
 	\vfill	
 	\begin{minted}[fontsize=\stsize]{c++}
-		FileNode Bm = fs_xml["blackMask"]; 
-		//<blackMask>0 0 0 179 255 70</blackMask>
-        inRange(hsv_img, Scalar(Bm[0], Bm[1], Bm[2]), Scalar(Bm[3], Bm[4], Bm[5]), black_mask);
+		Filter blackFilter = sett->blackFilter; 
+        inRange(hsv_img, blackFilter.low(), blackFilter.high(), black_mask);
 	\end{minted}
 	\vfill
 \end{frame}
@@ -126,59 +223,203 @@ Once the camera matrix and the distortion coefficients are known, the next step 
 \begin{frame}[fragile]{Unwarping}
 	At the end the image is cropped and turned. 
 	\begin{center}
-		\includegraphics[scale=0.19]{Immagini/Unwrapped}
+		\includegraphics[scale=0.18]{Immagini/Unwrapped.png}
 	\end{center}
 \end{frame}
 
 
 \begin{frame}[fragile]{Detection}
-	The last phase consists of two more steps:
+	The detection phase consists of three more steps:
 	\begin{itemize}
 		\item Shape detection;
 		\item Digit detection;
+		\item Robot detection (aka localize).
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Shape detection}
-	The shape detection consists of scanning the image to locate the various obstacles, targets and the arriving point. \newline
-	Various filer are here used to achieve this goal:
-	\begin{itemize}
-		\item The obstacles are red, so a red filter is going to be used: 15 100 140 160 255 255;
-		\item The targets are green, so a green filter is going to be used: 50 65 45 70 255 200;
-		\item The target point is blue, so a blue filter is going to be used: 100 100 40 140 200 170;
-	\end{itemize}
-	The various items are going to be stored in a file with the coordinates of their angles. 
+\begin{figure}[H]
+	\begin{minipage}{0.45\linewidth}
+		The shape detection consists of scanning the image to locate the various obstacles, targets and the arriving point. \newline
+		The various items are going to be stored in a file with the coordinates of their vertexes as convex hull. 
+	\end{minipage}
+	\vspace{0.07\linewidth}
+	\begin{minipage}{0.48\linewidth}
+		\includegraphics[width=\linewidth]{Immagini/all_detect}
+	\end{minipage}
+\end{figure}
 \end{frame}
 
-\begin{frame}{Shape detection}
-	\begin{center}
-		\includegraphics[scale=0.25]{Immagini/RedFiltered}
-	\end{center}
-\end{frame}
 
 \begin{frame}[fragile]{Digit detection}
-The goal of this last phase is to consider the area around the targets, which is our ROI, and try to identify the number inside it. \newline
-This can be done through templates or through Tesseract API. 
-For having better results the area around each target is:
+The goal of this phase is to consider the area around the targets, which is our ROI, and try to identify the number inside it. \newline
+In order to have better results the area around each target is:
 \begin{itemize}
 	\item Cropped;
-	\item Resized to $200\times 200$ $px$;
-	\item Given a black filter;
-	\item Passed through a function (\mintinline{c++}{erode_dilation}) which aims to removing noise and isolate the number;
-	\item Rotate so that the number is going to be vertical.
+	\item Resized to $200$ $px\times 200$ $px$;
+	\item Given a black filter thought for the victim;
+	\item Passed through a function (\mintinline{c++}{erode_dilation()}) which aims at removing noise and isolating the number;
 \end{itemize}
-At last the digit detection is being done with templates since the success rate has been greater than using Tesseract. 
+At last the digit detection is done with templates since the success rate has been greater than using Tesseract.
 \end{frame}
 
-%\begin{frame}{Code structure}
-%	\begin{center}
-%		\includegraphics[scale=0.45]{Immagini/Code1}
-%	\end{center}
-%\end{frame}
-%
-%\begin{frame}{Code structure}
-%	\begin{center}
-%		\includegraphics[scale=0.7]{Immagini/Code2}
-%	\end{center}
-%\end{frame}
+\begin{frame}[fragile]{Number templates}
+	\begin{figure}[H]
+		\begin{minipage}{0.40\linewidth}
+			\includegraphics[width=\linewidth]{Immagini/2.png}
+		\end{minipage}
+		\vspace{0.20\linewidth}
+		\begin{minipage}{0.40\linewidth}
+			\includegraphics[width=\linewidth]{Immagini/2_inv.png}
+		\end{minipage}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Digit recognition}
+\begin{center}
+	\includegraphics[width=\linewidth]{Immagini/nn2}\\
+	\includegraphics[width=\linewidth]{Immagini/nn3}
+\end{center} 
+\end{frame}
+
+\begin{frame}[fragile]{Digit recognition}
+\begin{center}
+	\includegraphics[width=\linewidth]{Immagini/nn4}\\
+	\includegraphics[width=\linewidth]{Immagini/nn5}
+\end{center} 
+\end{frame}
+
+\begin{frame}[fragile]{Robot detection aka localize}
+The barycentre of the robot is calculated as the mean of the \textit{hopefully} three vertexes of the triangle. \newline
+The function is pretty fast since it works constantly under $20ms$. 
+\begin{center}
+	\includegraphics[scale=0.25]{Immagini/robot_detection}	
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Robot detection aka localize}
+Since the robot is not on the same plane as the arena, a first matrix transformation is needed to be able to use the same coordinates.  
+\otsize
+\[
+\begin{bmatrix}
+0.004009178727557017& 1.058423184075202& -85.87660834428323\\
+-1.129379950738086& 0.01601083899628747& 1828.394707270977\\
+-2.212284394884848e-05& 6.807241218637246e-06& \\	
+\end{bmatrix}
+\]
+\begin{center}
+\texttt{getPerspectiveTransform(...);}
+\end{center}
+\end{frame}
+
+\begin{frame}{Map creation}
+Map is represented as a matrix of cells. Each cell can be of 5 different types:
+\begin{itemize}
+	\item FREE
+	\item VICT
+	\item OBST
+	\item GATE
+	\item BODA
+\end{itemize}
+Each cell gets their type at the creation of the map by loading objects from file and then eventually applying an offset to the obstacles in order to consider the robot as a point.\newline
+\href{https://icosac.github.io/LabRoboticsProject/html/map_8hh.html}{Link to map.hh}
+\end{frame}
+
+\begin{frame}[fragile]{Map creation}
+\begin{center}
+	\includegraphics[scale=0.19]{Immagini/map0}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Path planning}
+\begin{figure}[H]
+	\begin{minipage}{0.5\linewidth}
+Once the map is created, we look at it as a graph and then compute a BFS to connect the robot to the gate through the victims in the right order.\newline
+Here the direction of the robot means nothing: the total minimum path is always the sum of distance between each couple of cells.\newline
+The complexity of this algorithm is $O(N+N(2R+1))$ where $N$=nodes and $R$=range=3. 
+	\end{minipage}
+	\vspace{0.20\linewidth}
+	\begin{minipage}{0.40\linewidth}
+		\href{https://icosac.github.io/LabRoboticsProject/html/planning_8hh.html}{\includegraphics[scale=0.19]{Immagini/map00}}
+	\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Dubins}
+Once a min path is been computed, then we try to smooth it by applying \href{https://icosac.github.io/LabRoboticsProject/html/dubins_8hh.html}{Dubins curves}. 
+\begin{figure}[H]
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.15]{Immagini/map000}
+	\end{minipage}
+	\vspace{0.10\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.15]{Immagini/map1}
+	\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Dubins}
+\begin{figure}[H]
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.19]{Immagini/map2}
+	\end{minipage}
+	\vspace{0.10\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.19]{Immagini/map3}
+	\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Dubins}
+\begin{figure}[H]
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.19]{Immagini/map4}
+	\end{minipage}
+	\vspace{0.10\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.19]{Immagini/map5}
+	\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Honorable mentions}
+\begin{figure}[H]
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.13]{Immagini/map6}
+	\end{minipage}
+	\vspace{0.10\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.13]{Immagini/map7}
+	\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{The bonus problem}
+The robot can save (or not) the victims in any order, getting a prize for each rescue. \newline
+To do this, the min path algorithm has been changed:
+\begin{itemize}
+	\item It computes the distances between each couple of elements as a complete graph.
+	\item It try all the possible combinations of routes considering the bonus.
+	\item Finally choose the cheapest combination and apply Dubins. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Known problem}
+\begin{figure}[H]
+	\begin{minipage}{0.45\linewidth}
+A known problem is what we called "The tunnel problem".\newline
+This problem is due to the fact that the min path algorithm does not consider directions and the sample algorithm of the Dubins cannot always find a solution.  
+	\end{minipage}
+	\vspace{0.10\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.13]{Immagini/polmoni}
+	\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Acknowledgments}
+\begin{center}
+Thank you for your attention. 
+\end{center}
+\end{frame}
 

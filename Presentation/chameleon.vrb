@@ -1,0 +1,10 @@
+\frametitle{Dubins}
+\begin{figure}[H]
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.19]{Immagini/map4}
+	\end{minipage}
+	\vspace{0.10\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[scale=0.19]{Immagini/map5}
+	\end{minipage}
+\end{figure}

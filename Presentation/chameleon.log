@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.0.4 (TeX Live 2017)  (format=lualatex 2018.2.27)  8 NOV 2018 18:55
+This is LuaTeX, Version 1.0.4 (TeX Live 2017)  (format=lualatex 2018.2.27)  17 SEP 2019 22:30
  system commands enabled.
  file:line:error style messages enabled.
 **chameleon.tex
@@ -23,7 +23,7 @@ Inserting `luaotfload.aux.patch_cambria_domh' at position 2 in `luaotfload.patch
 Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_font_unsafe'.
 Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font'.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'.
-luaotfload | main : initialization completed in 0.105 seconds
+luaotfload | main : initialization completed in 0.231 seconds
 Babel <3.10> and hyphenation patterns for 1 language(s) loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2017/01/23 v3.41 A class for typesetting presentations
@@ -1122,11 +1122,11 @@ LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <6> not available
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}<./Immagini/logo-unitn.png>]
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 12.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 15.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 12.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 15.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <5> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 12.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 15.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
@@ -1140,6 +1140,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [2
 
 ]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb)
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1151,17 +1153,14 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [3
 
-] <Immagini/Chessboard1.png, id=40, 1280.785pt x 1007.765pt>
-File: Immagini/Chessboard1.png Graphic file (type png)
- <use Immagini/Chessboard1.png>
-Package luatex.def Info: Immagini/Chessboard1.png used on input line 46.
-(luatex.def)             Requested size: 153.8356pt x 121.03421pt.
- <Immagini/Chessboard2.png, id=41, 1280.785pt x 1007.765pt>
-File: Immagini/Chessboard2.png Graphic file (type png)
- <use Immagini/Chessboard2.png>
-Package luatex.def Info: Immagini/Chessboard2.png used on input line 46.
-(luatex.def)             Requested size: 153.8356pt x 121.03421pt.
-
+]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/settings.png, id=36, 1731.46875pt x 330.23375pt>
+File: Immagini/settings.png Graphic file (type png)
+ <use Immagini/settings.png>
+Package luatex.def Info: Immagini/settings.png used on input line 3.
+(luatex.def)             Requested size: 320.4937pt x 61.12251pt.
+)
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1173,17 +1172,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [4
 
-<./Immagini/Chessboard1.png><./Immagini/Chessboard2.png>] <Immagini/Chessboard1Calibrated.png, id=49, 1280.785pt x 1007.765pt>
-File: Immagini/Chessboard1Calibrated.png Graphic file (type png)
- <use Immagini/Chessboard1Calibrated.png>
-Package luatex.def Info: Immagini/Chessboard1Calibrated.png used on input line 67.
-(luatex.def)             Requested size: 153.8356pt x 121.03421pt.
- <Immagini/Chessboard2Calibrated.png, id=50, 1280.785pt x 1007.765pt>
-File: Immagini/Chessboard2Calibrated.png Graphic file (type png)
- <use Immagini/Chessboard2Calibrated.png>
-Package luatex.def Info: Immagini/Chessboard2Calibrated.png used on input line 67.
-(luatex.def)             Requested size: 153.8356pt x 121.03421pt.
-
+<./Immagini/settings.png>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1195,7 +1184,739 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [5
 
-<./Immagini/Chessboard1Calibrated.png><./Immagini/Chessboard2Calibrated.png>])
+]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/maths.png, id=51, 1767.60374pt x 490.83376pt>
+File: Immagini/maths.png Graphic file (type png)
+ <use Immagini/maths.png>
+Package luatex.def Info: Immagini/maths.png used on input line 3.
+(luatex.def)             Requested size: 320.4937pt x 88.99036pt.
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[6
+
+<./Immagini/maths.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[7
+
+]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[8
+
+] <Immagini/Chessboard1.png, id=74, 1280.785pt x 1007.765pt>
+File: Immagini/Chessboard1.png Graphic file (type png)
+ <use Immagini/Chessboard1.png>
+Package luatex.def Info: Immagini/Chessboard1.png used on input line 93.
+(luatex.def)             Requested size: 153.8356pt x 121.03421pt.
+ <Immagini/Chessboard2.png, id=75, 1280.785pt x 1007.765pt>
+File: Immagini/Chessboard2.png Graphic file (type png)
+ <use Immagini/Chessboard2.png>
+Package luatex.def Info: Immagini/Chessboard2.png used on input line 93.
+(luatex.def)             Requested size: 153.8356pt x 121.03421pt.
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[9
+
+<./Immagini/Chessboard1.png><./Immagini/Chessboard2.png>] <Immagini/Chessboard1Calibrated.png, id=83, 1280.785pt x 1007.765pt>
+File: Immagini/Chessboard1Calibrated.png Graphic file (type png)
+ <use Immagini/Chessboard1Calibrated.png>
+Package luatex.def Info: Immagini/Chessboard1Calibrated.png used on input line 114.
+(luatex.def)             Requested size: 153.8356pt x 121.03421pt.
+ <Immagini/Chessboard2Calibrated.png, id=84, 1280.785pt x 1007.765pt>
+File: Immagini/Chessboard2Calibrated.png Graphic file (type png)
+ <use Immagini/Chessboard2Calibrated.png>
+Package luatex.def Info: Immagini/Chessboard2Calibrated.png used on input line 114.
+(luatex.def)             Requested size: 153.8356pt x 121.03421pt.
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[10
+
+<./Immagini/Chessboard1Calibrated.png><./Immagini/Chessboard2Calibrated.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[11
+
+]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/configure1.png, id=103, 745.78625pt x 138.5175pt>
+File: Immagini/configure1.png Graphic file (type png)
+ <use Immagini/configure1.png>
+Package luatex.def Info: Immagini/configure1.png used on input line 3.
+(luatex.def)             Requested size: 320.4937pt x 59.52542pt.
+ <Immagini/configure2.png, id=104, 743.77875pt x 137.51375pt>
+File: Immagini/configure2.png Graphic file (type png)
+ <use Immagini/configure2.png>
+Package luatex.def Info: Immagini/configure2.png used on input line 6.
+(luatex.def)             Requested size: 320.4937pt x 59.25565pt.
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[12
+
+<./Immagini/configure1.png><./Immagini/configure2.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/filterBlack.png, id=110, 931.48pt x 984.67876pt>
+File: Immagini/filterBlack.png Graphic file (type png)
+ <use Immagini/filterBlack.png>
+Package luatex.def Info: Immagini/filterBlack.png used on input line 4.
+(luatex.def)             Requested size: 153.8356pt x 162.61523pt.
+ <Immagini/filterBlue.png, id=111, 931.48pt x 984.67876pt>
+File: Immagini/filterBlue.png Graphic file (type png)
+ <use Immagini/filterBlue.png>
+Package luatex.def Info: Immagini/filterBlue.png used on input line 8.
+(luatex.def)             Requested size: 153.8356pt x 162.61523pt.
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[13
+
+<./Immagini/filterBlack.png><./Immagini/filterBlue.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/filterRed.png, id=119, 931.48pt x 980.66376pt>
+File: Immagini/filterRed.png Graphic file (type png)
+ <use Immagini/filterRed.png>
+Package luatex.def Info: Immagini/filterRed.png used on input line 4.
+(luatex.def)             Requested size: 153.8356pt x 161.95216pt.
+ <Immagini/filterGreen.png, id=120, 931.48pt x 980.66376pt>
+File: Immagini/filterGreen.png Graphic file (type png)
+ <use Immagini/filterGreen.png>
+Package luatex.def Info: Immagini/filterGreen.png used on input line 8.
+(luatex.def)             Requested size: 153.8356pt x 161.95216pt.
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[14
+
+<./Immagini/filterRed.png><./Immagini/filterGreen.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/filterRobot.png, id=128, 931.48pt x 985.6825pt>
+File: Immagini/filterRobot.png Graphic file (type png)
+ <use Immagini/filterRobot.png>
+Package luatex.def Info: Immagini/filterRobot.png used on input line 4.
+(luatex.def)             Requested size: 153.8356pt x 162.78099pt.
+
+Underfull \hbox (badness 1546) in paragraph at lines 8--9
+\TU/lmss/m/n/10.95 the fil-ters are saved in set-
+ []
+
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[15
+
+<./Immagini/filterRobot.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/UNUndistort.jpg, id=135, 1927.2pt x 1084.05pt>
+File: Immagini/UNUndistort.jpg Graphic file (type jpg)
+ <use Immagini/UNUndistort.jpg>
+Package luatex.def Info: Immagini/UNUndistort.jpg used on input line 4.
+(luatex.def)             Requested size: 279.45155pt x 157.1915pt.
+)
+Overfull \vbox (3.4008pt too high) detected at line 170
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[16
+
+<./Immagini/UNUndistort.jpg>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/Unwrapped.png, id=141, 684.5575pt x 1020.81375pt>
+File: Immagini/Unwrapped.png Graphic file (type png)
+ <use Immagini/Unwrapped.png>
+Package luatex.def Info: Immagini/Unwrapped.png used on input line 4.
+(luatex.def)             Requested size: 123.21503pt x 183.73854pt.
+)
+Overfull \vbox (1.49954pt too high) detected at line 177
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[17
+
+<./Immagini/Unwrapped.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/Undistorted.jpg, id=147, 1927.2pt x 1084.05pt>
+File: Immagini/Undistorted.jpg Graphic file (type jpg)
+ <use Immagini/Undistorted.jpg>
+Package luatex.def Info: Immagini/Undistorted.jpg used on input line 4.
+(luatex.def)             Requested size: 289.06754pt x 162.60048pt.
+
+\openout5 = chameleon.pyg
+ (./chameleon.out.pyg) (./chameleon.out.pyg) (./chameleon.out.pyg(load luc: /usr/local/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmmono8-regular.luc)(load luc: /usr/local/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmmono9-regular.luc)(load luc: /usr/local/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmsans9-regular.luc)
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <9> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 2.
+(load luc: /usr/local/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmsans9-oblique.luc)))
+Overfull \vbox (1.09676pt too high) detected at line 189
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[18
+
+<./Immagini/Undistorted.jpg>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/UNHSV.png, id=154, 1808.7575pt x 1019.81pt>
+File: Immagini/UNHSV.png Graphic file (type png)
+ <use Immagini/UNHSV.png>
+Package luatex.def Info: Immagini/UNHSV.png used on input line 4.
+(luatex.def)             Requested size: 271.30193pt x 152.96489pt.
+
+\openout5 = chameleon.pyg
+ (./chameleon.out.pyg))
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[19
+
+<./Immagini/UNHSV.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/UNBlackFilter.png, id=160, 1806.75pt x 1021.8175pt>
+File: Immagini/UNBlackFilter.png Graphic file (type png)
+ <use Immagini/UNBlackFilter.png>
+Package luatex.def Info: Immagini/UNBlackFilter.png used on input line 4.
+(luatex.def)             Requested size: 271.00081pt x 153.266pt.
+
+\openout5 = chameleon.pyg
+ (./chameleon.out.pyg))
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[20
+
+<./Immagini/UNBlackFilter.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/UNRect.png, id=166, 1806.75pt x 1017.8025pt>
+File: Immagini/UNRect.png Graphic file (type png)
+ <use Immagini/UNRect.png>
+Package luatex.def Info: Immagini/UNRect.png used on input line 4.
+(luatex.def)             Requested size: 289.0859pt x 162.85173pt.
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[21
+
+<./Immagini/UNRect.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb
+File: Immagini/Unwrapped.png Graphic file (type png)
+ <use Immagini/Unwrapped.png>
+Package luatex.def Info: Immagini/Unwrapped.png used on input line 4.
+(luatex.def)             Requested size: 123.21503pt x 183.73854pt.
+)
+Overfull \vbox (3.6348pt too high) detected at line 228
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[22
+
+]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[23
+
+]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/all_detect.png, id=183, 682.55pt x 1021.8175pt>
+File: Immagini/all_detect.png Graphic file (type png)
+ <use Immagini/all_detect.png>
+Package luatex.def Info: Immagini/all_detect.png used on input line 9.
+(luatex.def)             Requested size: 153.8356pt x 230.2888pt.
+)
+Overfull \vbox (60.76625pt too high) detected at line 251
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[24
+
+<./Immagini/all_detect.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb
+\openout7 = chameleon.pyg
+ (./chameleon.out.pyg))
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[25
+
+]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/2.png, id=195, 132.495pt x 200.75pt>
+File: Immagini/2.png Graphic file (type png)
+ <use Immagini/2.png>
+Package luatex.def Info: Immagini/2.png used on input line 4.
+(luatex.def)             Requested size: 128.19551pt x 194.24939pt.
+ <Immagini/2_inv.png, id=196, 132.495pt x 200.75pt>
+File: Immagini/2_inv.png Graphic file (type png)
+ <use Immagini/2_inv.png>
+Package luatex.def Info: Immagini/2_inv.png used on input line 8.
+(luatex.def)             Requested size: 128.19551pt x 194.24939pt.
+)
+Overfull \vbox (66.38768pt too high) detected at line 276
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[26
+
+<./Immagini/2.png><./Immagini/2_inv.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/nn2.png, id=204, 551.81157pt x 155.07938pt>
+File: Immagini/nn2.png Graphic file (type png)
+ <use Immagini/nn2.png>
+Package luatex.def Info: Immagini/nn2.png used on input line 3.
+(luatex.def)             Requested size: 320.4937pt x 90.07387pt.
+ <Immagini/nn3.png, id=205, 550.30594pt x 153.57375pt>
+File: Immagini/nn3.png Graphic file (type png)
+ <use Immagini/nn3.png>
+Package luatex.def Info: Immagini/nn3.png used on input line 4.
+(luatex.def)             Requested size: 320.4937pt x 89.44307pt.
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[27
+
+<./Immagini/nn2.png><./Immagini/nn3.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/nn4.png, id=211, 566.115pt x 152.06813pt>
+File: Immagini/nn4.png Graphic file (type png)
+ <use Immagini/nn4.png>
+Package luatex.def Info: Immagini/nn4.png used on input line 3.
+(luatex.def)             Requested size: 320.4937pt x 86.09267pt.
+ <Immagini/nn5.png, id=212, 545.78906pt x 152.82094pt>
+File: Immagini/nn5.png Graphic file (type png)
+ <use Immagini/nn5.png>
+Package luatex.def Info: Immagini/nn5.png used on input line 4.
+(luatex.def)             Requested size: 320.4937pt x 89.73915pt.
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[28
+
+<./Immagini/nn4.png><./Immagini/nn5.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/robot_detection.png, id=218, 932.48375pt x 522.95375pt>
+File: Immagini/robot_detection.png Graphic file (type png)
+ <use Immagini/robot_detection.png>
+Package luatex.def Info: Immagini/robot_detection.png used on input line 5.
+(luatex.def)             Requested size: 233.12036pt x 130.73811pt.
+)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[29
+
+<./Immagini/robot_detection.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb)
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[30
+
+]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[31
+
+]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/map0.png, id=241, 681.54625pt x 1019.81pt>
+File: Immagini/map0.png Graphic file (type png)
+ <use Immagini/map0.png>
+Package luatex.def Info: Immagini/map0.png used on input line 3.
+(luatex.def)             Requested size: 129.49513pt x 193.76591pt.
+)
+Overfull \vbox (1.80646pt too high) detected at line 332
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[32
+
+<./Immagini/map0.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/map00.png, id=248, 664.4825pt x 991.705pt>
+File: Immagini/map00.png Graphic file (type png)
+ <use Immagini/map00.png>
+Package luatex.def Info: Immagini/map00.png used on input line 10.
+(luatex.def)             Requested size: 126.25298pt x 188.4259pt.
+)
+Overfull \vbox (60.5642pt too high) detected at line 346
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[33
+
+<./Immagini/map00.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/map000.png, id=256, 666.49pt x 991.705pt>
+File: Immagini/map000.png Graphic file (type png)
+ <use Immagini/map000.png>
+Package luatex.def Info: Immagini/map000.png used on input line 5.
+(luatex.def)             Requested size: 99.96918pt x 148.74933pt.
+ <Immagini/map1.png, id=257, 663.47874pt x 991.705pt>
+File: Immagini/map1.png Graphic file (type png)
+ <use Immagini/map1.png>
+Package luatex.def Info: Immagini/map1.png used on input line 9.
+(luatex.def)             Requested size: 99.51752pt x 148.74933pt.
+)
+Overfull \vbox (18.2969pt too high) detected at line 359
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[34
+
+<./Immagini/map000.png><./Immagini/map1.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/map2.png, id=264, 664.4825pt x 991.705pt>
+File: Immagini/map2.png Graphic file (type png)
+ <use Immagini/map2.png>
+Package luatex.def Info: Immagini/map2.png used on input line 4.
+(luatex.def)             Requested size: 126.25298pt x 188.4259pt.
+ <Immagini/map3.png, id=265, 662.475pt x 991.705pt>
+File: Immagini/map3.png Graphic file (type png)
+ <use Immagini/map3.png>
+Package luatex.def Info: Immagini/map3.png used on input line 8.
+(luatex.def)             Requested size: 125.87155pt x 188.4259pt.
+)
+Overfull \vbox (28.51776pt too high) detected at line 371
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[35
+
+<./Immagini/map2.png><./Immagini/map3.png>]
+\openout4 = chameleon.vrb
+ (./chameleon.vrb <Immagini/map4.png, id=271, 664.4825pt x 991.705pt>
+File: Immagini/map4.png Graphic file (type png)
+ <use Immagini/map4.png>
+Package luatex.def Info: Immagini/map4.png used on input line 4.
+(luatex.def)             Requested size: 126.25298pt x 188.4259pt.
+ <Immagini/map5.png, id=272, 662.475pt x 992.70876pt>
+File: Immagini/map5.png Graphic file (type png)
+ <use Immagini/map5.png>
+Package luatex.def Info: Immagini/map5.png used on input line 8.
+(luatex.def)             Requested size: 125.87155pt x 188.61662pt.
+)
+Overfull \vbox (28.70848pt too high) detected at line 383
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[36
+
+<./Immagini/map4.png><./Immagini/map5.png>] <Immagini/map6.jpg, id=278, 1003.75pt x 1505.625pt>
+File: Immagini/map6.jpg Graphic file (type jpg)
+ <use Immagini/map6.jpg>
+Package luatex.def Info: Immagini/map6.jpg used on input line 395.
+(luatex.def)             Requested size: 130.49208pt x 195.73811pt.
+ <Immagini/map7.jpg, id=279, 1003.75pt x 1505.625pt>
+File: Immagini/map7.jpg Graphic file (type jpg)
+ <use Immagini/map7.jpg>
+Package luatex.def Info: Immagini/map7.jpg used on input line 395.
+(luatex.def)             Requested size: 130.49208pt x 195.73811pt.
+
+Overfull \vbox (35.82997pt too high) detected at line 395
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[37
+
+<./Immagini/map6.jpg><./Immagini/map7.jpg>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[38
+
+] <Immagini/polmoni.jpg, id=290, 1003.75pt x 1505.625pt>
+File: Immagini/polmoni.jpg Graphic file (type jpg)
+ <use Immagini/polmoni.jpg>
+Package luatex.def Info: Immagini/polmoni.jpg used on input line 418.
+(luatex.def)             Requested size: 130.49208pt x 195.73811pt.
+
+Overfull \vbox (35.82997pt too high) detected at line 418
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[39
+
+<./Immagini/polmoni.jpg>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]
+ []
+
+[40
+
+])
 \tf@nav=\write9
 
 \openout9 = chameleon.nav
@@ -1215,19 +1936,19 @@ Package rerunfilecheck Info: File `chameleon.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 39246 strings out of 494481
+ 40313 strings out of 494481
  100000,1373583 words of node,token memory allocated
- 4907 words of node memory still in use:
-   85 hlist, 20 vlist, 11 rule, 3 disc, 10 local_par, 22 math, 160 glue, 9 kern, 30 penalty, 217 glyph, 124 attribute, 72 glue_spec, 124 attribute_list, 4 write, 30 pdf_colorstack, 2 pdf_setmatrix, 2 pdf_save, 2 pdf_restore nodes
-   avail lists: 1:8,2:260,3:95,4:118,5:97,6:432,7:417,8:56,9:274,10:16,11:28
- 41739 multiletter control sequences out of 65536+600000
- 66 fonts using 4928271 bytes
+ 2299 words of node memory still in use:
+   39 hlist, 14 vlist, 6 rule, 5 disc, 8 local_par, 67 glue, 10 kern, 18 penalty, 45 glyph, 68 attribute, 72 glue_spec, 68 attribute_list, 4 write, 30 pdf_colorstack nodes
+   avail lists: 1:8,2:1051,3:107,4:162,5:286,6:1121,7:683,8:61,9:835,10:25,11:251
+ 42161 multiletter control sequences out of 65536+600000
+ 77 fonts using 5942431 bytes
  73i,17n,102p,845b,553s stack positions out of 5000i,500n,10000p,200000b,100000s
-</usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans8-oblique.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans10-oblique.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans8-regular.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on chameleon.pdf (5 pages, 33871012 bytes).
+</usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans8-oblique.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans10-oblique.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans8-regular.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on chameleon.pdf (40 pages, 45101391 bytes).
 
-PDF statistics: 124 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 131072)
+PDF statistics: 388 PDF objects out of 1000 (max. 8388607)
+ 250 compressed objects within 3 object streams
+ 81 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
