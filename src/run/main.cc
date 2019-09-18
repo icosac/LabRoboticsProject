@@ -1,61 +1,33 @@
-// the core of the project
+#include <robotProject.hh>
+#include <iostream>
+#include <unistd.h>
+#include <iostream>
+#include "path.h"
 
-#include <utils.hh>
-#include <detection.hh>
-#include <unwrapping.hh>
-#include <calibration.hh>
-#include <planning.hh>
-#include <configure.hh>
-#include <settings.hh>
-
-#include<iostream>
 using namespace std;
 
-Settings *sett =new Settings();
+extern Settings *sett;
+extern CameraCapture* camera;
 
-int main (){
-	sett->cleanAndRead();
-	
-	// cout << "calibration" << endl;
-	// calibration(); //BUG????!?!?!?!?!?!??!?!?!
+int main(){ 
+    sett->cleanAndRead(FILE);
+    
+    double frame_time=0;
+    RobotProject rp= RobotProject(nullptr, frame_time);
+    cout << *sett << endl;
 
+    cout << sett->unMaps(0).get(0) << endl;
+    Mat img=imread(sett->unMaps(0).get(0));
+    if(!rp.preprocessMap(img)){
+        cout << "Error1\n";
+    }
 
-	cout << endl <<"Configure" << endl;
-	configure(true);
+    Path path;
+    if(!rp.planPath(img, path)){
+        cout << "Error2\n";
+    }
+    cout << "path size: " << path.size() << endl;
 
-	cout << endl << "unwrapping" << endl;
-	unwrapping();
-
-	cout << endl << "detection" << endl;
-	detection();
-
-	cout << endl << "planning" << endl;
-
-	pair< vector<Point2<int> >, Mapp * > tmpPair = planning();
-	vector<Point2<int> > pathPoints = tmpPair.first;
-	Mapp * map = tmpPair.second;
-
-	Mat imageMap = map->createMapRepresentation();
-
-	map->imageAddPoints(imageMap, pathPoints);
-	map->imageAddSegments(imageMap, pathPoints);
-
-	#ifdef WAIT
-		namedWindow("Map", WINDOW_NORMAL);
-		imshow("Map", imageMap);
-		mywaitkey();
-	#endif
-
-	// the robot starts to move MAYBE...
-	// Point2<int> p;
-	// for(int i=0; i<100; i++){	// 100*(<50ms) = (<5sec)
-	// 	// execute this line only in the laboratory...
-	// 	p = localize();
-	// }
-
-	cout << "\nend\n\n";
-	#ifdef WAIT
-		mywaitkey();
-	#endif
-	return(0);
+    cout << "END\n";
+    return(0);   
 }

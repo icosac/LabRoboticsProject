@@ -15,6 +15,9 @@
 using namespace cv;
 using namespace std;
 
+#define PATH "./data/"
+#define FILE "./data/settings.xml"
+
 /*!
  * Class that stores settings for the projects such as location of files, name of maps and filters to use.
  * Mind that when created it does not read from file by default but the function must be invoked.

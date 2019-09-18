@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <opencv_storage>
-<baseFolder>"./exam/data/"</baseFolder>
+<baseFolder>"./data/"</baseFolder>
 <mapsFolder>map</mapsFolder>
 <mapsNames>
   "01.jpg"</mapsNames>

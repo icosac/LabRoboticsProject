@@ -1,6 +1,6 @@
 #include "robotProject.hh"
 
-Settings *sett=new Settings("./exam/data/");
+Settings *sett=new Settings(PATH);
 
 /*! \brief The main constructor of the class.
 
@@ -11,7 +11,7 @@ Settings *sett=new Settings("./exam/data/");
 RobotProject::RobotProject(CameraCapture* camera, double& frame_time){
 	cout << "\n-> -> -> RobotProject constructor\n";
 	
-	sett->cleanAndRead("./exam/data/settings.xml");
+	sett->cleanAndRead(FILE);
 
 	#ifdef CONFIGURE
 		Mat img;

@@ -214,11 +214,12 @@ void Settings::writeToFile(string _path){
  */
 #include<fstream>
 void Settings::readFromFile(string _path){
+	baseFolder=PATH;
 	if (_path=="") _path=this->baseFolder+"settings.xml";
 	cout << "read from file " << _path << endl;
 	FileStorage fs(_path, FileStorage::READ);
 
-	baseFolder=(string)fs["baseFolder"];
+	// baseFolder=(string)fs["baseFolder"];
 	mapsFolder=(string)fs["mapsFolder"];
 	for (uint i=0; i<fs["mapsNames"].size(); i++){
 		mapsNames.addIfNot((string)fs["mapsNames"][i]);

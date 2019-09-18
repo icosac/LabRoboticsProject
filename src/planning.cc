@@ -189,7 +189,7 @@ namespace Planning {
         Planning::map->imageAddSegments(imageMap, cellsOfPath);
 
         #if defined WAIT || defined SHOW_MAP
-            namedWindow("Map withminPath", WINDOW_NORMAL);
+            namedWindow("Map minPath", WINDOW_NORMAL);
             imshow("Map minPath", imageMap);
             mywaitkey();
         #endif
